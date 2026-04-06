@@ -1,0 +1,15 @@
+diff --git a/src/_pytest/capture.py b/src/_pytest/capture.py
+index 25eab7fdf..6f60cc688 100644
+--- a/src/_pytest/capture.py
++++ b/src/_pytest/capture.py
+@@ -442,6 +442,10 @@ class EncodedFile(object):
+         data = "".join(linelist)
+         self.write(data)
+ 
++    @property
++    def mode(self):
++        return self.buffer.mode.replace("b", "")
++
+     @property
+     def name(self):
+         """Ensure that file.name is a string."""

@@ -1,0 +1,26 @@
+diff --git a/src/_pytest/mark/structures.py b/src/_pytest/mark/structures.py
+index 800a25c92..cdd10d35f 100644
+--- a/src/_pytest/mark/structures.py
++++ b/src/_pytest/mark/structures.py
+@@ -357,9 +357,20 @@ class MarkDecorator:
+ 
+ def get_unpacked_marks(obj: object) -> Iterable[Mark]:
+     """Obtain the unpacked marks that are stored on an object."""
+-    mark_list = getattr(obj, "pytestmark", [])
+-    if not isinstance(mark_list, list):
+-        mark_list = [mark_list]
++    if isinstance(obj, type):
++        # Collect marks from all classes in MRO, from the most-derived to the base,
++        # but only from classes that directly define pytestmark (not inherited).
++        mark_list = []
++        for klass in obj.__mro__:
++            if "pytestmark" in klass.__dict__:
++                own_mark = klass.__dict__["pytestmark"]
++                if not isinstance(own_mark, list):
++                    own_mark = [own_mark]
++                mark_list.extend(own_mark)
++    else:
++        mark_list = getattr(obj, "pytestmark", [])
++        if not isinstance(mark_list, list):
++            mark_list = [mark_list]
+     return normalize_mark_list(mark_list)

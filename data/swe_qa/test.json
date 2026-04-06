@@ -1,0 +1,23 @@
+[
+  {
+    "id": "mini_001",
+    "repo": "local/repowise",
+    "question_type": "What",
+    "question": "What are the main CLI commands available in the repowise tool? List them and briefly describe what each one does.",
+    "answer": "The main CLI commands are: init (generate wiki documentation for a codebase), update (incrementally update wiki pages for changed files), watch (watch for file changes and auto-update), serve (start the web UI server), search (search wiki pages), status (show wiki sync state), doctor (run health checks), mcp (start MCP server), dead-code (detect unused code), decision (manage architectural decision records), export (export wiki pages), generate-claude-md (generate CLAUDE.md), and reindex (rebuild vector search index)."
+  },
+  {
+    "id": "mini_002",
+    "repo": "local/repowise",
+    "question_type": "How",
+    "question": "How does the graph intelligence layer work in repowise? What parser and data structures does it use?",
+    "answer": "The graph intelligence layer uses tree-sitter for AST parsing to build a NetworkX dependency graph. It parses source files into an AST, extracts nodes (files, classes, functions) and edges (imports, inheritance, call relationships). It then computes PageRank centrality scores and uses community detection to identify logical modules. The graph is stored in SQLAlchemy models and can be queried to find dependencies, dependents, and module boundaries."
+  },
+  {
+    "id": "mini_003",
+    "repo": "local/repowise",
+    "question_type": "Where",
+    "question": "Where is the MCP server implementation located and what tools does it expose?",
+    "answer": "The MCP server is implemented in the server package at packages/server/src/repowise/server/. It exposes 8 tools: get_overview, get_context, get_risk, get_why, search_codebase, get_dependency_path, get_dead_code, and get_architecture_diagram. These tools provide structured access to the four intelligence layers (graph, git, documentation, and decisions)."
+  }
+]

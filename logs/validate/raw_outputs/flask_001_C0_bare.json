@@ -1,0 +1,54 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 34211,
+  "duration_api_ms": 34133,
+  "num_turns": 8,
+  "result": "Here is a precise, step-by-step explanation:\n\n---\n\n## `_got_registered_once` in the `Blueprint` class\n\n**Location:** `src/flask/sansio/blueprints.py:172`\n\n### What it is\n\n`_got_registered_once` is a class-level boolean flag on the `Blueprint` class (defined in `sansio/blueprints.py`), initialized to `False`.\n\n### How it works\n\n**1. It is set to `True` the first time the blueprint is registered** (`register()` method, line 320):\n```python\nself._got_registered_once = True\n```\nThis happens inside `Blueprint.register()` just before `make_setup_state()` is called.\n\n**2. It is checked by `_check_setup_finished()`** (line 213\u2013221):\n```python\ndef _check_setup_finished(self, f_name: str) -> None:\n    if self._got_registered_once:\n        raise AssertionError(\n            f\"The setup method '{f_name}' can no longer be called on the blueprint\"\n            f\" '{self.name}'. It has already been registered at least once, any\"\n            \" changes will not be applied consistently.\\n\"\n            ...\n        )\n```\n\n**3. Every setup method is wrapped by the `@setupmethod` decorator** (`sansio/scaffold.py:42`):\n```python\ndef setupmethod(f: F) -> F:\n    f_name = f.__name__\n    def wrapper_func(self: Scaffold, *args, **kwargs):\n        self._check_setup_finished(f_name)\n        return f(self, *args, **kwargs)\n    return cast(F, update_wrapper(wrapper_func, f))\n```\n\nEvery method decorated with `@setupmethod` \u2014 such as `record`, `record_once`, `add_url_rule`, `before_request`, `after_request`, `errorhandler`, etc. \u2014 calls `_check_setup_finished` before executing.\n\n### Why it exists\n\nA blueprint can be registered on multiple applications (or the same app multiple times with different `url_prefix`/`name` options). All setup work \u2014 route registrations, hooks, error handlers \u2014 is collected into `deferred_functions` at definition time and replayed during each `register()` call.\n\nIf someone calls a setup method **after** the blueprint has already been registered once, the new deferred function would only be replayed on future registrations, **not** retroactively on the already-registered app. This creates silent, inconsistent behavior that is very hard to debug.\n\nThe flag turns that silent inconsistency into an immediate, loud `AssertionError`, enforcing the rule: **all blueprint configuration must happen before the first `app.register_blueprint()` call**.",
+  "stop_reason": "end_turn",
+  "session_id": "83d8731b-6d83-4409-a980-ac86f8c2a6d3",
+  "total_cost_usd": 0.13296734999999998,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 15367,
+    "cache_read_input_tokens": 175767,
+    "output_tokens": 1505,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15367,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 1505,
+      "cacheReadInputTokens": 175767,
+      "cacheCreationInputTokens": 15367,
+      "webSearchRequests": 0,
+      "costUSD": 0.13296734999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "mcp__repowise__search_codebase",
+      "tool_use_id": "toolu_01Mcexe82mA7kpv6PyHgiRMN",
+      "tool_input": {
+        "query": "blueprint registration tracking flag setup methods after registered"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e68a4c42-e196-4bbe-b176-f656bf19ccd0"
+}

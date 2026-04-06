@@ -1,0 +1,26 @@
+diff --git a/src/_pytest/python.py b/src/_pytest/python.py
+index 306e5f217..3b72f7c65 100644
+--- a/src/_pytest/python.py
++++ b/src/_pytest/python.py
+@@ -639,12 +639,12 @@ class Package(Module):
+         return path in self.session._initialpaths
+ 
+     def collect(self):
+-        self._mount_obj_if_needed()
+         this_path = self.fspath.dirpath()
+         init_module = this_path.join("__init__.py")
+         if init_module.check(file=1) and path_matches_patterns(
+             init_module, self.config.getini("python_files")
+         ):
++            self._mount_obj_if_needed()
+             yield Module(init_module, self)
+         pkg_prefixes = set()
+         for path in this_path.visit(rec=self._recurse, bf=True, sort=True):
+@@ -662,6 +662,7 @@ class Package(Module):
+                 continue
+ 
+             if is_file:
++                self._mount_obj_if_needed()
+                 yield from self._collectfile(path)
+             elif not path.isdir():
+                 # Broken symlink or invalid/missing file.

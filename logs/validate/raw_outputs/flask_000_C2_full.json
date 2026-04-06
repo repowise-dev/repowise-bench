@@ -1,0 +1,46 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 27198,
+  "duration_api_ms": 27106,
+  "num_turns": 5,
+  "result": "Here is the complete picture of how `ensure_ascii` controls Unicode representation in Flask's JSON output:\n\n---\n\n## `ensure_ascii` in `DefaultJSONProvider`\n\n**File:** `src/flask/json/provider.py`\n\n### The parameter\n\n`DefaultJSONProvider` (line 124) defines a class-level attribute at line 144:\n\n```python\nensure_ascii = True\n\"\"\"Replace non-ASCII characters with escape sequences. This may be\nmore compatible with some clients, but can be disabled for better\nperformance and size.\n\"\"\"\n```\n\n### How it flows into serialization\n\nIn `DefaultJSONProvider.dumps()` (line 166), the attribute is passed as a default to Python's built-in `json.dumps`:\n\n```python\nkwargs.setdefault(\"ensure_ascii\", self.ensure_ascii)\n...\nreturn json.dumps(obj, **kwargs)\n```\n\n`setdefault` means callers can override it per-call, but the class attribute is the default.\n\n### Effect on Unicode characters\n\nThis maps directly to Python's `json.dumps(ensure_ascii=...)` behavior:\n\n| `ensure_ascii` | Non-ASCII character (e.g. `\"caf\u00e9\"`) | Result |\n|---|---|---|\n| `True` (default) | `\u00e9` \u2192 escaped | `\"caf\\u00e9\"` |\n| `False` | `\u00e9` \u2192 literal UTF-8 | `\"caf\u00e9\"` |\n\n- **`True` (default):** Any non-ASCII character is replaced with its `\\uXXXX` escape sequence. This produces pure ASCII output, which is maximally compatible with older clients or systems that may mishandle raw UTF-8 bytes.\n- **`False`:** Non-ASCII characters appear as literal Unicode in the JSON string, which is smaller and faster but assumes the client correctly handles UTF-8.\n\n### Configuring it\n\nYou can change the behavior per-app:\n\n```python\napp.json.ensure_ascii = False  # Allow raw Unicode in JSON responses\n```\n\nThis is tested in `tests/test_json.py:52` and `tests/test_testing.py:111`, where `ensure_ascii = False` is set to verify that non-ASCII characters pass through to the response body without being escaped.\n\n### Summary\n\n`ensure_ascii = True` (the default) causes Flask's `DefaultJSONProvider` to serialize all non-ASCII Unicode characters as `\\uXXXX` escape sequences in the output string, guaranteeing ASCII-safe output at the cost of increased payload size. Setting it to `False` allows literal UTF-8 Unicode characters in the serialized output, trading compatibility for compactness.",
+  "stop_reason": "end_turn",
+  "session_id": "f218f43a-0366-4f6c-88f0-13d91afdaf8e",
+  "total_cost_usd": 0.1015692,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 14806,
+    "cache_read_input_tokens": 101999,
+    "output_tokens": 1028,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14806,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1028,
+      "cacheReadInputTokens": 101999,
+      "cacheCreationInputTokens": 14806,
+      "webSearchRequests": 0,
+      "costUSD": 0.1015692,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9d8d930f-0f5d-4f3e-9f27-d41b7a53793a"
+}

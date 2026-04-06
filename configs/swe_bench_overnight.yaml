@@ -1,0 +1,74 @@
+# SWE-bench overnight run
+# C0 (bare) vs C1 (repowise index-only: graph + git intelligence)
+#
+# Setup:
+#   python scripts/download_benchmarks.py --benchmark swe_bench
+#
+# Run:
+#   python harness/run_experiment.py --config configs/swe_bench_overnight.yaml
+#
+# Safe to Ctrl-C and resume — progress saves after every task.
+# Handles rate limits with exponential backoff (up to 15 min waits).
+
+experiment_name: "swe_bench_overnight_v1"
+
+benchmarks:
+  swe_qa:
+    enabled: false
+  swe_bench:
+    enabled: true
+    max_tasks: null   # all tasks for selected repos
+    repos:
+      # Small (already running/done)
+      - "psf/requests"              #   8 tasks
+      - "pallets/flask"             #   1 task
+      - "pytest-dev/pytest"         #  19 tasks
+      - "pylint-dev/pylint"         #  10 tasks
+      # Large — where repowise should differentiate most
+      - "django/django"             # 231 tasks (massive codebase)
+      - "sympy/sympy"               #  75 tasks (complex math)
+      - "sphinx-doc/sphinx"         #  44 tasks
+      - "matplotlib/matplotlib"     #  34 tasks
+      - "scikit-learn/scikit-learn" #  32 tasks
+      - "astropy/astropy"           #  22 tasks
+      - "pydata/xarray"             #  22 tasks
+    # difficulty: ["<15 min fix", "15 min - 1 hour"]  # uncomment to filter
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C1_graph_git"
+    repowise_enabled: true
+    repowise_mode: "index-only"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "sonnet"
+  max_turns: 25
+  timeout_seconds: 600    # 10 min per task (bug fixing is harder)
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-3.1-flash-lite-preview"
+
+paths:
+  results_dir: "./results/swe_bench_overnight_v1"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_bench_overnight_v1"
+
+budget:
+  max_total_usd: 300.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+# Parallel: 1 worker per repo (git checkout not thread-safe within same repo)
+parallelism:
+  max_workers: 2

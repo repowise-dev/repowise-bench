@@ -1,0 +1,15 @@
+diff --git a/src/_pytest/skipping.py b/src/_pytest/skipping.py
+index 335e10996..5c60060d2 100644
+--- a/src/_pytest/skipping.py
++++ b/src/_pytest/skipping.py
+@@ -256,6 +256,10 @@ def pytest_runtest_call(item: Item) -> Generator[None, None, None]:
+ 
+     yield
+ 
++    # Re-evaluate xfail marks after the test runs to pick up any markers
++    # that were added dynamically during the test.
++    item._store[xfailed_key] = evaluate_xfail_marks(item)
++
+ 
+ @hookimpl(hookwrapper=True)
+ def pytest_runtest_makereport(item: Item, call: CallInfo[None]):

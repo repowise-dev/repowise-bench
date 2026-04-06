@@ -1,0 +1,46 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 27830,
+  "duration_api_ms": 27696,
+  "num_turns": 7,
+  "result": "`prepare_method` (line 220) is called before `prepare_body` (line 224), so `self.method` is set when `prepare_content_length` runs.\n\nThe fix is correct: `Content-Length: 0` will no longer be sent for GET/HEAD requests with no body. For POST/PUT/etc with no body, it still sends `Content-Length: 0` (which is the expected behavior). For requests with an actual body, it always sets the correct length regardless of method.",
+  "stop_reason": "end_turn",
+  "session_id": "0eb32669-43de-433f-8fb8-9a94bd7cba5b",
+  "total_cost_usd": 0.12374265,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 15275,
+    "cache_read_input_tokens": 156088,
+    "output_tokens": 1307,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15275,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 1307,
+      "cacheReadInputTokens": 156088,
+      "cacheCreationInputTokens": 15275,
+      "webSearchRequests": 0,
+      "costUSD": 0.12374265,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "94f29d02-249a-4153-9f35-e039adb66cae"
+}

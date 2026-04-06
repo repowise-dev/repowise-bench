@@ -1,0 +1,72 @@
+# SWE-QA: Full run across all 4 conditions
+# This is your FIRST real experiment — cheapest and fastest signal
+
+experiment_name: "swe_qa"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: null  # Run all 576
+    dataset: "princeton-nlp/SWE-QA"  # HuggingFace dataset
+    question_types: ["What", "Why", "Where", "How"]
+    repos: null  # All 12 repos
+
+  swe_bench:
+    enabled: false
+    max_tasks: 0
+
+  fea_bench:
+    enabled: false
+    max_tasks: 0
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C1_graph_git"
+    repowise_enabled: true
+    repowise_mode: "index-only"  # Graph + Git, no LLM docs
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"  # All 4 layers
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C3_full_plus"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: true  # Auto-generated CLAUDE.md
+    plugin_skills: true  # Plugin SKILL.md files
+
+agent:
+  model: "claude-sonnet-4-20250514"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-2.0-flash-lite"
+
+paths:
+  results_dir: "./results/swe_qa"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa"
+
+budget:
+  max_total_usd: 250.0
+  max_per_task_usd: 2.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "claude-sonnet-4-20250514"
+  # Dimensions from SWE-QA paper
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+  judge_temperature: 0.0
+  num_judge_runs: 1  # Bump to 3 for final paper

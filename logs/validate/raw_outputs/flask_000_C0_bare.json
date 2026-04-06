@@ -1,0 +1,56 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 58797,
+  "duration_api_ms": 57761,
+  "num_turns": 2,
+  "result": "## `ensure_ascii` and Unicode in Flask's JSON Provider\n\nThe relationship is controlled by the `ensure_ascii` class attribute on `DefaultJSONProvider` in `src/flask/json/provider.py`.\n\n### The Parameter\n\n**`src/flask/json/provider.py:144-148`**\n```python\nensure_ascii = True\n\"\"\"Replace non-ASCII characters with escape sequences. This may be\nmore compatible with some clients, but can be disabled for better\nperformance and size.\n\"\"\"\n```\n\n### How It Flows Into Serialization\n\n**`src/flask/json/provider.py:166-179`** \u2014 `DefaultJSONProvider.dumps()` passes it as a default to Python's `json.dumps()`:\n```python\ndef dumps(self, obj: t.Any, **kwargs: t.Any) -> str:\n    kwargs.setdefault(\"default\", self.default)\n    kwargs.setdefault(\"ensure_ascii\", self.ensure_ascii)\n    kwargs.setdefault(\"sort_keys\", self.sort_keys)\n    return json.dumps(obj, **kwargs)\n```\n\n### Effect on Output\n\n| `ensure_ascii` | Input | Output |\n|---|---|---|\n| `True` (default) | `\"\\N{SNOWMAN}\"` (U+2603) | `\"\\u2603\"` (escaped) |\n| `False` | `\"\\N{SNOWMAN}\"` (U+2603) | `\"\u2603\"` (raw UTF-8) |\n\nThis is demonstrated directly in the test suite at **`tests/test_json.py:48-54`**:\n```python\n@pytest.mark.parametrize(\n    \"test_value,expected\", [(True, '\"\\\\u2603\"'), (False, '\"\\u2603\"')]\n)\ndef test_json_as_unicode(test_value, expected, app, app_ctx):\n    app.json.ensure_ascii = test_value\n    rv = app.json.dumps(\"\\N{SNOWMAN}\")\n    assert rv == expected\n```\n\nAnd in `tests/test_testing.py:109-113`, showing the Euro sign (\u20ac, U+20AC) behaves the same way.\n\n### Configuration Point\n\nThe provider is instantiated at **`src/flask/sansio/app.py:326`** as `self.json = self.json_provider_class(self)`. You can toggle the behavior at runtime:\n```python\napp.json.ensure_ascii = False  # emit raw UTF-8 instead of \\uXXXX escapes\n```\n\n**In summary:** `ensure_ascii=True` (the default) means all non-ASCII Unicode characters are escaped as `\\uXXXX` sequences in JSON output, ensuring ASCII-safe payloads. Setting it to `False` allows raw UTF-8 characters to pass through directly, producing smaller and more readable output at the cost of ASCII compatibility.",
+  "stop_reason": "end_turn",
+  "session_id": "19f75e44-5ce5-4236-b409-65f76b4726e3",
+  "total_cost_usd": 0.25003594999999995,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 13079,
+    "cache_read_input_tokens": 33147,
+    "output_tokens": 1013,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 13079,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 1013,
+      "cacheReadInputTokens": 33147,
+      "cacheCreationInputTokens": 13079,
+      "webSearchRequests": 0,
+      "costUSD": 0.07420335,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 58,
+      "outputTokens": 3953,
+      "cacheReadInputTokens": 673671,
+      "cacheCreationInputTokens": 70914,
+      "webSearchRequests": 0,
+      "costUSD": 0.1758326,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dfb988dc-d666-4a3a-8619-7bcda08f5c46"
+}

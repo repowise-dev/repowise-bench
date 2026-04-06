@@ -1,0 +1,60 @@
+# FEA-Bench Lite: Stretch goal for feature implementation evaluation
+# Only run this if SWE-QA and SWE-bench both show signal
+
+experiment_name: "fea_bench"
+
+benchmarks:
+  swe_qa:
+    enabled: false
+    max_tasks: 0
+
+  swe_bench:
+    enabled: false
+    max_tasks: 0
+
+  fea_bench:
+    enabled: true
+    max_tasks: 50
+    dataset: "microsoft/FEA-Bench"
+    # FEA-Bench Lite subset
+    use_lite: true
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+  # Only run C0 and C2 for FEA-Bench to save money
+  # Add C1 and C3 only if you have budget left
+
+agent:
+  model: "claude-sonnet-4-20250514"
+  max_turns: 30  # Feature implementation needs more turns
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-2.0-flash-lite"
+
+paths:
+  results_dir: "./results/fea_bench"
+  repos_dir: "./repos"
+  logs_dir: "./logs/fea_bench"
+
+budget:
+  max_total_usd: 500.0
+  max_per_task_usd: 10.0
+  abort_on_exceed: true
+
+evaluation:
+  method: "test_suite"  # Same as SWE-bench: pytest pass/fail
+  docker_enabled: true

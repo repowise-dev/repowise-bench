@@ -1,0 +1,46 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 32553,
+  "duration_api_ms": 32427,
+  "num_turns": 7,
+  "result": "Here is a precise explanation of the `_got_registered_once` flag and its purpose:\n\n---\n\n## The `_got_registered_once` Flag in `Blueprint`\n\n**Class:** `Blueprint` in `src/flask/sansio/blueprints.py`\n\n### What it is\n\n`_got_registered_once` is a class-level boolean flag (line 172), initialized to `False`:\n\n```python\n_got_registered_once = False\n```\n\n### How it works\n\n**Set to `True`** during `Blueprint.register()` (line 320) \u2014 the method called by `Flask.register_blueprint()` \u2014 immediately after the blueprint is added to `app.blueprints`:\n\n```python\napp.blueprints[name] = self\nself._got_registered_once = True  # \u2190 set here\n```\n\n**Checked** in `Blueprint._check_setup_finished()` (lines 213\u2013221):\n\n```python\ndef _check_setup_finished(self, f_name: str) -> None:\n    if self._got_registered_once:\n        raise AssertionError(\n            f\"The setup method '{f_name}' can no longer be called on the blueprint\"\n            f\" '{self.name}'. It has already been registered at least once, any\"\n            \" changes will not be applied consistently.\\n\"\n            \"Make sure all imports, decorators, functions, etc. needed to set up\"\n            \" the blueprint are done before registering it.\"\n        )\n```\n\n**Enforced** via the `@setupmethod` decorator in `src/flask/sansio/scaffold.py` (lines 42\u201349), which wraps every setup method (e.g., `record`, `record_once`, `register_blueprint`, `add_url_rule`, `before_request`, `after_request`, etc.) to call `_check_setup_finished` before executing:\n\n```python\ndef setupmethod(f: F) -> F:\n    f_name = f.__name__\n    def wrapper_func(self: Scaffold, *args, **kwargs):\n        self._check_setup_finished(f_name)\n        return f(self, *args, **kwargs)\n    return t.cast(F, update_wrapper(wrapper_func, f))\n```\n\n### Purpose\n\nThe flag enforces a **strict setup-before-registration** contract. A blueprint collects route definitions, hooks (`before_request`, `after_request`), error handlers, etc. into `deferred_functions` \u2014 a list that is replayed onto the app at registration time. \n\nIf setup methods were called **after** the blueprint had already been registered:\n- The deferred functions list would grow, but it would have **already been replayed** onto the app \u2014 the new additions would never take effect.\n- This would create a silent inconsistency: the developer thinks they added a route or handler, but it's never applied.\n\nThe flag makes this failure **loud and immediate** (an `AssertionError`) rather than silent, pointing the developer to the root cause: all setup (route definitions, hooks, decorators) must happen **before** calling `app.register_blueprint(bp)`.",
+  "stop_reason": "end_turn",
+  "session_id": "24fe212b-5dd8-445e-990f-69cee098b023",
+  "total_cost_usd": 0.13613595,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 17903,
+    "cache_read_input_tokens": 155139,
+    "output_tokens": 1495,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17903,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 1495,
+      "cacheReadInputTokens": 155139,
+      "cacheCreationInputTokens": 17903,
+      "webSearchRequests": 0,
+      "costUSD": 0.13613595,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2197cd01-47cc-4e4c-9dac-b7b03d57beba"
+}

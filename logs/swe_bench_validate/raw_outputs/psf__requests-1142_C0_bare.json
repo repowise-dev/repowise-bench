@@ -1,0 +1,46 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 31776,
+  "duration_api_ms": 31436,
+  "num_turns": 6,
+  "result": "`prepare_method` is called before `prepare_body` (line 220 before 224), so `self.method` is set when `prepare_content_length` is called. The fix is correct.\n\nThe change:\n- Removes the unconditional `self.headers['Content-Length'] = '0'` that was set for every request with no body\n- Only sets `Content-Length: 0` for non-GET/HEAD requests when the body is `None` (e.g., POST with no body), which is the conventional behavior",
+  "stop_reason": "end_turn",
+  "session_id": "3fa060b8-e510-4666-a35e-268ff08c1e24",
+  "total_cost_usd": 0.110166,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 14136,
+    "cache_read_input_tokens": 130650,
+    "output_tokens": 1196,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14136,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 1196,
+      "cacheReadInputTokens": 130650,
+      "cacheCreationInputTokens": 14136,
+      "webSearchRequests": 0,
+      "costUSD": 0.110166,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7f060ed4-542a-4040-bbb1-3d670e77968b"
+}

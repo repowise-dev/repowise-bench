@@ -1,0 +1,73 @@
+diff --git a/pylint/pyreverse/inspector.py b/pylint/pyreverse/inspector.py
+index 8fa122022..e3295f00a 100644
+--- a/pylint/pyreverse/inspector.py
++++ b/pylint/pyreverse/inspector.py
+@@ -235,6 +235,46 @@ class Linker(IdGeneratorMixIn, utils.LocalsVisitor):
+             parent.instance_attrs_type[node.attrname] = list(current | values)
+         except astroid.InferenceError:
+             pass
++        # Check for type annotations (PEP 484)
++        # Case 1: Annotated assignment like `self.a: str = None`
++        if isinstance(node.parent, astroid.AnnAssign) and node.parent.annotation:
++            annotation = node.parent.annotation
++            try:
++                inferred = next(annotation.infer())
++                if inferred is not astroid.Uninferable:
++                    current = set(parent.instance_attrs_type[node.attrname])
++                    parent.instance_attrs_type[node.attrname] = list(
++                        current | {inferred}
++                    )
++            except (astroid.InferenceError, StopIteration):
++                pass
++        # Case 2: Assignment from an annotated function argument like `self.a = a`
++        elif isinstance(node.parent, astroid.Assign):
++            rhs = node.parent.value
++            if isinstance(rhs, astroid.Name):
++                func = node.frame()
++                if isinstance(func, astroid.FunctionDef) and func.args:
++                    annotations = func.args.annotations
++                    args = func.args.args or []
++                    for i, arg in enumerate(args):
++                        if (
++                            arg.name == rhs.name
++                            and i < len(annotations)
++                            and annotations[i]
++                        ):
++                            ann = annotations[i]
++                            try:
++                                inferred = next(ann.infer())
++                                if inferred is not astroid.Uninferable:
++                                    current = set(
++                                        parent.instance_attrs_type[node.attrname]
++                                    )
++                                    parent.instance_attrs_type[
++                                        node.attrname
++                                    ] = list(current | {inferred})
++                            except (astroid.InferenceError, StopIteration):
++                                pass
++                            break
+ 
+     def visit_import(self, node):
+         """visit an astroid.Import node
+diff --git a/pylint/pyreverse/writer.py b/pylint/pyreverse/writer.py
+index 0d80bb9ca..c48d282d0 100644
+--- a/pylint/pyreverse/writer.py
++++ b/pylint/pyreverse/writer.py
+@@ -135,7 +135,16 @@ class DotWriter(DiagramWriter):
+             label = r"{}|{}\l|".format(label, r"\l".join(obj.attrs))
+             for func in obj.methods:
+                 if func.args.args:
+-                    args = [arg.name for arg in func.args.args if arg.name != "self"]
++                    annotations = func.args.annotations
++                    args = []
++                    for i, arg in enumerate(func.args.args):
++                        if arg.name == "self":
++                            continue
++                        ann = annotations[i] if i < len(annotations) else None
++                        if ann:
++                            args.append("{}: {}".format(arg.name, ann.as_string()))
++                        else:
++                            args.append(arg.name)
+                 else:
+                     args = []
+                 label = r"{}{}({})\l".format(label, func.name, ", ".join(args))

@@ -1,0 +1,55 @@
+diff --git a/src/_pytest/compat.py b/src/_pytest/compat.py
+index 84f9609a7..ef5939bab 100644
+--- a/src/_pytest/compat.py
++++ b/src/_pytest/compat.py
+@@ -1,6 +1,7 @@
+ """
+ python version compatibility code
+ """
++import ast
+ import enum
+ import functools
+ import inspect
+@@ -401,3 +402,14 @@ else:
+     from collections import OrderedDict
+ 
+     order_preserving_dict = OrderedDict
++
++
++def _ident_to_name(name: str) -> ast.expr:
++    if name in ("True", "False", "None"):
++        value = ast.literal_eval(name)
++        if sys.version_info >= (3, 8):
++            return ast.Constant(value)
++        else:
++            return ast.NameConstant(value)
++    else:
++        return ast.Name(name, ast.Load())
+diff --git a/src/_pytest/mark/expression.py b/src/_pytest/mark/expression.py
+index 04c73411a..c58cdd8f7 100644
+--- a/src/_pytest/mark/expression.py
++++ b/src/_pytest/mark/expression.py
+@@ -27,6 +27,7 @@ from typing import Sequence
+ 
+ import attr
+ 
++from _pytest.compat import _ident_to_name
+ from _pytest.compat import TYPE_CHECKING
+ 
+ if TYPE_CHECKING:
+@@ -129,7 +130,7 @@ class Scanner:
+ 
+ def expression(s: Scanner) -> ast.Expression:
+     if s.accept(TokenType.EOF):
+-        ret = ast.NameConstant(False)  # type: ast.expr
++        ret = _ident_to_name("False")  # type: ast.expr
+     else:
+         ret = expr(s)
+         s.accept(TokenType.EOF, reject=True)
+@@ -161,7 +162,7 @@ def not_expr(s: Scanner) -> ast.expr:
+         return ret
+     ident = s.accept(TokenType.IDENT)
+     if ident:
+-        return ast.Name(ident.value, ast.Load())
++        return _ident_to_name(ident.value)
+     s.reject((TokenType.NOT, TokenType.LPAREN, TokenType.IDENT))

@@ -1,0 +1,44 @@
+diff --git a/pylint/pyreverse/inspector.py b/pylint/pyreverse/inspector.py
+index 8fa122022..06575a73f 100644
+--- a/pylint/pyreverse/inspector.py
++++ b/pylint/pyreverse/inspector.py
+@@ -235,6 +235,39 @@ class Linker(IdGeneratorMixIn, utils.LocalsVisitor):
+             parent.instance_attrs_type[node.attrname] = list(current | values)
+         except astroid.InferenceError:
+             pass
++        # Also check type annotations to handle cases like:
++        # 1. self.a: str = None  (AnnAssign with annotation on the attribute)
++        # 2. self.a = a  where  def f(self, a: str = None)  (annotation on parameter)
++        try:
++            assign = node.parent
++            if isinstance(assign, astroid.AnnAssign) and assign.annotation:
++                annotation_values = set(assign.annotation.infer())
++                current = set(parent.instance_attrs_type[node.attrname])
++                parent.instance_attrs_type[node.attrname] = list(
++                    current | annotation_values
++                )
++            elif isinstance(assign, astroid.Assign) and isinstance(
++                assign.value, astroid.Name
++            ):
++                rhs_name = assign.value.name
++                func = node.frame()
++                if isinstance(func, astroid.FunctionDef) and func.args:
++                    for i, arg in enumerate(func.args.args or []):
++                        if arg.name == rhs_name:
++                            annotations = func.args.annotations
++                            if (
++                                annotations
++                                and i < len(annotations)
++                                and annotations[i] is not None
++                            ):
++                                annotation_values = set(annotations[i].infer())
++                                current = set(parent.instance_attrs_type[node.attrname])
++                                parent.instance_attrs_type[node.attrname] = list(
++                                    current | annotation_values
++                                )
++                            break
++        except (astroid.InferenceError, AttributeError):
++            pass
+ 
+     def visit_import(self, node):
+         """visit an astroid.Import node
