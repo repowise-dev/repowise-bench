@@ -202,18 +202,15 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
     cache_key = f"{repo_name.replace('/', '_')}_{mode}"
     cache_dir = Path(index_dir) / cache_key
 
-    # Restore from cache
+    # Restore from cache (mode-specific)
     if cache_dir.exists():
         cached_idx = cache_dir / ".repowise"
         dest_idx = repo_path / ".repowise"
-        if cached_idx.exists() and not dest_idx.exists():
+        if cached_idx.exists():
+            # Replace any existing index with the correct mode's cache
+            if dest_idx.exists():
+                shutil.rmtree(str(dest_idx))
             shutil.copytree(str(cached_idx), str(dest_idx))
-        return True, 0.0
-
-    # Already indexed
-    if (repo_path / ".repowise" / "wiki.db").exists():
-        cache_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(str(repo_path / ".repowise"), str(cache_dir / ".repowise"))
         return True, 0.0
 
     start = time.time()
@@ -231,10 +228,12 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
         "REPOWISE_DB_URL": f"sqlite+aiosqlite:///{local_db}",
     }
 
+    # Full mode on large repos (django, sympy) needs more time for LLM doc generation
+    index_timeout = 3600 if mode == "full" else 900  # 60 min full, 15 min index-only
     print(f"  Indexing {repo_name} (mode={mode})...")
     result = subprocess.run(
         cmd, cwd=str(repo_path), capture_output=True, text=True,
-        env=env, timeout=900, encoding="utf-8", errors="replace"
+        env=env, timeout=index_timeout, encoding="utf-8", errors="replace"
     )
     elapsed = time.time() - start
 
@@ -257,105 +256,104 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
 # ---------------------------------------------------------------------------
 # System prompts — tuned per (benchmark x mode) to avoid wasted tool calls.
 #
-# Principles:
-#   - Only advertise tools that return real data in this mode
-#   - Prioritize tools that help the specific task (bug fix vs Q&A)
-#   - De-emphasize low-value tools (dead_code, architecture_diagram)
-#   - Explicitly block broken tools (search_codebase in index-only)
+# Principles (v2 — learned from SWE-QA overnight run):
+#   - C1 index-only: get_overview returns empty, search_codebase is blocked
+#     → make tools supplementary, not mandatory-first
+#     → focus on get_risk + get_context (the tools that return real data)
+#     → explicitly list ONLY available tools to prevent denied-call waste
+#   - C2 full: overview + search_codebase are populated
+#     → can lead with search_codebase for navigation
+#     → get_context returns rich docs, get_overview returns real summary
+#     → still skip dead_code/architecture_diagram (irrelevant for Q&A/bugfix)
 # ---------------------------------------------------------------------------
 
 # -- SWE-bench (bug fixing) --
 
-SWEBENCH_PROMPT_INDEX_ONLY = """IMPORTANT: You MUST use repowise MCP tools BEFORE reading any source files.
-These tools give you graph intelligence (dependencies, imports, PageRank centrality)
-and git intelligence (hotspots, co-change partners, ownership, churn) for this codebase.
+SWEBENCH_PROMPT_INDEX_ONLY = """You have access to repowise codebase intelligence tools alongside standard tools.
+Use them to get structural and git context — but do NOT spend turns on tools that aren't listed below.
 
-MANDATORY first steps — do these BEFORE any Read/Grep calls:
-1. Call mcp__repowise__get_overview to see entry points and git health.
-2. Call mcp__repowise__get_risk with targets=["<file_mentioned_in_issue>"] to get
-   hotspot score, co-change partners (files that change together), ownership, and churn.
-   The co-change partners often reveal the other files you need to fix.
-3. Call mcp__repowise__get_context with targets=["<file>"] and
-   include=["ownership","last_change"] to see symbols, imports, and dependencies.
+Available repowise tools (use ONLY these — no others exist):
+- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners,
+  ownership, churn. Co-change partners reveal files that usually change together — check them.
+- mcp__repowise__get_context(targets=["path/to/file.py"]) — symbols, imports, dependents.
+- mcp__repowise__get_dependency_path(source="path/a.py", target="path/b.py") — import chain.
+- mcp__repowise__get_why(query="path/to/file.py") — significant past commits for a file.
+- mcp__repowise__get_overview() — entry points (may be sparse in this mode).
 
-Additional tools available:
-- mcp__repowise__get_dependency_path — trace import chains between two modules.
-- mcp__repowise__get_why — pass a file path to see significant past commits.
-
-AFTER using repowise tools, use Read/Grep/Glob to examine source code and make your fix.
-
-DO NOT call search_codebase or ToolSearch to find repowise tools — use them directly as listed above.
+Workflow: Read the issue → identify suspect file(s) → call get_risk to find co-change partners →
+use Read/Grep to examine code → make your fix. Keep it efficient — 1-2 repowise calls max.
 """
 
-SWEBENCH_PROMPT_FULL = """IMPORTANT: You MUST use repowise MCP tools BEFORE reading any source files.
-These tools give you full codebase intelligence — documentation, graph, git, and decisions.
+SWEBENCH_PROMPT_FULL = """You have access to repowise codebase intelligence tools alongside standard tools.
+These provide documentation, semantic search, graph intelligence, and git history.
 
-MANDATORY first steps — do these BEFORE any Read/Grep calls:
-1. Call mcp__repowise__search_codebase with a query about the issue to find relevant code.
-2. Call mcp__repowise__get_risk with targets=["<file>"] to get hotspot score,
-   co-change partners, ownership, and churn trend.
-3. Call mcp__repowise__get_context with targets=["<file>"] for full documentation,
-   symbols, imports, and ownership.
+Available repowise tools:
+- mcp__repowise__search_codebase(query="...") — semantic search across the codebase. Start here.
+- mcp__repowise__get_context(targets=["path/to/file.py"]) — documentation, symbols, imports, dependents.
+- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, churn.
+- mcp__repowise__get_overview() — project summary, entry points, architecture.
+- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain between modules.
+- mcp__repowise__get_why(query="path/to/file.py") — past commits and design rationale.
 
-Additional tools:
-- mcp__repowise__get_dependency_path — trace import chains between modules.
-- mcp__repowise__get_why — architectural decisions and design rationale.
-
-AFTER using repowise tools, use Read/Grep/Glob to examine source and make your fix.
+Workflow: search_codebase to find relevant files → get_context/get_risk on those files →
+Read/Grep to examine code → make your fix. Be efficient — a few targeted repowise calls, then code.
 """
 
 # -- SWE-QA (code understanding) --
 
-SWEQA_PROMPT_INDEX_ONLY = """IMPORTANT: You MUST use repowise MCP tools BEFORE reading any source files.
-These tools give you graph intelligence (dependencies, imports, PageRank centrality)
-and git intelligence (hotspots, co-change partners, ownership, churn).
+SWEQA_PROMPT_INDEX_ONLY = """You have access to repowise codebase intelligence tools alongside standard tools.
+Use them for structural and git context when answering the question.
 
-MANDATORY first steps — do these BEFORE any Read/Grep calls:
-1. Call mcp__repowise__get_overview to see entry points and git health.
-2. Call mcp__repowise__get_context with targets=["<relevant_file>"] and
-   include=["ownership","last_change"] for symbols, imports, and git attribution.
-3. Call mcp__repowise__get_dependency_path if the question involves how modules connect.
+Available repowise tools (use ONLY these — no others exist):
+- mcp__repowise__get_context(targets=["path/to/file.py"]) — symbols, imports, dependents.
+  Call this once you know which file(s) are relevant to the question.
+- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, ownership.
+- mcp__repowise__get_dependency_path(source="path/a.py", target="path/b.py") — import chain.
+- mcp__repowise__get_why(query="path/to/file.py") — significant past commits for a file.
 
-Additional tools:
-- mcp__repowise__get_risk — hotspot score, co-change partners, ownership for a file.
-- mcp__repowise__get_why — pass a file path for significant past commits.
-
-AFTER using repowise tools, use Read/Grep/Glob for source-level details.
-
-DO NOT call search_codebase or ToolSearch to find repowise tools — use them directly as listed above.
+Workflow: Use Grep/Glob to find relevant files first → call get_context or get_risk on them →
+Read source for details → answer the question. Keep it efficient — 1-2 repowise calls max.
+Do NOT call tools not in the list above — they are not available.
 """
 
-SWEQA_PROMPT_FULL = """IMPORTANT: You MUST use repowise MCP tools BEFORE reading any source files.
-These tools give you full codebase intelligence — documentation, graph, git, and decisions.
+SWEQA_PROMPT_FULL = """You have access to repowise codebase intelligence tools alongside standard tools.
+These provide documentation, semantic search, graph intelligence, and git history.
 
-MANDATORY first steps — do these BEFORE any Read/Grep calls:
-1. Call mcp__repowise__get_overview to orient yourself.
-2. Call mcp__repowise__search_codebase with a query related to the question.
-3. Call mcp__repowise__get_context with targets=["<relevant_file>"] for full
-   documentation, symbols, imports, and ownership.
+Available repowise tools:
+- mcp__repowise__search_codebase(query="...") — semantic search across the codebase.
+  Start here to find files relevant to the question.
+- mcp__repowise__get_context(targets=["path/to/file.py"]) — documentation, symbols, imports, dependents.
+- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, ownership.
+- mcp__repowise__get_overview() — project summary, entry points, architecture.
+- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain between modules.
+- mcp__repowise__get_why(query="path/to/file.py") — past commits and design rationale.
 
-Additional tools:
-- mcp__repowise__get_dependency_path — trace import chains between modules.
-- mcp__repowise__get_why — architectural decisions and design rationale.
-- mcp__repowise__get_risk — hotspot score, co-change partners, ownership.
-
-AFTER using repowise tools, use Read/Grep/Glob for source-level details.
+Workflow: search_codebase to find relevant files → get_context on key files →
+Read source for details → answer the question. Be efficient — a few targeted calls, then answer.
 """
 
 # -- Tool lists per mode --
 
-# Index-only: exclude search_codebase (broken), dead_code and architecture_diagram
-# (low value for both bug fixing and Q&A — wastes turns)
+# Index-only (C1): only tools that return real data in this mode.
+# Excludes search_codebase (needs full index), dead_code, architecture_diagram.
+# Also excludes get_overview (returns empty in index-only — wastes a turn).
 TOOLS_INDEX_ONLY = (
+    ",mcp__repowise__get_risk"
+    ",mcp__repowise__get_dependency_path"
+    ",mcp__repowise__get_context"
+    ",mcp__repowise__get_why"
+)
+
+# Full mode (C2): all useful tools. Still excludes dead_code and architecture_diagram
+# (irrelevant for bug fixing and Q&A — wastes turns).
+TOOLS_FULL = (
     ",mcp__repowise__get_risk"
     ",mcp__repowise__get_dependency_path"
     ",mcp__repowise__get_overview"
     ",mcp__repowise__get_context"
     ",mcp__repowise__get_why"
+    ",mcp__repowise__search_codebase"
 )
-
-# Full mode: all tools
-TOOLS_FULL = ",mcp__repowise__*"
 
 MAX_RETRIES = 6
 
@@ -371,6 +369,26 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
 
     benchmark: "swe_qa" or "swe_bench" — selects the right system prompt.
     """
+    # SWE-QA is read-only code understanding — no Bash needed.
+    # Bash lets the agent escape the repo (read arbitrary files, call repowise CLI
+    # manually, access the benchmark's own data/tasks.json answer key).
+    base_tools = "Read,Grep,Glob" if benchmark == "swe_qa" else "Read,Grep,Glob,Bash,Edit,Write"
+
+    # System prompt applied to ALL conditions — prevents repo escape
+    base_system_prompt = (
+        "You are answering a question about the code repository in your current directory. "
+        "Only read files within the current repository. "
+        "Do NOT access files outside the current directory. "
+        "Do NOT use ToolSearch or ListMcpResourcesTool. "
+        "Answer based solely on what you find in the source code."
+    )
+
+    # Build disallowed tools list — always block meta-tools that let agent
+    # discover/invoke repowise outside the allowlist
+    disallowed = "ToolSearch,ListMcpResourcesTool"
+    if not condition.get("repowise_enabled"):
+        disallowed += ",mcp__repowise__*"
+
     cmd = [
         "claude",
         "-p", prompt,
@@ -378,9 +396,11 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         "--verbose",
         "--model", model,
         "--max-budget-usd", str(max_budget_usd),
+        "--append-system-prompt", base_system_prompt,
+        "--disallowed-tools", disallowed,
     ]
 
-    allowed_tools = "Read,Grep,Glob,Bash"
+    allowed_tools = base_tools
     if condition.get("repowise_enabled"):
         mode = condition.get("repowise_mode", "full")
         if mode == "index-only":

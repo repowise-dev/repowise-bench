@@ -118,6 +118,8 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
     files_read = set()
     files_edited = set()
     repowise_tools = []
+    # Track pending repowise calls to verify they succeeded
+    _pending_repowise = []
     result_data = {}
 
     for line in stream_lines:
@@ -145,7 +147,16 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         if p:
                             files_edited.add(p)
                     elif tool_name.startswith("mcp__repowise"):
-                        repowise_tools.append(tool_name)
+                        _pending_repowise.append(tool_name)
+        elif msg_type == "user":
+            # Match tool results to pending repowise calls.
+            # Only count repowise calls that succeeded (not permission-denied).
+            for block in d.get("message", {}).get("content", []):
+                if isinstance(block, dict) and block.get("type") == "tool_result":
+                    if _pending_repowise:
+                        tool_name = _pending_repowise.pop(0)
+                        if not block.get("is_error", False):
+                            repowise_tools.append(tool_name)
         elif msg_type == "result":
             result_data = d
 
