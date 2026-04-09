@@ -28,14 +28,13 @@ on a 0–10 LLM-judge scale; identical medians).
 
 ---
 
-## Bonus: token-efficiency, since apparently that's a benchmark now
+## Bonus: a token-efficiency benchmark, for completeness
 
-It is briefly fashionable in the codebase-intelligence corner of the
-internet to ship a homegrown "token efficiency" benchmark — pick your own
-repos, pick your own commits, write your own scoring rubric, grade your
-own homework, ship the chart. We do not particularly endorse the genre,
-but we also do not want to be the only people in the room not playing,
-so here is ours on `pallets/flask`:
+There is a small genre of "token efficiency" benchmarks going around at
+the moment, and it would be impolite not to contribute one. Ours runs on
+the 30 most recent non-merge commits of `pallets/flask` and asks a single
+question: *to understand a commit, how many tokens does each strategy ask
+the model to read?*
 
 | Strategy                                | Tokens / commit |
 |-----------------------------------------|----------------:|
@@ -43,32 +42,26 @@ so here is ours on `pallets/flask`:
 | `git diff` only                         |          14,888 |
 | **repowise `get_context`**              |       **2,391** |
 
-Reduction vs **naive**: **209× mean** across commits, 26.8× pooled
-(total/total), 12.6× median, 1,214× best case.
-Reduction vs **`git diff`**: **41.7× mean**, 6.2× pooled, 1.1× median.
+Reduction vs **naive**: **209× mean**, 26.8× pooled (Σ/Σ), 12.6× median,
+1,214× best case.
+Reduction vs **`git diff`**: 41.7× mean, 6.2× pooled.
 
-30 most recent non-merge commits on `pallets/flask` `main`, `tiktoken`
-`cl100k_base`, identical token counter across all three strategies.
-A reviewer-agent looking at one of these commits gets the same understanding
-from ~2.4k repowise tokens that it would otherwise get from ~64k tokens of
-raw file contents. We are obviously measuring this on the home court —
-that is the entire genre. The actual benchmark in this repo is the SWE-QA
-one above.
+`tiktoken` `cl100k_base` for all three columns, no per-strategy fudge,
+same file list everywhere. We report mean, pooled and median together
+because picking just one would be the kind of thing other people in this
+genre seem to do.
 
 Reproduce:
 
 ```bash
 .venv/bin/python harness/token_efficiency_bench.py \
-    --repo repos/pallets/flask --last 10
+    --repo repos/pallets/flask --last 30 --min-repowise-tokens 0
 ```
 
-Raw data: `results/token_efficiency/results.csv`.
-
-For people who prefer benchmarks whose methodology was *not* invented by
-the team being benchmarked, the rest of this README is about the **SWE-QA**
-results above — a third-party academic benchmark with human-written
-ground truth, an LLM-judge scored by an independent model, and a paired
-statistical design. Carry on.
+Raw data: `results/token_efficiency/results.csv`. Treat this as a
+sanity-check, not a leaderboard — the actual evaluation in this repo is
+the SWE-QA run above, which has third-party ground truth and an
+independently-scored LLM judge.
 
 > See `BENCHMARK_REPORT_FLASK48.md` for the full report, the per-model cost
 > decomposition, the trimmed-mean and median analyses, the per-task best/worst
