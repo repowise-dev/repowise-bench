@@ -68,6 +68,9 @@ def run_swe_qa_experiment(config: dict, conditions: list,
         data_dir="./data",
         max_tasks=bench_cfg.get("max_tasks"),
         repos=bench_cfg.get("repos"),
+        skip_tasks=bench_cfg.get("skip_tasks", 0),
+        exclude_indices=bench_cfg.get("exclude_indices"),
+        include_indices=bench_cfg.get("include_indices"),
     )
 
     # Build work items: (task, condition) pairs — interleaved so we get
@@ -167,129 +170,6 @@ def run_swe_qa_experiment(config: dict, conditions: list,
     print(f"  {budget.summary()}")
 
 
-def run_swe_bench_experiment(config: dict, conditions: list,
-                              budget: BudgetTracker, completed: set,
-                              writer: ResultWriter, raw_saver: RawOutputSaver):
-    """Run SWE-bench benchmark across conditions with parallel workers."""
-    from harness.swe_bench_runner import load_swe_bench_tasks, run_swe_bench_task, clone_repo
-
-    bench_cfg = config["benchmarks"]["swe_bench"]
-    tasks = load_swe_bench_tasks(
-        data_dir="./data",
-        max_tasks=bench_cfg.get("max_tasks"),
-        repos=bench_cfg.get("repos"),
-        difficulty=bench_cfg.get("difficulty"),
-    )
-
-    # Build work items
-    work = []
-    for condition in conditions:
-        cname = condition["name"]
-        for task in tasks:
-            key = f"{task['instance_id']}_{cname}"
-            if key not in completed:
-                work.append((task, condition))
-
-    total = len(tasks) * len(conditions)
-    skipped = total - len(work)
-    print(f"\nSWE-bench: {len(tasks)} tasks x {len(conditions)} conditions = {total} runs")
-    if skipped:
-        print(f"  Resuming: {skipped} already done, {len(work)} remaining")
-
-    if not work:
-        print("  Nothing to do!")
-        return
-
-    # Pre-clone repos (sequential — SWE-bench needs full clones for checkout)
-    repos_needed = set(t["repo"] for t, _ in work)
-    repos_dir = config["paths"]["repos_dir"]
-    for repo in sorted(repos_needed):
-        if _shutdown.is_set():
-            return
-        try:
-            clone_repo(repo, repos_dir)
-        except Exception as e:
-            print(f"  Failed to clone {repo}: {e}")
-
-    # SWE-bench: sequential per repo (git checkout is not thread-safe on same repo)
-    # Group work by repo, run repos sequentially, tasks within a repo sequentially
-    from collections import defaultdict
-    by_repo = defaultdict(list)
-    for task, cond in work:
-        by_repo[task["repo"]].append((task, cond))
-
-    max_workers = config.get("parallelism", {}).get("max_workers", 1)
-    done_count = 0
-    error_count = 0
-    start_time = time.time()
-
-    print(f"  Workers: {max_workers} (sequential per repo for git safety)")
-    print(f"  Budget remaining: ${budget.max_total - budget.total_spent:.2f}")
-    print()
-
-    # For SWE-bench, we process tasks sequentially within each repo
-    # but can process different repos in parallel
-    def _run_repo_tasks(repo_tasks):
-        results = []
-        for task, condition in repo_tasks:
-            if _shutdown.is_set():
-                break
-            metrics = run_swe_bench_task(task, condition, config, budget, raw_saver)
-            results.append(metrics)
-        return results
-
-    repo_list = list(by_repo.items())
-    with ThreadPoolExecutor(max_workers=min(max_workers, len(repo_list))) as pool:
-        futures = {
-            pool.submit(_run_repo_tasks, tasks_list): repo
-            for repo, tasks_list in repo_list
-        }
-
-        for future in as_completed(futures):
-            if _shutdown.is_set():
-                pool.shutdown(wait=False, cancel_futures=True)
-                break
-
-            repo_results = future.result()
-            if not repo_results:
-                continue
-
-            for metrics in repo_results:
-                done_count += 1
-                writer.write(metrics, "swe_bench")
-
-                has_error = bool(metrics.error)
-                if has_error:
-                    error_count += 1
-
-                elapsed = time.time() - start_time
-                rate = done_count / elapsed * 3600 if elapsed > 0 else 0
-                has_patch = bool(metrics.answer and metrics.answer.startswith("diff"))
-
-                status = "ERR" if has_error else ("PATCH" if has_patch else "EMPTY")
-                now = datetime.now().strftime("%H:%M")
-                print(
-                    f"  [{now}] {done_count}/{len(work)} "
-                    f"[{status}] {metrics.condition}/{metrics.task_id} "
-                    f"${metrics.estimated_cost_usd:.3f} "
-                    f"{metrics.wall_clock_seconds:.0f}s "
-                    f"turns={metrics.num_turns} "
-                    f"| {budget.summary()} "
-                    f"| {rate:.0f}/hr"
-                    f"{f' err={metrics.error[:60]}' if has_error else ''}"
-                )
-
-                if metrics.error == "budget_exceeded":
-                    print(f"\n  Budget exceeded! {budget.summary()}")
-                    pool.shutdown(wait=False, cancel_futures=True)
-                    return
-
-    elapsed = time.time() - start_time
-    patches = sum(1 for _ in (Path(raw_saver.logs_dir).parent / "patches").glob("*_C*.patch"))
-    print(f"\n  Done: {done_count} tasks in {elapsed:.0f}s ({error_count} errors, {patches} patches)")
-    print(f"  {budget.summary()}")
-
-
 def main():
     parser = argparse.ArgumentParser(description="Run repowise benchmark experiments")
     parser.add_argument("--config", required=True)
@@ -366,9 +246,6 @@ def main():
     benchmarks = config.get("benchmarks", {})
     if benchmarks.get("swe_qa", {}).get("enabled"):
         run_swe_qa_experiment(config, conditions, budget, completed, writer, raw_saver)
-
-    if benchmarks.get("swe_bench", {}).get("enabled"):
-        run_swe_bench_experiment(config, conditions, budget, completed, writer, raw_saver)
 
     print("\n" + "=" * 65)
     print("EXPERIMENT COMPLETE" if not _shutdown.is_set() else "EXPERIMENT INTERRUPTED (safe to resume)")

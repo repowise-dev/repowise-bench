@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Cloned target repositories — fetched on demand by scripts/download_benchmarks.py
+/repos/
+
+# Generated repowise indexes — built on demand by the harness on first run
+/indexes/
+
+# Per-run logs and raw outputs — useful locally, not part of the published artifact
+/logs/
+
+# Scratch / working directories
+/scratch_*/
+/tmp/
+
+# Result archives — only the canonical results/swe_qa_flask48/ directory is tracked.
+# Anything else under results/ is treated as ad-hoc and ignored.
+/results/*
+!/results/swe_qa_flask48/
+!/results/swe_qa_flask48/swe_qa.jsonl
+!/results/swe_qa_flask48/experiment_meta.json

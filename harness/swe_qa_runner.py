@@ -13,6 +13,7 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 import time
 import os
 from datetime import datetime, timezone
@@ -24,8 +25,62 @@ from harness.metrics import (
     ResultWriter, RawOutputSaver,
 )
 
+# ---------------------------------------------------------------------------
+# Local repowise checkout (no pip install — uses sibling source tree directly)
+# ---------------------------------------------------------------------------
+# Bench expects repowise cloned at ../repowise on branch feat/pipeline-overhaul.
+# We invoke it as `python -m repowise.cli.main ...` with PYTHONPATH set to the
+# three local package src dirs. The MCP server is launched the same way via
+# `python -m repowise.cli.main mcp <repo> --transport stdio`.
+# swe_qa_runner.py is at <repowise>/repowise-bench/harness/, so parents[2] IS
+# the repowise checkout root.
+_REPOWISE_ROOT = Path(__file__).resolve().parents[2]
+_REPOWISE_PKG_SRCS = [
+    _REPOWISE_ROOT / "packages" / "cli" / "src",
+    _REPOWISE_ROOT / "packages" / "core" / "src",
+    _REPOWISE_ROOT / "packages" / "server" / "src",
+]
+_REQUIRED_REPOWISE_BRANCH = "feat/pipeline-overhaul"
+
+def _verify_local_repowise() -> None:
+    """Fail loudly if the local checkout is missing or on the wrong branch."""
+    if not _REPOWISE_ROOT.exists():
+        raise RuntimeError(
+            f"Local repowise checkout not found at {_REPOWISE_ROOT}. "
+            f"Clone repowise into the parent directory of repowise-bench."
+        )
+    for src in _REPOWISE_PKG_SRCS:
+        if not src.exists():
+            raise RuntimeError(f"Expected repowise source dir missing: {src}")
+    try:
+        branch = subprocess.check_output(
+            ["git", "-C", str(_REPOWISE_ROOT), "rev-parse", "--abbrev-ref", "HEAD"],
+            text=True,
+        ).strip()
+    except Exception as e:
+        raise RuntimeError(f"Could not read repowise branch: {e}")
+    if branch != _REQUIRED_REPOWISE_BRANCH:
+        print(
+            f"  [warn] local repowise is on branch '{branch}', "
+            f"expected '{_REQUIRED_REPOWISE_BRANCH}'"
+        )
+
+_verify_local_repowise()
+
 # Force UTF-8 for all subprocesses (Windows cp1252 breaks on emoji/unicode)
-_UTF8_ENV = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
+# Also pin PYTHONPATH so repowise's three package src dirs resolve without pip.
+_UTF8_ENV = {
+    **os.environ,
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONUTF8": "1",
+    "PYTHONPATH": os.pathsep.join(
+        [str(p) for p in _REPOWISE_PKG_SRCS]
+        + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
+    ),
+}
+
+# Argv prefix for invoking the local repowise CLI.
+_REPOWISE_CMD = [sys.executable, "-m", "repowise.cli.main"]
 
 # ---------------------------------------------------------------------------
 # SWE-QA repo name mapping (split name -> GitHub org/repo)
@@ -87,6 +142,66 @@ def backoff_sleep(attempt: int, base: float = 30.0, max_wait: float = 900.0):
     time.sleep(wait)
 
 
+def _extract_failure_reason(stdout: str, stderr: str) -> str:
+    """Extract a meaningful failure reason from claude's output streams.
+
+    When claude exits non-zero, stderr is often empty because the failure
+    happened mid-stream (e.g. rate limit retries exhausted). The diagnostic
+    detail lives in the stream-json events on stdout. We walk those events
+    in reverse, looking for the most-recent error indicator:
+
+      1. {"type":"system","subtype":"api_retry","error":"rate_limit",
+         "error_status":529,"attempt":N}
+         → "rate_limit 529 (N retries exhausted)"
+      2. {"type":"system","subtype":"error","error":"..."}
+         → "system error: <text>"
+      3. {"type":"result","is_error":true,"result":"..."}
+         → "result error: <text>"
+
+    Falls back to stderr (truncated) when no stream events match. Always
+    returns a non-empty string so the swe_qa.jsonl row carries actionable
+    debug info instead of an empty `error` field.
+    """
+    if stdout:
+        last_retry: dict | None = None
+        max_attempt = 0
+        for raw in stdout.splitlines():
+            raw = raw.strip()
+            if not raw:
+                continue
+            try:
+                obj = json.loads(raw)
+            except json.JSONDecodeError:
+                continue
+            t = obj.get("type")
+            sub = obj.get("subtype")
+            if t == "system" and sub == "api_retry":
+                # Track the highest-numbered retry — that's the one that
+                # exhausted the budget.
+                attempt_n = int(obj.get("attempt", 0))
+                if attempt_n >= max_attempt:
+                    max_attempt = attempt_n
+                    last_retry = obj
+            elif t == "system" and sub == "error":
+                msg = obj.get("error") or obj.get("message") or "unknown"
+                return f"system error: {str(msg)[:300]}"
+            elif t == "result" and obj.get("is_error"):
+                msg = obj.get("result") or obj.get("error") or "unknown"
+                return f"result error: {str(msg)[:300]}"
+        if last_retry is not None:
+            err_kind = last_retry.get("error", "unknown")
+            err_status = last_retry.get("error_status", "?")
+            attempt_n = last_retry.get("attempt", "?")
+            max_retries = last_retry.get("max_retries", "?")
+            return (
+                f"{err_kind} {err_status} "
+                f"({attempt_n}/{max_retries} retries exhausted)"
+            )
+    if stderr and stderr.strip():
+        return stderr.strip()[:500]
+    return "claude exited non-zero with no diagnostic output"
+
+
 # ---------------------------------------------------------------------------
 # Repo helpers
 # ---------------------------------------------------------------------------
@@ -131,7 +246,10 @@ def get_repo_commit(repo_path: Path) -> str:
 # ---------------------------------------------------------------------------
 
 def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
-                       repos: Optional[list] = None) -> list:
+                       repos: Optional[list] = None,
+                       skip_tasks: int = 0,
+                       exclude_indices: Optional[list] = None,
+                       include_indices: Optional[list] = None) -> list:
     """
     Load SWE-QA tasks from HuggingFace-downloaded JSON or directly from HF.
 
@@ -162,7 +280,21 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
     if repos:
         tasks = [t for t in tasks if t.get("repo", "") in repos]
 
-    # Limit
+    # Include specific per-repo indices (computed AFTER repo filter). Used by
+    # targeted re-runs (e.g., re-running only the failing tasks after a fix).
+    # Mutually informative with exclude_indices; if both set, include wins.
+    if include_indices:
+        incl = set(include_indices)
+        tasks = [t for i, t in enumerate(tasks) if i in incl]
+    # Exclude specific per-repo indices (computed AFTER repo filter, BEFORE
+    # skip/max). Lets a re-run skip a subset of tasks that were already
+    # completed in a prior run.
+    elif exclude_indices:
+        excl = set(exclude_indices)
+        tasks = [t for i, t in enumerate(tasks) if i not in excl]
+    # Skip + limit
+    if skip_tasks:
+        tasks = tasks[skip_tasks:]
     if max_tasks and max_tasks < len(tasks):
         tasks = tasks[:max_tasks]
 
@@ -185,8 +317,16 @@ def generate_mcp_config(repo_path: Path, bench_root: Path) -> Path:
     mcp_config = {
         "mcpServers": {
             "repowise": {
-                "command": "repowise",
-                "args": ["mcp", repo_abs, "--transport", "stdio"]
+                "command": sys.executable,
+                "args": [
+                    "-m", "repowise.cli.main",
+                    "mcp", repo_abs, "--transport", "stdio",
+                ],
+                "env": {
+                    "PYTHONPATH": _UTF8_ENV["PYTHONPATH"],
+                    "PYTHONIOENCODING": "utf-8",
+                    "PYTHONUTF8": "1",
+                },
             }
         }
     }
@@ -195,9 +335,113 @@ def generate_mcp_config(repo_path: Path, bench_root: Path) -> Path:
     return config_path.resolve()
 
 
+def _safe_rmtree(path: Path, retries: int = 3) -> None:
+    """Robust rmtree — Windows sometimes holds file handles briefly after a crash."""
+    for i in range(retries):
+        if not path.exists():
+            return
+        try:
+            shutil.rmtree(str(path))
+            return
+        except Exception as e:
+            if i == retries - 1:
+                raise
+            time.sleep(0.5 * (i + 1))
+
+
+def _restore_index_from_cache(cached_idx: Path, dest_idx: Path) -> None:
+    """Restore a cached .repowise/ tree into the repo, robust to Windows path collisions."""
+    _safe_rmtree(dest_idx)
+    # On Windows, copytree fails with WinError 183 if dest re-appears between
+    # rmtree and copytree (rare but observed). Retry once.
+    for attempt in range(2):
+        try:
+            shutil.copytree(str(cached_idx), str(dest_idx))
+            return
+        except FileExistsError:
+            _safe_rmtree(dest_idx)
+            if attempt == 1:
+                raise
+
+
+_BENCH_ROOT = Path(__file__).resolve().parents[1]
+_C0_WORKTREES_ROOT = _BENCH_ROOT / "scratch_c0"
+
+
+def get_c0_worktree(repo_path: Path) -> Path:
+    """Return a git worktree path for C0 runs.
+
+    Git worktrees share the repo's object store (fast, no full copy) but have
+    their own working directory — untracked files like `.repowise/` are NOT
+    present.  This means a C0 agent running in cwd=worktree physically cannot
+    access any repowise artifacts left by a prior C1/C2 run, without any
+    delete-and-restore dance.
+
+    The worktree is created once per repo and reused across tasks.  If the
+    repo's HEAD has moved (e.g. after a `git pull`), the existing worktree is
+    torn down and recreated.
+    """
+    org = repo_path.parent.name
+    wt_path = _C0_WORKTREES_ROOT / org / repo_path.name
+    wt_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Check if the worktree is healthy and on the same HEAD as the source repo.
+    needs_create = True
+    if wt_path.exists():
+        try:
+            src_head = subprocess.check_output(
+                ["git", "-C", str(repo_path), "rev-parse", "HEAD"],
+                text=True, stderr=subprocess.DEVNULL,
+            ).strip()
+            wt_head = subprocess.check_output(
+                ["git", "-C", str(wt_path), "rev-parse", "HEAD"],
+                text=True, stderr=subprocess.DEVNULL,
+            ).strip()
+            needs_create = (src_head != wt_head)
+        except Exception:
+            needs_create = True
+
+    if needs_create:
+        # Remove any stale worktree entry first — git tracks worktrees
+        # independently of the filesystem, so a dir that was `rm -rf`'d
+        # still appears as "prunable" and blocks `worktree add`.
+        subprocess.run(
+            ["git", "-C", str(repo_path), "worktree", "remove", "--force", str(wt_path)],
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_path), "worktree", "prune"],
+            capture_output=True,
+        )
+        if wt_path.exists():
+            _safe_rmtree(wt_path)
+        subprocess.run(
+            ["git", "-C", str(repo_path), "worktree", "add", "--detach", str(wt_path), "HEAD"],
+            check=True, capture_output=True,
+        )
+
+    # Belt-and-braces: a worktree shouldn't have these untracked artifacts,
+    # but if anything ever leaks in (e.g. a stray CLAUDE.md write), kill it
+    # before handing the path to a C0 agent.
+    for leak in (".repowise", ".mcp.json", "CLAUDE.md"):
+        p = wt_path / leak
+        if p.exists():
+            if p.is_dir():
+                _safe_rmtree(p)
+            else:
+                p.unlink()
+
+    return wt_path
+
+
 def index_repo(repo_name: str, repos_dir: str, index_dir: str,
                mode: str, repowise_bin: str, doc_model: str) -> tuple:
-    """Run repowise init. Returns (success, time_seconds)."""
+    """Run repowise init from the local checkout. Returns (success, time_seconds).
+
+    Uses --resume so a previous partial run continues instead of restarting.
+    Caps git history at 200 commits and LLM concurrency at 3 (full mode only).
+    """
+    del repowise_bin  # ignored — we always use the local checkout via _REPOWISE_CMD
     repo_path = resolve_repo_path(repo_name, repos_dir)
     cache_key = f"{repo_name.replace('/', '_')}_{mode}"
     cache_dir = Path(index_dir) / cache_key
@@ -207,18 +451,24 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
         cached_idx = cache_dir / ".repowise"
         dest_idx = repo_path / ".repowise"
         if cached_idx.exists():
-            # Replace any existing index with the correct mode's cache
-            if dest_idx.exists():
-                shutil.rmtree(str(dest_idx))
-            shutil.copytree(str(cached_idx), str(dest_idx))
+            _restore_index_from_cache(cached_idx, dest_idx)
         return True, 0.0
 
     start = time.time()
-    cmd = [repowise_bin, "init", "-y"]
+    cmd = list(_REPOWISE_CMD) + [
+        "init", "-y",
+        "--resume",                  # pick up partial pipeline-overhaul checkpoints
+        "--commit-limit", "200",     # 500 default → 200 keeps ~85% of git signal, much faster
+    ]
     if mode == "index-only":
         cmd.append("--index-only")
+    else:
+        # Cap LLM concurrency to avoid rate-limit thrash and improve prompt-cache reuse.
+        cmd.extend(["--concurrency", "3"])
 
-    # Force DB to repo-local .repowise/wiki.db so the MCP server can find it
+    # Force DB to repo-local .repowise/wiki.db so the MCP server can find it.
+    # NOTE: this places repowise artifacts inside the working tree, so the
+    # bench MUST call cleanup_repowise_dir() before launching any C0 agent.
     rw_dir = repo_path.resolve() / ".repowise"
     rw_dir.mkdir(parents=True, exist_ok=True)
     local_db = (rw_dir / "wiki.db").as_posix()
@@ -228,9 +478,10 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
         "REPOWISE_DB_URL": f"sqlite+aiosqlite:///{local_db}",
     }
 
-    # Full mode on large repos (django, sympy) needs more time for LLM doc generation
-    index_timeout = 3600 if mode == "full" else 900  # 60 min full, 15 min index-only
-    print(f"  Indexing {repo_name} (mode={mode})...")
+    # Full mode on large repos (django, sympy, astropy) needs serious time for
+    # LLM doc generation. With --resume a timeout is recoverable on the next run.
+    index_timeout = 5400 if mode == "full" else 1200  # 90 min full, 20 min index-only
+    print(f"  Indexing {repo_name} (mode={mode}) via local repowise checkout...")
     result = subprocess.run(
         cmd, cwd=str(repo_path), capture_output=True, text=True,
         env=env, timeout=index_timeout, encoding="utf-8", errors="replace"
@@ -241,7 +492,9 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
         cache_dir.mkdir(parents=True, exist_ok=True)
         src = repo_path / ".repowise"
         if src.exists():
-            shutil.copytree(str(src), str(cache_dir / ".repowise"))
+            dest = cache_dir / ".repowise"
+            _safe_rmtree(dest)
+            shutil.copytree(str(src), str(dest))
         print(f"  Indexed {repo_name} in {elapsed:.0f}s")
         return True, elapsed
     else:
@@ -270,33 +523,53 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
 # -- SWE-bench (bug fixing) --
 
 SWEBENCH_PROMPT_INDEX_ONLY = """You have access to repowise codebase intelligence tools alongside standard tools.
-Use them to get structural and git context — but do NOT spend turns on tools that aren't listed below.
+Use them to LOCATE the suspect file(s) and find SILENT co-change partners that likely
+need parallel edits — that's where graph + git intelligence pays off on bug fixes.
 
 Available repowise tools (use ONLY these — no others exist):
-- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners,
-  ownership, churn. Co-change partners reveal files that usually change together — check them.
-- mcp__repowise__get_context(targets=["path/to/file.py"]) — symbols, imports, dependents.
-- mcp__repowise__get_dependency_path(source="path/a.py", target="path/b.py") — import chain.
-- mcp__repowise__get_why(query="path/to/file.py") — significant past commits for a file.
-- mcp__repowise__get_overview() — entry points (may be sparse in this mode).
+- mcp__repowise__get_context(targets=["a.py","b.py"]) — for each file: symbols, imports,
+  dependents. Batch multiple files in ONE call.
+- mcp__repowise__get_risk(targets=["a.py","b.py"]) — top-5 co-change partners, hotspot
+  score, ownership. Co-change partners are the files that have historically been edited
+  together with the target — pay attention to ones with has_import_link=false (silent
+  couplings the import graph misses).
+- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain.
+- mcp__repowise__get_why(query="path/to/file.py") — past significant commits.
 
-Workflow: Read the issue → identify suspect file(s) → call get_risk to find co-change partners →
-use Read/Grep to examine code → make your fix. Keep it efficient — 1-2 repowise calls max.
+Strict workflow:
+  1. Read the issue, Glob/Grep to find the most likely file.
+  2. ONE batched get_risk call on that file → note co-change partners.
+  3. ONE batched get_context call covering the target file + its top co-change partners.
+  4. Read code, make the minimal fix, edit each file the bug actually touches.
+
+Budget: 2 repowise calls total. Never call get_overview, search_codebase, dead_code,
+or architecture_diagram in this mode.
 """
 
 SWEBENCH_PROMPT_FULL = """You have access to repowise codebase intelligence tools alongside standard tools.
-These provide documentation, semantic search, graph intelligence, and git history.
+Repowise gives you LLM-generated wiki docs, semantic search, graph + git intelligence.
+TRUST the doc layer — it usually localises the bug faster than reading source from scratch.
 
 Available repowise tools:
-- mcp__repowise__search_codebase(query="...") — semantic search across the codebase. Start here.
-- mcp__repowise__get_context(targets=["path/to/file.py"]) — documentation, symbols, imports, dependents.
-- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, churn.
-- mcp__repowise__get_overview() — project summary, entry points, architecture.
-- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain between modules.
-- mcp__repowise__get_why(query="path/to/file.py") — past commits and design rationale.
+- mcp__repowise__search_codebase(query="...") — semantic search. ALWAYS the first call.
+  Use the issue title/description as the query.
+- mcp__repowise__get_context(targets=["a.py","b.py"]) — wiki docs + symbols + dependents.
+  Batch the top 2–4 search results in ONE call.
+- mcp__repowise__get_risk(targets=["a.py"]) — co-change partners (top-5). Use to find
+  silent couplings the bug fix may also need to touch.
+- mcp__repowise__get_why(query="path/to/file.py") — design rationale from past commits.
+  Use only when the wiki doc doesn't explain WHY the existing logic is the way it is.
+- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain.
+- mcp__repowise__get_overview() — at most ONCE, only if you need overall architecture.
 
-Workflow: search_codebase to find relevant files → get_context/get_risk on those files →
-Read/Grep to examine code → make your fix. Be efficient — a few targeted repowise calls, then code.
+Strict workflow:
+  1. ONE search_codebase call.
+  2. ONE batched get_context on the top results.
+  3. ONE get_risk on the file you intend to edit, and patch its co-change partners too if
+     they look causally related.
+  4. Read code, make the minimal fix, edit all files the bug actually touches.
+
+Budget: 3 repowise calls total. Never call dead_code or architecture_diagram.
 """
 
 # -- SWE-QA (code understanding) --
@@ -305,55 +578,172 @@ SWEQA_PROMPT_INDEX_ONLY = """You have access to repowise codebase intelligence t
 Use them for structural and git context when answering the question.
 
 Available repowise tools (use ONLY these — no others exist):
-- mcp__repowise__get_context(targets=["path/to/file.py"]) — symbols, imports, dependents.
-  Call this once you know which file(s) are relevant to the question.
-- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, ownership.
-- mcp__repowise__get_dependency_path(source="path/a.py", target="path/b.py") — import chain.
-- mcp__repowise__get_why(query="path/to/file.py") — significant past commits for a file.
+- mcp__repowise__get_context(targets=["path/a.py","path/b.py"]) — for each file: symbols
+  (top-level functions/classes), imports, and dependents (who imports it). BATCH multiple
+  files in ONE call. This is your primary navigation tool.
+- mcp__repowise__get_risk(targets=["path/to/file.py"]) — top-5 co-change partners, ownership,
+  hotspot score, churn. Use ONLY when the question is about history/coupling/ownership.
+- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain. Use ONLY
+  when the question is literally "how does X depend on Y".
+- mcp__repowise__get_why(query="path/to/file.py") — past significant commits. Use ONLY for
+  "why was this changed" questions.
 
-Workflow: Use Grep/Glob to find relevant files first → call get_context or get_risk on them →
-Read source for details → answer the question. Keep it efficient — 1-2 repowise calls max.
-Do NOT call tools not in the list above — they are not available.
+Strict workflow (do not deviate):
+  1. Glob/Grep to find 1–3 candidate files (one search, not many).
+  2. ONE batched get_context call on all candidates at once.
+  3. Read the relevant code from those files.
+  4. Answer.
+
+Budget: at most ONE repowise call for most questions, TWO if the first surfaces a new file
+worth inspecting. Never call get_overview, search_codebase, dead_code, or architecture_diagram
+— they are not available in this mode and waste a turn.
 """
 
-SWEQA_PROMPT_FULL = """You have access to repowise codebase intelligence tools alongside standard tools.
-These provide documentation, semantic search, graph intelligence, and git history.
+SWEQA_PROMPT_FULL = """You have repowise MCP tools. They are accurate. Trust them.
 
-Available repowise tools:
-- mcp__repowise__search_codebase(query="...") — semantic search across the codebase.
-  Start here to find files relevant to the question.
-- mcp__repowise__get_context(targets=["path/to/file.py"]) — documentation, symbols, imports, dependents.
-- mcp__repowise__get_risk(targets=["path/to/file.py"]) — hotspot score, co-change partners, ownership.
-- mcp__repowise__get_overview() — project summary, entry points, architecture.
-- mcp__repowise__get_dependency_path(source="a.py", target="b.py") — import chain between modules.
-- mcp__repowise__get_why(query="path/to/file.py") — past commits and design rationale.
+STRICT WORKFLOW:
+  1. mcp__repowise__get_answer(question) — ALWAYS your first call.
+  2. If response.confidence == "high" AND response.answer names concrete file paths
+     or symbol names (not phrases like "the provided excerpts do not contain", "you
+     should inspect", "consult the source"): CITE THE ANSWER DIRECTLY. Do NOT call
+     Grep, Read, get_context, or get_symbol to verify. Emit your final answer.
+  3. If the question names a specific class/function/method, call
+     mcp__repowise__get_symbol(symbol_id="path::Name") for it. Trust the returned
+     source body. Do NOT re-Read the file.
+  4. ONLY fall back to Grep/Read/get_context/search_codebase if (a) get_answer was
+     confidence=="low", (b) get_answer's text was hedged/vague, or (c) get_symbol
+     returned not-found.
 
-Workflow: search_codebase to find relevant files → get_context on key files →
-Read source for details → answer the question. Be efficient — a few targeted calls, then answer.
+BUDGET: 1–2 MCP calls + 0 verification reads on clean high-confidence answers.
+        4 calls maximum on hard questions. Never call dead_code or architecture_diagram.
+
+When the tool reports high confidence, verification reads are wasted cost: the
+confidence signal is the gate. Trust it on high; verify on low.
 """
 
 # -- Tool lists per mode --
 
-# Index-only (C1): only tools that return real data in this mode.
-# Excludes search_codebase (needs full index), dead_code, architecture_diagram.
-# Also excludes get_overview (returns empty in index-only — wastes a turn).
+# C1 index-only: graph + git layer only. No wiki docs, no semantic search.
+# These four are the only tools that return real data in this mode.
 TOOLS_INDEX_ONLY = (
-    ",mcp__repowise__get_risk"
-    ",mcp__repowise__get_dependency_path"
     ",mcp__repowise__get_context"
+    ",mcp__repowise__get_risk"
     ",mcp__repowise__get_why"
+    ",mcp__repowise__get_dependency_path"
 )
 
-# Full mode (C2): all useful tools. Still excludes dead_code and architecture_diagram
-# (irrelevant for bug fixing and Q&A — wastes turns).
+# C2 full: all useful tools including semantic search, wiki docs, get_answer, get_symbol.
 TOOLS_FULL = (
+    ",mcp__repowise__get_answer"
+    ",mcp__repowise__get_symbol"
+    ",mcp__repowise__search_codebase"
+    ",mcp__repowise__get_context"
     ",mcp__repowise__get_risk"
+    ",mcp__repowise__get_why"
     ",mcp__repowise__get_dependency_path"
     ",mcp__repowise__get_overview"
-    ",mcp__repowise__get_context"
-    ",mcp__repowise__get_why"
-    ",mcp__repowise__search_codebase"
 )
+
+# CLAUDE.md written into repo root for C1 runs.
+# Claude Code auto-loads CLAUDE.md from cwd — this surfaces tool signatures and
+# a strong call-to-action before the agent sees the question. It is an untracked
+# file so it will NOT appear in the C0 git worktree.
+_CLAUDE_MD_INDEX_ONLY = """\
+# Repowise Codebase Intelligence (index-only mode)
+
+You have four repowise tools available. **Use them — they are faster and more
+accurate than grepping from scratch.** Call them BEFORE reading any source file.
+
+---
+
+## Tools — call signatures and what they return
+
+### 1. `mcp__repowise__get_context`
+```
+mcp__repowise__get_context(targets=["path/to/a.py", "path/to/b.py"])
+```
+Returns for each file:
+- **summary** — 1–3 sentence purpose blurb. Always present. In index-only mode
+  this is auto-synthesized from class/function names.
+- **symbols** — every top-level class/function/method with `signature` (full
+  typed signature including return type), `start_line`/`end_line`, and a
+  per-symbol `docstring` (truncated to 400 chars)
+- **structure** — `{classes, functions, symbol_count, total_loc, avg_complexity}`
+  for a quick scan of what the file contains
+- **imported_by** — files that import this one (dependents)
+
+Batch multiple files in a single call. This is your **primary navigation tool** —
+call it on any file you suspect is relevant before reading its source.
+
+**Interpreting the response — do not over-trust thin results:**
+- Empty per-symbol `docstring`s + tiny `symbol_count` (e.g. 1–6 symbols, all
+  classes with no methods) usually means the file is a **test fixture or stub**,
+  not the real implementation. Do NOT answer from it. Follow `imported_by` to
+  find the real caller, or Grep for the concept.
+- Rich per-symbol docstrings are high-signal — you can often answer directly
+  without Reading the source.
+- Signatures include type annotations. Use them to pick the right function
+  before Reading line ranges.
+
+### 2. `mcp__repowise__get_risk`
+```
+mcp__repowise__get_risk(targets=["path/to/file.py"])
+```
+Returns: **hotspot_score** (0–1, churn percentile), **top-5 co-change partners**
+(files historically edited together — the `has_import_link: false` ones are
+*silent* couplings the import graph misses), **primary_owner**, **risk_type**
+(`stable` / `churn-heavy` / `high-coupling` / `bus-factor-risk`).
+Use when the question is about ownership, history, or coupling.
+
+### 3. `mcp__repowise__get_why`
+```
+mcp__repowise__get_why(query="path/to/file.py")
+```
+Returns the most significant past commits for the file — commit messages,
+authors, dates. Use for "why was this designed this way" questions.
+
+### 4. `mcp__repowise__get_dependency_path`
+```
+mcp__repowise__get_dependency_path(source="path/a.py", target="path/b.py")
+```
+Returns the import chain between two files. Use when the question is about
+how one module depends on another.
+
+---
+
+## Workflow
+
+1. **Glob or Grep once** to identify 2–4 candidate files. Include both
+   implementation paths (e.g. `django/db/...`) and any test/fixture paths
+   you see — you want to compare them, not pick the first hit.
+2. **`get_context` on all candidates in one batched call** — inspect the
+   `structure` block and per-symbol docstrings to tell fixtures from real code.
+3. If results look thin (see "Interpreting the response" above), broaden
+   the Grep or follow `imported_by` — do not answer from a stub file.
+4. **Read only the specific line ranges** (use `start_line`/`end_line`
+   from the symbol list) from the real implementation file.
+5. Answer. For ownership/history questions, add a `get_risk` or `get_why`
+   call after step 2.
+
+**Budget: up to 3 repowise calls per question. Never call `search_codebase`,
+`get_overview`, `dead_code`, or `architecture_diagram` — they are not available.**
+"""
+
+
+def write_repo_claude_md(repo_path: Path, mode: str) -> None:
+    """Write a CLAUDE.md into the repo root for the given condition mode.
+
+    Claude Code auto-loads CLAUDE.md from cwd before the agent prompt, so this
+    surfaces exact tool signatures and a strong call-to-action without consuming
+    a system-prompt slot. Being an untracked file it is absent from the C0
+    git worktree, keeping conditions cleanly separated.
+    """
+    if mode == "index-only":
+        content = _CLAUDE_MD_INDEX_ONLY
+    else:
+        return  # C2 and others handled separately when needed
+    claude_md = repo_path / "CLAUDE.md"
+    claude_md.write_text(content, encoding="utf-8")
 
 MAX_RETRIES = 6
 
@@ -383,11 +773,46 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         "Answer based solely on what you find in the source code."
     )
 
-    # Build disallowed tools list — always block meta-tools that let agent
-    # discover/invoke repowise outside the allowlist
-    disallowed = "ToolSearch,ListMcpResourcesTool"
+    # Block everything that isn't explicitly needed for the condition.
+    # Personal MCP servers (Notion, Gmail, Canva, Invideo…) bleed in from the
+    # user's global Claude Code config — block them unconditionally so no
+    # condition can reach outside the repo.
+    # ReadMcpResourceTool is a *top-level* tool (not under mcp__*) that lets
+    # the agent read any MCP resource URI (e.g. `repowise://context?...`).
+    # Block it unconditionally so `mcp__*` disallow can't be bypassed through
+    # the resource namespace. Same for ListMcpResourcesTool/ToolSearch.
+    disallowed = (
+        "ToolSearch,ListMcpResourcesTool,ReadMcpResourceTool,"
+        "mcp__claude_ai_*"
+    )
+
     if not condition.get("repowise_enabled"):
-        disallowed += ",mcp__repowise__*"
+        # C0 — no MCP servers at all. Run in a git worktree so .repowise/
+        # and .mcp.json from prior runs are physically absent.  If worktree
+        # creation fails we FAIL LOUDLY rather than fall back to the real
+        # repo dir (that's how C0 got silently contaminated before).
+        disallowed += ",mcp__*"
+        repo_path = str(get_c0_worktree(Path(repo_path)))
+    else:
+        mode = condition.get("repowise_mode", "full")
+        # Block every repowise tool that is NOT in the allowed list for this
+        # mode, so the agent never wastes a turn attempting an unavailable tool.
+        if mode == "index-only":
+            # Block all repowise tools not in TOOLS_INDEX_ONLY
+            disallowed += (
+                ",mcp__repowise__search_codebase"
+                ",mcp__repowise__get_overview"
+                ",mcp__repowise__get_architecture_diagram"
+                ",mcp__repowise__get_dead_code"
+                ",mcp__repowise__update_decision_records"
+            )
+        else:
+            # C2 full — block only the genuinely useless ones
+            disallowed += (
+                ",mcp__repowise__get_architecture_diagram"
+                ",mcp__repowise__get_dead_code"
+                ",mcp__repowise__update_decision_records"
+            )
 
     cmd = [
         "claude",
@@ -405,15 +830,30 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         mode = condition.get("repowise_mode", "full")
         if mode == "index-only":
             allowed_tools += TOOLS_INDEX_ONLY
+            # CLAUDE.md in the repo already carries full tool docs and workflow
+            # for C1. Only append a short reminder via system-prompt so the
+            # agent gets the nudge even if CLAUDE.md is somehow missing.
             system_prompt = (SWEBENCH_PROMPT_INDEX_ONLY if benchmark == "swe_bench"
-                             else SWEQA_PROMPT_INDEX_ONLY)
+                             else "Use the repowise tools listed in CLAUDE.md before reading source.")
         else:
             allowed_tools += TOOLS_FULL
             system_prompt = (SWEBENCH_PROMPT_FULL if benchmark == "swe_bench"
                              else SWEQA_PROMPT_FULL)
         if mcp_config_path:
-            cmd.extend(["--mcp-config", mcp_config_path])
+            # --strict-mcp-config: ignore user-global / project-level servers
+            # (Figma/Notion/Apollo/Gmail/... from ~/.claude.json) and only
+            # mount the repowise server from our config.
+            cmd.extend(["--strict-mcp-config", "--mcp-config", mcp_config_path])
         cmd.extend(["--append-system-prompt", system_prompt])
+    else:
+        # C0 — mount NO MCP servers at all. An empty strict config suppresses
+        # both the user's global servers and any project-level .mcp.json that
+        # repowise itself may have written into the repo.
+        empty_cfg_path = _BENCH_ROOT / "configs" / "_empty_mcp.json"
+        if not empty_cfg_path.exists():
+            empty_cfg_path.parent.mkdir(parents=True, exist_ok=True)
+            empty_cfg_path.write_text('{"mcpServers": {}}')
+        cmd.extend(["--strict-mcp-config", "--mcp-config", str(empty_cfg_path)])
 
     cmd.extend(["--allowed-tools", allowed_tools])
 
@@ -434,6 +874,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 output = {
                     "result": parsed["answer"],
                     "num_turns": parsed["num_turns"],
+                    "task_subagent_calls": parsed.get("task_subagent_calls", 0),
                     "total_cost_usd": parsed["total_cost_usd"],
                     "usage": {
                         "input_tokens": parsed["input_tokens"],
@@ -463,11 +904,21 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 return output, attempt
 
             else:
-                err = result.stderr[:1000]
+                # Non-zero exit. stderr is often empty when claude itself
+                # exits cleanly after exhausting retries — the diagnostic
+                # detail is in the stream-json events on stdout. Extract it.
+                err = _extract_failure_reason(result.stdout, result.stderr)
+                # Always preserve the raw stream so post-mortem inspection
+                # can see the api_retry chain even on hard failures.
+                raw_lines = result.stdout.strip().split("\n") if result.stdout else []
                 if is_rate_limit_error(err):
                     backoff_sleep(attempt)
                     continue
-                return {"error": err, "returncode": result.returncode}, attempt
+                return {
+                    "error": err,
+                    "returncode": result.returncode,
+                    "_raw_stream_lines": raw_lines,
+                }, attempt
 
         except subprocess.TimeoutExpired:
             return {"error": "timeout", "timed_out": True}, attempt
@@ -634,6 +1085,10 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         mcp_cfg = generate_mcp_config(repo_path, bench_root)
         mcp_config_path = str(mcp_cfg)
 
+        # Write CLAUDE.md into the repo so Claude Code loads it as project
+        # context before the agent prompt. Untracked → absent from C0 worktree.
+        write_repo_claude_md(repo_path, mode)
+
     # Build prompt
     question = task.get("question", "")
     prompt = (
@@ -677,6 +1132,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         metrics.cache_read_tokens = usage.get("cache_read_input_tokens", 0)
         metrics.cache_write_tokens = usage.get("cache_creation_input_tokens", 0)
         metrics.num_turns = output.get("num_turns", 0)
+        metrics.task_subagent_calls = output.get("task_subagent_calls", 0)
         metrics.estimated_cost_usd = output.get("total_cost_usd", 0.0)
         metrics.answer = output.get("result", "")
         metrics.session_id = output.get("session_id", "")

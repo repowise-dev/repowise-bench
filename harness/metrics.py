@@ -39,6 +39,11 @@ class RunMetrics:
     # Efficiency
     num_tool_calls: int = 0
     num_turns: int = 0
+    # Number of Task tool invocations spawning a sub-agent. The parent stream
+    # only sees this as one tool_use + one tool_result, so the sub-agent's
+    # internal turns are invisible to num_turns. Track separately so we can
+    # detect runs where C0/C2 leaned on Explore/Task to compensate (mostly C0).
+    task_subagent_calls: int = 0
     files_explored: list = field(default_factory=list)
     files_edited: list = field(default_factory=list)
     repowise_tools_called: list = field(default_factory=list)
@@ -118,6 +123,7 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
     files_read = set()
     files_edited = set()
     repowise_tools = []
+    task_subagent_calls = 0
     # Track pending repowise calls to verify they succeeded
     _pending_repowise = []
     result_data = {}
@@ -148,6 +154,12 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                             files_edited.add(p)
                     elif tool_name.startswith("mcp__repowise"):
                         _pending_repowise.append(tool_name)
+                    elif tool_name == "Task":
+                        # Sub-agent invocation. Parent stream collapses
+                        # the entire sub-agent run into a single turn,
+                        # so this counter is the only signal of the
+                        # hidden work.
+                        task_subagent_calls += 1
         elif msg_type == "user":
             # Match tool results to pending repowise calls.
             # Only count repowise calls that succeeded (not permission-denied).
@@ -167,6 +179,7 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
         "cache_read_tokens": usage.get("cache_read_input_tokens", 0),
         "cache_write_tokens": usage.get("cache_creation_input_tokens", 0),
         "num_turns": result_data.get("num_turns", 0),
+        "task_subagent_calls": task_subagent_calls,
         "total_cost_usd": result_data.get("total_cost_usd", 0.0),
         "num_tool_calls": len(tool_calls),
         "files_explored": sorted(files_read),

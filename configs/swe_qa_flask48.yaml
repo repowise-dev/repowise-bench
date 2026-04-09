@@ -1,0 +1,69 @@
+# Canonical flask48 SWE-QA benchmark configuration.
+#
+# Runs the full 48-task `pallets/flask` subset of SWE-QA in a single shot,
+# evaluating two conditions per task:
+#
+#   * C0_bare  — baseline coding agent (Read/Grep/Glob/Bash/Agent only)
+#   * C2_full  — same agent + repowise MCP tools backed by a precomputed
+#                documentation index of the repository
+#
+# Both conditions use the same model, prompt, and judge. See README.md for
+# setup instructions and BENCHMARK_REPORT_FLASK48.md for the published
+# results obtained from this configuration.
+
+experiment_name: "swe_qa_flask48"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 48
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-3.1-flash-lite-preview"
+
+paths:
+  results_dir: "./results/swe_qa_flask48"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48"
+
+budget:
+  # Per-task and total caps are set generously enough to accommodate the
+  # most expensive C0 exploration loops observed on this task set without
+  # truncating them. Lowering these is safe for cost-bounded runs but may
+  # cap a small number of tasks before they finish.
+  max_total_usd: 25.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

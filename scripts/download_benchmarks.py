@@ -1,142 +1,163 @@
 #!/usr/bin/env python3
-"""
-Download benchmark datasets from HuggingFace and save as local JSON.
+"""Download the SWE-QA task corpus and clone target repositories.
+
+By default this fetches the full SWE-QA dataset from HuggingFace and writes
+it to ``data/swe_qa/tasks.json``, then clones each target repository into
+``repos/<org>/<name>``. The harness selects the per-repo subset at run time
+based on the ``benchmarks.swe_qa.repos`` field of the active config.
 
 Usage:
-    python scripts/download_benchmarks.py --benchmark swe_qa
-    python scripts/download_benchmarks.py --benchmark swe_qa --repos flask,requests,django
+
+    python scripts/download_benchmarks.py                # all repos
+    python scripts/download_benchmarks.py --repos flask  # flask only
+
+If ``data/swe_qa/tasks.json`` already exists, the dataset download is skipped
+unless ``--force`` is passed. Cloned repositories are likewise reused if they
+are already present on disk.
 """
+
+from __future__ import annotations
 
 import argparse
 import json
+import subprocess
+import sys
+from collections import Counter
 from pathlib import Path
 
-SWEQA_REPO_MAP = {
-    "astropy": "astropy/astropy",
-    "conan": "conan-io/conan",
-    "django": "django/django",
-    "flask": "pallets/flask",
-    "matplotlib": "matplotlib/matplotlib",
-    "pylint": "pylint-dev/pylint",
-    "pytest": "pytest-dev/pytest",
-    "reflex": "reflex-dev/reflex",
-    "requests": "psf/requests",
+# Map of short SWE-QA split names to their canonical GitHub coordinates.
+SWEQA_REPO_MAP: dict[str, str] = {
+    "astropy":      "astropy/astropy",
+    "conan":        "conan-io/conan",
+    "django":       "django/django",
+    "flask":        "pallets/flask",
+    "matplotlib":   "matplotlib/matplotlib",
+    "pylint":       "pylint-dev/pylint",
+    "pytest":       "pytest-dev/pytest",
+    "reflex":       "reflex-dev/reflex",
+    "requests":     "psf/requests",
     "scikit_learn": "scikit-learn/scikit-learn",
-    "sphinx": "sphinx-doc/sphinx",
-    "sqlfluff": "sqlfluff/sqlfluff",
-    "streamlink": "streamlink/streamlink",
-    "sympy": "sympy/sympy",
-    "xarray": "pydata/xarray",
+    "sphinx":       "sphinx-doc/sphinx",
+    "sqlfluff":     "sqlfluff/sqlfluff",
+    "streamlink":   "streamlink/streamlink",
+    "sympy":        "sympy/sympy",
+    "xarray":       "pydata/xarray",
 }
 
 
-def download_swe_qa(out_dir: Path, repos: list = None):
-    from datasets import load_dataset
+def download_swe_qa_tasks(out_dir: Path, splits: list[str], *, force: bool) -> Path:
+    """Download SWE-QA task definitions and write them as a JSON corpus."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_file = out_dir / "tasks.json"
 
-    all_tasks = []
-    splits = list(SWEQA_REPO_MAP.keys())
+    if out_file.exists() and not force:
+        print(f"  Reusing existing task corpus at {out_file}")
+        return out_file
 
-    if repos:
-        # Map GitHub names back to split names
-        repo_to_split = {v: k for k, v in SWEQA_REPO_MAP.items()}
-        splits = []
-        for r in repos:
-            if r in repo_to_split:
-                splits.append(repo_to_split[r])
-            elif r in SWEQA_REPO_MAP:
-                splits.append(r)
-            else:
-                print(f"  Warning: unknown repo/split '{r}', skipping")
+    try:
+        from datasets import load_dataset
+    except ImportError as e:
+        raise SystemExit(
+            "The `datasets` package is required to download SWE-QA tasks. "
+            "Install it with `pip install datasets`."
+        ) from e
 
+    all_tasks: list[dict] = []
     for split_name in splits:
         github_repo = SWEQA_REPO_MAP[split_name]
         print(f"  Loading {split_name} ({github_repo})...")
         ds = load_dataset("SWE-QA/SWE-QA", split=split_name)
-
         for i, row in enumerate(ds):
-            task = {
-                "id": f"{split_name}_{i:03d}",
-                "repo": github_repo,
-                "split_name": split_name,
-                "question": row["question"],
-                "answer": row["answer"],
-            }
-            all_tasks.append(task)
+            all_tasks.append(
+                {
+                    "id": f"{split_name}_{i:03d}",
+                    "repo": github_repo,
+                    "split_name": split_name,
+                    "question": row["question"],
+                    "answer": row["answer"],
+                }
+            )
 
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / "tasks.json"
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(all_tasks, f, indent=2, ensure_ascii=False)
+    out_file.write_text(json.dumps(all_tasks, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"\n  Saved {len(all_tasks)} tasks to {out_file}")
 
-    print(f"\nSaved {len(all_tasks)} tasks to {out_file}")
-
-    # Print summary
-    from collections import Counter
     repo_counts = Counter(t["repo"] for t in all_tasks)
     for repo, count in sorted(repo_counts.items()):
-        print(f"  {repo}: {count} tasks")
+        print(f"    {repo}: {count} tasks")
+    return out_file
 
 
-def download_swe_bench(out_dir: Path, repos: list = None):
-    from datasets import load_dataset
-    from collections import Counter
+def clone_repository(github_slug: str, repos_root: Path) -> Path:
+    """Clone a single GitHub repository into ``repos_root/<org>/<name>``.
 
-    print("Loading SWE-bench Verified from HuggingFace...")
-    ds = load_dataset("princeton-nlp/SWE-bench_Verified", split="test")
-    print(f"  Loaded {len(ds)} tasks")
-
-    tasks = []
-    for row in ds:
-        task = {
-            "instance_id": row["instance_id"],
-            "repo": row["repo"],
-            "base_commit": row["base_commit"],
-            "problem_statement": row["problem_statement"],
-            "hints_text": row.get("hints_text", ""),
-            "patch": row["patch"],
-            "test_patch": row["test_patch"],
-            "FAIL_TO_PASS": row["FAIL_TO_PASS"],
-            "PASS_TO_PASS": row["PASS_TO_PASS"],
-            "version": row.get("version", ""),
-            "environment_setup_commit": row.get("environment_setup_commit", ""),
-            "created_at": row.get("created_at", ""),
-            "difficulty": row.get("difficulty", ""),
-        }
-        tasks.append(task)
-
-    if repos:
-        tasks = [t for t in tasks if t["repo"] in repos]
-
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / "tasks.json"
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(tasks, f, indent=2, ensure_ascii=False)
-
-    print(f"\nSaved {len(tasks)} tasks to {out_file}")
-    repo_counts = Counter(t["repo"] for t in tasks)
-    for repo, count in repo_counts.most_common():
-        print(f"  {repo}: {count} tasks")
-
-    diff_counts = Counter(t.get("difficulty", "unknown") for t in tasks)
-    print("\nDifficulty distribution:")
-    for diff, count in diff_counts.most_common():
-        print(f"  {diff}: {count}")
+    No-ops if the destination already contains a git checkout.
+    """
+    org, _, name = github_slug.partition("/")
+    if not org or not name:
+        raise ValueError(f"Invalid github slug: {github_slug!r}")
+    dest = repos_root / org / name
+    if (dest / ".git").exists():
+        print(f"  Reusing existing checkout at {dest}")
+        return dest
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    url = f"https://github.com/{github_slug}.git"
+    print(f"  Cloning {url} → {dest}")
+    subprocess.check_call(["git", "clone", "--quiet", url, str(dest)])
+    return dest
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--benchmark", required=True, choices=["swe_qa", "swe_bench"])
-    parser.add_argument("--repos", type=str, default=None,
-                        help="Comma-separated repo or split names to download")
-    parser.add_argument("--data-dir", type=str, default="./data")
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--repos",
+        type=str,
+        default=None,
+        help=(
+            "Comma-separated split names or GitHub slugs to download. "
+            "If omitted, every repo in the SWE-QA corpus is downloaded."
+        ),
+    )
+    parser.add_argument("--data-dir", type=Path, default=Path("./data"))
+    parser.add_argument("--repos-dir", type=Path, default=Path("./repos"))
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-download the SWE-QA dataset even if it already exists locally.",
+    )
+    parser.add_argument(
+        "--no-clone",
+        action="store_true",
+        help="Skip cloning target repositories (download tasks only).",
+    )
     args = parser.parse_args()
 
-    repos = args.repos.split(",") if args.repos else None
+    # Resolve which splits to download.
+    if args.repos:
+        requested = [r.strip() for r in args.repos.split(",") if r.strip()]
+        slug_to_split = {v: k for k, v in SWEQA_REPO_MAP.items()}
+        splits: list[str] = []
+        for r in requested:
+            if r in SWEQA_REPO_MAP:
+                splits.append(r)
+            elif r in slug_to_split:
+                splits.append(slug_to_split[r])
+            else:
+                print(f"  Warning: unknown repo/split '{r}', skipping", file=sys.stderr)
+    else:
+        splits = list(SWEQA_REPO_MAP.keys())
 
-    if args.benchmark == "swe_qa":
-        download_swe_qa(Path(args.data_dir) / "swe_qa", repos)
-    elif args.benchmark == "swe_bench":
-        download_swe_bench(Path(args.data_dir) / "swe_bench", repos)
+    if not splits:
+        raise SystemExit("No valid repos to download.")
+
+    print("Downloading SWE-QA tasks...")
+    download_swe_qa_tasks(args.data_dir / "swe_qa", splits, force=args.force)
+
+    if not args.no_clone:
+        print("\nCloning target repositories...")
+        for split_name in splits:
+            clone_repository(SWEQA_REPO_MAP[split_name], args.repos_dir)
+
+    print("\nDone.")
 
 
 if __name__ == "__main__":
