@@ -1,13 +1,20 @@
 {
   "mcpServers": {
     "repowise": {
-      "command": "repowise",
+      "command": "${REPOWISE_BENCH}/.venv/bin/python",
       "args": [
+        "-m",
+        "repowise.cli.main",
         "mcp",
-        "C:/Users/ragha/Desktop/repowise/repowise-bench/repos/django/django",
+        "${REPOWISE_BENCH}/repos/django/django",
         "--transport",
         "stdio"
-      ]
+      ],
+      "env": {
+        "PYTHONPATH": "${REPOWISE_ROOT}/packages/cli/src:${REPOWISE_ROOT}/packages/core/src:${REPOWISE_ROOT}/packages/server/src",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1"
+      }
     }
   }
 }

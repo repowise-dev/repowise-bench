@@ -1,17 +1,17 @@
 {
   "mcpServers": {
     "repowise": {
-      "command": "/Users/swatiahuja/Desktop/repowise/repowise-bench/.venv/bin/python3",
+      "command": "${REPOWISE_BENCH}/.venv/bin/python3",
       "args": [
         "-m",
         "repowise.cli.main",
         "mcp",
-        "/Users/swatiahuja/Desktop/repowise/repowise-bench/repos/pallets/flask",
+        "${REPOWISE_BENCH}/repos/pallets/flask",
         "--transport",
         "stdio"
       ],
       "env": {
-        "PYTHONPATH": "/Users/swatiahuja/Desktop/repowise/packages/cli/src:/Users/swatiahuja/Desktop/repowise/packages/core/src:/Users/swatiahuja/Desktop/repowise/packages/server/src",
+        "PYTHONPATH": "${REPOWISE_ROOT}/packages/cli/src:${REPOWISE_ROOT}/packages/core/src:${REPOWISE_ROOT}/packages/server/src",
         "PYTHONIOENCODING": "utf-8",
         "PYTHONUTF8": "1"
       }
