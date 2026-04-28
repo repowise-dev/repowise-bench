@@ -1,4 +1,4 @@
-# repowise-bench — flask48 SWE-QA Benchmark
+# repowise-bench — SWE-QA Benchmark on select python repos
 
 A reproducible paired benchmark comparing two coding-agent configurations on
 a 48-question subset of [SWE-QA](https://arxiv.org/abs/2401.00000) drawn from
