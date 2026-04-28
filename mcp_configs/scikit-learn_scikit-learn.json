@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "repowise": {
+      "command": "<BENCH_ROOT>/.venv/bin/python",
+      "args": [
+        "-m",
+        "repowise.cli.main",
+        "mcp",
+        "<BENCH_ROOT>/repos/scikit-learn/scikit-learn",
+        "--transport",
+        "stdio"
+      ],
+      "env": {
+        "PYTHONPATH": "<REPOWISE_ROOT>/packages/cli/src:<REPOWISE_ROOT>/packages/core/src:<REPOWISE_ROOT>/packages/server/src",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1"
+      }
+    }
+  }
+}

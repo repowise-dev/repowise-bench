@@ -13,7 +13,7 @@ reproduce the numbers from a clean checkout.
 
 ## Headline numbers
 
-On 48 paired tasks (`pallets/flask` SWE-QA subset, `claude-sonnet-4-6` end-to-end):
+### flask48 — `pallets/flask` (48 paired tasks, `claude-sonnet-4-6`)
 
 | Metric            | C0 (baseline) | C2 (doc-augmented) | Δ        |
 |-------------------|--------------:|-------------------:|---------:|
@@ -25,6 +25,28 @@ On 48 paired tasks (`pallets/flask` SWE-QA subset, `claude-sonnet-4-6` end-to-en
 
 **32 / 48 (67 %)** tasks are cheaper under C2; quality is at parity (Δ = −0.01
 on a 0–10 LLM-judge scale; identical medians).
+
+Full report: [**BENCHMARK_REPORT_FLASK48.md**](BENCHMARK_REPORT_FLASK48.md).
+
+### sklearn48 — `scikit-learn/scikit-learn` (48 paired tasks, `claude-sonnet-4-6`)
+
+| Metric            | C0 (baseline) | C2 (doc-augmented) | Δ        |
+|-------------------|--------------:|-------------------:|---------:|
+| Cost / task (mean)|       $0.1180 |            $0.0834 | **−29.3 %** |
+| Wall / task (mean)|         39.7 s|             28.6 s | **−27.9 %** |
+| Tool calls (mean) |           8.1 |                2.4 | **−70.5 %** |
+| Files read (mean) |           1.8 |                0.6 | **−69.3 %** |
+| Score (0–10, mean)|          8.72 |               8.23 | similar on this sample |
+
+**33 / 48 (69 %)** tasks are cheaper under C2; **28 / 48 (58 %)** are faster;
+C2 matches or beats C0 on **17 / 48 (35 %)** tasks for score. Answer quality
+is similar on this 48-task sample — the aggregate mean difference (−0.49
+points on a 0–10 scale) is small relative to per-task judge variance at
+n = 48 and is driven by a short tail of tasks where the wiki synthesis
+answers a related-but-different sub-question with high confidence
+(medians: 9.00 → 8.70). See the report for the full variance discussion.
+
+Full report: [**BENCHMARK_REPORT_SKLEARN48.md**](BENCHMARK_REPORT_SKLEARN48.md).
 
 ---
 

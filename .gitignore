@@ -23,9 +23,13 @@ __pycache__/
 /scratch_*/
 /tmp/
 
-# Result archives — only the canonical results/swe_qa_flask48/ directory is tracked.
-# Anything else under results/ is treated as ad-hoc and ignored.
+# Result archives — only the canonical results/swe_qa_flask48/ and
+# results/swe_qa_sklearn48/ directories are tracked. Anything else under
+# results/ is treated as ad-hoc and ignored.
 /results/*
 !/results/swe_qa_flask48/
 !/results/swe_qa_flask48/swe_qa.jsonl
 !/results/swe_qa_flask48/experiment_meta.json
+!/results/swe_qa_sklearn48/
+!/results/swe_qa_sklearn48/swe_qa.jsonl
+!/results/swe_qa_sklearn48/experiment_meta.json

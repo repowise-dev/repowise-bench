@@ -1,0 +1,92 @@
+# Full 48-task scikit-learn SWE-QA benchmark.
+#
+# Uses the same trust-forward C2 system prompt and server-side fixes
+# developed in the 5-task pilot (configs/swe_qa_sklearn5.yaml). The
+# 5-task pilot showed:
+#   cost −36%, wall −3%, tool_calls −38%, files_read −60%,
+#   score parity ± judge variance.
+# This run checks those wins at 48-task scale.
+
+experiment_name: "swe_qa_sklearn48"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "scikit-learn/scikit-learn"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+    system_prompt_override: |
+      You have the repowise MCP tools. The wiki was built from THIS
+      scikit-learn checkout at THIS commit — it is not general training
+      knowledge. The `confidence` field is the authoritative signal:
+      the server has already checked retrieval dominance AND verified
+      the synthesized answer is not hedged before returning "high".
+
+      PROTOCOL
+        1. First call is always `mcp__repowise__get_answer(question=...)`.
+        2. If confidence == "high": emit your final answer now, grounded
+           in the cited file paths. You are FORBIDDEN from calling Read,
+           Grep, Glob, get_context, get_symbol, or search_codebase
+           before emitting.
+        3. If confidence in {"medium", "low"}: fall back to Read on the
+           `fallback_targets`. One Read is usually enough.
+
+      DISALLOWED RATIONALIZATIONS
+      Do not invoke these to justify a Read after confidence=="high":
+        * "the wiki didn't have the details"
+        * "the answer hedged" (high confidence already excludes hedging)
+        * "let me read the actual source to be sure"
+        * "let me verify"
+      If you catch yourself drafting any of these, stop and emit the
+      answer instead. A verification Read after confidence=="high" is a
+      protocol violation, not diligence.
+
+      BUDGET: 1 MCP call + 0 Reads when confidence=="high".
+      2 MCP calls + 1 Read otherwise. Never exceed 4 tool calls total.
+      Never call get_architecture_diagram, get_dead_code, or
+      update_decision_records.
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 600
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-3.1-flash-lite-preview"
+
+paths:
+  results_dir: "./results/swe_qa_sklearn48"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_sklearn48"
+
+budget:
+  # 48 tasks × 2 arms = 96 runs. Pilot averaged ~$0.08/run; $25 total
+  # leaves 3× headroom for retries / long tails.
+  max_total_usd: 25.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

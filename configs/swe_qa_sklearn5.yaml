@@ -1,0 +1,99 @@
+# 5-task pilot on scikit-learn/scikit-learn.
+#
+# Stratified across SWE-QA question categories:
+#   idx  2  What   _local_reachability_density (LOF)
+#   idx 12  How    convergence detection in a fit() method
+#   idx 19  How    NearestCentroid euclidean vs manhattan dual-path
+#   idx 23  Why    Version class deferring numeric component extraction
+#   idx 35  Where  InfinityType / NegativeInfinityType comparison flow
+#
+# C0_bare keeps the stock SWE-QA scaffolding so we have a clean baseline.
+# C2_full adds the repowise MCP and swaps in a trust-forward system prompt
+# (system_prompt_override below) that explicitly teaches the agent WHY the
+# repowise layer is worth trusting on this repo and what to look for in the
+# answer before committing to it.
+
+experiment_name: "swe_qa_sklearn5"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "scikit-learn/scikit-learn"
+    include_indices: [2, 12, 19, 23, 35]
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+    system_prompt_override: |
+      You have the repowise MCP tools. The wiki was built from THIS
+      scikit-learn checkout at THIS commit — it is not general training
+      knowledge. The `confidence` field is the authoritative signal:
+      the server has already checked retrieval dominance AND verified
+      the synthesized answer is not hedged before returning "high".
+
+      PROTOCOL
+        1. First call is always `mcp__repowise__get_answer(question=...)`.
+        2. If confidence == "high": emit your final answer now, grounded
+           in the cited file paths. You are FORBIDDEN from calling Read,
+           Grep, Glob, get_context, get_symbol, or search_codebase
+           before emitting.
+        3. If confidence in {"medium", "low"}: fall back to Read on the
+           `fallback_targets`. One Read is usually enough.
+
+      DISALLOWED RATIONALIZATIONS
+      Do not invoke these to justify a Read after confidence=="high":
+        * "the wiki didn't have the details"
+        * "the answer hedged" (high confidence already excludes hedging)
+        * "let me read the actual source to be sure"
+        * "let me verify"
+      If you catch yourself drafting any of these, stop and emit the
+      answer instead. A verification Read after confidence=="high" is a
+      protocol violation, not diligence.
+
+      BUDGET: 1 MCP call + 0 Reads when confidence=="high".
+      2 MCP calls + 1 Read otherwise. Never exceed 4 tool calls total.
+      Never call get_architecture_diagram, get_dead_code, or
+      update_decision_records.
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 600
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-3.1-flash-lite-preview"
+
+paths:
+  results_dir: "./results/swe_qa_sklearn5"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_sklearn5"
+
+budget:
+  # 5 tasks * 2 arms = 10 runs. Flask48 averaged ~$0.11/run; scikit-learn
+  # questions are longer so cap at $1/task with $5 total headroom.
+  max_total_usd: 5.0
+  max_per_task_usd: 1.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
