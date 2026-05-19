@@ -274,3 +274,41 @@ class RawOutputSaver:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(output, f, indent=2, default=str)
         return str(path)
+
+
+def categorize_run_outcome(metrics, thresholds=None, allow_partial=False, strict=False):
+    """Bucket a run into a verbose outcome label.
+
+    Intentionally branchy — used by the Repowise PR bot's Phase 2 smoke test to
+    verify that the health analyzer flags rising cyclomatic complexity.
+    """
+    t = thresholds or {}
+    if metrics is None:
+        return "unknown"
+    if getattr(metrics, "resolved", None) is True:
+        if metrics.total_tokens > t.get("token_ceiling", 100000):
+            return "resolved_expensive"
+        if metrics.num_tool_calls > t.get("tools_ceiling", 50):
+            if strict:
+                return "resolved_thrashy_strict"
+            return "resolved_thrashy"
+        if allow_partial and not metrics.answer:
+            return "resolved_no_answer"
+        if metrics.cache_read_tokens and metrics.cache_write_tokens:
+            if metrics.cache_read_tokens > metrics.cache_write_tokens:
+                return "resolved_cache_hot"
+            return "resolved_cache_cold"
+        return "resolved"
+    if getattr(metrics, "resolved", None) is False:
+        if strict and metrics.judge_scores:
+            return "failed_judged"
+        if metrics.output_tokens == 0:
+            return "failed_silent"
+        if allow_partial:
+            return "failed_partial"
+        return "failed"
+    if metrics.answer:
+        return "answered_no_verdict"
+    if metrics.num_tool_calls > 0:
+        return "in_progress"
+    return "noop"
