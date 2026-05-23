@@ -1,0 +1,366 @@
+{
+  "descriptive": {
+    "n_files": 104,
+    "n_with_defects": 13,
+    "n_zero_defects": 91,
+    "pct_zero_defects": 87.5,
+    "health_score": {
+      "mean": 8.59326923076923,
+      "median": 9.0,
+      "min": 2.9,
+      "max": 10.0,
+      "std": 1.5124893916390825
+    },
+    "defect_count": {
+      "mean": 0.3942307692307692,
+      "median": 0.0,
+      "min": 0,
+      "max": 13,
+      "total": 41
+    }
+  },
+  "spearman": {
+    "rho": -0.27152081467864875,
+    "p_value": 0.005301917799965214,
+    "n": 104
+  },
+  "partial_spearman_nloc": -0.09652945917611395,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 87,
+      "yellow": 13,
+      "red": 4
+    },
+    "group_means": {
+      "green": 0.06896551724137931,
+      "yellow": 1.0769230769230769,
+      "red": 5.25
+    },
+    "h_stat": 34.84487524773468,
+    "p_value": 2.7135103264167607e-08
+  },
+  "density_ratio": {
+    "raw_ratio": 74.375,
+    "nloc_normalized_ratio": 3.1997455470737908,
+    "low_group": {
+      "count": 4,
+      "mean_defects": 5.25,
+      "total_nloc": 2751,
+      "defects_per_kloc": 7.633587786259541
+    },
+    "high_group": {
+      "count": 85,
+      "mean_defects": 0.07058823529411765,
+      "total_nloc": 2515,
+      "defects_per_kloc": 2.385685884691849
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 4,
+      "total_defects": 21,
+      "mean_defects": 5.25,
+      "defects_per_kloc": 7.633587786259541
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 4,
+      "total_defects": 1,
+      "mean_defects": 0.25,
+      "defects_per_kloc": 0.6325110689437066
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 9,
+      "total_defects": 13,
+      "mean_defects": 1.4444444444444444,
+      "defects_per_kloc": 5.8505850585058505
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 87,
+      "total_defects": 6,
+      "mean_defects": 0.06896551724137931,
+      "defects_per_kloc": 2.3103581055063533
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 7,
+    "precision": 0.35,
+    "files": [
+      {
+        "file_path": "fastapi/encoders.py",
+        "score": 2.9,
+        "defects": 1
+      },
+      {
+        "file_path": "fastapi/routing.py",
+        "score": 2.9,
+        "defects": 2
+      },
+      {
+        "file_path": "fastapi/dependencies/utils.py",
+        "score": 3.3,
+        "defects": 13
+      },
+      {
+        "file_path": "fastapi/openapi/utils.py",
+        "score": 3.9,
+        "defects": 5
+      },
+      {
+        "file_path": "scripts/docs.py",
+        "score": 4.5,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/doc_parsing_utils.py",
+        "score": 4.9,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/notify_translations.py",
+        "score": 5.5,
+        "defects": 0
+      },
+      {
+        "file_path": "fastapi/params.py",
+        "score": 5.7,
+        "defects": 1
+      },
+      {
+        "file_path": "fastapi/applications.py",
+        "score": 6.1,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/people.py",
+        "score": 6.1,
+        "defects": 0
+      },
+      {
+        "file_path": "fastapi/_compat/v2.py",
+        "score": 6.8,
+        "defects": 9
+      },
+      {
+        "file_path": "fastapi/_compat/shared.py",
+        "score": 6.9,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/deploy_docs_status.py",
+        "score": 7.1,
+        "defects": 0
+      },
+      {
+        "file_path": "fastapi/param_functions.py",
+        "score": 7.3,
+        "defects": 0
+      },
+      {
+        "file_path": "fastapi/dependencies/models.py",
+        "score": 7.3,
+        "defects": 4
+      },
+      {
+        "file_path": "scripts/contributors.py",
+        "score": 7.3,
+        "defects": 0
+      },
+      {
+        "file_path": "docs/en/docs/js/custom.js",
+        "score": 7.9,
+        "defects": 0
+      },
+      {
+        "file_path": "docs_src/websockets_/tutorial002_an_py310.py",
+        "score": 8.0,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/translation_fixer.py",
+        "score": 8.0,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/translate.py",
+        "score": 8.1,
+        "defects": 0
+      }
+    ]
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 8,
+      "files_without": 96,
+      "mean_defects_with": 2.375,
+      "mean_defects_without": 0.22916666666666666,
+      "u_stat": 642.0,
+      "p_value": 2.237515510280977e-08,
+      "cliffs_delta": 0.671875
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 19,
+      "files_without": 85,
+      "mean_defects_with": 1.736842105263158,
+      "mean_defects_without": 0.09411764705882353,
+      "u_stat": 1107.0,
+      "p_value": 5.91178153617152e-06,
+      "cliffs_delta": 0.37089783281733746
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 17,
+      "files_without": 87,
+      "mean_defects_with": 2.0588235294117645,
+      "mean_defects_without": 0.06896551724137931,
+      "u_stat": 1008.0,
+      "p_value": 2.0375301769670932e-05,
+      "cliffs_delta": 0.3630831643002028
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 13,
+      "files_without": 91,
+      "mean_defects_with": 2.3076923076923075,
+      "mean_defects_without": 0.12087912087912088,
+      "u_stat": 781.5,
+      "p_value": 0.0005892245584247833,
+      "cliffs_delta": 0.32121724429416737
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 5,
+      "files_without": 99,
+      "mean_defects_with": 2.8,
+      "mean_defects_without": 0.2727272727272727,
+      "u_stat": 322.5,
+      "p_value": 0.02432635700179946,
+      "cliffs_delta": 0.30303030303030304
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 14,
+      "files_without": 90,
+      "mean_defects_with": 1.5,
+      "mean_defects_without": 0.2222222222222222,
+      "u_stat": 756.5,
+      "p_value": 0.018306936426157223,
+      "cliffs_delta": 0.2007936507936508
+    },
+    {
+      "biomarker": "brain_method",
+      "files_with": 2,
+      "files_without": 102,
+      "mean_defects_with": 1.5,
+      "mean_defects_without": 0.37254901960784315,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 104,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.3942307692307692,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 1,
+      "files_without": 103,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.39805825242718446,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 70,
+      "files_without": 34,
+      "mean_defects_with": 0.22857142857142856,
+      "mean_defects_without": 0.7352941176470589,
+      "u_stat": 1147.5,
+      "p_value": 0.6981124279182227,
+      "cliffs_delta": -0.03571428571428571
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 62,
+      "files_without": 42,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.9761904761904762,
+      "u_stat": 899.0,
+      "p_value": 0.9999983862762934,
+      "cliffs_delta": -0.30952380952380953
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.7147083685545225,
+    "fpr": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.01098901098901099,
+      0.02197802197802198,
+      0.03296703296703297,
+      0.03296703296703297,
+      0.054945054945054944,
+      0.054945054945054944,
+      0.06593406593406594,
+      0.07692307692307693,
+      0.0989010989010989,
+      0.10989010989010989,
+      0.13186813186813187,
+      0.14285714285714285,
+      0.15384615384615385,
+      0.16483516483516483,
+      0.18681318681318682,
+      0.1978021978021978,
+      0.6703296703296703,
+      0.7692307692307693,
+      0.7802197802197802,
+      0.9340659340659341,
+      1.0
+    ],
+    "tpr": [
+      0.0,
+      0.15384615384615385,
+      0.23076923076923078,
+      0.3076923076923077,
+      0.3076923076923077,
+      0.3076923076923077,
+      0.3076923076923077,
+      0.38461538461538464,
+      0.38461538461538464,
+      0.46153846153846156,
+      0.46153846153846156,
+      0.46153846153846156,
+      0.5384615384615384,
+      0.5384615384615384,
+      0.5384615384615384,
+      0.5384615384615384,
+      0.5384615384615384,
+      0.5384615384615384,
+      0.6923076923076923,
+      0.6923076923076923,
+      0.6923076923076923,
+      0.8461538461538461,
+      0.9230769230769231,
+      0.9230769230769231,
+      1.0
+    ],
+    "n_pos": 13,
+    "n_neg": 91
+  }
+}

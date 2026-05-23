@@ -1,0 +1,422 @@
+{
+  "descriptive": {
+    "n_files": 216,
+    "n_with_defects": 17,
+    "n_zero_defects": 199,
+    "pct_zero_defects": 92.12962962962963,
+    "health_score": {
+      "mean": 7.670833333333333,
+      "median": 8.3,
+      "min": 1.5,
+      "max": 10.0,
+      "std": 1.9565587374324482
+    },
+    "defect_count": {
+      "mean": 0.09722222222222222,
+      "median": 0.0,
+      "min": 0,
+      "max": 2,
+      "total": 21
+    }
+  },
+  "spearman": {
+    "rho": -0.22892768154599452,
+    "p_value": 0.0006985511788221232,
+    "n": 216
+  },
+  "partial_spearman_nloc": -0.08673766353613262,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 121,
+      "yellow": 79,
+      "red": 16
+    },
+    "group_means": {
+      "green": 0.049586776859504134,
+      "yellow": 0.08860759493670886,
+      "red": 0.5
+    },
+    "h_stat": 15.335370147367836,
+    "p_value": 0.00046769926082342484
+  },
+  "density_ratio": {
+    "raw_ratio": 11.7,
+    "nloc_normalized_ratio": 1.2572856785803548,
+    "low_group": {
+      "count": 16,
+      "mean_defects": 0.5,
+      "total_nloc": 12003,
+      "defects_per_kloc": 0.6665000416562525
+    },
+    "high_group": {
+      "count": 117,
+      "mean_defects": 0.042735042735042736,
+      "total_nloc": 9432,
+      "defects_per_kloc": 0.5301102629346904
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 16,
+      "total_defects": 8,
+      "mean_defects": 0.5,
+      "defects_per_kloc": 0.6665000416562525
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 30,
+      "total_defects": 3,
+      "mean_defects": 0.1,
+      "defects_per_kloc": 0.23413720440177946
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 49,
+      "total_defects": 4,
+      "mean_defects": 0.08163265306122448,
+      "defects_per_kloc": 0.3735524841240194
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 121,
+      "total_defects": 6,
+      "mean_defects": 0.049586776859504134,
+      "defects_per_kloc": 0.5842827928717499
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 6,
+    "precision": 0.3,
+    "files": [
+      {
+        "file_path": "pydantic/_internal/_generate_schema.py",
+        "score": 1.5,
+        "defects": 1
+      },
+      {
+        "file_path": "pydantic-core/src/validators/arguments.rs",
+        "score": 3.0,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/validators/arguments_v3.rs",
+        "score": 3.0,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/mypy.py",
+        "score": 3.1,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/input/return_enums.rs",
+        "score": 3.2,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/main.py",
+        "score": 3.3,
+        "defects": 2
+      },
+      {
+        "file_path": "pydantic/_internal/_fields.py",
+        "score": 3.3,
+        "defects": 1
+      },
+      {
+        "file_path": "pydantic-core/src/validators/model_fields.rs",
+        "score": 3.3,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/serializers/ob_type.rs",
+        "score": 3.5,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/fields.py",
+        "score": 3.8,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/json_schema.py",
+        "score": 3.8,
+        "defects": 2
+      },
+      {
+        "file_path": "pydantic/v1/fields.py",
+        "score": 3.8,
+        "defects": 2
+      },
+      {
+        "file_path": "pydantic/v1/mypy.py",
+        "score": 3.8,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/validators/typed_dict.rs",
+        "score": 3.8,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/validators/decimal.rs",
+        "score": 3.9,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/validators/mod.rs",
+        "score": 3.9,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/validators/dataclass.rs",
+        "score": 4.1,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/v1/main.py",
+        "score": 4.2,
+        "defects": 1
+      },
+      {
+        "file_path": "pydantic-core/src/input/input_python.rs",
+        "score": 4.2,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic-core/src/serializers/filter.rs",
+        "score": 4.2,
+        "defects": 0
+      }
+    ]
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "brain_method",
+      "files_with": 6,
+      "files_without": 210,
+      "mean_defects_with": 1.0,
+      "mean_defects_without": 0.07142857142857142,
+      "u_stat": 1020.0,
+      "p_value": 1.60898796491333e-08,
+      "cliffs_delta": 0.6190476190476191
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 4,
+      "files_without": 212,
+      "mean_defects_with": 0.75,
+      "mean_defects_without": 0.08490566037735849,
+      "u_stat": 610.5,
+      "p_value": 0.0006443615459708646,
+      "cliffs_delta": 0.43985849056603776
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 45,
+      "files_without": 171,
+      "mean_defects_with": 0.28888888888888886,
+      "mean_defects_without": 0.04678362573099415,
+      "u_stat": 4550.5,
+      "p_value": 2.7264258560285163e-05,
+      "cliffs_delta": 0.18271604938271604
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 16,
+      "files_without": 200,
+      "mean_defects_with": 0.25,
+      "mean_defects_without": 0.085,
+      "u_stat": 1888.0,
+      "p_value": 0.005219544676727692,
+      "cliffs_delta": 0.18
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 72,
+      "files_without": 144,
+      "mean_defects_with": 0.2361111111111111,
+      "mean_defects_without": 0.027777777777777776,
+      "u_stat": 6081.5,
+      "p_value": 4.5198576320330395e-06,
+      "cliffs_delta": 0.17312885802469136
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 30,
+      "files_without": 186,
+      "mean_defects_with": 0.26666666666666666,
+      "mean_defects_without": 0.06989247311827956,
+      "u_stat": 3188.0,
+      "p_value": 0.0036661389325572083,
+      "cliffs_delta": 0.14265232974910394
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 85,
+      "files_without": 131,
+      "mean_defects_with": 0.2,
+      "mean_defects_without": 0.030534351145038167,
+      "u_stat": 6257.0,
+      "p_value": 0.0005007494225813233,
+      "cliffs_delta": 0.12384373596766951
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 102,
+      "files_without": 114,
+      "mean_defects_with": 0.1568627450980392,
+      "mean_defects_without": 0.043859649122807015,
+      "u_stat": 6253.0,
+      "p_value": 0.020228561948973014,
+      "cliffs_delta": 0.07550739594083247
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 216,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.09722222222222222,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 148,
+      "files_without": 68,
+      "mean_defects_with": 0.08783783783783784,
+      "mean_defects_without": 0.11764705882352941,
+      "u_stat": 4859.5,
+      "p_value": 0.8075636864350833,
+      "cliffs_delta": -0.03428060413354531
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 103,
+      "files_without": 113,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.18584070796460178,
+      "u_stat": 4944.0,
+      "p_value": 0.9999785698869014,
+      "cliffs_delta": -0.1504424778761062
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.7423884126514928,
+    "fpr": [
+      0.0,
+      0.0,
+      0.010050251256281407,
+      0.01507537688442211,
+      0.020100502512562814,
+      0.02512562814070352,
+      0.03015075376884422,
+      0.04522613065326633,
+      0.05527638190954774,
+      0.06030150753768844,
+      0.07035175879396985,
+      0.08542713567839195,
+      0.09045226130653267,
+      0.09547738693467336,
+      0.11055276381909548,
+      0.11557788944723618,
+      0.12562814070351758,
+      0.135678391959799,
+      0.1507537688442211,
+      0.1658291457286432,
+      0.1708542713567839,
+      0.17587939698492464,
+      0.19095477386934673,
+      0.19597989949748743,
+      0.20100502512562815,
+      0.20603015075376885,
+      0.21105527638190955,
+      0.22110552763819097,
+      0.22613065326633167,
+      0.24120603015075376,
+      0.2613065326633166,
+      0.271356783919598,
+      0.2814070351758794,
+      0.2964824120603015,
+      0.3065326633165829,
+      0.35175879396984927,
+      0.35678391959798994,
+      0.36180904522613067,
+      0.37185929648241206,
+      0.3768844221105528,
+      0.4020100502512563,
+      0.41708542713567837,
+      0.4321608040201005,
+      0.45226130653266333,
+      0.5226130653266332,
+      0.5326633165829145,
+      0.5527638190954773,
+      0.5728643216080402,
+      0.7638190954773869,
+      0.8040201005025126,
+      0.8241206030150754,
+      0.8994974874371859,
+      1.0
+    ],
+    "tpr": [
+      0.0,
+      0.058823529411764705,
+      0.058823529411764705,
+      0.058823529411764705,
+      0.058823529411764705,
+      0.17647058823529413,
+      0.17647058823529413,
+      0.29411764705882354,
+      0.29411764705882354,
+      0.29411764705882354,
+      0.35294117647058826,
+      0.4117647058823529,
+      0.4117647058823529,
+      0.4117647058823529,
+      0.4117647058823529,
+      0.4117647058823529,
+      0.4117647058823529,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.47058823529411764,
+      0.5294117647058824,
+      0.5294117647058824,
+      0.5294117647058824,
+      0.5294117647058824,
+      0.5294117647058824,
+      0.5882352941176471,
+      0.5882352941176471,
+      0.5882352941176471,
+      0.5882352941176471,
+      0.5882352941176471,
+      0.6470588235294118,
+      0.7058823529411765,
+      0.7058823529411765,
+      0.7058823529411765,
+      0.7058823529411765,
+      0.7058823529411765,
+      0.7058823529411765,
+      0.7647058823529411,
+      0.8235294117647058,
+      0.8823529411764706,
+      0.8823529411764706,
+      0.9411764705882353,
+      0.9411764705882353,
+      0.9411764705882353,
+      0.9411764705882353,
+      0.9411764705882353,
+      0.9411764705882353,
+      1.0
+    ],
+    "n_pos": 17,
+    "n_neg": 199
+  }
+}

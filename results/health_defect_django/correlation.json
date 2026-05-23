@@ -1,0 +1,420 @@
+{
+  "descriptive": {
+    "n_files": 542,
+    "n_with_defects": 149,
+    "n_zero_defects": 393,
+    "pct_zero_defects": 72.50922509225092,
+    "health_score": {
+      "mean": 8.614944649446494,
+      "median": 9.3,
+      "min": 1.8,
+      "max": 10.0,
+      "std": 1.7017056509936772
+    },
+    "defect_count": {
+      "mean": 0.4907749077490775,
+      "median": 0.0,
+      "min": 0,
+      "max": 11,
+      "total": 266
+    }
+  },
+  "spearman": {
+    "rho": -0.3372415355227952,
+    "p_value": 6.984802072519209e-16,
+    "n": 542
+  },
+  "partial_spearman_nloc": -0.12675311299420933,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 401,
+      "yellow": 129,
+      "red": 12
+    },
+    "group_means": {
+      "green": 0.2967581047381546,
+      "yellow": 0.813953488372093,
+      "red": 3.5
+    },
+    "h_stat": 65.36129545938736,
+    "p_value": 6.4117270499814195e-15
+  },
+  "density_ratio": {
+    "raw_ratio": 12.712264150943398,
+    "nloc_normalized_ratio": 1.1811397268175259,
+    "low_group": {
+      "count": 12,
+      "mean_defects": 3.5,
+      "total_nloc": 12823,
+      "defects_per_kloc": 3.2753645792716215
+    },
+    "high_group": {
+      "count": 385,
+      "mean_defects": 0.2753246753246753,
+      "total_nloc": 38225,
+      "defects_per_kloc": 2.7730542838456507
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 12,
+      "total_defects": 42,
+      "mean_defects": 3.5,
+      "defects_per_kloc": 3.2753645792716215
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 41,
+      "total_defects": 54,
+      "mean_defects": 1.3170731707317074,
+      "defects_per_kloc": 2.1661518713145336
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 88,
+      "total_defects": 51,
+      "mean_defects": 0.5795454545454546,
+      "defects_per_kloc": 2.241758241758242
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 401,
+      "total_defects": 119,
+      "mean_defects": 0.2967581047381546,
+      "defects_per_kloc": 2.803760337393681
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 14,
+    "precision": 0.7,
+    "files": [
+      {
+        "file_path": "django/contrib/admin/options.py",
+        "score": 1.8,
+        "defects": 11
+      },
+      {
+        "file_path": "django/db/models/fields/__init__.py",
+        "score": 2.2,
+        "defects": 7
+      },
+      {
+        "file_path": "django/template/defaultfilters.py",
+        "score": 2.5,
+        "defects": 0
+      },
+      {
+        "file_path": "django/db/models/sql/compiler.py",
+        "score": 2.6,
+        "defects": 5
+      },
+      {
+        "file_path": "django/contrib/admin/views/main.py",
+        "score": 3.3,
+        "defects": 3
+      },
+      {
+        "file_path": "django/db/models/fields/related.py",
+        "score": 3.3,
+        "defects": 1
+      },
+      {
+        "file_path": "django/db/transaction.py",
+        "score": 3.6,
+        "defects": 1
+      },
+      {
+        "file_path": "django/http/multipartparser.py",
+        "score": 3.6,
+        "defects": 2
+      },
+      {
+        "file_path": "django/db/models/query.py",
+        "score": 3.8,
+        "defects": 5
+      },
+      {
+        "file_path": "django/contrib/auth/__init__.py",
+        "score": 3.9,
+        "defects": 3
+      },
+      {
+        "file_path": "django/contrib/auth/management/__init__.py",
+        "score": 3.9,
+        "defects": 2
+      },
+      {
+        "file_path": "django/core/mail/message.py",
+        "score": 3.9,
+        "defects": 2
+      },
+      {
+        "file_path": "django/contrib/admin/utils.py",
+        "score": 4.2,
+        "defects": 4
+      },
+      {
+        "file_path": "django/core/management/commands/makemigrations.py",
+        "score": 4.2,
+        "defects": 0
+      },
+      {
+        "file_path": "django/db/migrations/autodetector.py",
+        "score": 4.2,
+        "defects": 1
+      },
+      {
+        "file_path": "django/contrib/gis/utils/layermapping.py",
+        "score": 4.5,
+        "defects": 0
+      },
+      {
+        "file_path": "django/core/management/__init__.py",
+        "score": 4.5,
+        "defects": 0
+      },
+      {
+        "file_path": "django/core/management/commands/makemessages.py",
+        "score": 4.5,
+        "defects": 0
+      },
+      {
+        "file_path": "django/db/backends/base/schema.py",
+        "score": 4.5,
+        "defects": 3
+      },
+      {
+        "file_path": "django/db/migrations/executor.py",
+        "score": 4.5,
+        "defects": 0
+      }
+    ]
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 6,
+      "files_without": 536,
+      "mean_defects_with": 5.0,
+      "mean_defects_without": 0.44029850746268656,
+      "u_stat": 2854.0,
+      "p_value": 1.5476492391392978e-05,
+      "cliffs_delta": 0.7748756218905473
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 27,
+      "files_without": 515,
+      "mean_defects_with": 2.3333333333333335,
+      "mean_defects_without": 0.3941747572815534,
+      "u_stat": 11734.0,
+      "p_value": 7.279930347692129e-15,
+      "cliffs_delta": 0.6877382236605537
+    },
+    {
+      "biomarker": "brain_method",
+      "files_with": 19,
+      "files_without": 523,
+      "mean_defects_with": 2.210526315789474,
+      "mean_defects_without": 0.42829827915869984,
+      "u_stat": 7082.5,
+      "p_value": 2.885136206371866e-05,
+      "cliffs_delta": 0.42548052732212943
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 158,
+      "files_without": 384,
+      "mean_defects_with": 1.0063291139240507,
+      "mean_defects_without": 0.2786458333333333,
+      "u_stat": 39716.5,
+      "p_value": 2.524051962735442e-13,
+      "cliffs_delta": 0.30922006856540085
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 151,
+      "files_without": 391,
+      "mean_defects_with": 0.9271523178807947,
+      "mean_defects_without": 0.32225063938618925,
+      "u_stat": 36538.0,
+      "p_value": 2.1475037711116685e-08,
+      "cliffs_delta": 0.2377161633441168
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 108,
+      "files_without": 434,
+      "mean_defects_with": 1.0092592592592593,
+      "mean_defects_without": 0.3617511520737327,
+      "u_stat": 28458.5,
+      "p_value": 5.403398711711616e-06,
+      "cliffs_delta": 0.21430704898446834
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 197,
+      "files_without": 345,
+      "mean_defects_with": 0.8071065989847716,
+      "mean_defects_without": 0.3101449275362319,
+      "u_stat": 40623.5,
+      "p_value": 6.758366347849871e-07,
+      "cliffs_delta": 0.19542411535349077
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 71,
+      "files_without": 471,
+      "mean_defects_with": 0.971830985915493,
+      "mean_defects_without": 0.4182590233545648,
+      "u_stat": 19659.5,
+      "p_value": 0.001150773113331443,
+      "cliffs_delta": 0.1757722556143656
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 145,
+      "files_without": 397,
+      "mean_defects_with": 0.6137931034482759,
+      "mean_defects_without": 0.44584382871536526,
+      "u_stat": 30278.0,
+      "p_value": 0.11859562059503392,
+      "cliffs_delta": 0.0519586554329888
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 542,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.4907749077490775,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 13,
+      "files_without": 529,
+      "mean_defects_with": 0.07692307692307693,
+      "mean_defects_without": 0.500945179584121,
+      "u_stat": 2711.0,
+      "p_value": 0.952076718900189,
+      "cliffs_delta": -0.21157481459938926
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.6978499581604249,
+    "fpr": [
+      0.0,
+      0.0,
+      0.0,
+      0.002544529262086514,
+      0.002544529262086514,
+      0.002544529262086514,
+      0.002544529262086514,
+      0.002544529262086514,
+      0.002544529262086514,
+      0.005089058524173028,
+      0.02544529262086514,
+      0.027989821882951654,
+      0.03307888040712468,
+      0.03307888040712468,
+      0.03307888040712468,
+      0.03816793893129771,
+      0.03816793893129771,
+      0.03816793893129771,
+      0.043256997455470736,
+      0.04580152671755725,
+      0.04834605597964377,
+      0.05089058524173028,
+      0.05597964376590331,
+      0.06361323155216285,
+      0.07124681933842239,
+      0.07888040712468193,
+      0.08651399491094147,
+      0.08651399491094147,
+      0.09669211195928754,
+      0.10178117048346055,
+      0.10941475826972011,
+      0.13486005089058525,
+      0.1450381679389313,
+      0.1475826972010178,
+      0.15267175572519084,
+      0.16030534351145037,
+      0.1806615776081425,
+      0.18829516539440203,
+      0.20610687022900764,
+      0.22137404580152673,
+      0.2366412213740458,
+      0.24173027989821882,
+      0.24936386768447838,
+      0.2824427480916031,
+      0.2926208651399491,
+      0.3104325699745547,
+      0.361323155216285,
+      0.36895674300254455,
+      0.48854961832061067,
+      0.5165394402035624,
+      0.6361323155216285,
+      1.0
+    ],
+    "tpr": [
+      0.0,
+      0.006711409395973154,
+      0.013422818791946308,
+      0.013422818791946308,
+      0.020134228187919462,
+      0.03355704697986577,
+      0.04697986577181208,
+      0.053691275167785234,
+      0.0738255033557047,
+      0.087248322147651,
+      0.1342281879194631,
+      0.1476510067114094,
+      0.1476510067114094,
+      0.1610738255033557,
+      0.16778523489932887,
+      0.16778523489932887,
+      0.174496644295302,
+      0.18791946308724833,
+      0.2080536912751678,
+      0.21476510067114093,
+      0.22818791946308725,
+      0.2483221476510067,
+      0.2550335570469799,
+      0.2684563758389262,
+      0.2751677852348993,
+      0.28187919463087246,
+      0.2953020134228188,
+      0.30201342281879195,
+      0.31543624161073824,
+      0.3221476510067114,
+      0.3221476510067114,
+      0.3422818791946309,
+      0.3624161073825503,
+      0.37583892617449666,
+      0.38926174496644295,
+      0.42953020134228187,
+      0.436241610738255,
+      0.44966442953020136,
+      0.5100671140939598,
+      0.5100671140939598,
+      0.5234899328859061,
+      0.5302013422818792,
+      0.5369127516778524,
+      0.5704697986577181,
+      0.6040268456375839,
+      0.6375838926174496,
+      0.6644295302013423,
+      0.6778523489932886,
+      0.7315436241610739,
+      0.7651006711409396,
+      0.8523489932885906,
+      1.0
+    ],
+    "n_pos": 149,
+    "n_neg": 393
+  }
+}
