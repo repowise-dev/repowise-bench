@@ -1,0 +1,35 @@
+benchmark_name: "health-defect-correlation"
+version: "1.0"
+
+defaults:
+  defect_window_months: 6
+  min_nloc: 10
+  exclude_test_files: true
+  health_buckets: [4.0, 6.0, 8.0]
+  precision_k: 20
+
+repos:
+  - name: "fastapi"
+    repo_url: "https://github.com/fastapi/fastapi.git"
+    language: "python"
+    source_root: "fastapi/"
+    t0_date: "2025-11-23"
+    defect_strategy: "gitmoji"
+    gitmoji_bug: "\U0001F41B"
+
+  - name: "django"
+    repo_url: "https://github.com/django/django.git"
+    language: "python"
+    source_root: "django/"
+    t0_date: "2025-11-23"
+    defect_strategy: "prefix"
+    bug_prefix: "Fixed #"
+
+  - name: "pydantic"
+    repo_url: "https://github.com/pydantic/pydantic.git"
+    language: "python"
+    source_root: "pydantic/"
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format"]
