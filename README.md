@@ -1,6 +1,18 @@
 # repowise-bench — Benchmark Suite
 
-A collection of reproducible benchmarks for measuring the impact of code intelligence on developer workflows. Each benchmark is self-contained in its own directory with its own detailed report; this file is the entry point.
+> **[Repowise](https://github.com/repowise-dev/repowise)** is the codebase
+> intelligence layer for AI coding agents. It indexes repositories into five
+> intelligence layers — dependency graphs, git analytics, auto-generated docs,
+> architectural decisions, and code health scores — and exposes them through
+> nine MCP tools. The result: fewer tool calls, fewer file reads, lower LLM
+> costs, and health scores that predict real-world defects.
+>
+> **This repo proves those claims with reproducible benchmarks on public
+> codebases.**
+
+[![GitHub stars](https://img.shields.io/github/stars/repowise-dev/repowise?style=flat)](https://github.com/repowise-dev/repowise)
+[![License](https://img.shields.io/github/license/repowise-dev/repowise)](https://github.com/repowise-dev/repowise/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/repowise-dev/repowise)](https://github.com/repowise-dev/repowise/releases)
 
 ---
 
