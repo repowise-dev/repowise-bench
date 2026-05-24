@@ -1,77 +1,77 @@
-# repowise-bench — SWE-QA Benchmark on select python repos
+# repowise-bench — Benchmark Suite
 
-A reproducible paired benchmark comparing two coding-agent configurations on
-a 48-question subset of [SWE-QA](https://arxiv.org/abs/2401.00000) drawn from
-the [`pallets/flask`](https://github.com/pallets/flask) repository.
-
-The full results, methodology, per-task tables, and discussion are reported
-in [**BENCHMARK_REPORT_FLASK48.md**](BENCHMARK_REPORT_FLASK48.md). This README
-covers what the repository contains, how the experiment is set up, and how to
-reproduce the numbers from a clean checkout.
+A collection of reproducible benchmarks for measuring the impact of code intelligence on developer workflows. Each benchmark is self-contained in its own directory with its own detailed report; this file is the entry point.
 
 ---
 
-## Headline numbers
+## Benchmarks
 
-### flask48 — `pallets/flask` (48 paired tasks, `claude-sonnet-4-6`)
-
-| Metric            | C0 (baseline) | C2 (doc-augmented) | Δ        |
-|-------------------|--------------:|-------------------:|---------:|
-| Cost / task (mean)|       $0.1396 |            $0.0890 | **−36.2 %** |
-| Wall / task (mean)|         41.7 s|             33.9 s | **−18.6 %** |
-| Tool calls (mean) |           7.4 |                3.8 | **−49.2 %** |
-| Files read (mean) |           1.9 |                0.2 | **−89.0 %** |
-| Score (0–10, mean)|          8.82 |               8.81 | tied        |
-
-**32 / 48 (67 %)** tasks are cheaper under C2; quality is at parity (Δ = −0.01
-on a 0–10 LLM-judge scale; identical medians).
-
-Full report: [**BENCHMARK_REPORT_FLASK48.md**](BENCHMARK_REPORT_FLASK48.md).
-
-### sklearn48 — `scikit-learn/scikit-learn` (48 paired tasks, `claude-sonnet-4-6`)
-
-| Metric            | C0 (baseline) | C2 (doc-augmented) | Δ        |
-|-------------------|--------------:|-------------------:|---------:|
-| Cost / task (mean)|       $0.1180 |            $0.0834 | **−29.3 %** |
-| Wall / task (mean)|         39.7 s|             28.6 s | **−27.9 %** |
-| Tool calls (mean) |           8.1 |                2.4 | **−70.5 %** |
-| Files read (mean) |           1.8 |                0.6 | **−69.3 %** |
-| Score (0–10, mean)|          8.72 |               8.23 | similar on this sample |
-
-**33 / 48 (69 %)** tasks are cheaper under C2; **28 / 48 (58 %)** are faster;
-C2 matches or beats C0 on **17 / 48 (35 %)** tasks for score. Answer quality
-is similar on this 48-task sample — the aggregate mean difference (−0.49
-points on a 0–10 scale) is small relative to per-task judge variance at
-n = 48 and is driven by a short tail of tasks where the wiki synthesis
-answers a related-but-different sub-question with high confidence
-(medians: 9.00 → 8.70). See the report for the full variance discussion.
-
-Full report: [**BENCHMARK_REPORT_SKLEARN48.md**](BENCHMARK_REPORT_SKLEARN48.md).
+| Benchmark | Status | Headline | Report |
+|-----------|--------|----------|--------|
+| [**SWE-QA**](#swe-qa-coding-agent-efficiency) | Complete | -36-70% tool calls, -29-36% cost, quality at parity | [flask48](BENCHMARK_REPORT_FLASK48.md) · [sklearn48](BENCHMARK_REPORT_SKLEARN48.md) |
+| [**health-defect**](#health-defect-code-health-vs-defect-prediction) | Complete | 10-75x defect ratio, ROC AUC 0.70-0.74 | [README](health-defect/README.md) · [full report](health-defect/BENCHMARK_REPORT.md) |
 
 ---
 
-## Bonus: a token-efficiency benchmark, for completeness
+## SWE-QA — Coding Agent Efficiency
 
-There is a small genre of "token efficiency" benchmarks going around at
-the moment, and it would be impolite not to contribute one. Ours runs on
-the 30 most recent non-merge commits of `pallets/flask` and asks a single
-question: *to understand a commit, how many tokens does each strategy ask
-the model to read?*
+A paired benchmark comparing two coding-agent configurations on
+[SWE-QA](https://arxiv.org/abs/2401.00000) tasks drawn from
+[`pallets/flask`](https://github.com/pallets/flask) and
+[`scikit-learn/scikit-learn`](https://github.com/scikit-learn/scikit-learn).
 
-| Strategy                                | Tokens / commit |
-|-----------------------------------------|----------------:|
-| naive (full contents of changed files)  |          64,039 |
-| `git diff` only                         |          14,888 |
-| **repowise `get_context`**              |       **2,391** |
+**What is compared:**
 
-Reduction vs **naive**: **209× mean**, 26.8× pooled (Σ/Σ), 12.6× median,
-1,214× best case.
-Reduction vs **`git diff`**: 41.7× mean, 6.2× pooled.
+| Configuration | Tools available to the agent |
+|---------------|------------------------------|
+| **C0_bare** | `Read`, `Grep`, `Glob`, `Bash`, `Agent` (built-in coding-agent toolkit) |
+| **C2_full** | All of the above **plus** four MCP tools (`get_answer`, `get_symbol`, `get_context`, `search_codebase`) backed by a precomputed documentation index of the repository |
 
-`tiktoken` `cl100k_base` for all three columns, no per-strategy fudge,
-same file list everywhere. We report mean, pooled and median together
-because picking just one would be the kind of thing other people in this
-genre seem to do.
+Both configurations use the same model (`claude-sonnet-4-6`), the same SWE-QA
+prompt scaffolding, the same per-task budget cap, and the same LLM judge. The
+only variable is the tool surface presented to the agent.
+
+### flask48 — `pallets/flask` (48 paired tasks)
+
+| Metric | C0 (baseline) | C2 (doc-augmented) | Δ |
+|---|---:|---:|---:|
+| Cost / task (mean) | $0.1396 | $0.0890 | **-36.2 %** |
+| Wall / task (mean) | 41.7 s | 33.9 s | **-18.6 %** |
+| Tool calls (mean) | 7.4 | 3.8 | **-49.2 %** |
+| Files read (mean) | 1.9 | 0.2 | **-89.0 %** |
+| Score (0-10, mean) | 8.82 | 8.81 | tied |
+
+**32 / 48 (67 %)** tasks are cheaper under C2; quality is at parity.
+
+Full report: [**BENCHMARK_REPORT_FLASK48.md**](BENCHMARK_REPORT_FLASK48.md)
+
+### sklearn48 — `scikit-learn/scikit-learn` (48 paired tasks)
+
+| Metric | C0 (baseline) | C2 (doc-augmented) | Δ |
+|---|---:|---:|---:|
+| Cost / task (mean) | $0.1180 | $0.0834 | **-29.3 %** |
+| Wall / task (mean) | 39.7 s | 28.6 s | **-27.9 %** |
+| Tool calls (mean) | 8.1 | 2.4 | **-70.5 %** |
+| Files read (mean) | 1.8 | 0.6 | **-69.3 %** |
+| Score (0-10, mean) | 8.72 | 8.23 | similar on this sample |
+
+**33 / 48 (69 %)** tasks are cheaper under C2; **28 / 48 (58 %)** are faster.
+
+Full report: [**BENCHMARK_REPORT_SKLEARN48.md**](BENCHMARK_REPORT_SKLEARN48.md)
+
+### Bonus: token-efficiency benchmark
+
+How many tokens does each strategy require for a model to understand a commit,
+measured on the 30 most recent non-merge commits of `pallets/flask`?
+
+| Strategy | Tokens / commit |
+|---|---:|
+| naive (full contents of changed files) | 64,039 |
+| `git diff` only | 14,888 |
+| **`get_context`** | **2,391** |
+
+Reduction vs **naive**: **209x mean**, 26.8x pooled, 12.6x median, 1,214x best case.
+Reduction vs **`git diff`**: 41.7x mean, 6.2x pooled.
 
 Reproduce:
 
@@ -80,31 +80,39 @@ Reproduce:
     --repo repos/pallets/flask --last 30 --min-repowise-tokens 0
 ```
 
-Raw data: `results/token_efficiency/results.csv`. Treat this as a
-sanity-check, not a leaderboard — the actual evaluation in this repo is
-the SWE-QA run above, which has third-party ground truth and an
-independently-scored LLM judge.
-
-> See `BENCHMARK_REPORT_FLASK48.md` for the full report, the per-model cost
-> decomposition, the trimmed-mean and median analyses, the per-task best/worst
-> tables, and the methodology footnote on cost pricing.
+Raw data: `results/token_efficiency/results.csv`.
 
 ---
 
-## What the benchmark compares
+## health-defect — Code Health vs. Defect Prediction
 
-| Configuration | Tools available to the agent                                                  |
-|---------------|--------------------------------------------------------------------------------|
-| **C0_bare**   | `Read`, `Grep`, `Glob`, `Bash`, `Agent` (built-in coding-agent toolkit)       |
-| **C2_full**   | All of the above **plus** the four repowise MCP tools (`get_answer`, `get_symbol`, `get_context`, `search_codebase`) backed by a precomputed documentation index of the repository |
+A reproducible benchmark proving that deterministic code health scores predict
+real-world defects in open-source Python projects. Health scores are collected
+at a historical snapshot (T0); bug-fixing commits are counted over the following
+6 months (T0 -> T1); the two are correlated.
 
-Both configurations use the same model (`claude-sonnet-4-6`), the same SWE-QA
-prompt scaffolding, the same per-task budget cap, and the same LLM judge. The
-only variable is the tool surface presented to the agent.
+### Headline numbers
 
-The repowise documentation index is built once per repository version and is
-amortized across all queries against the same repository. Index build cost is
-**not** counted in the per-task numbers above; see the report for discussion.
+Across three public repositories (862 source files, 6-month defect window):
+
+| Repo | Files | Spearman ρ | p-value | Defect ratio | ROC AUC | Precision@20 |
+|------|------:|----------:|---------:|-------------:|--------:|-------------:|
+| Django | 542 | **-0.337** | <0.0001 | **12x** | 0.698 | **70 %** |
+| Pydantic | 216 | -0.229 | 0.0007 | 10x | **0.742** | 30 % |
+| FastAPI | 104 | -0.272 | 0.0053 | 75x | 0.715 | 35 % |
+
+**Files scoring below 4.0 have 10-75x more bug-fixing commits than files
+scoring above 8.0.** The correlation is statistically significant (p < 0.01)
+across all three codebases.
+
+Top biomarker predictors (by Cliff's delta effect size):
+
+1. `developer_congestion` — δ = +0.78 (Django)
+2. `untested_hotspot` — δ = +0.69 (Django), +0.67 (FastAPI)
+3. `brain_method` — δ = +0.62 (Pydantic), +0.43 (Django)
+
+Full report: [**health-defect/BENCHMARK_REPORT.md**](health-defect/BENCHMARK_REPORT.md)
+Reproduction steps: [**health-defect/README.md**](health-defect/README.md)
 
 ---
 
@@ -112,94 +120,118 @@ amortized across all queries against the same repository. Index build cost is
 
 ```
 repowise-bench/
-├── README.md                       — this file
-├── BENCHMARK_REPORT_FLASK48.md     — full report (methodology, results, discussion)
-├── requirements.txt
-├── configs/
-│   └── swe_qa_flask48.yaml         — canonical benchmark configuration
-├── data/
-│   └── swe_qa/
-│       └── tasks.json              — full SWE-QA task corpus (the harness selects flask48)
-├── harness/
-│   ├── run_experiment.py           — entry point: orchestrates a paired run
-│   ├── swe_qa_runner.py            — per-task runner + LLM-as-judge
-│   └── metrics.py                  — RunMetrics, stream parser, BudgetTracker
-├── analysis/
-│   └── aggregate_flask48.py        — produces the canonical results table
-├── scripts/
-│   └── download_benchmarks.py      — fetches the SWE-QA dataset and clones target repos
-├── results/
-│   └── swe_qa_flask48/
-│       ├── swe_qa.jsonl            — final results: 96 rows = 48 tasks × 2 conditions
-│       └── experiment_meta.json    — experiment configuration snapshot
-├── mcp_configs/                    — generated MCP server configs per repo
-├── indexes/                        — generated repowise indexes per repo (gitignored)
-├── repos/                          — cloned target repositories (gitignored)
-└── logs/                           — per-run logs (gitignored)
+├── README.md                         — this file (index of all benchmarks)
+├── requirements.txt                  — shared Python dependencies
+│
+├── harness/                          — shared runner infrastructure (SWE-QA)
+│   ├── run_experiment.py             — entry point: orchestrates a paired run
+│   ├── swe_qa_runner.py              — per-task runner + LLM-as-judge
+│   ├── metrics.py                    — RunMetrics, stream parser, BudgetTracker
+│   └── token_efficiency_bench.py     — token-efficiency mini-benchmark
+│
+├── configs/                          — benchmark configuration files (SWE-QA)
+│   └── swe_qa_flask48.yaml           — canonical SWE-QA / Flask configuration
+│
+├── data/                             — static benchmark datasets
+│   └── swe_qa/tasks.json             — full SWE-QA task corpus
+│
+├── analysis/                         — aggregation scripts (SWE-QA)
+│   └── aggregate_flask48.py
+│
+├── scripts/                          — shared utility scripts
+│   └── download_benchmarks.py        — fetches SWE-QA dataset and clones repos
+│
+├── results/                          — all benchmark outputs (gitignored except baselines)
+│   ├── swe_qa_flask48/               — SWE-QA Flask results
+│   ├── swe_qa_sklearn48/             — SWE-QA scikit-learn results
+│   ├── token_efficiency/             — token-efficiency results
+│   └── health_defect_{repo}/         — one directory per health-defect repo
+│       ├── correlation.json
+│       ├── defect_counts.json
+│       ├── joined_data.json
+│       ├── health_scores.json
+│       └── charts/
+│
+├── BENCHMARK_REPORT_FLASK48.md       — SWE-QA full report: Flask
+├── BENCHMARK_REPORT_SKLEARN48.md     — SWE-QA full report: scikit-learn
+│
+├── health-defect/                    — self-contained health-defect benchmark
+│   ├── README.md                     — benchmark overview and reproduction steps
+│   ├── BENCHMARK_REPORT.md           — full statistical report
+│   ├── config.yaml                   — per-repo configuration
+│   ├── run_benchmark.py              — entry point
+│   └── lib/                          — benchmark library modules
+│
+├── mcp_configs/                      — generated MCP server configs (gitignored)
+├── indexes/                          — generated documentation indexes (gitignored)
+├── repos/                            — cloned target repositories (gitignored)
+└── logs/                             — per-run logs (gitignored)
 ```
-
-The committed `results/swe_qa_flask48/swe_qa.jsonl` is the canonical result
-set used to produce the report. Re-running the benchmark writes new rows
-into the same file (or a copy you point at via `--output-dir`).
 
 ---
 
-## Methodology
+## Adding a new benchmark
+
+Each benchmark gets its own directory. Convention:
+
+1. **Create a directory** at `repowise-bench/<benchmark-name>/`
+2. **Add a `README.md`** with methodology, headline numbers, and reproduction steps
+3. **Add a `run_benchmark.py`** (or equivalent entry point) runnable from within the directory
+4. **Write results to `../results/<benchmark_name>_{variant}/`** so outputs land in the shared `results/` tree
+5. **Update this README** — add a row to the [Benchmarks](#benchmarks) table
+
+Shared repos and indexes can be reused from `../repos/` and `../indexes/`. New Python dependencies go in the top-level `requirements.txt`.
+
+---
+
+## SWE-QA methodology
 
 ### Pairing
 
-Every task in the benchmark is run under both conditions, and every metric is
-computed per-task before being aggregated. We never compare a C0 mean against
-a C2 mean drawn from a different subset of tasks. If a task fails to complete
-under one condition (for example, by hitting the per-task budget cap), it is
-re-run under both conditions and the new pair replaces the old one in full.
+Every task is run under both conditions, and every metric is computed per-task
+before being aggregated. We never compare a C0 mean against a C2 mean drawn
+from a different subset of tasks. If a task fails to complete under one
+condition, it is re-run under both conditions and the new pair replaces the
+old one in full.
 
 ### Cost accounting
 
-Cost is read directly from each task's `estimated_cost_usd` field. The harness
-populates this from the agent runtime's per-model billing roll-up, which sums
-the cost across every model invoked under the task — both the parent session
-and any subagents the parent dispatches via the `Agent` tool. Token-based
-recomputation is intentionally avoided because it can miss subagent spend that
-the parent stream's `usage` blocks do not surface.
-
-The cost numbers in `BENCHMARK_REPORT_FLASK48.md` price subagent dispatches at
-Sonnet rates to keep the comparison apples-to-apples with C2, which itself
-runs pure Sonnet end-to-end. The report's footnote explains this in detail.
-The raw per-task `estimated_cost_usd` field in the JSONL is the cost as
-measured by the agent runtime (i.e. with whatever models the runtime
-dispatched at runtime); the canonical aggregator (`analysis/aggregate_flask48.py`)
-prints those raw measured numbers without adjustment.
+Cost is read directly from each task's `estimated_cost_usd` field, populated
+from the agent runtime's per-model billing roll-up. This sums cost across
+every model invoked — both the parent session and any subagents dispatched
+via the `Agent` tool. Token-based recomputation is intentionally avoided
+because it can miss subagent spend not surfaced in the parent stream's
+`usage` blocks.
 
 ### Judge
 
 Each (task, configuration) pair is scored by an LLM judge using a fixed
 five-dimension rubric (correctness, completeness, relevance, clarity,
-reasoning) on a 0–10 scale. The judge does not see the configuration label
+reasoning) on a 0-10 scale. The judge does not see the configuration label
 and is the same model in both arms.
 
 ### Reproducibility
 
 Runs are deterministic up to LLM nondeterminism. Model versions, prompt
-templates, and the SWE-QA task corpus are pinned in this repository. The only
-external dependencies are the `pallets/flask` checkout (pinned by commit hash
-in the documentation index metadata) and the Anthropic API.
+templates, and the SWE-QA task corpus are pinned in this repository. The
+only external dependencies are the repository checkouts (pinned by commit
+hash in the documentation index metadata) and the Anthropic API.
 
 ---
 
-## Reproduction
+## SWE-QA reproduction
 
 The full pipeline takes about 30 minutes of wall-clock time per arm and costs
-approximately $5–10 per arm at list prices, depending on retry behavior.
+approximately $5-10 per arm at list prices, depending on retry behavior.
 
 ### Prerequisites
 
 - **Python 3.11+**
 - **Claude Code CLI** (`claude`) installed and authenticated (OAuth or
   `ANTHROPIC_API_KEY`)
-- **repowise CLI** installed and discoverable on `$PATH`, *or* a local checkout
+- **repowise CLI** installed and discoverable on `$PATH`, or a local checkout
   of repowise sibling to this directory
-- ~5 GB free disk space for the Flask checkout, repowise index, and run logs
+- ~5 GB free disk space for the checkout, index, and run logs
 
 ### 1. Install Python dependencies
 
@@ -207,26 +239,17 @@ approximately $5–10 per arm at list prices, depending on retry behavior.
 pip install -r requirements.txt
 ```
 
-### 2. Fetch the Flask checkout and the SWE-QA task corpus
+### 2. Fetch the repo checkout and SWE-QA task corpus
 
 ```bash
 python scripts/download_benchmarks.py --benchmark swe_qa
 ```
 
-This clones `pallets/flask` into `repos/pallets/flask` and writes the SWE-QA
-task corpus into `data/swe_qa/tasks.json`. The harness selects the 48 Flask
-tasks automatically when it sees `repos: ["pallets/flask"]` in the config.
-
-### 3. Build the C2 documentation index (optional — the harness builds it on
-demand)
+### 3. Build the C2 documentation index (optional — built on demand if absent)
 
 ```bash
 repowise init repos/pallets/flask --output-dir indexes
 ```
-
-The first benchmark run will trigger this automatically if the index is not
-already present. Building it explicitly is useful when you want to time the
-ingestion pass separately from the per-task numbers.
 
 ### 4. Run the benchmark
 
@@ -235,10 +258,8 @@ PYTHONIOENCODING=utf-8 python harness/run_experiment.py \
     --config configs/swe_qa_flask48.yaml
 ```
 
-This runs both arms (C0_bare and C2_full) on all 48 tasks in a single
-invocation. Results are written incrementally to
-`results/swe_qa_flask48/swe_qa.jsonl`; the run is safe to interrupt with
-Ctrl-C and resume by re-invoking the same command.
+Results are written incrementally to `results/swe_qa_flask48/swe_qa.jsonl`;
+the run is safe to interrupt and resume.
 
 ### 5. Aggregate the results
 
@@ -246,60 +267,50 @@ Ctrl-C and resume by re-invoking the same command.
 python analysis/aggregate_flask48.py
 ```
 
-This prints the per-task table, the metric summary, the per-metric best /
-worst tasks, and the totals. The output should match the headline numbers
-above and the tables in `BENCHMARK_REPORT_FLASK48.md` (modulo LLM
-nondeterminism on a fresh run).
-
-To aggregate a different results file:
-
-```bash
-python analysis/aggregate_flask48.py --results path/to/swe_qa.jsonl
-```
+For health-defect reproduction steps, see [health-defect/README.md](health-defect/README.md).
 
 ---
 
-## Output schema
+## SWE-QA output schema
 
-Each row of `results/swe_qa_flask48/swe_qa.jsonl` contains the following
-fields (selected; the runner records additional diagnostic fields not used
-by the aggregator):
+Each row of `results/swe_qa_flask48/swe_qa.jsonl` contains:
 
-| Field                 | Type            | Description                                            |
-|-----------------------|-----------------|--------------------------------------------------------|
-| `task_id`             | string          | Unique task identifier (e.g. `flask_017`)              |
-| `benchmark`           | string          | Always `swe_qa`                                        |
-| `condition`           | string          | `C0_bare` or `C2_full`                                 |
-| `repo`                | string          | Source repository (e.g. `pallets/flask`)               |
-| `question_type`       | string          | SWE-QA question category (What / Where / How / Why)    |
-| `answer`              | string          | The agent's final answer                               |
-| `judge_scores`        | dict[str,float] | Judge dimension scores in [0, 10]                      |
-| `estimated_cost_usd`  | float           | Total dollar cost across all models invoked            |
-| `wall_clock_seconds`  | float           | End-to-end wall-clock duration of the task             |
-| `num_turns`           | int             | Number of assistant turns in the agent session         |
-| `num_tool_calls`      | int             | Total tool invocations made by the agent               |
-| `files_explored`      | list[str]       | Distinct file paths opened via `Read`                  |
-| `input_tokens`        | int             | Parent-session input tokens                            |
-| `output_tokens`       | int             | Parent-session output tokens                           |
-| `model_used`          | string          | Concrete model identifier reported by the runtime      |
-| `timestamp`           | string          | ISO-8601 timestamp of task start                       |
+| Field | Type | Description |
+|---|---|---|
+| `task_id` | string | Unique task identifier (e.g. `flask_017`) |
+| `benchmark` | string | Always `swe_qa` |
+| `condition` | string | `C0_bare` or `C2_full` |
+| `repo` | string | Source repository (e.g. `pallets/flask`) |
+| `question_type` | string | SWE-QA question category (What / Where / How / Why) |
+| `answer` | string | The agent's final answer |
+| `judge_scores` | dict[str,float] | Judge dimension scores in [0, 10] |
+| `estimated_cost_usd` | float | Total dollar cost across all models invoked |
+| `wall_clock_seconds` | float | End-to-end wall-clock duration |
+| `num_tool_calls` | int | Total tool invocations made by the agent |
+| `files_explored` | list[str] | Distinct file paths opened via `Read` |
+
+For the health-defect output schema, see [health-defect/README.md](health-defect/README.md).
 
 ---
 
 ## Citation
 
-If you use this benchmark or its results, please cite the report:
+If you use these benchmarks or their results, please cite the relevant report:
 
 ```
 Repowise on SWE-QA: A Benchmark Study of Documentation-Augmented Code
 Question Answering on Flask. 2026.
 ```
 
+```
+Repowise health-defect Benchmark: Code Health Scores as Defect Predictors
+Across Django, FastAPI, and Pydantic. 2026.
+```
+
 ---
 
 ## License
 
-This benchmark harness is released under the Apache 2.0 license. The Flask
-checkout used as the target repository is owned by the Pallets Projects and
-licensed separately; the SWE-QA task corpus is the property of its original
-authors.
+This benchmark harness is released under the Apache 2.0 license. The repository
+checkouts used as targets are owned by their respective projects and licensed
+separately. The SWE-QA task corpus is the property of its original authors.
