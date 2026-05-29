@@ -349,11 +349,85 @@ delivers most of the localisation value without a second scoring model. The
 function-level dataset + calibration are retained as a reproducible research
 result and the basis for any future symbol-level track.
 
+## Failure forensics and size-stratified analysis
+
+A systematic error analysis (`error_analysis.py`, `hierarchical_model.py`) over
+the cached T0 findings — no re-index — characterizes *where* and *why* the score
+mis-ranks, and tests whether size-relative scoring would help.
+
+**The dominant failure mode is the size confound.** AUC computed strictly within
+NLOC quartiles: Q1 (≤28 LOC) **0.600**, Q2 (29–68) **0.488** (inverts — below
+random), Q3 (69–162) **0.670**, Q4 (>162) **0.675**. The score discriminates on
+large files and is near-useless to inverted on small/medium ones. The worst
+false negatives are all small files (10–105 LOC) with **zero findings** — every
+biomarker gate needs size or activity that small files lack, so the score is
+structurally blind to them. The worst false positives are large, complex files
+that fire many structural biomarkers but were never fixed in the window.
+
+**What inverts Q2.** Among 29–68-LOC files, `primitive_obsession` fires on 29
+files with a defect rate of 0.07 vs. 0.21 for non-firing files (lift **−0.14**,
+anti-predictive); `dry_violation` blankets 58 with ≈0 lift. Both are idiomatic on
+small modules. The genuine small-file predictors (`co_change_scatter`,
+`complex_conditional`, `function_hotspot`) barely fire there.
+
+**Repo and language structure.** A mixed-effects logistic (BinomialBayesMixedGLM,
+random intercept per group) gives a repo random-intercept **SD ≈ 1.19** and
+language **SD ≈ 1.02** on the odds scale — baseline defect rates vary as much
+between repos/languages as a standardized feature moves within one. A flat model
+conflates "this repo is buggy" with "this file is risky." Controlling for size
+*and* repo, the generalizable positive predictors are `co_change_scatter`
+(+0.34), `nested_complexity` (+0.33), `ownership_risk` (+0.29), `change_entropy`
+(+0.18); `dry_violation`, `low_cohesion`, `knowledge_loss` stay negative.
+
+**Size-relative scoring is a trade, not a free win** (`size_relative_experiment.py`).
+Re-shaping the score to be size-relative (log-NLOC residual, within-band z-score
+or rank) lifts the small bands and effort-aware Popt (≈ +0.05) but costs
+**−0.07 to −0.12 overall AUC** and sharply lowers Precision@20%LOC. Big files
+genuinely carry more defects (42% defect rate in the top NLOC quartile vs. 12% in
+the bottom), so removing the size signal discards real signal. Size-relative
+scoring is therefore a candidate for a *separate*, cost-effectiveness-oriented
+score, not a replacement for the discrimination score.
+
+**Evidence-driven gate fix.** The one biomarker the analysis indicts as
+size-blind and anti-predictive on small files — `primitive_obsession` — was
+gated to fire only in modules of ≥ 60 non-blank lines. Validated exactly by
+re-aggregating the cached findings through the product scorer
+(`gate_experiment.py`): the inverted Q2 band improves 0.488 → 0.506 and corpus
+AUC 0.704 → 0.706 with Popt unchanged and no per-repo regression (bootstrap
+Δcorpus AUC +0.0025 [−0.0007, +0.0052]). A small, honest precision fix on small
+files that does not regress discrimination; scoring weights, caps and categories
+are unchanged.
+
+**The largest untapped lever is the continuous coverage gradient.** The two
+binary coverage biomarkers barely fire on these 91–98%-covered repos, but the
+continuous uncovered fraction is worth **+0.066 pooled OOF AUC** on the covered
+subset (`coverage_gradient_experiment.py`; strongest non-size coefficient,
++0.51). Crucially, a *monotonic, per-file, attributable* coverage deduction —
+linear and explainable, unlike size-relative scoring — recovers **+0.043 corpus
+AUC [95% CI +0.023, +0.061]** of that ceiling with Popt neutral
+(`coverage_scoring_experiment.py`). This is a genuine, shippable improvement when
+a coverage report is ingested, and the natural next step.
+
+**Change-level (just-in-time) prediction is a promising orthogonal direction**
+(`jit_defect_prototype.py`). Predicting which *commit* introduces a defect
+(AG-SZZ labels, change-size/diffusion/entropy/author-experience features,
+time-ordered split) reaches AUC **0.82 on clap / 0.78 on pydantic**, beating a
+churn-only baseline by ≈ +0.05 on both, with author experience protective and
+change entropy risky — matching the just-in-time-defect-prediction literature.
+Because its features describe the *change*, not the size of any one file, it
+sidesteps the file-size confound and would make a natural pre-merge / review
+gate, complementary to the file score.
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.76 and pooled cross-project OOF AUC
   ≈ 0.70 — a useful triage signal, not a precise oracle. File-level defect
   prediction from static + process signals has a ceiling in this range.
+- **The score is size-correlated.** File size is the single strongest predictor
+  (as in essentially all static defect-prediction work); within a fixed size band
+  discrimination drops sharply and inverts on the 29–68-LOC band. The score adds
+  real signal beyond size — it beats LOC on the effort-aware Popt metric and beats
+  churn and prior-defects on AUC, all significant — but it is not size-independent.
 - **Coverage is partial + skewed.** Coverage was acquired for 7/13 repos at a
   0–45-day skew from T0 (Rust and toolchain-less repos stay blind). Where present
   it is a strong continuous predictor (+0.056 AUC), but the binary coverage
