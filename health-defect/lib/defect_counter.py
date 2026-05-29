@@ -31,7 +31,10 @@ def resolve_t0_sha(repo_dir: str, t0_date: str) -> str:
 
 
 def _touched_source_files(
-    repo_dir: str, sha: str, source_root: str, extension: str = ".py"
+    repo_dir: str,
+    sha: str,
+    source_root: str,
+    extensions: tuple[str, ...] = (".py",),
 ) -> list[str]:
     out = _git(
         ["diff-tree", "--no-commit-id", "-r", "--name-only", sha],
@@ -40,7 +43,7 @@ def _touched_source_files(
     files = []
     for f in out.strip().split("\n"):
         f = f.strip()
-        if f and f.startswith(source_root) and f.endswith(extension):
+        if f and f.startswith(source_root) and any(f.endswith(e) for e in extensions):
             files.append(f)
     return files
 
@@ -51,6 +54,7 @@ def count_defects_gitmoji(
     t1_ref: str,
     source_root: str,
     emoji: str = "\U0001F41B",
+    extensions: tuple[str, ...] = (".py",),
 ) -> dict[str, int]:
     log = _git(
         ["log", f"{t0_sha}..{t1_ref}", "--no-merges", "--format=%H %s"],
@@ -67,7 +71,7 @@ def count_defects_gitmoji(
 
     defect_counts: dict[str, int] = defaultdict(int)
     for sha in bug_shas:
-        for f in _touched_source_files(repo_dir, sha, source_root):
+        for f in _touched_source_files(repo_dir, sha, source_root, extensions):
             defect_counts[f] += 1
 
     return dict(defect_counts)
@@ -79,6 +83,7 @@ def count_defects_prefix(
     t1_ref: str,
     source_root: str,
     prefix: str = "Fixed #",
+    extensions: tuple[str, ...] = (".py",),
 ) -> dict[str, int]:
     log = _git(
         ["log", f"{t0_sha}..{t1_ref}", "--no-merges", "--format=%H %s"],
@@ -97,7 +102,7 @@ def count_defects_prefix(
 
     defect_counts: dict[str, int] = defaultdict(int)
     for sha in bug_shas:
-        for f in _touched_source_files(repo_dir, sha, source_root):
+        for f in _touched_source_files(repo_dir, sha, source_root, extensions):
             defect_counts[f] += 1
 
     return dict(defect_counts)
@@ -136,6 +141,7 @@ def count_defects_keyword(
     source_root: str,
     include: list[str] | None = None,
     exclude: list[str] | None = None,
+    extensions: tuple[str, ...] = (".py",),
 ) -> dict[str, int]:
     include_pats = _compile_patterns(include) if include else _DEFAULT_INCLUDE
     exclude_pats = _compile_patterns(exclude) if exclude else _DEFAULT_EXCLUDE
@@ -159,7 +165,7 @@ def count_defects_keyword(
 
     defect_counts: dict[str, int] = defaultdict(int)
     for sha in bug_shas:
-        for f in _touched_source_files(repo_dir, sha, source_root):
+        for f in _touched_source_files(repo_dir, sha, source_root, extensions):
             defect_counts[f] += 1
 
     return dict(defect_counts)

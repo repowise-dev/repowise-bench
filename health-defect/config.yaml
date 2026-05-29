@@ -1,5 +1,5 @@
 benchmark_name: "health-defect-correlation"
-version: "1.0"
+version: "1.2"
 
 defaults:
   defect_window_months: 6
@@ -8,28 +8,180 @@ defaults:
   health_buckets: [4.0, 6.0, 8.0]
   precision_k: 20
 
+# Calibration corpus — 13 repos across 5 languages (Python, TypeScript,
+# JavaScript, Rust, Go), each with REAL defect signal in the 6-month window
+# (audited: every repo here has >=5 defect-bearing source files; ~216 positives
+# total, ~9 per biomarker feature). Selection criteria:
+#   1. Indexes in well under 10 min (favor few *total* files — docs/website
+#      trees dominate index time, hence the `exclude` lists below).
+#   2. Clean defect signal: Conventional Commits (`fix:` / `fix(scope):`)
+#      mapped onto the `keyword` strategy.
+#   3. Language + domain variety so calibration is not a Python monoculture.
+#
+# DROPPED after a defect-signal audit (mature/low-velocity → ~0 fixes touching
+# source in the window, which only adds all-negative noise): starlette (0),
+# httpx (0), flask (2), express (2), ripgrep (1), cobra (3). Also dropped:
+# django/fastapi (too slow / doc-heavy window). Also EXCLUDED from the
+# calibration corpus on representativeness grounds (profiled internally, not
+# reported): requests (only 14 files post-filter → unstable per-repo estimate)
+# and valibot (out-of-distribution: hundreds of trivial one-validator-per-file
+# modules — health's complexity signal is not designed for that shape).
+#
+# Per-repo fields:
+#   source_root  — defects are attributed only to changed files under this
+#                  prefix with a matching `extensions` suffix ("" = repo root).
+#   extensions   — source-file suffixes (defaults to [".py"] when omitted).
+#   exclude      — gitignore-style dirs skipped at INDEX time (-x). Drop
+#                  docs/website/examples/benchmarks; NEVER drop test dirs —
+#                  has_test_file / untested_hotspot need tests indexed to pair
+#                  source<->test.
+#   t0_date      — health is scored at the commit on/before this date
+#                  (--score-at t0, default); defects are counted t0..HEAD.
 repos:
-  - name: "fastapi"
-    repo_url: "https://github.com/fastapi/fastapi.git"
-    language: "python"
-    source_root: "fastapi/"
-    t0_date: "2025-11-23"
-    defect_strategy: "gitmoji"
-    gitmoji_bug: "\U0001F41B"
-
-  - name: "django"
-    repo_url: "https://github.com/django/django.git"
-    language: "python"
-    source_root: "django/"
-    t0_date: "2025-11-23"
-    defect_strategy: "prefix"
-    bug_prefix: "Fixed #"
-
+  # ---- Python (3) ----
   - name: "pydantic"
     repo_url: "https://github.com/pydantic/pydantic.git"
     language: "python"
     source_root: "pydantic/"
+    extensions: [".py"]
     t0_date: "2025-11-23"
     defect_strategy: "keyword"
     bug_keywords: ["fix", "bug", "patch", "resolve"]
-    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", "pydantic-core/", ".github/"]
+
+  - name: "rich"
+    repo_url: "https://github.com/Textualize/rich.git"
+    language: "python"
+    source_root: "rich/"
+    extensions: [".py"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", "imgs/", ".github/"]
+
+  - name: "litestar"
+    repo_url: "https://github.com/litestar-org/litestar.git"
+    language: "python"
+    source_root: "litestar/"
+    extensions: [".py"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", ".github/"]
+
+  # ---- TypeScript (2) ----
+  - name: "hono"
+    repo_url: "https://github.com/honojs/hono.git"
+    language: "typescript"
+    source_root: "src/"
+    extensions: [".ts", ".tsx"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["benchmarks/", "perf-measures/", "docs/", "build/", ".github/"]
+
+  - name: "zod"
+    repo_url: "https://github.com/colinhacks/zod.git"
+    language: "typescript"
+    source_root: "packages/zod/src/"
+    extensions: [".ts", ".tsx"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["packages/docs/", "packages/docs-v3/", "packages/bench/", "logo/", "scripts/", ".github/"]
+
+  # ---- JavaScript (2) ----
+  - name: "axios"
+    repo_url: "https://github.com/axios/axios.git"
+    language: "javascript"
+    source_root: "lib/"
+    extensions: [".js"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", "examples/", "sandbox/", ".github/"]
+
+  - name: "fastify"
+    repo_url: "https://github.com/fastify/fastify.git"
+    language: "javascript"
+    source_root: "lib/"
+    extensions: [".js"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", "examples/", "build/", "benchmarks/", ".github/"]
+
+  # ---- Rust (3) ----
+  - name: "clap"
+    repo_url: "https://github.com/clap-rs/clap.git"
+    language: "rust"
+    source_root: ""          # workspace: src, clap_builder/src, clap_derive/src, ...
+    extensions: [".rs"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["examples/", ".github/"]
+
+  - name: "fd"
+    repo_url: "https://github.com/sharkdp/fd.git"
+    language: "rust"
+    source_root: "src/"
+    extensions: [".rs"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["doc/", "contrib/", "scripts/", ".github/"]
+
+  - name: "bat"
+    repo_url: "https://github.com/sharkdp/bat.git"
+    language: "rust"
+    source_root: "src/"
+    extensions: [".rs"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["assets/", "doc/", "contrib/", ".github/"]
+
+  # ---- Go (3) ----
+  - name: "gin"
+    repo_url: "https://github.com/gin-gonic/gin.git"
+    language: "go"
+    source_root: ""
+    extensions: [".go"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/"]
+
+  - name: "chi"
+    repo_url: "https://github.com/go-chi/chi.git"
+    language: "go"
+    source_root: ""
+    extensions: [".go"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["_examples/", ".github/"]
+
+  - name: "fiber"
+    repo_url: "https://github.com/gofiber/fiber.git"
+    language: "go"
+    source_root: ""
+    extensions: [".go"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: ["docs/", ".github/"]
