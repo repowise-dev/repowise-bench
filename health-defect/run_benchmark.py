@@ -111,10 +111,34 @@ def join_and_filter(
             "max_nesting": metric.get("max_nesting", 0),
             "nloc": nloc,
             "has_test_file": metric.get("has_test_file", False),
+            # Continuous coverage signal (None when no coverage artifact was
+            # ingested — absent, NOT zero, so calibration can distinguish them).
+            "line_coverage_pct": metric.get("line_coverage_pct"),
+            "branch_coverage_pct": metric.get("branch_coverage_pct"),
+            "duplication_pct": metric.get("duplication_pct"),
             "defect_count": defect_counts.get(fp, 0),
         })
 
     return joined
+
+
+def _resolve_coverage_path(repo_config: dict, out_dir: Path) -> str | None:
+    """Locate a coverage artifact for this repo, if one was collected.
+
+    Priority: an explicit ``coverage:`` path in config.yaml, else the cached
+    normalized artifact ``results/<repo>/coverage_t0.json`` written by
+    ``local-stash/collect_coverage.py``. Returns ``None`` when neither exists —
+    the run then proceeds coverage-blind (has_test_file fallback), exactly as
+    before Phase 7.
+    """
+    explicit = repo_config.get("coverage")
+    if explicit:
+        p = Path(explicit)
+        if not p.is_absolute():
+            p = (_BENCH_DIR / explicit).resolve()
+        return str(p) if p.exists() else None
+    cached = out_dir / "coverage_t0.json"
+    return str(cached) if cached.exists() else None
 
 
 def compute_all_labels(
@@ -356,6 +380,13 @@ def run_one_repo(
     # need test files present to pair source<->test.
     exclude_patterns = list(repo_config.get("exclude") or [])
 
+    # Coverage artifact (normalized repowise-coverage-v1 JSON keyed by repo-rel
+    # path). When present it feeds untested_hotspot/coverage_gap real line
+    # coverage; when absent the run is coverage-blind (Phase-5 behavior).
+    coverage_path = _resolve_coverage_path(repo_config, out_dir)
+    if coverage_path:
+        print(f"  Coverage artifact: {coverage_path}")
+
     # Phase 1: Health scores
     health_path = out_dir / "health_scores.json"
     if skip_health and health_path.exists():
@@ -363,16 +394,18 @@ def run_one_repo(
         health_data = json.loads(health_path.read_text())
     elif score_at == "t0":
         print(f"  Scoring at T0 {t0_sha[:12]} ({repo_config['t0_date']}) "
-              f"[worktree + index{', excludes=' + str(exclude_patterns) if exclude_patterns else ''}]...")
+              f"[worktree + index{', excludes=' + str(exclude_patterns) if exclude_patterns else ''}]"
+              f"{', +coverage' if coverage_path else ''}...")
         health_data = run_health_at_commit(
             str(repo_dir), t0_sha, exclude_patterns=exclude_patterns,
+            coverage_path=coverage_path,
         )
         health_data["_scored_at"] = {"mode": "t0", "sha": t0_sha}
         health_path.write_text(json.dumps(health_data, indent=2))
         print(f"  -> {len(health_data.get('metrics', []))} files scored at T0")
     else:
         print("  Running repowise health (at HEAD)...")
-        health_data = run_health(str(repo_dir))
+        health_data = run_health(str(repo_dir), coverage_path=coverage_path)
         health_data["_scored_at"] = {"mode": "head"}
         health_path.write_text(json.dumps(health_data, indent=2))
         print(f"  -> {len(health_data.get('metrics', []))} files scored")
