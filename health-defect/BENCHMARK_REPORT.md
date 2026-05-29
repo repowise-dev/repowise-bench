@@ -280,6 +280,75 @@ deductions (a linear-attribution constraint we keep deliberately). So the
 *ingestion* path itself ships (normalized-JSON artifact → `repowise health
 --coverage`).
 
+## Function/symbol-level defect prediction
+
+File-level scoring blurs a risky function inside a healthy file and penalizes a
+large file for one bad method. This section asks whether resolving prediction to
+the **function/symbol** granularity recovers signal the file aggregate loses.
+
+**Function-level labels (SZZ, leakage-free).** Each post-T0 fix's bug-inducing
+lines are found exactly as in the file-level AG-SZZ (blame the fix's changed
+parent lines back to commits that are **ancestors of T0**), but kept at
+line resolution: a `(inducing_sha, whitespace-normalised line content)`
+fingerprint. A line traced to an inducing commit is, by definition, unchanged
+from that commit through T0, so the identical line is present at T0; matching
+the fingerprint against a **T0 `git blame`** localises it to the enclosing
+function (via the walker's symbol line-spans at T0). A function is
+defective-at-T0 iff it contains ≥1 such line. Matching the *line*, not merely
+its commit, is essential — keying on the inducing commit alone floods the label
+(an inducing commit also authors much non-buggy code: it inflated the corpus
+from 3.6% to 14.3% positive and pushed one repo to 87%).
+
+**Dataset.** 8,783 functions (NLOC ≥ 3) across the 13-repo corpus, **317
+positive (3.6%)** — defects concentrate in a few functions, as expected at this
+granularity. Features are the product walker's per-function structural metrics
+(CCN, cognitive, max-nesting, NLOC, params, compound-condition count, bumps) and
+per-function process signals from the T0 blame (distinct-commit modification
+count, recent modifications, median line age).
+
+**Calibration (leave-one-repo-out, pooled out-of-fold AUC; Popt effort = NLOC).**
+
+| corpus | features | pooled OOF AUC [95% CI] | Popt |
+|---|---|--:|--:|
+| 13 repos | structural | 0.732 [0.668, 0.802] | 0.451 |
+| 13 repos | structural + process | 0.713 [0.660, 0.819] | 0.457 |
+| 12 repos (− axios) | structural | 0.746 | 0.460 |
+| 12 repos (− axios) | **structural + process** | **0.778** | **0.512** |
+
+*File-level reference (same corpus, T0): binary pooled OOF AUC **0.699**,
+continuous **0.744** (830 files / 216 positives).*
+
+**Reading.**
+- On the **full corpus**, function-level discrimination (AUC 0.73) is
+  *competitive with but does not beat* file-level (0.744 continuous), and
+  **Popt ≤ 0.5 — at or below random effort-ordering.** NLOC is by far the
+  strongest function-level coefficient (+0.61), so ranking functions by risk
+  largely re-ranks by size, which inspects the most expensive functions first
+  and is cost-ineffective.
+- **axios is a degenerate-label outlier** — a 126-function micro-library whose
+  104 in-window fixes saturate its tiny surface (80 functions, 63%, positive),
+  the function-level analogue of the file-level `valibot`/`requests` exclusions.
+  Removed, function-level **structural+process AUC rises to 0.778** (above
+  file-level) and **Popt to 0.512**, and the process signals begin to *help*
+  (+0.032 AUC) rather than hurt — at function granularity the blame-derived
+  recent-modification signal is informative and not the HEAD-leakage artifact it
+  was at the file level.
+- So the granularity gain is **real but conditional and fragile**: it depends on
+  excluding one out-of-distribution repo, and even then the cost-effectiveness
+  (Popt) only just clears random.
+
+**Ship decision — function-level stays a benchmark result; no product surface.**
+A per-symbol risk score is a heavy DB/engine/perf change, and the evidence does
+not justify it: on the representative full corpus it does not beat the shipped
+file-level score and its inspection ordering is not cost-effective (Popt ≤ 0.5);
+the apparent win is outlier-dependent. This is the documented "marginal lift →
+do not ship a heavy surface" outcome. The file score already surfaces the
+*offending functions* inside its findings (e.g. `complex_method`,
+`brain_method`, `function_hotspot` carry the function name + lines), which
+delivers most of the localisation value without a second scoring model. The
+function-level dataset + calibration are retained as a reproducible research
+result and the basis for any future symbol-level track.
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.76 and pooled cross-project OOF AUC
@@ -304,6 +373,13 @@ deductions (a linear-attribution constraint we keep deliberately). So the
   edge is discrimination (AUC) and attributable explanation, not raw
   bug-finding-per-LOC. Combining health with prior-defect history is the natural
   next step.
+- **Function-level granularity is benchmark-only.** Function-level SZZ labels
+  attribute a fix to the function holding the matched bug-inducing line; line
+  drift between the inducing commit and T0 is handled by content fingerprinting,
+  but a multi-function inducing edit can still spread a label, and SZZ's own
+  noise carries over. Function-level prediction was competitive but not robustly
+  better than file-level (and Popt ≤ 0.5 on the full corpus), so no per-symbol
+  product surface ships — see the function-level section.
 - **Reproducibility.** `t0_date = 2025-11-23`; full clones (never blobless);
   `calibrate_health_weights.py` reproduces the shipped constants from the cached
   per-repo results.
