@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import math
+import random
 from collections import defaultdict
-from typing import Any
+from typing import Any, Callable
 
 from scipy.stats import kruskal, mannwhitneyu, spearmanr
 
@@ -363,6 +364,67 @@ def popt(joined: list[dict]) -> dict[str, Any]:
     denom = a_opt - a_worst
     value = 1.0 - (a_opt - a_model) / denom if denom else 0.5
     return {"popt": float(value), "area_model": a_model, "area_optimal": a_opt, "area_worst": a_worst}
+
+
+def _percentile(sorted_vals: list[float], q: float) -> float:
+    if not sorted_vals:
+        return float("nan")
+    if len(sorted_vals) == 1:
+        return sorted_vals[0]
+    pos = q * (len(sorted_vals) - 1)
+    lo = int(math.floor(pos))
+    hi = int(math.ceil(pos))
+    if lo == hi:
+        return sorted_vals[lo]
+    frac = pos - lo
+    return sorted_vals[lo] * (1 - frac) + sorted_vals[hi] * frac
+
+
+def bootstrap_ci(
+    joined: list[dict],
+    metric: Callable[[list[dict]], float | None],
+    *,
+    n_boot: int = 1000,
+    ci: float = 0.95,
+    seed: int = 12345,
+) -> dict[str, Any]:
+    """Bootstrap CI for a per-file metric (AUC, Popt, …) by resampling files
+    with replacement within the repo. Deterministic given ``seed`` so the report
+    reproduces. Returns point estimate, ``[lo, hi]`` and ``n``."""
+    point = metric(joined)
+    n = len(joined)
+    if point is None or n < 3:
+        return {"point": point, "lo": None, "hi": None, "n": n, "n_boot": 0}
+    rng = random.Random(seed)
+    samples: list[float] = []
+    for _ in range(n_boot):
+        resampled = [joined[rng.randrange(n)] for _ in range(n)]
+        try:
+            v = metric(resampled)
+        except Exception:  # noqa: BLE001 — degenerate resample, skip
+            v = None
+        if v is not None and v == v:  # not None, not NaN
+            samples.append(float(v))
+    if not samples:
+        return {"point": float(point), "lo": None, "hi": None, "n": n, "n_boot": 0}
+    samples.sort()
+    alpha = (1.0 - ci) / 2.0
+    return {
+        "point": float(point),
+        "lo": _percentile(samples, alpha),
+        "hi": _percentile(samples, 1.0 - alpha),
+        "n": n,
+        "n_boot": len(samples),
+        "ci": ci,
+    }
+
+
+def auc_metric(joined: list[dict]) -> float:
+    return roc_auc(joined)["auc"]
+
+
+def popt_metric(joined: list[dict]) -> float | None:
+    return (popt(joined) or {}).get("popt")
 
 
 def descriptive_stats(joined: list[dict]) -> dict[str, Any]:
