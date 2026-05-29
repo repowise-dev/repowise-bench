@@ -211,14 +211,86 @@ Read together, this is the honest standing of the score:
   value is in *discrimination and explanation* (a calibrated, attributable
   structural signal), not in replacing process history for triage ordering.
 
+## Test-coverage ingestion and continuous biomarker features
+
+The headline above scores every biomarker as a **binary** severity-weighted hit
+("fired / didn't"), which discards magnitude (CCN = 30 reads identically to
+CCN = 9), and ingests **no test coverage** (so `untested_hotspot` /
+`coverage_gap` ran on a test-file-presence fallback). Both gaps are addressed
+here.
+
+**Coverage acquisition (tiered, near-T0).** Per-file line coverage was acquired
+for **7 of 13 repos**, normalized to one schema keyed by repo-relative path:
+
+| repo | lang | source | date | skew from T0 | files |
+|---|---|---|---|--:|--:|
+| fiber | Go | Codecov | 2025-11-23 | 0d | 115 |
+| axios | JS | run (c8) | 2025-11-23 | 0d | 55 |
+| fastify | JS | run (c8) | 2025-11-23 | 0d | 29 |
+| hono | TS | Codecov | 2025-11-22 | 1d | 170 |
+| litestar | Py | Codecov | 2025-11-22 | 1d | 296 |
+| gin | Go | Codecov | 2025-11-20 | 3d | 41 |
+| rich | Py | Codecov | 2025-10-09 | 45d | 74 |
+
+Tier 1 scrapes the Codecov v2 public API at the covered commit nearest T0
+(≤120-day skew guard; stale multi-year reports rejected — absent ≠ zero). Tier 2
+runs the suite at the T0 worktree under coverage (`pytest --cov`; `c8` for
+JS/TS). The remaining 6 repos have no near-T0 coverage source (Rust/Go without a
+local toolchain, or no Codecov upload) and stay coverage-blind — marked absent,
+never imputed to 0%.
+
+**What real coverage changes.** The corpus repos are 91–98% covered, so the
+binary coverage biomarkers fire **sparsely** (coverage_gap: axios 3, litestar/
+hono/fiber 1 each; untested_hotspot: fastify 1) — correct behavior, not a bug:
+few files dip below the <60% / <40% gates. The predictive signal instead lives
+in the **continuous** uncovered fraction.
+
+**Continuous features (ablation, full corpus, keyword labels).** Replacing each
+biomarker's binary hit with the log of its underlying magnitude (CCN, nesting,
+entropy, scatter, …) and adding max-CCN / max-nesting / coverage columns:
+
+| feature encoding | pooled OOF AUC |
+|---|--:|
+| binary severity-weighted hits | 0.693 |
+| **continuous magnitudes + coverage** | **0.744** |
+| | **ΔAUC +0.051** |
+
+In the continuous fit the **uncovered fraction is the single strongest positive
+coefficient** (+0.42, above change-entropy +0.35 and log-NLOC +0.34).
+
+**Coverage's isolated value (the 7 covered repos).** Fitting the continuous
+model with vs. without the coverage columns — where the coverage-known indicator
+is constant and contributes nothing, so the delta is pure uncovered-fraction:
+
+| | pooled OOF AUC |
+|---|--:|
+| continuous, no coverage | 0.650 |
+| **+ coverage** | **0.706** |
+| | **ΔAUC +0.056** |
+
+So coverage predicts defects **even though the binary coverage biomarkers barely
+fire** on these high-coverage repos — the signal is in the continuous gradient,
+which the current binary gates under-exploit.
+
+**Ship decision.** These gains require a continuous / non-linear runtime scoring
+term, whereas the shipped score uses interpretable per-finding severity
+deductions (a linear-attribution constraint we keep deliberately). So the
+**calibrated weights are unchanged**; the result quantifies real headroom
+(≈ +0.05 AUC) for a future continuous-coverage scoring track. The coverage
+*ingestion* path itself ships (normalized-JSON artifact → `repowise health
+--coverage`).
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.76 and pooled cross-project OOF AUC
   ≈ 0.70 — a useful triage signal, not a precise oracle. File-level defect
   prediction from static + process signals has a ceiling in this range.
-- **Coverage blind spot.** No test coverage is ingested, so `untested_hotspot`
-  runs on a test-file-presence fallback and is kept at its prior weight rather
-  than mis-calibrated; ingesting coverage is expected to raise it.
+- **Coverage is partial + skewed.** Coverage was acquired for 7/13 repos at a
+  0–45-day skew from T0 (Rust and toolchain-less repos stay blind). Where present
+  it is a strong continuous predictor (+0.056 AUC), but the binary coverage
+  biomarkers fire rarely on 91–98%-covered repos and so calibrate weakly; the
+  continuous coverage gradient is the lever, and capturing it is a runtime
+  model change deferred on interpretability grounds.
 - **Per-repo variance.** Smaller repos (fd, chi, zod) have wide confidence
   intervals; the pooled OOF AUC is the trustworthy summary, not any single fold.
 - **Label definition.** Results are reported on the keyword label; leakage-free

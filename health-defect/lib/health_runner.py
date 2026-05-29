@@ -52,10 +52,18 @@ def _repowise_cmd() -> list[str]:
     return [sys.executable, "-c", "from repowise.cli.main import cli; cli()"]
 
 
-def run_health(repo_dir: str, timeout: int = 1800) -> dict:
+def run_health(
+    repo_dir: str, timeout: int = 1800, coverage_path: str | None = None
+) -> dict:
     env = _build_env()
+    cov_args: list[str] = []
+    if coverage_path and Path(coverage_path).exists():
+        # Normalized repowise-coverage-v1 JSON (or any LCOV/Cobertura/Clover)
+        # keyed by repo-relative POSIX path — feeds untested_hotspot/coverage_gap
+        # real line coverage instead of the has_test_file fallback.
+        cov_args = ["--coverage", str(coverage_path)]
     result = subprocess.run(
-        [*_repowise_cmd(), "health", "--format", "json"],
+        [*_repowise_cmd(), "health", "--format", "json", *cov_args],
         cwd=repo_dir,
         capture_output=True,
         text=True,
@@ -83,6 +91,7 @@ def run_health_at_commit(
     sha: str,
     timeout: int = 1800,
     exclude_patterns: list[str] | None = None,
+    coverage_path: str | None = None,
 ) -> dict:
     """Score a repo at a historical commit (the §7.2 T0-scoring fix).
 
@@ -126,7 +135,7 @@ def run_health_at_commit(
             raise RuntimeError(
                 f"repowise init at {sha[:12]} failed:\n{result.stderr[-2000:]}"
             )
-        return run_health(worktree_path, timeout=timeout)
+        return run_health(worktree_path, timeout=timeout, coverage_path=coverage_path)
     finally:
         subprocess.run(
             ["git", "worktree", "remove", "--force", worktree_path],
