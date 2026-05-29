@@ -29,6 +29,7 @@ ALL_BIOMARKERS = [
     "churn_risk",
     "change_entropy",
     "co_change_scatter",
+    "prior_defect",
     "large_assertion_block",
     "duplicated_assertion_block",
 ]
