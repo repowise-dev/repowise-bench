@@ -8,9 +8,12 @@ from scipy.stats import kruskal, mannwhitneyu, spearmanr
 
 ALL_BIOMARKERS = [
     "brain_method",
+    "low_cohesion",
+    "god_class",
     "nested_complexity",
     "complex_method",
     "bumpy_road",
+    "complex_conditional",
     "large_method",
     "primitive_obsession",
     "dry_violation",
@@ -18,6 +21,15 @@ ALL_BIOMARKERS = [
     "coverage_gap",
     "developer_congestion",
     "knowledge_loss",
+    "hidden_coupling",
+    "function_hotspot",
+    "code_age_volatility",
+    "ownership_risk",
+    "churn_risk",
+    "change_entropy",
+    "co_change_scatter",
+    "large_assertion_block",
+    "duplicated_assertion_block",
 ]
 
 
@@ -256,6 +268,103 @@ def roc_auc(joined: list[dict]) -> dict[str, Any]:
     }
 
 
+def effort_aware_at_loc(joined: list[dict], fraction: float = 0.20) -> dict[str, Any]:
+    """Effort-aware precision/recall when only ``fraction`` of total LOC can be
+    inspected (Mende & Koschke).
+
+    Files are ranked by predicted risk (lowest health first). We walk that
+    ranking accumulating NLOC until the inspection budget (``fraction`` of total
+    LOC) is spent, then ask: of the defects/defective-files that exist, how many
+    fall inside that budget. This neutralizes the "just flag the big files"
+    critique — spending LOC budget on one huge file buys little recall.
+    """
+    total_loc = sum(max(d["nloc"], 1) for d in joined)
+    total_defects = sum(d["defect_count"] for d in joined)
+    total_defective_files = sum(1 for d in joined if d["defect_count"] > 0)
+    budget = total_loc * fraction
+
+    # Rank by risk: lowest health first, tie-break smaller files first so the
+    # budget is not wasted on one giant file.
+    ranked = sorted(joined, key=lambda d: (d["health_score"], d["nloc"]))
+
+    spent = 0.0
+    files_inspected = 0
+    defects_found = 0
+    defective_files_found = 0
+    for d in ranked:
+        nloc = max(d["nloc"], 1)
+        if spent + nloc > budget and files_inspected > 0:
+            break
+        spent += nloc
+        files_inspected += 1
+        defects_found += d["defect_count"]
+        if d["defect_count"] > 0:
+            defective_files_found += 1
+
+    return {
+        "fraction_loc": fraction,
+        "loc_budget": budget,
+        "loc_inspected": spent,
+        "files_inspected": files_inspected,
+        "defective_files_found": defective_files_found,
+        # Precision: of the files we inspected, how many were defective.
+        "precision": defective_files_found / files_inspected if files_inspected else 0.0,
+        # Recall: of all defect touches, how many we caught within the budget.
+        "recall_defects": defects_found / total_defects if total_defects else 0.0,
+        "recall_files": defective_files_found / total_defective_files if total_defective_files else 0.0,
+    }
+
+
+def _alberg_area(ordered: list[dict], total_loc: float, total_defects: float) -> float:
+    """Trapezoidal area under the cumulative-defects vs cumulative-LOC curve for
+    a given module ordering (the Alberg diagram used by Popt)."""
+    if total_loc <= 0 or total_defects <= 0:
+        return 0.0
+    area = 0.0
+    cum_loc = 0.0
+    cum_def = 0.0
+    prev_x = 0.0
+    prev_y = 0.0
+    for d in ordered:
+        cum_loc += max(d["nloc"], 1)
+        cum_def += d["defect_count"]
+        x = cum_loc / total_loc
+        y = cum_def / total_defects
+        area += (x - prev_x) * (y + prev_y) / 2.0
+        prev_x, prev_y = x, y
+    return area
+
+
+def popt(joined: list[dict]) -> dict[str, Any]:
+    """Normalized cost-effectiveness Popt (Mende & Koschke 2009).
+
+    Compares the model's effort/recall curve against the optimal (defect-density
+    ordering) and worst curves: Popt = 1 − (A_opt − A_model)/(A_opt − A_worst).
+    0.5 ≈ random; 1.0 = optimal. Reported alongside Precision@20%LOC because
+    both are effort-aware and immune to the size confound.
+    """
+    total_loc = sum(max(d["nloc"], 1) for d in joined)
+    total_defects = sum(d["defect_count"] for d in joined)
+    if total_defects <= 0 or len(joined) < 3:
+        return {"popt": None, "n": len(joined)}
+
+    # Model orders by predicted risk (lowest health first).
+    model_order = sorted(joined, key=lambda d: (d["health_score"], d["nloc"]))
+    # Optimal orders by realized defect density (defects per LOC) descending.
+    optimal_order = sorted(
+        joined, key=lambda d: d["defect_count"] / max(d["nloc"], 1), reverse=True
+    )
+    worst_order = list(reversed(optimal_order))
+
+    a_model = _alberg_area(model_order, total_loc, total_defects)
+    a_opt = _alberg_area(optimal_order, total_loc, total_defects)
+    a_worst = _alberg_area(worst_order, total_loc, total_defects)
+
+    denom = a_opt - a_worst
+    value = 1.0 - (a_opt - a_model) / denom if denom else 0.5
+    return {"popt": float(value), "area_model": a_model, "area_optimal": a_opt, "area_worst": a_worst}
+
+
 def descriptive_stats(joined: list[dict]) -> dict[str, Any]:
     scores = [d["health_score"] for d in joined]
     defects = [d["defect_count"] for d in joined]
@@ -305,6 +414,8 @@ def analyze_all(
         ),
         "density_by_bucket": defect_density_by_bucket(joined, defaults["health_buckets"]),
         "precision_at_k": precision_at_k(joined, k=defaults["precision_k"]),
+        "effort_at_20pct_loc": effort_aware_at_loc(joined, fraction=0.20),
+        "popt": popt(joined),
         "per_biomarker": per_biomarker_analysis(joined, findings),
         "roc_auc": roc_auc(joined),
     }

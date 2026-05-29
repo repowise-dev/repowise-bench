@@ -30,7 +30,7 @@ from lib.defect_counter import (
     resolve_t0_sha,
 )
 from lib.filters import normalize_path, should_include
-from lib.health_runner import run_health
+from lib.health_runner import run_health, run_health_at_commit
 from lib.stats import analyze_all
 
 _BENCH_DIR = Path(__file__).resolve().parent
@@ -42,7 +42,11 @@ def load_config(path: Path) -> dict:
 
 
 def resolve_repo_dir(repo_config: dict, repos_dir: Path) -> Path:
-    return repos_dir / repo_config["name"]
+    base = repos_dir / repo_config["name"]
+    nested = base / repo_config["name"]
+    if nested.exists() and (nested / ".git").exists():
+        return nested
+    return base
 
 
 def clone_repo(repo_config: dict, repos_dir: Path) -> Path:
@@ -61,18 +65,38 @@ def clone_repo(repo_config: dict, repos_dir: Path) -> Path:
     return repo_dir
 
 
+def _make_exclude_matcher(patterns: list[str]):
+    """Build a predicate that matches the repo's index-time exclude patterns.
+
+    `repowise health` re-walks the working tree and does NOT honor the `-x`
+    patterns passed to `init` (health_cmd builds a FileTraverser with no
+    excludes), so excluded dirs (docs/website/examples/monorepo-siblings)
+    reappear in the scored metrics. We replicate the exclusion here so the
+    evaluated universe matches the intended source set + the defect source_root.
+    """
+    if not patterns:
+        return lambda _p: False
+    import pathspec
+    spec = pathspec.PathSpec.from_lines("gitwildmatch", patterns)
+    return lambda p: spec.match_file(p)
+
+
 def join_and_filter(
     health_data: dict,
     defect_counts: dict[str, int],
     *,
     min_nloc: int = 10,
     exclude_tests: bool = True,
+    exclude_patterns: list[str] | None = None,
 ) -> list[dict]:
+    is_excluded = _make_exclude_matcher(exclude_patterns or [])
     joined = []
     for metric in health_data.get("metrics", []):
         fp = normalize_path(metric["file_path"])
         nloc = metric.get("nloc", 0)
 
+        if is_excluded(fp):
+            continue
         if exclude_tests and not should_include(fp, nloc, min_nloc=min_nloc):
             continue
 
@@ -118,6 +142,16 @@ def print_summary(repo_name: str, correlation: dict) -> None:
     pak = correlation["precision_at_k"]
     print(f"  Precision@{pak['k']}: {pak['precision']:.0%} ({pak['true_positives']}/{pak['k']} had bugs)")
 
+    eff = correlation.get("effort_at_20pct_loc")
+    if eff:
+        print(f"  Effort@20%LOC: precision {eff['precision']:.0%}, "
+              f"recall(defects) {eff['recall_defects']:.0%}, "
+              f"recall(files) {eff['recall_files']:.0%} "
+              f"({eff['files_inspected']} files / {eff['loc_inspected']:.0f} LOC)")
+    pt = correlation.get("popt") or {}
+    if pt.get("popt") is not None:
+        print(f"  Popt: {pt['popt']:.3f}  (0.5≈random, 1.0=optimal)")
+
     kw = correlation["kruskal_wallis"]
     if kw.get("h_stat") is not None:
         print(f"\n  Kruskal-Wallis H: {kw['h_stat']:.2f}  (p={kw['p_value']:.4f})")
@@ -151,6 +185,7 @@ def run_one_repo(
     results_dir: Path,
     skip_health: bool,
     do_clone: bool,
+    score_at: str = "t0",
 ) -> None:
     name = repo_config["name"]
     source_root = repo_config["source_root"]
@@ -169,21 +204,45 @@ def run_one_repo(
     out_dir = results_dir / f"health_defect_{name}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # T0 is resolved first: in t0 mode it is also the commit we *score* at, so
+    # the health measurement strictly precedes the defect-labeling window.
+    t0_sha = resolve_t0_sha(str(repo_dir), repo_config["t0_date"])
+
+    # Gitignore-style patterns to skip docs/website/example trees while
+    # indexing — cuts index time and keeps the scored universe on source.
+    # NOTE: do NOT exclude test dirs here; has_test_file / untested_hotspot
+    # need test files present to pair source<->test.
+    exclude_patterns = list(repo_config.get("exclude") or [])
+
     # Phase 1: Health scores
     health_path = out_dir / "health_scores.json"
     if skip_health and health_path.exists():
         print("  Using existing health scores...")
         health_data = json.loads(health_path.read_text())
+    elif score_at == "t0":
+        print(f"  Scoring at T0 {t0_sha[:12]} ({repo_config['t0_date']}) "
+              f"[worktree + index{', excludes=' + str(exclude_patterns) if exclude_patterns else ''}]...")
+        health_data = run_health_at_commit(
+            str(repo_dir), t0_sha, exclude_patterns=exclude_patterns,
+        )
+        health_data["_scored_at"] = {"mode": "t0", "sha": t0_sha}
+        health_path.write_text(json.dumps(health_data, indent=2))
+        print(f"  -> {len(health_data.get('metrics', []))} files scored at T0")
     else:
-        print("  Running repowise health...")
+        print("  Running repowise health (at HEAD)...")
         health_data = run_health(str(repo_dir))
+        health_data["_scored_at"] = {"mode": "head"}
         health_path.write_text(json.dumps(health_data, indent=2))
         print(f"  -> {len(health_data.get('metrics', []))} files scored")
 
     # Phase 2: Defect counting
     print("  Counting bug-fixing commits...")
-    t0_sha = resolve_t0_sha(str(repo_dir), repo_config["t0_date"])
     print(f"  T0 commit: {t0_sha[:12]} ({repo_config['t0_date']})")
+
+    # Source-file extensions to attribute defects to. Defaults to Python so
+    # existing configs keep working; non-Python repos set `extensions` in
+    # config.yaml (e.g. [".ts", ".tsx"] or [".rs"]).
+    extensions = tuple(repo_config.get("extensions", [".py"]))
 
     strategy = repo_config["defect_strategy"]
     if strategy == "gitmoji":
@@ -191,12 +250,14 @@ def run_one_repo(
             str(repo_dir), t0_sha, "HEAD",
             source_root=source_root,
             emoji=repo_config.get("gitmoji_bug", "\U0001F41B"),
+            extensions=extensions,
         )
     elif strategy == "prefix":
         defect_counts = count_defects_prefix(
             str(repo_dir), t0_sha, "HEAD",
             source_root=source_root,
             prefix=repo_config.get("bug_prefix", "Fixed #"),
+            extensions=extensions,
         )
     else:
         defect_counts = count_defects_keyword(
@@ -204,6 +265,7 @@ def run_one_repo(
             source_root=source_root,
             include=repo_config.get("bug_keywords"),
             exclude=repo_config.get("exclude_keywords"),
+            extensions=extensions,
         )
 
     defects_path = out_dir / "defect_counts.json"
@@ -217,6 +279,7 @@ def run_one_repo(
         health_data, defect_counts,
         min_nloc=config["defaults"]["min_nloc"],
         exclude_tests=config["defaults"]["exclude_test_files"],
+        exclude_patterns=exclude_patterns,
     )
     print(f"  -> {len(joined)} files after filtering")
 
@@ -249,6 +312,11 @@ def main() -> None:
     parser.add_argument("--repo", help="Run only this repo (by name in config)")
     parser.add_argument("--skip-health", action="store_true", help="Reuse existing health scores")
     parser.add_argument("--clone", action="store_true", help="Auto-clone missing repos")
+    parser.add_argument(
+        "--score-at", choices=["t0", "head"], default="t0",
+        help="Score files at the T0 commit (default, fixes the HEAD-vs-T0 "
+             "leakage of §7.2) or at HEAD (legacy/comparison).",
+    )
     parser.add_argument("--config", type=Path, default=_BENCH_DIR / "config.yaml",
                         help="Path to config.yaml (default: ./config.yaml)")
     parser.add_argument("--repos-dir", type=Path, default=None,
@@ -277,10 +345,17 @@ def main() -> None:
     for repo_config in config["repos"]:
         if args.repo and repo_config["name"] != args.repo:
             continue
-        run_one_repo(
-            repo_config, config, repos_dir, results_dir,
-            skip_health=args.skip_health, do_clone=args.clone,
-        )
+        try:
+            run_one_repo(
+                repo_config, config, repos_dir, results_dir,
+                skip_health=args.skip_health, do_clone=args.clone,
+                score_at=args.score_at,
+            )
+        except Exception as exc:  # noqa: BLE001 — one bad repo must not abort the batch
+            import traceback
+            print(f"\n  !! {repo_config['name']} FAILED: {exc}")
+            traceback.print_exc()
+            continue
 
 
 if __name__ == "__main__":
