@@ -15,9 +15,17 @@ size** (mean partial Spearman ρ = −0.20). An offline L2-regularized logistic
 regression — with NLOC as an explicit control feature — yields per-biomarker
 weights that improve every headline metric over the prior hand-tuned weights,
 including the effort-aware Popt and the size-controlled partial correlation.
-Cross-project (leave-one-repo-out) pooled out-of-fold AUC is 0.70. The
-calibration is reproducible (`local-stash/calibrate_health_weights.py`); only
-the learned constants ship, and the runtime stays fully deterministic.
+Cross-project (leave-one-repo-out) pooled out-of-fold AUC is 0.70. Against
+trivial baselines the score **significantly out-discriminates recent churn and
+prior-defect history** (ΔAUC +0.10 / +0.09, bootstrap CIs excluding 0) and is
+**not reducible to file size** — it significantly beats a LOC-only ranking on the
+effort-aware Popt; for pure cost-effective inspection ordering, however, the
+cheap process-history baselines remain stronger. Re-deriving the labels with
+leakage-free **SZZ bug-inducing-commit attribution** leaves accuracy essentially
+unchanged (mean AUC 0.744 → 0.734), so on this corpus label noise is not the
+dominant accuracy ceiling. The calibration is reproducible
+(`local-stash/calibrate_health_weights.py`); only the learned constants ship, and
+the runtime stays fully deterministic.
 
 ## Methodology
 
@@ -122,6 +130,87 @@ the balanced-policy multiplier in `scoring._BIOMARKER_WEIGHT_MULTIPLIER`.
 but no longer dominates, which is exactly why it is partialled out so the
 biomarker weights reflect lift *above and beyond* size.
 
+## Ground-truth labels (SZZ + issue linkage) and trivial baselines
+
+The headline above uses the **keyword** label — a file is defective if a
+Conventional-Commit `fix:` touched it in `(T0, HEAD]`. The literature warns this
+is noisy (a fix commit can touch innocent files; a "fix" can be a refactor), so
+we recompute the labels two stricter ways and re-test against trivial baselines.
+
+**SZZ (bug-inducing-commit attribution).** For every fix we `git blame -w -C` the
+lines it changed back to the commit(s) that last wrote them; a file is defective
+**iff a bug-inducing commit that already existed at T0 (an ancestor of the T0
+commit) touched it**. This attributes the defect to the file that *contained* the
+bug at T0 and drops fixes whose buggy lines were introduced *after* T0 — exactly
+what health-at-T0 should predict. We compute AG-SZZ (default: ignore blank/
+comment/punctuation lines, drop fix-of-fix inducers) and B-SZZ (every blamed
+ancestor). Labels are deterministic and cached.
+
+**Issue linkage.** Fixes that close a GitHub issue labeled bug/defect/regression
+(resolved via the `gh` API) form a near-ground-truth subset. On this corpus it is
+**too sparse to calibrate on**: across all 13 repos only **5** fix commits link to
+a bug-labeled issue (2 survive SZZ). These repos use Conventional Commits with
+`(#PR)` suffixes rather than `fixes #issue` links to triaged bugs — a real
+issue-hygiene limitation, reported rather than worked around.
+
+**What SZZ changes — and what it doesn't.** AG-SZZ strips **17%** of the keyword
+positives (216 → 179): the leakage (post-T0-introduced lines) and pure-addition
+fixes (nothing to blame) the keyword label wrongly kept. Yet the measured score
+accuracy is **essentially unchanged**:
+
+| | keyword label | SZZ (AG) label |
+|---|--:|--:|
+| Corpus positives | 216 | 179 |
+| Health mean ROC AUC | 0.744 | 0.734 |
+| Health mean Popt | 0.497 | 0.485 |
+| Calibration pooled OOF AUC | **0.699** | 0.661 |
+
+Re-calibrating on the SZZ labels yields a **lower** cross-project pooled OOF AUC
+(0.661 vs 0.699), and the shipped score's own discrimination moves <0.02 between
+the two label definitions. So on this corpus, leakage-free ground-truth
+attribution is **not** the dominant accuracy lever the literature suggests, and
+the SZZ-fit weights do not generalize better — **the shipped (keyword-calibrated)
+weights are kept unchanged.** The score predicts "where bugs originate" (SZZ)
+about as well as "where fixes land" (keyword).
+
+**Trivial baselines (SZZ labels; mean over 13 repos).** A predictor is only
+interesting if it beats what is free. We score the identical universe by file
+size, recent churn, prior defects, and a deterministic pseudo-random order:
+
+| Predictor | ROC AUC | Popt |
+|-----------|--------:|-----:|
+| **health (calibrated)** | **0.734** | **0.485** |
+| LOC-only (size) | 0.742 | 0.376 |
+| churn (commits ≤90d at T0) | 0.629 | 0.544 |
+| prior defects (<T0 bug-fixes) | 0.644 | 0.630 |
+| random | 0.490 | 0.469 |
+
+Paired health − baseline deltas, **bootstrap 95% CI resampled over the 13 repos**
+(SZZ labels; `*` = CI excludes 0):
+
+| Comparison | ΔROC AUC [95% CI] | ΔPopt [95% CI] |
+|------------|------------------:|---------------:|
+| health − LOC-only | −0.008 [−0.044, +0.029] | **+0.109 [+0.039, +0.204] \*** |
+| health − churn | **+0.105 [+0.048, +0.173] \*** | −0.059 [−0.112, −0.001] \* |
+| health − prior-defects | **+0.090 [+0.032, +0.143] \*** | −0.145 [−0.194, −0.085] \* |
+
+Read together, this is the honest standing of the score:
+
+- **It is not a size proxy.** On the effort-aware Popt — which charges an
+  inspection budget in LOC and so penalizes "just read the big files" — health
+  **significantly beats LOC-only** (+0.109). On raw AUC the two tie, because raw
+  AUC rewards size (big files carry more bugs); Popt is the size-fair metric and
+  health wins it.
+- **As a discriminator it beats the process baselines.** Health significantly
+  out-ranks both churn (+0.105 AUC) and prior-defects (+0.090 AUC) — it separates
+  buggy from clean files better than recent activity or recurrence alone.
+- **As a cost-effective inspection order it does not beat them.** On Popt the
+  cheap process-history baselines (prior-defects 0.630, churn 0.544) remain
+  stronger than health (0.485). "Inspect what broke before / what's churning"
+  is hard to beat for raw bug-finding efficiency — a well-known result. Health's
+  value is in *discrimination and explanation* (a calibrated, attributable
+  structural signal), not in replacing process history for triage ordering.
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.76 and pooled cross-project OOF AUC
@@ -132,8 +221,17 @@ biomarker weights reflect lift *above and beyond* size.
   than mis-calibrated; ingesting coverage is expected to raise it.
 - **Per-repo variance.** Smaller repos (fd, chi, zod) have wide confidence
   intervals; the pooled OOF AUC is the trustworthy summary, not any single fold.
-- **Label noise.** "File touched by a `fix:` commit" is a coarse proxy; SZZ-style
-  bug-inducing-commit linkage would sharpen the signal.
+- **Label definition.** Results are reported on the keyword label; leakage-free
+  SZZ bug-inducing-commit attribution and a bug-labeled-issue subset were tested
+  and changed measured accuracy by <0.02 AUC (see the labels/baselines section),
+  so the keyword-calibrated weights are kept. SZZ is itself imperfect (blame
+  noise, shallow-clone blame boundaries) and is reported as a cross-check, not
+  treated as perfect ground truth.
+- **Triage ordering vs. discrimination.** On effort-aware Popt the cheap
+  process-history baselines (prior-defects, churn) out-rank health; the score's
+  edge is discrimination (AUC) and attributable explanation, not raw
+  bug-finding-per-LOC. Combining health with prior-defect history is the natural
+  next step.
 - **Reproducibility.** `t0_date = 2025-11-23`; full clones (never blobless);
   `calibrate_health_weights.py` reproduces the shipped constants from the cached
   per-repo results.
