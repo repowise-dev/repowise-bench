@@ -483,6 +483,29 @@ The product-side complexity-walker maps for the four new languages (Kotlin, C++,
 C#; Java was already mapped) ship in repowise PR #316; this benchmark is the
 evidence that they fire and calibrate consistently.
 
+**Why per-language AUC varies** (`diagnose_languages.py`). The spread (C# 0.80 →
+JavaScript 0.63) decomposes into three already-known levers, none of them a
+language-specific scoring defect: (1) **the size confound** — within-size-band
+AUC is ≈ 0.5 in *every* language, and the lower-scoring languages are simply
+small-file-heavy (Kotlin median 34 LOC, C# 51, JS 57 vs. Rust 110); (2) **signal
+density** — the new languages fire 2–3× fewer biomarkers per file (Kotlin 1.4 vs.
+Python 4.2), partly because `low_cohesion` is blind to implicit-receiver member
+access; (3) **class imbalance / OOD repos** — axios is 80% bug-touched in the
+window, so JS has almost nothing to discriminate against (the micro-library
+failure mode, as with valibot).
+
+**Experiment — implicit-receiver cohesion (tested, AUC-neutral, not shipped).**
+To test lever (2), the walker was extended to count bare `field` references (not
+just `this.field`) toward LCOM4, so `low_cohesion` fires on idiomatic
+Kotlin/Java/C++/C#. Firing rose sharply (e.g. C# 68 → 230 classes), confirming the
+coverage gap was real — but the AUC effect over four re-indexed repos was
+**net-neutral (≈ +0.005 mean: Java +0.044, C# +0.010, Kotlin −0.012, C++ −0.023,
+all within overlapping CIs)**. More `low_cohesion` findings do not predict more
+defects, confirming it is a maintainability signal rather than a defect predictor
+on these languages too (consistent with the failure-forensics finding and its
+floored weight). The dominant lever is therefore size (1), not cohesion
+blindness (2). Recorded so it is not re-attempted as a defect-prediction change.
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.74 and pooled cross-project OOF AUC
