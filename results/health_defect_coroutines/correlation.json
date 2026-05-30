@@ -1,0 +1,604 @@
+{
+  "descriptive": {
+    "n_files": 224,
+    "n_with_defects": 0,
+    "n_zero_defects": 224,
+    "pct_zero_defects": 100.0,
+    "health_score": {
+      "mean": 9.303214285714287,
+      "median": 9.65,
+      "min": 2.5,
+      "max": 10.0,
+      "std": 1.3039331424480227
+    },
+    "defect_count": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0,
+      "max": 0,
+      "total": 0
+    }
+  },
+  "spearman": {
+    "rho": NaN,
+    "p_value": NaN,
+    "n": 224
+  },
+  "partial_spearman_nloc": NaN,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 203,
+      "yellow": 17,
+      "red": 4
+    },
+    "group_means": {
+      "green": 0.0,
+      "yellow": 0.0,
+      "red": 0.0
+    },
+    "h_stat": NaN,
+    "p_value": NaN
+  },
+  "density_ratio": {
+    "raw_ratio": Infinity,
+    "nloc_normalized_ratio": Infinity,
+    "low_group": {
+      "count": 4,
+      "mean_defects": 0.0,
+      "total_nloc": 1868,
+      "defects_per_kloc": 0.0
+    },
+    "high_group": {
+      "count": 201,
+      "mean_defects": 0.0,
+      "total_nloc": 12170,
+      "defects_per_kloc": 0.0
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 4,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 4,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 13,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 203,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 0,
+    "precision": 0.0,
+    "files": [
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/JobSupport.kt",
+        "score": 2.5,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/selects/Select.kt",
+        "score": 2.89,
+        "defects": 0
+      },
+      {
+        "file_path": "reactive/kotlinx-coroutines-reactive/src/Publish.kt",
+        "score": 3.04,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/CancellableContinuationImpl.kt",
+        "score": 3.06,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/jvm/src/scheduling/CoroutineScheduler.kt",
+        "score": 4.62,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/flow/SharedFlow.kt",
+        "score": 5.02,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/flow/operators/Share.kt",
+        "score": 5.19,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/EventLoop.common.kt",
+        "score": 5.84,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/channels/BufferedChannel.kt",
+        "score": 6.0,
+        "defects": 0
+      },
+      {
+        "file_path": "reactive/kotlinx-coroutines-reactive/src/ReactiveFlow.kt",
+        "score": 6.32,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/jvm/src/DefaultExecutor.kt",
+        "score": 6.41,
+        "defects": 0
+      },
+      {
+        "file_path": "test-utils/jvm/src/TestBase.kt",
+        "score": 6.47,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/jvm/src/debug/internal/ConcurrentWeakMap.kt",
+        "score": 6.62,
+        "defects": 0
+      },
+      {
+        "file_path": "reactive/kotlinx-coroutines-rx2/src/RxObservable.kt",
+        "score": 6.71,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/concurrent/src/internal/LockFreeLinkedList.kt",
+        "score": 6.73,
+        "defects": 0
+      },
+      {
+        "file_path": "reactive/kotlinx-coroutines-rx3/src/RxObservable.kt",
+        "score": 7.07,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/internal/LimitedDispatcher.kt",
+        "score": 7.52,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/jvm/src/Builders.kt",
+        "score": 7.52,
+        "defects": 0
+      },
+      {
+        "file_path": "kotlinx-coroutines-core/common/src/CancellableContinuation.kt",
+        "score": 7.7,
+        "defects": 0
+      },
+      {
+        "file_path": "test-utils/native/src/TestBase.kt",
+        "score": 7.87,
+        "defects": 0
+      }
+    ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 3815.2000000000003,
+    "loc_inspected": 3250.0,
+    "files_inspected": 8,
+    "defective_files_found": 0,
+    "precision": 0.0,
+    "recall_defects": 0.0,
+    "recall_files": 0.0
+  },
+  "popt": {
+    "popt": null,
+    "n": 224
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "brain_method",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "low_cohesion",
+      "files_with": 15,
+      "files_without": 209,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1567.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "god_class",
+      "files_with": 1,
+      "files_without": 223,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 26,
+      "files_without": 198,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 2574.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 24,
+      "files_without": 200,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 2400.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 1,
+      "files_without": 223,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 11,
+      "files_without": 213,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1171.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 76,
+      "files_without": 148,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 5624.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 5,
+      "files_without": 219,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 547.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 11,
+      "files_without": 213,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1171.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 27,
+      "files_without": 197,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 2659.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 10,
+      "files_without": 214,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1070.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "prior_defect",
+      "files_with": 10,
+      "files_without": 214,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1070.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 224,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.5,
+    "fpr": [],
+    "tpr": [],
+    "n_pos": 0,
+    "n_neg": 224
+  },
+  "label_strategy": "szz+issue",
+  "label_meta": {
+    "n_fixes": 13,
+    "szz_stats": {
+      "n_fixes": 13,
+      "n_fixes_attributed": 8,
+      "n_bug_inducing_commits_b": 33,
+      "n_bug_inducing_commits_ag": 15,
+      "n_defective_files_b": 24,
+      "n_defective_files_ag": 10
+    },
+    "issue": {
+      "available": true,
+      "n_fixes": 13,
+      "n_fixes_with_issue_ref": 12,
+      "n_confirmed": 0,
+      "n_bug_issues": 0,
+      "bug_label_substrings": [
+        "bug",
+        "defect",
+        "regression"
+      ]
+    }
+  },
+  "label_comparison": {
+    "keyword": {
+      "n_files": 224,
+      "n_positives": 19,
+      "auc": {
+        "point": 0.6961489088575097,
+        "lo": 0.5565279494364836,
+        "hi": 0.8300844977075833,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.5306579305137945,
+        "lo": 0.4126187064750379,
+        "hi": 0.6702265853098536,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz": {
+      "n_files": 224,
+      "n_positives": 7,
+      "auc": {
+        "point": 0.8380513495720869,
+        "lo": 0.6803305962017434,
+        "hi": 0.9786017780891582,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.6549687732582595,
+        "lo": 0.4568611553743286,
+        "hi": 0.8834096502748784,
+        "n": 224,
+        "n_boot": 997,
+        "ci": 0.95
+      }
+    },
+    "szz_b": {
+      "n_files": 224,
+      "n_positives": 18,
+      "auc": {
+        "point": 0.6870280474649406,
+        "lo": 0.5425544909591197,
+        "hi": 0.8278097470872408,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.5305907086029927,
+        "lo": 0.40933406466632255,
+        "hi": 0.674125684802454,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "issue": {
+      "n_files": 224,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 224,
+        "n_boot": 0
+      }
+    },
+    "szz+issue": {
+      "n_files": 224,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 224,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 224,
+        "n_boot": 0
+      }
+    }
+  },
+  "baselines": {
+    "health": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "loc_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "churn_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "prior_defects": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "random": {
+      "auc": 0.5,
+      "popt": null
+    }
+  }
+}

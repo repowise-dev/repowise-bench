@@ -1,0 +1,604 @@
+{
+  "descriptive": {
+    "n_files": 288,
+    "n_with_defects": 0,
+    "n_zero_defects": 288,
+    "pct_zero_defects": 100.0,
+    "health_score": {
+      "mean": 9.311631944444445,
+      "median": 9.65,
+      "min": 3.45,
+      "max": 10.0,
+      "std": 0.9390697691388492
+    },
+    "defect_count": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0,
+      "max": 0,
+      "total": 0
+    }
+  },
+  "spearman": {
+    "rho": NaN,
+    "p_value": NaN,
+    "n": 288
+  },
+  "partial_spearman_nloc": NaN,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 269,
+      "yellow": 18,
+      "red": 1
+    },
+    "group_means": {
+      "green": 0.0,
+      "yellow": 0.0,
+      "red": 0.0
+    },
+    "h_stat": NaN,
+    "p_value": NaN
+  },
+  "density_ratio": {
+    "raw_ratio": Infinity,
+    "nloc_normalized_ratio": Infinity,
+    "low_group": {
+      "count": 1,
+      "mean_defects": 0.0,
+      "total_nloc": 573,
+      "defects_per_kloc": 0.0
+    },
+    "high_group": {
+      "count": 269,
+      "mean_defects": 0.0,
+      "total_nloc": 12805,
+      "defects_per_kloc": 0.0
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 1,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 6,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 12,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 269,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 0,
+    "precision": 0.0,
+    "files": [
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/InlineDelegateByteBuddyMockMaker.java",
+        "score": 3.45,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java",
+        "score": 4.09,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+        "score": 5.29,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/InlineBytecodeGenerator.java",
+        "score": 5.65,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/MockMethodAdvice.java",
+        "score": 5.65,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/creation/instance/ConstructorInstantiator.java",
+        "score": 5.65,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java",
+        "score": 5.65,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/matchers/ArrayEquals.java",
+        "score": 6.05,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/PremainAttachAccess.java",
+        "score": 6.3,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/creation/bytebuddy/SubclassBytecodeGenerator.java",
+        "score": 6.65,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/configuration/injection/filter/TypeBasedCandidateFilter.java",
+        "score": 7.0,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/exceptions/stacktrace/StackTraceFilter.java",
+        "score": 7.2,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/Mockito.java",
+        "score": 7.24,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/exceptions/Reporter.java",
+        "score": 7.5,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/testFixtures/java/org/mockito/internal/invocation/InvocationBuilder.java",
+        "score": 7.56,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/util/reflection/InstrumentationMemberAccessor.java",
+        "score": 7.71,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/BDDMockito.java",
+        "score": 7.85,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/debugging/LocationImpl.java",
+        "score": 7.85,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/util/Primitives.java",
+        "score": 7.99,
+        "defects": 0
+      },
+      {
+        "file_path": "mockito-core/src/main/java/org/mockito/internal/configuration/IndependentAnnotationEngine.java",
+        "score": 8.04,
+        "defects": 0
+      }
+    ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 3546.6000000000004,
+    "loc_inspected": 3292.0,
+    "files_inspected": 13,
+    "defective_files_found": 0,
+    "precision": 0.0,
+    "recall_defects": 0.0,
+    "recall_files": 0.0
+  },
+  "popt": {
+    "popt": null,
+    "n": 288
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "brain_method",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "low_cohesion",
+      "files_with": 83,
+      "files_without": 205,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 8507.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "god_class",
+      "files_with": 1,
+      "files_without": 287,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 22,
+      "files_without": 266,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 2926.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 16,
+      "files_without": 272,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 2176.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 3,
+      "files_without": 285,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 427.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 7,
+      "files_without": 281,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 983.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 8,
+      "files_without": 280,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1120.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 13,
+      "files_without": 275,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 1787.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 202,
+      "files_without": 86,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 8686.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 6,
+      "files_without": 282,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 846.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 2,
+      "files_without": 286,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 1,
+      "files_without": 287,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "prior_defect",
+      "files_with": 5,
+      "files_without": 283,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 707.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 288,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.5,
+    "fpr": [],
+    "tpr": [],
+    "n_pos": 0,
+    "n_neg": 288
+  },
+  "label_strategy": "szz+issue",
+  "label_meta": {
+    "n_fixes": 6,
+    "szz_stats": {
+      "n_fixes": 6,
+      "n_fixes_attributed": 2,
+      "n_bug_inducing_commits_b": 2,
+      "n_bug_inducing_commits_ag": 2,
+      "n_defective_files_b": 2,
+      "n_defective_files_ag": 2
+    },
+    "issue": {
+      "available": true,
+      "n_fixes": 6,
+      "n_fixes_with_issue_ref": 5,
+      "n_confirmed": 0,
+      "n_bug_issues": 0,
+      "bug_label_substrings": [
+        "bug",
+        "defect",
+        "regression"
+      ]
+    }
+  },
+  "label_comparison": {
+    "keyword": {
+      "n_files": 288,
+      "n_positives": 7,
+      "auc": {
+        "point": 0.6456532791052364,
+        "lo": 0.4379157334826428,
+        "hi": 0.8550830635214308,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.5408975257199748,
+        "lo": 0.2525941707637429,
+        "hi": 0.7960968154021962,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz": {
+      "n_files": 288,
+      "n_positives": 2,
+      "auc": {
+        "point": 0.6590909090909092,
+        "lo": 0.4069901888868513,
+        "hi": 0.9090988280012671,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.4091013099937074,
+        "lo": 0.1332874216504228,
+        "hi": 0.7281743231130529,
+        "n": 288,
+        "n_boot": 861,
+        "ci": 0.95
+      }
+    },
+    "szz_b": {
+      "n_files": 288,
+      "n_positives": 2,
+      "auc": {
+        "point": 0.6590909090909092,
+        "lo": 0.4069901888868513,
+        "hi": 0.9090988280012671,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.4091013099937074,
+        "lo": 0.1332874216504228,
+        "hi": 0.7281743231130529,
+        "n": 288,
+        "n_boot": 861,
+        "ci": 0.95
+      }
+    },
+    "issue": {
+      "n_files": 288,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 288,
+        "n_boot": 0
+      }
+    },
+    "szz+issue": {
+      "n_files": 288,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 288,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 288,
+        "n_boot": 0
+      }
+    }
+  },
+  "baselines": {
+    "health": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "loc_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "churn_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "prior_defects": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "random": {
+      "auc": 0.5,
+      "popt": null
+    }
+  }
+}

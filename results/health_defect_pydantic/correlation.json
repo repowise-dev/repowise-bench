@@ -1,422 +1,604 @@
 {
   "descriptive": {
-    "n_files": 216,
-    "n_with_defects": 17,
-    "n_zero_defects": 199,
-    "pct_zero_defects": 92.12962962962963,
+    "n_files": 86,
+    "n_with_defects": 0,
+    "n_zero_defects": 86,
+    "pct_zero_defects": 100.0,
     "health_score": {
-      "mean": 7.670833333333333,
-      "median": 8.3,
-      "min": 1.5,
+      "mean": 6.203255813953489,
+      "median": 6.5,
+      "min": 1.0,
       "max": 10.0,
-      "std": 1.9565587374324482
+      "std": 2.783952941564953
     },
     "defect_count": {
-      "mean": 0.09722222222222222,
+      "mean": 0.0,
       "median": 0.0,
       "min": 0,
-      "max": 2,
-      "total": 21
+      "max": 0,
+      "total": 0
     }
   },
   "spearman": {
-    "rho": -0.22892768154599452,
-    "p_value": 0.0006985511788221232,
-    "n": 216
+    "rho": NaN,
+    "p_value": NaN,
+    "n": 86
   },
-  "partial_spearman_nloc": -0.08673766353613262,
+  "partial_spearman_nloc": NaN,
   "kruskal_wallis": {
     "group_sizes": {
-      "green": 121,
-      "yellow": 79,
-      "red": 16
+      "green": 29,
+      "yellow": 33,
+      "red": 24
     },
     "group_means": {
-      "green": 0.049586776859504134,
-      "yellow": 0.08860759493670886,
-      "red": 0.5
+      "green": 0.0,
+      "yellow": 0.0,
+      "red": 0.0
     },
-    "h_stat": 15.335370147367836,
-    "p_value": 0.00046769926082342484
+    "h_stat": NaN,
+    "p_value": NaN
   },
   "density_ratio": {
-    "raw_ratio": 11.7,
-    "nloc_normalized_ratio": 1.2572856785803548,
+    "raw_ratio": Infinity,
+    "nloc_normalized_ratio": Infinity,
     "low_group": {
-      "count": 16,
-      "mean_defects": 0.5,
-      "total_nloc": 12003,
-      "defects_per_kloc": 0.6665000416562525
+      "count": 24,
+      "mean_defects": 0.0,
+      "total_nloc": 13002,
+      "defects_per_kloc": 0.0
     },
     "high_group": {
-      "count": 117,
-      "mean_defects": 0.042735042735042736,
-      "total_nloc": 9432,
-      "defects_per_kloc": 0.5301102629346904
+      "count": 29,
+      "mean_defects": 0.0,
+      "total_nloc": 2070,
+      "defects_per_kloc": 0.0
     }
   },
   "density_by_bucket": [
     {
       "bucket": "[0-4)",
-      "file_count": 16,
-      "total_defects": 8,
-      "mean_defects": 0.5,
-      "defects_per_kloc": 0.6665000416562525
+      "file_count": 24,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
     },
     {
       "bucket": "[4-6)",
-      "file_count": 30,
-      "total_defects": 3,
-      "mean_defects": 0.1,
-      "defects_per_kloc": 0.23413720440177946
+      "file_count": 13,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
     },
     {
       "bucket": "[6-8)",
-      "file_count": 49,
-      "total_defects": 4,
-      "mean_defects": 0.08163265306122448,
-      "defects_per_kloc": 0.3735524841240194
+      "file_count": 20,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
     },
     {
       "bucket": "[8-10]",
-      "file_count": 121,
-      "total_defects": 6,
-      "mean_defects": 0.049586776859504134,
-      "defects_per_kloc": 0.5842827928717499
+      "file_count": 29,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
     }
   ],
   "precision_at_k": {
     "k": 20,
-    "true_positives": 6,
-    "precision": 0.3,
+    "true_positives": 0,
+    "precision": 0.0,
     "files": [
       {
+        "file_path": "pydantic/_internal/_fields.py",
+        "score": 1.0,
+        "defects": 0
+      },
+      {
         "file_path": "pydantic/_internal/_generate_schema.py",
-        "score": 1.5,
-        "defects": 1
-      },
-      {
-        "file_path": "pydantic-core/src/validators/arguments.rs",
-        "score": 3.0,
+        "score": 1.0,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/validators/arguments_v3.rs",
-        "score": 3.0,
-        "defects": 0
-      },
-      {
-        "file_path": "pydantic/mypy.py",
-        "score": 3.1,
-        "defects": 0
-      },
-      {
-        "file_path": "pydantic-core/src/input/return_enums.rs",
-        "score": 3.2,
+        "file_path": "pydantic/_internal/_typing_extra.py",
+        "score": 1.0,
         "defects": 0
       },
       {
         "file_path": "pydantic/main.py",
-        "score": 3.3,
-        "defects": 2
-      },
-      {
-        "file_path": "pydantic/_internal/_fields.py",
-        "score": 3.3,
-        "defects": 1
-      },
-      {
-        "file_path": "pydantic-core/src/validators/model_fields.rs",
-        "score": 3.3,
+        "score": 1.9,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/serializers/ob_type.rs",
-        "score": 3.5,
+        "file_path": "pydantic/type_adapter.py",
+        "score": 1.9,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/_internal/_generics.py",
+        "score": 1.95,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/_internal/_decorators.py",
+        "score": 2.07,
         "defects": 0
       },
       {
         "file_path": "pydantic/fields.py",
-        "score": 3.8,
+        "score": 2.15,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/mypy.py",
+        "score": 2.15,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/_internal/_dataclasses.py",
+        "score": 2.35,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/types.py",
+        "score": 2.45,
         "defects": 0
       },
       {
         "file_path": "pydantic/json_schema.py",
-        "score": 3.8,
-        "defects": 2
-      },
-      {
-        "file_path": "pydantic/v1/fields.py",
-        "score": 3.8,
-        "defects": 2
-      },
-      {
-        "file_path": "pydantic/v1/mypy.py",
-        "score": 3.8,
+        "score": 2.5,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/validators/typed_dict.rs",
-        "score": 3.8,
+        "file_path": "pydantic/_internal/_model_construction.py",
+        "score": 2.5,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/validators/decimal.rs",
-        "score": 3.9,
+        "file_path": "pydantic/_internal/_config.py",
+        "score": 2.53,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/validators/mod.rs",
-        "score": 3.9,
+        "file_path": "pydantic/deprecated/decorator.py",
+        "score": 2.77,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/validators/dataclass.rs",
-        "score": 4.1,
+        "file_path": "pydantic/_internal/_repr.py",
+        "score": 3.0,
         "defects": 0
       },
       {
-        "file_path": "pydantic/v1/main.py",
-        "score": 4.2,
-        "defects": 1
-      },
-      {
-        "file_path": "pydantic-core/src/input/input_python.rs",
-        "score": 4.2,
+        "file_path": "pydantic/networks.py",
+        "score": 3.05,
         "defects": 0
       },
       {
-        "file_path": "pydantic-core/src/serializers/filter.rs",
-        "score": 4.2,
+        "file_path": "pydantic/_internal/_discriminated_union.py",
+        "score": 3.12,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/_internal/_validators.py",
+        "score": 3.33,
+        "defects": 0
+      },
+      {
+        "file_path": "pydantic/_internal/_known_annotated_metadata.py",
+        "score": 3.39,
         "defects": 0
       }
     ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 4530.0,
+    "loc_inspected": 4429.0,
+    "files_inspected": 5,
+    "defective_files_found": 0,
+    "precision": 0.0,
+    "recall_defects": 0.0,
+    "recall_files": 0.0
+  },
+  "popt": {
+    "popt": null,
+    "n": 86
   },
   "per_biomarker": [
     {
       "biomarker": "brain_method",
       "files_with": 6,
-      "files_without": 210,
-      "mean_defects_with": 1.0,
-      "mean_defects_without": 0.07142857142857142,
-      "u_stat": 1020.0,
-      "p_value": 1.60898796491333e-08,
-      "cliffs_delta": 0.6190476190476191
+      "files_without": 80,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 240.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
     },
     {
-      "biomarker": "developer_congestion",
-      "files_with": 4,
-      "files_without": 212,
-      "mean_defects_with": 0.75,
-      "mean_defects_without": 0.08490566037735849,
-      "u_stat": 610.5,
-      "p_value": 0.0006443615459708646,
-      "cliffs_delta": 0.43985849056603776
+      "biomarker": "low_cohesion",
+      "files_with": 20,
+      "files_without": 66,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 660.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
     },
     {
-      "biomarker": "large_method",
-      "files_with": 45,
-      "files_without": 171,
-      "mean_defects_with": 0.28888888888888886,
-      "mean_defects_without": 0.04678362573099415,
-      "u_stat": 4550.5,
-      "p_value": 2.7264258560285163e-05,
-      "cliffs_delta": 0.18271604938271604
-    },
-    {
-      "biomarker": "untested_hotspot",
-      "files_with": 16,
-      "files_without": 200,
-      "mean_defects_with": 0.25,
-      "mean_defects_without": 0.085,
-      "u_stat": 1888.0,
-      "p_value": 0.005219544676727692,
-      "cliffs_delta": 0.18
-    },
-    {
-      "biomarker": "primitive_obsession",
-      "files_with": 72,
-      "files_without": 144,
-      "mean_defects_with": 0.2361111111111111,
-      "mean_defects_without": 0.027777777777777776,
-      "u_stat": 6081.5,
-      "p_value": 4.5198576320330395e-06,
-      "cliffs_delta": 0.17312885802469136
-    },
-    {
-      "biomarker": "bumpy_road",
-      "files_with": 30,
-      "files_without": 186,
-      "mean_defects_with": 0.26666666666666666,
-      "mean_defects_without": 0.06989247311827956,
-      "u_stat": 3188.0,
-      "p_value": 0.0036661389325572083,
-      "cliffs_delta": 0.14265232974910394
-    },
-    {
-      "biomarker": "complex_method",
-      "files_with": 85,
-      "files_without": 131,
-      "mean_defects_with": 0.2,
-      "mean_defects_without": 0.030534351145038167,
-      "u_stat": 6257.0,
-      "p_value": 0.0005007494225813233,
-      "cliffs_delta": 0.12384373596766951
+      "biomarker": "god_class",
+      "files_with": 6,
+      "files_without": 80,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 240.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
     },
     {
       "biomarker": "nested_complexity",
-      "files_with": 102,
-      "files_without": 114,
-      "mean_defects_with": 0.1568627450980392,
-      "mean_defects_without": 0.043859649122807015,
-      "u_stat": 6253.0,
-      "p_value": 0.020228561948973014,
-      "cliffs_delta": 0.07550739594083247
+      "files_with": 41,
+      "files_without": 45,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 922.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 47,
+      "files_without": 39,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 916.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 17,
+      "files_without": 69,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 586.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 11,
+      "files_without": 75,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 412.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 23,
+      "files_without": 63,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 724.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 45,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 922.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 40,
+      "files_without": 46,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 920.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 13,
+      "files_without": 73,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 474.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
     },
     {
       "biomarker": "coverage_gap",
       "files_with": 0,
-      "files_without": 216,
+      "files_without": 86,
       "mean_defects_with": 0.0,
-      "mean_defects_without": 0.09722222222222222,
+      "mean_defects_without": 0.0,
       "u_stat": null,
       "p_value": null,
       "cliffs_delta": null
     },
     {
-      "biomarker": "dry_violation",
-      "files_with": 148,
-      "files_without": 68,
-      "mean_defects_with": 0.08783783783783784,
-      "mean_defects_without": 0.11764705882352941,
-      "u_stat": 4859.5,
-      "p_value": 0.8075636864350833,
-      "cliffs_delta": -0.03428060413354531
+      "biomarker": "developer_congestion",
+      "files_with": 1,
+      "files_without": 85,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
     },
     {
       "biomarker": "knowledge_loss",
-      "files_with": 103,
-      "files_without": 113,
+      "files_with": 14,
+      "files_without": 72,
       "mean_defects_with": 0.0,
-      "mean_defects_without": 0.18584070796460178,
-      "u_stat": 4944.0,
-      "p_value": 0.9999785698869014,
-      "cliffs_delta": -0.1504424778761062
+      "mean_defects_without": 0.0,
+      "u_stat": 504.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 86,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 19,
+      "files_without": 67,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 636.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 86,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 10,
+      "files_without": 76,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 380.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 1,
+      "files_without": 85,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 18,
+      "files_without": 68,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 612.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 5,
+      "files_without": 81,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 202.5,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "prior_defect",
+      "files_with": 56,
+      "files_without": 30,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 840.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 86,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 86,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
     }
   ],
   "roc_auc": {
-    "auc": 0.7423884126514928,
-    "fpr": [
-      0.0,
-      0.0,
-      0.010050251256281407,
-      0.01507537688442211,
-      0.020100502512562814,
-      0.02512562814070352,
-      0.03015075376884422,
-      0.04522613065326633,
-      0.05527638190954774,
-      0.06030150753768844,
-      0.07035175879396985,
-      0.08542713567839195,
-      0.09045226130653267,
-      0.09547738693467336,
-      0.11055276381909548,
-      0.11557788944723618,
-      0.12562814070351758,
-      0.135678391959799,
-      0.1507537688442211,
-      0.1658291457286432,
-      0.1708542713567839,
-      0.17587939698492464,
-      0.19095477386934673,
-      0.19597989949748743,
-      0.20100502512562815,
-      0.20603015075376885,
-      0.21105527638190955,
-      0.22110552763819097,
-      0.22613065326633167,
-      0.24120603015075376,
-      0.2613065326633166,
-      0.271356783919598,
-      0.2814070351758794,
-      0.2964824120603015,
-      0.3065326633165829,
-      0.35175879396984927,
-      0.35678391959798994,
-      0.36180904522613067,
-      0.37185929648241206,
-      0.3768844221105528,
-      0.4020100502512563,
-      0.41708542713567837,
-      0.4321608040201005,
-      0.45226130653266333,
-      0.5226130653266332,
-      0.5326633165829145,
-      0.5527638190954773,
-      0.5728643216080402,
-      0.7638190954773869,
-      0.8040201005025126,
-      0.8241206030150754,
-      0.8994974874371859,
-      1.0
-    ],
-    "tpr": [
-      0.0,
-      0.058823529411764705,
-      0.058823529411764705,
-      0.058823529411764705,
-      0.058823529411764705,
-      0.17647058823529413,
-      0.17647058823529413,
-      0.29411764705882354,
-      0.29411764705882354,
-      0.29411764705882354,
-      0.35294117647058826,
-      0.4117647058823529,
-      0.4117647058823529,
-      0.4117647058823529,
-      0.4117647058823529,
-      0.4117647058823529,
-      0.4117647058823529,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.47058823529411764,
-      0.5294117647058824,
-      0.5294117647058824,
-      0.5294117647058824,
-      0.5294117647058824,
-      0.5294117647058824,
-      0.5882352941176471,
-      0.5882352941176471,
-      0.5882352941176471,
-      0.5882352941176471,
-      0.5882352941176471,
-      0.6470588235294118,
-      0.7058823529411765,
-      0.7058823529411765,
-      0.7058823529411765,
-      0.7058823529411765,
-      0.7058823529411765,
-      0.7058823529411765,
-      0.7647058823529411,
-      0.8235294117647058,
-      0.8823529411764706,
-      0.8823529411764706,
-      0.9411764705882353,
-      0.9411764705882353,
-      0.9411764705882353,
-      0.9411764705882353,
-      0.9411764705882353,
-      0.9411764705882353,
-      1.0
-    ],
-    "n_pos": 17,
-    "n_neg": 199
+    "auc": 0.5,
+    "fpr": [],
+    "tpr": [],
+    "n_pos": 0,
+    "n_neg": 86
+  },
+  "label_strategy": "szz+issue",
+  "label_meta": {
+    "n_fixes": 39,
+    "szz_stats": {
+      "n_fixes": 39,
+      "n_fixes_attributed": 12,
+      "n_bug_inducing_commits_b": 27,
+      "n_bug_inducing_commits_ag": 14,
+      "n_defective_files_b": 17,
+      "n_defective_files_ag": 12
+    },
+    "issue": {
+      "available": true,
+      "n_fixes": 39,
+      "n_fixes_with_issue_ref": 39,
+      "n_confirmed": 0,
+      "n_bug_issues": 0,
+      "bug_label_substrings": [
+        "bug",
+        "defect",
+        "regression"
+      ]
+    }
+  },
+  "label_comparison": {
+    "keyword": {
+      "n_files": 86,
+      "n_positives": 17,
+      "auc": {
+        "point": 0.7225063938618926,
+        "lo": 0.5694652288732396,
+        "hi": 0.8513545390824928,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.4483565205343243,
+        "lo": 0.314339679090616,
+        "hi": 0.6281196013281035,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz": {
+      "n_files": 86,
+      "n_positives": 12,
+      "auc": {
+        "point": 0.7393018018018016,
+        "lo": 0.5696950517836595,
+        "hi": 0.8831529581529581,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.4536676613370152,
+        "lo": 0.2999507016506062,
+        "hi": 0.6613003002078447,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz_b": {
+      "n_files": 86,
+      "n_positives": 17,
+      "auc": {
+        "point": 0.7225063938618926,
+        "lo": 0.5694652288732396,
+        "hi": 0.8513545390824928,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.47691490653071156,
+        "lo": 0.33415174474682485,
+        "hi": 0.6523481762452737,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "issue": {
+      "n_files": 86,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 86,
+        "n_boot": 0
+      }
+    },
+    "szz+issue": {
+      "n_files": 86,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 86,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 86,
+        "n_boot": 0
+      }
+    }
+  },
+  "baselines": {
+    "health": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "loc_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "churn_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "prior_defects": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "random": {
+      "auc": 0.5,
+      "popt": null
+    }
   }
 }

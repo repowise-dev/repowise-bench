@@ -217,6 +217,35 @@ Read together, this is the honest standing of the score:
   value is in *discrimination and explanation* (a calibrated, attributable
   structural signal), not in replacing process history for triage ordering.
 
+## Same-repo comparison against an external Code-Health scorer
+
+Beyond the published-dataset check above, the score was run head-to-head against
+an established external, commercial Code-Health scorer (kept anonymous here) on
+the **same 2,770 files across nine languages**, scored at the **same** leakage-free
+T0 commits and joined to the **same** defect labels — the only design that compares
+two scorers rather than two corpora. Both score columns run through the identical
+metric code path, and every comparison uses a **paired** test (the same resampled
+repos for both tools, so the estimate is the gap itself, not two separate CIs).
+All p-values are two-sided; 2,000 seeded resamples; 376 defective / 2,394 clean.
+
+| Axis | Paired Δ (this score − external) [95% CI] | p | Verdict |
+|------|------|------|------|
+| Discrimination (ROC AUC) | +0.026 (DeLong z = 1.93) | 0.054 | edge, marginally shy |
+| Effort-aware ranking (Popt) | +0.144 [+0.028, +0.236] | **0.003** | this score wins |
+| Recall @ 20% LOC | +0.098 [+0.030, +0.209] | **0.003** | this score wins |
+| Size-normalized density (defects/KLOC, Alert:Healthy) | +1.62 [+0.31, +3.04] | **0.003** | this score wins |
+| Precision @ 20% LOC | −0.056 [−0.176, +0.122] | 0.64 | external leads, n.s. |
+
+On the same files with the same labels, this score is **significantly better on
+effort-aware ranking (Popt) and recall** — the metrics that decide how many defects
+a fixed review budget catches — and on size-normalized defect density; it holds a
+consistent discrimination (AUC) edge just shy of significance and is equally robust
+to the file-size confound (size-controlled partial Spearman excludes zero for both
+scorers). The external tool's only lead — precision at a very small inspection
+budget — is not statistically significant and reflects a more conservative operating
+point, not a calibration flaw. Full method, per-tool coverage, the paired tests, and
+an open issue-resolution-time analysis are in `COMPARISON_REPORT.md`.
+
 ## Statistical rigor — full-corpus uncertainty, significance, and temporal stability
 
 The baselines section above reports the 13-repo calibration precursor. This
