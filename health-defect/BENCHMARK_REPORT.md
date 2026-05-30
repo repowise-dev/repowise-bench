@@ -25,7 +25,10 @@ leakage-free **SZZ bug-inducing-commit attribution** leaves accuracy essentially
 unchanged (mean AUC 0.744 → 0.734), so on this corpus label noise is not the
 dominant accuracy ceiling. The calibration is reproducible
 (`local-stash/calibrate_health_weights.py`); only the learned constants ship, and
-the runtime stays fully deterministic.
+the runtime stays fully deterministic. The corpus was later **extended to 21
+repos across all nine Full-tier languages** (adding Java, Kotlin, C++, C#); the
+score generalizes — pooled OOF AUC rises to 0.746 and every language is
+individually predictive (see "Full-tier language breadth").
 
 ## Methodology
 
@@ -418,11 +421,97 @@ Because its features describe the *change*, not the size of any one file, it
 sidesteps the file-size confound and would make a natural pre-merge / review
 gate, complementary to the file score.
 
+## Full-tier language breadth (nine languages)
+
+The original calibration corpus covered five languages (Python, TypeScript,
+JavaScript, Rust, Go). The code-health layer advertises **nine** Full-tier
+languages, so the corpus was extended with the four that were never validated
+against real defects — **Java, Kotlin, C++, C#** — eight repos, two per language,
+each selected by the same criteria-driven audit (`audit_candidates.py`) used in
+the original build: a repo qualifies only with ≥ 5 non-test source files touched
+by a keyword fix commit in the 6-month window. Selections (non-test defect files
+in the window): Java — caffeine (164), mockito (13); Kotlin — detekt (31),
+coroutines (20); C++ — spdlog (16), fmt (8); C# — quartznet (41), npgsql (20).
+
+Candidates dropped *before* scoring, on stated criteria: gson (4 defect files),
+mqttnet (1); polly/serilog/dapper/restsharp (mature/stable, ≤ 12 with thin
+commit diversity); nlohmann/json (single-header → no file granularity, the
+valibot failure mode); **dotnet/efcore** (great signal, 137, but exceeded the
+30-minute T0 index budget — the fast-indexing criterion rules it out).
+
+**Per-language health AUC (keyword labels, T0, current shipped weights).** Every
+new language lands above random and inside the range of the original five — no
+language inverts or degenerates:
+
+| Language | Repos | Mean AUC | Positives | Files |
+|----------|------:|---------:|----------:|------:|
+| C# | 2 | **0.800** | 62 | 639 |
+| Go | 3 | 0.811 | 63 | 189 |
+| Rust | 3 | 0.805 | 29 | 133 |
+| TypeScript | 2 | 0.783 | 29 | 87 |
+| Python | 3 | 0.715 | 54 | 356 |
+| Java | 2 | 0.699 | 35 | 646 |
+| Kotlin | 2 | 0.672 | 46 | 619 |
+| C++ | 2 | 0.661 | 20 | 90 |
+| JavaScript | 2 | 0.630 | 41 | 65 |
+
+(Per-repo: npgsql 0.849, quartznet 0.751; caffeine 0.753, mockito 0.646; detekt
+0.647, coroutines 0.696; spdlog 0.618, fmt 0.704 — fmt's 14-file universe is the
+smallest in the corpus, so its CI is wide.)
+
+**Cross-language calibration holds and improves.** Re-fitting the L2-logistic
+(leave-one-repo-out, NLOC control) on the expanded **21-repo / 9-language**
+corpus (2,824 files, 379 positives, 13.4%):
+
+| Corpus | Repos | Languages | Pooled OOF AUC |
+|--------|------:|----------:|---------------:|
+| Original | 13 | 5 | 0.699 |
+| Extended | 21 | 9 | **0.746** |
+
+The biomarker coefficient structure is unchanged — `co_change_scatter`,
+`ownership_risk`, `complex_method`, `change_entropy`, `prior_defect` remain the
+positive leaders; `dry_violation`, `low_cohesion`, `developer_congestion` stay
+floored — so adding four languages did not destabilize the global fit. Between-
+language variance is real (mean AUC ranges 0.63–0.81, consistent with the
+hierarchical model's language SD ≈ 1.0), but every language is individually
+predictive, so **one global model is retained — no per-language weight overrides**
+(two repos per language would overfit). Because the shipped weights already
+generalize, no weight re-ship was warranted; this section is a validation result,
+not a re-calibration.
+
+The product-side complexity-walker maps for the four new languages (Kotlin, C++,
+C#; Java was already mapped) ship in repowise PR #316; this benchmark is the
+evidence that they fire and calibrate consistently.
+
+**Why per-language AUC varies** (`diagnose_languages.py`). The spread (C# 0.80 →
+JavaScript 0.63) decomposes into three already-known levers, none of them a
+language-specific scoring defect: (1) **the size confound** — within-size-band
+AUC is ≈ 0.5 in *every* language, and the lower-scoring languages are simply
+small-file-heavy (Kotlin median 34 LOC, C# 51, JS 57 vs. Rust 110); (2) **signal
+density** — the new languages fire 2–3× fewer biomarkers per file (Kotlin 1.4 vs.
+Python 4.2), partly because `low_cohesion` is blind to implicit-receiver member
+access; (3) **class imbalance / OOD repos** — axios is 80% bug-touched in the
+window, so JS has almost nothing to discriminate against (the micro-library
+failure mode, as with valibot).
+
+**Experiment — implicit-receiver cohesion (tested, AUC-neutral, not shipped).**
+To test lever (2), the walker was extended to count bare `field` references (not
+just `this.field`) toward LCOM4, so `low_cohesion` fires on idiomatic
+Kotlin/Java/C++/C#. Firing rose sharply (e.g. C# 68 → 230 classes), confirming the
+coverage gap was real — but the AUC effect over four re-indexed repos was
+**net-neutral (≈ +0.005 mean: Java +0.044, C# +0.010, Kotlin −0.012, C++ −0.023,
+all within overlapping CIs)**. More `low_cohesion` findings do not predict more
+defects, confirming it is a maintainability signal rather than a defect predictor
+on these languages too (consistent with the failure-forensics finding and its
+floored weight). The dominant lever is therefore size (1), not cohesion
+blindness (2). Recorded so it is not re-attempted as a defect-prediction change.
+
 ## Honest limitations
 
-- **Modest absolute accuracy.** Mean AUC ≈ 0.76 and pooled cross-project OOF AUC
-  ≈ 0.70 — a useful triage signal, not a precise oracle. File-level defect
-  prediction from static + process signals has a ceiling in this range.
+- **Modest absolute accuracy.** Mean AUC ≈ 0.74 and pooled cross-project OOF AUC
+  ≈ 0.75 (9-language corpus) — a useful triage signal, not a precise oracle.
+  File-level defect prediction from static + process signals has a ceiling in
+  this range.
 - **The score is size-correlated.** File size is the single strongest predictor
   (as in essentially all static defect-prediction work); within a fixed size band
   discrimination drops sharply and inverts on the 29–68-LOC band. The score adds

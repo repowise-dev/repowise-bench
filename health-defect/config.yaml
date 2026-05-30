@@ -1,5 +1,5 @@
 benchmark_name: "health-defect-correlation"
-version: "1.2"
+version: "1.3"
 
 defaults:
   defect_window_months: 6
@@ -185,3 +185,108 @@ repos:
     bug_keywords: ["fix", "bug", "patch", "resolve"]
     exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
     exclude: ["docs/", ".github/"]
+
+  # ---- Java (2) — added for full-tier-language breadth ----
+  # Defect-signal audit (audit_candidates.py, window since 2025-11-23, non-test
+  # source files touched by keyword fix commits): mockito 13, caffeine 164.
+  # Both clear the >=5 bar comfortably. (gson dropped: only 4 non-test.)
+  - name: "mockito"
+    repo_url: "https://github.com/mockito/mockito.git"
+    language: "java"
+    source_root: "mockito-core/src/main/java/"
+    extensions: [".java"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "doc/"]
+
+  - name: "caffeine"
+    repo_url: "https://github.com/ben-manes/caffeine.git"
+    language: "java"
+    # Scope to the main cache module so testFixtures/ and jmh/ (which the
+    # generic /test/ filter does NOT catch) don't pollute the source universe.
+    source_root: "caffeine/src/main/java/"
+    extensions: [".java"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/"]
+
+  # ---- Kotlin (2) ----
+  # Audit non-test source files: detekt 31, coroutines 20.
+  - name: "detekt"
+    repo_url: "https://github.com/detekt/detekt.git"
+    language: "kotlin"
+    source_root: ""          # multi-module; */src/test/ dropped by the /test/ filter
+    extensions: [".kt"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "website/", "docs/"]
+
+  - name: "coroutines"
+    repo_url: "https://github.com/Kotlin/kotlinx.coroutines.git"
+    language: "kotlin"
+    source_root: ""
+    extensions: [".kt"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "docs/", "benchmarks/", "site/", "integration-testing/", "ui/"]
+
+  # ---- C++ (2) ----
+  # Audit non-test source files: spdlog 16, fmt 8. Header-heavy libs; tests in
+  # test(s)/ dropped by the filter. nlohmann/json dropped (single-header → poor
+  # file granularity, the valibot failure mode).
+  - name: "spdlog"
+    repo_url: "https://github.com/gabime/spdlog.git"
+    language: "cpp"
+    source_root: ""
+    extensions: [".h", ".hpp", ".cpp", ".cc"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "bench/", "example/", "logos/", "scripts/", "cmake/"]
+
+  - name: "fmt"
+    repo_url: "https://github.com/fmtlib/fmt.git"
+    language: "cpp"
+    source_root: ""
+    extensions: [".h", ".hpp", ".cc", ".cpp"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "doc/", "support/"]
+
+  # ---- C# (2) ----
+  # Audit non-test source files: npgsql 20, quartznet 41. (polly/serilog/dapper/
+  # restsharp/mqttnet dropped — mature/stable or thin signal. dotnet/efcore had
+  # great signal (137) but exceeded the 30-min T0 index budget — the
+  # fast-indexing criterion rules it out.)
+  - name: "npgsql"
+    repo_url: "https://github.com/npgsql/npgsql.git"
+    language: "csharp"
+    source_root: "src/"
+    extensions: [".cs"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "doc/", "test/", "benchmarks/"]
+
+  - name: "quartznet"
+    repo_url: "https://github.com/quartznet/quartznet.git"
+    language: "csharp"
+    source_root: "src/"
+    extensions: [".cs"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude: [".github/", "doc/", "database/", "test/", "tests/"]
