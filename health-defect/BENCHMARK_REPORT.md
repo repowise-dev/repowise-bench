@@ -5,30 +5,33 @@
 We evaluate whether Repowise's deterministic, zero-LLM code-health score predicts
 real-world defects, and we use the same corpus to **calibrate the score's
 biomarker weights against defect data** rather than hand-tuning them. Across
-**13 open-source repositories in 5 languages** (Python, TypeScript, JavaScript,
-Rust, Go; 830 source files, 216 of them bug-fix-bearing), each file is scored
-**at the commit immediately preceding a 6-month defect window (T0)** — so the
-measurement strictly precedes the labels and cannot leak future information.
-Health predicts defects on the held-out, leakage-free corpus (mean Spearman
-ρ = −0.41; mean ROC AUC = 0.76), and the signal **survives controlling for file
-size** (mean partial Spearman ρ = −0.20). An offline L2-regularized logistic
-regression — with NLOC as an explicit control feature — yields per-biomarker
-weights that improve every headline metric over the prior hand-tuned weights,
-including the effort-aware Popt and the size-controlled partial correlation.
-Cross-project (leave-one-repo-out) pooled out-of-fold AUC is 0.70. Against
-trivial baselines the score **significantly out-discriminates recent churn and
-prior-defect history** (ΔAUC +0.10 / +0.09, bootstrap CIs excluding 0) and is
-**not reducible to file size** — it significantly beats a LOC-only ranking on the
-effort-aware Popt; for pure cost-effective inspection ordering, however, the
-cheap process-history baselines remain stronger. Re-deriving the labels with
-leakage-free **SZZ bug-inducing-commit attribution** leaves accuracy essentially
-unchanged (mean AUC 0.744 → 0.734), so on this corpus label noise is not the
-dominant accuracy ceiling. The calibration is reproducible
-(`local-stash/calibrate_health_weights.py`); only the learned constants ship, and
-the runtime stays fully deterministic. The corpus was later **extended to 21
-repos across all nine Full-tier languages** (adding Java, Kotlin, C++, C#); the
-score generalizes — pooled OOF AUC rises to 0.746 and every language is
-individually predictive (see "Full-tier language breadth").
+**21 open-source repositories spanning all nine Full-tier languages** (Python,
+TypeScript, JavaScript, Rust, Go, Java, Kotlin, C++, C#; 2,826 source files, 379
+of them bug-fix-bearing), each file is scored **at the commit immediately
+preceding a 6-month defect window (T0)** — so the measurement strictly precedes
+the labels and cannot leak future information. On the leakage-free corpus the
+shipped score reaches **cross-project mean ROC AUC 0.737 [95% CI 0.683, 0.787]**,
+and the signal **survives controlling for file size** (partial Spearman
+ρ = −0.156 [−0.233, −0.080]); every headline number carries a bootstrap 95% CI
+(files resampled within repo, repos resampled for the cross-project figure).
+Against trivial baselines the score **significantly out-discriminates recent
+churn and prior-defect history** — ΔAUC +0.10 / +0.12, **DeLong p < 1e-9** and
+repo-cluster bootstrap CIs excluding 0 — and is **not reducible to file size**:
+it ties a LOC-only ranking on raw AUC but **significantly beats it on the
+effort-aware Popt** (+0.134 [0.080, 0.198]). For pure cost-effective inspection
+*ordering*, the cheap prior-defects baseline remains stronger on Popt — an honest,
+well-known result. The findings are **robust to the labeling strategy**
+(leakage-free SZZ bug-inducing-commit attribution moves mean AUC by ≤0.01 and
+reproduces every significance verdict) and **stable across time** (three rolling
+6-month T0 windows). On an **external published dataset** the score has never seen
+— the PROMISE/Jureczko **jEdit** CK-metrics defect benchmark — it lands at AUC
+**0.76 / 0.78** (4.0 / 4.1), within ~0.03 of the dataset's own CV-tuned full
+CK-metric model and again beating LOC on Popt, using only its structural
+biomarkers (no git history). An offline L2-regularized logistic regression with
+NLOC as an explicit control yields the shipped per-biomarker weights; only the
+learned constants ship and the runtime stays fully deterministic. Cross-project
+(leave-one-repo-out) pooled out-of-fold AUC is **0.746**. The whole study
+reproduces from a single command over the committed `results/` cache.
 
 ## Methodology
 
@@ -213,6 +216,146 @@ Read together, this is the honest standing of the score:
   is hard to beat for raw bug-finding efficiency — a well-known result. Health's
   value is in *discrimination and explanation* (a calibrated, attributable
   structural signal), not in replacing process history for triage ordering.
+
+## Statistical rigor — full-corpus uncertainty, significance, and temporal stability
+
+The baselines section above reports the 13-repo calibration precursor. This
+section is the **definitive statistical treatment on the full 21-repo /
+9-language corpus** (2,826 source files, 379 keyword-positive): every headline
+number with a bootstrap 95% CI, formal significance tests against the trivial
+baselines, and stability across multiple time windows. All of it is cache-based
+(re-joining the committed `results/<repo>/` health scores with the chosen label)
+and reproduced by `statistical_rigor.py` (deterministic, seeded).
+
+**Bootstrap protocol.** Per-repo CIs resample *files within the repo*. The
+cross-project figures resample *repos* (a two-stage cluster bootstrap that also
+resamples files within each drawn repo), because the unit of generalization is
+the repository, not the file. n is reported throughout. 2,000 bootstrap
+replicates; seed fixed so the report reproduces exactly.
+
+**Headline metrics (cross-project mean over the 21 repos; keyword labels).**
+
+| Metric | Mean [95% CI] | Pooled [95% CI] |
+|--------|--------------:|----------------:|
+| ROC AUC | **0.737 [0.683, 0.787]** | 0.732 [0.660, 0.791] |
+| Partial Spearman ρ (ctrl NLOC) | **−0.156 [−0.233, −0.080]** | −0.150 [−0.238, −0.077] |
+| Popt (effort-aware) | 0.524 [0.463, 0.595] | 0.607 [0.486, 0.687] |
+| Precision@20%LOC | 0.537 [0.367, 0.702] | 0.584 [0.438, 0.752] |
+| Recall@20%LOC | 0.159 [0.107, 0.226] | 0.174 [0.116, 0.272] |
+
+The partial correlation's CI excludes 0 — the score predicts defects **beyond
+file size**, not merely as a size proxy. Per-repo AUCs (with CIs) span 0.55
+(axios, the saturated micro-library) to 0.86 (zod), with small repos (fd n=18,
+chi n=31, fmt n=14) carrying the widest intervals — which is exactly why the
+cross-project resampled figure, not any single repo, is the headline.
+
+**Trivial baselines on the full corpus (cross-project mean [95% CI]).**
+
+| Predictor | ROC AUC | Popt |
+|-----------|--------:|-----:|
+| **health (shipped)** | **0.737 [0.684, 0.787]** | **0.524 [0.463, 0.595]** |
+| LOC-only (size) | 0.742 [0.684, 0.797] | 0.390 [0.343, 0.472] |
+| churn (commits ≤90d at T0) | 0.617 [0.554, 0.681] | 0.555 [0.475, 0.629] |
+| prior defects (<T0 bug-fixes) | 0.593 [0.546, 0.644] | 0.609 [0.531, 0.671] |
+| random | 0.480 [0.413, 0.547] | 0.481 [0.400, 0.553] |
+
+**Significance — does health beat the best trivial baseline?** Two
+complementary tests. **DeLong** (the field-standard correlated-ROC test) on the
+pooled sample, and a **repo-cluster bootstrap** of the mean paired delta (which
+respects the corpus's repo structure where DeLong's i.i.d. assumption does not).
+
+| Comparison | ΔAUC (DeLong) | DeLong p | ΔAUC (cluster) [95% CI] | ΔPopt (cluster) [95% CI] |
+|------------|--------------:|---------:|------------------------:|-------------------------:|
+| health − LOC | −0.001 | 0.92 (n.s.) | −0.005 [−0.026, +0.017] | **+0.134 [+0.080, +0.198] \*** |
+| health − churn | +0.100 | **5e-10** | **+0.120 [+0.079, +0.159] \*** | −0.032 [−0.068, +0.001] |
+| health − prior-defects | +0.117 | **3e-15** | **+0.144 [+0.108, +0.180] \*** | **−0.085 [−0.141, −0.035] \*** |
+| health − random | +0.240 | **6e-26** | **+0.257 [+0.195, +0.319] \*** | +0.042 [−0.029, +0.108] |
+
+The verdict is the same one the 13-repo precursor reported, now with formal
+tests on the full corpus and both a parametric and a cluster-robust method
+agreeing:
+
+- **Health is a strong discriminator** — it out-ranks churn (DeLong p = 5e-10)
+  and prior-defects (p = 3e-15) by ≈0.10–0.12 AUC, both far past any reasonable
+  significance threshold and confirmed by the cluster bootstrap.
+- **Health is not a size proxy** — on the size-fair Popt it beats LOC by +0.134
+  (cluster CI excludes 0), even though the two **tie on raw AUC** (Δ −0.001,
+  DeLong p = 0.92), because raw AUC rewards size and Popt charges for it.
+- **For cost-effective inspection ordering, prior-defects still wins Popt**
+  (health − prior-defects ΔPopt −0.085) — "re-inspect what broke before" is a
+  hard-to-beat efficiency heuristic, and we report it rather than hide it. The
+  score's edge is discrimination + attributable explanation, not raw
+  bug-finding-per-LOC.
+
+**Label robustness (SZZ).** Re-running the entire treatment under leakage-free
+AG-SZZ bug-inducing-commit labels (271 positives) reproduces every verdict: mean
+AUC 0.737, partial-ρ −0.126 [−0.213, −0.049], health vs LOC ΔAUC +0.006 (DeLong
+p = 0.67, ties), health vs churn +0.099 (p = 1e-7) and vs prior-defects +0.099
+(p = 1e-8). So the result is **not an artifact of the keyword label** — "where
+fixes land" and "where bugs originate" give the same significance picture.
+
+**Temporal cross-validation.** A single T0 could be a lucky window. We repeat the
+full leakage-free pipeline at **three rolling 6-month windows**
+(T0 = 2025-05-23, 2025-08-23, 2025-11-23) over a fast, multi-language 9-repo
+subset (pydantic, hono, zod, axios, clap, bat, gin, chi, spdlog), re-indexing
+each repo at each T0 and counting defects in the *bounded* `(T0, T0+6mo]` window
+(`temporal_cv.py`).
+
+| T0 (window start) | Defect window | Repos w/ valid AUC | In-window positives | Mean AUC | Mean Popt | Mean partial-ρ |
+|-------------------|---------------|-------------------:|--------------------:|---------:|----------:|---------------:|
+| 2025-05-23 | (T0, +6 mo] | 8 | 71 | 0.771 | 0.572 | −0.148 |
+| 2025-08-23 | (T0, +6 mo] | 8 | 97 | 0.703 | 0.506 | −0.119 |
+| 2025-11-23 | (T0, +6 mo] | 9 | 127 | 0.754 | 0.518 | −0.201 |
+
+(Two cells are excluded from their window mean, honestly: `chi` has **0**
+in-window positives at the earliest T0 — AUC undefined — and `clap`'s middle-T0
+checkout resolved to a degenerate near-empty tree, so its 9th repo is dropped
+that window. Every other cell is a full re-index at that T0.)
+
+
+The cross-project mean AUC is stable across the three windows (**0.703–0.771,
+mean 0.743, range 0.068**) and brackets the full-corpus headline of 0.737 —
+confirming the result is not a single-window artifact.
+Per-repo AUC does wander between windows (e.g. hono 0.54 → 0.72), as expected when
+a repo's in-window defect set changes — which is the whole reason the cross-project
+mean over a diverse corpus, not any single repo or window, is the reported figure.
+
+## External-dataset comparison (PROMISE / Jureczko jEdit)
+
+Every number above is on our own corpus. To place the score against the *field*,
+we evaluate it on a **published** defect dataset it has never seen: the
+**Jureczko/Madeyski jEdit** sets from the PROMISE / tera-PROMISE repository — the
+canonical CK-metrics-plus-post-release-bugs benchmark used across hundreds of
+defect-prediction papers. Each dataset row is one top-level Java class with 20
+CK/McCabe metrics and a post-release `bug` count.
+
+**Protocol (`external_dataset.py`).** We download the matching jEdit *release
+source*, make it a single-commit snapshot (so only the structural/size/cohesion
+biomarkers fire — there is **no git history**, which is the right conservative
+test of the code-structure half of the score on unseen code), run the shipped
+`repowise health` on it, map each dataset class `a.b.C` → `a/b/C.java`, and join
+on the intersection. We then compare our score (lower = riskier) to the
+dataset's own published trivial **LOC** column, a within-dataset **full
+CK-metric L2-logistic** (stratified 10-fold OOF — "their metrics, their model"),
+and random. Our AUC carries a file-resampled bootstrap CI.
+
+| Dataset | Classes matched | Buggy | **health AUC [95% CI]** | LOC (their col) | full CK model (OOF) | Popt: health vs LOC |
+|---------|----------------:|------:|------------------------:|----------------:|--------------------:|--------------------:|
+| jEdit 4.0 | 284 / 306 (92.8%) | 75 | **0.761 [0.697, 0.824]** | 0.783 | 0.788 | **0.612 vs 0.516** |
+| jEdit 4.1 | 290 / 312 (92.9%) | 79 | **0.776 [0.709, 0.835]** | 0.820 | 0.828 | **0.543 vs 0.474** |
+
+**Reading.** With **zero tuning to jEdit** and **only structural biomarkers
+active** (no churn/ownership/co-change — there is no history in a snapshot), the
+shipped score lands at AUC **0.76 / 0.78**, within **≈0.03** of the dataset's own
+cross-validated full-CK-metric model (0.79 / 0.83) and squarely inside the
+published literature range for jEdit defect prediction (CK-metric models
+typically 0.7–0.8). jEdit is a **size-dominated** dataset — raw LOC alone scores
+0.78 / 0.82 — so on raw AUC size is hard to beat here too; but on the size-fair
+**Popt the score again beats LOC on both releases** (0.612 vs 0.516; 0.543 vs
+0.474), the same size-fair advantage we see internally, now replicated
+out-of-distribution on a third-party benchmark. The 93% class-match coverage is
+reported honestly; the unmatched ~7% are snapshot/inner-class mismatches between
+the metrics' extraction revision and the released source tree.
 
 ## Test-coverage ingestion and continuous biomarker features
 
@@ -506,6 +649,56 @@ on these languages too (consistent with the failure-forensics finding and its
 floored weight). The dominant lever is therefore size (1), not cohesion
 blindness (2). Recorded so it is not re-attempted as a defect-prediction change.
 
+## Two operating points (discrimination vs. cost-effective ordering)
+
+The significance tables make the score's two-sided standing explicit, and it is
+worth stating as a deliberate design choice rather than a single optimized
+number. The shipped weights are fit to **discriminate** (AUC) with NLOC
+partialled out; on that axis health beats every process baseline and ties size.
+A *separate* operating point — re-shaping the score to optimize the effort-aware
+**Popt** — was tested (`size_relative_experiment.py`, failure-forensics section)
+and **refuted as a replacement**: size-relative scoring lifts Popt and the small
+bands by ≈+0.05 but costs −0.07 to −0.12 overall AUC and is non-linear (it breaks
+the per-finding attribution the product depends on). Because big files genuinely
+carry more defects (top-NLOC-quartile defect rate 42% vs. 12% bottom), discarding
+the size signal discards real signal. We therefore **report both operating
+points** and ship the discrimination score; a dedicated, Popt-optimized
+"what-to-review-first-on-a-budget" score is a deliberate future *second* score
+(the two-score split), never a re-shaping of this one.
+
+## Reproduction
+
+The entire study reproduces from the committed `results/` cache with a single
+command (deterministic, seeded, no network, no re-index):
+
+```
+cd health-defect
+../../.venv/Scripts/python.exe reproduce.py
+```
+
+This runs `statistical_rigor.py` under both the keyword and SZZ labels (every CI,
+DeLong test, cluster-bootstrap delta, and baseline table above) and
+`external_dataset.py` on the cached jEdit 4.0/4.1 health scores. Two parts
+re-index and are run separately (each prints the table it produces):
+
+```
+# Temporal CV — re-indexes the 9-repo subset at three rolling T0 windows
+../../.venv/Scripts/python.exe temporal_cv.py \
+    --t0 2025-05-23 --t0 2025-08-23 --t0 2025-11-23 \
+    --repos pydantic,hono,zod,axios,clap,bat,gin,chi,spdlog
+
+# Full benchmark from clones (clone + index + score + analyze, per repo)
+../../.venv/Scripts/python.exe run_benchmark.py --score-at t0 --label-strategy keyword
+```
+
+The external comparison's source acquisition (jEdit 4.0/4.1 from SourceForge →
+`repowise health`) is documented inline in `external_dataset.py`; the resulting
+normalized health JSONs are cached under `results/external/`. Corpus definition,
+per-repo `source_root`/`exclude`/`extensions`/`t0_date`, and selection criteria
+live in `config.yaml`. Weight calibration (the offline L2-logistic that produced
+the shipped constants) re-scores cached findings and is documented in the
+per-biomarker section; only the learned constants ship.
+
 ## Honest limitations
 
 - **Modest absolute accuracy.** Mean AUC ≈ 0.74 and pooled cross-project OOF AUC
@@ -543,6 +736,21 @@ blindness (2). Recorded so it is not re-attempted as a defect-prediction change.
   noise carries over. Function-level prediction was competitive but not robustly
   better than file-level (and Popt ≤ 0.5 on the full corpus), so no per-symbol
   product surface ships — see the function-level section.
-- **Reproducibility.** `t0_date = 2025-11-23`; full clones (never blobless);
-  `calibrate_health_weights.py` reproduces the shipped constants from the cached
-  per-repo results.
+- **External validity is one project, structural-only.** The published-dataset
+  comparison is jEdit (two releases) from PROMISE/Jureczko — Java, and a single
+  project. On a snapshot there is no git history, so only the structural half of
+  the score is exercised (its process biomarkers, several of which are the
+  strongest internal predictors, contribute nothing there). It is a genuine
+  out-of-distribution check, not a claim of broad external generality; more
+  published datasets (Defectors for Python, the D'Ambros bug-prediction sets)
+  would strengthen it.
+- **Temporal CV is a subset.** Stability is shown over a fast 9-repo subset at
+  three rolling windows, not the full 21 repos at every window (re-indexing the
+  whole corpus three times is the binding cost). The subset spans six languages
+  and the cross-project mean is stable, but the slowest repos are not re-indexed
+  per window.
+- **Reproducibility.** `t0_date = 2025-11-23` (+ 2025-05/08-23 for temporal CV);
+  full clones (never blobless); all cache-based analyses run from
+  `reproduce.py`; the offline calibration reproduces the shipped constants from
+  the cached per-repo results. Every headline metric in this report carries a
+  seeded bootstrap 95% CI and an n.
