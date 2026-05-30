@@ -1,0 +1,81 @@
+{
+  "label": "keyword",
+  "n_boot": 2000,
+  "seed": 12345,
+  "repos": [
+    "pydantic",
+    "rich",
+    "litestar",
+    "hono",
+    "zod",
+    "axios",
+    "fastify",
+    "clap",
+    "fd",
+    "bat",
+    "gin",
+    "chi",
+    "fiber",
+    "mockito",
+    "caffeine",
+    "detekt",
+    "coroutines",
+    "spdlog",
+    "fmt",
+    "npgsql",
+    "quartznet"
+  ],
+  "n_paired_files": 2770,
+  "paired_deltas": {
+    "popt": {
+      "delta_point": 0.14442949148815443,
+      "lo": 0.0281448232633663,
+      "hi": 0.23551570721625942,
+      "n_boot": 2000,
+      "p_two_sided": 0.003,
+      "p_boot_le0": 0.0015,
+      "p_boot_ge0": 0.9985,
+      "excludes_zero": true
+    },
+    "recall_at_20pct_loc": {
+      "delta_point": 0.09840425531914895,
+      "lo": 0.029645621210697838,
+      "hi": 0.20926557048041763,
+      "n_boot": 2000,
+      "p_two_sided": 0.003,
+      "p_boot_le0": 0.0015,
+      "p_boot_ge0": 0.9995,
+      "excludes_zero": true
+    },
+    "precision_at_20pct_loc": {
+      "delta_point": -0.05600649350649345,
+      "lo": -0.1755223871175442,
+      "hi": 0.12223054515189344,
+      "n_boot": 2000,
+      "p_two_sided": 0.642,
+      "p_boot_le0": 0.6805,
+      "p_boot_ge0": 0.321,
+      "excludes_zero": false
+    },
+    "defects_per_kloc_ratio": {
+      "delta_point": 1.6212368877391856,
+      "lo": 0.3113073012561526,
+      "hi": 3.0405527027971506,
+      "n_boot": 2000,
+      "p_two_sided": 0.003,
+      "p_boot_le0": 0.0015,
+      "p_boot_ge0": 0.9985,
+      "excludes_zero": true
+    },
+    "mean_defects_per_file_ratio": {
+      "delta_point": 2.7575178550637762,
+      "lo": -8.915302261292183,
+      "hi": 12.25893012631676,
+      "n_boot": 2000,
+      "p_two_sided": 0.646,
+      "p_boot_le0": 0.323,
+      "p_boot_ge0": 0.677,
+      "excludes_zero": false
+    }
+  }
+}

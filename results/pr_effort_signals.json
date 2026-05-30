@@ -1,0 +1,345 @@
+{
+  "label": "keyword",
+  "n_boot": 2000,
+  "seed": 12345,
+  "repos": [
+    "pydantic",
+    "litestar",
+    "hono",
+    "zod",
+    "axios",
+    "fastify",
+    "bat",
+    "gin",
+    "chi",
+    "fiber",
+    "mockito",
+    "detekt",
+    "coroutines",
+    "spdlog",
+    "fmt",
+    "npgsql",
+    "quartznet"
+  ],
+  "per_repo": {
+    "pydantic": {
+      "available": true,
+      "n_fixes": 39,
+      "n_fixes_linked_to_pr": 39,
+      "n_files": 17,
+      "n_files_joined": 17
+    },
+    "rich": {
+      "available": true,
+      "n_fixes": 16,
+      "n_fixes_linked_to_pr": 0,
+      "n_files": 0,
+      "n_files_joined": 0
+    },
+    "litestar": {
+      "available": true,
+      "n_fixes": 42,
+      "n_fixes_linked_to_pr": 35,
+      "n_files": 28,
+      "n_files_joined": 28
+    },
+    "hono": {
+      "available": true,
+      "n_fixes": 57,
+      "n_fixes_linked_to_pr": 57,
+      "n_files": 77,
+      "n_files_joined": 20
+    },
+    "zod": {
+      "available": true,
+      "n_fixes": 54,
+      "n_fixes_linked_to_pr": 45,
+      "n_files": 47,
+      "n_files_joined": 9
+    },
+    "axios": {
+      "available": true,
+      "n_fixes": 104,
+      "n_fixes_linked_to_pr": 97,
+      "n_files": 51,
+      "n_files_joined": 33
+    },
+    "fastify": {
+      "available": true,
+      "n_fixes": 25,
+      "n_fixes_linked_to_pr": 24,
+      "n_files": 13,
+      "n_files_joined": 8
+    },
+    "clap": {
+      "available": true,
+      "n_fixes": 26,
+      "n_fixes_linked_to_pr": 0,
+      "n_files": 0,
+      "n_files_joined": 0
+    },
+    "fd": {
+      "available": true,
+      "n_fixes": 12,
+      "n_fixes_linked_to_pr": 0,
+      "n_files": 0,
+      "n_files_joined": 0
+    },
+    "bat": {
+      "available": true,
+      "n_fixes": 40,
+      "n_fixes_linked_to_pr": 2,
+      "n_files": 2,
+      "n_files_joined": 2
+    },
+    "gin": {
+      "available": true,
+      "n_fixes": 8,
+      "n_fixes_linked_to_pr": 8,
+      "n_files": 16,
+      "n_files_joined": 8
+    },
+    "chi": {
+      "available": true,
+      "n_fixes": 3,
+      "n_fixes_linked_to_pr": 3,
+      "n_files": 6,
+      "n_files_joined": 3
+    },
+    "fiber": {
+      "available": true,
+      "n_fixes": 251,
+      "n_fixes_linked_to_pr": 16,
+      "n_files": 32,
+      "n_files_joined": 15
+    },
+    "mockito": {
+      "available": true,
+      "n_fixes": 6,
+      "n_fixes_linked_to_pr": 5,
+      "n_files": 8,
+      "n_files_joined": 6
+    },
+    "caffeine": {
+      "available": true,
+      "n_fixes": 39,
+      "n_fixes_linked_to_pr": 2,
+      "n_files": 0,
+      "n_files_joined": 0
+    },
+    "detekt": {
+      "available": true,
+      "n_fixes": 21,
+      "n_fixes_linked_to_pr": 21,
+      "n_files": 43,
+      "n_files_joined": 27
+    },
+    "coroutines": {
+      "available": true,
+      "n_fixes": 13,
+      "n_fixes_linked_to_pr": 12,
+      "n_files": 29,
+      "n_files_joined": 19
+    },
+    "spdlog": {
+      "available": true,
+      "n_fixes": 15,
+      "n_fixes_linked_to_pr": 12,
+      "n_files": 22,
+      "n_files_joined": 12
+    },
+    "fmt": {
+      "available": true,
+      "n_fixes": 19,
+      "n_fixes_linked_to_pr": 11,
+      "n_files": 7,
+      "n_files_joined": 4
+    },
+    "npgsql": {
+      "available": true,
+      "n_fixes": 22,
+      "n_fixes_linked_to_pr": 20,
+      "n_files": 17,
+      "n_files_joined": 16
+    },
+    "quartznet": {
+      "available": true,
+      "n_fixes": 56,
+      "n_fixes_linked_to_pr": 52,
+      "n_files": 69,
+      "n_files_joined": 44
+    }
+  },
+  "n_files": 271,
+  "signals": {
+    "commit_span_h": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 5.1963888888888885
+        },
+        "warning": {
+          "files": 72,
+          "v": 7.051759259259259
+        },
+        "alert": {
+          "files": 51,
+          "v": 17.099166666666665
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": 3.2905864115037153,
+        "lo": 0.04563565888020785,
+        "hi": 132.8680735935819,
+        "n_boot": 1949
+      },
+      "spearman_health_vs_signal": {
+        "point": 0.035162454919710893,
+        "lo": -0.2450117718019786,
+        "hi": 0.2669399604585281,
+        "n_boot": 2000
+      }
+    },
+    "n_commits": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 2.0
+        },
+        "warning": {
+          "files": 72,
+          "v": 2.5
+        },
+        "alert": {
+          "files": 51,
+          "v": 2.0
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": 1.0,
+        "lo": 0.4635416666666667,
+        "hi": 1.75,
+        "n_boot": 2000
+      },
+      "spearman_health_vs_signal": {
+        "point": 0.06903632924598772,
+        "lo": -0.2329952541033161,
+        "hi": 0.3226563599535226,
+        "n_boot": 2000
+      }
+    },
+    "review_rounds": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 1.0
+        },
+        "warning": {
+          "files": 72,
+          "v": 1.2916666666666665
+        },
+        "alert": {
+          "files": 51,
+          "v": 1.0
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": 1.0,
+        "lo": 0.4299539170506912,
+        "hi": 2.8333333333333335,
+        "n_boot": 1997
+      },
+      "spearman_health_vs_signal": {
+        "point": 0.02014530789566968,
+        "lo": -0.2725149230420867,
+        "hi": 0.3020607637259125,
+        "n_boot": 2000
+      }
+    },
+    "changes_requested": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 0.0
+        },
+        "warning": {
+          "files": 72,
+          "v": 0.0
+        },
+        "alert": {
+          "files": 51,
+          "v": 0.0
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n_boot": 0
+      },
+      "spearman_health_vs_signal": {
+        "point": -0.008394490844890457,
+        "lo": -0.15770425380435288,
+        "hi": 0.15506757809114124,
+        "n_boot": 2000
+      }
+    },
+    "commits_after_first_review": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 0.0
+        },
+        "warning": {
+          "files": 72,
+          "v": 0.5833333333333333
+        },
+        "alert": {
+          "files": 51,
+          "v": 0.3333333333333333
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": null,
+        "lo": 0.0,
+        "hi": 3.0,
+        "n_boot": 751
+      },
+      "spearman_health_vs_signal": {
+        "point": 0.034339993220892144,
+        "lo": -0.2914800070205455,
+        "hi": 0.324383447386971,
+        "n_boot": 2000
+      }
+    },
+    "review_comment_density": {
+      "buckets_median": {
+        "healthy": {
+          "files": 148,
+          "v": 0.0
+        },
+        "warning": {
+          "files": 72,
+          "v": 0.011360751459761361
+        },
+        "alert": {
+          "files": 51,
+          "v": 0.001278363694471077
+        }
+      },
+      "alert_healthy_ratio_median": {
+        "point": null,
+        "lo": 0.0,
+        "hi": 44.147973645228085,
+        "n_boot": 758
+      },
+      "spearman_health_vs_signal": {
+        "point": -0.10333348819374757,
+        "lo": -0.30737875999044345,
+        "hi": 0.06668369100505392,
+        "n_boot": 2000
+      }
+    }
+  },
+  "note": "Spearman expected NEGATIVE if unhealthy (low score) files need more effort. Queue-independent: commit_span/iterations measure change difficulty, not maintainer latency."
+}
