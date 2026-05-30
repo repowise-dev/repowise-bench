@@ -1,0 +1,754 @@
+{
+  "descriptive": {
+    "n_files": 424,
+    "n_with_defects": 8,
+    "n_zero_defects": 416,
+    "pct_zero_defects": 98.11320754716981,
+    "health_score": {
+      "mean": 9.177735849056605,
+      "median": 9.65,
+      "min": 1.0,
+      "max": 10.0,
+      "std": 1.509142999187903
+    },
+    "defect_count": {
+      "mean": 0.02830188679245283,
+      "median": 0.0,
+      "min": 0,
+      "max": 3,
+      "total": 12
+    }
+  },
+  "spearman": {
+    "rho": -0.15613069717178904,
+    "p_value": 0.001258681079729675,
+    "n": 424
+  },
+  "partial_spearman_nloc": -0.04392391224210334,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 378,
+      "yellow": 33,
+      "red": 13
+    },
+    "group_means": {
+      "green": 0.007936507936507936,
+      "yellow": 0.09090909090909091,
+      "red": 0.46153846153846156
+    },
+    "h_stat": 61.29733942770267,
+    "p_value": 4.8916104667253607e-14
+  },
+  "density_ratio": {
+    "raw_ratio": 58.15384615384616,
+    "nloc_normalized_ratio": 12.820333806043415,
+    "low_group": {
+      "count": 13,
+      "mean_defects": 0.46153846153846156,
+      "total_nloc": 9167,
+      "defects_per_kloc": 0.6545216537580452
+    },
+    "high_group": {
+      "count": 378,
+      "mean_defects": 0.007936507936507936,
+      "total_nloc": 58762,
+      "defects_per_kloc": 0.05105340185834383
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 13,
+      "total_defects": 6,
+      "mean_defects": 0.46153846153846156,
+      "defects_per_kloc": 0.6545216537580452
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 4,
+      "total_defects": 3,
+      "mean_defects": 0.75,
+      "defects_per_kloc": 0.9865175928970733
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 29,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 378,
+      "total_defects": 3,
+      "mean_defects": 0.007936507936507936,
+      "defects_per_kloc": 0.05105340185834383
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 5,
+    "precision": 0.25,
+    "files": [
+      {
+        "file_path": "src/Quartz/CronExpression.cs",
+        "score": 1.0,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/StdSchedulerFactory.cs",
+        "score": 1.0,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Core/QuartzScheduler.cs",
+        "score": 1.15,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/Triggers/DailyTimeIntervalTriggerImpl.cs",
+        "score": 2.15,
+        "defects": 1
+      },
+      {
+        "file_path": "src/Quartz/Impl/Triggers/SimpleTriggerImpl.cs",
+        "score": 2.15,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Simpl/RAMJobStore.cs",
+        "score": 2.35,
+        "defects": 2
+      },
+      {
+        "file_path": "src/Quartz/Xml/XMLSchedulingDataProcessor.cs",
+        "score": 2.35,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.cs",
+        "score": 2.48,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Core/QuartzSchedulerThread.cs",
+        "score": 2.5,
+        "defects": 1
+      },
+      {
+        "file_path": "src/Quartz.Benchmark/SimpleTriggerImplBenchmark.cs",
+        "score": 2.63,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Core/JobRunShell.cs",
+        "score": 3.13,
+        "defects": 2
+      },
+      {
+        "file_path": "src/Quartz/Impl/Calendar/DailyCalendar.cs",
+        "score": 3.41,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.Triggers.cs",
+        "score": 3.45,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Util/ObjectUtils.cs",
+        "score": 4.06,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/AdoJobStore/JobStoreSupport.cs",
+        "score": 4.88,
+        "defects": 3
+      },
+      {
+        "file_path": "src/Quartz/Impl/AdoJobStore/StdRowLockSemaphore.cs",
+        "score": 5.63,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/Triggers/CalendarIntervalTriggerImpl.cs",
+        "score": 5.63,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Collections/OrderedDictionary.cs",
+        "score": 6.34,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/DailyTimeIntervalScheduleBuilder.cs",
+        "score": 6.41,
+        "defects": 0
+      },
+      {
+        "file_path": "src/Quartz/Impl/Triggers/CronTriggerImpl.cs",
+        "score": 6.43,
+        "defects": 0
+      }
+    ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 16565.0,
+    "loc_inspected": 16013.0,
+    "files_inspected": 41,
+    "defective_files_found": 5,
+    "precision": 0.12195121951219512,
+    "recall_defects": 0.75,
+    "recall_files": 0.625
+  },
+  "popt": {
+    "popt": 0.771036055130768,
+    "area_model": 0.7566792433846471,
+    "area_optimal": 0.9735149411409598,
+    "area_worst": 0.026485058859040136
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "prior_defect",
+      "files_with": 4,
+      "files_without": 420,
+      "mean_defects_with": 0.5,
+      "mean_defects_without": 0.023809523809523808,
+      "u_stat": 1245.0,
+      "p_value": 9.860643848026354e-13,
+      "cliffs_delta": 0.48214285714285715
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 6,
+      "files_without": 418,
+      "mean_defects_with": 0.8333333333333334,
+      "mean_defects_without": 0.01674641148325359,
+      "u_stat": 1659.5,
+      "p_value": 4.056915654223281e-09,
+      "cliffs_delta": 0.3233652312599681
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 3,
+      "files_without": 421,
+      "mean_defects_with": 1.0,
+      "mean_defects_without": 0.021377672209026127,
+      "u_stat": 835.0,
+      "p_value": 2.3234628080168358e-05,
+      "cliffs_delta": 0.3222486144101346
+    },
+    {
+      "biomarker": "god_class",
+      "files_with": 10,
+      "files_without": 414,
+      "mean_defects_with": 0.6,
+      "mean_defects_without": 0.014492753623188406,
+      "u_stat": 2670.0,
+      "p_value": 1.534593605271505e-11,
+      "cliffs_delta": 0.2898550724637681
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 28,
+      "files_without": 396,
+      "mean_defects_with": 0.32142857142857145,
+      "mean_defects_without": 0.007575757575757576,
+      "u_stat": 6496.5,
+      "p_value": 5.736881537868168e-11,
+      "cliffs_delta": 0.1718073593073593
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 30,
+      "files_without": 394,
+      "mean_defects_with": 0.3,
+      "mean_defects_without": 0.007614213197969543,
+      "u_stat": 6854.5,
+      "p_value": 2.9914618773728154e-10,
+      "cliffs_delta": 0.15981387478849407
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 31,
+      "files_without": 393,
+      "mean_defects_with": 0.22580645161290322,
+      "mean_defects_without": 0.01272264631043257,
+      "u_stat": 6818.0,
+      "p_value": 1.3677718794021749e-06,
+      "cliffs_delta": 0.1192645489616679
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 44,
+      "files_without": 380,
+      "mean_defects_with": 0.20454545454545456,
+      "mean_defects_without": 0.007894736842105263,
+      "u_stat": 9248.5,
+      "p_value": 4.87843543575324e-07,
+      "cliffs_delta": 0.1062799043062201
+    },
+    {
+      "biomarker": "low_cohesion",
+      "files_with": 56,
+      "files_without": 368,
+      "mean_defects_with": 0.10714285714285714,
+      "mean_defects_without": 0.016304347826086956,
+      "u_stat": 10929.0,
+      "p_value": 0.0009619746185054578,
+      "cliffs_delta": 0.06065605590062112
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 14,
+      "files_without": 410,
+      "mean_defects_with": 0.21428571428571427,
+      "mean_defects_without": 0.02195121951219512,
+      "u_stat": 3029.5,
+      "p_value": 0.06728252743798908,
+      "cliffs_delta": 0.055574912891986065
+    },
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 61,
+      "files_without": 363,
+      "mean_defects_with": 0.09836065573770492,
+      "mean_defects_without": 0.01652892561983471,
+      "u_stat": 11676.5,
+      "p_value": 0.0018870069345260545,
+      "cliffs_delta": 0.0546448087431694
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 254,
+      "files_without": 170,
+      "mean_defects_with": 0.031496062992125984,
+      "mean_defects_without": 0.023529411764705882,
+      "u_stat": 21635.0,
+      "p_value": 0.43932175780930705,
+      "cliffs_delta": 0.0020842982862436313
+    },
+    {
+      "biomarker": "brain_method",
+      "files_with": 2,
+      "files_without": 422,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02843601895734597,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 424,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02830188679245283,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 4,
+      "files_without": 420,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.02857142857142857,
+      "u_stat": 824.0,
+      "p_value": 0.6129530844038803,
+      "cliffs_delta": -0.01904761904761905
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.8194110576923077,
+    "fpr": [
+      0.0,
+      0.004807692307692308,
+      0.007211538461538462,
+      0.009615384615384616,
+      0.01201923076923077,
+      0.014423076923076924,
+      0.014423076923076924,
+      0.016826923076923076,
+      0.016826923076923076,
+      0.019230769230769232,
+      0.021634615384615384,
+      0.02403846153846154,
+      0.02403846153846154,
+      0.028846153846153848,
+      0.03125,
+      0.03365384615384615,
+      0.036057692307692304,
+      0.038461538461538464,
+      0.040865384615384616,
+      0.04326923076923077,
+      0.04567307692307692,
+      0.04807692307692308,
+      0.05048076923076923,
+      0.055288461538461536,
+      0.057692307692307696,
+      0.06009615384615385,
+      0.0625,
+      0.06490384615384616,
+      0.07451923076923077,
+      0.07692307692307693,
+      0.07932692307692307,
+      0.08173076923076923,
+      0.08413461538461539,
+      0.08653846153846154,
+      0.09134615384615384,
+      0.0985576923076923,
+      0.10096153846153846,
+      0.11778846153846154,
+      0.1201923076923077,
+      0.125,
+      0.12740384615384615,
+      0.12980769230769232,
+      0.1346153846153846,
+      0.13701923076923078,
+      0.15144230769230768,
+      0.15865384615384615,
+      0.16346153846153846,
+      0.17548076923076922,
+      0.1778846153846154,
+      0.18028846153846154,
+      0.18509615384615385,
+      0.1971153846153846,
+      0.19951923076923078,
+      0.20192307692307693,
+      0.20432692307692307,
+      0.20673076923076922,
+      0.21394230769230768,
+      0.21875,
+      0.22596153846153846,
+      0.2283653846153846,
+      0.23557692307692307,
+      0.23557692307692307,
+      0.24278846153846154,
+      0.25,
+      0.2620192307692308,
+      0.27163461538461536,
+      0.2932692307692308,
+      0.3004807692307692,
+      0.30528846153846156,
+      0.6370192307692307,
+      0.6899038461538461,
+      1.0
+    ],
+    "tpr": [
+      0.0,
+      0.0,
+      0.0,
+      0.125,
+      0.25,
+      0.25,
+      0.375,
+      0.375,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.625,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.75,
+      0.875,
+      1.0,
+      1.0
+    ],
+    "n_pos": 8,
+    "n_neg": 416
+  },
+  "label_strategy": "szz+issue",
+  "label_meta": {
+    "n_fixes": 56,
+    "szz_stats": {
+      "n_fixes": 56,
+      "n_fixes_attributed": 34,
+      "n_bug_inducing_commits_b": 90,
+      "n_bug_inducing_commits_ag": 74,
+      "n_defective_files_b": 34,
+      "n_defective_files_ag": 28
+    },
+    "issue": {
+      "available": true,
+      "n_fixes": 56,
+      "n_fixes_with_issue_ref": 52,
+      "n_confirmed": 18,
+      "n_bug_issues": 18,
+      "bug_label_substrings": [
+        "bug",
+        "defect",
+        "regression"
+      ]
+    }
+  },
+  "label_comparison": {
+    "keyword": {
+      "n_files": 424,
+      "n_positives": 44,
+      "auc": {
+        "point": 0.7506877990430623,
+        "lo": 0.6586584683267555,
+        "hi": 0.8370037345002319,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.6660672133535291,
+        "lo": 0.5058336499916178,
+        "hi": 0.7825897518106814,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz": {
+      "n_files": 424,
+      "n_positives": 26,
+      "auc": {
+        "point": 0.8169694626981059,
+        "lo": 0.7178187742573519,
+        "hi": 0.9051991347944836,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.7709857286981916,
+        "lo": 0.6221420621379826,
+        "hi": 0.8620305364664754,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz_b": {
+      "n_files": 424,
+      "n_positives": 31,
+      "auc": {
+        "point": 0.8068620208487236,
+        "lo": 0.7106191875667932,
+        "hi": 0.8932099964964328,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.7560160955076592,
+        "lo": 0.6154660940276179,
+        "hi": 0.8477661621424845,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "issue": {
+      "n_files": 424,
+      "n_positives": 22,
+      "auc": {
+        "point": 0.7261985526910899,
+        "lo": 0.5894149367256784,
+        "hi": 0.8540090119560755,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.6322696490565631,
+        "lo": 0.40227105959206105,
+        "hi": 0.8053988572237182,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz+issue": {
+      "n_files": 424,
+      "n_positives": 8,
+      "auc": {
+        "point": 0.8194110576923077,
+        "lo": 0.6426274470110243,
+        "hi": 0.9861893086217184,
+        "n": 424,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.771036055130768,
+        "lo": 0.51014138416513,
+        "hi": 0.9402256427075008,
+        "n": 424,
+        "n_boot": 999,
+        "ci": 0.95
+      }
+    }
+  },
+  "baselines": {
+    "health": {
+      "auc": 0.8194110576923077,
+      "popt": 0.771036055130768
+    },
+    "loc_only": {
+      "auc": 0.9182692307692308,
+      "popt": 0.4456867600953197
+    },
+    "churn_only": {
+      "auc": 0.4987980769230769,
+      "popt": 0.5459573568424219
+    },
+    "prior_defects": {
+      "auc": 0.6225961538461539,
+      "popt": 0.6064777482780932
+    },
+    "random": {
+      "auc": 0.547175480769232,
+      "popt": 0.5536779165644095
+    }
+  }
+}

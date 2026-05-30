@@ -1,0 +1,438 @@
+{
+  "descriptive": {
+    "n_files": 14,
+    "n_with_defects": 10,
+    "n_zero_defects": 4,
+    "pct_zero_defects": 28.57142857142857,
+    "health_score": {
+      "mean": 7.837142857142857,
+      "median": 9.65,
+      "min": 2.5,
+      "max": 10.0,
+      "std": 2.839760088922542
+    },
+    "defect_count": {
+      "mean": 1.2857142857142858,
+      "median": 1.0,
+      "min": 0,
+      "max": 3,
+      "total": 18
+    }
+  },
+  "spearman": {
+    "rho": -0.5601048085013565,
+    "p_value": 0.037242241710477325,
+    "n": 14
+  },
+  "partial_spearman_nloc": -0.21570642939127257,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 8,
+      "yellow": 4,
+      "red": 2
+    },
+    "group_means": {
+      "green": 0.75,
+      "yellow": 1.5,
+      "red": 3.0
+    },
+    "h_stat": 5.401190476190478,
+    "p_value": 0.06716552136173361
+  },
+  "density_ratio": {
+    "raw_ratio": 4.0,
+    "nloc_normalized_ratio": 0.2302106027596224,
+    "low_group": {
+      "count": 2,
+      "mean_defects": 3.0,
+      "total_nloc": 1377,
+      "defects_per_kloc": 4.357298474945535
+    },
+    "high_group": {
+      "count": 8,
+      "mean_defects": 0.75,
+      "total_nloc": 317,
+      "defects_per_kloc": 18.92744479495268
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 2,
+      "total_defects": 6,
+      "mean_defects": 3.0,
+      "defects_per_kloc": 4.357298474945535
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 1,
+      "total_defects": 2,
+      "mean_defects": 2.0,
+      "defects_per_kloc": 4.3763676148796495
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 3,
+      "total_defects": 4,
+      "mean_defects": 1.3333333333333333,
+      "defects_per_kloc": 3.6429872495446265
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 8,
+      "total_defects": 6,
+      "mean_defects": 0.75,
+      "defects_per_kloc": 18.92744479495268
+    }
+  ],
+  "precision_at_k": {
+    "k": 14,
+    "true_positives": 10,
+    "precision": 0.7142857142857143,
+    "files": [
+      {
+        "file_path": "src/requests/models.py",
+        "score": 2.5,
+        "defects": 3
+      },
+      {
+        "file_path": "src/requests/utils.py",
+        "score": 2.5,
+        "defects": 3
+      },
+      {
+        "file_path": "src/requests/adapters.py",
+        "score": 4.92,
+        "defects": 2
+      },
+      {
+        "file_path": "src/requests/sessions.py",
+        "score": 6.2,
+        "defects": 3
+      },
+      {
+        "file_path": "src/requests/cookies.py",
+        "score": 6.5,
+        "defects": 0
+      },
+      {
+        "file_path": "src/requests/auth.py",
+        "score": 7.8,
+        "defects": 1
+      },
+      {
+        "file_path": "src/requests/structures.py",
+        "score": 9.3,
+        "defects": 0
+      },
+      {
+        "file_path": "src/requests/__init__.py",
+        "score": 10.0,
+        "defects": 1
+      },
+      {
+        "file_path": "src/requests/_internal_utils.py",
+        "score": 10.0,
+        "defects": 2
+      },
+      {
+        "file_path": "src/requests/api.py",
+        "score": 10.0,
+        "defects": 0
+      },
+      {
+        "file_path": "src/requests/exceptions.py",
+        "score": 10.0,
+        "defects": 1
+      },
+      {
+        "file_path": "src/requests/help.py",
+        "score": 10.0,
+        "defects": 1
+      },
+      {
+        "file_path": "src/requests/hooks.py",
+        "score": 10.0,
+        "defects": 1
+      },
+      {
+        "file_path": "src/requests/status_codes.py",
+        "score": 10.0,
+        "defects": 0
+      }
+    ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 649.8000000000001,
+    "loc_inspected": 641.0,
+    "files_inspected": 1,
+    "defective_files_found": 1,
+    "precision": 1.0,
+    "recall_defects": 0.16666666666666666,
+    "recall_files": 0.1
+  },
+  "popt": {
+    "popt": 0.288620031667411,
+    "area_model": 0.4109726069559865,
+    "area_optimal": 0.7105861632639103,
+    "area_worst": 0.2894138367360897
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 3,
+      "files_without": 11,
+      "mean_defects_with": 2.6666666666666665,
+      "mean_defects_without": 0.9090909090909091,
+      "u_stat": 30.5,
+      "p_value": 0.014342963036910888,
+      "cliffs_delta": 0.8484848484848485
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 3,
+      "files_without": 11,
+      "mean_defects_with": 2.3333333333333335,
+      "mean_defects_without": 1.0,
+      "u_stat": 27.0,
+      "p_value": 0.05255443203916539,
+      "cliffs_delta": 0.6363636363636364
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 6,
+      "files_without": 8,
+      "mean_defects_with": 2.0,
+      "mean_defects_without": 0.75,
+      "u_stat": 38.0,
+      "p_value": 0.034838247574284935,
+      "cliffs_delta": 0.5833333333333334
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 4,
+      "files_without": 10,
+      "mean_defects_with": 2.25,
+      "mean_defects_without": 0.9,
+      "u_stat": 31.5,
+      "p_value": 0.05270683408929976,
+      "cliffs_delta": 0.575
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 4,
+      "files_without": 10,
+      "mean_defects_with": 2.0,
+      "mean_defects_without": 1.0,
+      "u_stat": 29.0,
+      "p_value": 0.10543693762334255,
+      "cliffs_delta": 0.45
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 3,
+      "files_without": 11,
+      "mean_defects_with": 2.0,
+      "mean_defects_without": 1.0909090909090908,
+      "u_stat": 22.5,
+      "p_value": 0.18637979871813254,
+      "cliffs_delta": 0.36363636363636365
+    },
+    {
+      "biomarker": "low_cohesion",
+      "files_with": 6,
+      "files_without": 8,
+      "mean_defects_with": 1.5,
+      "mean_defects_without": 1.125,
+      "u_stat": 27.5,
+      "p_value": 0.3434325901707328,
+      "cliffs_delta": 0.14583333333333334
+    },
+    {
+      "biomarker": "brain_method",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "god_class",
+      "files_with": 1,
+      "files_without": 13,
+      "mean_defects_with": 2.0,
+      "mean_defects_without": 1.2307692307692308,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 2,
+      "files_without": 12,
+      "mean_defects_with": 3.0,
+      "mean_defects_without": 1.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 14,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 1.2857142857142858,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.6,
+    "fpr": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "tpr": [
+      0.0,
+      0.2,
+      0.3,
+      0.4,
+      0.4,
+      0.5,
+      0.5,
+      1.0
+    ],
+    "n_pos": 10,
+    "n_neg": 4
+  }
+}

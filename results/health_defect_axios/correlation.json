@@ -1,0 +1,605 @@
+{
+  "descriptive": {
+    "n_files": 41,
+    "n_with_defects": 0,
+    "n_zero_defects": 41,
+    "pct_zero_defects": 100.0,
+    "health_score": {
+      "mean": 8.824146341463415,
+      "median": 9.65,
+      "min": 2.06,
+      "max": 10.0,
+      "std": 2.0265117512733006
+    },
+    "defect_count": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0,
+      "max": 0,
+      "total": 0
+    }
+  },
+  "spearman": {
+    "rho": NaN,
+    "p_value": NaN,
+    "n": 41
+  },
+  "partial_spearman_nloc": NaN,
+  "kruskal_wallis": {
+    "group_sizes": {
+      "green": 35,
+      "yellow": 3,
+      "red": 3
+    },
+    "group_means": {
+      "green": 0.0,
+      "yellow": 0.0,
+      "red": 0.0
+    },
+    "h_stat": NaN,
+    "p_value": NaN
+  },
+  "density_ratio": {
+    "raw_ratio": Infinity,
+    "nloc_normalized_ratio": Infinity,
+    "low_group": {
+      "count": 3,
+      "mean_defects": 0.0,
+      "total_nloc": 802,
+      "defects_per_kloc": 0.0
+    },
+    "high_group": {
+      "count": 35,
+      "mean_defects": 0.0,
+      "total_nloc": 1718,
+      "defects_per_kloc": 0.0
+    }
+  },
+  "density_by_bucket": [
+    {
+      "bucket": "[0-4)",
+      "file_count": 3,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[4-6)",
+      "file_count": 1,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[6-8)",
+      "file_count": 2,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    },
+    {
+      "bucket": "[8-10]",
+      "file_count": 35,
+      "total_defects": 0,
+      "mean_defects": 0.0,
+      "defects_per_kloc": 0.0
+    }
+  ],
+  "precision_at_k": {
+    "k": 20,
+    "true_positives": 0,
+    "precision": 0.0,
+    "files": [
+      {
+        "file_path": "lib/utils.js",
+        "score": 2.06,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/defaults/index.js",
+        "score": 2.87,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/adapters/http.js",
+        "score": 3.71,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/core/Axios.js",
+        "score": 4.55,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/core/AxiosHeaders.js",
+        "score": 6.5,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/helpers/estimateDataURLDecodedBytes.js",
+        "score": 7.08,
+        "defects": 0
+      },
+      {
+        "file_path": "bin/RepoBot.js",
+        "score": 8.4,
+        "defects": 0
+      },
+      {
+        "file_path": "karma.conf.cjs",
+        "score": 8.5,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/helpers/AxiosTransformStream.js",
+        "score": 8.5,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/helpers/toFormData.js",
+        "score": 8.5,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/helpers/buildURL.js",
+        "score": 8.67,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/core/mergeConfig.js",
+        "score": 8.79,
+        "defects": 0
+      },
+      {
+        "file_path": "bin/GithubAPI.js",
+        "score": 9.0,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/adapters/adapters.js",
+        "score": 9.15,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/helpers/fromDataURI.js",
+        "score": 9.15,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/core/AxiosError.js",
+        "score": 9.22,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/axios.js",
+        "score": 9.24,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/cancel/CancelToken.js",
+        "score": 9.4,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/core/settle.js",
+        "score": 9.59,
+        "defects": 0
+      },
+      {
+        "file_path": "lib/adapters/xhr.js",
+        "score": 9.65,
+        "defects": 0
+      }
+    ]
+  },
+  "effort_at_20pct_loc": {
+    "fraction_loc": 0.2,
+    "loc_budget": 592.0,
+    "loc_inspected": 173.0,
+    "files_inspected": 2,
+    "defective_files_found": 0,
+    "precision": 0.0,
+    "recall_defects": 0.0,
+    "recall_files": 0.0
+  },
+  "popt": {
+    "popt": null,
+    "n": 41
+  },
+  "per_biomarker": [
+    {
+      "biomarker": "brain_method",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "low_cohesion",
+      "files_with": 4,
+      "files_without": 37,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 74.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "god_class",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "nested_complexity",
+      "files_with": 6,
+      "files_without": 35,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 105.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "complex_method",
+      "files_with": 13,
+      "files_without": 28,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 182.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "bumpy_road",
+      "files_with": 1,
+      "files_without": 40,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "complex_conditional",
+      "files_with": 2,
+      "files_without": 39,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "large_method",
+      "files_with": 6,
+      "files_without": 35,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 105.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "primitive_obsession",
+      "files_with": 3,
+      "files_without": 38,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 57.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "dry_violation",
+      "files_with": 8,
+      "files_without": 33,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 132.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "untested_hotspot",
+      "files_with": 1,
+      "files_without": 40,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "coverage_gap",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "developer_congestion",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "knowledge_loss",
+      "files_with": 2,
+      "files_without": 39,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "hidden_coupling",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "function_hotspot",
+      "files_with": 4,
+      "files_without": 37,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 74.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "code_age_volatility",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "ownership_risk",
+      "files_with": 3,
+      "files_without": 38,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 57.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "churn_risk",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "change_entropy",
+      "files_with": 2,
+      "files_without": 39,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "co_change_scatter",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "prior_defect",
+      "files_with": 6,
+      "files_without": 35,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": 105.0,
+      "p_value": 1.0,
+      "cliffs_delta": 0.0
+    },
+    {
+      "biomarker": "large_assertion_block",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    },
+    {
+      "biomarker": "duplicated_assertion_block",
+      "files_with": 0,
+      "files_without": 41,
+      "mean_defects_with": 0.0,
+      "mean_defects_without": 0.0,
+      "u_stat": null,
+      "p_value": null,
+      "cliffs_delta": null
+    }
+  ],
+  "roc_auc": {
+    "auc": 0.5,
+    "fpr": [],
+    "tpr": [],
+    "n_pos": 0,
+    "n_neg": 41
+  },
+  "label_strategy": "szz+issue",
+  "label_meta": {
+    "n_fixes": 104,
+    "szz_stats": {
+      "n_fixes": 104,
+      "n_fixes_attributed": 54,
+      "n_bug_inducing_commits_b": 231,
+      "n_bug_inducing_commits_ag": 192,
+      "n_defective_files_b": 47,
+      "n_defective_files_ag": 47
+    },
+    "issue": {
+      "available": true,
+      "n_fixes": 104,
+      "n_fixes_with_issue_ref": 99,
+      "n_confirmed": 2,
+      "n_bug_issues": 2,
+      "bug_label_substrings": [
+        "bug",
+        "defect",
+        "regression"
+      ]
+    }
+  },
+  "label_comparison": {
+    "keyword": {
+      "n_files": 41,
+      "n_positives": 33,
+      "auc": {
+        "point": 0.553030303030303,
+        "lo": 0.3257276714513556,
+        "hi": 0.7667234848484848,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.5487070674439434,
+        "lo": 0.38653881587742234,
+        "hi": 0.6890976811818394,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz": {
+      "n_files": 41,
+      "n_positives": 33,
+      "auc": {
+        "point": 0.553030303030303,
+        "lo": 0.3257276714513556,
+        "hi": 0.7667234848484848,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.49375053222189624,
+        "lo": 0.3464817244761256,
+        "hi": 0.6263751932669857,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "szz_b": {
+      "n_files": 41,
+      "n_positives": 33,
+      "auc": {
+        "point": 0.553030303030303,
+        "lo": 0.3257276714513556,
+        "hi": 0.7667234848484848,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.5326763908656591,
+        "lo": 0.37548706291891515,
+        "hi": 0.6718623741499473,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      }
+    },
+    "issue": {
+      "n_files": 41,
+      "n_positives": 2,
+      "auc": {
+        "point": 0.9871794871794871,
+        "lo": 0.5,
+        "hi": 1.0,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": 0.9829025844930419,
+        "lo": 0.9108727046163654,
+        "hi": 1.0000000000000002,
+        "n": 41,
+        "n_boot": 852,
+        "ci": 0.95
+      }
+    },
+    "szz+issue": {
+      "n_files": 41,
+      "n_positives": 0,
+      "auc": {
+        "point": 0.5,
+        "lo": 0.5,
+        "hi": 0.5,
+        "n": 41,
+        "n_boot": 1000,
+        "ci": 0.95
+      },
+      "popt": {
+        "point": null,
+        "lo": null,
+        "hi": null,
+        "n": 41,
+        "n_boot": 0
+      }
+    }
+  },
+  "baselines": {
+    "health": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "loc_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "churn_only": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "prior_defects": {
+      "auc": 0.5,
+      "popt": null
+    },
+    "random": {
+      "auc": 0.5,
+      "popt": null
+    }
+  }
+}

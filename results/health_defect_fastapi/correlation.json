@@ -5,11 +5,11 @@
     "n_zero_defects": 91,
     "pct_zero_defects": 87.5,
     "health_score": {
-      "mean": 8.59326923076923,
-      "median": 9.0,
-      "min": 2.9,
+      "mean": 8.67423076923077,
+      "median": 9.18,
+      "min": 1.0,
       "max": 10.0,
-      "std": 1.5124893916390825
+      "std": 1.7824575008524142
     },
     "defect_count": {
       "mean": 0.3942307692307692,
@@ -20,154 +20,149 @@
     }
   },
   "spearman": {
-    "rho": -0.27152081467864875,
-    "p_value": 0.005301917799965214,
+    "rho": -0.23136732257625794,
+    "p_value": 0.018121055212333124,
     "n": 104
   },
-  "partial_spearman_nloc": -0.09652945917611395,
+  "partial_spearman_nloc": -0.05458094169746912,
   "kruskal_wallis": {
     "group_sizes": {
       "green": 87,
-      "yellow": 13,
-      "red": 4
+      "yellow": 12,
+      "red": 5
     },
     "group_means": {
       "green": 0.06896551724137931,
-      "yellow": 1.0769230769230769,
-      "red": 5.25
+      "yellow": 0.5,
+      "red": 5.8
     },
-    "h_stat": 34.84487524773468,
-    "p_value": 2.7135103264167607e-08
+    "h_stat": 29.072648008315152,
+    "p_value": 4.86356470187319e-07
   },
   "density_ratio": {
-    "raw_ratio": 74.375,
-    "nloc_normalized_ratio": 3.1997455470737908,
+    "raw_ratio": 84.1,
+    "nloc_normalized_ratio": 3.642857142857143,
     "low_group": {
-      "count": 4,
-      "mean_defects": 5.25,
-      "total_nloc": 2751,
-      "defects_per_kloc": 7.633587786259541
+      "count": 5,
+      "mean_defects": 5.8,
+      "total_nloc": 3451,
+      "defects_per_kloc": 8.403361344537815
     },
     "high_group": {
-      "count": 85,
-      "mean_defects": 0.07058823529411765,
-      "total_nloc": 2515,
-      "defects_per_kloc": 2.385685884691849
+      "count": 87,
+      "mean_defects": 0.06896551724137931,
+      "total_nloc": 2601,
+      "defects_per_kloc": 2.306805074971165
     }
   },
   "density_by_bucket": [
     {
       "bucket": "[0-4)",
-      "file_count": 4,
-      "total_defects": 21,
-      "mean_defects": 5.25,
-      "defects_per_kloc": 7.633587786259541
+      "file_count": 5,
+      "total_defects": 29,
+      "mean_defects": 5.8,
+      "defects_per_kloc": 8.403361344537815
     },
     {
       "bucket": "[4-6)",
-      "file_count": 4,
-      "total_defects": 1,
-      "mean_defects": 0.25,
-      "defects_per_kloc": 0.6325110689437066
+      "file_count": 2,
+      "total_defects": 2,
+      "mean_defects": 1.0,
+      "defects_per_kloc": 4.184100418410042
     },
     {
       "bucket": "[6-8)",
-      "file_count": 9,
-      "total_defects": 13,
-      "mean_defects": 1.4444444444444444,
-      "defects_per_kloc": 5.8505850585058505
+      "file_count": 10,
+      "total_defects": 4,
+      "mean_defects": 0.4,
+      "defects_per_kloc": 1.5214910612400152
     },
     {
       "bucket": "[8-10]",
       "file_count": 87,
       "total_defects": 6,
       "mean_defects": 0.06896551724137931,
-      "defects_per_kloc": 2.3103581055063533
+      "defects_per_kloc": 2.306805074971165
     }
   ],
   "precision_at_k": {
     "k": 20,
-    "true_positives": 7,
-    "precision": 0.35,
+    "true_positives": 8,
+    "precision": 0.4,
     "files": [
       {
-        "file_path": "fastapi/encoders.py",
-        "score": 2.9,
-        "defects": 1
-      },
-      {
-        "file_path": "fastapi/routing.py",
-        "score": 2.9,
-        "defects": 2
-      },
-      {
         "file_path": "fastapi/dependencies/utils.py",
-        "score": 3.3,
+        "score": 1.0,
         "defects": 13
       },
       {
+        "file_path": "fastapi/routing.py",
+        "score": 1.6,
+        "defects": 2
+      },
+      {
         "file_path": "fastapi/openapi/utils.py",
-        "score": 3.9,
+        "score": 1.8,
         "defects": 5
       },
       {
         "file_path": "scripts/docs.py",
-        "score": 4.5,
-        "defects": 0
-      },
-      {
-        "file_path": "scripts/doc_parsing_utils.py",
-        "score": 4.9,
-        "defects": 0
-      },
-      {
-        "file_path": "scripts/notify_translations.py",
-        "score": 5.5,
-        "defects": 0
-      },
-      {
-        "file_path": "fastapi/params.py",
-        "score": 5.7,
-        "defects": 1
-      },
-      {
-        "file_path": "fastapi/applications.py",
-        "score": 6.1,
-        "defects": 0
-      },
-      {
-        "file_path": "scripts/people.py",
-        "score": 6.1,
+        "score": 2.5,
         "defects": 0
       },
       {
         "file_path": "fastapi/_compat/v2.py",
-        "score": 6.8,
+        "score": 3.8,
         "defects": 9
       },
       {
-        "file_path": "fastapi/_compat/shared.py",
-        "score": 6.9,
+        "file_path": "fastapi/encoders.py",
+        "score": 4.0,
+        "defects": 1
+      },
+      {
+        "file_path": "fastapi/params.py",
+        "score": 5.94,
+        "defects": 1
+      },
+      {
+        "file_path": "scripts/doc_parsing_utils.py",
+        "score": 6.0,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/notify_translations.py",
+        "score": 6.18,
         "defects": 0
       },
       {
         "file_path": "scripts/deploy_docs_status.py",
-        "score": 7.1,
+        "score": 6.24,
         "defects": 0
       },
       {
-        "file_path": "fastapi/param_functions.py",
-        "score": 7.3,
+        "file_path": "scripts/people.py",
+        "score": 6.6,
+        "defects": 0
+      },
+      {
+        "file_path": "scripts/contributors.py",
+        "score": 7.48,
+        "defects": 0
+      },
+      {
+        "file_path": "fastapi/applications.py",
+        "score": 7.5,
         "defects": 0
       },
       {
         "file_path": "fastapi/dependencies/models.py",
-        "score": 7.3,
+        "score": 7.68,
         "defects": 4
       },
       {
-        "file_path": "scripts/contributors.py",
-        "score": 7.3,
+        "file_path": "fastapi/param_functions.py",
+        "score": 7.8,
         "defects": 0
       },
       {
@@ -176,18 +171,23 @@
         "defects": 0
       },
       {
-        "file_path": "docs_src/websockets_/tutorial002_an_py310.py",
-        "score": 8.0,
+        "file_path": "fastapi/_compat/shared.py",
+        "score": 7.9,
         "defects": 0
       },
       {
-        "file_path": "scripts/translation_fixer.py",
-        "score": 8.0,
+        "file_path": "fastapi/openapi/models.py",
+        "score": 8.14,
         "defects": 0
+      },
+      {
+        "file_path": "fastapi/security/http.py",
+        "score": 8.14,
+        "defects": 1
       },
       {
         "file_path": "scripts/translate.py",
-        "score": 8.1,
+        "score": 8.2,
         "defects": 0
       }
     ]
@@ -195,13 +195,13 @@
   "per_biomarker": [
     {
       "biomarker": "untested_hotspot",
-      "files_with": 8,
-      "files_without": 96,
-      "mean_defects_with": 2.375,
-      "mean_defects_without": 0.22916666666666666,
-      "u_stat": 642.0,
-      "p_value": 2.237515510280977e-08,
-      "cliffs_delta": 0.671875
+      "files_with": 6,
+      "files_without": 98,
+      "mean_defects_with": 3.0,
+      "mean_defects_without": 0.23469387755102042,
+      "u_stat": 515.5,
+      "p_value": 4.018752395663853e-08,
+      "cliffs_delta": 0.7534013605442177
     },
     {
       "biomarker": "primitive_obsession",
@@ -210,7 +210,7 @@
       "mean_defects_with": 1.736842105263158,
       "mean_defects_without": 0.09411764705882353,
       "u_stat": 1107.0,
-      "p_value": 5.91178153617152e-06,
+      "p_value": 5.911781536171521e-06,
       "cliffs_delta": 0.37089783281733746
     },
     {
@@ -220,7 +220,7 @@
       "mean_defects_with": 2.0588235294117645,
       "mean_defects_without": 0.06896551724137931,
       "u_stat": 1008.0,
-      "p_value": 2.0375301769670932e-05,
+      "p_value": 2.037530176967094e-05,
       "cliffs_delta": 0.3630831643002028
     },
     {
@@ -230,7 +230,7 @@
       "mean_defects_with": 2.3076923076923075,
       "mean_defects_without": 0.12087912087912088,
       "u_stat": 781.5,
-      "p_value": 0.0005892245584247833,
+      "p_value": 0.0005892245584247834,
       "cliffs_delta": 0.32121724429416737
     },
     {
@@ -240,7 +240,7 @@
       "mean_defects_with": 2.8,
       "mean_defects_without": 0.2727272727272727,
       "u_stat": 322.5,
-      "p_value": 0.02432635700179946,
+      "p_value": 0.024326357001799453,
       "cliffs_delta": 0.30303030303030304
     },
     {
@@ -275,10 +275,10 @@
     },
     {
       "biomarker": "developer_congestion",
-      "files_with": 1,
-      "files_without": 103,
+      "files_with": 0,
+      "files_without": 104,
       "mean_defects_with": 0.0,
-      "mean_defects_without": 0.39805825242718446,
+      "mean_defects_without": 0.3942307692307692,
       "u_stat": null,
       "p_value": null,
       "cliffs_delta": null
@@ -295,66 +295,78 @@
     },
     {
       "biomarker": "knowledge_loss",
-      "files_with": 62,
-      "files_without": 42,
-      "mean_defects_with": 0.0,
-      "mean_defects_without": 0.9761904761904762,
-      "u_stat": 899.0,
-      "p_value": 0.9999983862762934,
-      "cliffs_delta": -0.30952380952380953
+      "files_with": 71,
+      "files_without": 33,
+      "mean_defects_with": 0.07042253521126761,
+      "mean_defects_without": 1.0909090909090908,
+      "u_stat": 814.5,
+      "p_value": 0.999993152827507,
+      "cliffs_delta": -0.3047375160051216
     }
   ],
   "roc_auc": {
-    "auc": 0.7147083685545225,
+    "auc": 0.676669484361792,
     "fpr": [
       0.0,
       0.0,
       0.0,
       0.0,
       0.01098901098901099,
+      0.01098901098901099,
+      0.01098901098901099,
+      0.01098901098901099,
       0.02197802197802198,
       0.03296703296703297,
-      0.03296703296703297,
-      0.054945054945054944,
+      0.04395604395604396,
       0.054945054945054944,
       0.06593406593406594,
       0.07692307692307693,
-      0.0989010989010989,
+      0.07692307692307693,
+      0.08791208791208792,
       0.10989010989010989,
+      0.12087912087912088,
       0.13186813186813187,
       0.14285714285714285,
       0.15384615384615385,
       0.16483516483516483,
+      0.17582417582417584,
       0.18681318681318682,
-      0.1978021978021978,
-      0.6703296703296703,
+      0.2087912087912088,
+      0.7032967032967034,
+      0.7582417582417582,
       0.7692307692307693,
-      0.7802197802197802,
-      0.9340659340659341,
+      0.7692307692307693,
+      0.967032967032967,
       1.0
     ],
     "tpr": [
       0.0,
+      0.07692307692307693,
       0.15384615384615385,
       0.23076923076923078,
-      0.3076923076923077,
-      0.3076923076923077,
-      0.3076923076923077,
+      0.23076923076923078,
       0.3076923076923077,
       0.38461538461538464,
-      0.38461538461538464,
       0.46153846153846156,
       0.46153846153846156,
       0.46153846153846156,
+      0.46153846153846156,
+      0.46153846153846156,
+      0.46153846153846156,
+      0.46153846153846156,
       0.5384615384615384,
       0.5384615384615384,
       0.5384615384615384,
-      0.5384615384615384,
-      0.5384615384615384,
-      0.5384615384615384,
-      0.6923076923076923,
-      0.6923076923076923,
-      0.6923076923076923,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.6153846153846154,
+      0.7692307692307693,
       0.8461538461538461,
       0.9230769230769231,
       0.9230769230769231,

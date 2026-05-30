@@ -44,6 +44,23 @@ def spearman_correlation(
     return {"rho": float(rho), "p_value": float(p_value), "n": len(scores)}
 
 
+def _pearson(x: list[float], y: list[float]) -> float | None:
+    """Pearson product-moment correlation (None if undefined). Used for the
+    health-vs-resolution-time analog of CodeScene's −0.58 (a linear correlation,
+    matching their reported Pearson statistic)."""
+    n = len(x)
+    if n < 3 or n != len(y):
+        return None
+    mx = sum(x) / n
+    my = sum(y) / n
+    sxx = sum((a - mx) ** 2 for a in x)
+    syy = sum((b - my) ** 2 for b in y)
+    if sxx <= 0 or syy <= 0:
+        return None
+    sxy = sum((a - mx) * (b - my) for a, b in zip(x, y))
+    return sxy / math.sqrt(sxx * syy)
+
+
 def partial_spearman(
     x: list[float], y: list[float], z: list[float]
 ) -> float:
