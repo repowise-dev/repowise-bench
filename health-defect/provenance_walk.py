@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.agent_provenance import (  # noqa: E402
     classify_repo, fetch_pr_index, fetch_pr_index_search)
 
-DEVIN_ERA = {"airbyte", "prefect", "novu"}          # Devin PRs begin 2024
+DEVIN_ERA = {"airbyte", "prefect", "novu", "fern"}  # Devin PRs begin 2024
 PR_SINCE_DEFAULT = "2025-01-01"
 PR_SINCE_DEVIN = "2024-01-01"
 # Firehose PR volume (~100k merged PRs/yr): full pagination is prohibitive;

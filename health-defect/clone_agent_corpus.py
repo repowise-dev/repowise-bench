@@ -51,6 +51,14 @@ CORPUS: list[tuple[str, int, str]] = [
     ("formatjs/formatjs", 2014, "mixed"),
     ("novuhq/novu", 2021, "mixed"),
     ("Homebrew/homebrew-core", 2016, "mixed"),
+    # backfill (cohort slots pre-approved in the selection memo; probed 2026-06-04)
+    ("archestra-ai/archestra", 2025, "agent_heavy"),
+    ("basicmachines-co/basic-memory", 2024, "agent_heavy"),
+    ("binaricat/Netcatty", 2025, "agent_heavy"),
+    ("fern-api/fern", 2022, "mixed"),
+    ("NethermindEth/nethermind", 2017, "mixed"),
+    ("onetimesecret/onetimesecret", 2013, "mixed"),
+    ("dartsim/dart", 2011, "mixed"),
     # controls
     ("pytorch/pytorch", 2016, "control"),
     ("strapi/strapi", 2015, "control"),
