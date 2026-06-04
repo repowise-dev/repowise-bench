@@ -44,10 +44,10 @@ MAX_FIX_FILES = 50  # a "fix" touching more code files is a bulk refactor
 _HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+\d+(?:,\d+)? @@")
 _SHA_LINE_RE = re.compile(r"^([0-9a-f]{40}) (\d+) (\d+)")
 
-# default pool = the 12 PASS repos (corpus memo lock addendum)
+# default pool = the PASS repos (corpus memo lock + backfill addenda)
 PASS_POOL = ["omi", "dyad", "prefect", "novu", "Umbraco-CMS", "mattermost",
              "grafana", "airbyte", "homebrew-core", "metabase", "strapi",
-             "shiki"]
+             "shiki", "nethermind", "dart"]
 
 
 def log(msg: str) -> None:

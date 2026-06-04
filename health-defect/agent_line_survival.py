@@ -45,7 +45,7 @@ _SHA_LINE_RE = re.compile(r"^([0-9a-f]{40}) (\d+) (\d+)")
 
 PASS_POOL = ["omi", "dyad", "prefect", "novu", "Umbraco-CMS", "mattermost",
              "grafana", "airbyte", "homebrew-core", "metabase", "strapi",
-             "shiki"]
+             "shiki", "nethermind", "dart"]
 
 
 def log(msg: str) -> None:

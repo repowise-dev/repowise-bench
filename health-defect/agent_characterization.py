@@ -40,7 +40,9 @@ MIN_N = 30
 ELIG_FIX_DAYS = 90
 ELIG_REVERT_DAYS = 30
 SATURATION = {"github/gh-aw", "koala73/worldmonitor",
-              "windmill-labs/windmill", "PrimeIntellect-ai/verifiers"}
+              "windmill-labs/windmill", "PrimeIntellect-ai/verifiers",
+              "fern-api/fern", "basicmachines-co/basic-memory",
+              "binaricat/Netcatty"}
 SIZE_BANDS = [("1", 1, 1), ("2-4", 2, 4), ("5+", 5, 10 ** 9)]
 
 
