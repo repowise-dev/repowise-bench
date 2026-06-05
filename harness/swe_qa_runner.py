@@ -33,8 +33,11 @@ from harness.metrics import (
 # three local package src dirs. The MCP server is launched the same way via
 # `python -m repowise.cli.main mcp <repo> --transport stdio`.
 # swe_qa_runner.py is at <repowise>/repowise-bench/harness/, so parents[2] IS
-# the repowise checkout root.
-_REPOWISE_ROOT = Path(__file__).resolve().parents[2]
+# the repowise checkout root. Override with REPOWISE_ROOT to benchmark a git
+# worktree (or any other checkout) without touching the main clone.
+_REPOWISE_ROOT = Path(
+    os.environ.get("REPOWISE_ROOT") or Path(__file__).resolve().parents[2]
+)
 _REPOWISE_PKG_SRCS = [
     _REPOWISE_ROOT / "packages" / "cli" / "src",
     _REPOWISE_ROOT / "packages" / "core" / "src",
@@ -327,12 +330,15 @@ def generate_mcp_config(repo_path: Path, bench_root: Path) -> Path:
     config_name = f"{repo_path.parent.name}_{repo_path.name}.json"
     config_path = config_dir / config_name
 
+    # NOTE: `python -m repowise.cli.main` is a no-op (main.py has no __main__
+    # guard), so the server must be launched through the resolved CLI command —
+    # the console-script exe, or REPOWISE_EXE. PYTHONPATH still points at the
+    # local checkout's src dirs, which shadow the venv's editable install.
     mcp_config = {
         "mcpServers": {
             "repowise": {
-                "command": sys.executable,
-                "args": [
-                    "-m", "repowise.cli.main",
+                "command": _REPOWISE_CMD[0],
+                "args": _REPOWISE_CMD[1:] + [
                     "mcp", repo_abs, "--transport", "stdio",
                 ],
                 "env": {
@@ -448,7 +454,9 @@ def get_c0_worktree(repo_path: Path) -> Path:
 
 
 def index_repo(repo_name: str, repos_dir: str, index_dir: str,
-               mode: str, repowise_bin: str, doc_model: str) -> tuple:
+               mode: str, repowise_bin: str, doc_model: str,
+               provider: Optional[str] = None,
+               embedder: Optional[str] = None) -> tuple:
     """Run repowise init from the local checkout. Returns (success, time_seconds).
 
     Uses --resume so a previous partial run continues instead of restarting.
@@ -482,6 +490,14 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
     else:
         # Cap LLM concurrency to avoid rate-limit thrash and improve prompt-cache reuse.
         cmd.extend(["--concurrency", "3"])
+        # `init` does NOT read REPOWISE_DOC_MODEL — provider/model must be
+        # passed explicitly or it falls back to API-key autodetection.
+        if provider:
+            cmd.extend(["--provider", provider])
+        if doc_model:
+            cmd.extend(["--model", doc_model])
+        if embedder:
+            cmd.extend(["--embedder", embedder])
 
     # Force DB to repo-local .repowise/wiki.db so the MCP server can find it.
     # NOTE: this places repowise artifacts inside the working tree, so the
@@ -1089,6 +1105,8 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
                 mode,
                 config["repowise"]["binary"],
                 config["repowise"]["doc_model"],
+                provider=config["repowise"].get("provider"),
+                embedder=config["repowise"].get("embedder"),
             )
             metrics.index_time_seconds = idx_time
             if not ok:

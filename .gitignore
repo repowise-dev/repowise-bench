@@ -13,8 +13,19 @@ __pycache__/
 # Cloned target repositories — fetched on demand by scripts/download_benchmarks.py
 /repos/
 
-# Generated repowise indexes — built on demand by the harness on first run
-/indexes/
+# Generated repowise indexes — built on demand by the harness on first run.
+# Exception: the flask48-v2 full index is committed so the C2 arm reproduces
+# without paying doc-generation cost (gpt-5.4-nano docs + openai embeddings,
+# flask @ 7ee9ceb). Only the LLM-cost artifacts are tracked — parse/centrality
+# caches and job state are regenerable.
+/indexes/*
+!/indexes/pallets_flask_full/
+/indexes/pallets_flask_full/*
+!/indexes/pallets_flask_full/.repowise/
+/indexes/pallets_flask_full/.repowise/*
+!/indexes/pallets_flask_full/.repowise/wiki.db
+!/indexes/pallets_flask_full/.repowise/config.yaml
+!/indexes/pallets_flask_full/.repowise/lancedb/
 
 # Per-run logs and raw outputs — useful locally, not part of the published artifact
 /logs/
