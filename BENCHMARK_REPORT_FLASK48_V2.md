@@ -6,8 +6,10 @@ with the documentation index regenerated on OpenAI `gpt-5.4-nano` instead of
 Gemini. Same 48 paired tasks, same C0/C2 design, same model family for agent
 and judge.
 
-> **Status: in progress.** Interim numbers below are from the first completed
-> pairs; the final table will replace them when all 48 pairs land.
+> **Status: stopped deliberately at 24/48 pairs** (0 errors, clean paired
+> data) once the cost verdict was structurally clear — see
+> [Results](#results-24-paired-tasks--run-stopped-early). A rerun is planned
+> after MCP-surface changes.
 
 ---
 
@@ -89,28 +91,39 @@ the single-call win). **Fix:** the gate only fires on strong identifiers
 
 ---
 
-## Interim results (first 4 pairs — NOT final)
+## Results (24 paired tasks — run stopped early)
 
-| Metric (mean/task) | C0 bare | C2 repowise | Δ | v1 published Δ |
+| Metric (mean/task) | C0 bare | C2 repowise | Δ v2 | v1 published Δ |
 |---|---:|---:|---:|---:|
-| Tool calls | 12.0 | 4.0 | **−67%** | −49% |
-| Files read | 2.25 | 0.50 | **−78%** | −89% |
-| Wall clock | 63.9s | 34.4s | **−46%** | −19% |
-| Cost | $0.173 | $0.176 | +1% | −36% |
-| Judge score (0-10) | 8.80 | 8.60 | ≈parity | parity |
+| Tool calls | 8.38 | 5.67 | **−32%** | −49% |
+| Files read | 2.00 | 0.92 | **−54%** | −89% |
+| Wall clock | 54.3s | 46.5s | **−14%** | −19% |
+| Cost | $0.1611 | $0.2082 | **+29%** | −36% |
+| Judge score (0–10) | 8.75 | 8.53 | ≈parity | parity |
 
-Early observations:
+C2 cheaper on 3/24 pairs, faster on 10/24. C2 repowise tool mix:
+`get_symbol` ×21, `get_answer` ×6, `get_context` ×6, `search_codebase` ×2.
 
-- Navigation efficiency (tool calls / file reads / wall) is at or beyond the
-  published claims.
-- The cost delta is flat on the early (easy) slice: C2 carries a fixed
-  per-task overhead (~11k cache-write tokens for MCP tool schemas + managed
-  CLAUDE.md) that easy 2-call C0 tasks don't give it room to amortize. In v1
-  the cost win was concentrated in the hard tail where C0 dispatches `Agent`
-  subagents (~30% of C0 dollars); the verdict on cost waits for the full 48.
-- C0 explores harder than in v1 (12 vs 7.4 mean tool calls) — newer agent
-  defaults search more aggressively, which raises the baseline C2 is measured
-  against on every metric except cost-per-call.
+### Why cost flipped relative to v1
+
+1. **The baseline changed under us.** In v1, ~30% of C0's dollars went to
+   `Agent` subagent dispatches on hard tasks — the main spend C2's
+   single-call answers eliminated. In this run, **C0 dispatched zero
+   subagents across all 48 rows**; the current agent runtime greps/reads
+   directly with strong prompt caching, making raw exploration much cheaper
+   than in May.
+2. **C2's fixed overhead is now the whole delta.** C2 writes +14.6k more
+   cache tokens per task than C0 (mean 29.1k vs 14.4k — the 9 MCP tool
+   schemas plus the managed CLAUDE.md), ≈ $0.05/task at sonnet cache-write
+   pricing — almost exactly the observed +$0.047/task gap. The navigation
+   savings are real but cannot amortize the schema tax on a ~3-turn task.
+
+**Takeaway:** the navigation and latency claims reproduce directionally
+(−32% tool calls, −54% file reads, −14% wall, quality at parity); the
+per-task cost claim does not reproduce on the current agent runtime and
+should be re-scoped. The actionable product lever is shrinking the per-task
+MCP overhead (leaner/fewer tool schemas, compact agent mode, terser managed
+CLAUDE.md) — a rerun is planned after that work.
 
 ### Note on Distill
 
@@ -125,6 +138,8 @@ Bash enabled) and is tracked as follow-up work.
 
 ---
 
-## Final results
+## Raw data
 
-*Pending — to be filled when the run completes.*
+- Paired rows: `results/swe_qa_flask48_v2/swe_qa.jsonl` (48 rows / 24 pairs)
+- Raw agent streams: `logs/swe_qa_flask48_v2/raw_outputs/`
+- Session notes + rerun playbook: `local-stash/swe-qa-rerun/` (local)
