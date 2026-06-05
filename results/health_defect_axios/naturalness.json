@@ -1,0 +1,1733 @@
+{
+  "meta": {
+    "repo": "axios",
+    "t0_sha": "8092aee7240220aa7913d163187b7fba8d9e5a51",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 1120,
+    "n_files": 62,
+    "n_tokens": 25260,
+    "n_functions": 128,
+    "build_seconds": 2.6,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "lib/adapters/adapters.js": {
+      "mean_line_surprisal": 1.74381,
+      "top_decile_line_surprisal": 3.13525,
+      "token_cross_entropy": 1.76619,
+      "n_lines": 63,
+      "n_tokens": 446
+    },
+    "lib/adapters/fetch.js": {
+      "mean_line_surprisal": 1.86883,
+      "top_decile_line_surprisal": 3.57522,
+      "token_cross_entropy": 1.77489,
+      "n_lines": 221,
+      "n_tokens": 1584
+    },
+    "lib/adapters/http.js": {
+      "mean_line_surprisal": 1.69908,
+      "top_decile_line_surprisal": 3.15493,
+      "token_cross_entropy": 1.70115,
+      "n_lines": 667,
+      "n_tokens": 4709
+    },
+    "lib/adapters/xhr.js": {
+      "mean_line_surprisal": 1.58472,
+      "top_decile_line_surprisal": 2.56993,
+      "token_cross_entropy": 1.68502,
+      "n_lines": 138,
+      "n_tokens": 994
+    },
+    "lib/axios.js": {
+      "mean_line_surprisal": 1.60198,
+      "top_decile_line_surprisal": 2.77228,
+      "token_cross_entropy": 1.57182,
+      "n_lines": 49,
+      "n_tokens": 366
+    },
+    "lib/cancel/CancelToken.js": {
+      "mean_line_surprisal": 1.90229,
+      "top_decile_line_surprisal": 3.4814,
+      "token_cross_entropy": 1.87213,
+      "n_lines": 85,
+      "n_tokens": 448
+    },
+    "lib/cancel/CanceledError.js": {
+      "mean_line_surprisal": 1.94363,
+      "top_decile_line_surprisal": 2.86083,
+      "token_cross_entropy": 1.86238,
+      "n_lines": 10,
+      "n_tokens": 66
+    },
+    "lib/cancel/isCancel.js": {
+      "mean_line_surprisal": 1.74706,
+      "top_decile_line_surprisal": 2.41076,
+      "token_cross_entropy": 2.02279,
+      "n_lines": 4,
+      "n_tokens": 24
+    },
+    "lib/core/Axios.js": {
+      "mean_line_surprisal": 1.75082,
+      "top_decile_line_surprisal": 3.07653,
+      "token_cross_entropy": 1.68543,
+      "n_lines": 171,
+      "n_tokens": 1190
+    },
+    "lib/core/AxiosError.js": {
+      "mean_line_surprisal": 1.76508,
+      "top_decile_line_surprisal": 3.18292,
+      "token_cross_entropy": 1.65543,
+      "n_lines": 51,
+      "n_tokens": 348
+    },
+    "lib/core/AxiosHeaders.js": {
+      "mean_line_surprisal": 1.73103,
+      "top_decile_line_surprisal": 3.28207,
+      "token_cross_entropy": 1.75564,
+      "n_lines": 233,
+      "n_tokens": 1730
+    },
+    "lib/core/InterceptorManager.js": {
+      "mean_line_surprisal": 1.72892,
+      "top_decile_line_surprisal": 3.27816,
+      "token_cross_entropy": 1.66289,
+      "n_lines": 34,
+      "n_tokens": 165
+    },
+    "lib/core/buildFullPath.js": {
+      "mean_line_surprisal": 1.7781,
+      "top_decile_line_surprisal": 3.70667,
+      "token_cross_entropy": 1.73519,
+      "n_lines": 10,
+      "n_tokens": 65
+    },
+    "lib/core/dispatchRequest.js": {
+      "mean_line_surprisal": 1.66371,
+      "top_decile_line_surprisal": 2.7186,
+      "token_cross_entropy": 1.70391,
+      "n_lines": 50,
+      "n_tokens": 327
+    },
+    "lib/core/mergeConfig.js": {
+      "mean_line_surprisal": 1.61842,
+      "top_decile_line_surprisal": 2.82227,
+      "token_cross_entropy": 1.54339,
+      "n_lines": 81,
+      "n_tokens": 560
+    },
+    "lib/core/settle.js": {
+      "mean_line_surprisal": 1.82156,
+      "top_decile_line_surprisal": 3.0558,
+      "token_cross_entropy": 1.82791,
+      "n_lines": 16,
+      "n_tokens": 109
+    },
+    "lib/core/transformData.js": {
+      "mean_line_surprisal": 1.77975,
+      "top_decile_line_surprisal": 3.65575,
+      "token_cross_entropy": 1.78889,
+      "n_lines": 15,
+      "n_tokens": 118
+    },
+    "lib/defaults/index.js": {
+      "mean_line_surprisal": 1.709,
+      "top_decile_line_surprisal": 3.26766,
+      "token_cross_entropy": 1.71767,
+      "n_lines": 117,
+      "n_tokens": 797
+    },
+    "lib/defaults/transitional.js": {
+      "mean_line_surprisal": 2.06071,
+      "top_decile_line_surprisal": 2.89639,
+      "token_cross_entropy": 2.00686,
+      "n_lines": 6,
+      "n_tokens": 20
+    },
+    "lib/env/classes/FormData.js": {
+      "mean_line_surprisal": 2.00878,
+      "top_decile_line_surprisal": 2.10661,
+      "token_cross_entropy": 2.03813,
+      "n_lines": 2,
+      "n_tokens": 20
+    },
+    "lib/env/data.js": {
+      "mean_line_surprisal": 1.79653,
+      "top_decile_line_surprisal": 1.79653,
+      "token_cross_entropy": 1.79653,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "lib/helpers/AxiosTransformStream.js": {
+      "mean_line_surprisal": 1.81413,
+      "top_decile_line_surprisal": 2.89442,
+      "token_cross_entropy": 1.78337,
+      "n_lines": 115,
+      "n_tokens": 703
+    },
+    "lib/helpers/AxiosURLSearchParams.js": {
+      "mean_line_surprisal": 1.91794,
+      "top_decile_line_surprisal": 3.88303,
+      "token_cross_entropy": 1.77603,
+      "n_lines": 33,
+      "n_tokens": 257
+    },
+    "lib/helpers/HttpStatusCode.js": {
+      "mean_line_surprisal": 2.16582,
+      "top_decile_line_surprisal": 2.75126,
+      "token_cross_entropy": 2.14537,
+      "n_lines": 75,
+      "n_tokens": 314
+    },
+    "lib/helpers/ZlibHeaderTransformStream.js": {
+      "mean_line_surprisal": 1.78482,
+      "top_decile_line_surprisal": 2.96948,
+      "token_cross_entropy": 1.74441,
+      "n_lines": 21,
+      "n_tokens": 127
+    },
+    "lib/helpers/bind.js": {
+      "mean_line_surprisal": 1.99771,
+      "top_decile_line_surprisal": 2.91084,
+      "token_cross_entropy": 2.00942,
+      "n_lines": 6,
+      "n_tokens": 33
+    },
+    "lib/helpers/buildURL.js": {
+      "mean_line_surprisal": 1.75323,
+      "top_decile_line_surprisal": 3.29701,
+      "token_cross_entropy": 1.83903,
+      "n_lines": 38,
+      "n_tokens": 257
+    },
+    "lib/helpers/callbackify.js": {
+      "mean_line_surprisal": 2.07543,
+      "top_decile_line_surprisal": 3.61147,
+      "token_cross_entropy": 2.08236,
+      "n_lines": 14,
+      "n_tokens": 104
+    },
+    "lib/helpers/combineURLs.js": {
+      "mean_line_surprisal": 2.05388,
+      "top_decile_line_surprisal": 3.61225,
+      "token_cross_entropy": 1.72675,
+      "n_lines": 6,
+      "n_tokens": 48
+    },
+    "lib/helpers/composeSignals.js": {
+      "mean_line_surprisal": 1.9203,
+      "top_decile_line_surprisal": 3.32547,
+      "token_cross_entropy": 1.8259,
+      "n_lines": 37,
+      "n_tokens": 280
+    },
+    "lib/helpers/cookies.js": {
+      "mean_line_surprisal": 1.74572,
+      "top_decile_line_surprisal": 4.11567,
+      "token_cross_entropy": 1.64394,
+      "n_lines": 41,
+      "n_tokens": 308
+    },
+    "lib/helpers/deprecatedMethod.js": {
+      "mean_line_surprisal": 1.71665,
+      "top_decile_line_surprisal": 2.67648,
+      "token_cross_entropy": 1.78189,
+      "n_lines": 12,
+      "n_tokens": 79
+    },
+    "lib/helpers/estimateDataURLDecodedBytes.js": {
+      "mean_line_surprisal": 1.6688,
+      "top_decile_line_surprisal": 2.68162,
+      "token_cross_entropy": 1.55471,
+      "n_lines": 53,
+      "n_tokens": 453
+    },
+    "lib/helpers/formDataToJSON.js": {
+      "mean_line_surprisal": 1.76774,
+      "top_decile_line_surprisal": 3.0891,
+      "token_cross_entropy": 1.7975,
+      "n_lines": 53,
+      "n_tokens": 403
+    },
+    "lib/helpers/formDataToStream.js": {
+      "mean_line_surprisal": 1.93855,
+      "top_decile_line_surprisal": 3.37802,
+      "token_cross_entropy": 1.854,
+      "n_lines": 84,
+      "n_tokens": 661
+    },
+    "lib/helpers/fromDataURI.js": {
+      "mean_line_surprisal": 1.57739,
+      "top_decile_line_surprisal": 2.58485,
+      "token_cross_entropy": 1.66871,
+      "n_lines": 31,
+      "n_tokens": 247
+    },
+    "lib/helpers/isAbsoluteURL.js": {
+      "mean_line_surprisal": 1.86768,
+      "top_decile_line_surprisal": 2.19067,
+      "token_cross_entropy": 1.899,
+      "n_lines": 4,
+      "n_tokens": 24
+    },
+    "lib/helpers/isAxiosError.js": {
+      "mean_line_surprisal": 1.63555,
+      "top_decile_line_surprisal": 2.15346,
+      "token_cross_entropy": 1.68016,
+      "n_lines": 5,
+      "n_tokens": 36
+    },
+    "lib/helpers/isURLSameOrigin.js": {
+      "mean_line_surprisal": 1.8722,
+      "top_decile_line_surprisal": 3.00818,
+      "token_cross_entropy": 1.77108,
+      "n_lines": 12,
+      "n_tokens": 103
+    },
+    "lib/helpers/null.js": {
+      "mean_line_surprisal": 2.50103,
+      "top_decile_line_surprisal": 2.50103,
+      "token_cross_entropy": 2.50103,
+      "n_lines": 1,
+      "n_tokens": 4
+    },
+    "lib/helpers/parseHeaders.js": {
+      "mean_line_surprisal": 1.78229,
+      "top_decile_line_surprisal": 3.3781,
+      "token_cross_entropy": 1.5591,
+      "n_lines": 32,
+      "n_tokens": 269
+    },
+    "lib/helpers/parseProtocol.js": {
+      "mean_line_surprisal": 2.18546,
+      "top_decile_line_surprisal": 3.26905,
+      "token_cross_entropy": 2.05258,
+      "n_lines": 5,
+      "n_tokens": 36
+    },
+    "lib/helpers/progressEventReducer.js": {
+      "mean_line_surprisal": 1.61972,
+      "top_decile_line_surprisal": 2.53848,
+      "token_cross_entropy": 1.64644,
+      "n_lines": 36,
+      "n_tokens": 261
+    },
+    "lib/helpers/readBlob.js": {
+      "mean_line_surprisal": 1.60553,
+      "top_decile_line_surprisal": 2.87067,
+      "token_cross_entropy": 1.56243,
+      "n_lines": 13,
+      "n_tokens": 78
+    },
+    "lib/helpers/resolveConfig.js": {
+      "mean_line_surprisal": 1.77906,
+      "top_decile_line_surprisal": 2.91238,
+      "token_cross_entropy": 1.7774,
+      "n_lines": 42,
+      "n_tokens": 377
+    },
+    "lib/helpers/speedometer.js": {
+      "mean_line_surprisal": 1.6985,
+      "top_decile_line_surprisal": 2.88695,
+      "token_cross_entropy": 1.63935,
+      "n_lines": 35,
+      "n_tokens": 212
+    },
+    "lib/helpers/spread.js": {
+      "mean_line_surprisal": 2.0348,
+      "top_decile_line_surprisal": 3.052,
+      "token_cross_entropy": 2.03467,
+      "n_lines": 6,
+      "n_tokens": 32
+    },
+    "lib/helpers/throttle.js": {
+      "mean_line_surprisal": 1.82228,
+      "top_decile_line_surprisal": 3.03409,
+      "token_cross_entropy": 1.82339,
+      "n_lines": 33,
+      "n_tokens": 175
+    },
+    "lib/helpers/toFormData.js": {
+      "mean_line_surprisal": 1.72002,
+      "top_decile_line_surprisal": 2.97889,
+      "token_cross_entropy": 1.81795,
+      "n_lines": 115,
+      "n_tokens": 949
+    },
+    "lib/helpers/toURLEncodedForm.js": {
+      "mean_line_surprisal": 1.93744,
+      "top_decile_line_surprisal": 3.44854,
+      "token_cross_entropy": 1.9709,
+      "n_lines": 16,
+      "n_tokens": 117
+    },
+    "lib/helpers/trackStream.js": {
+      "mean_line_surprisal": 1.75356,
+      "top_decile_line_surprisal": 3.12143,
+      "token_cross_entropy": 1.78859,
+      "n_lines": 75,
+      "n_tokens": 375
+    },
+    "lib/helpers/validator.js": {
+      "mean_line_surprisal": 1.80753,
+      "top_decile_line_surprisal": 3.49324,
+      "token_cross_entropy": 1.76208,
+      "n_lines": 65,
+      "n_tokens": 478
+    },
+    "lib/platform/browser/classes/Blob.js": {
+      "mean_line_surprisal": 1.73563,
+      "top_decile_line_surprisal": 2.56045,
+      "token_cross_entropy": 2.23052,
+      "n_lines": 2,
+      "n_tokens": 15
+    },
+    "lib/platform/browser/classes/FormData.js": {
+      "mean_line_surprisal": 1.70015,
+      "top_decile_line_surprisal": 2.11203,
+      "token_cross_entropy": 1.91821,
+      "n_lines": 2,
+      "n_tokens": 17
+    },
+    "lib/platform/browser/classes/URLSearchParams.js": {
+      "mean_line_surprisal": 1.6913,
+      "top_decile_line_surprisal": 2.17928,
+      "token_cross_entropy": 1.86367,
+      "n_lines": 3,
+      "n_tokens": 24
+    },
+    "lib/platform/browser/index.js": {
+      "mean_line_surprisal": 1.65978,
+      "top_decile_line_surprisal": 4.06359,
+      "token_cross_entropy": 1.37631,
+      "n_lines": 12,
+      "n_tokens": 64
+    },
+    "lib/platform/common/utils.js": {
+      "mean_line_surprisal": 1.84636,
+      "top_decile_line_surprisal": 4.46579,
+      "token_cross_entropy": 1.71756,
+      "n_lines": 19,
+      "n_tokens": 129
+    },
+    "lib/platform/index.js": {
+      "mean_line_surprisal": 1.80706,
+      "top_decile_line_surprisal": 2.8975,
+      "token_cross_entropy": 1.77333,
+      "n_lines": 6,
+      "n_tokens": 25
+    },
+    "lib/platform/node/classes/FormData.js": {
+      "mean_line_surprisal": 2.22074,
+      "top_decile_line_surprisal": 2.57756,
+      "token_cross_entropy": 2.12343,
+      "n_lines": 2,
+      "n_tokens": 11
+    },
+    "lib/platform/node/classes/URLSearchParams.js": {
+      "mean_line_surprisal": 1.77094,
+      "top_decile_line_surprisal": 2.23156,
+      "token_cross_entropy": 1.82902,
+      "n_lines": 3,
+      "n_tokens": 17
+    },
+    "lib/platform/node/index.js": {
+      "mean_line_surprisal": 1.66544,
+      "top_decile_line_surprisal": 3.11863,
+      "token_cross_entropy": 1.6246,
+      "n_lines": 31,
+      "n_tokens": 182
+    },
+    "lib/utils.js": {
+      "mean_line_surprisal": 1.66647,
+      "top_decile_line_surprisal": 3.12628,
+      "token_cross_entropy": 1.75503,
+      "n_lines": 407,
+      "n_tokens": 2882
+    }
+  },
+  "functions": [
+    {
+      "function_id": "lib/adapters/adapters.js::getAdapter:62",
+      "file_path": "lib/adapters/adapters.js",
+      "name": "getAdapter",
+      "start_line": 62,
+      "end_line": 109,
+      "nloc": 36,
+      "mean_line_surprisal": 1.80899,
+      "max_line_surprisal": 4.23645
+    },
+    {
+      "function_id": "lib/adapters/fetch.js::duplex:59",
+      "file_path": "lib/adapters/fetch.js",
+      "name": "duplex",
+      "start_line": 59,
+      "end_line": 62,
+      "nloc": 4,
+      "mean_line_surprisal": 2.79863,
+      "max_line_surprisal": 4.59191
+    },
+    {
+      "function_id": "lib/adapters/http.js::httpAdapter:317",
+      "file_path": "lib/adapters/http.js",
+      "name": "httpAdapter",
+      "start_line": 317,
+      "end_line": 895,
+      "nloc": 483,
+      "mean_line_surprisal": 1.65246,
+      "max_line_surprisal": 4.97333
+    },
+    {
+      "function_id": "lib/adapters/http.js::request:270",
+      "file_path": "lib/adapters/http.js",
+      "name": "request",
+      "start_line": 270,
+      "end_line": 313,
+      "nloc": 30,
+      "mean_line_surprisal": 1.74543,
+      "max_line_surprisal": 3.23582
+    },
+    {
+      "function_id": "lib/adapters/http.js::setProxy:180",
+      "file_path": "lib/adapters/http.js",
+      "name": "setProxy",
+      "start_line": 180,
+      "end_line": 226,
+      "nloc": 41,
+      "mean_line_surprisal": 1.78455,
+      "max_line_surprisal": 2.75217
+    },
+    {
+      "function_id": "lib/adapters/http.js::dispatchBeforeRedirect:162",
+      "file_path": "lib/adapters/http.js",
+      "name": "dispatchBeforeRedirect",
+      "start_line": 162,
+      "end_line": 169,
+      "nloc": 8,
+      "mean_line_surprisal": 1.70878,
+      "max_line_surprisal": 2.41541
+    },
+    {
+      "function_id": "lib/adapters/http.js::getSession:63",
+      "file_path": "lib/adapters/http.js",
+      "name": "getSession",
+      "start_line": 63,
+      "end_line": 148,
+      "nloc": 64,
+      "mean_line_surprisal": 1.90808,
+      "max_line_surprisal": 3.98736
+    },
+    {
+      "function_id": "lib/adapters/http.js::constructor:59",
+      "file_path": "lib/adapters/http.js",
+      "name": "constructor",
+      "start_line": 59,
+      "end_line": 61,
+      "nloc": 3,
+      "mean_line_surprisal": 1.77349,
+      "max_line_surprisal": 2.01062
+    },
+    {
+      "function_id": "lib/adapters/xhr.js::<anonymous>:14",
+      "file_path": "lib/adapters/xhr.js",
+      "name": "<anonymous>",
+      "start_line": 14,
+      "end_line": 200,
+      "nloc": 156,
+      "mean_line_surprisal": 1.61075,
+      "max_line_surprisal": 3.05952
+    },
+    {
+      "function_id": "lib/axios.js::all:66",
+      "file_path": "lib/axios.js",
+      "name": "all",
+      "start_line": 66,
+      "end_line": 68,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54013,
+      "max_line_surprisal": 1.80576
+    },
+    {
+      "function_id": "lib/axios.js::createInstance:28",
+      "file_path": "lib/axios.js",
+      "name": "createInstance",
+      "start_line": 28,
+      "end_line": 44,
+      "nloc": 13,
+      "mean_line_surprisal": 1.96066,
+      "max_line_surprisal": 3.1122
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::source:123",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "source",
+      "start_line": 123,
+      "end_line": 132,
+      "nloc": 10,
+      "mean_line_surprisal": 1.89956,
+      "max_line_surprisal": 4.59164
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::toAbortSignal:105",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "toAbortSignal",
+      "start_line": 105,
+      "end_line": 117,
+      "nloc": 9,
+      "mean_line_surprisal": 2.11148,
+      "max_line_surprisal": 2.8919
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::unsubscribe:95",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "unsubscribe",
+      "start_line": 95,
+      "end_line": 103,
+      "nloc": 9,
+      "mean_line_surprisal": 1.74492,
+      "max_line_surprisal": 2.80714
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::subscribe:78",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "subscribe",
+      "start_line": 78,
+      "end_line": 89,
+      "nloc": 11,
+      "mean_line_surprisal": 1.82624,
+      "max_line_surprisal": 2.91258
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::throwIfRequested:68",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "throwIfRequested",
+      "start_line": 68,
+      "end_line": 72,
+      "nloc": 5,
+      "mean_line_surprisal": 2.0812,
+      "max_line_surprisal": 2.97802
+    },
+    {
+      "function_id": "lib/cancel/CancelToken.js::constructor:13",
+      "file_path": "lib/cancel/CancelToken.js",
+      "name": "constructor",
+      "start_line": 13,
+      "end_line": 63,
+      "nloc": 40,
+      "mean_line_surprisal": 1.83176,
+      "max_line_surprisal": 3.95711
+    },
+    {
+      "function_id": "lib/cancel/CanceledError.js::constructor:15",
+      "file_path": "lib/cancel/CanceledError.js",
+      "name": "constructor",
+      "start_line": 15,
+      "end_line": 19,
+      "nloc": 5,
+      "mean_line_surprisal": 1.88075,
+      "max_line_surprisal": 2.36375
+    },
+    {
+      "function_id": "lib/cancel/isCancel.js::isCancel:3",
+      "file_path": "lib/cancel/isCancel.js",
+      "name": "isCancel",
+      "start_line": 3,
+      "end_line": 5,
+      "nloc": 3,
+      "mean_line_surprisal": 1.89999,
+      "max_line_surprisal": 2.41076
+    },
+    {
+      "function_id": "lib/core/Axios.js::forEachMethodWithData:219",
+      "file_path": "lib/core/Axios.js",
+      "name": "forEachMethodWithData",
+      "start_line": 219,
+      "end_line": 238,
+      "nloc": 17,
+      "mean_line_surprisal": 1.62041,
+      "max_line_surprisal": 3.22878
+    },
+    {
+      "function_id": "lib/core/Axios.js::forEachMethodNoData:208",
+      "file_path": "lib/core/Axios.js",
+      "name": "forEachMethodNoData",
+      "start_line": 208,
+      "end_line": 217,
+      "nloc": 10,
+      "mean_line_surprisal": 1.86749,
+      "max_line_surprisal": 3.0893
+    },
+    {
+      "function_id": "lib/core/Axios.js::getUri:200",
+      "file_path": "lib/core/Axios.js",
+      "name": "getUri",
+      "start_line": 200,
+      "end_line": 204,
+      "nloc": 5,
+      "mean_line_surprisal": 1.64639,
+      "max_line_surprisal": 2.08473
+    },
+    {
+      "function_id": "lib/core/Axios.js::_request:65",
+      "file_path": "lib/core/Axios.js",
+      "name": "_request",
+      "start_line": 65,
+      "end_line": 198,
+      "nloc": 108,
+      "mean_line_surprisal": 1.75567,
+      "max_line_surprisal": 4.01402
+    },
+    {
+      "function_id": "lib/core/Axios.js::request:38",
+      "file_path": "lib/core/Axios.js",
+      "name": "request",
+      "start_line": 38,
+      "end_line": 63,
+      "nloc": 23,
+      "mean_line_surprisal": 1.78753,
+      "max_line_surprisal": 2.74085
+    },
+    {
+      "function_id": "lib/core/Axios.js::constructor:22",
+      "file_path": "lib/core/Axios.js",
+      "name": "constructor",
+      "start_line": 22,
+      "end_line": 28,
+      "nloc": 7,
+      "mean_line_surprisal": 1.99693,
+      "max_line_surprisal": 2.67249
+    },
+    {
+      "function_id": "lib/core/AxiosError.js::toJSON:38",
+      "file_path": "lib/core/AxiosError.js",
+      "name": "toJSON",
+      "start_line": 38,
+      "end_line": 56,
+      "nloc": 19,
+      "mean_line_surprisal": 1.95141,
+      "max_line_surprisal": 4.73273
+    },
+    {
+      "function_id": "lib/core/AxiosError.js::constructor:25",
+      "file_path": "lib/core/AxiosError.js",
+      "name": "constructor",
+      "start_line": 25,
+      "end_line": 36,
+      "nloc": 12,
+      "mean_line_surprisal": 1.91364,
+      "max_line_surprisal": 2.74927
+    },
+    {
+      "function_id": "lib/core/AxiosError.js::from:6",
+      "file_path": "lib/core/AxiosError.js",
+      "name": "from",
+      "start_line": 6,
+      "end_line": 12,
+      "nloc": 7,
+      "mean_line_surprisal": 1.61422,
+      "max_line_surprisal": 2.71436
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::set:306",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "set",
+      "start_line": 306,
+      "end_line": 308,
+      "nloc": 3,
+      "mean_line_surprisal": 1.06252,
+      "max_line_surprisal": 1.57649
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::accessor:276",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "accessor",
+      "start_line": 276,
+      "end_line": 296,
+      "nloc": 16,
+      "mean_line_surprisal": 1.55945,
+      "max_line_surprisal": 2.70142
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::concat:268",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "concat",
+      "start_line": 268,
+      "end_line": 274,
+      "nloc": 5,
+      "mean_line_surprisal": 1.98657,
+      "max_line_surprisal": 3.82329
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::from:264",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "from",
+      "start_line": 264,
+      "end_line": 266,
+      "nloc": 3,
+      "mean_line_surprisal": 1.71449,
+      "max_line_surprisal": 2.27448
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::[Symbol.toStringTag]:260",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "[Symbol.toStringTag]",
+      "start_line": 260,
+      "end_line": 262,
+      "nloc": 3,
+      "mean_line_surprisal": 2.77936,
+      "max_line_surprisal": 4.53585
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::getSetCookie:256",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "getSetCookie",
+      "start_line": 256,
+      "end_line": 258,
+      "nloc": 3,
+      "mean_line_surprisal": 2.14762,
+      "max_line_surprisal": 3.03765
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::toString:252",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "toString",
+      "start_line": 252,
+      "end_line": 254,
+      "nloc": 3,
+      "mean_line_surprisal": 1.94547,
+      "max_line_surprisal": 3.4251
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::[Symbol.iterator]:248",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "[Symbol.iterator]",
+      "start_line": 248,
+      "end_line": 250,
+      "nloc": 3,
+      "mean_line_surprisal": 1.4936,
+      "max_line_surprisal": 1.72431
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::toJSON:238",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "toJSON",
+      "start_line": 238,
+      "end_line": 246,
+      "nloc": 7,
+      "mean_line_surprisal": 1.71402,
+      "max_line_surprisal": 2.9527
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::concat:234",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "concat",
+      "start_line": 234,
+      "end_line": 236,
+      "nloc": 3,
+      "mean_line_surprisal": 1.41078,
+      "max_line_surprisal": 2.07845
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::normalize:207",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "normalize",
+      "start_line": 207,
+      "end_line": 232,
+      "nloc": 19,
+      "mean_line_surprisal": 1.60433,
+      "max_line_surprisal": 3.3452
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::clear:191",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "clear",
+      "start_line": 191,
+      "end_line": 205,
+      "nloc": 13,
+      "mean_line_surprisal": 1.39149,
+      "max_line_surprisal": 2.82019
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::delete:164",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "delete",
+      "start_line": 164,
+      "end_line": 189,
+      "nloc": 20,
+      "mean_line_surprisal": 1.70086,
+      "max_line_surprisal": 3.43916
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::has:152",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "has",
+      "start_line": 152,
+      "end_line": 162,
+      "nloc": 8,
+      "mean_line_surprisal": 1.59697,
+      "max_line_surprisal": 3.55381
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::get:122",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "get",
+      "start_line": 122,
+      "end_line": 150,
+      "nloc": 22,
+      "mean_line_surprisal": 1.72564,
+      "max_line_surprisal": 3.50621
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::set:79",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "set",
+      "start_line": 79,
+      "end_line": 120,
+      "nloc": 33,
+      "mean_line_surprisal": 1.73978,
+      "max_line_surprisal": 3.66704
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::constructor:75",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "constructor",
+      "start_line": 75,
+      "end_line": 77,
+      "nloc": 3,
+      "mean_line_surprisal": 1.71903,
+      "max_line_surprisal": 2.17224
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::buildAccessors:61",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "buildAccessors",
+      "start_line": 61,
+      "end_line": 72,
+      "nloc": 11,
+      "mean_line_surprisal": 1.74113,
+      "max_line_surprisal": 3.15228
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::formatHeader:54",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "formatHeader",
+      "start_line": 54,
+      "end_line": 59,
+      "nloc": 6,
+      "mean_line_surprisal": 1.52294,
+      "max_line_surprisal": 1.93748
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::matchHeaderValue:34",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "matchHeaderValue",
+      "start_line": 34,
+      "end_line": 52,
+      "nloc": 15,
+      "mean_line_surprisal": 1.77103,
+      "max_line_surprisal": 3.0584
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::parseTokens:20",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "parseTokens",
+      "start_line": 20,
+      "end_line": 30,
+      "nloc": 9,
+      "mean_line_surprisal": 1.85663,
+      "max_line_surprisal": 3.22211
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::normalizeValue:12",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "normalizeValue",
+      "start_line": 12,
+      "end_line": 18,
+      "nloc": 6,
+      "mean_line_surprisal": 1.91251,
+      "max_line_surprisal": 3.06085
+    },
+    {
+      "function_id": "lib/core/AxiosHeaders.js::normalizeHeader:8",
+      "file_path": "lib/core/AxiosHeaders.js",
+      "name": "normalizeHeader",
+      "start_line": 8,
+      "end_line": 10,
+      "nloc": 3,
+      "mean_line_surprisal": 2.10794,
+      "max_line_surprisal": 2.48293
+    },
+    {
+      "function_id": "lib/core/InterceptorManager.js::forEach:63",
+      "file_path": "lib/core/InterceptorManager.js",
+      "name": "forEach",
+      "start_line": 63,
+      "end_line": 69,
+      "nloc": 7,
+      "mean_line_surprisal": 1.73968,
+      "max_line_surprisal": 2.40651
+    },
+    {
+      "function_id": "lib/core/InterceptorManager.js::clear:47",
+      "file_path": "lib/core/InterceptorManager.js",
+      "name": "clear",
+      "start_line": 47,
+      "end_line": 51,
+      "nloc": 5,
+      "mean_line_surprisal": 1.68652,
+      "max_line_surprisal": 2.73845
+    },
+    {
+      "function_id": "lib/core/InterceptorManager.js::eject:36",
+      "file_path": "lib/core/InterceptorManager.js",
+      "name": "eject",
+      "start_line": 36,
+      "end_line": 40,
+      "nloc": 5,
+      "mean_line_surprisal": 1.83241,
+      "max_line_surprisal": 3.37422
+    },
+    {
+      "function_id": "lib/core/InterceptorManager.js::use:19",
+      "file_path": "lib/core/InterceptorManager.js",
+      "name": "use",
+      "start_line": 19,
+      "end_line": 27,
+      "nloc": 9,
+      "mean_line_surprisal": 1.43333,
+      "max_line_surprisal": 2.07816
+    },
+    {
+      "function_id": "lib/core/InterceptorManager.js::constructor:6",
+      "file_path": "lib/core/InterceptorManager.js",
+      "name": "constructor",
+      "start_line": 6,
+      "end_line": 8,
+      "nloc": 3,
+      "mean_line_surprisal": 1.96667,
+      "max_line_surprisal": 2.27585
+    },
+    {
+      "function_id": "lib/core/buildFullPath.js::buildFullPath:16",
+      "file_path": "lib/core/buildFullPath.js",
+      "name": "buildFullPath",
+      "start_line": 16,
+      "end_line": 22,
+      "nloc": 7,
+      "mean_line_surprisal": 1.88542,
+      "max_line_surprisal": 3.70667
+    },
+    {
+      "function_id": "lib/core/dispatchRequest.js::dispatchRequest:34",
+      "file_path": "lib/core/dispatchRequest.js",
+      "name": "dispatchRequest",
+      "start_line": 34,
+      "end_line": 81,
+      "nloc": 38,
+      "mean_line_surprisal": 1.63942,
+      "max_line_surprisal": 3.78304
+    },
+    {
+      "function_id": "lib/core/dispatchRequest.js::throwIfCancellationRequested:17",
+      "file_path": "lib/core/dispatchRequest.js",
+      "name": "throwIfCancellationRequested",
+      "start_line": 17,
+      "end_line": 25,
+      "nloc": 8,
+      "mean_line_surprisal": 2.02616,
+      "max_line_surprisal": 3.05401
+    },
+    {
+      "function_id": "lib/core/mergeConfig.js::mergeConfig:17",
+      "file_path": "lib/core/mergeConfig.js",
+      "name": "mergeConfig",
+      "start_line": 17,
+      "end_line": 106,
+      "nloc": 82,
+      "mean_line_surprisal": 1.62812,
+      "max_line_surprisal": 3.92941
+    },
+    {
+      "function_id": "lib/core/settle.js::settle:14",
+      "file_path": "lib/core/settle.js",
+      "name": "settle",
+      "start_line": 14,
+      "end_line": 27,
+      "nloc": 14,
+      "mean_line_surprisal": 1.89728,
+      "max_line_surprisal": 3.0558
+    },
+    {
+      "function_id": "lib/core/transformData.js::transformData:15",
+      "file_path": "lib/core/transformData.js",
+      "name": "transformData",
+      "start_line": 15,
+      "end_line": 28,
+      "nloc": 11,
+      "mean_line_surprisal": 1.99219,
+      "max_line_surprisal": 3.65575
+    },
+    {
+      "function_id": "lib/defaults/index.js::validateStatus:145",
+      "file_path": "lib/defaults/index.js",
+      "name": "validateStatus",
+      "start_line": 145,
+      "end_line": 147,
+      "nloc": 3,
+      "mean_line_surprisal": 2.10622,
+      "max_line_surprisal": 2.6742
+    },
+    {
+      "function_id": "lib/defaults/index.js::transformResponse:100",
+      "file_path": "lib/defaults/index.js",
+      "name": "transformResponse",
+      "start_line": 100,
+      "end_line": 126,
+      "nloc": 23,
+      "mean_line_surprisal": 1.45601,
+      "max_line_surprisal": 3.3537
+    },
+    {
+      "function_id": "lib/defaults/index.js::transformRequest:42",
+      "file_path": "lib/defaults/index.js",
+      "name": "transformRequest",
+      "start_line": 42,
+      "end_line": 98,
+      "nloc": 47,
+      "mean_line_surprisal": 1.69439,
+      "max_line_surprisal": 3.97408
+    },
+    {
+      "function_id": "lib/defaults/index.js::stringifySafely:21",
+      "file_path": "lib/defaults/index.js",
+      "name": "stringifySafely",
+      "start_line": 21,
+      "end_line": 34,
+      "nloc": 13,
+      "mean_line_surprisal": 1.93856,
+      "max_line_surprisal": 3.66193
+    },
+    {
+      "function_id": "lib/helpers/AxiosTransformStream.js::_transform:57",
+      "file_path": "lib/helpers/AxiosTransformStream.js",
+      "name": "_transform",
+      "start_line": 57,
+      "end_line": 140,
+      "nloc": 68,
+      "mean_line_surprisal": 1.73352,
+      "max_line_surprisal": 3.63518
+    },
+    {
+      "function_id": "lib/helpers/AxiosTransformStream.js::_read:47",
+      "file_path": "lib/helpers/AxiosTransformStream.js",
+      "name": "_read",
+      "start_line": 47,
+      "end_line": 55,
+      "nloc": 7,
+      "mean_line_surprisal": 1.71563,
+      "max_line_surprisal": 2.74348
+    },
+    {
+      "function_id": "lib/helpers/AxiosTransformStream.js::constructor:9",
+      "file_path": "lib/helpers/AxiosTransformStream.js",
+      "name": "constructor",
+      "start_line": 9,
+      "end_line": 45,
+      "nloc": 34,
+      "mean_line_surprisal": 1.97846,
+      "max_line_surprisal": 3.29521
+    },
+    {
+      "function_id": "lib/helpers/AxiosURLSearchParams.js::toString:48",
+      "file_path": "lib/helpers/AxiosURLSearchParams.js",
+      "name": "toString",
+      "start_line": 48,
+      "end_line": 56,
+      "nloc": 8,
+      "mean_line_surprisal": 2.00323,
+      "max_line_surprisal": 2.92132
+    },
+    {
+      "function_id": "lib/helpers/AxiosURLSearchParams.js::append:44",
+      "file_path": "lib/helpers/AxiosURLSearchParams.js",
+      "name": "append",
+      "start_line": 44,
+      "end_line": 46,
+      "nloc": 3,
+      "mean_line_surprisal": 1.94627,
+      "max_line_surprisal": 2.50439
+    },
+    {
+      "function_id": "lib/helpers/AxiosURLSearchParams.js::AxiosURLSearchParams:36",
+      "file_path": "lib/helpers/AxiosURLSearchParams.js",
+      "name": "AxiosURLSearchParams",
+      "start_line": 36,
+      "end_line": 40,
+      "nloc": 4,
+      "mean_line_surprisal": 1.69134,
+      "max_line_surprisal": 2.16635
+    },
+    {
+      "function_id": "lib/helpers/AxiosURLSearchParams.js::encode:13",
+      "file_path": "lib/helpers/AxiosURLSearchParams.js",
+      "name": "encode",
+      "start_line": 13,
+      "end_line": 26,
+      "nloc": 14,
+      "mean_line_surprisal": 1.87451,
+      "max_line_surprisal": 5.57576
+    },
+    {
+      "function_id": "lib/helpers/ZlibHeaderTransformStream.js::_transform:11",
+      "file_path": "lib/helpers/ZlibHeaderTransformStream.js",
+      "name": "_transform",
+      "start_line": 11,
+      "end_line": 25,
+      "nloc": 13,
+      "mean_line_surprisal": 1.69424,
+      "max_line_surprisal": 3.05554
+    },
+    {
+      "function_id": "lib/helpers/ZlibHeaderTransformStream.js::__transform:6",
+      "file_path": "lib/helpers/ZlibHeaderTransformStream.js",
+      "name": "__transform",
+      "start_line": 6,
+      "end_line": 9,
+      "nloc": 4,
+      "mean_line_surprisal": 1.70305,
+      "max_line_surprisal": 2.11925
+    },
+    {
+      "function_id": "lib/helpers/bind.js::bind:10",
+      "file_path": "lib/helpers/bind.js",
+      "name": "bind",
+      "start_line": 10,
+      "end_line": 14,
+      "nloc": 5,
+      "mean_line_surprisal": 2.1396,
+      "max_line_surprisal": 2.91084
+    },
+    {
+      "function_id": "lib/helpers/buildURL.js::buildURL:31",
+      "file_path": "lib/helpers/buildURL.js",
+      "name": "buildURL",
+      "start_line": 31,
+      "end_line": 67,
+      "nloc": 29,
+      "mean_line_surprisal": 1.80841,
+      "max_line_surprisal": 3.92979
+    },
+    {
+      "function_id": "lib/helpers/buildURL.js::encode:14",
+      "file_path": "lib/helpers/buildURL.js",
+      "name": "encode",
+      "start_line": 14,
+      "end_line": 20,
+      "nloc": 7,
+      "mean_line_surprisal": 1.74023,
+      "max_line_surprisal": 2.79635
+    },
+    {
+      "function_id": "lib/helpers/callbackify.js::<anonymous>:4",
+      "file_path": "lib/helpers/callbackify.js",
+      "name": "<anonymous>",
+      "start_line": 4,
+      "end_line": 13,
+      "nloc": 10,
+      "mean_line_surprisal": 2.25172,
+      "max_line_surprisal": 3.61147
+    },
+    {
+      "function_id": "lib/helpers/combineURLs.js::combineURLs:11",
+      "file_path": "lib/helpers/combineURLs.js",
+      "name": "combineURLs",
+      "start_line": 11,
+      "end_line": 15,
+      "nloc": 5,
+      "mean_line_surprisal": 2.207,
+      "max_line_surprisal": 3.61225
+    },
+    {
+      "function_id": "lib/helpers/composeSignals.js::<anonymous>:13",
+      "file_path": "lib/helpers/composeSignals.js",
+      "name": "<anonymous>",
+      "start_line": 13,
+      "end_line": 20,
+      "nloc": 8,
+      "mean_line_surprisal": 2.02945,
+      "max_line_surprisal": 3.03666
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::remove:51",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "remove",
+      "start_line": 51,
+      "end_line": 51,
+      "nloc": 1,
+      "mean_line_surprisal": 1.63352,
+      "max_line_surprisal": 1.63352
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::read:48",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "read",
+      "start_line": 48,
+      "end_line": 50,
+      "nloc": 3,
+      "mean_line_surprisal": 1.78554,
+      "max_line_surprisal": 2.22523
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::write:47",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "write",
+      "start_line": 47,
+      "end_line": 47,
+      "nloc": 1,
+      "mean_line_surprisal": 2.30522,
+      "max_line_surprisal": 2.30522
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::remove:38",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "remove",
+      "start_line": 38,
+      "end_line": 40,
+      "nloc": 3,
+      "mean_line_surprisal": 1.36807,
+      "max_line_surprisal": 1.76722
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::read:32",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "read",
+      "start_line": 32,
+      "end_line": 36,
+      "nloc": 5,
+      "mean_line_surprisal": 1.86711,
+      "max_line_surprisal": 2.24037
+    },
+    {
+      "function_id": "lib/helpers/cookies.js::write:8",
+      "file_path": "lib/helpers/cookies.js",
+      "name": "write",
+      "start_line": 8,
+      "end_line": 30,
+      "nloc": 20,
+      "mean_line_surprisal": 1.34608,
+      "max_line_surprisal": 3.13263
+    },
+    {
+      "function_id": "lib/helpers/deprecatedMethod.js::deprecatedMethod:15",
+      "file_path": "lib/helpers/deprecatedMethod.js",
+      "name": "deprecatedMethod",
+      "start_line": 15,
+      "end_line": 26,
+      "nloc": 11,
+      "mean_line_surprisal": 1.7556,
+      "max_line_surprisal": 2.67648
+    },
+    {
+      "function_id": "lib/helpers/estimateDataURLDecodedBytes.js::estimateDataURLDecodedBytes:10",
+      "file_path": "lib/helpers/estimateDataURLDecodedBytes.js",
+      "name": "estimateDataURLDecodedBytes",
+      "start_line": 10,
+      "end_line": 73,
+      "nloc": 53,
+      "mean_line_surprisal": 1.6688,
+      "max_line_surprisal": 3.25271
+    },
+    {
+      "function_id": "lib/helpers/formDataToJSON.js::formDataToJSON:49",
+      "file_path": "lib/helpers/formDataToJSON.js",
+      "name": "formDataToJSON",
+      "start_line": 49,
+      "end_line": 93,
+      "nloc": 33,
+      "mean_line_surprisal": 1.63479,
+      "max_line_surprisal": 3.11394
+    },
+    {
+      "function_id": "lib/helpers/formDataToJSON.js::arrayToObject:29",
+      "file_path": "lib/helpers/formDataToJSON.js",
+      "name": "arrayToObject",
+      "start_line": 29,
+      "end_line": 40,
+      "nloc": 12,
+      "mean_line_surprisal": 1.98873,
+      "max_line_surprisal": 3.48735
+    },
+    {
+      "function_id": "lib/helpers/formDataToJSON.js::parsePropPath:12",
+      "file_path": "lib/helpers/formDataToJSON.js",
+      "name": "parsePropPath",
+      "start_line": 12,
+      "end_line": 20,
+      "nloc": 9,
+      "mean_line_surprisal": 2.04303,
+      "max_line_surprisal": 2.43771
+    },
+    {
+      "function_id": "lib/helpers/formDataToStream.js::<anonymous>:102",
+      "file_path": "lib/helpers/formDataToStream.js",
+      "name": "<anonymous>",
+      "start_line": 102,
+      "end_line": 109,
+      "nloc": 7,
+      "mean_line_surprisal": 1.994,
+      "max_line_surprisal": 2.52824
+    },
+    {
+      "function_id": "lib/helpers/formDataToStream.js::escapeName:54",
+      "file_path": "lib/helpers/formDataToStream.js",
+      "name": "escapeName",
+      "start_line": 54,
+      "end_line": 60,
+      "nloc": 7,
+      "mean_line_surprisal": 1.48433,
+      "max_line_surprisal": 2.44152
+    },
+    {
+      "function_id": "lib/helpers/formDataToStream.js::encode:40",
+      "file_path": "lib/helpers/formDataToStream.js",
+      "name": "encode",
+      "start_line": 40,
+      "end_line": 52,
+      "nloc": 10,
+      "mean_line_surprisal": 2.13059,
+      "max_line_surprisal": 3.87354
+    },
+    {
+      "function_id": "lib/helpers/formDataToStream.js::constructor:16",
+      "file_path": "lib/helpers/formDataToStream.js",
+      "name": "constructor",
+      "start_line": 16,
+      "end_line": 38,
+      "nloc": 17,
+      "mean_line_surprisal": 1.93378,
+      "max_line_surprisal": 2.84504
+    },
+    {
+      "function_id": "lib/helpers/fromDataURI.js::fromDataURI:19",
+      "file_path": "lib/helpers/fromDataURI.js",
+      "name": "fromDataURI",
+      "start_line": 19,
+      "end_line": 53,
+      "nloc": 26,
+      "mean_line_surprisal": 1.60211,
+      "max_line_surprisal": 3.22892
+    },
+    {
+      "function_id": "lib/helpers/isAbsoluteURL.js::isAbsoluteURL:10",
+      "file_path": "lib/helpers/isAbsoluteURL.js",
+      "name": "isAbsoluteURL",
+      "start_line": 10,
+      "end_line": 15,
+      "nloc": 6,
+      "mean_line_surprisal": 2.06082,
+      "max_line_surprisal": 2.19067
+    },
+    {
+      "function_id": "lib/helpers/isAxiosError.js::isAxiosError:12",
+      "file_path": "lib/helpers/isAxiosError.js",
+      "name": "isAxiosError",
+      "start_line": 12,
+      "end_line": 14,
+      "nloc": 3,
+      "mean_line_surprisal": 1.90326,
+      "max_line_surprisal": 2.15346
+    },
+    {
+      "function_id": "lib/helpers/parseHeaders.js::parser:34",
+      "file_path": "lib/helpers/parseHeaders.js",
+      "name": "parser",
+      "start_line": 34,
+      "end_line": 52,
+      "nloc": 17,
+      "mean_line_surprisal": 1.81714,
+      "max_line_surprisal": 3.04041
+    },
+    {
+      "function_id": "lib/helpers/parseProtocol.js::parseProtocol:3",
+      "file_path": "lib/helpers/parseProtocol.js",
+      "name": "parseProtocol",
+      "start_line": 3,
+      "end_line": 6,
+      "nloc": 4,
+      "mean_line_surprisal": 2.40977,
+      "max_line_surprisal": 3.26905
+    },
+    {
+      "function_id": "lib/helpers/readBlob.js::<anonymous>:3",
+      "file_path": "lib/helpers/readBlob.js",
+      "name": "<anonymous>",
+      "start_line": 3,
+      "end_line": 13,
+      "nloc": 11,
+      "mean_line_surprisal": 1.44946,
+      "max_line_surprisal": 2.01038
+    },
+    {
+      "function_id": "lib/helpers/speedometer.js::speedometer:9",
+      "file_path": "lib/helpers/speedometer.js",
+      "name": "speedometer",
+      "start_line": 9,
+      "end_line": 53,
+      "nloc": 33,
+      "mean_line_surprisal": 1.66595,
+      "max_line_surprisal": 2.85504
+    },
+    {
+      "function_id": "lib/helpers/spread.js::spread:24",
+      "file_path": "lib/helpers/spread.js",
+      "name": "spread",
+      "start_line": 24,
+      "end_line": 28,
+      "nloc": 5,
+      "mean_line_surprisal": 2.18411,
+      "max_line_surprisal": 3.052
+    },
+    {
+      "function_id": "lib/helpers/throttle.js::throttle:7",
+      "file_path": "lib/helpers/throttle.js",
+      "name": "throttle",
+      "start_line": 7,
+      "end_line": 42,
+      "nloc": 32,
+      "mean_line_surprisal": 1.78301,
+      "max_line_surprisal": 3.04767
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::toFormData:86",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "toFormData",
+      "start_line": 86,
+      "end_line": 221,
+      "nloc": 109,
+      "mean_line_surprisal": 1.70929,
+      "max_line_surprisal": 3.69849
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::filter:59",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "filter",
+      "start_line": 59,
+      "end_line": 61,
+      "nloc": 3,
+      "mean_line_surprisal": 2.01901,
+      "max_line_surprisal": 2.21247
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::isFlatArray:55",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "isFlatArray",
+      "start_line": 55,
+      "end_line": 57,
+      "nloc": 3,
+      "mean_line_surprisal": 1.3868,
+      "max_line_surprisal": 1.86209
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::renderKey:39",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "renderKey",
+      "start_line": 39,
+      "end_line": 46,
+      "nloc": 8,
+      "mean_line_surprisal": 1.78929,
+      "max_line_surprisal": 2.1883
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::removeBrackets:26",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "removeBrackets",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.87993,
+      "max_line_surprisal": 2.55291
+    },
+    {
+      "function_id": "lib/helpers/toFormData.js::isVisitable:15",
+      "file_path": "lib/helpers/toFormData.js",
+      "name": "isVisitable",
+      "start_line": 15,
+      "end_line": 17,
+      "nloc": 3,
+      "mean_line_surprisal": 2.19303,
+      "max_line_surprisal": 2.71538
+    },
+    {
+      "function_id": "lib/helpers/toURLEncodedForm.js::toURLEncodedForm:7",
+      "file_path": "lib/helpers/toURLEncodedForm.js",
+      "name": "toURLEncodedForm",
+      "start_line": 7,
+      "end_line": 19,
+      "nloc": 12,
+      "mean_line_surprisal": 2.19016,
+      "max_line_surprisal": 3.44854
+    },
+    {
+      "function_id": "lib/helpers/trackStream.js::cancel:80",
+      "file_path": "lib/helpers/trackStream.js",
+      "name": "cancel",
+      "start_line": 80,
+      "end_line": 83,
+      "nloc": 4,
+      "mean_line_surprisal": 1.74236,
+      "max_line_surprisal": 2.03487
+    },
+    {
+      "function_id": "lib/helpers/trackStream.js::pull:59",
+      "file_path": "lib/helpers/trackStream.js",
+      "name": "pull",
+      "start_line": 59,
+      "end_line": 79,
+      "nloc": 19,
+      "mean_line_surprisal": 1.64384,
+      "max_line_surprisal": 2.99156
+    },
+    {
+      "function_id": "lib/helpers/trackStream.js::<anonymous>:26",
+      "file_path": "lib/helpers/trackStream.js",
+      "name": "<anonymous>",
+      "start_line": 26,
+      "end_line": 44,
+      "nloc": 18,
+      "mean_line_surprisal": 1.80109,
+      "max_line_surprisal": 3.94262
+    },
+    {
+      "function_id": "lib/helpers/trackStream.js::<anonymous>:20",
+      "file_path": "lib/helpers/trackStream.js",
+      "name": "<anonymous>",
+      "start_line": 20,
+      "end_line": 24,
+      "nloc": 5,
+      "mean_line_surprisal": 1.64566,
+      "max_line_surprisal": 1.96745
+    },
+    {
+      "function_id": "lib/helpers/trackStream.js::<anonymous>:2",
+      "file_path": "lib/helpers/trackStream.js",
+      "name": "<anonymous>",
+      "start_line": 2,
+      "end_line": 18,
+      "nloc": 14,
+      "mean_line_surprisal": 1.72632,
+      "max_line_surprisal": 2.77835
+    },
+    {
+      "function_id": "lib/helpers/validator.js::assertOptions:73",
+      "file_path": "lib/helpers/validator.js",
+      "name": "assertOptions",
+      "start_line": 73,
+      "end_line": 94,
+      "nloc": 22,
+      "mean_line_surprisal": 1.82928,
+      "max_line_surprisal": 4.97987
+    },
+    {
+      "function_id": "lib/helpers/validator.js::spelling:55",
+      "file_path": "lib/helpers/validator.js",
+      "name": "spelling",
+      "start_line": 55,
+      "end_line": 61,
+      "nloc": 7,
+      "mean_line_surprisal": 2.01568,
+      "max_line_surprisal": 3.56749
+    },
+    {
+      "function_id": "lib/helpers/validator.js::transitional:26",
+      "file_path": "lib/helpers/validator.js",
+      "name": "transitional",
+      "start_line": 26,
+      "end_line": 53,
+      "nloc": 25,
+      "mean_line_surprisal": 1.74643,
+      "max_line_surprisal": 2.9927
+    },
+    {
+      "function_id": "lib/helpers/validator.js::validator:10",
+      "file_path": "lib/helpers/validator.js",
+      "name": "validator",
+      "start_line": 10,
+      "end_line": 12,
+      "nloc": 3,
+      "mean_line_surprisal": 1.87175,
+      "max_line_surprisal": 2.21385
+    },
+    {
+      "function_id": "lib/utils.js::isSpecCompliantForm:662",
+      "file_path": "lib/utils.js",
+      "name": "isSpecCompliantForm",
+      "start_line": 662,
+      "end_line": 664,
+      "nloc": 3,
+      "mean_line_surprisal": 1.45448,
+      "max_line_surprisal": 2.06376
+    },
+    {
+      "function_id": "lib/utils.js::replacer:570",
+      "file_path": "lib/utils.js",
+      "name": "replacer",
+      "start_line": 570,
+      "end_line": 572,
+      "nloc": 3,
+      "mean_line_surprisal": 1.36855,
+      "max_line_surprisal": 2.10115
+    },
+    {
+      "function_id": "lib/utils.js::merge:344",
+      "file_path": "lib/utils.js",
+      "name": "merge",
+      "start_line": 344,
+      "end_line": 364,
+      "nloc": 20,
+      "mean_line_surprisal": 1.40122,
+      "max_line_surprisal": 2.09489
+    },
+    {
+      "function_id": "lib/utils.js::findKey:300",
+      "file_path": "lib/utils.js",
+      "name": "findKey",
+      "start_line": 300,
+      "end_line": 316,
+      "nloc": 16,
+      "mean_line_surprisal": 1.81213,
+      "max_line_surprisal": 3.32219
+    },
+    {
+      "function_id": "lib/utils.js::forEach:262",
+      "file_path": "lib/utils.js",
+      "name": "forEach",
+      "start_line": 262,
+      "end_line": 298,
+      "nloc": 32,
+      "mean_line_surprisal": 1.92228,
+      "max_line_surprisal": 3.47467
+    },
+    {
+      "function_id": "lib/utils.js::isArrayBufferView:70",
+      "file_path": "lib/utils.js",
+      "name": "isArrayBufferView",
+      "start_line": 70,
+      "end_line": 78,
+      "nloc": 9,
+      "mean_line_surprisal": 2.05935,
+      "max_line_surprisal": 3.46082
+    },
+    {
+      "function_id": "lib/utils.js::isBuffer:48",
+      "file_path": "lib/utils.js",
+      "name": "isBuffer",
+      "start_line": 48,
+      "end_line": 51,
+      "nloc": 4,
+      "mean_line_surprisal": 1.6464,
+      "max_line_surprisal": 2.66207
+    }
+  ]
+}

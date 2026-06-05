@@ -1,0 +1,3576 @@
+{
+  "meta": {
+    "repo": "hono",
+    "t0_sha": "342ff3b52dda2d655aa5c5b649557e9d6f247909",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 3251,
+    "n_files": 181,
+    "n_tokens": 119104,
+    "n_functions": 229,
+    "build_seconds": 8.3,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "src/adapter/aws-lambda/handler.ts": {
+      "mean_line_surprisal": 1.79166,
+      "top_decile_line_surprisal": 3.71831,
+      "token_cross_entropy": 1.64776,
+      "n_lines": 514,
+      "n_tokens": 3183
+    },
+    "src/adapter/aws-lambda/index.ts": {
+      "mean_line_surprisal": 1.52232,
+      "top_decile_line_surprisal": 3.64864,
+      "token_cross_entropy": 1.51306,
+      "n_lines": 8,
+      "n_tokens": 39
+    },
+    "src/adapter/aws-lambda/types.ts": {
+      "mean_line_surprisal": 1.7047,
+      "top_decile_line_surprisal": 3.328,
+      "token_cross_entropy": 1.74889,
+      "n_lines": 143,
+      "n_tokens": 479
+    },
+    "src/adapter/bun/conninfo.ts": {
+      "mean_line_surprisal": 1.97658,
+      "top_decile_line_surprisal": 3.63881,
+      "token_cross_entropy": 1.79254,
+      "n_lines": 20,
+      "n_tokens": 140
+    },
+    "src/adapter/bun/index.ts": {
+      "mean_line_surprisal": 1.3563,
+      "top_decile_line_surprisal": 1.64337,
+      "token_cross_entropy": 1.36303,
+      "n_lines": 5,
+      "n_tokens": 49
+    },
+    "src/adapter/bun/serve-static.ts": {
+      "mean_line_surprisal": 1.77587,
+      "top_decile_line_surprisal": 4.43762,
+      "token_cross_entropy": 1.76928,
+      "n_lines": 29,
+      "n_tokens": 172
+    },
+    "src/adapter/bun/server.ts": {
+      "mean_line_surprisal": 2.54098,
+      "top_decile_line_surprisal": 4.14388,
+      "token_cross_entropy": 2.21027,
+      "n_lines": 16,
+      "n_tokens": 91
+    },
+    "src/adapter/bun/ssg.ts": {
+      "mean_line_surprisal": 2.09357,
+      "top_decile_line_surprisal": 2.97344,
+      "token_cross_entropy": 1.91298,
+      "n_lines": 12,
+      "n_tokens": 87
+    },
+    "src/adapter/bun/websocket.ts": {
+      "mean_line_surprisal": 1.97995,
+      "top_decile_line_surprisal": 4.04036,
+      "token_cross_entropy": 1.84005,
+      "n_lines": 86,
+      "n_tokens": 548
+    },
+    "src/adapter/cloudflare-pages/handler.ts": {
+      "mean_line_surprisal": 1.99804,
+      "top_decile_line_surprisal": 3.84405,
+      "token_cross_entropy": 1.90071,
+      "n_lines": 97,
+      "n_tokens": 610
+    },
+    "src/adapter/cloudflare-pages/index.ts": {
+      "mean_line_surprisal": 1.72829,
+      "top_decile_line_surprisal": 1.90739,
+      "token_cross_entropy": 1.7027,
+      "n_lines": 2,
+      "n_tokens": 21
+    },
+    "src/adapter/cloudflare-workers/conninfo.ts": {
+      "mean_line_surprisal": 1.97201,
+      "top_decile_line_surprisal": 2.9535,
+      "token_cross_entropy": 1.92614,
+      "n_lines": 6,
+      "n_tokens": 41
+    },
+    "src/adapter/cloudflare-workers/index.ts": {
+      "mean_line_surprisal": 1.36264,
+      "top_decile_line_surprisal": 1.61007,
+      "token_cross_entropy": 1.36264,
+      "n_lines": 3,
+      "n_tokens": 24
+    },
+    "src/adapter/cloudflare-workers/serve-static-module.ts": {
+      "mean_line_surprisal": 2.22899,
+      "top_decile_line_surprisal": 3.43291,
+      "token_cross_entropy": 2.07627,
+      "n_lines": 9,
+      "n_tokens": 72
+    },
+    "src/adapter/cloudflare-workers/serve-static.ts": {
+      "mean_line_surprisal": 1.88697,
+      "top_decile_line_surprisal": 3.27072,
+      "token_cross_entropy": 1.85892,
+      "n_lines": 28,
+      "n_tokens": 166
+    },
+    "src/adapter/cloudflare-workers/utils.ts": {
+      "mean_line_surprisal": 1.93276,
+      "top_decile_line_surprisal": 3.57905,
+      "token_cross_entropy": 2.00716,
+      "n_lines": 40,
+      "n_tokens": 212
+    },
+    "src/adapter/cloudflare-workers/websocket.ts": {
+      "mean_line_surprisal": 1.73964,
+      "top_decile_line_surprisal": 3.15702,
+      "token_cross_entropy": 1.65643,
+      "n_lines": 41,
+      "n_tokens": 312
+    },
+    "src/adapter/deno/conninfo.ts": {
+      "mean_line_surprisal": 2.0239,
+      "top_decile_line_surprisal": 4.3752,
+      "token_cross_entropy": 1.91216,
+      "n_lines": 11,
+      "n_tokens": 55
+    },
+    "src/adapter/deno/deno.d.ts": {
+      "mean_line_surprisal": 2.12556,
+      "top_decile_line_surprisal": 4.51945,
+      "token_cross_entropy": 1.94409,
+      "n_lines": 24,
+      "n_tokens": 130
+    },
+    "src/adapter/deno/index.ts": {
+      "mean_line_surprisal": 1.31085,
+      "top_decile_line_surprisal": 1.6827,
+      "token_cross_entropy": 1.33272,
+      "n_lines": 4,
+      "n_tokens": 34
+    },
+    "src/adapter/deno/serve-static.ts": {
+      "mean_line_surprisal": 1.91581,
+      "top_decile_line_surprisal": 4.36247,
+      "token_cross_entropy": 1.85032,
+      "n_lines": 39,
+      "n_tokens": 205
+    },
+    "src/adapter/deno/ssg.ts": {
+      "mean_line_surprisal": 2.07142,
+      "top_decile_line_surprisal": 4.09687,
+      "token_cross_entropy": 1.94752,
+      "n_lines": 15,
+      "n_tokens": 128
+    },
+    "src/adapter/deno/websocket.ts": {
+      "mean_line_surprisal": 1.69393,
+      "top_decile_line_surprisal": 3.32032,
+      "token_cross_entropy": 1.53224,
+      "n_lines": 26,
+      "n_tokens": 248
+    },
+    "src/adapter/lambda-edge/conninfo.ts": {
+      "mean_line_surprisal": 1.76359,
+      "top_decile_line_surprisal": 3.75459,
+      "token_cross_entropy": 1.80488,
+      "n_lines": 13,
+      "n_tokens": 82
+    },
+    "src/adapter/lambda-edge/handler.ts": {
+      "mean_line_surprisal": 1.9691,
+      "top_decile_line_surprisal": 3.79494,
+      "token_cross_entropy": 1.84792,
+      "n_lines": 163,
+      "n_tokens": 939
+    },
+    "src/adapter/lambda-edge/index.ts": {
+      "mean_line_surprisal": 1.52297,
+      "top_decile_line_surprisal": 3.56037,
+      "token_cross_entropy": 1.42424,
+      "n_lines": 9,
+      "n_tokens": 34
+    },
+    "src/adapter/netlify/handler.ts": {
+      "mean_line_surprisal": 2.2117,
+      "top_decile_line_surprisal": 3.46564,
+      "token_cross_entropy": 1.93454,
+      "n_lines": 8,
+      "n_tokens": 69
+    },
+    "src/adapter/netlify/index.ts": {
+      "mean_line_surprisal": 1.83254,
+      "top_decile_line_surprisal": 1.83254,
+      "token_cross_entropy": 1.83254,
+      "n_lines": 1,
+      "n_tokens": 6
+    },
+    "src/adapter/netlify/mod.ts": {
+      "mean_line_surprisal": 1.57436,
+      "top_decile_line_surprisal": 1.57436,
+      "token_cross_entropy": 1.57436,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/adapter/service-worker/handler.ts": {
+      "mean_line_surprisal": 2.07998,
+      "top_decile_line_surprisal": 3.57091,
+      "token_cross_entropy": 1.95067,
+      "n_lines": 25,
+      "n_tokens": 167
+    },
+    "src/adapter/service-worker/index.ts": {
+      "mean_line_surprisal": 2.00195,
+      "top_decile_line_surprisal": 3.13395,
+      "token_cross_entropy": 1.94626,
+      "n_lines": 13,
+      "n_tokens": 100
+    },
+    "src/adapter/service-worker/types.ts": {
+      "mean_line_surprisal": 1.99668,
+      "top_decile_line_surprisal": 3.91257,
+      "token_cross_entropy": 1.88711,
+      "n_lines": 11,
+      "n_tokens": 63
+    },
+    "src/adapter/vercel/conninfo.ts": {
+      "mean_line_surprisal": 1.97201,
+      "top_decile_line_surprisal": 2.9535,
+      "token_cross_entropy": 1.92614,
+      "n_lines": 6,
+      "n_tokens": 41
+    },
+    "src/adapter/vercel/handler.ts": {
+      "mean_line_surprisal": 2.36418,
+      "top_decile_line_surprisal": 3.49431,
+      "token_cross_entropy": 2.12802,
+      "n_lines": 6,
+      "n_tokens": 48
+    },
+    "src/adapter/vercel/index.ts": {
+      "mean_line_surprisal": 1.48478,
+      "top_decile_line_surprisal": 1.57436,
+      "token_cross_entropy": 1.48478,
+      "n_lines": 2,
+      "n_tokens": 16
+    },
+    "src/client/client.ts": {
+      "mean_line_surprisal": 1.97154,
+      "top_decile_line_surprisal": 3.68911,
+      "token_cross_entropy": 1.89053,
+      "n_lines": 177,
+      "n_tokens": 1253
+    },
+    "src/client/fetch-result-please.ts": {
+      "mean_line_surprisal": 2.02326,
+      "top_decile_line_surprisal": 3.76232,
+      "token_cross_entropy": 1.91845,
+      "n_lines": 52,
+      "n_tokens": 345
+    },
+    "src/client/index.ts": {
+      "mean_line_surprisal": 1.5124,
+      "top_decile_line_surprisal": 3.63568,
+      "token_cross_entropy": 1.49745,
+      "n_lines": 10,
+      "n_tokens": 38
+    },
+    "src/client/types.ts": {
+      "mean_line_surprisal": 1.80823,
+      "top_decile_line_surprisal": 3.24509,
+      "token_cross_entropy": 1.74487,
+      "n_lines": 152,
+      "n_tokens": 1099
+    },
+    "src/client/utils.ts": {
+      "mean_line_surprisal": 2.04609,
+      "top_decile_line_surprisal": 4.65704,
+      "token_cross_entropy": 1.95568,
+      "n_lines": 92,
+      "n_tokens": 633
+    },
+    "src/compose.ts": {
+      "mean_line_surprisal": 2.12955,
+      "top_decile_line_surprisal": 3.58768,
+      "token_cross_entropy": 2.10744,
+      "n_lines": 48,
+      "n_tokens": 309
+    },
+    "src/context.ts": {
+      "mean_line_surprisal": 1.77401,
+      "top_decile_line_surprisal": 3.51381,
+      "token_cross_entropy": 1.69616,
+      "n_lines": 363,
+      "n_tokens": 2609
+    },
+    "src/helper/accepts/accepts.ts": {
+      "mean_line_surprisal": 1.91868,
+      "top_decile_line_surprisal": 3.51684,
+      "token_cross_entropy": 1.80487,
+      "n_lines": 30,
+      "n_tokens": 223
+    },
+    "src/helper/accepts/index.ts": {
+      "mean_line_surprisal": 1.82715,
+      "top_decile_line_surprisal": 1.82715,
+      "token_cross_entropy": 1.82715,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/helper/adapter/index.ts": {
+      "mean_line_surprisal": 2.11243,
+      "top_decile_line_surprisal": 4.61353,
+      "token_cross_entropy": 1.88817,
+      "n_lines": 59,
+      "n_tokens": 411
+    },
+    "src/helper/conninfo/index.ts": {
+      "mean_line_surprisal": 1.781,
+      "top_decile_line_surprisal": 1.781,
+      "token_cross_entropy": 1.781,
+      "n_lines": 1,
+      "n_tokens": 15
+    },
+    "src/helper/conninfo/types.ts": {
+      "mean_line_surprisal": 2.09904,
+      "top_decile_line_surprisal": 3.80038,
+      "token_cross_entropy": 2.00997,
+      "n_lines": 18,
+      "n_tokens": 84
+    },
+    "src/helper/cookie/index.ts": {
+      "mean_line_surprisal": 1.4247,
+      "top_decile_line_surprisal": 3.64612,
+      "token_cross_entropy": 1.40132,
+      "n_lines": 125,
+      "n_tokens": 889
+    },
+    "src/helper/css/common.ts": {
+      "mean_line_surprisal": 1.92138,
+      "top_decile_line_surprisal": 4.07793,
+      "token_cross_entropy": 1.77703,
+      "n_lines": 203,
+      "n_tokens": 1423
+    },
+    "src/helper/css/index.ts": {
+      "mean_line_surprisal": 1.71351,
+      "top_decile_line_surprisal": 3.50138,
+      "token_cross_entropy": 1.7153,
+      "n_lines": 158,
+      "n_tokens": 1112
+    },
+    "src/helper/dev/index.ts": {
+      "mean_line_surprisal": 2.09329,
+      "top_decile_line_surprisal": 3.73833,
+      "token_cross_entropy": 1.98466,
+      "n_lines": 64,
+      "n_tokens": 514
+    },
+    "src/helper/factory/index.ts": {
+      "mean_line_surprisal": 0.93545,
+      "top_decile_line_surprisal": 2.53413,
+      "token_cross_entropy": 0.81242,
+      "n_lines": 341,
+      "n_tokens": 3752
+    },
+    "src/helper/html/index.ts": {
+      "mean_line_surprisal": 1.85661,
+      "top_decile_line_surprisal": 3.44788,
+      "token_cross_entropy": 1.79416,
+      "n_lines": 46,
+      "n_tokens": 399
+    },
+    "src/helper/proxy/index.ts": {
+      "mean_line_surprisal": 2.07251,
+      "top_decile_line_surprisal": 4.03547,
+      "token_cross_entropy": 2.0065,
+      "n_lines": 106,
+      "n_tokens": 639
+    },
+    "src/helper/route/index.ts": {
+      "mean_line_surprisal": 1.9348,
+      "top_decile_line_surprisal": 3.8345,
+      "token_cross_entropy": 1.8621,
+      "n_lines": 41,
+      "n_tokens": 411
+    },
+    "src/helper/ssg/index.ts": {
+      "mean_line_surprisal": 1.75838,
+      "top_decile_line_surprisal": 3.66617,
+      "token_cross_entropy": 1.6276,
+      "n_lines": 8,
+      "n_tokens": 23
+    },
+    "src/helper/ssg/middleware.ts": {
+      "mean_line_surprisal": 1.82025,
+      "top_decile_line_surprisal": 3.42402,
+      "token_cross_entropy": 1.92455,
+      "n_lines": 51,
+      "n_tokens": 351
+    },
+    "src/helper/ssg/ssg.ts": {
+      "mean_line_surprisal": 1.7691,
+      "top_decile_line_surprisal": 3.70921,
+      "token_cross_entropy": 1.732,
+      "n_lines": 380,
+      "n_tokens": 2215
+    },
+    "src/helper/ssg/utils.ts": {
+      "mean_line_surprisal": 2.16348,
+      "top_decile_line_surprisal": 4.59291,
+      "token_cross_entropy": 1.94718,
+      "n_lines": 59,
+      "n_tokens": 511
+    },
+    "src/helper/streaming/index.ts": {
+      "mean_line_surprisal": 1.60322,
+      "top_decile_line_surprisal": 1.87348,
+      "token_cross_entropy": 1.59938,
+      "n_lines": 4,
+      "n_tokens": 35
+    },
+    "src/helper/streaming/sse.ts": {
+      "mean_line_surprisal": 1.98305,
+      "top_decile_line_surprisal": 3.74497,
+      "token_cross_entropy": 1.75608,
+      "n_lines": 78,
+      "n_tokens": 539
+    },
+    "src/helper/streaming/stream.ts": {
+      "mean_line_surprisal": 1.93171,
+      "top_decile_line_surprisal": 3.11958,
+      "token_cross_entropy": 1.83298,
+      "n_lines": 35,
+      "n_tokens": 239
+    },
+    "src/helper/streaming/text.ts": {
+      "mean_line_surprisal": 1.78058,
+      "top_decile_line_surprisal": 3.30127,
+      "token_cross_entropy": 1.61504,
+      "n_lines": 14,
+      "n_tokens": 122
+    },
+    "src/helper/streaming/utils.ts": {
+      "mean_line_surprisal": 2.00823,
+      "top_decile_line_surprisal": 4.11018,
+      "token_cross_entropy": 1.97633,
+      "n_lines": 9,
+      "n_tokens": 75
+    },
+    "src/helper/testing/index.ts": {
+      "mean_line_surprisal": 1.82583,
+      "top_decile_line_surprisal": 3.34762,
+      "token_cross_entropy": 1.93774,
+      "n_lines": 18,
+      "n_tokens": 192
+    },
+    "src/helper/websocket/index.ts": {
+      "mean_line_surprisal": 2.18591,
+      "top_decile_line_surprisal": 4.91949,
+      "token_cross_entropy": 1.83401,
+      "n_lines": 97,
+      "n_tokens": 761
+    },
+    "src/hono-base.ts": {
+      "mean_line_surprisal": 1.87584,
+      "top_decile_line_surprisal": 3.42346,
+      "token_cross_entropy": 1.8899,
+      "n_lines": 301,
+      "n_tokens": 2169
+    },
+    "src/hono.ts": {
+      "mean_line_surprisal": 1.7737,
+      "top_decile_line_surprisal": 3.07236,
+      "token_cross_entropy": 1.6499,
+      "n_lines": 20,
+      "n_tokens": 137
+    },
+    "src/http-exception.ts": {
+      "mean_line_surprisal": 2.12931,
+      "top_decile_line_surprisal": 4.13916,
+      "token_cross_entropy": 2.10746,
+      "n_lines": 27,
+      "n_tokens": 146
+    },
+    "src/index.ts": {
+      "mean_line_surprisal": 1.80504,
+      "top_decile_line_surprisal": 3.05397,
+      "token_cross_entropy": 1.53063,
+      "n_lines": 18,
+      "n_tokens": 79
+    },
+    "src/jsx/base.ts": {
+      "mean_line_surprisal": 1.8443,
+      "top_decile_line_surprisal": 4.01821,
+      "token_cross_entropy": 1.75478,
+      "n_lines": 386,
+      "n_tokens": 2538
+    },
+    "src/jsx/children.ts": {
+      "mean_line_surprisal": 1.99297,
+      "top_decile_line_surprisal": 4.08789,
+      "token_cross_entropy": 1.75439,
+      "n_lines": 19,
+      "n_tokens": 183
+    },
+    "src/jsx/components.ts": {
+      "mean_line_surprisal": 1.91737,
+      "top_decile_line_surprisal": 3.99474,
+      "token_cross_entropy": 1.73301,
+      "n_lines": 161,
+      "n_tokens": 1092
+    },
+    "src/jsx/constants.ts": {
+      "mean_line_surprisal": 1.38087,
+      "top_decile_line_surprisal": 2.05856,
+      "token_cross_entropy": 1.38087,
+      "n_lines": 6,
+      "n_tokens": 60
+    },
+    "src/jsx/context.ts": {
+      "mean_line_surprisal": 1.97175,
+      "top_decile_line_surprisal": 3.42487,
+      "token_cross_entropy": 1.96621,
+      "n_lines": 41,
+      "n_tokens": 326
+    },
+    "src/jsx/dom/client.ts": {
+      "mean_line_surprisal": 2.01944,
+      "top_decile_line_surprisal": 3.97196,
+      "token_cross_entropy": 1.95377,
+      "n_lines": 61,
+      "n_tokens": 279
+    },
+    "src/jsx/dom/components.ts": {
+      "mean_line_surprisal": 1.49384,
+      "top_decile_line_surprisal": 3.47035,
+      "token_cross_entropy": 1.53547,
+      "n_lines": 35,
+      "n_tokens": 227
+    },
+    "src/jsx/dom/context.ts": {
+      "mean_line_surprisal": 2.06766,
+      "top_decile_line_surprisal": 3.68845,
+      "token_cross_entropy": 1.98658,
+      "n_lines": 47,
+      "n_tokens": 305
+    },
+    "src/jsx/dom/css.ts": {
+      "mean_line_surprisal": 1.93674,
+      "top_decile_line_surprisal": 4.04641,
+      "token_cross_entropy": 1.80759,
+      "n_lines": 171,
+      "n_tokens": 1054
+    },
+    "src/jsx/dom/hooks/index.ts": {
+      "mean_line_surprisal": 1.95219,
+      "top_decile_line_surprisal": 3.34578,
+      "token_cross_entropy": 1.99842,
+      "n_lines": 61,
+      "n_tokens": 402
+    },
+    "src/jsx/dom/index.ts": {
+      "mean_line_surprisal": 1.29562,
+      "top_decile_line_surprisal": 2.78513,
+      "token_cross_entropy": 1.52972,
+      "n_lines": 154,
+      "n_tokens": 619
+    },
+    "src/jsx/dom/intrinsic-element/components.ts": {
+      "mean_line_surprisal": 1.81642,
+      "top_decile_line_surprisal": 3.54691,
+      "token_cross_entropy": 1.72877,
+      "n_lines": 353,
+      "n_tokens": 2249
+    },
+    "src/jsx/dom/jsx-dev-runtime.ts": {
+      "mean_line_surprisal": 2.0767,
+      "top_decile_line_surprisal": 3.26214,
+      "token_cross_entropy": 1.99422,
+      "n_lines": 16,
+      "n_tokens": 130
+    },
+    "src/jsx/dom/jsx-runtime.ts": {
+      "mean_line_surprisal": 1.295,
+      "top_decile_line_surprisal": 1.55022,
+      "token_cross_entropy": 1.31436,
+      "n_lines": 3,
+      "n_tokens": 31
+    },
+    "src/jsx/dom/render.ts": {
+      "mean_line_surprisal": 1.90174,
+      "top_decile_line_surprisal": 3.47972,
+      "token_cross_entropy": 1.84174,
+      "n_lines": 713,
+      "n_tokens": 5019
+    },
+    "src/jsx/dom/server.ts": {
+      "mean_line_surprisal": 2.04792,
+      "top_decile_line_surprisal": 4.01634,
+      "token_cross_entropy": 1.97433,
+      "n_lines": 46,
+      "n_tokens": 283
+    },
+    "src/jsx/dom/utils.ts": {
+      "mean_line_surprisal": 2.03516,
+      "top_decile_line_surprisal": 3.14522,
+      "token_cross_entropy": 2.03984,
+      "n_lines": 5,
+      "n_tokens": 35
+    },
+    "src/jsx/hooks/index.ts": {
+      "mean_line_surprisal": 1.83821,
+      "top_decile_line_surprisal": 3.48959,
+      "token_cross_entropy": 1.74542,
+      "n_lines": 368,
+      "n_tokens": 2855
+    },
+    "src/jsx/index.ts": {
+      "mean_line_surprisal": 1.11686,
+      "top_decile_line_surprisal": 2.50095,
+      "token_cross_entropy": 1.22395,
+      "n_lines": 105,
+      "n_tokens": 293
+    },
+    "src/jsx/intrinsic-element/common.ts": {
+      "mean_line_surprisal": 2.26681,
+      "top_decile_line_surprisal": 4.9503,
+      "token_cross_entropy": 1.89146,
+      "n_lines": 9,
+      "n_tokens": 84
+    },
+    "src/jsx/intrinsic-element/components.ts": {
+      "mean_line_surprisal": 1.78807,
+      "top_decile_line_surprisal": 3.59156,
+      "token_cross_entropy": 1.71245,
+      "n_lines": 177,
+      "n_tokens": 1442
+    },
+    "src/jsx/intrinsic-elements.ts": {
+      "mean_line_surprisal": 1.36272,
+      "top_decile_line_surprisal": 2.90662,
+      "token_cross_entropy": 1.30954,
+      "n_lines": 819,
+      "n_tokens": 5032
+    },
+    "src/jsx/jsx-dev-runtime.ts": {
+      "mean_line_surprisal": 2.04426,
+      "top_decile_line_surprisal": 3.47919,
+      "token_cross_entropy": 1.98908,
+      "n_lines": 20,
+      "n_tokens": 150
+    },
+    "src/jsx/jsx-runtime.ts": {
+      "mean_line_surprisal": 1.91121,
+      "top_decile_line_surprisal": 3.22479,
+      "token_cross_entropy": 1.84266,
+      "n_lines": 38,
+      "n_tokens": 373
+    },
+    "src/jsx/streaming.ts": {
+      "mean_line_surprisal": 1.98709,
+      "top_decile_line_surprisal": 4.16544,
+      "token_cross_entropy": 1.82855,
+      "n_lines": 156,
+      "n_tokens": 1048
+    },
+    "src/jsx/types.ts": {
+      "mean_line_surprisal": 1.77543,
+      "top_decile_line_surprisal": 3.30688,
+      "token_cross_entropy": 1.73932,
+      "n_lines": 27,
+      "n_tokens": 228
+    },
+    "src/jsx/utils.ts": {
+      "mean_line_surprisal": 1.88876,
+      "top_decile_line_surprisal": 3.59507,
+      "token_cross_entropy": 1.76478,
+      "n_lines": 35,
+      "n_tokens": 261
+    },
+    "src/middleware/basic-auth/index.ts": {
+      "mean_line_surprisal": 2.03306,
+      "top_decile_line_surprisal": 3.99993,
+      "token_cross_entropy": 1.8852,
+      "n_lines": 82,
+      "n_tokens": 508
+    },
+    "src/middleware/bearer-auth/index.ts": {
+      "mean_line_surprisal": 1.78313,
+      "top_decile_line_surprisal": 3.29595,
+      "token_cross_entropy": 1.76026,
+      "n_lines": 138,
+      "n_tokens": 875
+    },
+    "src/middleware/body-limit/index.ts": {
+      "mean_line_surprisal": 2.00897,
+      "top_decile_line_surprisal": 3.80958,
+      "token_cross_entropy": 1.91119,
+      "n_lines": 67,
+      "n_tokens": 432
+    },
+    "src/middleware/cache/index.ts": {
+      "mean_line_surprisal": 1.9748,
+      "top_decile_line_surprisal": 3.37737,
+      "token_cross_entropy": 1.87035,
+      "n_lines": 98,
+      "n_tokens": 741
+    },
+    "src/middleware/combine/index.ts": {
+      "mean_line_surprisal": 2.05787,
+      "top_decile_line_surprisal": 4.79077,
+      "token_cross_entropy": 1.86871,
+      "n_lines": 79,
+      "n_tokens": 509
+    },
+    "src/middleware/compress/index.ts": {
+      "mean_line_surprisal": 1.99835,
+      "top_decile_line_surprisal": 3.87504,
+      "token_cross_entropy": 1.84227,
+      "n_lines": 43,
+      "n_tokens": 351
+    },
+    "src/middleware/context-storage/index.ts": {
+      "mean_line_surprisal": 2.14423,
+      "top_decile_line_surprisal": 4.71135,
+      "token_cross_entropy": 1.96319,
+      "n_lines": 16,
+      "n_tokens": 115
+    },
+    "src/middleware/cors/index.ts": {
+      "mean_line_surprisal": 2.01005,
+      "top_decile_line_surprisal": 4.12332,
+      "token_cross_entropy": 1.78655,
+      "n_lines": 99,
+      "n_tokens": 726
+    },
+    "src/middleware/csrf/index.ts": {
+      "mean_line_surprisal": 1.82141,
+      "top_decile_line_surprisal": 3.56037,
+      "token_cross_entropy": 1.77623,
+      "n_lines": 67,
+      "n_tokens": 531
+    },
+    "src/middleware/etag/digest.ts": {
+      "mean_line_surprisal": 1.9712,
+      "top_decile_line_surprisal": 3.44325,
+      "token_cross_entropy": 1.92393,
+      "n_lines": 37,
+      "n_tokens": 239
+    },
+    "src/middleware/etag/index.ts": {
+      "mean_line_surprisal": 2.24551,
+      "top_decile_line_surprisal": 5.36185,
+      "token_cross_entropy": 2.0006,
+      "n_lines": 77,
+      "n_tokens": 480
+    },
+    "src/middleware/ip-restriction/index.ts": {
+      "mean_line_surprisal": 1.88328,
+      "top_decile_line_surprisal": 3.81735,
+      "token_cross_entropy": 1.81746,
+      "n_lines": 131,
+      "n_tokens": 859
+    },
+    "src/middleware/jsx-renderer/index.ts": {
+      "mean_line_surprisal": 1.97411,
+      "top_decile_line_surprisal": 3.69639,
+      "token_cross_entropy": 1.88141,
+      "n_lines": 85,
+      "n_tokens": 574
+    },
+    "src/middleware/jwk/index.ts": {
+      "mean_line_surprisal": 1.82715,
+      "top_decile_line_surprisal": 1.82715,
+      "token_cross_entropy": 1.82715,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/middleware/jwk/jwk.ts": {
+      "mean_line_surprisal": 1.61638,
+      "top_decile_line_surprisal": 3.49452,
+      "token_cross_entropy": 1.64579,
+      "n_lines": 127,
+      "n_tokens": 790
+    },
+    "src/middleware/jwt/index.ts": {
+      "mean_line_surprisal": 1.88405,
+      "top_decile_line_surprisal": 3.34078,
+      "token_cross_entropy": 1.7938,
+      "n_lines": 7,
+      "n_tokens": 51
+    },
+    "src/middleware/jwt/jwt.ts": {
+      "mean_line_surprisal": 1.56781,
+      "top_decile_line_surprisal": 3.23618,
+      "token_cross_entropy": 1.59546,
+      "n_lines": 125,
+      "n_tokens": 719
+    },
+    "src/middleware/language/index.ts": {
+      "mean_line_surprisal": 1.54129,
+      "top_decile_line_surprisal": 3.40922,
+      "token_cross_entropy": 1.51083,
+      "n_lines": 12,
+      "n_tokens": 56
+    },
+    "src/middleware/language/language.ts": {
+      "mean_line_surprisal": 1.84694,
+      "top_decile_line_surprisal": 3.62716,
+      "token_cross_entropy": 1.8118,
+      "n_lines": 199,
+      "n_tokens": 1202
+    },
+    "src/middleware/logger/index.ts": {
+      "mean_line_surprisal": 2.0494,
+      "top_decile_line_surprisal": 4.13707,
+      "token_cross_entropy": 1.92159,
+      "n_lines": 57,
+      "n_tokens": 446
+    },
+    "src/middleware/method-override/index.ts": {
+      "mean_line_surprisal": 1.75148,
+      "top_decile_line_surprisal": 3.21906,
+      "token_cross_entropy": 1.71008,
+      "n_lines": 103,
+      "n_tokens": 647
+    },
+    "src/middleware/powered-by/index.ts": {
+      "mean_line_surprisal": 2.52166,
+      "top_decile_line_surprisal": 4.68346,
+      "token_cross_entropy": 2.11418,
+      "n_lines": 10,
+      "n_tokens": 68
+    },
+    "src/middleware/pretty-json/index.ts": {
+      "mean_line_surprisal": 2.45055,
+      "top_decile_line_surprisal": 4.7203,
+      "token_cross_entropy": 2.08714,
+      "n_lines": 16,
+      "n_tokens": 147
+    },
+    "src/middleware/request-id/index.ts": {
+      "mean_line_surprisal": 1.91474,
+      "top_decile_line_surprisal": 3.31804,
+      "token_cross_entropy": 1.92669,
+      "n_lines": 6,
+      "n_tokens": 35
+    },
+    "src/middleware/request-id/request-id.ts": {
+      "mean_line_surprisal": 2.147,
+      "top_decile_line_surprisal": 3.3112,
+      "token_cross_entropy": 2.10313,
+      "n_lines": 27,
+      "n_tokens": 172
+    },
+    "src/middleware/secure-headers/index.ts": {
+      "mean_line_surprisal": 1.80457,
+      "top_decile_line_surprisal": 2.18224,
+      "token_cross_entropy": 1.84823,
+      "n_lines": 7,
+      "n_tokens": 46
+    },
+    "src/middleware/secure-headers/permissions-policy.ts": {
+      "mean_line_surprisal": 0.46089,
+      "top_decile_line_surprisal": 2.36973,
+      "token_cross_entropy": 0.4142,
+      "n_lines": 72,
+      "n_tokens": 279
+    },
+    "src/middleware/secure-headers/secure-headers.ts": {
+      "mean_line_surprisal": 1.93371,
+      "top_decile_line_surprisal": 3.43632,
+      "token_cross_entropy": 1.86706,
+      "n_lines": 256,
+      "n_tokens": 1763
+    },
+    "src/middleware/serve-static/index.ts": {
+      "mean_line_surprisal": 2.19524,
+      "top_decile_line_surprisal": 4.32554,
+      "token_cross_entropy": 2.00252,
+      "n_lines": 93,
+      "n_tokens": 688
+    },
+    "src/middleware/serve-static/path.ts": {
+      "mean_line_surprisal": 2.35531,
+      "top_decile_line_surprisal": 5.9371,
+      "token_cross_entropy": 2.05736,
+      "n_lines": 14,
+      "n_tokens": 142
+    },
+    "src/middleware/timeout/index.ts": {
+      "mean_line_surprisal": 1.99358,
+      "top_decile_line_surprisal": 3.44831,
+      "token_cross_entropy": 2.0116,
+      "n_lines": 27,
+      "n_tokens": 174
+    },
+    "src/middleware/timing/index.ts": {
+      "mean_line_surprisal": 1.98774,
+      "top_decile_line_surprisal": 3.35469,
+      "token_cross_entropy": 1.84379,
+      "n_lines": 6,
+      "n_tokens": 40
+    },
+    "src/middleware/timing/timing.ts": {
+      "mean_line_surprisal": 1.95897,
+      "top_decile_line_surprisal": 3.89469,
+      "token_cross_entropy": 1.82579,
+      "n_lines": 115,
+      "n_tokens": 791
+    },
+    "src/middleware/trailing-slash/index.ts": {
+      "mean_line_surprisal": 1.65641,
+      "top_decile_line_surprisal": 2.85648,
+      "token_cross_entropy": 1.5513,
+      "n_lines": 30,
+      "n_tokens": 254
+    },
+    "src/preset/quick.ts": {
+      "mean_line_surprisal": 1.78654,
+      "top_decile_line_surprisal": 3.32908,
+      "token_cross_entropy": 1.66871,
+      "n_lines": 18,
+      "n_tokens": 133
+    },
+    "src/preset/tiny.ts": {
+      "mean_line_surprisal": 1.79418,
+      "top_decile_line_surprisal": 3.32899,
+      "token_cross_entropy": 1.72075,
+      "n_lines": 14,
+      "n_tokens": 101
+    },
+    "src/request.ts": {
+      "mean_line_surprisal": 1.95724,
+      "top_decile_line_surprisal": 3.81482,
+      "token_cross_entropy": 1.85939,
+      "n_lines": 187,
+      "n_tokens": 1497
+    },
+    "src/request/constants.ts": {
+      "mean_line_surprisal": 1.84699,
+      "top_decile_line_surprisal": 1.84699,
+      "token_cross_entropy": 1.84699,
+      "n_lines": 1,
+      "n_tokens": 9
+    },
+    "src/router.ts": {
+      "mean_line_surprisal": 2.09404,
+      "top_decile_line_surprisal": 5.03881,
+      "token_cross_entropy": 1.88334,
+      "n_lines": 15,
+      "n_tokens": 160
+    },
+    "src/router/linear-router/index.ts": {
+      "mean_line_surprisal": 1.7772,
+      "top_decile_line_surprisal": 1.7772,
+      "token_cross_entropy": 1.7772,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/router/linear-router/router.ts": {
+      "mean_line_surprisal": 1.6488,
+      "top_decile_line_surprisal": 3.15692,
+      "token_cross_entropy": 1.709,
+      "n_lines": 124,
+      "n_tokens": 1014
+    },
+    "src/router/pattern-router/index.ts": {
+      "mean_line_surprisal": 1.7772,
+      "top_decile_line_surprisal": 1.7772,
+      "token_cross_entropy": 1.7772,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/router/pattern-router/router.ts": {
+      "mean_line_surprisal": 2.21907,
+      "top_decile_line_surprisal": 4.20707,
+      "token_cross_entropy": 2.00771,
+      "n_lines": 50,
+      "n_tokens": 421
+    },
+    "src/router/reg-exp-router/index.ts": {
+      "mean_line_surprisal": 1.64521,
+      "top_decile_line_surprisal": 1.76178,
+      "token_cross_entropy": 1.6219,
+      "n_lines": 2,
+      "n_tokens": 20
+    },
+    "src/router/reg-exp-router/matcher.ts": {
+      "mean_line_surprisal": 2.26784,
+      "top_decile_line_surprisal": 3.80651,
+      "token_cross_entropy": 2.15904,
+      "n_lines": 25,
+      "n_tokens": 273
+    },
+    "src/router/reg-exp-router/node.ts": {
+      "mean_line_surprisal": 1.87001,
+      "top_decile_line_surprisal": 3.67766,
+      "token_cross_entropy": 1.88503,
+      "n_lines": 134,
+      "n_tokens": 787
+    },
+    "src/router/reg-exp-router/prepared-router.ts": {
+      "mean_line_surprisal": 2.02951,
+      "top_decile_line_surprisal": 3.9947,
+      "token_cross_entropy": 1.8859,
+      "n_lines": 147,
+      "n_tokens": 1284
+    },
+    "src/router/reg-exp-router/router.ts": {
+      "mean_line_surprisal": 2.04075,
+      "top_decile_line_surprisal": 4.09971,
+      "token_cross_entropy": 1.80142,
+      "n_lines": 212,
+      "n_tokens": 1753
+    },
+    "src/router/reg-exp-router/trie.ts": {
+      "mean_line_surprisal": 1.95418,
+      "top_decile_line_surprisal": 3.94226,
+      "token_cross_entropy": 1.92708,
+      "n_lines": 57,
+      "n_tokens": 424
+    },
+    "src/router/smart-router/index.ts": {
+      "mean_line_surprisal": 1.76178,
+      "top_decile_line_surprisal": 1.76178,
+      "token_cross_entropy": 1.76178,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/router/smart-router/router.ts": {
+      "mean_line_surprisal": 1.94039,
+      "top_decile_line_surprisal": 4.09946,
+      "token_cross_entropy": 1.84911,
+      "n_lines": 55,
+      "n_tokens": 379
+    },
+    "src/router/trie-router/index.ts": {
+      "mean_line_surprisal": 1.75475,
+      "top_decile_line_surprisal": 1.75475,
+      "token_cross_entropy": 1.75475,
+      "n_lines": 1,
+      "n_tokens": 8
+    },
+    "src/router/trie-router/node.ts": {
+      "mean_line_surprisal": 1.9406,
+      "top_decile_line_surprisal": 4.02281,
+      "token_cross_entropy": 1.76191,
+      "n_lines": 174,
+      "n_tokens": 1415
+    },
+    "src/router/trie-router/router.ts": {
+      "mean_line_surprisal": 2.11946,
+      "top_decile_line_surprisal": 4.35296,
+      "token_cross_entropy": 1.84815,
+      "n_lines": 23,
+      "n_tokens": 173
+    },
+    "src/types.ts": {
+      "mean_line_surprisal": 0.85084,
+      "top_decile_line_surprisal": 2.57922,
+      "token_cross_entropy": 0.73917,
+      "n_lines": 2089,
+      "n_tokens": 19204
+    },
+    "src/utils/accept.ts": {
+      "mean_line_surprisal": 1.85499,
+      "top_decile_line_surprisal": 3.93112,
+      "token_cross_entropy": 1.84092,
+      "n_lines": 71,
+      "n_tokens": 480
+    },
+    "src/utils/basic-auth.ts": {
+      "mean_line_surprisal": 1.96099,
+      "top_decile_line_surprisal": 3.52198,
+      "token_cross_entropy": 2.02349,
+      "n_lines": 19,
+      "n_tokens": 146
+    },
+    "src/utils/body.ts": {
+      "mean_line_surprisal": 1.86415,
+      "top_decile_line_surprisal": 3.61256,
+      "token_cross_entropy": 1.74473,
+      "n_lines": 138,
+      "n_tokens": 930
+    },
+    "src/utils/buffer.ts": {
+      "mean_line_surprisal": 1.96232,
+      "top_decile_line_surprisal": 3.5294,
+      "token_cross_entropy": 1.97975,
+      "n_lines": 50,
+      "n_tokens": 280
+    },
+    "src/utils/color.ts": {
+      "mean_line_surprisal": 1.97554,
+      "top_decile_line_surprisal": 3.46104,
+      "token_cross_entropy": 1.99629,
+      "n_lines": 26,
+      "n_tokens": 143
+    },
+    "src/utils/compress.ts": {
+      "mean_line_surprisal": 2.07207,
+      "top_decile_line_surprisal": 2.93398,
+      "token_cross_entropy": 2.07207,
+      "n_lines": 2,
+      "n_tokens": 8
+    },
+    "src/utils/concurrent.ts": {
+      "mean_line_surprisal": 2.21026,
+      "top_decile_line_surprisal": 4.21338,
+      "token_cross_entropy": 2.08169,
+      "n_lines": 45,
+      "n_tokens": 258
+    },
+    "src/utils/constants.ts": {
+      "mean_line_surprisal": 2.05031,
+      "top_decile_line_surprisal": 2.05031,
+      "token_cross_entropy": 2.05031,
+      "n_lines": 1,
+      "n_tokens": 7
+    },
+    "src/utils/cookie.ts": {
+      "mean_line_surprisal": 1.87842,
+      "top_decile_line_surprisal": 3.94285,
+      "token_cross_entropy": 1.72172,
+      "n_lines": 183,
+      "n_tokens": 1396
+    },
+    "src/utils/crypto.ts": {
+      "mean_line_surprisal": 1.54006,
+      "top_decile_line_surprisal": 3.07567,
+      "token_cross_entropy": 1.57548,
+      "n_lines": 45,
+      "n_tokens": 351
+    },
+    "src/utils/encode.ts": {
+      "mean_line_surprisal": 1.9793,
+      "top_decile_line_surprisal": 3.72889,
+      "token_cross_entropy": 1.73577,
+      "n_lines": 23,
+      "n_tokens": 275
+    },
+    "src/utils/filepath.ts": {
+      "mean_line_surprisal": 2.10974,
+      "top_decile_line_surprisal": 4.44332,
+      "token_cross_entropy": 2.01335,
+      "n_lines": 37,
+      "n_tokens": 258
+    },
+    "src/utils/handler.ts": {
+      "mean_line_surprisal": 2.07058,
+      "top_decile_line_surprisal": 4.15013,
+      "token_cross_entropy": 1.81555,
+      "n_lines": 8,
+      "n_tokens": 60
+    },
+    "src/utils/headers.ts": {
+      "mean_line_surprisal": 0.27035,
+      "top_decile_line_surprisal": 0.63607,
+      "token_cross_entropy": 0.27733,
+      "n_lines": 322,
+      "n_tokens": 1292
+    },
+    "src/utils/html.ts": {
+      "mean_line_surprisal": 2.02747,
+      "top_decile_line_surprisal": 4.5269,
+      "token_cross_entropy": 1.84729,
+      "n_lines": 138,
+      "n_tokens": 915
+    },
+    "src/utils/http-status.ts": {
+      "mean_line_surprisal": 0.66402,
+      "top_decile_line_surprisal": 2.0321,
+      "token_cross_entropy": 0.87139,
+      "n_lines": 46,
+      "n_tokens": 195
+    },
+    "src/utils/ipaddr.ts": {
+      "mean_line_surprisal": 1.92837,
+      "top_decile_line_surprisal": 3.88122,
+      "token_cross_entropy": 1.66752,
+      "n_lines": 94,
+      "n_tokens": 691
+    },
+    "src/utils/jwt/index.ts": {
+      "mean_line_surprisal": 1.74074,
+      "top_decile_line_surprisal": 1.83194,
+      "token_cross_entropy": 1.73736,
+      "n_lines": 2,
+      "n_tokens": 27
+    },
+    "src/utils/jwt/jwa.ts": {
+      "mean_line_surprisal": 2.20647,
+      "top_decile_line_surprisal": 4.49978,
+      "token_cross_entropy": 2.07109,
+      "n_lines": 16,
+      "n_tokens": 90
+    },
+    "src/utils/jwt/jws.ts": {
+      "mean_line_surprisal": 1.32363,
+      "top_decile_line_surprisal": 2.97916,
+      "token_cross_entropy": 1.30116,
+      "n_lines": 205,
+      "n_tokens": 1263
+    },
+    "src/utils/jwt/jwt.ts": {
+      "mean_line_surprisal": 1.85601,
+      "top_decile_line_surprisal": 3.61748,
+      "token_cross_entropy": 1.83017,
+      "n_lines": 205,
+      "n_tokens": 1358
+    },
+    "src/utils/jwt/types.ts": {
+      "mean_line_surprisal": 1.45403,
+      "top_decile_line_surprisal": 3.34159,
+      "token_cross_entropy": 1.40228,
+      "n_lines": 91,
+      "n_tokens": 527
+    },
+    "src/utils/jwt/utf8.ts": {
+      "mean_line_surprisal": 1.80905,
+      "top_decile_line_surprisal": 1.84764,
+      "token_cross_entropy": 1.80905,
+      "n_lines": 2,
+      "n_tokens": 20
+    },
+    "src/utils/mime.ts": {
+      "mean_line_surprisal": 2.12706,
+      "top_decile_line_surprisal": 3.85139,
+      "token_cross_entropy": 2.04386,
+      "n_lines": 83,
+      "n_tokens": 497
+    },
+    "src/utils/stream.ts": {
+      "mean_line_surprisal": 1.97965,
+      "top_decile_line_surprisal": 3.18879,
+      "token_cross_entropy": 1.91741,
+      "n_lines": 65,
+      "n_tokens": 404
+    },
+    "src/utils/types.ts": {
+      "mean_line_surprisal": 1.77361,
+      "top_decile_line_surprisal": 2.89475,
+      "token_cross_entropy": 1.74426,
+      "n_lines": 73,
+      "n_tokens": 685
+    },
+    "src/utils/url.ts": {
+      "mean_line_surprisal": 2.0498,
+      "top_decile_line_surprisal": 4.16372,
+      "token_cross_entropy": 1.90292,
+      "n_lines": 227,
+      "n_tokens": 1916
+    },
+    "src/validator/index.ts": {
+      "mean_line_surprisal": 1.84352,
+      "top_decile_line_surprisal": 1.86949,
+      "token_cross_entropy": 1.84505,
+      "n_lines": 2,
+      "n_tokens": 17
+    },
+    "src/validator/validator.ts": {
+      "mean_line_surprisal": 1.85392,
+      "top_decile_line_surprisal": 4.35089,
+      "token_cross_entropy": 1.70307,
+      "n_lines": 163,
+      "n_tokens": 1101
+    }
+  },
+  "functions": [
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::setCookiesToResult:621",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "setCookiesToResult",
+      "start_line": 621,
+      "end_line": 626,
+      "nloc": 6,
+      "mean_line_surprisal": 1.92685,
+      "max_line_surprisal": 3.02857
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getCookies:617",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getCookies",
+      "start_line": 617,
+      "end_line": 619,
+      "nloc": 3,
+      "mean_line_surprisal": 2.33955,
+      "max_line_surprisal": 2.87815
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getHeaders:596",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getHeaders",
+      "start_line": 596,
+      "end_line": 615,
+      "nloc": 18,
+      "mean_line_surprisal": 1.21489,
+      "max_line_surprisal": 2.19256
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getQueryString:592",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getQueryString",
+      "start_line": 592,
+      "end_line": 594,
+      "nloc": 3,
+      "mean_line_surprisal": 1.63438,
+      "max_line_surprisal": 2.59539
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getMethod:588",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getMethod",
+      "start_line": 588,
+      "end_line": 590,
+      "nloc": 3,
+      "mean_line_surprisal": 1.0853,
+      "max_line_surprisal": 1.46733
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getPath:584",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getPath",
+      "start_line": 584,
+      "end_line": 586,
+      "nloc": 3,
+      "mean_line_surprisal": 0.82397,
+      "max_line_surprisal": 1.31171
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::setCookiesToResult:570",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "setCookiesToResult",
+      "start_line": 570,
+      "end_line": 578,
+      "nloc": 9,
+      "mean_line_surprisal": 1.572,
+      "max_line_surprisal": 2.00736
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getCookies:558",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getCookies",
+      "start_line": 558,
+      "end_line": 568,
+      "nloc": 11,
+      "mean_line_surprisal": 1.9182,
+      "max_line_surprisal": 3.21166
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getQueryString:532",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getQueryString",
+      "start_line": 532,
+      "end_line": 556,
+      "nloc": 25,
+      "mean_line_surprisal": 1.19933,
+      "max_line_surprisal": 2.0104
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getMethod:528",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getMethod",
+      "start_line": 528,
+      "end_line": 530,
+      "nloc": 3,
+      "mean_line_surprisal": 0.7429,
+      "max_line_surprisal": 1.09039
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getPath:524",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getPath",
+      "start_line": 524,
+      "end_line": 526,
+      "nloc": 3,
+      "mean_line_surprisal": 0.86683,
+      "max_line_surprisal": 1.29544
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getHeaders:502",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getHeaders",
+      "start_line": 502,
+      "end_line": 522,
+      "nloc": 21,
+      "mean_line_surprisal": 1.62527,
+      "max_line_surprisal": 3.04012
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::setCookiesToResult:492",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "setCookiesToResult",
+      "start_line": 492,
+      "end_line": 496,
+      "nloc": 5,
+      "mean_line_surprisal": 1.62438,
+      "max_line_surprisal": 2.66605
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getHeaders:465",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getHeaders",
+      "start_line": 465,
+      "end_line": 490,
+      "nloc": 26,
+      "mean_line_surprisal": 1.61831,
+      "max_line_surprisal": 2.89213
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getCookies:456",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getCookies",
+      "start_line": 456,
+      "end_line": 463,
+      "nloc": 3,
+      "mean_line_surprisal": 1.89562,
+      "max_line_surprisal": 3.59776
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getQueryString:438",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getQueryString",
+      "start_line": 438,
+      "end_line": 454,
+      "nloc": 17,
+      "mean_line_surprisal": 1.65962,
+      "max_line_surprisal": 2.98179
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getMethod:434",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getMethod",
+      "start_line": 434,
+      "end_line": 436,
+      "nloc": 3,
+      "mean_line_surprisal": 1.07672,
+      "max_line_surprisal": 1.22562
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getPath:430",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getPath",
+      "start_line": 430,
+      "end_line": 432,
+      "nloc": 3,
+      "mean_line_surprisal": 1.11311,
+      "max_line_surprisal": 1.337
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getHeaders:413",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getHeaders",
+      "start_line": 413,
+      "end_line": 424,
+      "nloc": 12,
+      "mean_line_surprisal": 1.79262,
+      "max_line_surprisal": 4.19576
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::setCookiesToResult:409",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "setCookiesToResult",
+      "start_line": 409,
+      "end_line": 411,
+      "nloc": 3,
+      "mean_line_surprisal": 1.53527,
+      "max_line_surprisal": 2.09049
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getCookies:403",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getCookies",
+      "start_line": 403,
+      "end_line": 407,
+      "nloc": 5,
+      "mean_line_surprisal": 2.03719,
+      "max_line_surprisal": 2.78305
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getQueryString:399",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getQueryString",
+      "start_line": 399,
+      "end_line": 401,
+      "nloc": 3,
+      "mean_line_surprisal": 1.23229,
+      "max_line_surprisal": 1.53803
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getMethod:395",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getMethod",
+      "start_line": 395,
+      "end_line": 397,
+      "nloc": 3,
+      "mean_line_surprisal": 1.30638,
+      "max_line_surprisal": 1.51801
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getPath:391",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getPath",
+      "start_line": 391,
+      "end_line": 393,
+      "nloc": 3,
+      "mean_line_surprisal": 1.46978,
+      "max_line_surprisal": 1.88006
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::setCookies:374",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "setCookies",
+      "start_line": 374,
+      "end_line": 387,
+      "nloc": 13,
+      "mean_line_surprisal": 2.13445,
+      "max_line_surprisal": 2.8395
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::createResult:330",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "createResult",
+      "start_line": 330,
+      "end_line": 372,
+      "nloc": 34,
+      "mean_line_surprisal": 2.06816,
+      "max_line_surprisal": 4.52178
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::createRequest:308",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "createRequest",
+      "start_line": 308,
+      "end_line": 328,
+      "nloc": 17,
+      "mean_line_surprisal": 1.99833,
+      "max_line_surprisal": 3.14766
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getDomainName:291",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getDomainName",
+      "start_line": 291,
+      "end_line": 306,
+      "nloc": 12,
+      "mean_line_surprisal": 2.29134,
+      "max_line_surprisal": 5.61312
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::getHeaderValue:281",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "getHeaderValue",
+      "start_line": 281,
+      "end_line": 289,
+      "nloc": 8,
+      "mean_line_surprisal": 2.14047,
+      "max_line_surprisal": 3.81044
+    },
+    {
+      "function_id": "src/adapter/aws-lambda/handler.ts::sanitizeHeaderValue:13",
+      "file_path": "src/adapter/aws-lambda/handler.ts",
+      "name": "sanitizeHeaderValue",
+      "start_line": 13,
+      "end_line": 21,
+      "nloc": 9,
+      "mean_line_surprisal": 2.31829,
+      "max_line_surprisal": 3.9673
+    },
+    {
+      "function_id": "src/adapter/bun/serve-static.ts::serveStatic:11",
+      "file_path": "src/adapter/bun/serve-static.ts",
+      "name": "serveStatic",
+      "start_line": 11,
+      "end_line": 31,
+      "nloc": 21,
+      "mean_line_surprisal": 1.87688,
+      "max_line_surprisal": 5.30261
+    },
+    {
+      "function_id": "src/adapter/bun/websocket.ts::message:85",
+      "file_path": "src/adapter/bun/websocket.ts",
+      "name": "message",
+      "start_line": 85,
+      "end_line": 93,
+      "nloc": 8,
+      "mean_line_surprisal": 1.31722,
+      "max_line_surprisal": 2.74913
+    },
+    {
+      "function_id": "src/adapter/bun/websocket.ts::close:73",
+      "file_path": "src/adapter/bun/websocket.ts",
+      "name": "close",
+      "start_line": 73,
+      "end_line": 84,
+      "nloc": 12,
+      "mean_line_surprisal": 1.42324,
+      "max_line_surprisal": 2.86723
+    },
+    {
+      "function_id": "src/adapter/bun/websocket.ts::open:67",
+      "file_path": "src/adapter/bun/websocket.ts",
+      "name": "open",
+      "start_line": 67,
+      "end_line": 72,
+      "nloc": 6,
+      "mean_line_surprisal": 1.77965,
+      "max_line_surprisal": 3.22468
+    },
+    {
+      "function_id": "src/adapter/bun/websocket.ts::close:42",
+      "file_path": "src/adapter/bun/websocket.ts",
+      "name": "close",
+      "start_line": 42,
+      "end_line": 44,
+      "nloc": 3,
+      "mean_line_surprisal": 1.43625,
+      "max_line_surprisal": 2.06514
+    },
+    {
+      "function_id": "src/adapter/cloudflare-pages/handler.ts::handleMiddleware:49",
+      "file_path": "src/adapter/cloudflare-pages/handler.ts",
+      "name": "handleMiddleware",
+      "start_line": 49,
+      "end_line": 102,
+      "nloc": 38,
+      "mean_line_surprisal": 1.99081,
+      "max_line_surprisal": 4.84013
+    },
+    {
+      "function_id": "src/adapter/cloudflare-workers/serve-static.ts::serveStatic:24",
+      "file_path": "src/adapter/cloudflare-workers/serve-static.ts",
+      "name": "serveStatic",
+      "start_line": 24,
+      "end_line": 41,
+      "nloc": 18,
+      "mean_line_surprisal": 2.01544,
+      "max_line_surprisal": 3.49787
+    },
+    {
+      "function_id": "src/adapter/cloudflare-workers/websocket.ts::readyState:27",
+      "file_path": "src/adapter/cloudflare-workers/websocket.ts",
+      "name": "readyState",
+      "start_line": 27,
+      "end_line": 29,
+      "nloc": 3,
+      "mean_line_surprisal": 1.04367,
+      "max_line_surprisal": 1.38814
+    },
+    {
+      "function_id": "src/adapter/cloudflare-workers/websocket.ts::protocol:23",
+      "file_path": "src/adapter/cloudflare-workers/websocket.ts",
+      "name": "protocol",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.73972,
+      "max_line_surprisal": 3.02826
+    },
+    {
+      "function_id": "src/adapter/deno/serve-static.ts::serveStatic:11",
+      "file_path": "src/adapter/deno/serve-static.ts",
+      "name": "serveStatic",
+      "start_line": 11,
+      "end_line": 41,
+      "nloc": 30,
+      "mean_line_surprisal": 2.02138,
+      "max_line_surprisal": 5.26746
+    },
+    {
+      "function_id": "src/adapter/deno/websocket.ts::readyState:18",
+      "file_path": "src/adapter/deno/websocket.ts",
+      "name": "readyState",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 1.02696,
+      "max_line_surprisal": 1.38465
+    },
+    {
+      "function_id": "src/adapter/deno/websocket.ts::protocol:14",
+      "file_path": "src/adapter/deno/websocket.ts",
+      "name": "protocol",
+      "start_line": 14,
+      "end_line": 16,
+      "nloc": 3,
+      "mean_line_surprisal": 1.73327,
+      "max_line_surprisal": 3.01889
+    },
+    {
+      "function_id": "src/client/client.ts::proxyCallback:126",
+      "file_path": "src/client/client.ts",
+      "name": "proxyCallback",
+      "start_line": 126,
+      "end_line": 206,
+      "nloc": 74,
+      "mean_line_surprisal": 1.95921,
+      "max_line_surprisal": 3.9912
+    },
+    {
+      "function_id": "src/client/client.ts::constructor:41",
+      "file_path": "src/client/client.ts",
+      "name": "constructor",
+      "start_line": 41,
+      "end_line": 44,
+      "nloc": 4,
+      "mean_line_surprisal": 2.40489,
+      "max_line_surprisal": 3.19123
+    },
+    {
+      "function_id": "src/client/client.ts::apply:23",
+      "file_path": "src/client/client.ts",
+      "name": "apply",
+      "start_line": 23,
+      "end_line": 28,
+      "nloc": 6,
+      "mean_line_surprisal": 1.9764,
+      "max_line_surprisal": 3.23748
+    },
+    {
+      "function_id": "src/client/client.ts::get:17",
+      "file_path": "src/client/client.ts",
+      "name": "get",
+      "start_line": 17,
+      "end_line": 22,
+      "nloc": 6,
+      "mean_line_surprisal": 2.46738,
+      "max_line_surprisal": 3.95613
+    },
+    {
+      "function_id": "src/client/fetch-result-please.ts::detectResponseType:80",
+      "file_path": "src/client/fetch-result-please.ts",
+      "name": "detectResponseType",
+      "start_line": 80,
+      "end_line": 95,
+      "nloc": 12,
+      "mean_line_surprisal": 2.45535,
+      "max_line_surprisal": 5.8483
+    },
+    {
+      "function_id": "src/client/fetch-result-please.ts::constructor:64",
+      "file_path": "src/client/fetch-result-please.ts",
+      "name": "constructor",
+      "start_line": 64,
+      "end_line": 74,
+      "nloc": 8,
+      "mean_line_surprisal": 1.99237,
+      "max_line_surprisal": 2.97967
+    },
+    {
+      "function_id": "src/client/fetch-result-please.ts::fetchRP:14",
+      "file_path": "src/client/fetch-result-please.ts",
+      "name": "fetchRP",
+      "start_line": 14,
+      "end_line": 44,
+      "nloc": 27,
+      "mean_line_surprisal": 1.97146,
+      "max_line_surprisal": 3.14936
+    },
+    {
+      "function_id": "src/client/utils.ts::parseResponse:92",
+      "file_path": "src/client/utils.ts",
+      "name": "parseResponse",
+      "start_line": 92,
+      "end_line": 114,
+      "nloc": 3,
+      "mean_line_surprisal": 1.97751,
+      "max_line_surprisal": 6.47108
+    },
+    {
+      "function_id": "src/client/utils.ts::deepMerge:66",
+      "file_path": "src/client/utils.ts",
+      "name": "deepMerge",
+      "start_line": 66,
+      "end_line": 82,
+      "nloc": 15,
+      "mean_line_surprisal": 1.94561,
+      "max_line_surprisal": 3.31365
+    },
+    {
+      "function_id": "src/client/utils.ts::isObject:62",
+      "file_path": "src/client/utils.ts",
+      "name": "isObject",
+      "start_line": 62,
+      "end_line": 64,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23405,
+      "max_line_surprisal": 2.62983
+    },
+    {
+      "function_id": "src/compose.ts::dispatch:32",
+      "file_path": "src/compose.ts",
+      "name": "dispatch",
+      "start_line": 32,
+      "end_line": 71,
+      "nloc": 36,
+      "mean_line_surprisal": 2.16592,
+      "max_line_surprisal": 4.50504
+    },
+    {
+      "function_id": "src/context.ts::#newResponse:587",
+      "file_path": "src/context.ts",
+      "name": "#newResponse",
+      "start_line": 587,
+      "end_line": 622,
+      "nloc": 29,
+      "mean_line_surprisal": 1.60696,
+      "max_line_surprisal": 3.09549
+    },
+    {
+      "function_id": "src/context.ts::var:576",
+      "file_path": "src/context.ts",
+      "name": "var",
+      "start_line": 576,
+      "end_line": 585,
+      "nloc": 7,
+      "mean_line_surprisal": 2.24362,
+      "max_line_surprisal": 2.80824
+    },
+    {
+      "function_id": "src/context.ts::res:397",
+      "file_path": "src/context.ts",
+      "name": "res",
+      "start_line": 397,
+      "end_line": 417,
+      "nloc": 21,
+      "mean_line_surprisal": 2.03836,
+      "max_line_surprisal": 6.41773
+    },
+    {
+      "function_id": "src/context.ts::res:386",
+      "file_path": "src/context.ts",
+      "name": "res",
+      "start_line": 386,
+      "end_line": 390,
+      "nloc": 5,
+      "mean_line_surprisal": 2.41496,
+      "max_line_surprisal": 3.35251
+    },
+    {
+      "function_id": "src/context.ts::executionCtx:374",
+      "file_path": "src/context.ts",
+      "name": "executionCtx",
+      "start_line": 374,
+      "end_line": 380,
+      "nloc": 7,
+      "mean_line_surprisal": 1.37457,
+      "max_line_surprisal": 2.54588
+    },
+    {
+      "function_id": "src/context.ts::event:360",
+      "file_path": "src/context.ts",
+      "name": "event",
+      "start_line": 360,
+      "end_line": 366,
+      "nloc": 7,
+      "mean_line_surprisal": 2.35941,
+      "max_line_surprisal": 3.12812
+    },
+    {
+      "function_id": "src/context.ts::req:349",
+      "file_path": "src/context.ts",
+      "name": "req",
+      "start_line": 349,
+      "end_line": 352,
+      "nloc": 4,
+      "mean_line_surprisal": 1.94593,
+      "max_line_surprisal": 2.12723
+    },
+    {
+      "function_id": "src/context.ts::constructor:335",
+      "file_path": "src/context.ts",
+      "name": "constructor",
+      "start_line": 335,
+      "end_line": 344,
+      "nloc": 10,
+      "mean_line_surprisal": 2.08289,
+      "max_line_surprisal": 2.96127
+    },
+    {
+      "function_id": "src/helper/ssg/middleware.ts::onlySSG:78",
+      "file_path": "src/helper/ssg/middleware.ts",
+      "name": "onlySSG",
+      "start_line": 78,
+      "end_line": 83,
+      "nloc": 6,
+      "mean_line_surprisal": 0.99293,
+      "max_line_surprisal": 1.91601
+    },
+    {
+      "function_id": "src/helper/ssg/middleware.ts::disableSSG:64",
+      "file_path": "src/helper/ssg/middleware.ts",
+      "name": "disableSSG",
+      "start_line": 64,
+      "end_line": 70,
+      "nloc": 7,
+      "mean_line_surprisal": 1.36479,
+      "max_line_surprisal": 2.52821
+    },
+    {
+      "function_id": "src/helper/ssg/ssg.ts::<anonymous>:193",
+      "file_path": "src/helper/ssg/ssg.ts",
+      "name": "<anonymous>",
+      "start_line": 193,
+      "end_line": 290,
+      "nloc": 75,
+      "mean_line_surprisal": 1.86675,
+      "max_line_surprisal": 5.3548
+    },
+    {
+      "function_id": "src/helper/streaming/sse.ts::writeSSE:18",
+      "file_path": "src/helper/streaming/sse.ts",
+      "name": "writeSSE",
+      "start_line": 18,
+      "end_line": 38,
+      "nloc": 19,
+      "mean_line_surprisal": 2.22169,
+      "max_line_surprisal": 4.63813
+    },
+    {
+      "function_id": "src/helper/streaming/sse.ts::constructor:14",
+      "file_path": "src/helper/streaming/sse.ts",
+      "name": "constructor",
+      "start_line": 14,
+      "end_line": 16,
+      "nloc": 3,
+      "mean_line_surprisal": 1.815,
+      "max_line_surprisal": 2.38879
+    },
+    {
+      "function_id": "src/helper/websocket/index.ts::upgradeWebSocket:116",
+      "file_path": "src/helper/websocket/index.ts",
+      "name": "upgradeWebSocket",
+      "start_line": 116,
+      "end_line": 123,
+      "nloc": 8,
+      "mean_line_surprisal": 2.19597,
+      "max_line_surprisal": 4.77923
+    },
+    {
+      "function_id": "src/helper/websocket/index.ts::close:83",
+      "file_path": "src/helper/websocket/index.ts",
+      "name": "close",
+      "start_line": 83,
+      "end_line": 85,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69188,
+      "max_line_surprisal": 2.58482
+    },
+    {
+      "function_id": "src/helper/websocket/index.ts::readyState:78",
+      "file_path": "src/helper/websocket/index.ts",
+      "name": "readyState",
+      "start_line": 78,
+      "end_line": 80,
+      "nloc": 3,
+      "mean_line_surprisal": 2.20111,
+      "max_line_surprisal": 3.56765
+    },
+    {
+      "function_id": "src/helper/websocket/index.ts::send:73",
+      "file_path": "src/helper/websocket/index.ts",
+      "name": "send",
+      "start_line": 73,
+      "end_line": 75,
+      "nloc": 3,
+      "mean_line_surprisal": 2.14053,
+      "max_line_surprisal": 3.29731
+    },
+    {
+      "function_id": "src/helper/websocket/index.ts::constructor:67",
+      "file_path": "src/helper/websocket/index.ts",
+      "name": "constructor",
+      "start_line": 67,
+      "end_line": 72,
+      "nloc": 6,
+      "mean_line_surprisal": 1.7812,
+      "max_line_surprisal": 2.38894
+    },
+    {
+      "function_id": "src/hono-base.ts::#dispatch:392",
+      "file_path": "src/hono-base.ts",
+      "name": "#dispatch",
+      "start_line": 392,
+      "end_line": 452,
+      "nloc": 49,
+      "mean_line_surprisal": 2.08368,
+      "max_line_surprisal": 3.57007
+    },
+    {
+      "function_id": "src/hono-base.ts::#handleError:385",
+      "file_path": "src/hono-base.ts",
+      "name": "#handleError",
+      "start_line": 385,
+      "end_line": 390,
+      "nloc": 6,
+      "mean_line_surprisal": 2.12802,
+      "max_line_surprisal": 3.28312
+    },
+    {
+      "function_id": "src/hono-base.ts::#addRoute:377",
+      "file_path": "src/hono-base.ts",
+      "name": "#addRoute",
+      "start_line": 377,
+      "end_line": 383,
+      "nloc": 7,
+      "mean_line_surprisal": 2.01837,
+      "max_line_surprisal": 3.26441
+    },
+    {
+      "function_id": "src/hono-base.ts::mount:320",
+      "file_path": "src/hono-base.ts",
+      "name": "mount",
+      "start_line": 320,
+      "end_line": 375,
+      "nloc": 48,
+      "mean_line_surprisal": 2.04708,
+      "max_line_surprisal": 4.96832
+    },
+    {
+      "function_id": "src/hono-base.ts::basePath:241",
+      "file_path": "src/hono-base.ts",
+      "name": "basePath",
+      "start_line": 241,
+      "end_line": 245,
+      "nloc": 5,
+      "mean_line_surprisal": 1.87426,
+      "max_line_surprisal": 3.98395
+    },
+    {
+      "function_id": "src/hono-base.ts::route:203",
+      "file_path": "src/hono-base.ts",
+      "name": "route",
+      "start_line": 203,
+      "end_line": 226,
+      "nloc": 15,
+      "mean_line_surprisal": 1.9704,
+      "max_line_surprisal": 5.73069
+    },
+    {
+      "function_id": "src/hono-base.ts::#clone:170",
+      "file_path": "src/hono-base.ts",
+      "name": "#clone",
+      "start_line": 170,
+      "end_line": 179,
+      "nloc": 10,
+      "mean_line_surprisal": 1.92008,
+      "max_line_surprisal": 2.86475
+    },
+    {
+      "function_id": "src/hono-base.ts::constructor:121",
+      "file_path": "src/hono-base.ts",
+      "name": "constructor",
+      "start_line": 121,
+      "end_line": 168,
+      "nloc": 45,
+      "mean_line_surprisal": 1.774,
+      "max_line_surprisal": 3.46583
+    },
+    {
+      "function_id": "src/hono.ts::constructor:26",
+      "file_path": "src/hono.ts",
+      "name": "constructor",
+      "start_line": 26,
+      "end_line": 33,
+      "nloc": 8,
+      "mean_line_surprisal": 1.85299,
+      "max_line_surprisal": 2.64523
+    },
+    {
+      "function_id": "src/http-exception.ts::getResponse:66",
+      "file_path": "src/http-exception.ts",
+      "name": "getResponse",
+      "start_line": 66,
+      "end_line": 77,
+      "nloc": 12,
+      "mean_line_surprisal": 2.21028,
+      "max_line_surprisal": 4.71908
+    },
+    {
+      "function_id": "src/http-exception.ts::constructor:55",
+      "file_path": "src/http-exception.ts",
+      "name": "constructor",
+      "start_line": 55,
+      "end_line": 59,
+      "nloc": 5,
+      "mean_line_surprisal": 1.91952,
+      "max_line_surprisal": 2.95715
+    },
+    {
+      "function_id": "src/jsx/base.ts::toStringToBuffer:289",
+      "file_path": "src/jsx/base.ts",
+      "name": "toStringToBuffer",
+      "start_line": 289,
+      "end_line": 291,
+      "nloc": 3,
+      "mean_line_surprisal": 1.28348,
+      "max_line_surprisal": 2.12499
+    },
+    {
+      "function_id": "src/jsx/base.ts::toStringToBuffer:245",
+      "file_path": "src/jsx/base.ts",
+      "name": "toStringToBuffer",
+      "start_line": 245,
+      "end_line": 285,
+      "nloc": 38,
+      "mean_line_surprisal": 1.70497,
+      "max_line_surprisal": 2.77725
+    },
+    {
+      "function_id": "src/jsx/base.ts::toStringToBuffer:172",
+      "file_path": "src/jsx/base.ts",
+      "name": "toStringToBuffer",
+      "start_line": 172,
+      "end_line": 241,
+      "nloc": 63,
+      "mean_line_surprisal": 2.04126,
+      "max_line_surprisal": 10.48587
+    },
+    {
+      "function_id": "src/jsx/base.ts::toString:153",
+      "file_path": "src/jsx/base.ts",
+      "name": "toString",
+      "start_line": 153,
+      "end_line": 170,
+      "nloc": 18,
+      "mean_line_surprisal": 2.11817,
+      "max_line_surprisal": 3.04346
+    },
+    {
+      "function_id": "src/jsx/base.ts::ref:149",
+      "file_path": "src/jsx/base.ts",
+      "name": "ref",
+      "start_line": 149,
+      "end_line": 151,
+      "nloc": 3,
+      "mean_line_surprisal": 1.97819,
+      "max_line_surprisal": 2.48402
+    },
+    {
+      "function_id": "src/jsx/base.ts::type:143",
+      "file_path": "src/jsx/base.ts",
+      "name": "type",
+      "start_line": 143,
+      "end_line": 145,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48352,
+      "max_line_surprisal": 3.69406
+    },
+    {
+      "function_id": "src/jsx/base.ts::constructor:137",
+      "file_path": "src/jsx/base.ts",
+      "name": "constructor",
+      "start_line": 137,
+      "end_line": 141,
+      "nloc": 5,
+      "mean_line_surprisal": 2.19921,
+      "max_line_surprisal": 3.46626
+    },
+    {
+      "function_id": "src/jsx/dom/client.ts::unmount:61",
+      "file_path": "src/jsx/dom/client.ts",
+      "name": "unmount",
+      "start_line": 61,
+      "end_line": 64,
+      "nloc": 4,
+      "mean_line_surprisal": 2.12788,
+      "max_line_surprisal": 2.65589
+    },
+    {
+      "function_id": "src/jsx/dom/client.ts::render:38",
+      "file_path": "src/jsx/dom/client.ts",
+      "name": "render",
+      "start_line": 38,
+      "end_line": 60,
+      "nloc": 23,
+      "mean_line_surprisal": 1.92984,
+      "max_line_surprisal": 4.35811
+    },
+    {
+      "function_id": "src/jsx/dom/css.ts::toString:111",
+      "file_path": "src/jsx/dom/css.ts",
+      "name": "toString",
+      "start_line": 111,
+      "end_line": 119,
+      "nloc": 8,
+      "mean_line_surprisal": 1.75181,
+      "max_line_surprisal": 3.14058
+    },
+    {
+      "function_id": "src/jsx/jsx-dev-runtime.ts::jsxDEV:12",
+      "file_path": "src/jsx/jsx-dev-runtime.ts",
+      "name": "jsxDEV",
+      "start_line": 12,
+      "end_line": 26,
+      "nloc": 11,
+      "mean_line_surprisal": 2.18999,
+      "max_line_surprisal": 3.7779
+    },
+    {
+      "function_id": "src/jsx/streaming.ts::start:150",
+      "file_path": "src/jsx/streaming.ts",
+      "name": "start",
+      "start_line": 150,
+      "end_line": 206,
+      "nloc": 55,
+      "mean_line_surprisal": 1.91865,
+      "max_line_surprisal": 7.51511
+    },
+    {
+      "function_id": "src/middleware/basic-auth/index.ts::basicAuth:86",
+      "file_path": "src/middleware/basic-auth/index.ts",
+      "name": "basicAuth",
+      "start_line": 86,
+      "end_line": 127,
+      "nloc": 42,
+      "mean_line_surprisal": 2.11982,
+      "max_line_surprisal": 4.69731
+    },
+    {
+      "function_id": "src/middleware/bearer-auth/index.ts::bearerAuth:153",
+      "file_path": "src/middleware/bearer-auth/index.ts",
+      "name": "bearerAuth",
+      "start_line": 153,
+      "end_line": 206,
+      "nloc": 54,
+      "mean_line_surprisal": 1.7211,
+      "max_line_surprisal": 3.35737
+    },
+    {
+      "function_id": "src/middleware/body-limit/index.ts::bodyLimit:68",
+      "file_path": "src/middleware/body-limit/index.ts",
+      "name": "bodyLimit",
+      "start_line": 68,
+      "end_line": 124,
+      "nloc": 48,
+      "mean_line_surprisal": 1.92493,
+      "max_line_surprisal": 3.83014
+    },
+    {
+      "function_id": "src/middleware/body-limit/index.ts::constructor:19",
+      "file_path": "src/middleware/body-limit/index.ts",
+      "name": "constructor",
+      "start_line": 19,
+      "end_line": 22,
+      "nloc": 4,
+      "mean_line_surprisal": 2.6983,
+      "max_line_surprisal": 5.87879
+    },
+    {
+      "function_id": "src/middleware/cache/index.ts::cache:121",
+      "file_path": "src/middleware/cache/index.ts",
+      "name": "cache",
+      "start_line": 121,
+      "end_line": 151,
+      "nloc": 27,
+      "mean_line_surprisal": 2.17342,
+      "max_line_surprisal": 3.80743
+    },
+    {
+      "function_id": "src/middleware/combine/index.ts::except:162",
+      "file_path": "src/middleware/combine/index.ts",
+      "name": "except",
+      "start_line": 162,
+      "end_line": 164,
+      "nloc": 3,
+      "mean_line_surprisal": 1.87755,
+      "max_line_surprisal": 2.72473
+    },
+    {
+      "function_id": "src/middleware/combine/index.ts::every:100",
+      "file_path": "src/middleware/combine/index.ts",
+      "name": "every",
+      "start_line": 100,
+      "end_line": 116,
+      "nloc": 17,
+      "mean_line_surprisal": 2.37845,
+      "max_line_surprisal": 4.44779
+    },
+    {
+      "function_id": "src/middleware/combine/index.ts::some:39",
+      "file_path": "src/middleware/combine/index.ts",
+      "name": "some",
+      "start_line": 39,
+      "end_line": 68,
+      "nloc": 29,
+      "mean_line_surprisal": 2.17573,
+      "max_line_surprisal": 9.56888
+    },
+    {
+      "function_id": "src/middleware/compress/index.ts::compress:37",
+      "file_path": "src/middleware/compress/index.ts",
+      "name": "compress",
+      "start_line": 37,
+      "end_line": 66,
+      "nloc": 26,
+      "mean_line_surprisal": 1.99501,
+      "max_line_surprisal": 4.1986
+    },
+    {
+      "function_id": "src/middleware/context-storage/index.ts::contextStorage:44",
+      "file_path": "src/middleware/context-storage/index.ts",
+      "name": "contextStorage",
+      "start_line": 44,
+      "end_line": 46,
+      "nloc": 3,
+      "mean_line_surprisal": 2.42994,
+      "max_line_surprisal": 3.67779
+    },
+    {
+      "function_id": "src/middleware/cors/index.ts::cors:99",
+      "file_path": "src/middleware/cors/index.ts",
+      "name": "cors",
+      "start_line": 99,
+      "end_line": 159,
+      "nloc": 51,
+      "mean_line_surprisal": 1.85926,
+      "max_line_surprisal": 3.76682
+    },
+    {
+      "function_id": "src/middleware/csrf/index.ts::csrf:135",
+      "file_path": "src/middleware/csrf/index.ts",
+      "name": "csrf",
+      "start_line": 135,
+      "end_line": 147,
+      "nloc": 12,
+      "mean_line_surprisal": 1.9216,
+      "max_line_surprisal": 2.61774
+    },
+    {
+      "function_id": "src/middleware/etag/index.ts::etag:84",
+      "file_path": "src/middleware/etag/index.ts",
+      "name": "etag",
+      "start_line": 84,
+      "end_line": 123,
+      "nloc": 36,
+      "mean_line_surprisal": 2.18165,
+      "max_line_surprisal": 6.17728
+    },
+    {
+      "function_id": "src/middleware/etag/index.ts::initializeGenerator:38",
+      "file_path": "src/middleware/etag/index.ts",
+      "name": "initializeGenerator",
+      "start_line": 38,
+      "end_line": 54,
+      "nloc": 14,
+      "mean_line_surprisal": 2.42875,
+      "max_line_surprisal": 6.37875
+    },
+    {
+      "function_id": "src/middleware/etag/index.ts::etagMatches:32",
+      "file_path": "src/middleware/etag/index.ts",
+      "name": "etagMatches",
+      "start_line": 32,
+      "end_line": 36,
+      "nloc": 5,
+      "mean_line_surprisal": 2.51878,
+      "max_line_surprisal": 3.6996
+    },
+    {
+      "function_id": "src/middleware/ip-restriction/index.ts::ipRestriction:148",
+      "file_path": "src/middleware/ip-restriction/index.ts",
+      "name": "ipRestriction",
+      "start_line": 148,
+      "end_line": 177,
+      "nloc": 27,
+      "mean_line_surprisal": 1.91767,
+      "max_line_surprisal": 3.40674
+    },
+    {
+      "function_id": "src/middleware/jsx-renderer/index.ts::jsxRenderer:114",
+      "file_path": "src/middleware/jsx-renderer/index.ts",
+      "name": "jsxRenderer",
+      "start_line": 114,
+      "end_line": 123,
+      "nloc": 10,
+      "mean_line_surprisal": 2.02295,
+      "max_line_surprisal": 3.113
+    },
+    {
+      "function_id": "src/middleware/jwk/jwk.ts::unauthorizedResponse:162",
+      "file_path": "src/middleware/jwk/jwk.ts",
+      "name": "unauthorizedResponse",
+      "start_line": 162,
+      "end_line": 175,
+      "nloc": 9,
+      "mean_line_surprisal": 1.7336,
+      "max_line_surprisal": 3.53566
+    },
+    {
+      "function_id": "src/middleware/jwk/jwk.ts::jwk:71",
+      "file_path": "src/middleware/jwk/jwk.ts",
+      "name": "jwk",
+      "start_line": 71,
+      "end_line": 159,
+      "nloc": 83,
+      "mean_line_surprisal": 1.55563,
+      "max_line_surprisal": 5.36085
+    },
+    {
+      "function_id": "src/middleware/jwt/jwt.ts::unauthorizedResponse:155",
+      "file_path": "src/middleware/jwt/jwt.ts",
+      "name": "unauthorizedResponse",
+      "start_line": 155,
+      "end_line": 168,
+      "nloc": 9,
+      "mean_line_surprisal": 1.7199,
+      "max_line_surprisal": 3.43556
+    },
+    {
+      "function_id": "src/middleware/jwt/jwt.ts::jwt:71",
+      "file_path": "src/middleware/jwt/jwt.ts",
+      "name": "jwt",
+      "start_line": 71,
+      "end_line": 152,
+      "nloc": 77,
+      "mean_line_surprisal": 1.47578,
+      "max_line_surprisal": 5.36106
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::languageDetector:277",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "languageDetector",
+      "start_line": 277,
+      "end_line": 289,
+      "nloc": 12,
+      "mean_line_surprisal": 1.58094,
+      "max_line_surprisal": 2.75136
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::cacheLanguage:209",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "cacheLanguage",
+      "start_line": 209,
+      "end_line": 221,
+      "nloc": 12,
+      "mean_line_surprisal": 2.11586,
+      "max_line_surprisal": 3.76423
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::validateOptions:192",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "validateOptions",
+      "start_line": 192,
+      "end_line": 204,
+      "nloc": 11,
+      "mean_line_surprisal": 1.82657,
+      "max_line_surprisal": 3.3126
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::detectFromPath:160",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "detectFromPath",
+      "start_line": 160,
+      "end_line": 169,
+      "nloc": 10,
+      "mean_line_surprisal": 1.15677,
+      "max_line_surprisal": 2.04546
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::detectFromHeader:137",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "detectFromHeader",
+      "start_line": 137,
+      "end_line": 155,
+      "nloc": 18,
+      "mean_line_surprisal": 1.6742,
+      "max_line_surprisal": 4.90079
+    },
+    {
+      "function_id": "src/middleware/language/language.ts::parseAcceptLanguage:74",
+      "file_path": "src/middleware/language/language.ts",
+      "name": "parseAcceptLanguage",
+      "start_line": 74,
+      "end_line": 76,
+      "nloc": 3,
+      "mean_line_surprisal": 2.19087,
+      "max_line_surprisal": 2.4173
+    },
+    {
+      "function_id": "src/middleware/logger/index.ts::logger:82",
+      "file_path": "src/middleware/logger/index.ts",
+      "name": "logger",
+      "start_line": 82,
+      "end_line": 94,
+      "nloc": 8,
+      "mean_line_surprisal": 1.83337,
+      "max_line_surprisal": 2.35183
+    },
+    {
+      "function_id": "src/middleware/logger/index.ts::log:50",
+      "file_path": "src/middleware/logger/index.ts",
+      "name": "log",
+      "start_line": 50,
+      "end_line": 63,
+      "nloc": 7,
+      "mean_line_surprisal": 2.21832,
+      "max_line_surprisal": 4.30823
+    },
+    {
+      "function_id": "src/middleware/method-override/index.ts::methodOverride:61",
+      "file_path": "src/middleware/method-override/index.ts",
+      "name": "methodOverride",
+      "start_line": 61,
+      "end_line": 136,
+      "nloc": 75,
+      "mean_line_surprisal": 1.68825,
+      "max_line_surprisal": 3.7093
+    },
+    {
+      "function_id": "src/middleware/powered-by/index.ts::poweredBy:31",
+      "file_path": "src/middleware/powered-by/index.ts",
+      "name": "poweredBy",
+      "start_line": 31,
+      "end_line": 34,
+      "nloc": 4,
+      "mean_line_surprisal": 2.22955,
+      "max_line_surprisal": 2.87707
+    },
+    {
+      "function_id": "src/middleware/pretty-json/index.ts::prettyJSON:42",
+      "file_path": "src/middleware/pretty-json/index.ts",
+      "name": "prettyJSON",
+      "start_line": 42,
+      "end_line": 49,
+      "nloc": 8,
+      "mean_line_surprisal": 2.24468,
+      "max_line_surprisal": 3.11258
+    },
+    {
+      "function_id": "src/middleware/request-id/request-id.ts::requestId:46",
+      "file_path": "src/middleware/request-id/request-id.ts",
+      "name": "requestId",
+      "start_line": 46,
+      "end_line": 58,
+      "nloc": 12,
+      "mean_line_surprisal": 2.07287,
+      "max_line_surprisal": 3.42552
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::setHeaders:329",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "setHeaders",
+      "start_line": 329,
+      "end_line": 333,
+      "nloc": 5,
+      "mean_line_surprisal": 1.80072,
+      "max_line_surprisal": 2.3015
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::getReportToOptions:325",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "getReportToOptions",
+      "start_line": 325,
+      "end_line": 327,
+      "nloc": 3,
+      "mean_line_surprisal": 1.62781,
+      "max_line_surprisal": 1.67216
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::getReportingEndpoints:319",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "getReportingEndpoints",
+      "start_line": 319,
+      "end_line": 323,
+      "nloc": 3,
+      "mean_line_surprisal": 2.09565,
+      "max_line_surprisal": 3.18342
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::camelToKebab:315",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "camelToKebab",
+      "start_line": 315,
+      "end_line": 317,
+      "nloc": 3,
+      "mean_line_surprisal": 2.38378,
+      "max_line_surprisal": 3.40608
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::getPermissionsPolicyDirectives:289",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "getPermissionsPolicyDirectives",
+      "start_line": 289,
+      "end_line": 313,
+      "nloc": 22,
+      "mean_line_surprisal": 1.75984,
+      "max_line_surprisal": 2.82819
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::getCSPDirectives:239",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "getCSPDirectives",
+      "start_line": 239,
+      "end_line": 287,
+      "nloc": 43,
+      "mean_line_surprisal": 2.16087,
+      "max_line_surprisal": 4.10909
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::getFilteredHeaders:230",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "getFilteredHeaders",
+      "start_line": 230,
+      "end_line": 237,
+      "nloc": 8,
+      "mean_line_surprisal": 1.73485,
+      "max_line_surprisal": 2.23659
+    },
+    {
+      "function_id": "src/middleware/secure-headers/secure-headers.ts::secureHeaders:214",
+      "file_path": "src/middleware/secure-headers/secure-headers.ts",
+      "name": "secureHeaders",
+      "start_line": 214,
+      "end_line": 227,
+      "nloc": 13,
+      "mean_line_surprisal": 2.33231,
+      "max_line_surprisal": 3.7139
+    },
+    {
+      "function_id": "src/middleware/timeout/index.ts::timeout:42",
+      "file_path": "src/middleware/timeout/index.ts",
+      "name": "timeout",
+      "start_line": 42,
+      "end_line": 57,
+      "nloc": 15,
+      "mean_line_surprisal": 2.16481,
+      "max_line_surprisal": 2.95717
+    },
+    {
+      "function_id": "src/middleware/timing/timing.ts::timing:85",
+      "file_path": "src/middleware/timing/timing.ts",
+      "name": "timing",
+      "start_line": 85,
+      "end_line": 123,
+      "nloc": 30,
+      "mean_line_surprisal": 1.92615,
+      "max_line_surprisal": 3.72753
+    },
+    {
+      "function_id": "src/middleware/trailing-slash/index.ts::appendTrailingSlash:57",
+      "file_path": "src/middleware/trailing-slash/index.ts",
+      "name": "appendTrailingSlash",
+      "start_line": 57,
+      "end_line": 70,
+      "nloc": 12,
+      "mean_line_surprisal": 1.10895,
+      "max_line_surprisal": 1.80918
+    },
+    {
+      "function_id": "src/middleware/trailing-slash/index.ts::trimTrailingSlash:24",
+      "file_path": "src/middleware/trailing-slash/index.ts",
+      "name": "trimTrailingSlash",
+      "start_line": 24,
+      "end_line": 38,
+      "nloc": 13,
+      "mean_line_surprisal": 2.11265,
+      "max_line_surprisal": 3.08008
+    },
+    {
+      "function_id": "src/preset/quick.ts::constructor:18",
+      "file_path": "src/preset/quick.ts",
+      "name": "constructor",
+      "start_line": 18,
+      "end_line": 23,
+      "nloc": 6,
+      "mean_line_surprisal": 1.89461,
+      "max_line_surprisal": 2.15355
+    },
+    {
+      "function_id": "src/preset/tiny.ts::constructor:16",
+      "file_path": "src/preset/tiny.ts",
+      "name": "constructor",
+      "start_line": 16,
+      "end_line": 19,
+      "nloc": 4,
+      "mean_line_surprisal": 1.8491,
+      "max_line_surprisal": 2.1971
+    },
+    {
+      "function_id": "src/request.ts::routePath:422",
+      "file_path": "src/request.ts",
+      "name": "routePath",
+      "start_line": 422,
+      "end_line": 424,
+      "nloc": 3,
+      "mean_line_surprisal": 1.40885,
+      "max_line_surprisal": 1.72831
+    },
+    {
+      "function_id": "src/request.ts::matchedRoutes:402",
+      "file_path": "src/request.ts",
+      "name": "matchedRoutes",
+      "start_line": 402,
+      "end_line": 404,
+      "nloc": 3,
+      "mean_line_surprisal": 2.02215,
+      "max_line_surprisal": 2.27392
+    },
+    {
+      "function_id": "src/request.ts::[GET_MATCH_RESULT]:371",
+      "file_path": "src/request.ts",
+      "name": "[GET_MATCH_RESULT]",
+      "start_line": 371,
+      "end_line": 373,
+      "nloc": 3,
+      "mean_line_surprisal": 2.35534,
+      "max_line_surprisal": 4.21889
+    },
+    {
+      "function_id": "src/request.ts::method:367",
+      "file_path": "src/request.ts",
+      "name": "method",
+      "start_line": 367,
+      "end_line": 369,
+      "nloc": 3,
+      "mean_line_surprisal": 1.74692,
+      "max_line_surprisal": 1.87775
+    },
+    {
+      "function_id": "src/request.ts::url:351",
+      "file_path": "src/request.ts",
+      "name": "url",
+      "start_line": 351,
+      "end_line": 353,
+      "nloc": 3,
+      "mean_line_surprisal": 1.81876,
+      "max_line_surprisal": 2.1171
+    },
+    {
+      "function_id": "src/request.ts::valid:334",
+      "file_path": "src/request.ts",
+      "name": "valid",
+      "start_line": 334,
+      "end_line": 336,
+      "nloc": 3,
+      "mean_line_surprisal": 2.13469,
+      "max_line_surprisal": 3.3339
+    },
+    {
+      "function_id": "src/request.ts::addValidatedData:321",
+      "file_path": "src/request.ts",
+      "name": "addValidatedData",
+      "start_line": 321,
+      "end_line": 323,
+      "nloc": 3,
+      "mean_line_surprisal": 1.83128,
+      "max_line_surprisal": 2.5062
+    },
+    {
+      "function_id": "src/request.ts::formData:311",
+      "file_path": "src/request.ts",
+      "name": "formData",
+      "start_line": 311,
+      "end_line": 313,
+      "nloc": 3,
+      "mean_line_surprisal": 1.55677,
+      "max_line_surprisal": 2.4837
+    },
+    {
+      "function_id": "src/request.ts::blob:297",
+      "file_path": "src/request.ts",
+      "name": "blob",
+      "start_line": 297,
+      "end_line": 299,
+      "nloc": 3,
+      "mean_line_surprisal": 1.61412,
+      "max_line_surprisal": 2.42502
+    },
+    {
+      "function_id": "src/request.ts::arrayBuffer:283",
+      "file_path": "src/request.ts",
+      "name": "arrayBuffer",
+      "start_line": 283,
+      "end_line": 285,
+      "nloc": 3,
+      "mean_line_surprisal": 1.80308,
+      "max_line_surprisal": 2.57677
+    },
+    {
+      "function_id": "src/request.ts::text:267",
+      "file_path": "src/request.ts",
+      "name": "text",
+      "start_line": 267,
+      "end_line": 269,
+      "nloc": 3,
+      "mean_line_surprisal": 2.08857,
+      "max_line_surprisal": 2.79238
+    },
+    {
+      "function_id": "src/request.ts::json:251",
+      "file_path": "src/request.ts",
+      "name": "json",
+      "start_line": 251,
+      "end_line": 253,
+      "nloc": 3,
+      "mean_line_surprisal": 1.61888,
+      "max_line_surprisal": 2.29561
+    },
+    {
+      "function_id": "src/request.ts::parseBody:214",
+      "file_path": "src/request.ts",
+      "name": "parseBody",
+      "start_line": 214,
+      "end_line": 216,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69751,
+      "max_line_surprisal": 2.30753
+    },
+    {
+      "function_id": "src/request.ts::header:186",
+      "file_path": "src/request.ts",
+      "name": "header",
+      "start_line": 186,
+      "end_line": 196,
+      "nloc": 10,
+      "mean_line_surprisal": 2.26086,
+      "max_line_surprisal": 4.3105
+    },
+    {
+      "function_id": "src/request.ts::queries:167",
+      "file_path": "src/request.ts",
+      "name": "queries",
+      "start_line": 167,
+      "end_line": 169,
+      "nloc": 3,
+      "mean_line_surprisal": 1.79123,
+      "max_line_surprisal": 2.04997
+    },
+    {
+      "function_id": "src/request.ts::query:148",
+      "file_path": "src/request.ts",
+      "name": "query",
+      "start_line": 148,
+      "end_line": 150,
+      "nloc": 3,
+      "mean_line_surprisal": 2.81322,
+      "max_line_surprisal": 3.42682
+    },
+    {
+      "function_id": "src/request.ts::#getParamValue:124",
+      "file_path": "src/request.ts",
+      "name": "#getParamValue",
+      "start_line": 124,
+      "end_line": 126,
+      "nloc": 3,
+      "mean_line_surprisal": 1.43252,
+      "max_line_surprisal": 1.79627
+    },
+    {
+      "function_id": "src/request.ts::#getAllDecodedParams:110",
+      "file_path": "src/request.ts",
+      "name": "#getAllDecodedParams",
+      "start_line": 110,
+      "end_line": 122,
+      "nloc": 11,
+      "mean_line_surprisal": 2.122,
+      "max_line_surprisal": 4.63641
+    },
+    {
+      "function_id": "src/request.ts::#getDecodedParam:104",
+      "file_path": "src/request.ts",
+      "name": "#getDecodedParam",
+      "start_line": 104,
+      "end_line": 108,
+      "nloc": 5,
+      "mean_line_surprisal": 1.79411,
+      "max_line_surprisal": 2.41974
+    },
+    {
+      "function_id": "src/request.ts::param:100",
+      "file_path": "src/request.ts",
+      "name": "param",
+      "start_line": 100,
+      "end_line": 102,
+      "nloc": 3,
+      "mean_line_surprisal": 2.21025,
+      "max_line_surprisal": 2.52381
+    },
+    {
+      "function_id": "src/request.ts::constructor:71",
+      "file_path": "src/request.ts",
+      "name": "constructor",
+      "start_line": 71,
+      "end_line": 80,
+      "nloc": 6,
+      "mean_line_surprisal": 2.50401,
+      "max_line_surprisal": 4.14811
+    },
+    {
+      "function_id": "src/router/linear-router/router.ts::match:25",
+      "file_path": "src/router/linear-router/router.ts",
+      "name": "match",
+      "start_line": 25,
+      "end_line": 139,
+      "nloc": 106,
+      "mean_line_surprisal": 1.63822,
+      "max_line_surprisal": 4.30196
+    },
+    {
+      "function_id": "src/router/linear-router/router.ts::add:15",
+      "file_path": "src/router/linear-router/router.ts",
+      "name": "add",
+      "start_line": 15,
+      "end_line": 23,
+      "nloc": 9,
+      "mean_line_surprisal": 1.72432,
+      "max_line_surprisal": 3.23188
+    },
+    {
+      "function_id": "src/router/pattern-router/router.ts::match:44",
+      "file_path": "src/router/pattern-router/router.ts",
+      "name": "match",
+      "start_line": 44,
+      "end_line": 59,
+      "nloc": 13,
+      "mean_line_surprisal": 1.9848,
+      "max_line_surprisal": 3.26421
+    },
+    {
+      "function_id": "src/router/pattern-router/router.ts::add:12",
+      "file_path": "src/router/pattern-router/router.ts",
+      "name": "add",
+      "start_line": 12,
+      "end_line": 42,
+      "nloc": 29,
+      "mean_line_surprisal": 2.44825,
+      "max_line_surprisal": 5.64207
+    },
+    {
+      "function_id": "src/router/reg-exp-router/matcher.ts::match:10",
+      "file_path": "src/router/reg-exp-router/matcher.ts",
+      "name": "match",
+      "start_line": 10,
+      "end_line": 33,
+      "nloc": 19,
+      "mean_line_surprisal": 2.40573,
+      "max_line_surprisal": 4.51152
+    },
+    {
+      "function_id": "src/router/reg-exp-router/node.ts::buildRegExpStr:135",
+      "file_path": "src/router/reg-exp-router/node.ts",
+      "name": "buildRegExpStr",
+      "start_line": 135,
+      "end_line": 161,
+      "nloc": 23,
+      "mean_line_surprisal": 2.34392,
+      "max_line_surprisal": 5.86702
+    },
+    {
+      "function_id": "src/router/reg-exp-router/node.ts::insert:50",
+      "file_path": "src/router/reg-exp-router/node.ts",
+      "name": "insert",
+      "start_line": 50,
+      "end_line": 133,
+      "nloc": 73,
+      "mean_line_surprisal": 1.73115,
+      "max_line_surprisal": 4.55447
+    },
+    {
+      "function_id": "src/router/reg-exp-router/node.ts::compareKey:20",
+      "file_path": "src/router/reg-exp-router/node.ts",
+      "name": "compareKey",
+      "start_line": 20,
+      "end_line": 43,
+      "nloc": 21,
+      "mean_line_surprisal": 1.69424,
+      "max_line_surprisal": 3.44061
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::buildAndExportAllMatchers:99",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "buildAndExportAllMatchers",
+      "start_line": 99,
+      "end_line": 101,
+      "nloc": 3,
+      "mean_line_surprisal": 2.37215,
+      "max_line_surprisal": 2.79799
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::buildAllMatchers:88",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "buildAllMatchers",
+      "start_line": 88,
+      "end_line": 90,
+      "nloc": 3,
+      "mean_line_surprisal": 2.74539,
+      "max_line_surprisal": 3.94082
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::add:47",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "add",
+      "start_line": 47,
+      "end_line": 86,
+      "nloc": 38,
+      "mean_line_surprisal": 1.96757,
+      "max_line_surprisal": 4.9747
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::#addPath:25",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "#addPath",
+      "start_line": 25,
+      "end_line": 45,
+      "nloc": 15,
+      "mean_line_surprisal": 2.04943,
+      "max_line_surprisal": 4.28227
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::#addWildcard:19",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "#addWildcard",
+      "start_line": 19,
+      "end_line": 23,
+      "nloc": 5,
+      "mean_line_surprisal": 1.99186,
+      "max_line_surprisal": 2.29838
+    },
+    {
+      "function_id": "src/router/reg-exp-router/prepared-router.ts::constructor:14",
+      "file_path": "src/router/reg-exp-router/prepared-router.ts",
+      "name": "constructor",
+      "start_line": 14,
+      "end_line": 17,
+      "nloc": 4,
+      "mean_line_surprisal": 1.67329,
+      "max_line_surprisal": 2.72068
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::#buildMatcher:224",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "#buildMatcher",
+      "start_line": 224,
+      "end_line": 251,
+      "nloc": 25,
+      "mean_line_surprisal": 2.03661,
+      "max_line_surprisal": 4.33593
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::buildAllMatchers:208",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "buildAllMatchers",
+      "start_line": 208,
+      "end_line": 222,
+      "nloc": 12,
+      "mean_line_surprisal": 1.95796,
+      "max_line_surprisal": 4.08248
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::add:132",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "add",
+      "start_line": 132,
+      "end_line": 204,
+      "nloc": 64,
+      "mean_line_surprisal": 1.97288,
+      "max_line_surprisal": 5.92167
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::constructor:127",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "constructor",
+      "start_line": 127,
+      "end_line": 130,
+      "nloc": 4,
+      "mean_line_surprisal": 2.07614,
+      "max_line_surprisal": 2.53399
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::findMiddleware:105",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "findMiddleware",
+      "start_line": 105,
+      "end_line": 120,
+      "nloc": 11,
+      "mean_line_surprisal": 2.26093,
+      "max_line_surprisal": 4.0091
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::buildMatcherFromPreprocessedRoutes:34",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "buildMatcherFromPreprocessedRoutes",
+      "start_line": 34,
+      "end_line": 103,
+      "nloc": 60,
+      "mean_line_surprisal": 2.05926,
+      "max_line_surprisal": 5.86047
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::clearWildcardRegExpCache:30",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "clearWildcardRegExpCache",
+      "start_line": 30,
+      "end_line": 32,
+      "nloc": 3,
+      "mean_line_surprisal": 2.28911,
+      "max_line_surprisal": 3.13549
+    },
+    {
+      "function_id": "src/router/reg-exp-router/router.ts::buildWildcardRegExp:20",
+      "file_path": "src/router/reg-exp-router/router.ts",
+      "name": "buildWildcardRegExp",
+      "start_line": 20,
+      "end_line": 28,
+      "nloc": 9,
+      "mean_line_surprisal": 2.44963,
+      "max_line_surprisal": 3.45889
+    },
+    {
+      "function_id": "src/router/reg-exp-router/trie.ts::buildRegExp:49",
+      "file_path": "src/router/reg-exp-router/trie.ts",
+      "name": "buildRegExp",
+      "start_line": 49,
+      "end_line": 73,
+      "nloc": 21,
+      "mean_line_surprisal": 2.11206,
+      "max_line_surprisal": 5.85043
+    },
+    {
+      "function_id": "src/router/reg-exp-router/trie.ts::insert:10",
+      "file_path": "src/router/reg-exp-router/trie.ts",
+      "name": "insert",
+      "start_line": 10,
+      "end_line": 47,
+      "nloc": 34,
+      "mean_line_surprisal": 1.86104,
+      "max_line_surprisal": 5.41902
+    },
+    {
+      "function_id": "src/router/smart-router/router.ts::activeRouter:63",
+      "file_path": "src/router/smart-router/router.ts",
+      "name": "activeRouter",
+      "start_line": 63,
+      "end_line": 69,
+      "nloc": 6,
+      "mean_line_surprisal": 1.99359,
+      "max_line_surprisal": 4.0049
+    },
+    {
+      "function_id": "src/router/smart-router/router.ts::match:21",
+      "file_path": "src/router/smart-router/router.ts",
+      "name": "match",
+      "start_line": 21,
+      "end_line": 61,
+      "nloc": 35,
+      "mean_line_surprisal": 1.95596,
+      "max_line_surprisal": 5.00492
+    },
+    {
+      "function_id": "src/router/smart-router/router.ts::add:13",
+      "file_path": "src/router/smart-router/router.ts",
+      "name": "add",
+      "start_line": 13,
+      "end_line": 19,
+      "nloc": 6,
+      "mean_line_surprisal": 1.66308,
+      "max_line_surprisal": 2.51164
+    },
+    {
+      "function_id": "src/router/smart-router/router.ts::constructor:9",
+      "file_path": "src/router/smart-router/router.ts",
+      "name": "constructor",
+      "start_line": 9,
+      "end_line": 11,
+      "nloc": 3,
+      "mean_line_surprisal": 1.95923,
+      "max_line_surprisal": 2.66884
+    },
+    {
+      "function_id": "src/router/trie-router/node.ts::search:108",
+      "file_path": "src/router/trie-router/node.ts",
+      "name": "search",
+      "start_line": 108,
+      "end_line": 212,
+      "nloc": 89,
+      "mean_line_surprisal": 1.80712,
+      "max_line_surprisal": 5.84757
+    },
+    {
+      "function_id": "src/router/trie-router/node.ts::#getHandlerSets:80",
+      "file_path": "src/router/trie-router/node.ts",
+      "name": "#getHandlerSets",
+      "start_line": 80,
+      "end_line": 106,
+      "nloc": 22,
+      "mean_line_surprisal": 1.87139,
+      "max_line_surprisal": 5.2033
+    },
+    {
+      "function_id": "src/router/trie-router/node.ts::insert:37",
+      "file_path": "src/router/trie-router/node.ts",
+      "name": "insert",
+      "start_line": 37,
+      "end_line": 78,
+      "nloc": 34,
+      "mean_line_surprisal": 2.11077,
+      "max_line_surprisal": 6.71053
+    },
+    {
+      "function_id": "src/router/trie-router/node.ts::constructor:26",
+      "file_path": "src/router/trie-router/node.ts",
+      "name": "constructor",
+      "start_line": 26,
+      "end_line": 35,
+      "nloc": 10,
+      "mean_line_surprisal": 2.44026,
+      "max_line_surprisal": 4.44782
+    },
+    {
+      "function_id": "src/router/trie-router/router.ts::match:25",
+      "file_path": "src/router/trie-router/router.ts",
+      "name": "match",
+      "start_line": 25,
+      "end_line": 27,
+      "nloc": 3,
+      "mean_line_surprisal": 1.85236,
+      "max_line_surprisal": 2.53438
+    },
+    {
+      "function_id": "src/router/trie-router/router.ts::add:13",
+      "file_path": "src/router/trie-router/router.ts",
+      "name": "add",
+      "start_line": 13,
+      "end_line": 23,
+      "nloc": 10,
+      "mean_line_surprisal": 2.21207,
+      "max_line_surprisal": 4.92371
+    },
+    {
+      "function_id": "src/router/trie-router/router.ts::constructor:9",
+      "file_path": "src/router/trie-router/router.ts",
+      "name": "constructor",
+      "start_line": 9,
+      "end_line": 11,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48602,
+      "max_line_surprisal": 2.95522
+    },
+    {
+      "function_id": "src/utils/body.ts::convertFormDataToBodyData:142",
+      "file_path": "src/utils/body.ts",
+      "name": "convertFormDataToBodyData",
+      "start_line": 142,
+      "end_line": 170,
+      "nloc": 21,
+      "mean_line_surprisal": 2.00113,
+      "max_line_surprisal": 4.65338
+    },
+    {
+      "function_id": "src/utils/body.ts::parseFormData:121",
+      "file_path": "src/utils/body.ts",
+      "name": "parseFormData",
+      "start_line": 121,
+      "end_line": 132,
+      "nloc": 7,
+      "mean_line_surprisal": 1.95398,
+      "max_line_surprisal": 3.12953
+    },
+    {
+      "function_id": "src/utils/color.ts::getColorEnabledAsync:36",
+      "file_path": "src/utils/color.ts",
+      "name": "getColorEnabledAsync",
+      "start_line": 36,
+      "end_line": 56,
+      "nloc": 19,
+      "mean_line_surprisal": 2.065,
+      "max_line_surprisal": 3.63025
+    },
+    {
+      "function_id": "src/utils/color.ts::getColorEnabled:14",
+      "file_path": "src/utils/color.ts",
+      "name": "getColorEnabled",
+      "start_line": 14,
+      "end_line": 27,
+      "nloc": 12,
+      "mean_line_surprisal": 1.85356,
+      "max_line_surprisal": 3.28925
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::isCryptoKey:226",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "isCryptoKey",
+      "start_line": 226,
+      "end_line": 234,
+      "nloc": 9,
+      "mean_line_surprisal": 1.51741,
+      "max_line_surprisal": 2.253
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::getKeyAlgorithm:122",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "getKeyAlgorithm",
+      "start_line": 122,
+      "end_line": 224,
+      "nloc": 103,
+      "mean_line_surprisal": 1.10031,
+      "max_line_surprisal": 3.50136
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::exportPublicJwkFrom:108",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "exportPublicJwkFrom",
+      "start_line": 108,
+      "end_line": 120,
+      "nloc": 13,
+      "mean_line_surprisal": 1.53759,
+      "max_line_surprisal": 2.29823
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::importPublicKey:78",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "importPublicKey",
+      "start_line": 78,
+      "end_line": 105,
+      "nloc": 28,
+      "mean_line_surprisal": 1.23484,
+      "max_line_surprisal": 4.20422
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::importPrivateKey:54",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "importPrivateKey",
+      "start_line": 54,
+      "end_line": 76,
+      "nloc": 23,
+      "mean_line_surprisal": 1.75281,
+      "max_line_surprisal": 5.17252
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::pemToBinary:50",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "pemToBinary",
+      "start_line": 50,
+      "end_line": 52,
+      "nloc": 3,
+      "mean_line_surprisal": 2.11126,
+      "max_line_surprisal": 2.48207
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::verifying:39",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "verifying",
+      "start_line": 39,
+      "end_line": 48,
+      "nloc": 5,
+      "mean_line_surprisal": 1.14544,
+      "max_line_surprisal": 2.50535
+    },
+    {
+      "function_id": "src/utils/jwt/jws.ts::signing:29",
+      "file_path": "src/utils/jwt/jws.ts",
+      "name": "signing",
+      "start_line": 29,
+      "end_line": 37,
+      "nloc": 5,
+      "mean_line_surprisal": 1.69609,
+      "max_line_surprisal": 2.19371
+    },
+    {
+      "function_id": "src/utils/jwt/jwt.ts::isTokenHeader:40",
+      "file_path": "src/utils/jwt/jwt.ts",
+      "name": "isTokenHeader",
+      "start_line": 40,
+      "end_line": 50,
+      "nloc": 11,
+      "mean_line_surprisal": 2.4916,
+      "max_line_surprisal": 4.92539
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:79",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 79,
+      "end_line": 86,
+      "nloc": 8,
+      "mean_line_surprisal": 1.12303,
+      "max_line_surprisal": 2.20511
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:72",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 72,
+      "end_line": 75,
+      "nloc": 4,
+      "mean_line_surprisal": 0.97489,
+      "max_line_surprisal": 1.32493
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:65",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 65,
+      "end_line": 68,
+      "nloc": 4,
+      "mean_line_surprisal": 0.68592,
+      "max_line_surprisal": 1.27234
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:58",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 58,
+      "end_line": 61,
+      "nloc": 4,
+      "mean_line_surprisal": 0.75333,
+      "max_line_surprisal": 1.2743
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:51",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 51,
+      "end_line": 54,
+      "nloc": 4,
+      "mean_line_surprisal": 1.06573,
+      "max_line_surprisal": 1.39471
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:44",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 44,
+      "end_line": 47,
+      "nloc": 4,
+      "mean_line_surprisal": 1.38585,
+      "max_line_surprisal": 2.13108
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:35",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 35,
+      "end_line": 40,
+      "nloc": 6,
+      "mean_line_surprisal": 1.17081,
+      "max_line_surprisal": 1.95663
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:28",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 28,
+      "end_line": 31,
+      "nloc": 4,
+      "mean_line_surprisal": 0.65975,
+      "max_line_surprisal": 1.3221
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:21",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 21,
+      "end_line": 24,
+      "nloc": 4,
+      "mean_line_surprisal": 0.73423,
+      "max_line_surprisal": 1.37607
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:14",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 14,
+      "end_line": 17,
+      "nloc": 4,
+      "mean_line_surprisal": 1.1378,
+      "max_line_surprisal": 1.56415
+    },
+    {
+      "function_id": "src/utils/jwt/types.ts::constructor:7",
+      "file_path": "src/utils/jwt/types.ts",
+      "name": "constructor",
+      "start_line": 7,
+      "end_line": 10,
+      "nloc": 4,
+      "mean_line_surprisal": 2.78793,
+      "max_line_surprisal": 5.62445
+    },
+    {
+      "function_id": "src/utils/stream.ts::abort:90",
+      "file_path": "src/utils/stream.ts",
+      "name": "abort",
+      "start_line": 90,
+      "end_line": 95,
+      "nloc": 6,
+      "mean_line_surprisal": 1.89435,
+      "max_line_surprisal": 2.69273
+    },
+    {
+      "function_id": "src/utils/stream.ts::onAbort:82",
+      "file_path": "src/utils/stream.ts",
+      "name": "onAbort",
+      "start_line": 82,
+      "end_line": 84,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50067,
+      "max_line_surprisal": 2.04578
+    },
+    {
+      "function_id": "src/utils/stream.ts::pipe:76",
+      "file_path": "src/utils/stream.ts",
+      "name": "pipe",
+      "start_line": 76,
+      "end_line": 80,
+      "nloc": 5,
+      "mean_line_surprisal": 1.70172,
+      "max_line_surprisal": 2.0355
+    },
+    {
+      "function_id": "src/utils/stream.ts::close:67",
+      "file_path": "src/utils/stream.ts",
+      "name": "close",
+      "start_line": 67,
+      "end_line": 74,
+      "nloc": 8,
+      "mean_line_surprisal": 1.89955,
+      "max_line_surprisal": 2.52261
+    },
+    {
+      "function_id": "src/utils/stream.ts::sleep:63",
+      "file_path": "src/utils/stream.ts",
+      "name": "sleep",
+      "start_line": 63,
+      "end_line": 65,
+      "nloc": 3,
+      "mean_line_surprisal": 1.73203,
+      "max_line_surprisal": 2.24363
+    },
+    {
+      "function_id": "src/utils/stream.ts::writeln:58",
+      "file_path": "src/utils/stream.ts",
+      "name": "writeln",
+      "start_line": 58,
+      "end_line": 61,
+      "nloc": 4,
+      "mean_line_surprisal": 1.96774,
+      "max_line_surprisal": 3.76694
+    },
+    {
+      "function_id": "src/utils/stream.ts::write:46",
+      "file_path": "src/utils/stream.ts",
+      "name": "write",
+      "start_line": 46,
+      "end_line": 56,
+      "nloc": 11,
+      "mean_line_surprisal": 2.2113,
+      "max_line_surprisal": 2.84346
+    },
+    {
+      "function_id": "src/utils/stream.ts::constructor:21",
+      "file_path": "src/utils/stream.ts",
+      "name": "constructor",
+      "start_line": 21,
+      "end_line": 44,
+      "nloc": 21,
+      "mean_line_surprisal": 2.14352,
+      "max_line_surprisal": 3.71038
+    }
+  ]
+}

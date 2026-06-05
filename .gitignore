@@ -43,3 +43,18 @@ __pycache__/
 !/results/codescene_paired_deltas.json
 !/results/resolution_time.json
 !/results/pr_effort_signals.json
+
+# Heavy per-repo extraction caches — regenerable from the repo checkouts, too
+# large for git (70+ MB each across the corpus). The derived scorecards and
+# per-hunk aggregates above ARE tracked.
+/results/health_defect_*/hunk_dataset.json
+/results/health_defect_*/hunk_tokens.json
+
+# Local experiment scratch — Ollama modelfiles, smoke logs, ad-hoc dumps
+Modelfile.*
+logs_smoke*.txt
+*_index.log
+tool_health_dump.json
+
+# opencode source clone (inspection only, local)
+opencode-src/

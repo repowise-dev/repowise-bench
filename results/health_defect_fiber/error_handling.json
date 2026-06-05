@@ -1,0 +1,1131 @@
+{
+  "meta": {
+    "repo": "fiber",
+    "t0_sha": "5caa478c02c5eb6cd1c251ddc634ec0600e66a7b",
+    "n_files": 140,
+    "total_hits": 65,
+    "build_seconds": 2.7
+  },
+  "files": {
+    "adapter.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 183
+    },
+    "addon/retry/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "addon/retry/exponential_backoff.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "app.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 5,
+      "eh_count": 5,
+      "code_lines": 1205
+    },
+    "bind.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 284
+    },
+    "binder/binder.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "binder/cbor.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "binder/cookie.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "binder/form.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "binder/header.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "binder/json.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "binder/mapping.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 325
+    },
+    "binder/msgpack.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "binder/query.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "binder/resp_header.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "binder/uri.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "binder/xml.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "client/client.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 706
+    },
+    "client/cookiejar.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 286
+    },
+    "client/core.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 243
+    },
+    "client/errors.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "client/hooks.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 304
+    },
+    "client/request.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 960
+    },
+    "client/response.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 177
+    },
+    "client/transport.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 272
+    },
+    "color.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "constants.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 321
+    },
+    "ctx.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 4,
+      "eh_count": 4,
+      "code_lines": 616
+    },
+    "ctx_interface.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "ctx_interface_gen.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 428
+    },
+    "error.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "errors_internal.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "extractors/extractors.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 500
+    },
+    "group.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 193
+    },
+    "helpers.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 900
+    },
+    "hooks.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 385
+    },
+    "internal/memory/memory.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "internal/storage/memory/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "internal/storage/memory/memory.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 200
+    },
+    "internal/tlstest/tls.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "listen.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 457
+    },
+    "log/default.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 208
+    },
+    "log/fiberlog.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "log/log.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    },
+    "middleware/adaptor/adaptor.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 264
+    },
+    "middleware/basicauth/basicauth.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "middleware/basicauth/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 178
+    },
+    "middleware/cache/cache.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 367
+    },
+    "middleware/cache/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "middleware/cache/heap.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "middleware/cache/manager.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 165
+    },
+    "middleware/cache/manager_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 370
+    },
+    "middleware/compress/compress.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 108
+    },
+    "middleware/compress/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "middleware/cors/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "middleware/cors/cors.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 197
+    },
+    "middleware/cors/utils.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "middleware/csrf/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 192
+    },
+    "middleware/csrf/csrf.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 321
+    },
+    "middleware/csrf/helpers.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "middleware/csrf/session_manager.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "middleware/csrf/storage_manager.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "middleware/csrf/storage_manager_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "middleware/csrf/token.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "middleware/earlydata/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "middleware/earlydata/earlydata.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "middleware/encryptcookie/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "middleware/encryptcookie/encryptcookie.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "middleware/encryptcookie/utils.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 100
+    },
+    "middleware/envvar/envvar.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "middleware/etag/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "middleware/etag/etag.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 114
+    },
+    "middleware/expvar/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "middleware/expvar/expvar.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "middleware/favicon/favicon.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 133
+    },
+    "middleware/healthcheck/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "middleware/healthcheck/healthcheck.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "middleware/helmet/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "middleware/helmet/helmet.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "middleware/idempotency/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "middleware/idempotency/idempotency.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 143
+    },
+    "middleware/idempotency/locker.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "middleware/idempotency/response.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "middleware/idempotency/response_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 259
+    },
+    "middleware/keyauth/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 152
+    },
+    "middleware/keyauth/keyauth.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "middleware/limiter/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "middleware/limiter/limiter.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "middleware/limiter/limiter_fixed.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 111
+    },
+    "middleware/limiter/limiter_sliding.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "middleware/limiter/manager.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 106
+    },
+    "middleware/limiter/manager_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 153
+    },
+    "middleware/logger/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 161
+    },
+    "middleware/logger/data.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "middleware/logger/default_logger.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 6,
+      "eh_count": 6,
+      "code_lines": 154
+    },
+    "middleware/logger/errors.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "middleware/logger/format.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "middleware/logger/logger.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "middleware/logger/tags.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 204
+    },
+    "middleware/logger/template_chain.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "middleware/logger/utils.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "middleware/pprof/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "middleware/pprof/pprof.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "middleware/proxy/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "middleware/proxy/proxy.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 219
+    },
+    "middleware/recover/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "middleware/recover/recover.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "middleware/redirect/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "middleware/redirect/redirect.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "middleware/requestid/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "middleware/requestid/requestid.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "middleware/rewrite/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "middleware/rewrite/rewrite.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "middleware/session/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "middleware/session/data.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "middleware/session/data_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "middleware/session/middleware.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 291
+    },
+    "middleware/session/session.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 513
+    },
+    "middleware/session/store.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 282
+    },
+    "middleware/skip/skip.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "middleware/static/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "middleware/static/static.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 219
+    },
+    "middleware/timeout/config.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "middleware/timeout/timeout.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "mount.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 188
+    },
+    "path.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 14,
+      "eh_count": 14,
+      "code_lines": 711
+    },
+    "prefork.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 163
+    },
+    "readonly.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "readonly_strict.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "redirect.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 275
+    },
+    "redirect_msgp.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 260
+    },
+    "register.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "req.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 812
+    },
+    "req_interface_gen.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 185
+    },
+    "res.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 917
+    },
+    "res_interface_gen.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 159
+    },
+    "router.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 657
+    },
+    "services.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 128
+    },
+    "state.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 258
+    },
+    "storage_interface.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    }
+  }
+}

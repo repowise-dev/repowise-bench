@@ -1,0 +1,4523 @@
+{
+  "meta": {
+    "repo": "quartznet",
+    "t0_sha": "2158050e936509a3555a08b33d4eec9d6565b1be",
+    "n_files": 564,
+    "total_hits": 48,
+    "build_seconds": 11.4
+  },
+  "files": {
+    "src/Quartz.AspNetCore/AspNetCore/HealthChecks/QuartzHealthCheck.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Endpoints/CalendarEndpoints.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Endpoints/JobEndpoints.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 307
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Endpoints/SchedulerEndpoints.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 134
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Endpoints/TriggerEndpoints.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 312
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/OpenApi/Types.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 143
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/QuartzApiConventionBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/QuartzHttpApiOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Util/EndpointConventionBuilderExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Util/EndpointHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Util/ExceptionHandler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Util/NotFoundException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz.AspNetCore/AspNetCore/HttpApi/Util/SchedulerExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "src/Quartz.AspNetCore/AspNetCore/QuartzServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "src/Quartz.Benchmark/CronExpressionBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Quartz.Benchmark/DefaultThreadPoolBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "src/Quartz.Benchmark/ExecutingJobsManagerBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "src/Quartz.Benchmark/JobDispatchBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Quartz.Benchmark/JobExecutionContextImplBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "src/Quartz.Benchmark/JobRunShellBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 317
+    },
+    "src/Quartz.Benchmark/KeyBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 328
+    },
+    "src/Quartz.Benchmark/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz.Benchmark/QuartSchedulerBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 538
+    },
+    "src/Quartz.Benchmark/RAMJobStoreBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 476
+    },
+    "src/Quartz.Benchmark/SchedulerBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 630
+    },
+    "src/Quartz.Benchmark/SimpleSemaphoreBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz.Benchmark/SimpleTriggerImplBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 881
+    },
+    "src/Quartz.Benchmark/StringOperatorBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz.Benchmark/TriggerTimeComparatorBenchmark.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 284
+    },
+    "src/Quartz.Examples.AspNetCore/ApiKeyAuthenticationHandler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz.Examples.AspNetCore/ApiKeyAuthenticationOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Quartz.Examples.AspNetCore/AsyncDisposableJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Quartz.Examples.AspNetCore/CustomJobStore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz.Examples.AspNetCore/CustomSqlServerConnectionProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz.Examples.AspNetCore/CustomTypeLoader.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Quartz.Examples.AspNetCore/ExampleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Quartz.Examples.AspNetCore/Pages/Error.cshtml.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz.Examples.AspNetCore/Pages/Index.cshtml.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz.Examples.AspNetCore/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz.Examples.AspNetCore/SampleJobListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Examples.AspNetCore/SampleOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "src/Quartz.Examples.AspNetCore/SampleSchedulerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz.Examples.AspNetCore/SampleTriggerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Examples.AspNetCore/SecondSampleJobListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Examples.AspNetCore/SecondSampleTriggerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Quartz.Examples.AspNetCore/SlowJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Quartz.Examples.AspNetCore/Startup.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 335
+    },
+    "src/Quartz.Examples.HttpClient/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "src/Quartz.Examples.Worker/ExampleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz.Examples.Worker/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "src/Quartz.Examples.Worker/Worker.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz.Examples/01_SimpleJobScheduler/HelloJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz.Examples/01_SimpleJobScheduler/SimpleJobSchedulerExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "src/Quartz.Examples/02_SchedulingCapabilitiesUsingSimpleTriggers/SchedulingCapabilitiesUsingSimpleTriggersExample.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 196
+    },
+    "src/Quartz.Examples/02_SchedulingCapabilitiesUsingSimpleTriggers/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz.Examples/03_SchedulingCapabilitiesUsingCronTriggers/SchedulingCapabilitiesUsingCronTriggersExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "src/Quartz.Examples/03_SchedulingCapabilitiesUsingCronTriggers/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz.Examples/04_JobParametersAndJobsStateMaintenance/ColorJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "src/Quartz.Examples/04_JobParametersAndJobsStateMaintenance/JobParametersAndJobsStateMaintenanceExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "src/Quartz.Examples/05_SchedulingJobsSettingMisfireInstructions/MisfireJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Quartz.Examples/05_SchedulingJobsSettingMisfireInstructions/SchedulingJobsSettingMisfireInstructionsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "src/Quartz.Examples/05_SchedulingJobsSettingMisfireInstructions/StatefulDumbJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz.Examples/06_JobExecutionExceptions/BadJob1.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Quartz.Examples/06_JobExecutionExceptions/BadJob2.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "src/Quartz.Examples/06_JobExecutionExceptions/JobExecutionExceptionsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "src/Quartz.Examples/07_InterrupInProgressJobs/DumbInterruptableJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Quartz.Examples/07_InterrupInProgressJobs/InterrupInProgressJobsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz.Examples/08_ExcludeTimePeriodsUsingCalendars/ExcludeTimePeriodsUsingCalendarsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "src/Quartz.Examples/08_ExcludeTimePeriodsUsingCalendars/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "src/Quartz.Examples/09_TriggeringAJobUsingJobListeners/SimpleJob1.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Quartz.Examples/09_TriggeringAJobUsingJobListeners/SimpleJob1Listener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "src/Quartz.Examples/09_TriggeringAJobUsingJobListeners/SimpleJob2.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Quartz.Examples/09_TriggeringAJobUsingJobListeners/TriggeringAJobUsingJobListenersExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "src/Quartz.Examples/10_RunningJobsByPlugInXmlConfiguration/RunningJobsByPlugInXmlConfigurationExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Quartz.Examples/10_RunningJobsByPlugInXmlConfiguration/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Quartz.Examples/11_RunningLargeNumberOfJobs/RunningLargeNumberOfJobsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz.Examples/11_RunningLargeNumberOfJobs/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Quartz.Examples/12_RemoteClientServerJobScheduling/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Quartz.Examples/13_ClusteringJobsExecution/ClusteringJobsExecutionExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 180
+    },
+    "src/Quartz.Examples/13_ClusteringJobsExecution/SimpleRecoveryJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "src/Quartz.Examples/13_ClusteringJobsExecution/SimpleRecoveryStatefulJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "src/Quartz.Examples/14_RunJobsByPriorityWithTriggersPriority/RunJobsByPriorityWithTriggersPriorityExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "src/Quartz.Examples/14_RunJobsByPriorityWithTriggersPriority/TriggerEchoJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz.Examples/15_ConfigureJobSchedulingByUsingXmlConfigurations/ConfigureJobSchedulingByUsingXmlConfigurationsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Quartz.Examples/15_ConfigureJobSchedulingByUsingXmlConfigurations/SimpleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Quartz.Examples/16_RunningAsynchronousJobs/AsyncJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz.Examples/16_RunningAsynchronousJobs/RunningAsynchronousJobsExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "src/Quartz.Examples/IExample.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Quartz.Examples/Logging.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz.Examples/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "src/Quartz.HttpClient/AssemblyInfoExtras.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/Quartz.HttpClient/HttpApiContract/CurrentlyExecutingJobDto.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Quartz.HttpClient/HttpApiContract/Dtos.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Quartz.HttpClient/HttpApiContract/HttpApiConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "src/Quartz.HttpClient/HttpApiContract/IValidatable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/Quartz.HttpClient/HttpApiContract/JobDetailDto.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "src/Quartz.HttpClient/HttpApiContract/RequestAndResponses.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "src/Quartz.HttpClient/HttpApiContract/SchedulerDto.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz.HttpClient/HttpApiContract/SchedulerHeaderDto.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz.HttpClient/HttpApiContract/SchedulerStatus.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "src/Quartz.HttpClient/HttpClient/Extensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.HttpClient/HttpClient/HttpClientException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Quartz.HttpClient/HttpClient/HttpClientExtensions.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 178
+    },
+    "src/Quartz.HttpClient/HttpClient/HttpScheduler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 442
+    },
+    "src/Quartz.HttpClient/HttpClientOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz.HttpClient/IsExternalInit.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "src/Quartz.HttpClient/QuartzHttpClientServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "src/Quartz.HttpClient/Simpl/HttpSchedulerProxyFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "src/Quartz.HttpClient/Simpl/SchedulerTypeBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "src/Quartz.Jobs/Job/DirectoryScanJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 156
+    },
+    "src/Quartz.Jobs/Job/DirectoryScanJobModel.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 114
+    },
+    "src/Quartz.Jobs/Job/FileScanJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 164
+    },
+    "src/Quartz.Jobs/Job/IDirectoryScanListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz.Jobs/Job/IFileScanListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "src/Quartz.Jobs/Job/NativeJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 247
+    },
+    "src/Quartz.Jobs/Job/NoOpJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "src/Quartz.Jobs/Job/SendMailJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 164
+    },
+    "src/Quartz.Jobs/SPI/IDirectoryProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Jobs/Simpl/DefaultDirectoryProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Quartz.OpenTelemetry.Instrumentation/Implementation/QuartzDiagnosticListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz.OpenTelemetry.Instrumentation/Implementation/QuartzInstrumentationEventSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz.OpenTelemetry.Instrumentation/QuartzInstrumentationOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Quartz.OpenTelemetry.Instrumentation/QuartzJobInstrumentation.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz.OpenTelemetry.Instrumentation/TraceBuilderExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Quartz.OpenTracing/Configuration/ServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz.OpenTracing/InstrumentationService.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz.OpenTracing/QuartzDiagnostic.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 114
+    },
+    "src/Quartz.OpenTracing/QuartzDiagnosticOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "src/Quartz.Plugins.TimeZoneConverter/Plugin/TimeZoneConverter/TimeZoneConverterPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "src/Quartz.Plugins.TimeZoneConverter/TimeZonePluginConfigurationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz.Plugins/Plugin/History/LoggingJobHistoryPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 445
+    },
+    "src/Quartz.Plugins/Plugin/History/LoggingTriggerHistoryPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 429
+    },
+    "src/Quartz.Plugins/Plugin/Interrupt/JobInterruptMonitorPlugin.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 151
+    },
+    "src/Quartz.Plugins/Plugin/Management/ShutdownHookPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "src/Quartz.Plugins/Plugin/Xml/XMLSchedulingDataProcessorPlugin.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 341
+    },
+    "src/Quartz.Plugins/PluginConfigurationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/AnnualCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/BaseCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/CalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/CronCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/DailyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/HolidayCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/MonthlyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz.Serialization.Newtonsoft/Calendars/WeeklyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz.Serialization.Newtonsoft/Converters/CalendarConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "src/Quartz.Serialization.Newtonsoft/Converters/CronExpressionConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Serialization.Newtonsoft/Converters/NameValueCollectionConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "src/Quartz.Serialization.Newtonsoft/Converters/StringKeyDirtyFlagMapConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz.Serialization.Newtonsoft/Converters/TriggerConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 123
+    },
+    "src/Quartz.Serialization.Newtonsoft/JsonConfigurationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Quartz.Serialization.Newtonsoft/Simpl/NewtonsoftJsonObjectSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "src/Quartz.Serialization.Newtonsoft/Triggers/CalendarIntervalTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz.Serialization.Newtonsoft/Triggers/CronTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Quartz.Serialization.Newtonsoft/Triggers/DailyTimeIntervalTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Quartz.Serialization.Newtonsoft/Triggers/SimpleTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Serialization.Newtonsoft/Triggers/TriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Quartz.Serialization.Newtonsoft/Util/SerializationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "src/Quartz.Server/Configuration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Quartz.Server/IQuartzServer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Quartz.Server/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Server/QuartzServer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "src/Quartz.Server/QuartzServerFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz.Server/SampleJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/CalendarEndpointsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/CommonEndpointTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/JobEndpointsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 241
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/SchedulerEndpointsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/TriggerEndpointsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 286
+    },
+    "src/Quartz.Tests.AspNetCore/HttpApi/WebApiTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Quartz.Tests.AspNetCore/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Quartz.Tests.AspNetCore/Support/DummyJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/Quartz.Tests.AspNetCore/Support/TestData.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 200
+    },
+    "src/Quartz.Tests.Integration/AdoSchedulerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Quartz.Tests.Integration/Core/MissSchedulingChangeSignalTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "src/Quartz.Tests.Integration/Core/RecoverJobsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "src/Quartz.Tests.Integration/ExceptionPolicy/ExceptionJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Quartz.Tests.Integration/ExceptionPolicy/ExceptionJobTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "src/Quartz.Tests.Integration/GlobalUsings.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/AdoJobStoreSmokeTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 529
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/Common/DbMetadataTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/Common/DbProviderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/DeleteNonExistsJobTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/JobStoreSupportTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Quartz.Tests.Integration/Impl/AdoJobStore/TestLoggerHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz.Tests.Integration/Impl/Calendar/AnnualCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "src/Quartz.Tests.Integration/Impl/SmokeTestPerformer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 496
+    },
+    "src/Quartz.Tests.Integration/IntegrationTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "src/Quartz.Tests.Integration/JobDataMapStorageTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz.Tests.Integration/JobMaintenanceTests.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz.Tests.Integration/QuartzMemoryPauseAndResumeTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "src/Quartz.Tests.Integration/RAMJobStoreTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 476
+    },
+    "src/Quartz.Tests.Integration/RAMSchedulerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz.Tests.Integration/TestAssemblySetup.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz.Tests.Integration/TestHelpers/SchedulerHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz.Tests.Integration/TestJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz.Tests.Integration/Utils/DatabaseHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Quartz.Tests.Integration/Xml/XMLSchedulingDataProcessorTest.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 395
+    },
+    "src/Quartz.Tests.Unit/CalendarIntervalTriggerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 631
+    },
+    "src/Quartz.Tests.Unit/Collections/OrderedDictionaryTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz.Tests.Unit/Core/ExecutingJobsManagerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz.Tests.Unit/Core/ListenerManagerTest .cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1547
+    },
+    "src/Quartz.Tests.Unit/Core/MissSchedulingChangeSignalTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "src/Quartz.Tests.Unit/Core/QuartzRandomTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz.Tests.Unit/Core/QuartzSchedulerResourcesTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "src/Quartz.Tests.Unit/Core/QuartzSchedulerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 234
+    },
+    "src/Quartz.Tests.Unit/Core/QuartzSchedulerThreadTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz.Tests.Unit/Core/SlowRAMJobStore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Tests.Unit/CronExpressionTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 997
+    },
+    "src/Quartz.Tests.Unit/CronFieldTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "src/Quartz.Tests.Unit/CronScheduleBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz.Tests.Unit/CronTriggerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 180
+    },
+    "src/Quartz.Tests.Unit/DailyTimeIntervalScheduleBuilderTest.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 388
+    },
+    "src/Quartz.Tests.Unit/DateBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz.Tests.Unit/DaylightSavingTimeTests.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "src/Quartz.Tests.Unit/DisallowConcurrentJobExecutionTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "src/Quartz.Tests.Unit/Extensions/DependencyInjection/QuartzHttpClientServiceCollectionExtensionsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    },
+    "src/Quartz.Tests.Unit/Extensions/DependencyInjection/ServiceCollectionExtensionsTests.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Quartz.Tests.Unit/GlobalUsings.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "src/Quartz.Tests.Unit/Impl/AdoJobStore/JobStoreCMTTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz.Tests.Unit/Impl/AdoJobStore/JobStoreSupportTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Quartz.Tests.Unit/Impl/AdoJobStore/StdAdoConstantsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Quartz.Tests.Unit/Impl/AdoJobStore/StdAdoDelegateTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 406
+    },
+    "src/Quartz.Tests.Unit/Impl/AdoJobStore/UpdateTriggerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 111
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/AnnualCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 169
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/BaseCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/CronCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/DailyCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 151
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/HolidayCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/MonthlyCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "src/Quartz.Tests.Unit/Impl/Calendar/WeeklyCalendarTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "src/Quartz.Tests.Unit/Impl/DirectSchedulerFactoryTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 384
+    },
+    "src/Quartz.Tests.Unit/Impl/JobType/JobTypeTests.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Quartz.Tests.Unit/Impl/Matchers/StringOperatorTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 465
+    },
+    "src/Quartz.Tests.Unit/Impl/StdSchedulerFactoryTest.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 144
+    },
+    "src/Quartz.Tests.Unit/Impl/Triggers/AbstractTriggerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "src/Quartz.Tests.Unit/Impl/Triggers/DailyTimeIntervalTriggerImplTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 958
+    },
+    "src/Quartz.Tests.Unit/Impl/Triggers/SimpleTriggerImplTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 295
+    },
+    "src/Quartz.Tests.Unit/InterrubtableJobTest.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 107
+    },
+    "src/Quartz.Tests.Unit/Job/NativeJobTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz.Tests.Unit/Job/SendMailJobTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 154
+    },
+    "src/Quartz.Tests.Unit/JobBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "src/Quartz.Tests.Unit/JobDataMapTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 215
+    },
+    "src/Quartz.Tests.Unit/JobDetailTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "src/Quartz.Tests.Unit/JobExecutionAttributesInterfaceInheritanceTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 132
+    },
+    "src/Quartz.Tests.Unit/JobExecutionContextTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Quartz.Tests.Unit/Plugin/History/LoggingJobHistoryPluginTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 82
+    },
+    "src/Quartz.Tests.Unit/Plugin/History/LoggingTriggerHistoryPluginTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "src/Quartz.Tests.Unit/Plugin/Interrupt/AutoInterruptableJobTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "src/Quartz.Tests.Unit/Plugin/TimeZoneConverter/TimeZoneConverterTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz.Tests.Unit/Plugin/Xml/XMLSchedulingDataProcessorPluginTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "src/Quartz.Tests.Unit/PriorityTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "src/Quartz.Tests.Unit/QualityTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Quartz.Tests.Unit/QuartzHostedServiceTests.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 393
+    },
+    "src/Quartz.Tests.Unit/SchedulerBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 208
+    },
+    "src/Quartz.Tests.Unit/SchedulerListenerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 173
+    },
+    "src/Quartz.Tests.Unit/SchedulerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 367
+    },
+    "src/Quartz.Tests.Unit/SerializationTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 243
+    },
+    "src/Quartz.Tests.Unit/SerializationTestSupport.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "src/Quartz.Tests.Unit/Simpl/JsonObjectSerializerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 595
+    },
+    "src/Quartz.Tests.Unit/Simpl/MicrosoftDependencyInjectionJobFactoryTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "src/Quartz.Tests.Unit/Simpl/PropertySettingJobFactoryTest.cs": {
+      "swallowed_catch": 6,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 6,
+      "code_lines": 224
+    },
+    "src/Quartz.Tests.Unit/Simpl/RAMJobStoreTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 460
+    },
+    "src/Quartz.Tests.Unit/Simpl/SchedulerTypeBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Quartz.Tests.Unit/Simpl/SimpleInstanceIdGeneratorTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "src/Quartz.Tests.Unit/Simpl/SimpleJobFactoryTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz.Tests.Unit/Simpl/SystemPropertyInstanceIdGeneratorTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 97
+    },
+    "src/Quartz.Tests.Unit/Simpl/TaskSchedulingThreadPoolTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Quartz.Tests.Unit/SimpleScheduleBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz.Tests.Unit/SimpleTriggerTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "src/Quartz.Tests.Unit/TestAssemblySetup.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz.Tests.Unit/TestConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz.Tests.Unit/TestUtil.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "src/Quartz.Tests.Unit/TriggerBuilderTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "src/Quartz.Tests.Unit/TriggerComparatorTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "src/Quartz.Tests.Unit/TriggerKeyTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz.Tests.Unit/TriggerTimeComparatorTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 178
+    },
+    "src/Quartz.Tests.Unit/Utils/DirtyFlagMapTest.cs": {
+      "swallowed_catch": 12,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 12,
+      "code_lines": 2060
+    },
+    "src/Quartz.Tests.Unit/Utils/KeyTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 360
+    },
+    "src/Quartz.Tests.Unit/Utils/ObjectExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz.Tests.Unit/Utils/ObjectUtilsTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 176
+    },
+    "src/Quartz.Tests.Unit/Utils/PropertiesParserTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz.Tests.Unit/Utils/TimeZoneUtilTest.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "src/Quartz.Web/Api/Dto/JobHistoryEntryDto.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Quartz.Web/Api/Dto/JobHistoryViewModel.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz.Web/History/DatabaseExecutionHistoryPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "src/Quartz.Web/History/JobExecutionHistoryController.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz.Web/History/JobHistoryDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 151
+    },
+    "src/Quartz.Web/LiveLog/LiveLogHub.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "src/Quartz.Web/LiveLog/LiveLogPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "src/Quartz.Web/Program.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Quartz.Web/Startup.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "src/Quartz.Web/WebConsolePlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz/AssemblyInfoExtras.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Quartz/CalendarIntervalScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 343
+    },
+    "src/Quartz/Collections/EmptyEnumerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/Collections/EmptyReadOnlyCollection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/Collections/HashHelpers.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "src/Quartz/Collections/IDictionaryDebugView.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "src/Quartz/Collections/OrderedDictionary.KeyCollection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 139
+    },
+    "src/Quartz/Collections/OrderedDictionary.ValueCollection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 167
+    },
+    "src/Quartz/Collections/OrderedDictionary.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 837
+    },
+    "src/Quartz/Configuration/CalendarConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/Configuration/ContainerConfigurationProcessor.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz/Configuration/IServiceCollectionQuartzConfigurator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Quartz/Configuration/ITriggerConfigurator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 247
+    },
+    "src/Quartz/Configuration/JobFactoryOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "src/Quartz/Configuration/JobListenerConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz/Configuration/QuartzConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz/Configuration/QuartzOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz/Configuration/SchedulingOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz/Configuration/ServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 221
+    },
+    "src/Quartz/Configuration/ServiceCollectionQuartzConfigurator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 192
+    },
+    "src/Quartz/Configuration/ServiceCollectionSchedulerFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "src/Quartz/Configuration/TriggerConfigurator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "src/Quartz/Configuration/TriggerExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "src/Quartz/Configuration/TriggerListenerConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz/Core/Context.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/Quartz/Core/ErrorLogger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz/Core/ExecutingJobsManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "src/Quartz/Core/IJobRunShellFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz/Core/JobExecutionProcessException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Quartz/Core/JobRunShell.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 405
+    },
+    "src/Quartz/Core/ListenerManagerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 485
+    },
+    "src/Quartz/Core/QuartzRandom.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Quartz/Core/QuartzScheduler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1845
+    },
+    "src/Quartz/Core/QuartzSchedulerResources.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 273
+    },
+    "src/Quartz/Core/QuartzSchedulerThread.cs": {
+      "swallowed_catch": 7,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 7,
+      "code_lines": 564
+    },
+    "src/Quartz/Core/SchedulerSignalerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "src/Quartz/CronExpression.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2036
+    },
+    "src/Quartz/CronExpressionConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz/CronExpressionSummary.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "src/Quartz/CronScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 282
+    },
+    "src/Quartz/DailyTimeIntervalScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 460
+    },
+    "src/Quartz/DateBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 652
+    },
+    "src/Quartz/Diagnostics/ActivityOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Quartz/Diagnostics/IJobDiagnosticData.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Quartz/Diagnostics/InstrumentationOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "src/Quartz/Diagnostics/JobDiagnosticData.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 139
+    },
+    "src/Quartz/Diagnostics/LogProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz/Diagnostics/Meters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Quartz/Diagnostics/OperationName.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "src/Quartz/Diagnostics/QuartzActivitySource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "src/Quartz/DisallowConcurrentExecutionAttribute.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Quartz/Hosting/QuartzHostedService.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 117
+    },
+    "src/Quartz/Hosting/QuartzHostedServiceOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz/Hosting/QuartzServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Quartz/ICalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "src/Quartz/ICalendarIntervalTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "src/Quartz/ICancellableJobExecutionContext.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz/ICronTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 176
+    },
+    "src/Quartz/IDailyTimeIntervalTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "src/Quartz/IJob.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Quartz/IJobConfigurator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 160
+    },
+    "src/Quartz/IJobDetail.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "src/Quartz/IJobExecutionContext.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 175
+    },
+    "src/Quartz/IJobListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "src/Quartz/IJobWrapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/Quartz/IListenerManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 248
+    },
+    "src/Quartz/IMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Quartz/IPropertyConfigurer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Quartz/IScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/IScheduler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 736
+    },
+    "src/Quartz/ISchedulerFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Quartz/ISchedulerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 161
+    },
+    "src/Quartz/ISimpleTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Quartz/ITrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 177
+    },
+    "src/Quartz/ITriggerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 111
+    },
+    "src/Quartz/Impl/AdoJobStore/AdoConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 133
+    },
+    "src/Quartz/Impl/AdoJobStore/AdoJobStoreUtil.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz/Impl/AdoJobStore/AdoUtil.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Quartz/Impl/AdoJobStore/CalendarIntervalTriggerPersistenceDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "src/Quartz/Impl/AdoJobStore/ClusterManager.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 84
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/ConfigurationBasedDbMetadataFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/DataSourceDbProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/DbMetadata.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 143
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/DbMetadataFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/DbProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 144
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/EmbeddedAssemblyResourceDbMetadataFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Quartz/Impl/AdoJobStore/Common/IDbProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Quartz/Impl/AdoJobStore/ConnectionAndTransactionHolder.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 155
+    },
+    "src/Quartz/Impl/AdoJobStore/CronTriggerPersistenceDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "src/Quartz/Impl/AdoJobStore/DBSemaphore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 216
+    },
+    "src/Quartz/Impl/AdoJobStore/DailyTimeIntervalTriggerPersistenceDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 155
+    },
+    "src/Quartz/Impl/AdoJobStore/DelegateInitializationArgs.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Quartz/Impl/AdoJobStore/FirebirdDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Quartz/Impl/AdoJobStore/FiredTriggerRecord.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Quartz/Impl/AdoJobStore/IDbAccessor.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Quartz/Impl/AdoJobStore/IDriverDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 983
+    },
+    "src/Quartz/Impl/AdoJobStore/ISemaphore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Quartz/Impl/AdoJobStore/ITablePrefixAware.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Quartz/Impl/AdoJobStore/ITriggerPersistenceDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "src/Quartz/Impl/AdoJobStore/InvalidConfigurationException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz/Impl/AdoJobStore/JobStoreCMT.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 154
+    },
+    "src/Quartz/Impl/AdoJobStore/JobStoreSupport.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 3576
+    },
+    "src/Quartz/Impl/AdoJobStore/JobStoreTX.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Quartz/Impl/AdoJobStore/LockException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Quartz/Impl/AdoJobStore/MisfireHandler.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 87
+    },
+    "src/Quartz/Impl/AdoJobStore/MySQLDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Quartz/Impl/AdoJobStore/NoSuchDelegateException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "src/Quartz/Impl/AdoJobStore/OracleDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Quartz/Impl/AdoJobStore/PostgreSQLDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Quartz/Impl/AdoJobStore/RecoverMisfiredJobsResult.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Quartz/Impl/AdoJobStore/SQLiteDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "src/Quartz/Impl/AdoJobStore/SchedulerStateRecord.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz/Impl/AdoJobStore/SimplePropertiesTriggerPersistenceDelegateSupport.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 192
+    },
+    "src/Quartz/Impl/AdoJobStore/SimplePropertiesTriggerProperties.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Quartz/Impl/AdoJobStore/SimpleSemaphore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 152
+    },
+    "src/Quartz/Impl/AdoJobStore/SimpleTriggerPersistenceDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "src/Quartz/Impl/AdoJobStore/SqlServerDelegate.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 261
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.Calendars.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.Jobs.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 280
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.Schedulers.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.Triggers.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1272
+    },
+    "src/Quartz/Impl/AdoJobStore/StdAdoDelegate.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 554
+    },
+    "src/Quartz/Impl/AdoJobStore/StdRowLockSemaphore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 145
+    },
+    "src/Quartz/Impl/AdoJobStore/TriggerPropertyBundle.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Quartz/Impl/AdoJobStore/TriggerStatus.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz/Impl/AdoJobStore/UpdateRowLockSemaphore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 148
+    },
+    "src/Quartz/Impl/AdoJobStore/UpdateRowLockSemaphoreMOT.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz/Impl/Calendar/AnnualCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 270
+    },
+    "src/Quartz/Impl/Calendar/BaseCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 250
+    },
+    "src/Quartz/Impl/Calendar/CronCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 258
+    },
+    "src/Quartz/Impl/Calendar/DailyCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 845
+    },
+    "src/Quartz/Impl/Calendar/HolidayCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "src/Quartz/Impl/Calendar/MonthlyCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 259
+    },
+    "src/Quartz/Impl/Calendar/WeeklyCalendar.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 262
+    },
+    "src/Quartz/Impl/DelegatingScheduler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 226
+    },
+    "src/Quartz/Impl/DirectSchedulerFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 292
+    },
+    "src/Quartz/Impl/JobDetailImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 434
+    },
+    "src/Quartz/Impl/JobExecutionContextImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 359
+    },
+    "src/Quartz/Impl/JobType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "src/Quartz/Impl/Matchers/AndMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "src/Quartz/Impl/Matchers/EverythingMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Quartz/Impl/Matchers/GroupMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "src/Quartz/Impl/Matchers/KeyMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "src/Quartz/Impl/Matchers/NameMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "src/Quartz/Impl/Matchers/NotMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "src/Quartz/Impl/Matchers/OrMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "src/Quartz/Impl/Matchers/StringMatcher.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "src/Quartz/Impl/Matchers/StringOperator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 111
+    },
+    "src/Quartz/Impl/SchedulerRepository.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "src/Quartz/Impl/StdJobRunShellFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Quartz/Impl/StdScheduler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 555
+    },
+    "src/Quartz/Impl/StdSchedulerFactory.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 1043
+    },
+    "src/Quartz/Impl/Triggers/AbstractTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 578
+    },
+    "src/Quartz/Impl/Triggers/CalendarIntervalTriggerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 857
+    },
+    "src/Quartz/Impl/Triggers/CronTriggerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 885
+    },
+    "src/Quartz/Impl/Triggers/DailyTimeIntervalTriggerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 922
+    },
+    "src/Quartz/Impl/Triggers/SimpleTriggerImpl.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 677
+    },
+    "src/Quartz/Impl/Triggers/TriggerComparer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Quartz/IntervalUnit.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/JobBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 410
+    },
+    "src/Quartz/JobDataMap.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 160
+    },
+    "src/Quartz/JobExecutionException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "src/Quartz/JobKey.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz/JobPersistenceException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Quartz/JsonConfigurationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Quartz/JsonSerializationException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/Listener/BroadcastJobListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Quartz/Listener/BroadcastSchedulerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 166
+    },
+    "src/Quartz/Listener/BroadcastTriggerListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 140
+    },
+    "src/Quartz/Listener/JobChainingJobListener.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "src/Quartz/Listener/JobListenerSupport.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "src/Quartz/Listener/SchedulerListenerSupport.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "src/Quartz/Listener/TriggerListenerSupport.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz/Lock.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Quartz/MisfireInstruction.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 196
+    },
+    "src/Quartz/ObjectAlreadyExistsException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Quartz/PersistJobDataAfterExecutionAttribute.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz/PropertiesHolder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz/PropertiesSetter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/SPI/IInstanceIdGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Quartz/SPI/IJobFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "src/Quartz/SPI/IJobStore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 540
+    },
+    "src/Quartz/SPI/IMutableTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "src/Quartz/SPI/IObjectSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Quartz/SPI/IOperableTrigger.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "src/Quartz/SPI/IRemotableSchedulerProxyFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Quartz/SPI/ISchedulerPlugin.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "src/Quartz/SPI/ISchedulerRepository.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Quartz/SPI/ISchedulerSignaler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "src/Quartz/SPI/IThreadPool.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "src/Quartz/SPI/ITypeLoadHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "src/Quartz/SPI/TriggerFiredBundle.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "src/Quartz/SPI/TriggerFiredResult.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz/ScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Quartz/SchedulerBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 619
+    },
+    "src/Quartz/SchedulerConfigException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz/SchedulerConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "src/Quartz/SchedulerContext.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "src/Quartz/SchedulerException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "src/Quartz/SchedulerInstruction.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "src/Quartz/SchedulerMetaData.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 249
+    },
+    "src/Quartz/Serialization/Json/Calendars/AnnualCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz/Serialization/Json/Calendars/BaseCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz/Serialization/Json/Calendars/CalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/Serialization/Json/Calendars/CronCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/Serialization/Json/Calendars/DailyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz/Serialization/Json/Calendars/HolidayCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz/Serialization/Json/Calendars/MonthlyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/Serialization/Json/Calendars/WeeklyCalendarSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Quartz/Serialization/Json/Converters/CalendarConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "src/Quartz/Serialization/Json/Converters/CronExpressionConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Quartz/Serialization/Json/Converters/DictionaryConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz/Serialization/Json/Converters/JobDataMapConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Quartz/Serialization/Json/Converters/KeyConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "src/Quartz/Serialization/Json/Converters/NameValueCollectionConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "src/Quartz/Serialization/Json/Converters/TriggerConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "src/Quartz/Serialization/Json/SerializationExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 203
+    },
+    "src/Quartz/Serialization/Json/Triggers/CalendarIntervalTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Quartz/Serialization/Json/Triggers/CronTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Quartz/Serialization/Json/Triggers/DailyTimeIntervalTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz/Serialization/Json/Triggers/SimpleTriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz/Serialization/Json/Triggers/TriggerSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Quartz/Simpl/DedicatedThreadPool.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Quartz/Simpl/DefaultThreadPool.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/Simpl/HostNameBasedIdGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz/Simpl/HostnameInstanceIdGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Quartz/Simpl/InternalTriggerState.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Quartz/Simpl/JobActivatorCache.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Quartz/Simpl/JobWrapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Quartz/Simpl/MicrosoftDependencyInjectionJobFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "src/Quartz/Simpl/PropertySettingJobFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 223
+    },
+    "src/Quartz/Simpl/RAMJobStore.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1969
+    },
+    "src/Quartz/Simpl/SimpleInstanceIdGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Quartz/Simpl/SimpleJobFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Quartz/Simpl/SimpleTypeLoadHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Quartz/Simpl/SystemPropertyInstanceIdGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Quartz/Simpl/SystemTextJsonObjectSerializer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Quartz/Simpl/TaskSchedulingThreadPool.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 251
+    },
+    "src/Quartz/Simpl/TriggerWrapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Quartz/Simpl/TriggerWrapperComparator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Quartz/Simpl/ZeroSizeThreadPool.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Quartz/SimpleScheduleBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 449
+    },
+    "src/Quartz/Throw.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 182
+    },
+    "src/Quartz/TimeOfDay.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 179
+    },
+    "src/Quartz/TimeSpanParseRuleAttribute.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Quartz/TriggerBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 476
+    },
+    "src/Quartz/TriggerConstants.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Quartz/TriggerKey.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Quartz/TriggerState.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "src/Quartz/TriggerTimeComparator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Quartz/TriggerUtils.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 160
+    },
+    "src/Quartz/UnableToInterruptJobException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Quartz/Util/DBConnectionManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "src/Quartz/Util/DataReaderExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "src/Quartz/Util/DirtyFlagMap.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 512
+    },
+    "src/Quartz/Util/FileUtil.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Quartz/Util/IDbConnectionManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Quartz/Util/Key.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 182
+    },
+    "src/Quartz/Util/ObjectExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Quartz/Util/ObjectUtils.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 239
+    },
+    "src/Quartz/Util/PropertiesParser.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 648
+    },
+    "src/Quartz/Util/QuartzEnvironment.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "src/Quartz/Util/QueuedTaskScheduler.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 198
+    },
+    "src/Quartz/Util/SerializationInfoExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "src/Quartz/Util/SortedSetExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Quartz/Util/StringExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 97
+    },
+    "src/Quartz/Util/StringKeyDirtyFlagMap.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 433
+    },
+    "src/Quartz/Util/TimeZoneUtil.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "src/Quartz/Xml/ValidationException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "src/Quartz/Xml/XMLSchedulingDataProcessor.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1002
+    },
+    "src/Quartz/Xml/job_scheduling_data_2_0.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 631
+    }
+  }
+}

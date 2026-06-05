@@ -1,0 +1,2066 @@
+{
+  "meta": {
+    "repo": "fd",
+    "t0_sha": "8661ac473c5b6c1c5197742cff5ce8284d13a920",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 1129,
+    "n_files": 21,
+    "n_tokens": 25255,
+    "n_functions": 190,
+    "build_seconds": 1.4,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "src/cli.rs": {
+      "mean_line_surprisal": 1.07769,
+      "top_decile_line_surprisal": 2.95653,
+      "token_cross_entropy": 1.16974,
+      "n_lines": 824,
+      "n_tokens": 3807
+    },
+    "src/config.rs": {
+      "mean_line_surprisal": 1.22581,
+      "top_decile_line_surprisal": 2.74915,
+      "token_cross_entropy": 1.55486,
+      "n_lines": 102,
+      "n_tokens": 445
+    },
+    "src/dir_entry.rs": {
+      "mean_line_surprisal": 1.61875,
+      "top_decile_line_surprisal": 3.08688,
+      "token_cross_entropy": 1.45503,
+      "n_lines": 133,
+      "n_tokens": 866
+    },
+    "src/error.rs": {
+      "mean_line_surprisal": 1.86964,
+      "top_decile_line_surprisal": 2.17735,
+      "token_cross_entropy": 1.72999,
+      "n_lines": 3,
+      "n_tokens": 28
+    },
+    "src/exec/command.rs": {
+      "mean_line_surprisal": 1.83879,
+      "top_decile_line_surprisal": 3.60183,
+      "token_cross_entropy": 1.74723,
+      "n_lines": 102,
+      "n_tokens": 555
+    },
+    "src/exec/job.rs": {
+      "mean_line_surprisal": 1.76747,
+      "top_decile_line_surprisal": 4.7129,
+      "token_cross_entropy": 1.47587,
+      "n_lines": 58,
+      "n_tokens": 296
+    },
+    "src/exec/mod.rs": {
+      "mean_line_surprisal": 1.42901,
+      "top_decile_line_surprisal": 3.06215,
+      "token_cross_entropy": 1.30482,
+      "n_lines": 417,
+      "n_tokens": 2764
+    },
+    "src/exit_codes.rs": {
+      "mean_line_surprisal": 1.42354,
+      "top_decile_line_surprisal": 2.79479,
+      "token_cross_entropy": 1.41897,
+      "n_lines": 83,
+      "n_tokens": 439
+    },
+    "src/filesystem.rs": {
+      "mean_line_surprisal": 1.5578,
+      "top_decile_line_surprisal": 3.96891,
+      "token_cross_entropy": 1.35597,
+      "n_lines": 132,
+      "n_tokens": 961
+    },
+    "src/filetypes.rs": {
+      "mean_line_surprisal": 1.69439,
+      "top_decile_line_surprisal": 4.20795,
+      "token_cross_entropy": 1.46676,
+      "n_lines": 40,
+      "n_tokens": 297
+    },
+    "src/filter/mod.rs": {
+      "mean_line_surprisal": 1.64345,
+      "top_decile_line_surprisal": 3.26096,
+      "token_cross_entropy": 1.50904,
+      "n_lines": 8,
+      "n_tokens": 47
+    },
+    "src/filter/owner.rs": {
+      "mean_line_surprisal": 1.69972,
+      "top_decile_line_surprisal": 3.51714,
+      "token_cross_entropy": 1.46555,
+      "n_lines": 122,
+      "n_tokens": 954
+    },
+    "src/filter/size.rs": {
+      "mean_line_surprisal": 1.37404,
+      "top_decile_line_surprisal": 3.29443,
+      "token_cross_entropy": 1.14239,
+      "n_lines": 199,
+      "n_tokens": 1963
+    },
+    "src/filter/time.rs": {
+      "mean_line_surprisal": 1.30411,
+      "top_decile_line_surprisal": 3.17989,
+      "token_cross_entropy": 1.20115,
+      "n_lines": 176,
+      "n_tokens": 1334
+    },
+    "src/fmt/input.rs": {
+      "mean_line_surprisal": 1.68994,
+      "top_decile_line_surprisal": 3.48184,
+      "token_cross_entropy": 1.4931,
+      "n_lines": 73,
+      "n_tokens": 597
+    },
+    "src/fmt/mod.rs": {
+      "mean_line_surprisal": 1.63973,
+      "top_decile_line_surprisal": 3.68817,
+      "token_cross_entropy": 1.49987,
+      "n_lines": 249,
+      "n_tokens": 1493
+    },
+    "src/hyperlink.rs": {
+      "mean_line_surprisal": 1.83644,
+      "top_decile_line_surprisal": 4.20381,
+      "token_cross_entropy": 1.56893,
+      "n_lines": 75,
+      "n_tokens": 475
+    },
+    "src/main.rs": {
+      "mean_line_surprisal": 1.71114,
+      "top_decile_line_surprisal": 3.79967,
+      "token_cross_entropy": 1.58442,
+      "n_lines": 439,
+      "n_tokens": 2743
+    },
+    "src/output.rs": {
+      "mean_line_surprisal": 1.49488,
+      "top_decile_line_surprisal": 3.83112,
+      "token_cross_entropy": 1.31449,
+      "n_lines": 154,
+      "n_tokens": 1017
+    },
+    "src/regex_helper.rs": {
+      "mean_line_surprisal": 1.43377,
+      "top_decile_line_surprisal": 3.37373,
+      "token_cross_entropy": 1.30573,
+      "n_lines": 90,
+      "n_tokens": 687
+    },
+    "src/walk.rs": {
+      "mean_line_surprisal": 1.64363,
+      "top_decile_line_surprisal": 3.38464,
+      "token_cross_entropy": 1.59284,
+      "n_lines": 583,
+      "n_tokens": 3487
+    }
+  },
+  "functions": [
+    {
+      "function_id": "src/cli.rs::ensure_current_directory_exists:933",
+      "file_path": "src/cli.rs",
+      "name": "ensure_current_directory_exists",
+      "start_line": 933,
+      "end_line": 941,
+      "nloc": 9,
+      "mean_line_surprisal": 1.38419,
+      "max_line_surprisal": 2.01609
+    },
+    {
+      "function_id": "src/cli.rs::parse_millis:929",
+      "file_path": "src/cli.rs",
+      "name": "parse_millis",
+      "start_line": 929,
+      "end_line": 931,
+      "nloc": 3,
+      "mean_line_surprisal": 1.55723,
+      "max_line_surprisal": 2.07391
+    },
+    {
+      "function_id": "src/cli.rs::augment_args_for_update:924",
+      "file_path": "src/cli.rs",
+      "name": "augment_args_for_update",
+      "start_line": 924,
+      "end_line": 926,
+      "nloc": 3,
+      "mean_line_surprisal": 1.40461,
+      "max_line_surprisal": 1.52837
+    },
+    {
+      "function_id": "src/cli.rs::augment_args:856",
+      "file_path": "src/cli.rs",
+      "name": "augment_args",
+      "start_line": 856,
+      "end_line": 922,
+      "nloc": 67,
+      "mean_line_surprisal": 1.51513,
+      "max_line_surprisal": 5.26221
+    },
+    {
+      "function_id": "src/cli.rs::update_from_arg_matches:849",
+      "file_path": "src/cli.rs",
+      "name": "update_from_arg_matches",
+      "start_line": 849,
+      "end_line": 852,
+      "nloc": 4,
+      "mean_line_surprisal": 1.51049,
+      "max_line_surprisal": 1.91323
+    },
+    {
+      "function_id": "src/cli.rs::from_arg_matches:835",
+      "file_path": "src/cli.rs",
+      "name": "from_arg_matches",
+      "start_line": 835,
+      "end_line": 847,
+      "nloc": 13,
+      "mean_line_surprisal": 1.75388,
+      "max_line_surprisal": 4.23405
+    },
+    {
+      "function_id": "src/cli.rs::default_num_threads:762",
+      "file_path": "src/cli.rs",
+      "name": "default_num_threads",
+      "start_line": 762,
+      "end_line": 773,
+      "nloc": 11,
+      "mean_line_surprisal": 1.89862,
+      "max_line_surprisal": 3.06072
+    },
+    {
+      "function_id": "src/cli.rs::gen_completions:749",
+      "file_path": "src/cli.rs",
+      "name": "gen_completions",
+      "start_line": 749,
+      "end_line": 758,
+      "nloc": 10,
+      "mean_line_surprisal": 1.98818,
+      "max_line_surprisal": 2.87945
+    },
+    {
+      "function_id": "src/cli.rs::strip_cwd_prefix:738",
+      "file_path": "src/cli.rs",
+      "name": "strip_cwd_prefix",
+      "start_line": 738,
+      "end_line": 746,
+      "nloc": 9,
+      "mean_line_surprisal": 1.75397,
+      "max_line_surprisal": 2.24214
+    },
+    {
+      "function_id": "src/cli.rs::max_results:732",
+      "file_path": "src/cli.rs",
+      "name": "max_results",
+      "start_line": 732,
+      "end_line": 736,
+      "nloc": 5,
+      "mean_line_surprisal": 2.03742,
+      "max_line_surprisal": 3.4522
+    },
+    {
+      "function_id": "src/cli.rs::threads:728",
+      "file_path": "src/cli.rs",
+      "name": "threads",
+      "start_line": 728,
+      "end_line": 730,
+      "nloc": 3,
+      "mean_line_surprisal": 1.62972,
+      "max_line_surprisal": 2.04251
+    },
+    {
+      "function_id": "src/cli.rs::min_depth:724",
+      "file_path": "src/cli.rs",
+      "name": "min_depth",
+      "start_line": 724,
+      "end_line": 726,
+      "nloc": 3,
+      "mean_line_surprisal": 0.9702,
+      "max_line_surprisal": 1.33942
+    },
+    {
+      "function_id": "src/cli.rs::max_depth:720",
+      "file_path": "src/cli.rs",
+      "name": "max_depth",
+      "start_line": 720,
+      "end_line": 722,
+      "nloc": 3,
+      "mean_line_surprisal": 1.38992,
+      "max_line_surprisal": 1.79097
+    },
+    {
+      "function_id": "src/cli.rs::rg_alias_ignore:716",
+      "file_path": "src/cli.rs",
+      "name": "rg_alias_ignore",
+      "start_line": 716,
+      "end_line": 718,
+      "nloc": 3,
+      "mean_line_surprisal": 1.6878,
+      "max_line_surprisal": 2.02522
+    },
+    {
+      "function_id": "src/cli.rs::no_search_paths:711",
+      "file_path": "src/cli.rs",
+      "name": "no_search_paths",
+      "start_line": 711,
+      "end_line": 713,
+      "nloc": 3,
+      "mean_line_surprisal": 2.56794,
+      "max_line_surprisal": 4.34799
+    },
+    {
+      "function_id": "src/cli.rs::normalize_path:700",
+      "file_path": "src/cli.rs",
+      "name": "normalize_path",
+      "start_line": 700,
+      "end_line": 709,
+      "nloc": 10,
+      "mean_line_surprisal": 2.13168,
+      "max_line_surprisal": 2.4834
+    },
+    {
+      "function_id": "src/cli.rs::search_paths:673",
+      "file_path": "src/cli.rs",
+      "name": "search_paths",
+      "start_line": 673,
+      "end_line": 698,
+      "nloc": 26,
+      "mean_line_surprisal": 2.13726,
+      "max_line_surprisal": 7.70604
+    },
+    {
+      "function_id": "src/config.rs::is_printing:137",
+      "file_path": "src/config.rs",
+      "name": "is_printing",
+      "start_line": 137,
+      "end_line": 139,
+      "nloc": 3,
+      "mean_line_surprisal": 2.26068,
+      "max_line_surprisal": 2.60776
+    },
+    {
+      "function_id": "src/dir_entry.rs::metadata:152",
+      "file_path": "src/dir_entry.rs",
+      "name": "metadata",
+      "start_line": 152,
+      "end_line": 154,
+      "nloc": 3,
+      "mean_line_surprisal": 1.82084,
+      "max_line_surprisal": 2.59955
+    },
+    {
+      "function_id": "src/dir_entry.rs::file_type:148",
+      "file_path": "src/dir_entry.rs",
+      "name": "file_type",
+      "start_line": 148,
+      "end_line": 150,
+      "nloc": 3,
+      "mean_line_surprisal": 2.08971,
+      "max_line_surprisal": 3.19478
+    },
+    {
+      "function_id": "src/dir_entry.rs::file_name:132",
+      "file_path": "src/dir_entry.rs",
+      "name": "file_name",
+      "start_line": 132,
+      "end_line": 146,
+      "nloc": 15,
+      "mean_line_surprisal": 1.92824,
+      "max_line_surprisal": 4.80196
+    },
+    {
+      "function_id": "src/dir_entry.rs::path:128",
+      "file_path": "src/dir_entry.rs",
+      "name": "path",
+      "start_line": 128,
+      "end_line": 130,
+      "nloc": 3,
+      "mean_line_surprisal": 1.49104,
+      "max_line_surprisal": 1.68878
+    },
+    {
+      "function_id": "src/dir_entry.rs::cmp:122",
+      "file_path": "src/dir_entry.rs",
+      "name": "cmp",
+      "start_line": 122,
+      "end_line": 124,
+      "nloc": 3,
+      "mean_line_surprisal": 1.45932,
+      "max_line_surprisal": 1.95612
+    },
+    {
+      "function_id": "src/dir_entry.rs::partial_cmp:115",
+      "file_path": "src/dir_entry.rs",
+      "name": "partial_cmp",
+      "start_line": 115,
+      "end_line": 117,
+      "nloc": 3,
+      "mean_line_surprisal": 1.4336,
+      "max_line_surprisal": 1.81546
+    },
+    {
+      "function_id": "src/dir_entry.rs::eq:106",
+      "file_path": "src/dir_entry.rs",
+      "name": "eq",
+      "start_line": 106,
+      "end_line": 108,
+      "nloc": 3,
+      "mean_line_surprisal": 1.84703,
+      "max_line_surprisal": 2.57759
+    },
+    {
+      "function_id": "src/dir_entry.rs::style:97",
+      "file_path": "src/dir_entry.rs",
+      "name": "style",
+      "start_line": 97,
+      "end_line": 101,
+      "nloc": 5,
+      "mean_line_surprisal": 1.8881,
+      "max_line_surprisal": 2.59508
+    },
+    {
+      "function_id": "src/dir_entry.rs::depth:90",
+      "file_path": "src/dir_entry.rs",
+      "name": "depth",
+      "start_line": 90,
+      "end_line": 95,
+      "nloc": 6,
+      "mean_line_surprisal": 1.11246,
+      "max_line_surprisal": 1.70735
+    },
+    {
+      "function_id": "src/dir_entry.rs::metadata:81",
+      "file_path": "src/dir_entry.rs",
+      "name": "metadata",
+      "start_line": 81,
+      "end_line": 88,
+      "nloc": 8,
+      "mean_line_surprisal": 1.89269,
+      "max_line_surprisal": 3.27216
+    },
+    {
+      "function_id": "src/dir_entry.rs::file_type:74",
+      "file_path": "src/dir_entry.rs",
+      "name": "file_type",
+      "start_line": 74,
+      "end_line": 79,
+      "nloc": 6,
+      "mean_line_surprisal": 1.3913,
+      "max_line_surprisal": 2.6239
+    },
+    {
+      "function_id": "src/dir_entry.rs::into_stripped_path:66",
+      "file_path": "src/dir_entry.rs",
+      "name": "into_stripped_path",
+      "start_line": 66,
+      "end_line": 72,
+      "nloc": 7,
+      "mean_line_surprisal": 1.61707,
+      "max_line_surprisal": 2.30332
+    },
+    {
+      "function_id": "src/dir_entry.rs::stripped_path:57",
+      "file_path": "src/dir_entry.rs",
+      "name": "stripped_path",
+      "start_line": 57,
+      "end_line": 63,
+      "nloc": 7,
+      "mean_line_surprisal": 2.1897,
+      "max_line_surprisal": 3.64462
+    },
+    {
+      "function_id": "src/dir_entry.rs::into_path:49",
+      "file_path": "src/dir_entry.rs",
+      "name": "into_path",
+      "start_line": 49,
+      "end_line": 54,
+      "nloc": 6,
+      "mean_line_surprisal": 1.18554,
+      "max_line_surprisal": 1.91307
+    },
+    {
+      "function_id": "src/dir_entry.rs::path:42",
+      "file_path": "src/dir_entry.rs",
+      "name": "path",
+      "start_line": 42,
+      "end_line": 47,
+      "nloc": 6,
+      "mean_line_surprisal": 1.51582,
+      "max_line_surprisal": 2.20109
+    },
+    {
+      "function_id": "src/dir_entry.rs::broken_symlink:34",
+      "file_path": "src/dir_entry.rs",
+      "name": "broken_symlink",
+      "start_line": 34,
+      "end_line": 40,
+      "nloc": 7,
+      "mean_line_surprisal": 1.20765,
+      "max_line_surprisal": 2.36739
+    },
+    {
+      "function_id": "src/dir_entry.rs::normal:26",
+      "file_path": "src/dir_entry.rs",
+      "name": "normal",
+      "start_line": 26,
+      "end_line": 32,
+      "nloc": 7,
+      "mean_line_surprisal": 1.6141,
+      "max_line_surprisal": 3.14962
+    },
+    {
+      "function_id": "src/error.rs::print_error:1",
+      "file_path": "src/error.rs",
+      "name": "print_error",
+      "start_line": 1,
+      "end_line": 3,
+      "nloc": 3,
+      "mean_line_surprisal": 1.86964,
+      "max_line_surprisal": 2.17735
+    },
+    {
+      "function_id": "src/exec/command.rs::handle_cmd_error:101",
+      "file_path": "src/exec/command.rs",
+      "name": "handle_cmd_error",
+      "start_line": 101,
+      "end_line": 115,
+      "nloc": 15,
+      "mean_line_surprisal": 1.78057,
+      "max_line_surprisal": 3.82205
+    },
+    {
+      "function_id": "src/exec/command.rs::execute_commands:60",
+      "file_path": "src/exec/command.rs",
+      "name": "execute_commands",
+      "start_line": 60,
+      "end_line": 99,
+      "nloc": 34,
+      "mean_line_surprisal": 1.91741,
+      "max_line_surprisal": 4.04627
+    },
+    {
+      "function_id": "src/exec/command.rs::write:30",
+      "file_path": "src/exec/command.rs",
+      "name": "write",
+      "start_line": 30,
+      "end_line": 56,
+      "nloc": 24,
+      "mean_line_surprisal": 1.90396,
+      "max_line_surprisal": 5.88657
+    },
+    {
+      "function_id": "src/exec/command.rs::push:26",
+      "file_path": "src/exec/command.rs",
+      "name": "push",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.58702,
+      "max_line_surprisal": 1.98583
+    },
+    {
+      "function_id": "src/exec/command.rs::new:19",
+      "file_path": "src/exec/command.rs",
+      "name": "new",
+      "start_line": 19,
+      "end_line": 24,
+      "nloc": 6,
+      "mean_line_surprisal": 1.83111,
+      "max_line_surprisal": 2.48529
+    },
+    {
+      "function_id": "src/exec/job.rs::batch:46",
+      "file_path": "src/exec/job.rs",
+      "name": "batch",
+      "start_line": 46,
+      "end_line": 64,
+      "nloc": 14,
+      "mean_line_surprisal": 1.5503,
+      "max_line_surprisal": 5.92549
+    },
+    {
+      "function_id": "src/exec/job.rs::job:11",
+      "file_path": "src/exec/job.rs",
+      "name": "job",
+      "start_line": 11,
+      "end_line": 44,
+      "nloc": 28,
+      "mean_line_surprisal": 2.00143,
+      "max_line_surprisal": 4.79563
+    },
+    {
+      "function_id": "src/exec/mod.rs::generate_custom_path_separator_windows:448",
+      "file_path": "src/exec/mod.rs",
+      "name": "generate_custom_path_separator_windows",
+      "start_line": 448,
+      "end_line": 472,
+      "nloc": 22,
+      "mean_line_surprisal": 1.89064,
+      "max_line_surprisal": 5.66724
+    },
+    {
+      "function_id": "src/exec/mod.rs::generate_custom_path_separator:433",
+      "file_path": "src/exec/mod.rs",
+      "name": "generate_custom_path_separator",
+      "start_line": 433,
+      "end_line": 444,
+      "nloc": 11,
+      "mean_line_surprisal": 1.54004,
+      "max_line_surprisal": 3.23018
+    },
+    {
+      "function_id": "src/exec/mod.rs::command_set_no_args:428",
+      "file_path": "src/exec/mod.rs",
+      "name": "command_set_no_args",
+      "start_line": 428,
+      "end_line": 430,
+      "nloc": 3,
+      "mean_line_surprisal": 1.39389,
+      "max_line_surprisal": 1.81011
+    },
+    {
+      "function_id": "src/exec/mod.rs::template_no_args:423",
+      "file_path": "src/exec/mod.rs",
+      "name": "template_no_args",
+      "start_line": 423,
+      "end_line": 425,
+      "nloc": 3,
+      "mean_line_surprisal": 1.52866,
+      "max_line_surprisal": 1.81294
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_multiple_batch:418",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_multiple_batch",
+      "start_line": 418,
+      "end_line": 420,
+      "nloc": 3,
+      "mean_line_surprisal": 1.37605,
+      "max_line_surprisal": 1.81596
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_single_batch:402",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_single_batch",
+      "start_line": 402,
+      "end_line": 415,
+      "nloc": 14,
+      "mean_line_surprisal": 0.80387,
+      "max_line_surprisal": 1.8184
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_multiple:382",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_multiple",
+      "start_line": 382,
+      "end_line": 399,
+      "nloc": 18,
+      "mean_line_surprisal": 0.8883,
+      "max_line_surprisal": 4.10312
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_literal_braces_and_placeholder:376",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_literal_braces_and_placeholder",
+      "start_line": 376,
+      "end_line": 379,
+      "nloc": 4,
+      "mean_line_surprisal": 1.24355,
+      "max_line_surprisal": 1.82415
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_literal_braces:367",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_literal_braces",
+      "start_line": 367,
+      "end_line": 373,
+      "nloc": 7,
+      "mean_line_surprisal": 1.5467,
+      "max_line_surprisal": 2.22155
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_basename_no_extension:351",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_basename_no_extension",
+      "start_line": 351,
+      "end_line": 364,
+      "nloc": 14,
+      "mean_line_surprisal": 0.64261,
+      "max_line_surprisal": 1.83255
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_parent:335",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_parent",
+      "start_line": 335,
+      "end_line": 348,
+      "nloc": 14,
+      "mean_line_surprisal": 0.68274,
+      "max_line_surprisal": 1.83864
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_basename:319",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_basename",
+      "start_line": 319,
+      "end_line": 332,
+      "nloc": 14,
+      "mean_line_surprisal": 0.74752,
+      "max_line_surprisal": 1.84832
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_no_extension:303",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_no_extension",
+      "start_line": 303,
+      "end_line": 316,
+      "nloc": 14,
+      "mean_line_surprisal": 0.88614,
+      "max_line_surprisal": 1.87027
+    },
+    {
+      "function_id": "src/exec/mod.rs::tokens_with_placeholder:286",
+      "file_path": "src/exec/mod.rs",
+      "name": "tokens_with_placeholder",
+      "start_line": 286,
+      "end_line": 300,
+      "nloc": 15,
+      "mean_line_surprisal": 1.39993,
+      "max_line_surprisal": 2.74969
+    },
+    {
+      "function_id": "src/exec/mod.rs::generate_str:277",
+      "file_path": "src/exec/mod.rs",
+      "name": "generate_str",
+      "start_line": 277,
+      "end_line": 283,
+      "nloc": 7,
+      "mean_line_surprisal": 1.75076,
+      "max_line_surprisal": 3.31701
+    },
+    {
+      "function_id": "src/exec/mod.rs::generate:264",
+      "file_path": "src/exec/mod.rs",
+      "name": "generate",
+      "start_line": 264,
+      "end_line": 270,
+      "nloc": 7,
+      "mean_line_surprisal": 1.29038,
+      "max_line_surprisal": 1.90086
+    },
+    {
+      "function_id": "src/exec/mod.rs::number_of_tokens:256",
+      "file_path": "src/exec/mod.rs",
+      "name": "number_of_tokens",
+      "start_line": 256,
+      "end_line": 258,
+      "nloc": 3,
+      "mean_line_surprisal": 1.85437,
+      "max_line_surprisal": 2.0701
+    },
+    {
+      "function_id": "src/exec/mod.rs::new:223",
+      "file_path": "src/exec/mod.rs",
+      "name": "new",
+      "start_line": 223,
+      "end_line": 254,
+      "nloc": 23,
+      "mean_line_surprisal": 1.67635,
+      "max_line_surprisal": 4.67177
+    },
+    {
+      "function_id": "src/exec/mod.rs::exit_code:208",
+      "file_path": "src/exec/mod.rs",
+      "name": "exit_code",
+      "start_line": 208,
+      "end_line": 210,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23777,
+      "max_line_surprisal": 2.60081
+    },
+    {
+      "function_id": "src/exec/mod.rs::finish:194",
+      "file_path": "src/exec/mod.rs",
+      "name": "finish",
+      "start_line": 194,
+      "end_line": 206,
+      "nloc": 11,
+      "mean_line_surprisal": 1.6728,
+      "max_line_surprisal": 2.59893
+    },
+    {
+      "function_id": "src/exec/mod.rs::push:176",
+      "file_path": "src/exec/mod.rs",
+      "name": "push",
+      "start_line": 176,
+      "end_line": 192,
+      "nloc": 15,
+      "mean_line_surprisal": 1.92205,
+      "max_line_surprisal": 3.17837
+    },
+    {
+      "function_id": "src/exec/mod.rs::new_command:167",
+      "file_path": "src/exec/mod.rs",
+      "name": "new_command",
+      "start_line": 167,
+      "end_line": 174,
+      "nloc": 8,
+      "mean_line_surprisal": 1.41331,
+      "max_line_surprisal": 1.68172
+    },
+    {
+      "function_id": "src/exec/mod.rs::new:139",
+      "file_path": "src/exec/mod.rs",
+      "name": "new",
+      "start_line": 139,
+      "end_line": 165,
+      "nloc": 24,
+      "mean_line_surprisal": 1.76823,
+      "max_line_surprisal": 3.97532
+    },
+    {
+      "function_id": "src/exec/mod.rs::execute_batch:93",
+      "file_path": "src/exec/mod.rs",
+      "name": "execute_batch",
+      "start_line": 93,
+      "end_line": 123,
+      "nloc": 25,
+      "mean_line_surprisal": 1.78252,
+      "max_line_surprisal": 4.09036
+    },
+    {
+      "function_id": "src/exec/mod.rs::execute:79",
+      "file_path": "src/exec/mod.rs",
+      "name": "execute",
+      "start_line": 79,
+      "end_line": 91,
+      "nloc": 7,
+      "mean_line_surprisal": 1.76143,
+      "max_line_surprisal": 2.43338
+    },
+    {
+      "function_id": "src/exec/mod.rs::in_batch_mode:75",
+      "file_path": "src/exec/mod.rs",
+      "name": "in_batch_mode",
+      "start_line": 75,
+      "end_line": 77,
+      "nloc": 3,
+      "mean_line_surprisal": 2.17002,
+      "max_line_surprisal": 2.52368
+    },
+    {
+      "function_id": "src/exec/mod.rs::new_batch:51",
+      "file_path": "src/exec/mod.rs",
+      "name": "new_batch",
+      "start_line": 51,
+      "end_line": 73,
+      "nloc": 18,
+      "mean_line_surprisal": 1.26938,
+      "max_line_surprisal": 2.53788
+    },
+    {
+      "function_id": "src/exec/mod.rs::new:36",
+      "file_path": "src/exec/mod.rs",
+      "name": "new",
+      "start_line": 36,
+      "end_line": 49,
+      "nloc": 9,
+      "mean_line_surprisal": 1.63854,
+      "max_line_surprisal": 2.62115
+    },
+    {
+      "function_id": "src/exit_codes.rs::success_if_no_error:87",
+      "file_path": "src/exit_codes.rs",
+      "name": "success_if_no_error",
+      "start_line": 87,
+      "end_line": 93,
+      "nloc": 7,
+      "mean_line_surprisal": 1.04165,
+      "max_line_surprisal": 1.8154
+    },
+    {
+      "function_id": "src/exit_codes.rs::general_error_if_at_least_one_error:63",
+      "file_path": "src/exit_codes.rs",
+      "name": "general_error_if_at_least_one_error",
+      "start_line": 63,
+      "end_line": 84,
+      "nloc": 22,
+      "mean_line_surprisal": 0.91334,
+      "max_line_surprisal": 1.91305
+    },
+    {
+      "function_id": "src/exit_codes.rs::success_when_no_results:58",
+      "file_path": "src/exit_codes.rs",
+      "name": "success_when_no_results",
+      "start_line": 58,
+      "end_line": 60,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54658,
+      "max_line_surprisal": 2.01062
+    },
+    {
+      "function_id": "src/exit_codes.rs::merge_exitcodes:46",
+      "file_path": "src/exit_codes.rs",
+      "name": "merge_exitcodes",
+      "start_line": 46,
+      "end_line": 51,
+      "nloc": 6,
+      "mean_line_surprisal": 1.95639,
+      "max_line_surprisal": 3.64105
+    },
+    {
+      "function_id": "src/exit_codes.rs::exit:31",
+      "file_path": "src/exit_codes.rs",
+      "name": "exit",
+      "start_line": 31,
+      "end_line": 43,
+      "nloc": 12,
+      "mean_line_surprisal": 1.71779,
+      "max_line_surprisal": 2.68251
+    },
+    {
+      "function_id": "src/exit_codes.rs::is_error:26",
+      "file_path": "src/exit_codes.rs",
+      "name": "is_error",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.66073,
+      "max_line_surprisal": 2.3622
+    },
+    {
+      "function_id": "src/exit_codes.rs::from:15",
+      "file_path": "src/exit_codes.rs",
+      "name": "from",
+      "start_line": 15,
+      "end_line": 22,
+      "nloc": 8,
+      "mean_line_surprisal": 1.75306,
+      "max_line_surprisal": 2.93137
+    },
+    {
+      "function_id": "src/filesystem.rs::strip_current_dir_basic:144",
+      "file_path": "src/filesystem.rs",
+      "name": "strip_current_dir_basic",
+      "start_line": 144,
+      "end_line": 155,
+      "nloc": 12,
+      "mean_line_surprisal": 1.0403,
+      "max_line_surprisal": 1.98682
+    },
+    {
+      "function_id": "src/filesystem.rs::default_path_separator:128",
+      "file_path": "src/filesystem.rs",
+      "name": "default_path_separator",
+      "start_line": 128,
+      "end_line": 136,
+      "nloc": 9,
+      "mean_line_surprisal": 2.3714,
+      "max_line_surprisal": 6.3165
+    },
+    {
+      "function_id": "src/filesystem.rs::strip_current_dir:119",
+      "file_path": "src/filesystem.rs",
+      "name": "strip_current_dir",
+      "start_line": 119,
+      "end_line": 121,
+      "nloc": 3,
+      "mean_line_surprisal": 2.15585,
+      "max_line_surprisal": 3.80976
+    },
+    {
+      "function_id": "src/filesystem.rs::osstr_to_bytes:109",
+      "file_path": "src/filesystem.rs",
+      "name": "osstr_to_bytes",
+      "start_line": 109,
+      "end_line": 116,
+      "nloc": 7,
+      "mean_line_surprisal": 2.06585,
+      "max_line_surprisal": 4.45802
+    },
+    {
+      "function_id": "src/filesystem.rs::osstr_to_bytes:103",
+      "file_path": "src/filesystem.rs",
+      "name": "osstr_to_bytes",
+      "start_line": 103,
+      "end_line": 106,
+      "nloc": 4,
+      "mean_line_surprisal": 1.46164,
+      "max_line_surprisal": 1.98816
+    },
+    {
+      "function_id": "src/filesystem.rs::is_pipe:98",
+      "file_path": "src/filesystem.rs",
+      "name": "is_pipe",
+      "start_line": 98,
+      "end_line": 100,
+      "nloc": 3,
+      "mean_line_surprisal": 0.96886,
+      "max_line_surprisal": 2.2595
+    },
+    {
+      "function_id": "src/filesystem.rs::is_pipe:93",
+      "file_path": "src/filesystem.rs",
+      "name": "is_pipe",
+      "start_line": 93,
+      "end_line": 95,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16876,
+      "max_line_surprisal": 1.40345
+    },
+    {
+      "function_id": "src/filesystem.rs::is_socket:88",
+      "file_path": "src/filesystem.rs",
+      "name": "is_socket",
+      "start_line": 88,
+      "end_line": 90,
+      "nloc": 3,
+      "mean_line_surprisal": 1.01874,
+      "max_line_surprisal": 2.40112
+    },
+    {
+      "function_id": "src/filesystem.rs::is_socket:83",
+      "file_path": "src/filesystem.rs",
+      "name": "is_socket",
+      "start_line": 83,
+      "end_line": 85,
+      "nloc": 3,
+      "mean_line_surprisal": 1.20506,
+      "max_line_surprisal": 1.44047
+    },
+    {
+      "function_id": "src/filesystem.rs::is_char_device:78",
+      "file_path": "src/filesystem.rs",
+      "name": "is_char_device",
+      "start_line": 78,
+      "end_line": 80,
+      "nloc": 3,
+      "mean_line_surprisal": 1.11543,
+      "max_line_surprisal": 2.66869
+    },
+    {
+      "function_id": "src/filesystem.rs::is_char_device:73",
+      "file_path": "src/filesystem.rs",
+      "name": "is_char_device",
+      "start_line": 73,
+      "end_line": 75,
+      "nloc": 3,
+      "mean_line_surprisal": 1.2643,
+      "max_line_surprisal": 1.51461
+    },
+    {
+      "function_id": "src/filesystem.rs::is_block_device:68",
+      "file_path": "src/filesystem.rs",
+      "name": "is_block_device",
+      "start_line": 68,
+      "end_line": 70,
+      "nloc": 3,
+      "mean_line_surprisal": 1.42432,
+      "max_line_surprisal": 3.41841
+    },
+    {
+      "function_id": "src/filesystem.rs::is_block_device:63",
+      "file_path": "src/filesystem.rs",
+      "name": "is_block_device",
+      "start_line": 63,
+      "end_line": 65,
+      "nloc": 3,
+      "mean_line_surprisal": 1.51275,
+      "max_line_surprisal": 1.8312
+    },
+    {
+      "function_id": "src/filesystem.rs::is_empty:44",
+      "file_path": "src/filesystem.rs",
+      "name": "is_empty",
+      "start_line": 44,
+      "end_line": 60,
+      "nloc": 17,
+      "mean_line_surprisal": 1.5491,
+      "max_line_surprisal": 4.39254
+    },
+    {
+      "function_id": "src/filesystem.rs::is_existing_directory:38",
+      "file_path": "src/filesystem.rs",
+      "name": "is_existing_directory",
+      "start_line": 38,
+      "end_line": 42,
+      "nloc": 5,
+      "mean_line_surprisal": 2.53993,
+      "max_line_surprisal": 5.45515
+    },
+    {
+      "function_id": "src/filesystem.rs::absolute_path:23",
+      "file_path": "src/filesystem.rs",
+      "name": "absolute_path",
+      "start_line": 23,
+      "end_line": 36,
+      "nloc": 12,
+      "mean_line_surprisal": 2.2962,
+      "max_line_surprisal": 6.68458
+    },
+    {
+      "function_id": "src/filesystem.rs::path_absolute_form:14",
+      "file_path": "src/filesystem.rs",
+      "name": "path_absolute_form",
+      "start_line": 14,
+      "end_line": 21,
+      "nloc": 7,
+      "mean_line_surprisal": 1.91417,
+      "max_line_surprisal": 2.54004
+    },
+    {
+      "function_id": "src/filetypes.rs::should_ignore:21",
+      "file_path": "src/filetypes.rs",
+      "name": "should_ignore",
+      "start_line": 21,
+      "end_line": 42,
+      "nloc": 22,
+      "mean_line_surprisal": 1.57782,
+      "max_line_surprisal": 6.39641
+    },
+    {
+      "function_id": "src/filter/owner.rs::parse:85",
+      "file_path": "src/filter/owner.rs",
+      "name": "parse",
+      "start_line": 85,
+      "end_line": 102,
+      "nloc": 14,
+      "mean_line_surprisal": 1.88393,
+      "max_line_surprisal": 3.6095
+    },
+    {
+      "function_id": "src/filter/owner.rs::check:77",
+      "file_path": "src/filter/owner.rs",
+      "name": "check",
+      "start_line": 77,
+      "end_line": 83,
+      "nloc": 7,
+      "mean_line_surprisal": 1.56257,
+      "max_line_surprisal": 2.66806
+    },
+    {
+      "function_id": "src/filter/owner.rs::matches:69",
+      "file_path": "src/filter/owner.rs",
+      "name": "matches",
+      "start_line": 69,
+      "end_line": 73,
+      "nloc": 4,
+      "mean_line_surprisal": 1.92239,
+      "max_line_surprisal": 2.40059
+    },
+    {
+      "function_id": "src/filter/owner.rs::filter_ignore:61",
+      "file_path": "src/filter/owner.rs",
+      "name": "filter_ignore",
+      "start_line": 61,
+      "end_line": 67,
+      "nloc": 7,
+      "mean_line_surprisal": 2.00924,
+      "max_line_surprisal": 4.02337
+    },
+    {
+      "function_id": "src/filter/owner.rs::from_string:27",
+      "file_path": "src/filter/owner.rs",
+      "name": "from_string",
+      "start_line": 27,
+      "end_line": 58,
+      "nloc": 29,
+      "mean_line_surprisal": 1.79049,
+      "max_line_surprisal": 8.06591
+    },
+    {
+      "function_id": "src/filter/size.rs::is_within_greater_than_equal:215",
+      "file_path": "src/filter/size.rs",
+      "name": "is_within_greater_than_equal",
+      "start_line": 215,
+      "end_line": 218,
+      "nloc": 4,
+      "mean_line_surprisal": 1.14248,
+      "max_line_surprisal": 1.85481
+    },
+    {
+      "function_id": "src/filter/size.rs::is_within_greater_than:209",
+      "file_path": "src/filter/size.rs",
+      "name": "is_within_greater_than",
+      "start_line": 209,
+      "end_line": 212,
+      "nloc": 4,
+      "mean_line_surprisal": 1.19955,
+      "max_line_surprisal": 1.86489
+    },
+    {
+      "function_id": "src/filter/size.rs::is_within_less_than_equal:203",
+      "file_path": "src/filter/size.rs",
+      "name": "is_within_less_than_equal",
+      "start_line": 203,
+      "end_line": 206,
+      "nloc": 4,
+      "mean_line_surprisal": 1.29506,
+      "max_line_surprisal": 1.87796
+    },
+    {
+      "function_id": "src/filter/size.rs::is_within_less_than:197",
+      "file_path": "src/filter/size.rs",
+      "name": "is_within_less_than",
+      "start_line": 197,
+      "end_line": 200,
+      "nloc": 4,
+      "mean_line_surprisal": 1.56019,
+      "max_line_surprisal": 1.89676
+    },
+    {
+      "function_id": "src/filter/size.rs::is_within:68",
+      "file_path": "src/filter/size.rs",
+      "name": "is_within",
+      "start_line": 68,
+      "end_line": 74,
+      "nloc": 7,
+      "mean_line_surprisal": 1.53253,
+      "max_line_surprisal": 2.15368
+    },
+    {
+      "function_id": "src/filter/size.rs::parse_opt:33",
+      "file_path": "src/filter/size.rs",
+      "name": "parse_opt",
+      "start_line": 33,
+      "end_line": 66,
+      "nloc": 31,
+      "mean_line_surprisal": 1.56433,
+      "max_line_surprisal": 3.14496
+    },
+    {
+      "function_id": "src/filter/size.rs::from_string:28",
+      "file_path": "src/filter/size.rs",
+      "name": "from_string",
+      "start_line": 28,
+      "end_line": 31,
+      "nloc": 4,
+      "mean_line_surprisal": 1.54886,
+      "max_line_surprisal": 1.80257
+    },
+    {
+      "function_id": "src/filter/time.rs::is_time_filter_applicable:96",
+      "file_path": "src/filter/time.rs",
+      "name": "is_time_filter_applicable",
+      "start_line": 96,
+      "end_line": 201,
+      "nloc": 96,
+      "mean_line_surprisal": 0.95975,
+      "max_line_surprisal": 7.0319
+    },
+    {
+      "function_id": "src/filter/time.rs::drop:89",
+      "file_path": "src/filter/time.rs",
+      "name": "drop",
+      "start_line": 89,
+      "end_line": 92,
+      "nloc": 4,
+      "mean_line_surprisal": 1.1784,
+      "max_line_surprisal": 1.51204
+    },
+    {
+      "function_id": "src/filter/time.rs::timestamp:83",
+      "file_path": "src/filter/time.rs",
+      "name": "timestamp",
+      "start_line": 83,
+      "end_line": 85,
+      "nloc": 3,
+      "mean_line_surprisal": 2.24819,
+      "max_line_surprisal": 2.98883
+    },
+    {
+      "function_id": "src/filter/time.rs::set:78",
+      "file_path": "src/filter/time.rs",
+      "name": "set",
+      "start_line": 78,
+      "end_line": 81,
+      "nloc": 4,
+      "mean_line_surprisal": 1.59254,
+      "max_line_surprisal": 2.1531
+    },
+    {
+      "function_id": "src/filter/time.rs::new:73",
+      "file_path": "src/filter/time.rs",
+      "name": "new",
+      "start_line": 73,
+      "end_line": 76,
+      "nloc": 4,
+      "mean_line_surprisal": 1.5141,
+      "max_line_surprisal": 1.67365
+    },
+    {
+      "function_id": "src/filter/time.rs::applies_to:57",
+      "file_path": "src/filter/time.rs",
+      "name": "applies_to",
+      "start_line": 57,
+      "end_line": 62,
+      "nloc": 6,
+      "mean_line_surprisal": 1.60159,
+      "max_line_surprisal": 2.67556
+    },
+    {
+      "function_id": "src/filter/time.rs::after:53",
+      "file_path": "src/filter/time.rs",
+      "name": "after",
+      "start_line": 53,
+      "end_line": 55,
+      "nloc": 3,
+      "mean_line_surprisal": 1.01728,
+      "max_line_surprisal": 1.0903
+    },
+    {
+      "function_id": "src/filter/time.rs::before:49",
+      "file_path": "src/filter/time.rs",
+      "name": "before",
+      "start_line": 49,
+      "end_line": 51,
+      "nloc": 3,
+      "mean_line_surprisal": 1.41319,
+      "max_line_surprisal": 1.72581
+    },
+    {
+      "function_id": "src/filter/time.rs::from_str:29",
+      "file_path": "src/filter/time.rs",
+      "name": "from_str",
+      "start_line": 29,
+      "end_line": 47,
+      "nloc": 19,
+      "mean_line_surprisal": 1.8201,
+      "max_line_surprisal": 4.69517
+    },
+    {
+      "function_id": "src/filter/time.rs::now:24",
+      "file_path": "src/filter/time.rs",
+      "name": "now",
+      "start_line": 24,
+      "end_line": 26,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47312,
+      "max_line_surprisal": 1.79435
+    },
+    {
+      "function_id": "src/filter/time.rs::now:13",
+      "file_path": "src/filter/time.rs",
+      "name": "now",
+      "start_line": 13,
+      "end_line": 15,
+      "nloc": 3,
+      "mean_line_surprisal": 2.28425,
+      "max_line_surprisal": 3.58683
+    },
+    {
+      "function_id": "src/fmt/input.rs::dirname_root:84",
+      "file_path": "src/fmt/input.rs",
+      "name": "dirname_root",
+      "start_line": 84,
+      "end_line": 86,
+      "nloc": 3,
+      "mean_line_surprisal": 1.10016,
+      "max_line_surprisal": 1.73082
+    },
+    {
+      "function_id": "src/fmt/input.rs::dirname_root:77",
+      "file_path": "src/fmt/input.rs",
+      "name": "dirname_root",
+      "start_line": 77,
+      "end_line": 80,
+      "nloc": 4,
+      "mean_line_surprisal": 1.51025,
+      "max_line_surprisal": 2.08338
+    },
+    {
+      "function_id": "src/fmt/input.rs::correct:39",
+      "file_path": "src/fmt/input.rs",
+      "name": "correct",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 1.3538,
+      "max_line_surprisal": 1.71036
+    },
+    {
+      "function_id": "src/fmt/input.rs::dirname:22",
+      "file_path": "src/fmt/input.rs",
+      "name": "dirname",
+      "start_line": 22,
+      "end_line": 32,
+      "nloc": 11,
+      "mean_line_surprisal": 1.84645,
+      "max_line_surprisal": 3.0055
+    },
+    {
+      "function_id": "src/fmt/input.rs::remove_extension:12",
+      "file_path": "src/fmt/input.rs",
+      "name": "remove_extension",
+      "start_line": 12,
+      "end_line": 19,
+      "nloc": 6,
+      "mean_line_surprisal": 1.70115,
+      "max_line_surprisal": 1.99891
+    },
+    {
+      "function_id": "src/fmt/input.rs::basename:7",
+      "file_path": "src/fmt/input.rs",
+      "name": "basename",
+      "start_line": 7,
+      "end_line": 9,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23641,
+      "max_line_surprisal": 2.69055
+    },
+    {
+      "function_id": "src/fmt/mod.rs::all_placeholders:237",
+      "file_path": "src/fmt/mod.rs",
+      "name": "all_placeholders",
+      "start_line": 237,
+      "end_line": 280,
+      "nloc": 40,
+      "mean_line_surprisal": 1.73655,
+      "max_line_surprisal": 5.08662
+    },
+    {
+      "function_id": "src/fmt/mod.rs::parse_only_brace_escapes:228",
+      "file_path": "src/fmt/mod.rs",
+      "name": "parse_only_brace_escapes",
+      "start_line": 228,
+      "end_line": 234,
+      "nloc": 7,
+      "mean_line_surprisal": 1.23212,
+      "max_line_surprisal": 2.0113
+    },
+    {
+      "function_id": "src/fmt/mod.rs::parse_no_placeholders:219",
+      "file_path": "src/fmt/mod.rs",
+      "name": "parse_no_placeholders",
+      "start_line": 219,
+      "end_line": 225,
+      "nloc": 7,
+      "mean_line_surprisal": 1.88864,
+      "max_line_surprisal": 2.65153
+    },
+    {
+      "function_id": "src/fmt/mod.rs::token_from_pattern_id:201",
+      "file_path": "src/fmt/mod.rs",
+      "name": "token_from_pattern_id",
+      "start_line": 201,
+      "end_line": 211,
+      "nloc": 11,
+      "mean_line_surprisal": 1.57925,
+      "max_line_surprisal": 3.11247
+    },
+    {
+      "function_id": "src/fmt/mod.rs::replace_separator:147",
+      "file_path": "src/fmt/mod.rs",
+      "name": "replace_separator",
+      "start_line": 147,
+      "end_line": 196,
+      "nloc": 46,
+      "mean_line_surprisal": 1.71854,
+      "max_line_surprisal": 3.62099
+    },
+    {
+      "function_id": "src/fmt/mod.rs::generate:112",
+      "file_path": "src/fmt/mod.rs",
+      "name": "generate",
+      "start_line": 112,
+      "end_line": 141,
+      "nloc": 29,
+      "mean_line_surprisal": 1.84016,
+      "max_line_surprisal": 6.00317
+    },
+    {
+      "function_id": "src/fmt/mod.rs::parse:58",
+      "file_path": "src/fmt/mod.rs",
+      "name": "parse",
+      "start_line": 58,
+      "end_line": 107,
+      "nloc": 50,
+      "mean_line_surprisal": 1.75312,
+      "max_line_surprisal": 4.74706
+    },
+    {
+      "function_id": "src/fmt/mod.rs::has_tokens:54",
+      "file_path": "src/fmt/mod.rs",
+      "name": "has_tokens",
+      "start_line": 54,
+      "end_line": 56,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70511,
+      "max_line_surprisal": 2.04405
+    },
+    {
+      "function_id": "src/fmt/mod.rs::fmt:28",
+      "file_path": "src/fmt/mod.rs",
+      "name": "fmt",
+      "start_line": 28,
+      "end_line": 38,
+      "nloc": 11,
+      "mean_line_surprisal": 1.42901,
+      "max_line_surprisal": 2.70715
+    },
+    {
+      "function_id": "src/hyperlink.rs::test_unicode_encoding:81",
+      "file_path": "src/hyperlink.rs",
+      "name": "test_unicode_encoding",
+      "start_line": 81,
+      "end_line": 86,
+      "nloc": 6,
+      "mean_line_surprisal": 2.36942,
+      "max_line_surprisal": 4.08397
+    },
+    {
+      "function_id": "src/hyperlink.rs::fmt:72",
+      "file_path": "src/hyperlink.rs",
+      "name": "fmt",
+      "start_line": 72,
+      "end_line": 77,
+      "nloc": 6,
+      "mean_line_surprisal": 1.0218,
+      "max_line_surprisal": 1.62583
+    },
+    {
+      "function_id": "src/hyperlink.rs::host:60",
+      "file_path": "src/hyperlink.rs",
+      "name": "host",
+      "start_line": 60,
+      "end_line": 62,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54164,
+      "max_line_surprisal": 1.81964
+    },
+    {
+      "function_id": "src/hyperlink.rs::host:44",
+      "file_path": "src/hyperlink.rs",
+      "name": "host",
+      "start_line": 44,
+      "end_line": 57,
+      "nloc": 12,
+      "mean_line_surprisal": 2.43948,
+      "max_line_surprisal": 7.3472
+    },
+    {
+      "function_id": "src/hyperlink.rs::encode:24",
+      "file_path": "src/hyperlink.rs",
+      "name": "encode",
+      "start_line": 24,
+      "end_line": 41,
+      "nloc": 18,
+      "mean_line_surprisal": 1.71394,
+      "max_line_surprisal": 3.98422
+    },
+    {
+      "function_id": "src/hyperlink.rs::fmt:14",
+      "file_path": "src/hyperlink.rs",
+      "name": "fmt",
+      "start_line": 14,
+      "end_line": 21,
+      "nloc": 8,
+      "mean_line_surprisal": 1.93082,
+      "max_line_surprisal": 2.32191
+    },
+    {
+      "function_id": "src/hyperlink.rs::new:8",
+      "file_path": "src/hyperlink.rs",
+      "name": "new",
+      "start_line": 8,
+      "end_line": 10,
+      "nloc": 3,
+      "mean_line_surprisal": 1.58814,
+      "max_line_surprisal": 1.91603
+    },
+    {
+      "function_id": "src/main.rs::build_regex:478",
+      "file_path": "src/main.rs",
+      "name": "build_regex",
+      "start_line": 478,
+      "end_line": 491,
+      "nloc": 14,
+      "mean_line_surprisal": 1.73112,
+      "max_line_surprisal": 7.64116
+    },
+    {
+      "function_id": "src/main.rs::ensure_use_hidden_option_for_leading_dot_pattern:458",
+      "file_path": "src/main.rs",
+      "name": "ensure_use_hidden_option_for_leading_dot_pattern",
+      "start_line": 458,
+      "end_line": 476,
+      "nloc": 16,
+      "mean_line_surprisal": 1.43497,
+      "max_line_surprisal": 2.63548
+    },
+    {
+      "function_id": "src/main.rs::extract_time_constraints:433",
+      "file_path": "src/main.rs",
+      "name": "extract_time_constraints",
+      "start_line": 433,
+      "end_line": 456,
+      "nloc": 24,
+      "mean_line_surprisal": 1.73484,
+      "max_line_surprisal": 7.65629
+    },
+    {
+      "function_id": "src/main.rs::determine_ls_command:349",
+      "file_path": "src/main.rs",
+      "name": "determine_ls_command",
+      "start_line": 349,
+      "end_line": 431,
+      "nloc": 77,
+      "mean_line_surprisal": 1.68726,
+      "max_line_surprisal": 7.49335
+    },
+    {
+      "function_id": "src/main.rs::extract_command:332",
+      "file_path": "src/main.rs",
+      "name": "extract_command",
+      "start_line": 332,
+      "end_line": 347,
+      "nloc": 15,
+      "mean_line_surprisal": 1.58789,
+      "max_line_surprisal": 3.01314
+    },
+    {
+      "function_id": "src/main.rs::construct_config:195",
+      "file_path": "src/main.rs",
+      "name": "construct_config",
+      "start_line": 195,
+      "end_line": 330,
+      "nloc": 127,
+      "mean_line_surprisal": 1.7817,
+      "max_line_surprisal": 6.3916
+    },
+    {
+      "function_id": "src/main.rs::check_path_separator_length:181",
+      "file_path": "src/main.rs",
+      "name": "check_path_separator_length",
+      "start_line": 181,
+      "end_line": 193,
+      "nloc": 13,
+      "mean_line_surprisal": 2.17364,
+      "max_line_surprisal": 6.42605
+    },
+    {
+      "function_id": "src/main.rs::build_pattern_regex:169",
+      "file_path": "src/main.rs",
+      "name": "build_pattern_regex",
+      "start_line": 169,
+      "end_line": 179,
+      "nloc": 11,
+      "mean_line_surprisal": 1.86521,
+      "max_line_surprisal": 3.01816
+    },
+    {
+      "function_id": "src/main.rs::ensure_search_pattern_is_not_a_path:149",
+      "file_path": "src/main.rs",
+      "name": "ensure_search_pattern_is_not_a_path",
+      "start_line": 149,
+      "end_line": 167,
+      "nloc": 19,
+      "mean_line_surprisal": 1.63133,
+      "max_line_surprisal": 2.45603
+    },
+    {
+      "function_id": "src/main.rs::set_working_dir:130",
+      "file_path": "src/main.rs",
+      "name": "set_working_dir",
+      "start_line": 130,
+      "end_line": 146,
+      "nloc": 17,
+      "mean_line_surprisal": 1.63286,
+      "max_line_surprisal": 3.00383
+    },
+    {
+      "function_id": "src/main.rs::print_completions:115",
+      "file_path": "src/main.rs",
+      "name": "print_completions",
+      "start_line": 115,
+      "end_line": 128,
+      "nloc": 14,
+      "mean_line_surprisal": 2.08188,
+      "max_line_surprisal": 4.00211
+    },
+    {
+      "function_id": "src/main.rs::run:74",
+      "file_path": "src/main.rs",
+      "name": "run",
+      "start_line": 74,
+      "end_line": 111,
+      "nloc": 30,
+      "mean_line_surprisal": 1.72205,
+      "max_line_surprisal": 2.94675
+    },
+    {
+      "function_id": "src/main.rs::main:61",
+      "file_path": "src/main.rs",
+      "name": "main",
+      "start_line": 61,
+      "end_line": 72,
+      "nloc": 12,
+      "mean_line_surprisal": 2.21492,
+      "max_line_surprisal": 3.33459
+    },
+    {
+      "function_id": "src/output.rs::print_entry_uncolorized:160",
+      "file_path": "src/output.rs",
+      "name": "print_entry_uncolorized",
+      "start_line": 160,
+      "end_line": 175,
+      "nloc": 11,
+      "mean_line_surprisal": 1.44094,
+      "max_line_surprisal": 5.05863
+    },
+    {
+      "function_id": "src/output.rs::print_entry_uncolorized:151",
+      "file_path": "src/output.rs",
+      "name": "print_entry_uncolorized",
+      "start_line": 151,
+      "end_line": 157,
+      "nloc": 3,
+      "mean_line_surprisal": 0.71836,
+      "max_line_surprisal": 1.89842
+    },
+    {
+      "function_id": "src/output.rs::print_entry_uncolorized_base:135",
+      "file_path": "src/output.rs",
+      "name": "print_entry_uncolorized_base",
+      "start_line": 135,
+      "end_line": 148,
+      "nloc": 9,
+      "mean_line_surprisal": 0.89604,
+      "max_line_surprisal": 2.10477
+    },
+    {
+      "function_id": "src/output.rs::print_entry_colorized:83",
+      "file_path": "src/output.rs",
+      "name": "print_entry_colorized",
+      "start_line": 83,
+      "end_line": 132,
+      "nloc": 39,
+      "mean_line_surprisal": 1.45571,
+      "max_line_surprisal": 4.46866
+    },
+    {
+      "function_id": "src/output.rs::print_entry_format:68",
+      "file_path": "src/output.rs",
+      "name": "print_entry_format",
+      "start_line": 68,
+      "end_line": 80,
+      "nloc": 8,
+      "mean_line_surprisal": 1.55241,
+      "max_line_surprisal": 4.12998
+    },
+    {
+      "function_id": "src/output.rs::print_trailing_slash:48",
+      "file_path": "src/output.rs",
+      "name": "print_trailing_slash",
+      "start_line": 48,
+      "end_line": 65,
+      "nloc": 13,
+      "mean_line_surprisal": 1.3843,
+      "max_line_surprisal": 5.67798
+    },
+    {
+      "function_id": "src/output.rs::print_entry:16",
+      "file_path": "src/output.rs",
+      "name": "print_entry",
+      "start_line": 16,
+      "end_line": 42,
+      "nloc": 24,
+      "mean_line_surprisal": 1.98098,
+      "max_line_surprisal": 5.53608
+    },
+    {
+      "function_id": "src/output.rs::replace_path_separator:11",
+      "file_path": "src/output.rs",
+      "name": "replace_path_separator",
+      "start_line": 11,
+      "end_line": 13,
+      "nloc": 3,
+      "mean_line_surprisal": 1.49288,
+      "max_line_surprisal": 1.71731
+    },
+    {
+      "function_id": "src/regex_helper.rs::matches_strings_with_leading_dot_simple:99",
+      "file_path": "src/regex_helper.rs",
+      "name": "matches_strings_with_leading_dot_simple",
+      "start_line": 99,
+      "end_line": 105,
+      "nloc": 6,
+      "mean_line_surprisal": 1.1382,
+      "max_line_surprisal": 1.814
+    },
+    {
+      "function_id": "src/regex_helper.rs::pattern_has_uppercase_char_advanced:91",
+      "file_path": "src/regex_helper.rs",
+      "name": "pattern_has_uppercase_char_advanced",
+      "start_line": 91,
+      "end_line": 96,
+      "nloc": 5,
+      "mean_line_surprisal": 1.24998,
+      "max_line_surprisal": 1.82993
+    },
+    {
+      "function_id": "src/regex_helper.rs::pattern_has_uppercase_char_simple:82",
+      "file_path": "src/regex_helper.rs",
+      "name": "pattern_has_uppercase_char_simple",
+      "start_line": 82,
+      "end_line": 88,
+      "nloc": 6,
+      "mean_line_surprisal": 1.37216,
+      "max_line_surprisal": 2.15354
+    },
+    {
+      "function_id": "src/regex_helper.rs::hir_matches_strings_with_leading_dot:50",
+      "file_path": "src/regex_helper.rs",
+      "name": "hir_matches_strings_with_leading_dot",
+      "start_line": 50,
+      "end_line": 79,
+      "nloc": 28,
+      "mean_line_surprisal": 1.45669,
+      "max_line_surprisal": 4.37867
+    },
+    {
+      "function_id": "src/regex_helper.rs::pattern_matches_strings_with_leading_dot:40",
+      "file_path": "src/regex_helper.rs",
+      "name": "pattern_matches_strings_with_leading_dot",
+      "start_line": 40,
+      "end_line": 47,
+      "nloc": 7,
+      "mean_line_surprisal": 1.06301,
+      "max_line_surprisal": 1.62208
+    },
+    {
+      "function_id": "src/regex_helper.rs::hir_has_uppercase_char:15",
+      "file_path": "src/regex_helper.rs",
+      "name": "hir_has_uppercase_char",
+      "start_line": 15,
+      "end_line": 37,
+      "nloc": 22,
+      "mean_line_surprisal": 1.44107,
+      "max_line_surprisal": 5.08362
+    },
+    {
+      "function_id": "src/regex_helper.rs::pattern_has_uppercase_char:5",
+      "file_path": "src/regex_helper.rs",
+      "name": "pattern_has_uppercase_char",
+      "start_line": 5,
+      "end_line": 12,
+      "nloc": 7,
+      "mean_line_surprisal": 2.3733,
+      "max_line_surprisal": 6.08286
+    },
+    {
+      "function_id": "src/walk.rs::scan:667",
+      "file_path": "src/walk.rs",
+      "name": "scan",
+      "start_line": 667,
+      "end_line": 669,
+      "nloc": 3,
+      "mean_line_surprisal": 1.93177,
+      "max_line_surprisal": 2.4862
+    },
+    {
+      "function_id": "src/walk.rs::scan:623",
+      "file_path": "src/walk.rs",
+      "name": "scan",
+      "start_line": 623,
+      "end_line": 659,
+      "nloc": 29,
+      "mean_line_surprisal": 1.7483,
+      "max_line_surprisal": 4.5468
+    },
+    {
+      "function_id": "src/walk.rs::spawn_senders:443",
+      "file_path": "src/walk.rs",
+      "name": "spawn_senders",
+      "start_line": 443,
+      "end_line": 620,
+      "nloc": 161,
+      "mean_line_surprisal": 1.51256,
+      "max_line_surprisal": 4.57826
+    },
+    {
+      "function_id": "src/walk.rs::receive:408",
+      "file_path": "src/walk.rs",
+      "name": "receive",
+      "start_line": 408,
+      "end_line": 440,
+      "nloc": 29,
+      "mean_line_surprisal": 2.09623,
+      "max_line_surprisal": 5.60433
+    },
+    {
+      "function_id": "src/walk.rs::build_walker:347",
+      "file_path": "src/walk.rs",
+      "name": "build_walker",
+      "start_line": 347,
+      "end_line": 404,
+      "nloc": 52,
+      "mean_line_surprisal": 1.606,
+      "max_line_surprisal": 3.39013
+    },
+    {
+      "function_id": "src/walk.rs::build_overrides:330",
+      "file_path": "src/walk.rs",
+      "name": "build_overrides",
+      "start_line": 330,
+      "end_line": 345,
+      "nloc": 13,
+      "mean_line_surprisal": 1.83457,
+      "max_line_surprisal": 5.52602
+    },
+    {
+      "function_id": "src/walk.rs::new:318",
+      "file_path": "src/walk.rs",
+      "name": "new",
+      "start_line": 318,
+      "end_line": 328,
+      "nloc": 10,
+      "mean_line_surprisal": 1.58359,
+      "max_line_surprisal": 3.84858
+    },
+    {
+      "function_id": "src/walk.rs::flush:296",
+      "file_path": "src/walk.rs",
+      "name": "flush",
+      "start_line": 296,
+      "end_line": 302,
+      "nloc": 7,
+      "mean_line_surprisal": 1.74327,
+      "max_line_surprisal": 4.236
+    },
+    {
+      "function_id": "src/walk.rs::stop:282",
+      "file_path": "src/walk.rs",
+      "name": "stop",
+      "start_line": 282,
+      "end_line": 293,
+      "nloc": 11,
+      "mean_line_surprisal": 1.57325,
+      "max_line_surprisal": 2.48341
+    },
+    {
+      "function_id": "src/walk.rs::stream:270",
+      "file_path": "src/walk.rs",
+      "name": "stream",
+      "start_line": 270,
+      "end_line": 279,
+      "nloc": 8,
+      "mean_line_surprisal": 1.72023,
+      "max_line_surprisal": 3.28078
+    },
+    {
+      "function_id": "src/walk.rs::print:252",
+      "file_path": "src/walk.rs",
+      "name": "print",
+      "start_line": 252,
+      "end_line": 267,
+      "nloc": 14,
+      "mean_line_surprisal": 1.57687,
+      "max_line_surprisal": 2.27539
+    },
+    {
+      "function_id": "src/walk.rs::poll:198",
+      "file_path": "src/walk.rs",
+      "name": "poll",
+      "start_line": 198,
+      "end_line": 249,
+      "nloc": 48,
+      "mean_line_surprisal": 1.68211,
+      "max_line_surprisal": 3.29585
+    },
+    {
+      "function_id": "src/walk.rs::recv:184",
+      "file_path": "src/walk.rs",
+      "name": "recv",
+      "start_line": 184,
+      "end_line": 195,
+      "nloc": 12,
+      "mean_line_surprisal": 1.74853,
+      "max_line_surprisal": 3.64186
+    },
+    {
+      "function_id": "src/walk.rs::process:174",
+      "file_path": "src/walk.rs",
+      "name": "process",
+      "start_line": 174,
+      "end_line": 181,
+      "nloc": 8,
+      "mean_line_surprisal": 1.87208,
+      "max_line_surprisal": 2.59529
+    },
+    {
+      "function_id": "src/walk.rs::new:153",
+      "file_path": "src/walk.rs",
+      "name": "new",
+      "start_line": 153,
+      "end_line": 171,
+      "nloc": 18,
+      "mean_line_surprisal": 1.47202,
+      "max_line_surprisal": 2.2341
+    },
+    {
+      "function_id": "src/walk.rs::send:101",
+      "file_path": "src/walk.rs",
+      "name": "send",
+      "start_line": 101,
+      "end_line": 121,
+      "nloc": 17,
+      "mean_line_surprisal": 1.95929,
+      "max_line_surprisal": 3.32736
+    },
+    {
+      "function_id": "src/walk.rs::needs_flush:91",
+      "file_path": "src/walk.rs",
+      "name": "needs_flush",
+      "start_line": 91,
+      "end_line": 98,
+      "nloc": 8,
+      "mean_line_surprisal": 1.64501,
+      "max_line_surprisal": 2.69943
+    },
+    {
+      "function_id": "src/walk.rs::new:82",
+      "file_path": "src/walk.rs",
+      "name": "new",
+      "start_line": 82,
+      "end_line": 88,
+      "nloc": 7,
+      "mean_line_surprisal": 1.58092,
+      "max_line_surprisal": 3.92302
+    },
+    {
+      "function_id": "src/walk.rs::into_iter:69",
+      "file_path": "src/walk.rs",
+      "name": "into_iter",
+      "start_line": 69,
+      "end_line": 71,
+      "nloc": 3,
+      "mean_line_surprisal": 2.24729,
+      "max_line_surprisal": 3.15495
+    },
+    {
+      "function_id": "src/walk.rs::lock:60",
+      "file_path": "src/walk.rs",
+      "name": "lock",
+      "start_line": 60,
+      "end_line": 62,
+      "nloc": 3,
+      "mean_line_surprisal": 2.71925,
+      "max_line_surprisal": 4.50363
+    },
+    {
+      "function_id": "src/walk.rs::new:54",
+      "file_path": "src/walk.rs",
+      "name": "new",
+      "start_line": 54,
+      "end_line": 58,
+      "nloc": 5,
+      "mean_line_surprisal": 2.04792,
+      "max_line_surprisal": 2.60674
+    }
+  ]
+}

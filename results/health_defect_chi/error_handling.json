@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "repo": "chi",
+    "t0_sha": "de0d16e6d23092aeef0b6e78f146799369160651",
+    "n_files": 36,
+    "total_hits": 13,
+    "build_seconds": 0.7
+  },
+  "files": {
+    "chain.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "chi.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "context.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 143
+    },
+    "middleware/basic_auth.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "middleware/clean_path.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "middleware/compress.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 344
+    },
+    "middleware/content_charset.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 38
+    },
+    "middleware/content_encoding.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "middleware/content_type.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 38
+    },
+    "middleware/get_head.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "middleware/heartbeat.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "middleware/logger.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "middleware/maybe.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "middleware/middleware.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "middleware/nocache.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "middleware/page_route.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "middleware/path_rewrite.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "middleware/profiler.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "middleware/realip.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 49
+    },
+    "middleware/recoverer.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 175
+    },
+    "middleware/request_id.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "middleware/request_size.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "middleware/route_headers.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "middleware/strip.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "middleware/sunset.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "middleware/supress_notfound.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "middleware/terminal.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "middleware/throttle.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 129
+    },
+    "middleware/timeout.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "middleware/url_format.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "middleware/value.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "middleware/wrap_writer.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 1,
+      "eh_count": 1,
+      "code_lines": 205
+    },
+    "mux.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 2,
+      "eh_count": 2,
+      "code_lines": 453
+    },
+    "pattern.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "pattern_fallback.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "tree.go": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 3,
+      "eh_count": 3,
+      "code_lines": 731
+    }
+  }
+}

@@ -1,0 +1,2001 @@
+{
+  "meta": {
+    "repo": "chi",
+    "t0_sha": "de0d16e6d23092aeef0b6e78f146799369160651",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 732,
+    "n_files": 36,
+    "n_tokens": 17821,
+    "n_functions": 173,
+    "build_seconds": 1.5,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "chain.go": {
+      "mean_line_surprisal": 1.66624,
+      "top_decile_line_surprisal": 4.26042,
+      "token_cross_entropy": 1.47841,
+      "n_lines": 29,
+      "n_tokens": 219
+    },
+    "chi.go": {
+      "mean_line_surprisal": 1.65355,
+      "top_decile_line_surprisal": 5.46337,
+      "token_cross_entropy": 1.21709,
+      "n_lines": 36,
+      "n_tokens": 289
+    },
+    "context.go": {
+      "mean_line_surprisal": 1.51592,
+      "top_decile_line_surprisal": 3.14135,
+      "token_cross_entropy": 1.46002,
+      "n_lines": 93,
+      "n_tokens": 556
+    },
+    "middleware/basic_auth.go": {
+      "mean_line_surprisal": 1.27622,
+      "top_decile_line_surprisal": 2.2635,
+      "token_cross_entropy": 1.39068,
+      "n_lines": 27,
+      "n_tokens": 189
+    },
+    "middleware/clean_path.go": {
+      "mean_line_surprisal": 1.25231,
+      "top_decile_line_surprisal": 2.10244,
+      "token_cross_entropy": 1.2404,
+      "n_lines": 21,
+      "n_tokens": 118
+    },
+    "middleware/compress.go": {
+      "mean_line_surprisal": 1.50277,
+      "top_decile_line_surprisal": 2.97407,
+      "token_cross_entropy": 1.42908,
+      "n_lines": 251,
+      "n_tokens": 1642
+    },
+    "middleware/content_charset.go": {
+      "mean_line_surprisal": 1.41744,
+      "top_decile_line_surprisal": 2.22825,
+      "token_cross_entropy": 1.49046,
+      "n_lines": 34,
+      "n_tokens": 240
+    },
+    "middleware/content_encoding.go": {
+      "mean_line_surprisal": 1.38192,
+      "top_decile_line_surprisal": 2.72298,
+      "token_cross_entropy": 1.33564,
+      "n_lines": 28,
+      "n_tokens": 190
+    },
+    "middleware/content_type.go": {
+      "mean_line_surprisal": 1.26797,
+      "top_decile_line_surprisal": 2.28791,
+      "token_cross_entropy": 1.30064,
+      "n_lines": 34,
+      "n_tokens": 267
+    },
+    "middleware/get_head.go": {
+      "mean_line_surprisal": 1.53256,
+      "top_decile_line_surprisal": 3.21062,
+      "token_cross_entropy": 1.43115,
+      "n_lines": 28,
+      "n_tokens": 161
+    },
+    "middleware/heartbeat.go": {
+      "mean_line_surprisal": 1.55316,
+      "top_decile_line_surprisal": 3.08889,
+      "token_cross_entropy": 1.52911,
+      "n_lines": 20,
+      "n_tokens": 147
+    },
+    "middleware/logger.go": {
+      "mean_line_surprisal": 1.40848,
+      "top_decile_line_surprisal": 2.99813,
+      "token_cross_entropy": 1.2808,
+      "n_lines": 117,
+      "n_tokens": 901
+    },
+    "middleware/maybe.go": {
+      "mean_line_surprisal": 1.48265,
+      "top_decile_line_surprisal": 4.06679,
+      "token_cross_entropy": 1.34054,
+      "n_lines": 13,
+      "n_tokens": 105
+    },
+    "middleware/middleware.go": {
+      "mean_line_surprisal": 1.37121,
+      "top_decile_line_surprisal": 2.32255,
+      "token_cross_entropy": 1.37427,
+      "n_lines": 15,
+      "n_tokens": 95
+    },
+    "middleware/nocache.go": {
+      "mean_line_surprisal": 1.50301,
+      "top_decile_line_surprisal": 4.09277,
+      "token_cross_entropy": 1.4245,
+      "n_lines": 34,
+      "n_tokens": 202
+    },
+    "middleware/page_route.go": {
+      "mean_line_surprisal": 1.28435,
+      "top_decile_line_surprisal": 2.59481,
+      "token_cross_entropy": 1.26839,
+      "n_lines": 16,
+      "n_tokens": 107
+    },
+    "middleware/path_rewrite.go": {
+      "mean_line_surprisal": 1.23524,
+      "top_decile_line_surprisal": 2.18972,
+      "token_cross_entropy": 1.24697,
+      "n_lines": 13,
+      "n_tokens": 94
+    },
+    "middleware/profiler.go": {
+      "mean_line_surprisal": 1.09398,
+      "top_decile_line_surprisal": 2.2579,
+      "token_cross_entropy": 1.03579,
+      "n_lines": 30,
+      "n_tokens": 305
+    },
+    "middleware/realip.go": {
+      "mean_line_surprisal": 1.48278,
+      "top_decile_line_surprisal": 2.79466,
+      "token_cross_entropy": 1.39258,
+      "n_lines": 32,
+      "n_tokens": 225
+    },
+    "middleware/recoverer.go": {
+      "mean_line_surprisal": 1.42071,
+      "top_decile_line_surprisal": 3.01151,
+      "token_cross_entropy": 1.37087,
+      "n_lines": 158,
+      "n_tokens": 1184
+    },
+    "middleware/request_id.go": {
+      "mean_line_surprisal": 1.49815,
+      "top_decile_line_surprisal": 3.83845,
+      "token_cross_entropy": 1.46896,
+      "n_lines": 55,
+      "n_tokens": 332
+    },
+    "middleware/request_size.go": {
+      "mean_line_surprisal": 1.35568,
+      "top_decile_line_surprisal": 3.23785,
+      "token_cross_entropy": 1.35272,
+      "n_lines": 14,
+      "n_tokens": 89
+    },
+    "middleware/route_headers.go": {
+      "mean_line_surprisal": 1.43074,
+      "top_decile_line_surprisal": 3.09274,
+      "token_cross_entropy": 1.35001,
+      "n_lines": 94,
+      "n_tokens": 637
+    },
+    "middleware/strip.go": {
+      "mean_line_surprisal": 1.23576,
+      "top_decile_line_surprisal": 2.54799,
+      "token_cross_entropy": 1.18782,
+      "n_lines": 54,
+      "n_tokens": 365
+    },
+    "middleware/sunset.go": {
+      "mean_line_surprisal": 1.26597,
+      "top_decile_line_surprisal": 2.18972,
+      "token_cross_entropy": 1.23282,
+      "n_lines": 19,
+      "n_tokens": 150
+    },
+    "middleware/supress_notfound.go": {
+      "mean_line_surprisal": 1.32486,
+      "top_decile_line_surprisal": 2.59252,
+      "token_cross_entropy": 1.28248,
+      "n_lines": 18,
+      "n_tokens": 124
+    },
+    "middleware/terminal.go": {
+      "mean_line_surprisal": 1.1777,
+      "top_decile_line_surprisal": 3.16104,
+      "token_cross_entropy": 0.90049,
+      "n_lines": 42,
+      "n_tokens": 427
+    },
+    "middleware/throttle.go": {
+      "mean_line_surprisal": 1.42071,
+      "top_decile_line_surprisal": 3.08294,
+      "token_cross_entropy": 1.2779,
+      "n_lines": 114,
+      "n_tokens": 642
+    },
+    "middleware/timeout.go": {
+      "mean_line_surprisal": 1.30714,
+      "top_decile_line_surprisal": 2.48273,
+      "token_cross_entropy": 1.32034,
+      "n_lines": 22,
+      "n_tokens": 134
+    },
+    "middleware/url_format.go": {
+      "mean_line_surprisal": 1.57354,
+      "top_decile_line_surprisal": 3.20814,
+      "token_cross_entropy": 1.45304,
+      "n_lines": 35,
+      "n_tokens": 214
+    },
+    "middleware/value.go": {
+      "mean_line_surprisal": 1.21717,
+      "top_decile_line_surprisal": 2.21536,
+      "token_cross_entropy": 1.23599,
+      "n_lines": 14,
+      "n_tokens": 99
+    },
+    "middleware/wrap_writer.go": {
+      "mean_line_surprisal": 1.2695,
+      "top_decile_line_surprisal": 2.46056,
+      "token_cross_entropy": 1.21976,
+      "n_lines": 171,
+      "n_tokens": 1041
+    },
+    "mux.go": {
+      "mean_line_surprisal": 1.50101,
+      "top_decile_line_surprisal": 3.33321,
+      "token_cross_entropy": 1.3885,
+      "n_lines": 322,
+      "n_tokens": 2388
+    },
+    "pattern.go": {
+      "mean_line_surprisal": 2.10496,
+      "top_decile_line_surprisal": 3.26726,
+      "token_cross_entropy": 1.73429,
+      "n_lines": 6,
+      "n_tokens": 32
+    },
+    "pattern_fallback.go": {
+      "mean_line_surprisal": 1.81776,
+      "top_decile_line_surprisal": 2.97258,
+      "token_cross_entropy": 1.64591,
+      "n_lines": 4,
+      "n_tokens": 25
+    },
+    "tree.go": {
+      "mean_line_surprisal": 1.455,
+      "top_decile_line_surprisal": 3.06163,
+      "token_cross_entropy": 1.40744,
+      "n_lines": 637,
+      "n_tokens": 3886
+    }
+  },
+  "functions": [
+    {
+      "function_id": "chain.go::chain:36",
+      "file_path": "chain.go",
+      "name": "chain",
+      "start_line": 36,
+      "end_line": 49,
+      "nloc": 12,
+      "mean_line_surprisal": 1.87111,
+      "max_line_surprisal": 4.01338
+    },
+    {
+      "function_id": "chain.go::ServeHTTP:30",
+      "file_path": "chain.go",
+      "name": "ServeHTTP",
+      "start_line": 30,
+      "end_line": 32,
+      "nloc": 3,
+      "mean_line_surprisal": 1.37395,
+      "max_line_surprisal": 1.61766
+    },
+    {
+      "function_id": "chain.go::HandlerFunc:18",
+      "file_path": "chain.go",
+      "name": "HandlerFunc",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 0.6444,
+      "max_line_surprisal": 1.16643
+    },
+    {
+      "function_id": "chain.go::Handler:12",
+      "file_path": "chain.go",
+      "name": "Handler",
+      "start_line": 12,
+      "end_line": 14,
+      "nloc": 3,
+      "mean_line_surprisal": 1.28712,
+      "max_line_surprisal": 1.56049
+    },
+    {
+      "function_id": "chain.go::Chain:6",
+      "file_path": "chain.go",
+      "name": "Chain",
+      "start_line": 6,
+      "end_line": 8,
+      "nloc": 3,
+      "mean_line_surprisal": 1.97555,
+      "max_line_surprisal": 2.70061
+    },
+    {
+      "function_id": "chi.go::NewRouter:60",
+      "file_path": "chi.go",
+      "name": "NewRouter",
+      "start_line": 60,
+      "end_line": 62,
+      "nloc": 3,
+      "mean_line_surprisal": 2.13022,
+      "max_line_surprisal": 2.61717
+    },
+    {
+      "function_id": "context.go::String:164",
+      "file_path": "context.go",
+      "name": "String",
+      "start_line": 164,
+      "end_line": 166,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47661,
+      "max_line_surprisal": 2.25153
+    },
+    {
+      "function_id": "context.go::Add:152",
+      "file_path": "context.go",
+      "name": "Add",
+      "start_line": 152,
+      "end_line": 155,
+      "nloc": 4,
+      "mean_line_surprisal": 1.64058,
+      "max_line_surprisal": 1.9196
+    },
+    {
+      "function_id": "context.go::replaceWildcards:139",
+      "file_path": "context.go",
+      "name": "replaceWildcards",
+      "start_line": 139,
+      "end_line": 144,
+      "nloc": 6,
+      "mean_line_surprisal": 1.87299,
+      "max_line_surprisal": 3.64945
+    },
+    {
+      "function_id": "context.go::RoutePattern:123",
+      "file_path": "context.go",
+      "name": "RoutePattern",
+      "start_line": 123,
+      "end_line": 134,
+      "nloc": 12,
+      "mean_line_surprisal": 1.73034,
+      "max_line_surprisal": 3.79722
+    },
+    {
+      "function_id": "context.go::URLParam:100",
+      "file_path": "context.go",
+      "name": "URLParam",
+      "start_line": 100,
+      "end_line": 107,
+      "nloc": 8,
+      "mean_line_surprisal": 1.31771,
+      "max_line_surprisal": 2.0954
+    },
+    {
+      "function_id": "context.go::Reset:82",
+      "file_path": "context.go",
+      "name": "Reset",
+      "start_line": 82,
+      "end_line": 96,
+      "nloc": 14,
+      "mean_line_surprisal": 1.45985,
+      "max_line_surprisal": 2.43103
+    },
+    {
+      "function_id": "context.go::NewRouteContext:33",
+      "file_path": "context.go",
+      "name": "NewRouteContext",
+      "start_line": 33,
+      "end_line": 35,
+      "nloc": 3,
+      "mean_line_surprisal": 1.55727,
+      "max_line_surprisal": 1.95805
+    },
+    {
+      "function_id": "context.go::RouteContext:27",
+      "file_path": "context.go",
+      "name": "RouteContext",
+      "start_line": 27,
+      "end_line": 30,
+      "nloc": 4,
+      "mean_line_surprisal": 1.71359,
+      "max_line_surprisal": 2.87283
+    },
+    {
+      "function_id": "context.go::URLParamFromCtx:18",
+      "file_path": "context.go",
+      "name": "URLParamFromCtx",
+      "start_line": 18,
+      "end_line": 23,
+      "nloc": 6,
+      "mean_line_surprisal": 0.73341,
+      "max_line_surprisal": 1.28643
+    },
+    {
+      "function_id": "context.go::URLParam:10",
+      "file_path": "context.go",
+      "name": "URLParam",
+      "start_line": 10,
+      "end_line": 15,
+      "nloc": 6,
+      "mean_line_surprisal": 1.5866,
+      "max_line_surprisal": 2.0367
+    },
+    {
+      "function_id": "middleware/basic_auth.go::basicAuthFailed:30",
+      "file_path": "middleware/basic_auth.go",
+      "name": "basicAuthFailed",
+      "start_line": 30,
+      "end_line": 33,
+      "nloc": 4,
+      "mean_line_surprisal": 1.53158,
+      "max_line_surprisal": 1.77829
+    },
+    {
+      "function_id": "middleware/basic_auth.go::BasicAuth:10",
+      "file_path": "middleware/basic_auth.go",
+      "name": "BasicAuth",
+      "start_line": 10,
+      "end_line": 28,
+      "nloc": 17,
+      "mean_line_surprisal": 1.31153,
+      "max_line_surprisal": 2.33718
+    },
+    {
+      "function_id": "middleware/clean_path.go::CleanPath:12",
+      "file_path": "middleware/clean_path.go",
+      "name": "CleanPath",
+      "start_line": 12,
+      "end_line": 28,
+      "nloc": 15,
+      "mean_line_surprisal": 1.35085,
+      "max_line_surprisal": 2.01506
+    },
+    {
+      "function_id": "middleware/compress.go::encoderDeflate:386",
+      "file_path": "middleware/compress.go",
+      "name": "encoderDeflate",
+      "start_line": 386,
+      "end_line": 392,
+      "nloc": 7,
+      "mean_line_surprisal": 1.20174,
+      "max_line_surprisal": 2.29249
+    },
+    {
+      "function_id": "middleware/compress.go::encoderGzip:378",
+      "file_path": "middleware/compress.go",
+      "name": "encoderGzip",
+      "start_line": 378,
+      "end_line": 384,
+      "nloc": 7,
+      "mean_line_surprisal": 1.67109,
+      "max_line_surprisal": 2.80497
+    },
+    {
+      "function_id": "middleware/compress.go::Unwrap:374",
+      "file_path": "middleware/compress.go",
+      "name": "Unwrap",
+      "start_line": 374,
+      "end_line": 376,
+      "nloc": 3,
+      "mean_line_surprisal": 1.58861,
+      "max_line_surprisal": 1.93051
+    },
+    {
+      "function_id": "middleware/compress.go::Close:367",
+      "file_path": "middleware/compress.go",
+      "name": "Close",
+      "start_line": 367,
+      "end_line": 372,
+      "nloc": 6,
+      "mean_line_surprisal": 1.59947,
+      "max_line_surprisal": 2.67505
+    },
+    {
+      "function_id": "middleware/compress.go::Push:360",
+      "file_path": "middleware/compress.go",
+      "name": "Push",
+      "start_line": 360,
+      "end_line": 365,
+      "nloc": 6,
+      "mean_line_surprisal": 1.35098,
+      "max_line_surprisal": 2.31579
+    },
+    {
+      "function_id": "middleware/compress.go::Hijack:353",
+      "file_path": "middleware/compress.go",
+      "name": "Hijack",
+      "start_line": 353,
+      "end_line": 358,
+      "nloc": 6,
+      "mean_line_surprisal": 1.58834,
+      "max_line_surprisal": 2.44582
+    },
+    {
+      "function_id": "middleware/compress.go::Flush:337",
+      "file_path": "middleware/compress.go",
+      "name": "Flush",
+      "start_line": 337,
+      "end_line": 351,
+      "nloc": 14,
+      "mean_line_surprisal": 1.6563,
+      "max_line_surprisal": 3.63227
+    },
+    {
+      "function_id": "middleware/compress.go::writer:326",
+      "file_path": "middleware/compress.go",
+      "name": "writer",
+      "start_line": 326,
+      "end_line": 331,
+      "nloc": 6,
+      "mean_line_surprisal": 1.75329,
+      "max_line_surprisal": 2.46852
+    },
+    {
+      "function_id": "middleware/compress.go::Write:318",
+      "file_path": "middleware/compress.go",
+      "name": "Write",
+      "start_line": 318,
+      "end_line": 324,
+      "nloc": 6,
+      "mean_line_surprisal": 1.57969,
+      "max_line_surprisal": 2.19545
+    },
+    {
+      "function_id": "middleware/compress.go::WriteHeader:290",
+      "file_path": "middleware/compress.go",
+      "name": "WriteHeader",
+      "start_line": 290,
+      "end_line": 316,
+      "nloc": 23,
+      "mean_line_surprisal": 1.93789,
+      "max_line_surprisal": 3.88113
+    },
+    {
+      "function_id": "middleware/compress.go::isCompressible:274",
+      "file_path": "middleware/compress.go",
+      "name": "isCompressible",
+      "start_line": 274,
+      "end_line": 288,
+      "nloc": 14,
+      "mean_line_surprisal": 1.32121,
+      "max_line_surprisal": 2.54377
+    },
+    {
+      "function_id": "middleware/compress.go::matchAcceptEncoding:240",
+      "file_path": "middleware/compress.go",
+      "name": "matchAcceptEncoding",
+      "start_line": 240,
+      "end_line": 247,
+      "nloc": 8,
+      "mean_line_surprisal": 1.69588,
+      "max_line_surprisal": 3.43724
+    },
+    {
+      "function_id": "middleware/compress.go::selectEncoder:211",
+      "file_path": "middleware/compress.go",
+      "name": "selectEncoder",
+      "start_line": 211,
+      "end_line": 238,
+      "nloc": 23,
+      "mean_line_surprisal": 1.4929,
+      "max_line_surprisal": 2.11219
+    },
+    {
+      "function_id": "middleware/compress.go::Handler:187",
+      "file_path": "middleware/compress.go",
+      "name": "Handler",
+      "start_line": 187,
+      "end_line": 208,
+      "nloc": 20,
+      "mean_line_surprisal": 1.39655,
+      "max_line_surprisal": 2.77968
+    },
+    {
+      "function_id": "middleware/compress.go::SetEncoder:147",
+      "file_path": "middleware/compress.go",
+      "name": "SetEncoder",
+      "start_line": 147,
+      "end_line": 183,
+      "nloc": 33,
+      "mean_line_surprisal": 1.64578,
+      "max_line_surprisal": 3.14292
+    },
+    {
+      "function_id": "middleware/compress.go::NewCompressor:63",
+      "file_path": "middleware/compress.go",
+      "name": "NewCompressor",
+      "start_line": 63,
+      "end_line": 130,
+      "nloc": 63,
+      "mean_line_surprisal": 1.41462,
+      "max_line_surprisal": 2.9335
+    },
+    {
+      "function_id": "middleware/compress.go::Compress:40",
+      "file_path": "middleware/compress.go",
+      "name": "Compress",
+      "start_line": 40,
+      "end_line": 43,
+      "nloc": 4,
+      "mean_line_surprisal": 1.56692,
+      "max_line_surprisal": 1.80181
+    },
+    {
+      "function_id": "middleware/content_charset.go::split:37",
+      "file_path": "middleware/content_charset.go",
+      "name": "split",
+      "start_line": 37,
+      "end_line": 45,
+      "nloc": 8,
+      "mean_line_surprisal": 1.59956,
+      "max_line_surprisal": 2.17451
+    },
+    {
+      "function_id": "middleware/content_charset.go::contentEncoding:29",
+      "file_path": "middleware/content_charset.go",
+      "name": "contentEncoding",
+      "start_line": 29,
+      "end_line": 34,
+      "nloc": 6,
+      "mean_line_surprisal": 1.52059,
+      "max_line_surprisal": 2.05937
+    },
+    {
+      "function_id": "middleware/content_charset.go::ContentCharset:11",
+      "file_path": "middleware/content_charset.go",
+      "name": "ContentCharset",
+      "start_line": 11,
+      "end_line": 26,
+      "nloc": 14,
+      "mean_line_surprisal": 1.44553,
+      "max_line_surprisal": 2.32041
+    },
+    {
+      "function_id": "middleware/content_encoding.go::AllowContentEncoding:10",
+      "file_path": "middleware/content_encoding.go",
+      "name": "AllowContentEncoding",
+      "start_line": 10,
+      "end_line": 34,
+      "nloc": 25,
+      "mean_line_surprisal": 1.43744,
+      "max_line_surprisal": 2.84079
+    },
+    {
+      "function_id": "middleware/content_type.go::AllowContentType:20",
+      "file_path": "middleware/content_type.go",
+      "name": "AllowContentType",
+      "start_line": 20,
+      "end_line": 45,
+      "nloc": 22,
+      "mean_line_surprisal": 1.29328,
+      "max_line_surprisal": 2.60858
+    },
+    {
+      "function_id": "middleware/content_type.go::SetHeader:9",
+      "file_path": "middleware/content_type.go",
+      "name": "SetHeader",
+      "start_line": 9,
+      "end_line": 16,
+      "nloc": 8,
+      "mean_line_surprisal": 1.28995,
+      "max_line_surprisal": 1.69484
+    },
+    {
+      "function_id": "middleware/get_head.go::GetHead:10",
+      "file_path": "middleware/get_head.go",
+      "name": "GetHead",
+      "start_line": 10,
+      "end_line": 39,
+      "nloc": 27,
+      "mean_line_surprisal": 1.62083,
+      "max_line_surprisal": 3.35073
+    },
+    {
+      "function_id": "middleware/heartbeat.go::Heartbeat:12",
+      "file_path": "middleware/heartbeat.go",
+      "name": "Heartbeat",
+      "start_line": 12,
+      "end_line": 26,
+      "nloc": 15,
+      "mean_line_surprisal": 1.69538,
+      "max_line_surprisal": 3.33835
+    },
+    {
+      "function_id": "middleware/logger.go::init:166",
+      "file_path": "middleware/logger.go",
+      "name": "init",
+      "start_line": 166,
+      "end_line": 172,
+      "nloc": 7,
+      "mean_line_surprisal": 1.77233,
+      "max_line_surprisal": 2.90253
+    },
+    {
+      "function_id": "middleware/logger.go::Panic:162",
+      "file_path": "middleware/logger.go",
+      "name": "Panic",
+      "start_line": 162,
+      "end_line": 164,
+      "nloc": 3,
+      "mean_line_surprisal": 1.35625,
+      "max_line_surprisal": 1.54542
+    },
+    {
+      "function_id": "middleware/logger.go::Write:134",
+      "file_path": "middleware/logger.go",
+      "name": "Write",
+      "start_line": 134,
+      "end_line": 160,
+      "nloc": 24,
+      "mean_line_surprisal": 1.11826,
+      "max_line_surprisal": 3.04381
+    },
+    {
+      "function_id": "middleware/logger.go::NewLogEntry:98",
+      "file_path": "middleware/logger.go",
+      "name": "NewLogEntry",
+      "start_line": 98,
+      "end_line": 125,
+      "nloc": 24,
+      "mean_line_surprisal": 1.5979,
+      "max_line_surprisal": 4.43197
+    },
+    {
+      "function_id": "middleware/logger.go::WithLogEntry:81",
+      "file_path": "middleware/logger.go",
+      "name": "WithLogEntry",
+      "start_line": 81,
+      "end_line": 84,
+      "nloc": 4,
+      "mean_line_surprisal": 1.4587,
+      "max_line_surprisal": 2.2928
+    },
+    {
+      "function_id": "middleware/logger.go::GetLogEntry:75",
+      "file_path": "middleware/logger.go",
+      "name": "GetLogEntry",
+      "start_line": 75,
+      "end_line": 78,
+      "nloc": 4,
+      "mean_line_surprisal": 1.43138,
+      "max_line_surprisal": 1.91171
+    },
+    {
+      "function_id": "middleware/logger.go::RequestLogger:44",
+      "file_path": "middleware/logger.go",
+      "name": "RequestLogger",
+      "start_line": 44,
+      "end_line": 59,
+      "nloc": 14,
+      "mean_line_surprisal": 1.475,
+      "max_line_surprisal": 2.37404
+    },
+    {
+      "function_id": "middleware/logger.go::Logger:39",
+      "file_path": "middleware/logger.go",
+      "name": "Logger",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 1.96069,
+      "max_line_surprisal": 2.57037
+    },
+    {
+      "function_id": "middleware/maybe.go::Maybe:8",
+      "file_path": "middleware/maybe.go",
+      "name": "Maybe",
+      "start_line": 8,
+      "end_line": 18,
+      "nloc": 11,
+      "mean_line_surprisal": 1.51807,
+      "max_line_surprisal": 4.06679
+    },
+    {
+      "function_id": "middleware/middleware.go::String:21",
+      "file_path": "middleware/middleware.go",
+      "name": "String",
+      "start_line": 21,
+      "end_line": 23,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47923,
+      "max_line_surprisal": 2.07497
+    },
+    {
+      "function_id": "middleware/middleware.go::New:6",
+      "file_path": "middleware/middleware.go",
+      "name": "New",
+      "start_line": 6,
+      "end_line": 12,
+      "nloc": 7,
+      "mean_line_surprisal": 1.32485,
+      "max_line_surprisal": 1.71603
+    },
+    {
+      "function_id": "middleware/nocache.go::NoCache:40",
+      "file_path": "middleware/nocache.go",
+      "name": "NoCache",
+      "start_line": 40,
+      "end_line": 59,
+      "nloc": 16,
+      "mean_line_surprisal": 1.5205,
+      "max_line_surprisal": 2.69972
+    },
+    {
+      "function_id": "middleware/page_route.go::PageRoute:10",
+      "file_path": "middleware/page_route.go",
+      "name": "PageRoute",
+      "start_line": 10,
+      "end_line": 20,
+      "nloc": 11,
+      "mean_line_surprisal": 1.3561,
+      "max_line_surprisal": 2.59481
+    },
+    {
+      "function_id": "middleware/path_rewrite.go::PathRewrite:9",
+      "file_path": "middleware/path_rewrite.go",
+      "name": "PathRewrite",
+      "start_line": 9,
+      "end_line": 16,
+      "nloc": 8,
+      "mean_line_surprisal": 1.3032,
+      "max_line_surprisal": 1.75126
+    },
+    {
+      "function_id": "middleware/profiler.go::Profiler:23",
+      "file_path": "middleware/profiler.go",
+      "name": "Profiler",
+      "start_line": 23,
+      "end_line": 49,
+      "nloc": 23,
+      "mean_line_surprisal": 1.14982,
+      "max_line_surprisal": 2.35701
+    },
+    {
+      "function_id": "middleware/realip.go::realIP:42",
+      "file_path": "middleware/realip.go",
+      "name": "realIP",
+      "start_line": 42,
+      "end_line": 56,
+      "nloc": 14,
+      "mean_line_surprisal": 1.84124,
+      "max_line_surprisal": 3.12931
+    },
+    {
+      "function_id": "middleware/realip.go::RealIP:31",
+      "file_path": "middleware/realip.go",
+      "name": "RealIP",
+      "start_line": 31,
+      "end_line": 40,
+      "nloc": 9,
+      "mean_line_surprisal": 1.37126,
+      "max_line_surprisal": 2.52927
+    },
+    {
+      "function_id": "middleware/recoverer.go::decorateSourceLine:166",
+      "file_path": "middleware/recoverer.go",
+      "name": "decorateSourceLine",
+      "start_line": 166,
+      "end_line": 203,
+      "nloc": 33,
+      "mean_line_surprisal": 1.21076,
+      "max_line_surprisal": 3.29402
+    },
+    {
+      "function_id": "middleware/recoverer.go::decorateFuncCallLine:126",
+      "file_path": "middleware/recoverer.go",
+      "name": "decorateFuncCallLine",
+      "start_line": 126,
+      "end_line": 164,
+      "nloc": 36,
+      "mean_line_surprisal": 1.50224,
+      "max_line_surprisal": 3.31033
+    },
+    {
+      "function_id": "middleware/recoverer.go::decorateLine:112",
+      "file_path": "middleware/recoverer.go",
+      "name": "decorateLine",
+      "start_line": 112,
+      "end_line": 124,
+      "nloc": 13,
+      "mean_line_surprisal": 1.13204,
+      "max_line_surprisal": 2.11443
+    },
+    {
+      "function_id": "middleware/recoverer.go::parse:69",
+      "file_path": "middleware/recoverer.go",
+      "name": "parse",
+      "start_line": 69,
+      "end_line": 110,
+      "nloc": 36,
+      "mean_line_surprisal": 1.74817,
+      "max_line_surprisal": 4.3795
+    },
+    {
+      "function_id": "middleware/recoverer.go::PrintPrettyStack:54",
+      "file_path": "middleware/recoverer.go",
+      "name": "PrintPrettyStack",
+      "start_line": 54,
+      "end_line": 64,
+      "nloc": 11,
+      "mean_line_surprisal": 1.47349,
+      "max_line_surprisal": 2.38704
+    },
+    {
+      "function_id": "middleware/recoverer.go::Recoverer:22",
+      "file_path": "middleware/recoverer.go",
+      "name": "Recoverer",
+      "start_line": 22,
+      "end_line": 49,
+      "nloc": 24,
+      "mean_line_surprisal": 1.5723,
+      "max_line_surprisal": 2.89197
+    },
+    {
+      "function_id": "middleware/request_id.go::NextRequestID:94",
+      "file_path": "middleware/request_id.go",
+      "name": "NextRequestID",
+      "start_line": 94,
+      "end_line": 96,
+      "nloc": 3,
+      "mean_line_surprisal": 1.73843,
+      "max_line_surprisal": 2.70803
+    },
+    {
+      "function_id": "middleware/request_id.go::GetReqID:83",
+      "file_path": "middleware/request_id.go",
+      "name": "GetReqID",
+      "start_line": 83,
+      "end_line": 91,
+      "nloc": 9,
+      "mean_line_surprisal": 1.6774,
+      "max_line_surprisal": 3.27308
+    },
+    {
+      "function_id": "middleware/request_id.go::RequestID:67",
+      "file_path": "middleware/request_id.go",
+      "name": "RequestID",
+      "start_line": 67,
+      "end_line": 79,
+      "nloc": 13,
+      "mean_line_surprisal": 1.34281,
+      "max_line_surprisal": 1.88904
+    },
+    {
+      "function_id": "middleware/request_id.go::init:46",
+      "file_path": "middleware/request_id.go",
+      "name": "init",
+      "start_line": 46,
+      "end_line": 60,
+      "nloc": 14,
+      "mean_line_surprisal": 1.90011,
+      "max_line_surprisal": 6.09405
+    },
+    {
+      "function_id": "middleware/request_size.go::RequestSize:9",
+      "file_path": "middleware/request_size.go",
+      "name": "RequestSize",
+      "start_line": 9,
+      "end_line": 18,
+      "nloc": 10,
+      "mean_line_surprisal": 1.43992,
+      "max_line_surprisal": 3.23785
+    },
+    {
+      "function_id": "middleware/route_headers.go::Match:140",
+      "file_path": "middleware/route_headers.go",
+      "name": "Match",
+      "start_line": 140,
+      "end_line": 145,
+      "nloc": 6,
+      "mean_line_surprisal": 1.64755,
+      "max_line_surprisal": 2.07432
+    },
+    {
+      "function_id": "middleware/route_headers.go::NewPattern:134",
+      "file_path": "middleware/route_headers.go",
+      "name": "NewPattern",
+      "start_line": 134,
+      "end_line": 138,
+      "nloc": 5,
+      "mean_line_surprisal": 2.01209,
+      "max_line_surprisal": 4.418
+    },
+    {
+      "function_id": "middleware/route_headers.go::IsMatch:115",
+      "file_path": "middleware/route_headers.go",
+      "name": "IsMatch",
+      "start_line": 115,
+      "end_line": 126,
+      "nloc": 12,
+      "mean_line_surprisal": 1.39742,
+      "max_line_surprisal": 2.6596
+    },
+    {
+      "function_id": "middleware/route_headers.go::Handler:77",
+      "file_path": "middleware/route_headers.go",
+      "name": "Handler",
+      "start_line": 77,
+      "end_line": 107,
+      "nloc": 29,
+      "mean_line_surprisal": 1.50068,
+      "max_line_surprisal": 4.08225
+    },
+    {
+      "function_id": "middleware/route_headers.go::RouteDefault:72",
+      "file_path": "middleware/route_headers.go",
+      "name": "RouteDefault",
+      "start_line": 72,
+      "end_line": 75,
+      "nloc": 4,
+      "mean_line_surprisal": 1.22964,
+      "max_line_surprisal": 2.37816
+    },
+    {
+      "function_id": "middleware/route_headers.go::RouteAny:58",
+      "file_path": "middleware/route_headers.go",
+      "name": "RouteAny",
+      "start_line": 58,
+      "end_line": 70,
+      "nloc": 13,
+      "mean_line_surprisal": 0.93873,
+      "max_line_surprisal": 2.03526
+    },
+    {
+      "function_id": "middleware/route_headers.go::Route:48",
+      "file_path": "middleware/route_headers.go",
+      "name": "Route",
+      "start_line": 48,
+      "end_line": 56,
+      "nloc": 9,
+      "mean_line_surprisal": 1.22469,
+      "max_line_surprisal": 1.62306
+    },
+    {
+      "function_id": "middleware/route_headers.go::RouteHeaders:42",
+      "file_path": "middleware/route_headers.go",
+      "name": "RouteHeaders",
+      "start_line": 42,
+      "end_line": 44,
+      "nloc": 3,
+      "mean_line_surprisal": 1.77683,
+      "max_line_surprisal": 2.2523
+    },
+    {
+      "function_id": "middleware/strip.go::StripPrefix:66",
+      "file_path": "middleware/strip.go",
+      "name": "StripPrefix",
+      "start_line": 66,
+      "end_line": 70,
+      "nloc": 5,
+      "mean_line_surprisal": 1.40565,
+      "max_line_surprisal": 2.24977
+    },
+    {
+      "function_id": "middleware/strip.go::RedirectSlashes:41",
+      "file_path": "middleware/strip.go",
+      "name": "RedirectSlashes",
+      "start_line": 41,
+      "end_line": 62,
+      "nloc": 22,
+      "mean_line_surprisal": 1.01616,
+      "max_line_surprisal": 3.15136
+    },
+    {
+      "function_id": "middleware/strip.go::StripSlashes:14",
+      "file_path": "middleware/strip.go",
+      "name": "StripSlashes",
+      "start_line": 14,
+      "end_line": 34,
+      "nloc": 21,
+      "mean_line_surprisal": 1.52332,
+      "max_line_surprisal": 2.65046
+    },
+    {
+      "function_id": "middleware/sunset.go::Sunset:11",
+      "file_path": "middleware/sunset.go",
+      "name": "Sunset",
+      "start_line": 11,
+      "end_line": 25,
+      "nloc": 14,
+      "mean_line_surprisal": 1.31578,
+      "max_line_surprisal": 2.05271
+    },
+    {
+      "function_id": "middleware/supress_notfound.go::SupressNotFound:15",
+      "file_path": "middleware/supress_notfound.go",
+      "name": "SupressNotFound",
+      "start_line": 15,
+      "end_line": 27,
+      "nloc": 13,
+      "mean_line_surprisal": 1.40114,
+      "max_line_surprisal": 2.59252
+    },
+    {
+      "function_id": "middleware/terminal.go::cW:55",
+      "file_path": "middleware/terminal.go",
+      "name": "cW",
+      "start_line": 55,
+      "end_line": 63,
+      "nloc": 9,
+      "mean_line_surprisal": 1.48185,
+      "max_line_surprisal": 2.28152
+    },
+    {
+      "function_id": "middleware/terminal.go::init:37",
+      "file_path": "middleware/terminal.go",
+      "name": "init",
+      "start_line": 37,
+      "end_line": 52,
+      "nloc": 16,
+      "mean_line_surprisal": 1.40706,
+      "max_line_surprisal": 1.90859
+    },
+    {
+      "function_id": "middleware/throttle.go::setRetryAfterHeaderIfNeeded:146",
+      "file_path": "middleware/throttle.go",
+      "name": "setRetryAfterHeaderIfNeeded",
+      "start_line": 146,
+      "end_line": 151,
+      "nloc": 6,
+      "mean_line_surprisal": 2.39581,
+      "max_line_surprisal": 4.5324
+    },
+    {
+      "function_id": "middleware/throttle.go::ThrottleWithOpts:44",
+      "file_path": "middleware/throttle.go",
+      "name": "ThrottleWithOpts",
+      "start_line": 44,
+      "end_line": 131,
+      "nloc": 76,
+      "mean_line_surprisal": 1.30475,
+      "max_line_surprisal": 3.05933
+    },
+    {
+      "function_id": "middleware/throttle.go::ThrottleBacklog:39",
+      "file_path": "middleware/throttle.go",
+      "name": "ThrottleBacklog",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 0.87054,
+      "max_line_surprisal": 1.19038
+    },
+    {
+      "function_id": "middleware/throttle.go::Throttle:32",
+      "file_path": "middleware/throttle.go",
+      "name": "Throttle",
+      "start_line": 32,
+      "end_line": 34,
+      "nloc": 3,
+      "mean_line_surprisal": 1.3083,
+      "max_line_surprisal": 1.42976
+    },
+    {
+      "function_id": "middleware/timeout.go::Timeout:32",
+      "file_path": "middleware/timeout.go",
+      "name": "Timeout",
+      "start_line": 32,
+      "end_line": 48,
+      "nloc": 16,
+      "mean_line_surprisal": 1.42009,
+      "max_line_surprisal": 2.66882
+    },
+    {
+      "function_id": "middleware/url_format.go::URLFormat:46",
+      "file_path": "middleware/url_format.go",
+      "name": "URLFormat",
+      "start_line": 46,
+      "end_line": 77,
+      "nloc": 25,
+      "mean_line_surprisal": 1.62418,
+      "max_line_surprisal": 3.18527
+    },
+    {
+      "function_id": "middleware/value.go::WithValue:9",
+      "file_path": "middleware/value.go",
+      "name": "WithValue",
+      "start_line": 9,
+      "end_line": 17,
+      "nloc": 9,
+      "mean_line_surprisal": 1.26753,
+      "max_line_surprisal": 2.21536
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Flush:235",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Flush",
+      "start_line": 235,
+      "end_line": 239,
+      "nloc": 5,
+      "mean_line_surprisal": 0.69777,
+      "max_line_surprisal": 1.38014
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::ReadFrom:209",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "ReadFrom",
+      "start_line": 209,
+      "end_line": 220,
+      "nloc": 12,
+      "mean_line_surprisal": 1.25343,
+      "max_line_surprisal": 1.88407
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Push:205",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Push",
+      "start_line": 205,
+      "end_line": 207,
+      "nloc": 3,
+      "mean_line_surprisal": 1.05536,
+      "max_line_surprisal": 1.36314
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Hijack:200",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Hijack",
+      "start_line": 200,
+      "end_line": 203,
+      "nloc": 4,
+      "mean_line_surprisal": 0.66492,
+      "max_line_surprisal": 1.33198
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Flush:194",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Flush",
+      "start_line": 194,
+      "end_line": 198,
+      "nloc": 5,
+      "mean_line_surprisal": 0.76134,
+      "max_line_surprisal": 1.4379
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Hijack:178",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Hijack",
+      "start_line": 178,
+      "end_line": 181,
+      "nloc": 4,
+      "mean_line_surprisal": 0.75201,
+      "max_line_surprisal": 1.44478
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Flush:172",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Flush",
+      "start_line": 172,
+      "end_line": 176,
+      "nloc": 5,
+      "mean_line_surprisal": 0.87089,
+      "max_line_surprisal": 1.56943
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Hijack:160",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Hijack",
+      "start_line": 160,
+      "end_line": 163,
+      "nloc": 4,
+      "mean_line_surprisal": 1.1276,
+      "max_line_surprisal": 1.82237
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Flush:147",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Flush",
+      "start_line": 147,
+      "end_line": 151,
+      "nloc": 5,
+      "mean_line_surprisal": 1.34652,
+      "max_line_surprisal": 2.01104
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Discard:138",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Discard",
+      "start_line": 138,
+      "end_line": 140,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50073,
+      "max_line_surprisal": 2.1174
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Unwrap:134",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Unwrap",
+      "start_line": 134,
+      "end_line": 136,
+      "nloc": 3,
+      "mean_line_surprisal": 1.87191,
+      "max_line_surprisal": 3.17782
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Tee:130",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Tee",
+      "start_line": 130,
+      "end_line": 132,
+      "nloc": 3,
+      "mean_line_surprisal": 1.27751,
+      "max_line_surprisal": 1.7486
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::BytesWritten:126",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "BytesWritten",
+      "start_line": 126,
+      "end_line": 128,
+      "nloc": 3,
+      "mean_line_surprisal": 1.39847,
+      "max_line_surprisal": 2.26084
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Status:122",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Status",
+      "start_line": 122,
+      "end_line": 124,
+      "nloc": 3,
+      "mean_line_surprisal": 1.53121,
+      "max_line_surprisal": 2.07825
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::maybeWriteHeader:116",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "maybeWriteHeader",
+      "start_line": 116,
+      "end_line": 120,
+      "nloc": 5,
+      "mean_line_surprisal": 1.40583,
+      "max_line_surprisal": 1.5271
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::Write:96",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "Write",
+      "start_line": 96,
+      "end_line": 114,
+      "nloc": 19,
+      "mean_line_surprisal": 1.48025,
+      "max_line_surprisal": 2.77726
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::WriteHeader:82",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "WriteHeader",
+      "start_line": 82,
+      "end_line": 94,
+      "nloc": 13,
+      "mean_line_surprisal": 1.4517,
+      "max_line_surprisal": 2.82236
+    },
+    {
+      "function_id": "middleware/wrap_writer.go::NewWrapResponseWriter:15",
+      "file_path": "middleware/wrap_writer.go",
+      "name": "NewWrapResponseWriter",
+      "start_line": 15,
+      "end_line": 44,
+      "nloc": 26,
+      "mean_line_surprisal": 1.35016,
+      "max_line_surprisal": 2.39603
+    },
+    {
+      "function_id": "mux.go::methodNotAllowedHandler:520",
+      "file_path": "mux.go",
+      "name": "methodNotAllowedHandler",
+      "start_line": 520,
+      "end_line": 528,
+      "nloc": 9,
+      "mean_line_surprisal": 1.53562,
+      "max_line_surprisal": 2.12397
+    },
+    {
+      "function_id": "mux.go::updateRouteHandler:513",
+      "file_path": "mux.go",
+      "name": "updateRouteHandler",
+      "start_line": 513,
+      "end_line": 515,
+      "nloc": 3,
+      "mean_line_surprisal": 1.32213,
+      "max_line_surprisal": 1.76454
+    },
+    {
+      "function_id": "mux.go::updateSubRoutes:499",
+      "file_path": "mux.go",
+      "name": "updateSubRoutes",
+      "start_line": 499,
+      "end_line": 507,
+      "nloc": 9,
+      "mean_line_surprisal": 1.84891,
+      "max_line_surprisal": 4.52184
+    },
+    {
+      "function_id": "mux.go::nextRoutePath:489",
+      "file_path": "mux.go",
+      "name": "nextRoutePath",
+      "start_line": 489,
+      "end_line": 496,
+      "nloc": 8,
+      "mean_line_surprisal": 1.56762,
+      "max_line_surprisal": 2.09153
+    },
+    {
+      "function_id": "mux.go::routeHTTP:441",
+      "file_path": "mux.go",
+      "name": "routeHTTP",
+      "start_line": 441,
+      "end_line": 487,
+      "nloc": 43,
+      "mean_line_surprisal": 1.63474,
+      "max_line_surprisal": 4.83257
+    },
+    {
+      "function_id": "mux.go::handle:416",
+      "file_path": "mux.go",
+      "name": "handle",
+      "start_line": 416,
+      "end_line": 437,
+      "nloc": 19,
+      "mean_line_surprisal": 1.52959,
+      "max_line_surprisal": 2.88591
+    },
+    {
+      "function_id": "mux.go::MethodNotAllowedHandler:407",
+      "file_path": "mux.go",
+      "name": "MethodNotAllowedHandler",
+      "start_line": 407,
+      "end_line": 412,
+      "nloc": 6,
+      "mean_line_surprisal": 1.77317,
+      "max_line_surprisal": 3.40931
+    },
+    {
+      "function_id": "mux.go::NotFoundHandler:398",
+      "file_path": "mux.go",
+      "name": "NotFoundHandler",
+      "start_line": 398,
+      "end_line": 403,
+      "nloc": 6,
+      "mean_line_surprisal": 1.96456,
+      "max_line_surprisal": 3.3946
+    },
+    {
+      "function_id": "mux.go::Find:368",
+      "file_path": "mux.go",
+      "name": "Find",
+      "start_line": 368,
+      "end_line": 394,
+      "nloc": 22,
+      "mean_line_surprisal": 1.55377,
+      "max_line_surprisal": 3.42496
+    },
+    {
+      "function_id": "mux.go::Match:359",
+      "file_path": "mux.go",
+      "name": "Match",
+      "start_line": 359,
+      "end_line": 361,
+      "nloc": 3,
+      "mean_line_surprisal": 2.14571,
+      "max_line_surprisal": 3.54583
+    },
+    {
+      "function_id": "mux.go::Middlewares:349",
+      "file_path": "mux.go",
+      "name": "Middlewares",
+      "start_line": 349,
+      "end_line": 351,
+      "nloc": 3,
+      "mean_line_surprisal": 2.32488,
+      "max_line_surprisal": 4.01585
+    },
+    {
+      "function_id": "mux.go::Routes:344",
+      "file_path": "mux.go",
+      "name": "Routes",
+      "start_line": 344,
+      "end_line": 346,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69078,
+      "max_line_surprisal": 2.33413
+    },
+    {
+      "function_id": "mux.go::Mount:289",
+      "file_path": "mux.go",
+      "name": "Mount",
+      "start_line": 289,
+      "end_line": 340,
+      "nloc": 43,
+      "mean_line_surprisal": 1.56159,
+      "max_line_surprisal": 6.05121
+    },
+    {
+      "function_id": "mux.go::Route:272",
+      "file_path": "mux.go",
+      "name": "Route",
+      "start_line": 272,
+      "end_line": 280,
+      "nloc": 9,
+      "mean_line_surprisal": 1.32337,
+      "max_line_surprisal": 1.82738
+    },
+    {
+      "function_id": "mux.go::Group:262",
+      "file_path": "mux.go",
+      "name": "Group",
+      "start_line": 262,
+      "end_line": 268,
+      "nloc": 7,
+      "mean_line_surprisal": 1.49153,
+      "max_line_surprisal": 2.60109
+    },
+    {
+      "function_id": "mux.go::With:236",
+      "file_path": "mux.go",
+      "name": "With",
+      "start_line": 236,
+      "end_line": 257,
+      "nloc": 19,
+      "mean_line_surprisal": 1.53332,
+      "max_line_surprisal": 2.71691
+    },
+    {
+      "function_id": "mux.go::MethodNotAllowed:217",
+      "file_path": "mux.go",
+      "name": "MethodNotAllowed",
+      "start_line": 217,
+      "end_line": 233,
+      "nloc": 16,
+      "mean_line_surprisal": 1.03867,
+      "max_line_surprisal": 2.01434
+    },
+    {
+      "function_id": "mux.go::NotFound:197",
+      "file_path": "mux.go",
+      "name": "NotFound",
+      "start_line": 197,
+      "end_line": 213,
+      "nloc": 16,
+      "mean_line_surprisal": 1.6705,
+      "max_line_surprisal": 3.26016
+    },
+    {
+      "function_id": "mux.go::Trace:191",
+      "file_path": "mux.go",
+      "name": "Trace",
+      "start_line": 191,
+      "end_line": 193,
+      "nloc": 3,
+      "mean_line_surprisal": 0.5517,
+      "max_line_surprisal": 0.94352
+    },
+    {
+      "function_id": "mux.go::Put:185",
+      "file_path": "mux.go",
+      "name": "Put",
+      "start_line": 185,
+      "end_line": 187,
+      "nloc": 3,
+      "mean_line_surprisal": 0.55253,
+      "max_line_surprisal": 0.95256
+    },
+    {
+      "function_id": "mux.go::Post:179",
+      "file_path": "mux.go",
+      "name": "Post",
+      "start_line": 179,
+      "end_line": 181,
+      "nloc": 3,
+      "mean_line_surprisal": 0.56086,
+      "max_line_surprisal": 0.96335
+    },
+    {
+      "function_id": "mux.go::Patch:173",
+      "file_path": "mux.go",
+      "name": "Patch",
+      "start_line": 173,
+      "end_line": 175,
+      "nloc": 3,
+      "mean_line_surprisal": 0.56789,
+      "max_line_surprisal": 0.97645
+    },
+    {
+      "function_id": "mux.go::Options:167",
+      "file_path": "mux.go",
+      "name": "Options",
+      "start_line": 167,
+      "end_line": 169,
+      "nloc": 3,
+      "mean_line_surprisal": 0.57681,
+      "max_line_surprisal": 0.99275
+    },
+    {
+      "function_id": "mux.go::Head:161",
+      "file_path": "mux.go",
+      "name": "Head",
+      "start_line": 161,
+      "end_line": 163,
+      "nloc": 3,
+      "mean_line_surprisal": 0.58851,
+      "max_line_surprisal": 1.0136
+    },
+    {
+      "function_id": "mux.go::Get:155",
+      "file_path": "mux.go",
+      "name": "Get",
+      "start_line": 155,
+      "end_line": 157,
+      "nloc": 3,
+      "mean_line_surprisal": 0.60376,
+      "max_line_surprisal": 1.04134
+    },
+    {
+      "function_id": "mux.go::Delete:149",
+      "file_path": "mux.go",
+      "name": "Delete",
+      "start_line": 149,
+      "end_line": 151,
+      "nloc": 3,
+      "mean_line_surprisal": 0.62855,
+      "max_line_surprisal": 1.08037
+    },
+    {
+      "function_id": "mux.go::Connect:143",
+      "file_path": "mux.go",
+      "name": "Connect",
+      "start_line": 143,
+      "end_line": 145,
+      "nloc": 3,
+      "mean_line_surprisal": 0.66891,
+      "max_line_surprisal": 1.14161
+    },
+    {
+      "function_id": "mux.go::MethodFunc:137",
+      "file_path": "mux.go",
+      "name": "MethodFunc",
+      "start_line": 137,
+      "end_line": 139,
+      "nloc": 3,
+      "mean_line_surprisal": 0.70757,
+      "max_line_surprisal": 1.07732
+    },
+    {
+      "function_id": "mux.go::Method:127",
+      "file_path": "mux.go",
+      "name": "Method",
+      "start_line": 127,
+      "end_line": 133,
+      "nloc": 7,
+      "mean_line_surprisal": 1.36152,
+      "max_line_surprisal": 1.91182
+    },
+    {
+      "function_id": "mux.go::HandleFunc:121",
+      "file_path": "mux.go",
+      "name": "HandleFunc",
+      "start_line": 121,
+      "end_line": 123,
+      "nloc": 3,
+      "mean_line_surprisal": 1.2086,
+      "max_line_surprisal": 1.84191
+    },
+    {
+      "function_id": "mux.go::Handle:109",
+      "file_path": "mux.go",
+      "name": "Handle",
+      "start_line": 109,
+      "end_line": 117,
+      "nloc": 8,
+      "mean_line_surprisal": 1.65222,
+      "max_line_surprisal": 2.46789
+    },
+    {
+      "function_id": "mux.go::Use:100",
+      "file_path": "mux.go",
+      "name": "Use",
+      "start_line": 100,
+      "end_line": 105,
+      "nloc": 6,
+      "mean_line_surprisal": 1.99118,
+      "max_line_surprisal": 3.11331
+    },
+    {
+      "function_id": "mux.go::ServeHTTP:63",
+      "file_path": "mux.go",
+      "name": "ServeHTTP",
+      "start_line": 63,
+      "end_line": 92,
+      "nloc": 26,
+      "mean_line_surprisal": 1.57787,
+      "max_line_surprisal": 2.59662
+    },
+    {
+      "function_id": "mux.go::NewMux:52",
+      "file_path": "mux.go",
+      "name": "NewMux",
+      "start_line": 52,
+      "end_line": 58,
+      "nloc": 7,
+      "mean_line_surprisal": 2.18025,
+      "max_line_surprisal": 4.64122
+    },
+    {
+      "function_id": "pattern.go::setPattern:14",
+      "file_path": "pattern.go",
+      "name": "setPattern",
+      "start_line": 14,
+      "end_line": 16,
+      "nloc": 3,
+      "mean_line_surprisal": 2.26932,
+      "max_line_surprisal": 3.26726
+    },
+    {
+      "function_id": "pattern_fallback.go::setPattern:17",
+      "file_path": "pattern_fallback.go",
+      "name": "setPattern",
+      "start_line": 17,
+      "end_line": 17,
+      "nloc": 1,
+      "mean_line_surprisal": 1.44504,
+      "max_line_surprisal": 1.44504
+    },
+    {
+      "function_id": "tree.go::walk:837",
+      "file_path": "tree.go",
+      "name": "walk",
+      "start_line": 837,
+      "end_line": 872,
+      "nloc": 31,
+      "mean_line_surprisal": 1.52429,
+      "max_line_surprisal": 3.0028
+    },
+    {
+      "function_id": "tree.go::Walk:833",
+      "file_path": "tree.go",
+      "name": "Walk",
+      "start_line": 833,
+      "end_line": 835,
+      "nloc": 3,
+      "mean_line_surprisal": 1.79042,
+      "max_line_surprisal": 2.3322
+    },
+    {
+      "function_id": "tree.go::findEdge:801",
+      "file_path": "tree.go",
+      "name": "findEdge",
+      "start_line": 801,
+      "end_line": 819,
+      "nloc": 19,
+      "mean_line_surprisal": 0.93799,
+      "max_line_surprisal": 2.38401
+    },
+    {
+      "function_id": "tree.go::tailSort:792",
+      "file_path": "tree.go",
+      "name": "tailSort",
+      "start_line": 792,
+      "end_line": 799,
+      "nloc": 8,
+      "mean_line_surprisal": 1.72596,
+      "max_line_surprisal": 2.39753
+    },
+    {
+      "function_id": "tree.go::Less:788",
+      "file_path": "tree.go",
+      "name": "Less",
+      "start_line": 788,
+      "end_line": 788,
+      "nloc": 1,
+      "mean_line_surprisal": 1.52295,
+      "max_line_surprisal": 1.52295
+    },
+    {
+      "function_id": "tree.go::Swap:787",
+      "file_path": "tree.go",
+      "name": "Swap",
+      "start_line": 787,
+      "end_line": 787,
+      "nloc": 1,
+      "mean_line_surprisal": 1.53204,
+      "max_line_surprisal": 1.53204
+    },
+    {
+      "function_id": "tree.go::Len:786",
+      "file_path": "tree.go",
+      "name": "Len",
+      "start_line": 786,
+      "end_line": 786,
+      "nloc": 1,
+      "mean_line_surprisal": 1.71205,
+      "max_line_surprisal": 1.71205
+    },
+    {
+      "function_id": "tree.go::Sort:785",
+      "file_path": "tree.go",
+      "name": "Sort",
+      "start_line": 785,
+      "end_line": 785,
+      "nloc": 1,
+      "mean_line_surprisal": 1.60507,
+      "max_line_surprisal": 1.60507
+    },
+    {
+      "function_id": "tree.go::longestPrefix:773",
+      "file_path": "tree.go",
+      "name": "longestPrefix",
+      "start_line": 773,
+      "end_line": 780,
+      "nloc": 8,
+      "mean_line_surprisal": 1.79319,
+      "max_line_surprisal": 4.65071
+    },
+    {
+      "function_id": "tree.go::patParamKeys:754",
+      "file_path": "tree.go",
+      "name": "patParamKeys",
+      "start_line": 754,
+      "end_line": 770,
+      "nloc": 17,
+      "mean_line_surprisal": 1.57118,
+      "max_line_surprisal": 3.49145
+    },
+    {
+      "function_id": "tree.go::patNextSegment:686",
+      "file_path": "tree.go",
+      "name": "patNextSegment",
+      "start_line": 686,
+      "end_line": 752,
+      "nloc": 56,
+      "mean_line_surprisal": 1.68491,
+      "max_line_surprisal": 6.0569
+    },
+    {
+      "function_id": "tree.go::walk:667",
+      "file_path": "tree.go",
+      "name": "walk",
+      "start_line": 667,
+      "end_line": 682,
+      "nloc": 15,
+      "mean_line_surprisal": 1.37033,
+      "max_line_surprisal": 2.5744
+    },
+    {
+      "function_id": "tree.go::routes:619",
+      "file_path": "tree.go",
+      "name": "routes",
+      "start_line": 619,
+      "end_line": 665,
+      "nloc": 39,
+      "mean_line_surprisal": 1.58502,
+      "max_line_surprisal": 3.71416
+    },
+    {
+      "function_id": "tree.go::findPattern:577",
+      "file_path": "tree.go",
+      "name": "findPattern",
+      "start_line": 577,
+      "end_line": 617,
+      "nloc": 33,
+      "mean_line_surprisal": 1.50095,
+      "max_line_surprisal": 3.74939
+    },
+    {
+      "function_id": "tree.go::isLeaf:573",
+      "file_path": "tree.go",
+      "name": "isLeaf",
+      "start_line": 573,
+      "end_line": 575,
+      "nloc": 3,
+      "mean_line_surprisal": 1.94302,
+      "max_line_surprisal": 2.5367
+    },
+    {
+      "function_id": "tree.go::findEdge:545",
+      "file_path": "tree.go",
+      "name": "findEdge",
+      "start_line": 545,
+      "end_line": 571,
+      "nloc": 25,
+      "mean_line_surprisal": 1.27047,
+      "max_line_surprisal": 2.78154
+    },
+    {
+      "function_id": "tree.go::findRoute:400",
+      "file_path": "tree.go",
+      "name": "findRoute",
+      "start_line": 400,
+      "end_line": 543,
+      "nloc": 120,
+      "mean_line_surprisal": 1.39015,
+      "max_line_surprisal": 5.22859
+    },
+    {
+      "function_id": "tree.go::FindRoute:373",
+      "file_path": "tree.go",
+      "name": "FindRoute",
+      "start_line": 373,
+      "end_line": 396,
+      "nloc": 20,
+      "mean_line_surprisal": 1.65603,
+      "max_line_surprisal": 2.25834
+    },
+    {
+      "function_id": "tree.go::setEndpoint:343",
+      "file_path": "tree.go",
+      "name": "setEndpoint",
+      "start_line": 343,
+      "end_line": 371,
+      "nloc": 27,
+      "mean_line_surprisal": 1.25474,
+      "max_line_surprisal": 2.5894
+    },
+    {
+      "function_id": "tree.go::getEdge:330",
+      "file_path": "tree.go",
+      "name": "getEdge",
+      "start_line": 330,
+      "end_line": 341,
+      "nloc": 12,
+      "mean_line_surprisal": 1.65214,
+      "max_line_surprisal": 3.87796
+    },
+    {
+      "function_id": "tree.go::replaceChild:318",
+      "file_path": "tree.go",
+      "name": "replaceChild",
+      "start_line": 318,
+      "end_line": 328,
+      "nloc": 11,
+      "mean_line_surprisal": 1.30229,
+      "max_line_surprisal": 3.05581
+    },
+    {
+      "function_id": "tree.go::addChild:234",
+      "file_path": "tree.go",
+      "name": "addChild",
+      "start_line": 234,
+      "end_line": 316,
+      "nloc": 66,
+      "mean_line_surprisal": 1.30757,
+      "max_line_surprisal": 2.73934
+    },
+    {
+      "function_id": "tree.go::InsertRoute:138",
+      "file_path": "tree.go",
+      "name": "InsertRoute",
+      "start_line": 138,
+      "end_line": 228,
+      "nloc": 78,
+      "mean_line_surprisal": 1.43034,
+      "max_line_surprisal": 2.71738
+    },
+    {
+      "function_id": "tree.go::Value:129",
+      "file_path": "tree.go",
+      "name": "Value",
+      "start_line": 129,
+      "end_line": 136,
+      "nloc": 8,
+      "mean_line_surprisal": 1.54943,
+      "max_line_surprisal": 1.99373
+    },
+    {
+      "function_id": "tree.go::RegisterMethod:60",
+      "file_path": "tree.go",
+      "name": "RegisterMethod",
+      "start_line": 60,
+      "end_line": 76,
+      "nloc": 17,
+      "mean_line_surprisal": 1.76126,
+      "max_line_surprisal": 4.0262
+    }
+  ]
+}

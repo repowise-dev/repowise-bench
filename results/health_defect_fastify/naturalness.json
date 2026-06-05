@@ -1,0 +1,2432 @@
+{
+  "meta": {
+    "repo": "fastify",
+    "t0_sha": "012c24919679444313cf20d6be084cb9d22165e6",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 1283,
+    "n_files": 29,
+    "n_tokens": 37983,
+    "n_functions": 221,
+    "build_seconds": 1.8,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "lib/config-validator.js": {
+      "mean_line_surprisal": 1.33009,
+      "top_decile_line_surprisal": 2.74791,
+      "token_cross_entropy": 1.33293,
+      "n_lines": 1266,
+      "n_tokens": 9187
+    },
+    "lib/content-type-parser.js": {
+      "mean_line_surprisal": 1.70602,
+      "top_decile_line_surprisal": 3.38037,
+      "token_cross_entropy": 1.60169,
+      "n_lines": 333,
+      "n_tokens": 2184
+    },
+    "lib/context.js": {
+      "mean_line_surprisal": 1.75623,
+      "top_decile_line_surprisal": 3.18564,
+      "token_cross_entropy": 1.75494,
+      "n_lines": 86,
+      "n_tokens": 392
+    },
+    "lib/decorate.js": {
+      "mean_line_surprisal": 1.68378,
+      "top_decile_line_surprisal": 3.54108,
+      "token_cross_entropy": 1.54847,
+      "n_lines": 127,
+      "n_tokens": 788
+    },
+    "lib/error-handler.js": {
+      "mean_line_surprisal": 1.81646,
+      "top_decile_line_surprisal": 3.9045,
+      "token_cross_entropy": 1.69346,
+      "n_lines": 151,
+      "n_tokens": 937
+    },
+    "lib/error-serializer.js": {
+      "mean_line_surprisal": 1.14568,
+      "top_decile_line_surprisal": 2.55421,
+      "token_cross_entropy": 1.08856,
+      "n_lines": 91,
+      "n_tokens": 588
+    },
+    "lib/errors.js": {
+      "mean_line_surprisal": 0.98218,
+      "top_decile_line_surprisal": 2.54645,
+      "token_cross_entropy": 0.9954,
+      "n_lines": 444,
+      "n_tokens": 1369
+    },
+    "lib/four-oh-four.js": {
+      "mean_line_surprisal": 1.75868,
+      "top_decile_line_surprisal": 3.67119,
+      "token_cross_entropy": 1.59459,
+      "n_lines": 144,
+      "n_tokens": 1043
+    },
+    "lib/handle-request.js": {
+      "mean_line_surprisal": 1.65259,
+      "top_decile_line_surprisal": 3.7584,
+      "token_cross_entropy": 1.56491,
+      "n_lines": 150,
+      "n_tokens": 833
+    },
+    "lib/head-route.js": {
+      "mean_line_surprisal": 1.71776,
+      "top_decile_line_surprisal": 4.02789,
+      "token_cross_entropy": 1.63929,
+      "n_lines": 35,
+      "n_tokens": 219
+    },
+    "lib/hooks.js": {
+      "mean_line_surprisal": 1.44806,
+      "top_decile_line_surprisal": 3.34952,
+      "token_cross_entropy": 1.40762,
+      "n_lines": 359,
+      "n_tokens": 1850
+    },
+    "lib/initial-config-validation.js": {
+      "mean_line_surprisal": 2.02645,
+      "top_decile_line_surprisal": 4.78384,
+      "token_cross_entropy": 1.93552,
+      "n_lines": 27,
+      "n_tokens": 206
+    },
+    "lib/logger-factory.js": {
+      "mean_line_surprisal": 1.94343,
+      "top_decile_line_surprisal": 3.94952,
+      "token_cross_entropy": 1.77917,
+      "n_lines": 85,
+      "n_tokens": 552
+    },
+    "lib/logger-pino.js": {
+      "mean_line_surprisal": 1.83486,
+      "top_decile_line_surprisal": 3.07092,
+      "token_cross_entropy": 1.78952,
+      "n_lines": 52,
+      "n_tokens": 281
+    },
+    "lib/noop-set.js": {
+      "mean_line_surprisal": 2.05554,
+      "top_decile_line_surprisal": 3.44205,
+      "token_cross_entropy": 2.04265,
+      "n_lines": 9,
+      "n_tokens": 48
+    },
+    "lib/plugin-override.js": {
+      "mean_line_surprisal": 1.65099,
+      "top_decile_line_surprisal": 3.32664,
+      "token_cross_entropy": 1.6216,
+      "n_lines": 65,
+      "n_tokens": 510
+    },
+    "lib/plugin-utils.js": {
+      "mean_line_surprisal": 1.75378,
+      "top_decile_line_surprisal": 4.0024,
+      "token_cross_entropy": 1.63164,
+      "n_lines": 128,
+      "n_tokens": 828
+    },
+    "lib/promise.js": {
+      "mean_line_surprisal": 1.73068,
+      "top_decile_line_surprisal": 4.00355,
+      "token_cross_entropy": 1.77705,
+      "n_lines": 18,
+      "n_tokens": 92
+    },
+    "lib/reply.js": {
+      "mean_line_surprisal": 1.73654,
+      "top_decile_line_surprisal": 3.72538,
+      "token_cross_entropy": 1.65244,
+      "n_lines": 740,
+      "n_tokens": 4551
+    },
+    "lib/req-id-gen-factory.js": {
+      "mean_line_surprisal": 1.86729,
+      "top_decile_line_surprisal": 3.45642,
+      "token_cross_entropy": 1.90345,
+      "n_lines": 28,
+      "n_tokens": 130
+    },
+    "lib/request.js": {
+      "mean_line_surprisal": 1.6907,
+      "top_decile_line_surprisal": 3.56402,
+      "token_cross_entropy": 1.59454,
+      "n_lines": 309,
+      "n_tokens": 1754
+    },
+    "lib/route.js": {
+      "mean_line_surprisal": 1.76604,
+      "top_decile_line_surprisal": 3.70009,
+      "token_cross_entropy": 1.70307,
+      "n_lines": 501,
+      "n_tokens": 3230
+    },
+    "lib/schema-controller.js": {
+      "mean_line_surprisal": 1.63861,
+      "top_decile_line_surprisal": 3.21436,
+      "token_cross_entropy": 1.59888,
+      "n_lines": 99,
+      "n_tokens": 620
+    },
+    "lib/schemas.js": {
+      "mean_line_surprisal": 1.76557,
+      "top_decile_line_surprisal": 4.2975,
+      "token_cross_entropy": 1.56946,
+      "n_lines": 153,
+      "n_tokens": 989
+    },
+    "lib/server.js": {
+      "mean_line_surprisal": 1.66658,
+      "top_decile_line_surprisal": 3.40725,
+      "token_cross_entropy": 1.61066,
+      "n_lines": 325,
+      "n_tokens": 2180
+    },
+    "lib/symbols.js": {
+      "mean_line_surprisal": 1.31542,
+      "top_decile_line_surprisal": 2.50092,
+      "token_cross_entropy": 1.23807,
+      "n_lines": 60,
+      "n_tokens": 516
+    },
+    "lib/validation.js": {
+      "mean_line_surprisal": 1.62839,
+      "top_decile_line_surprisal": 3.18183,
+      "token_cross_entropy": 1.59181,
+      "n_lines": 234,
+      "n_tokens": 1635
+    },
+    "lib/warnings.js": {
+      "mean_line_surprisal": 1.05288,
+      "top_decile_line_surprisal": 2.76458,
+      "token_cross_entropy": 1.0588,
+      "n_lines": 39,
+      "n_tokens": 174
+    },
+    "lib/wrap-thenable.js": {
+      "mean_line_surprisal": 1.83464,
+      "top_decile_line_surprisal": 4.23843,
+      "token_cross_entropy": 1.56813,
+      "n_lines": 60,
+      "n_tokens": 297
+    }
+  },
+  "functions": [
+    {
+      "function_id": "lib/config-validator.js::validate10:10",
+      "file_path": "lib/config-validator.js",
+      "name": "validate10",
+      "start_line": 10,
+      "end_line": 1268,
+      "nloc": 1259,
+      "mean_line_surprisal": 1.32733,
+      "max_line_surprisal": 4.03751
+    },
+    {
+      "function_id": "lib/content-type-parser.js::validateRegExp:382",
+      "file_path": "lib/content-type-parser.js",
+      "name": "validateRegExp",
+      "start_line": 382,
+      "end_line": 389,
+      "nloc": 8,
+      "mean_line_surprisal": 1.73986,
+      "max_line_surprisal": 2.38473
+    },
+    {
+      "function_id": "lib/content-type-parser.js::removeAllContentTypeParsers:374",
+      "file_path": "lib/content-type-parser.js",
+      "name": "removeAllContentTypeParsers",
+      "start_line": 374,
+      "end_line": 380,
+      "nloc": 6,
+      "mean_line_surprisal": 1.70605,
+      "max_line_surprisal": 3.11714
+    },
+    {
+      "function_id": "lib/content-type-parser.js::removeContentTypeParser:360",
+      "file_path": "lib/content-type-parser.js",
+      "name": "removeContentTypeParser",
+      "start_line": 360,
+      "end_line": 372,
+      "nloc": 12,
+      "mean_line_surprisal": 1.88691,
+      "max_line_surprisal": 3.36736
+    },
+    {
+      "function_id": "lib/content-type-parser.js::hasContentTypeParser:356",
+      "file_path": "lib/content-type-parser.js",
+      "name": "hasContentTypeParser",
+      "start_line": 356,
+      "end_line": 358,
+      "nloc": 3,
+      "mean_line_surprisal": 2.01778,
+      "max_line_surprisal": 2.49572
+    },
+    {
+      "function_id": "lib/content-type-parser.js::addContentTypeParser:334",
+      "file_path": "lib/content-type-parser.js",
+      "name": "addContentTypeParser",
+      "start_line": 334,
+      "end_line": 354,
+      "nloc": 17,
+      "mean_line_surprisal": 2.05902,
+      "max_line_surprisal": 3.66944
+    },
+    {
+      "function_id": "lib/content-type-parser.js::buildContentTypeParser:325",
+      "file_path": "lib/content-type-parser.js",
+      "name": "buildContentTypeParser",
+      "start_line": 325,
+      "end_line": 332,
+      "nloc": 8,
+      "mean_line_surprisal": 1.9566,
+      "max_line_surprisal": 4.50277
+    },
+    {
+      "function_id": "lib/content-type-parser.js::Parser:318",
+      "file_path": "lib/content-type-parser.js",
+      "name": "Parser",
+      "start_line": 318,
+      "end_line": 323,
+      "nloc": 6,
+      "mean_line_surprisal": 1.58361,
+      "max_line_surprisal": 2.51563
+    },
+    {
+      "function_id": "lib/content-type-parser.js::defaultPlainTextParser:314",
+      "file_path": "lib/content-type-parser.js",
+      "name": "defaultPlainTextParser",
+      "start_line": 314,
+      "end_line": 316,
+      "nloc": 3,
+      "mean_line_surprisal": 1.1483,
+      "max_line_surprisal": 1.54335
+    },
+    {
+      "function_id": "lib/content-type-parser.js::getDefaultJsonParser:296",
+      "file_path": "lib/content-type-parser.js",
+      "name": "getDefaultJsonParser",
+      "start_line": 296,
+      "end_line": 312,
+      "nloc": 15,
+      "mean_line_surprisal": 1.79557,
+      "max_line_surprisal": 3.8843
+    },
+    {
+      "function_id": "lib/content-type-parser.js::rawBody:223",
+      "file_path": "lib/content-type-parser.js",
+      "name": "rawBody",
+      "start_line": 223,
+      "end_line": 294,
+      "nloc": 61,
+      "mean_line_surprisal": 1.57192,
+      "max_line_surprisal": 4.20621
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:175",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 175,
+      "end_line": 221,
+      "nloc": 41,
+      "mean_line_surprisal": 1.90556,
+      "max_line_surprisal": 5.53723
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:153",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 153,
+      "end_line": 173,
+      "nloc": 17,
+      "mean_line_surprisal": 1.8997,
+      "max_line_surprisal": 4.8496
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:146",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 146,
+      "end_line": 151,
+      "nloc": 6,
+      "mean_line_surprisal": 1.28009,
+      "max_line_surprisal": 1.65554
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:110",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 110,
+      "end_line": 144,
+      "nloc": 32,
+      "mean_line_surprisal": 1.6065,
+      "max_line_surprisal": 3.59932
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:99",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 99,
+      "end_line": 108,
+      "nloc": 9,
+      "mean_line_surprisal": 1.67225,
+      "max_line_surprisal": 3.26114
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:88",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 88,
+      "end_line": 97,
+      "nloc": 9,
+      "mean_line_surprisal": 1.6863,
+      "max_line_surprisal": 2.70795
+    },
+    {
+      "function_id": "lib/content-type-parser.js::<anonymous>:43",
+      "file_path": "lib/content-type-parser.js",
+      "name": "<anonymous>",
+      "start_line": 43,
+      "end_line": 86,
+      "nloc": 38,
+      "mean_line_surprisal": 1.84697,
+      "max_line_surprisal": 2.97936
+    },
+    {
+      "function_id": "lib/content-type-parser.js::ContentTypeParser:32",
+      "file_path": "lib/content-type-parser.js",
+      "name": "ContentTypeParser",
+      "start_line": 32,
+      "end_line": 41,
+      "nloc": 10,
+      "mean_line_surprisal": 1.77962,
+      "max_line_surprisal": 2.78735
+    },
+    {
+      "function_id": "lib/context.js::defaultSchemaErrorFormatter:84",
+      "file_path": "lib/context.js",
+      "name": "defaultSchemaErrorFormatter",
+      "start_line": 84,
+      "end_line": 93,
+      "nloc": 9,
+      "mean_line_surprisal": 1.75004,
+      "max_line_surprisal": 2.47633
+    },
+    {
+      "function_id": "lib/context.js::Context:22",
+      "file_path": "lib/context.js",
+      "name": "Context",
+      "start_line": 22,
+      "end_line": 82,
+      "nloc": 40,
+      "mean_line_surprisal": 1.75481,
+      "max_line_surprisal": 4.474
+    },
+    {
+      "function_id": "lib/decorate.js::assertNotStarted:136",
+      "file_path": "lib/decorate.js",
+      "name": "assertNotStarted",
+      "start_line": 136,
+      "end_line": 140,
+      "nloc": 5,
+      "mean_line_surprisal": 1.8736,
+      "max_line_surprisal": 2.90051
+    },
+    {
+      "function_id": "lib/decorate.js::decorateRequest:129",
+      "file_path": "lib/decorate.js",
+      "name": "decorateRequest",
+      "start_line": 129,
+      "end_line": 134,
+      "nloc": 6,
+      "mean_line_surprisal": 0.88941,
+      "max_line_surprisal": 1.28577
+    },
+    {
+      "function_id": "lib/decorate.js::decorateReply:122",
+      "file_path": "lib/decorate.js",
+      "name": "decorateReply",
+      "start_line": 122,
+      "end_line": 127,
+      "nloc": 6,
+      "mean_line_surprisal": 1.10138,
+      "max_line_surprisal": 1.45847
+    },
+    {
+      "function_id": "lib/decorate.js::checkDependencies:106",
+      "file_path": "lib/decorate.js",
+      "name": "checkDependencies",
+      "start_line": 106,
+      "end_line": 120,
+      "nloc": 13,
+      "mean_line_surprisal": 2.2735,
+      "max_line_surprisal": 4.22363
+    },
+    {
+      "function_id": "lib/decorate.js::checkReplyExistence:101",
+      "file_path": "lib/decorate.js",
+      "name": "checkReplyExistence",
+      "start_line": 101,
+      "end_line": 104,
+      "nloc": 4,
+      "mean_line_surprisal": 1.75873,
+      "max_line_surprisal": 2.44028
+    },
+    {
+      "function_id": "lib/decorate.js::checkRequestExistence:96",
+      "file_path": "lib/decorate.js",
+      "name": "checkRequestExistence",
+      "start_line": 96,
+      "end_line": 99,
+      "nloc": 4,
+      "mean_line_surprisal": 1.7696,
+      "max_line_surprisal": 2.59312
+    },
+    {
+      "function_id": "lib/decorate.js::hasKey:89",
+      "file_path": "lib/decorate.js",
+      "name": "hasKey",
+      "start_line": 89,
+      "end_line": 94,
+      "nloc": 6,
+      "mean_line_surprisal": 1.82266,
+      "max_line_surprisal": 3.46562
+    },
+    {
+      "function_id": "lib/decorate.js::checkExistence:81",
+      "file_path": "lib/decorate.js",
+      "name": "checkExistence",
+      "start_line": 81,
+      "end_line": 87,
+      "nloc": 6,
+      "mean_line_surprisal": 2.00283,
+      "max_line_surprisal": 2.96021
+    },
+    {
+      "function_id": "lib/decorate.js::decorateFastify:75",
+      "file_path": "lib/decorate.js",
+      "name": "decorateFastify",
+      "start_line": 75,
+      "end_line": 79,
+      "nloc": 5,
+      "mean_line_surprisal": 1.3167,
+      "max_line_surprisal": 1.63042
+    },
+    {
+      "function_id": "lib/decorate.js::checkReferenceType:69",
+      "file_path": "lib/decorate.js",
+      "name": "checkReferenceType",
+      "start_line": 69,
+      "end_line": 73,
+      "nloc": 5,
+      "mean_line_surprisal": 1.74837,
+      "max_line_surprisal": 2.33487
+    },
+    {
+      "function_id": "lib/decorate.js::decorateConstructor:48",
+      "file_path": "lib/decorate.js",
+      "name": "decorateConstructor",
+      "start_line": 48,
+      "end_line": 67,
+      "nloc": 18,
+      "mean_line_surprisal": 1.3851,
+      "max_line_surprisal": 3.34421
+    },
+    {
+      "function_id": "lib/decorate.js::getInstanceDecorator:36",
+      "file_path": "lib/decorate.js",
+      "name": "getInstanceDecorator",
+      "start_line": 36,
+      "end_line": 46,
+      "nloc": 9,
+      "mean_line_surprisal": 2.23873,
+      "max_line_surprisal": 4.12494
+    },
+    {
+      "function_id": "lib/decorate.js::decorate:19",
+      "file_path": "lib/decorate.js",
+      "name": "decorate",
+      "start_line": 19,
+      "end_line": 34,
+      "nloc": 14,
+      "mean_line_surprisal": 1.833,
+      "max_line_surprisal": 2.58186
+    },
+    {
+      "function_id": "lib/error-handler.js::setErrorHeaders:155",
+      "file_path": "lib/error-handler.js",
+      "name": "setErrorHeaders",
+      "start_line": 155,
+      "end_line": 171,
+      "nloc": 17,
+      "mean_line_surprisal": 1.8398,
+      "max_line_surprisal": 3.05351
+    },
+    {
+      "function_id": "lib/error-handler.js::buildErrorHandler:145",
+      "file_path": "lib/error-handler.js",
+      "name": "buildErrorHandler",
+      "start_line": 145,
+      "end_line": 153,
+      "nloc": 8,
+      "mean_line_surprisal": 1.84617,
+      "max_line_surprisal": 4.98975
+    },
+    {
+      "function_id": "lib/error-handler.js::fallbackErrorHandler:106",
+      "file_path": "lib/error-handler.js",
+      "name": "fallbackErrorHandler",
+      "start_line": 106,
+      "end_line": 143,
+      "nloc": 35,
+      "mean_line_surprisal": 1.94767,
+      "max_line_surprisal": 5.75463
+    },
+    {
+      "function_id": "lib/error-handler.js::defaultErrorHandler:82",
+      "file_path": "lib/error-handler.js",
+      "name": "defaultErrorHandler",
+      "start_line": 82,
+      "end_line": 104,
+      "nloc": 23,
+      "mean_line_surprisal": 1.27324,
+      "max_line_surprisal": 2.8326
+    },
+    {
+      "function_id": "lib/error-handler.js::handleError:30",
+      "file_path": "lib/error-handler.js",
+      "name": "handleError",
+      "start_line": 30,
+      "end_line": 80,
+      "nloc": 45,
+      "mean_line_surprisal": 1.91221,
+      "max_line_surprisal": 4.45888
+    },
+    {
+      "function_id": "lib/error-handler.js::toJSON:25",
+      "file_path": "lib/error-handler.js",
+      "name": "toJSON",
+      "start_line": 25,
+      "end_line": 27,
+      "nloc": 3,
+      "mean_line_surprisal": 3.26072,
+      "max_line_surprisal": 6.45421
+    },
+    {
+      "function_id": "lib/error-serializer.js::anonymous:13",
+      "file_path": "lib/error-serializer.js",
+      "name": "anonymous",
+      "start_line": 13,
+      "end_line": 119,
+      "nloc": 86,
+      "mean_line_surprisal": 1.1267,
+      "max_line_surprisal": 3.12795
+    },
+    {
+      "function_id": "lib/errors.js::appendStackTrace:490",
+      "file_path": "lib/errors.js",
+      "name": "appendStackTrace",
+      "start_line": 490,
+      "end_line": 494,
+      "nloc": 4,
+      "mean_line_surprisal": 1.38562,
+      "max_line_surprisal": 2.18328
+    },
+    {
+      "function_id": "lib/four-oh-four.js::fourOhFour:31",
+      "file_path": "lib/four-oh-four.js",
+      "name": "fourOhFour",
+      "start_line": 31,
+      "end_line": 187,
+      "nloc": 133,
+      "mean_line_surprisal": 1.77665,
+      "max_line_surprisal": 4.54229
+    },
+    {
+      "function_id": "lib/handle-request.js::preHandlerCallbackInner:140",
+      "file_path": "lib/handle-request.js",
+      "name": "preHandlerCallbackInner",
+      "start_line": 140,
+      "end_line": 179,
+      "nloc": 35,
+      "mean_line_surprisal": 1.51133,
+      "max_line_surprisal": 4.18326
+    },
+    {
+      "function_id": "lib/handle-request.js::preHandlerCallback:119",
+      "file_path": "lib/handle-request.js",
+      "name": "preHandlerCallback",
+      "start_line": 119,
+      "end_line": 138,
+      "nloc": 18,
+      "mean_line_surprisal": 1.70178,
+      "max_line_surprisal": 2.94638
+    },
+    {
+      "function_id": "lib/handle-request.js::validationCompleted:96",
+      "file_path": "lib/handle-request.js",
+      "name": "validationCompleted",
+      "start_line": 96,
+      "end_line": 117,
+      "nloc": 20,
+      "mean_line_surprisal": 1.81136,
+      "max_line_surprisal": 6.30203
+    },
+    {
+      "function_id": "lib/handle-request.js::preValidationCallback:76",
+      "file_path": "lib/handle-request.js",
+      "name": "preValidationCallback",
+      "start_line": 76,
+      "end_line": 94,
+      "nloc": 16,
+      "mean_line_surprisal": 1.40789,
+      "max_line_surprisal": 2.27306
+    },
+    {
+      "function_id": "lib/handle-request.js::handler:59",
+      "file_path": "lib/handle-request.js",
+      "name": "handler",
+      "start_line": 59,
+      "end_line": 74,
+      "nloc": 16,
+      "mean_line_surprisal": 2.03247,
+      "max_line_surprisal": 6.3029
+    },
+    {
+      "function_id": "lib/handle-request.js::handleRequest:16",
+      "file_path": "lib/handle-request.js",
+      "name": "handleRequest",
+      "start_line": 16,
+      "end_line": 57,
+      "nloc": 34,
+      "mean_line_surprisal": 1.61127,
+      "max_line_surprisal": 3.22311
+    },
+    {
+      "function_id": "lib/head-route.js::parseHeadOnSendHandlers:36",
+      "file_path": "lib/head-route.js",
+      "name": "parseHeadOnSendHandlers",
+      "start_line": 36,
+      "end_line": 41,
+      "nloc": 6,
+      "mean_line_surprisal": 1.76896,
+      "max_line_surprisal": 2.46966
+    },
+    {
+      "function_id": "lib/head-route.js::headRouteOnSendHandler:2",
+      "file_path": "lib/head-route.js",
+      "name": "headRouteOnSendHandler",
+      "start_line": 2,
+      "end_line": 34,
+      "nloc": 28,
+      "mean_line_surprisal": 1.65643,
+      "max_line_surprisal": 4.17622
+    },
+    {
+      "function_id": "lib/hooks.js::hookIterator:406",
+      "file_path": "lib/hooks.js",
+      "name": "hookIterator",
+      "start_line": 406,
+      "end_line": 409,
+      "nloc": 4,
+      "mean_line_surprisal": 1.20439,
+      "max_line_surprisal": 1.74807
+    },
+    {
+      "function_id": "lib/hooks.js::onRequestAbortHookRunner:370",
+      "file_path": "lib/hooks.js",
+      "name": "onRequestAbortHookRunner",
+      "start_line": 370,
+      "end_line": 404,
+      "nloc": 29,
+      "mean_line_surprisal": 0.9378,
+      "max_line_surprisal": 3.07841
+    },
+    {
+      "function_id": "lib/hooks.js::preParsingHookRunner:325",
+      "file_path": "lib/hooks.js",
+      "name": "preParsingHookRunner",
+      "start_line": 325,
+      "end_line": 368,
+      "nloc": 35,
+      "mean_line_surprisal": 1.01363,
+      "max_line_surprisal": 3.40965
+    },
+    {
+      "function_id": "lib/hooks.js::onSendHookRunner:278",
+      "file_path": "lib/hooks.js",
+      "name": "onSendHookRunner",
+      "start_line": 278,
+      "end_line": 321,
+      "nloc": 36,
+      "mean_line_surprisal": 1.18132,
+      "max_line_surprisal": 4.51855
+    },
+    {
+      "function_id": "lib/hooks.js::onResponseHookIterator:268",
+      "file_path": "lib/hooks.js",
+      "name": "onResponseHookIterator",
+      "start_line": 268,
+      "end_line": 270,
+      "nloc": 3,
+      "mean_line_surprisal": 1.40795,
+      "max_line_surprisal": 1.77746
+    },
+    {
+      "function_id": "lib/hooks.js::hookRunnerGenerator:230",
+      "file_path": "lib/hooks.js",
+      "name": "hookRunnerGenerator",
+      "start_line": 230,
+      "end_line": 266,
+      "nloc": 31,
+      "mean_line_surprisal": 1.36856,
+      "max_line_surprisal": 2.72856
+    },
+    {
+      "function_id": "lib/hooks.js::onListenHookRunner:183",
+      "file_path": "lib/hooks.js",
+      "name": "onListenHookRunner",
+      "start_line": 183,
+      "end_line": 228,
+      "nloc": 40,
+      "mean_line_surprisal": 1.43217,
+      "max_line_surprisal": 3.144
+    },
+    {
+      "function_id": "lib/hooks.js::hookRunnerApplication:93",
+      "file_path": "lib/hooks.js",
+      "name": "hookRunnerApplication",
+      "start_line": 93,
+      "end_line": 181,
+      "nloc": 76,
+      "mean_line_surprisal": 1.86607,
+      "max_line_surprisal": 3.99754
+    },
+    {
+      "function_id": "lib/hooks.js::buildHooks:73",
+      "file_path": "lib/hooks.js",
+      "name": "buildHooks",
+      "start_line": 73,
+      "end_line": 91,
+      "nloc": 19,
+      "mean_line_surprisal": 1.62939,
+      "max_line_surprisal": 3.4597
+    },
+    {
+      "function_id": "lib/hooks.js::<anonymous>:68",
+      "file_path": "lib/hooks.js",
+      "name": "<anonymous>",
+      "start_line": 68,
+      "end_line": 71,
+      "nloc": 4,
+      "mean_line_surprisal": 2.23696,
+      "max_line_surprisal": 3.76548
+    },
+    {
+      "function_id": "lib/hooks.js::<anonymous>:60",
+      "file_path": "lib/hooks.js",
+      "name": "<anonymous>",
+      "start_line": 60,
+      "end_line": 66,
+      "nloc": 7,
+      "mean_line_surprisal": 1.91556,
+      "max_line_surprisal": 2.48474
+    },
+    {
+      "function_id": "lib/hooks.js::Hooks:40",
+      "file_path": "lib/hooks.js",
+      "name": "Hooks",
+      "start_line": 40,
+      "end_line": 56,
+      "nloc": 17,
+      "mean_line_surprisal": 1.94059,
+      "max_line_surprisal": 5.32091
+    },
+    {
+      "function_id": "lib/initial-config-validation.js::deepFreezeObject:19",
+      "file_path": "lib/initial-config-validation.js",
+      "name": "deepFreezeObject",
+      "start_line": 19,
+      "end_line": 33,
+      "nloc": 11,
+      "mean_line_surprisal": 2.30143,
+      "max_line_surprisal": 7.00503
+    },
+    {
+      "function_id": "lib/initial-config-validation.js::validateInitialConfig:7",
+      "file_path": "lib/initial-config-validation.js",
+      "name": "validateInitialConfig",
+      "start_line": 7,
+      "end_line": 17,
+      "nloc": 9,
+      "mean_line_surprisal": 2.04814,
+      "max_line_surprisal": 2.56266
+    },
+    {
+      "function_id": "lib/logger-factory.js::now:125",
+      "file_path": "lib/logger-factory.js",
+      "name": "now",
+      "start_line": 125,
+      "end_line": 128,
+      "nloc": 4,
+      "mean_line_surprisal": 2.00155,
+      "max_line_surprisal": 2.8045
+    },
+    {
+      "function_id": "lib/logger-factory.js::createLogger:75",
+      "file_path": "lib/logger-factory.js",
+      "name": "createLogger",
+      "start_line": 75,
+      "end_line": 123,
+      "nloc": 43,
+      "mean_line_surprisal": 1.84423,
+      "max_line_surprisal": 3.24795
+    },
+    {
+      "function_id": "lib/logger-factory.js::validateLogger:60",
+      "file_path": "lib/logger-factory.js",
+      "name": "validateLogger",
+      "start_line": 60,
+      "end_line": 73,
+      "nloc": 13,
+      "mean_line_surprisal": 2.65368,
+      "max_line_surprisal": 5.40176
+    },
+    {
+      "function_id": "lib/logger-factory.js::defaultChildLoggerFactory:44",
+      "file_path": "lib/logger-factory.js",
+      "name": "defaultChildLoggerFactory",
+      "start_line": 44,
+      "end_line": 46,
+      "nloc": 3,
+      "mean_line_surprisal": 1.83482,
+      "max_line_surprisal": 2.21976
+    },
+    {
+      "function_id": "lib/logger-factory.js::createChildLogger:22",
+      "file_path": "lib/logger-factory.js",
+      "name": "createChildLogger",
+      "start_line": 22,
+      "end_line": 34,
+      "nloc": 11,
+      "mean_line_surprisal": 1.89097,
+      "max_line_surprisal": 3.66176
+    },
+    {
+      "function_id": "lib/logger-pino.js::asResValue:58",
+      "file_path": "lib/logger-pino.js",
+      "name": "asResValue",
+      "start_line": 58,
+      "end_line": 62,
+      "nloc": 5,
+      "mean_line_surprisal": 2.24867,
+      "max_line_surprisal": 3.0596
+    },
+    {
+      "function_id": "lib/logger-pino.js::asReqValue:47",
+      "file_path": "lib/logger-pino.js",
+      "name": "asReqValue",
+      "start_line": 47,
+      "end_line": 56,
+      "nloc": 10,
+      "mean_line_surprisal": 1.89287,
+      "max_line_surprisal": 2.98266
+    },
+    {
+      "function_id": "lib/logger-pino.js::createPinoLogger:15",
+      "file_path": "lib/logger-pino.js",
+      "name": "createPinoLogger",
+      "start_line": 15,
+      "end_line": 44,
+      "nloc": 27,
+      "mean_line_surprisal": 1.82105,
+      "max_line_surprisal": 3.50085
+    },
+    {
+      "function_id": "lib/noop-set.js::noopSet:3",
+      "file_path": "lib/noop-set.js",
+      "name": "noopSet",
+      "start_line": 3,
+      "end_line": 10,
+      "nloc": 8,
+      "mean_line_surprisal": 2.22753,
+      "max_line_surprisal": 3.44205
+    },
+    {
+      "function_id": "lib/plugin-override.js::buildRoutePrefix:76",
+      "file_path": "lib/plugin-override.js",
+      "name": "buildRoutePrefix",
+      "start_line": 76,
+      "end_line": 90,
+      "nloc": 13,
+      "mean_line_surprisal": 1.85951,
+      "max_line_surprisal": 5.04029
+    },
+    {
+      "function_id": "lib/plugin-override.js::override:28",
+      "file_path": "lib/plugin-override.js",
+      "name": "override",
+      "start_line": 28,
+      "end_line": 74,
+      "nloc": 37,
+      "mean_line_surprisal": 1.73284,
+      "max_line_surprisal": 2.80891
+    },
+    {
+      "function_id": "lib/plugin-utils.js::registerPlugin:147",
+      "file_path": "lib/plugin-utils.js",
+      "name": "registerPlugin",
+      "start_line": 147,
+      "end_line": 154,
+      "nloc": 8,
+      "mean_line_surprisal": 1.79952,
+      "max_line_surprisal": 3.86819
+    },
+    {
+      "function_id": "lib/plugin-utils.js::checkPluginHealthiness:141",
+      "file_path": "lib/plugin-utils.js",
+      "name": "checkPluginHealthiness",
+      "start_line": 141,
+      "end_line": 145,
+      "nloc": 5,
+      "mean_line_surprisal": 1.57166,
+      "max_line_surprisal": 2.15388
+    },
+    {
+      "function_id": "lib/plugin-utils.js::registerPluginName:131",
+      "file_path": "lib/plugin-utils.js",
+      "name": "registerPluginName",
+      "start_line": 131,
+      "end_line": 139,
+      "nloc": 8,
+      "mean_line_surprisal": 1.72598,
+      "max_line_surprisal": 2.99135
+    },
+    {
+      "function_id": "lib/plugin-utils.js::checkVersion:109",
+      "file_path": "lib/plugin-utils.js",
+      "name": "checkVersion",
+      "start_line": 109,
+      "end_line": 129,
+      "nloc": 19,
+      "mean_line_surprisal": 1.85183,
+      "max_line_surprisal": 4.24094
+    },
+    {
+      "function_id": "lib/plugin-utils.js::_checkDecorators:98",
+      "file_path": "lib/plugin-utils.js",
+      "name": "_checkDecorators",
+      "start_line": 98,
+      "end_line": 107,
+      "nloc": 9,
+      "mean_line_surprisal": 1.84791,
+      "max_line_surprisal": 3.59451
+    },
+    {
+      "function_id": "lib/plugin-utils.js::checkDecorators:80",
+      "file_path": "lib/plugin-utils.js",
+      "name": "checkDecorators",
+      "start_line": 80,
+      "end_line": 90,
+      "nloc": 9,
+      "mean_line_surprisal": 1.71977,
+      "max_line_surprisal": 3.25101
+    },
+    {
+      "function_id": "lib/plugin-utils.js::checkDependencies:64",
+      "file_path": "lib/plugin-utils.js",
+      "name": "checkDependencies",
+      "start_line": 64,
+      "end_line": 78,
+      "nloc": 13,
+      "mean_line_surprisal": 1.83014,
+      "max_line_surprisal": 2.59293
+    },
+    {
+      "function_id": "lib/plugin-utils.js::shouldSkipOverride:60",
+      "file_path": "lib/plugin-utils.js",
+      "name": "shouldSkipOverride",
+      "start_line": 60,
+      "end_line": 62,
+      "nloc": 3,
+      "mean_line_surprisal": 1.04133,
+      "max_line_surprisal": 1.31694
+    },
+    {
+      "function_id": "lib/plugin-utils.js::getDisplayName:56",
+      "file_path": "lib/plugin-utils.js",
+      "name": "getDisplayName",
+      "start_line": 56,
+      "end_line": 58,
+      "nloc": 3,
+      "mean_line_surprisal": 1.28781,
+      "max_line_surprisal": 2.20505
+    },
+    {
+      "function_id": "lib/plugin-utils.js::getFuncPreview:51",
+      "file_path": "lib/plugin-utils.js",
+      "name": "getFuncPreview",
+      "start_line": 51,
+      "end_line": 54,
+      "nloc": 4,
+      "mean_line_surprisal": 2.51193,
+      "max_line_surprisal": 4.44465
+    },
+    {
+      "function_id": "lib/plugin-utils.js::getPluginName:22",
+      "file_path": "lib/plugin-utils.js",
+      "name": "getPluginName",
+      "start_line": 22,
+      "end_line": 49,
+      "nloc": 24,
+      "mean_line_surprisal": 2.03457,
+      "max_line_surprisal": 4.75404
+    },
+    {
+      "function_id": "lib/plugin-utils.js::getMeta:18",
+      "file_path": "lib/plugin-utils.js",
+      "name": "getMeta",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 1.49839,
+      "max_line_surprisal": 1.74448
+    },
+    {
+      "function_id": "lib/promise.js::withResolvers:5",
+      "file_path": "lib/promise.js",
+      "name": "withResolvers",
+      "start_line": 5,
+      "end_line": 12,
+      "nloc": 8,
+      "mean_line_surprisal": 2.01509,
+      "max_line_surprisal": 4.00355
+    },
+    {
+      "function_id": "lib/reply.js::noop:940",
+      "file_path": "lib/reply.js",
+      "name": "noop",
+      "start_line": 940,
+      "end_line": 940,
+      "nloc": 1,
+      "mean_line_surprisal": 2.57044,
+      "max_line_surprisal": 2.57044
+    },
+    {
+      "function_id": "lib/reply.js::serialize:932",
+      "file_path": "lib/reply.js",
+      "name": "serialize",
+      "start_line": 932,
+      "end_line": 938,
+      "nloc": 7,
+      "mean_line_surprisal": 1.86272,
+      "max_line_surprisal": 2.5948
+    },
+    {
+      "function_id": "lib/reply.js::notFound:899",
+      "file_path": "lib/reply.js",
+      "name": "notFound",
+      "start_line": 899,
+      "end_line": 919,
+      "nloc": 19,
+      "mean_line_surprisal": 1.80791,
+      "max_line_surprisal": 5.7954
+    },
+    {
+      "function_id": "lib/reply.js::buildReply:869",
+      "file_path": "lib/reply.js",
+      "name": "buildReply",
+      "start_line": 869,
+      "end_line": 897,
+      "nloc": 26,
+      "mean_line_surprisal": 1.35923,
+      "max_line_surprisal": 2.58656
+    },
+    {
+      "function_id": "lib/reply.js::onResponseCallback:847",
+      "file_path": "lib/reply.js",
+      "name": "onResponseCallback",
+      "start_line": 847,
+      "end_line": 867,
+      "nloc": 18,
+      "mean_line_surprisal": 2.16839,
+      "max_line_surprisal": 6.54198
+    },
+    {
+      "function_id": "lib/reply.js::setupResponseListeners:821",
+      "file_path": "lib/reply.js",
+      "name": "setupResponseListeners",
+      "start_line": 821,
+      "end_line": 845,
+      "nloc": 21,
+      "mean_line_surprisal": 1.94746,
+      "max_line_surprisal": 6.30446
+    },
+    {
+      "function_id": "lib/reply.js::onErrorHook:806",
+      "file_path": "lib/reply.js",
+      "name": "onErrorHook",
+      "start_line": 806,
+      "end_line": 819,
+      "nloc": 14,
+      "mean_line_surprisal": 1.90195,
+      "max_line_surprisal": 4.37148
+    },
+    {
+      "function_id": "lib/reply.js::sendStreamTrailer:801",
+      "file_path": "lib/reply.js",
+      "name": "sendStreamTrailer",
+      "start_line": 801,
+      "end_line": 804,
+      "nloc": 4,
+      "mean_line_surprisal": 1.36265,
+      "max_line_surprisal": 1.79252
+    },
+    {
+      "function_id": "lib/reply.js::sendTrailer:747",
+      "file_path": "lib/reply.js",
+      "name": "sendTrailer",
+      "start_line": 747,
+      "end_line": 799,
+      "nloc": 47,
+      "mean_line_surprisal": 1.66191,
+      "max_line_surprisal": 2.76875
+    },
+    {
+      "function_id": "lib/reply.js::sendStream:692",
+      "file_path": "lib/reply.js",
+      "name": "sendStream",
+      "start_line": 692,
+      "end_line": 745,
+      "nloc": 50,
+      "mean_line_surprisal": 1.80367,
+      "max_line_surprisal": 3.60209
+    },
+    {
+      "function_id": "lib/reply.js::sendWebStream:684",
+      "file_path": "lib/reply.js",
+      "name": "sendWebStream",
+      "start_line": 684,
+      "end_line": 690,
+      "nloc": 7,
+      "mean_line_surprisal": 1.67427,
+      "max_line_surprisal": 2.08747
+    },
+    {
+      "function_id": "lib/reply.js::logStreamError:674",
+      "file_path": "lib/reply.js",
+      "name": "logStreamError",
+      "start_line": 674,
+      "end_line": 682,
+      "nloc": 9,
+      "mean_line_surprisal": 2.16291,
+      "max_line_surprisal": 3.88086
+    },
+    {
+      "function_id": "lib/reply.js::onSendEnd:564",
+      "file_path": "lib/reply.js",
+      "name": "onSendEnd",
+      "start_line": 564,
+      "end_line": 672,
+      "nloc": 97,
+      "mean_line_surprisal": 1.8428,
+      "max_line_surprisal": 5.87646
+    },
+    {
+      "function_id": "lib/reply.js::safeWriteHead:552",
+      "file_path": "lib/reply.js",
+      "name": "safeWriteHead",
+      "start_line": 552,
+      "end_line": 562,
+      "nloc": 11,
+      "mean_line_surprisal": 1.74429,
+      "max_line_surprisal": 2.72084
+    },
+    {
+      "function_id": "lib/reply.js::wrapOnSendEnd:544",
+      "file_path": "lib/reply.js",
+      "name": "wrapOnSendEnd",
+      "start_line": 544,
+      "end_line": 550,
+      "nloc": 7,
+      "mean_line_surprisal": 1.44816,
+      "max_line_surprisal": 1.86419
+    },
+    {
+      "function_id": "lib/reply.js::onSendHook:530",
+      "file_path": "lib/reply.js",
+      "name": "onSendHook",
+      "start_line": 530,
+      "end_line": 542,
+      "nloc": 13,
+      "mean_line_surprisal": 1.80419,
+      "max_line_surprisal": 4.49193
+    },
+    {
+      "function_id": "lib/reply.js::wrapSerializationError:526",
+      "file_path": "lib/reply.js",
+      "name": "wrapSerializationError",
+      "start_line": 526,
+      "end_line": 528,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23972,
+      "max_line_surprisal": 2.43699
+    },
+    {
+      "function_id": "lib/reply.js::preSerializationHookEnd:503",
+      "file_path": "lib/reply.js",
+      "name": "preSerializationHookEnd",
+      "start_line": 503,
+      "end_line": 524,
+      "nloc": 20,
+      "mean_line_surprisal": 1.82127,
+      "max_line_surprisal": 2.92804
+    },
+    {
+      "function_id": "lib/reply.js::preSerializationHook:489",
+      "file_path": "lib/reply.js",
+      "name": "preSerializationHook",
+      "start_line": 489,
+      "end_line": 501,
+      "nloc": 13,
+      "mean_line_surprisal": 2.06399,
+      "max_line_surprisal": 4.49191
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:476",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 476,
+      "end_line": 487,
+      "nloc": 10,
+      "mean_line_surprisal": 2.17048,
+      "max_line_surprisal": 3.98266
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:455",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 455,
+      "end_line": 474,
+      "nloc": 19,
+      "mean_line_surprisal": 2.22382,
+      "max_line_surprisal": 4.35728
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:446",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 446,
+      "end_line": 449,
+      "nloc": 4,
+      "mean_line_surprisal": 1.68284,
+      "max_line_surprisal": 2.6152
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:438",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 438,
+      "end_line": 444,
+      "nloc": 6,
+      "mean_line_surprisal": 1.88808,
+      "max_line_surprisal": 2.40775
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:433",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 433,
+      "end_line": 436,
+      "nloc": 4,
+      "mean_line_surprisal": 1.13479,
+      "max_line_surprisal": 1.74662
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:428",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 428,
+      "end_line": 431,
+      "nloc": 4,
+      "mean_line_surprisal": 1.29609,
+      "max_line_surprisal": 2.27483
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:416",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 416,
+      "end_line": 426,
+      "nloc": 11,
+      "mean_line_surprisal": 1.59728,
+      "max_line_surprisal": 2.49724
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:382",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 382,
+      "end_line": 414,
+      "nloc": 29,
+      "mean_line_surprisal": 1.6889,
+      "max_line_surprisal": 5.20008
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:342",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 342,
+      "end_line": 380,
+      "nloc": 33,
+      "mean_line_surprisal": 1.68529,
+      "max_line_surprisal": 3.04451
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:326",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 326,
+      "end_line": 340,
+      "nloc": 13,
+      "mean_line_surprisal": 2.00255,
+      "max_line_surprisal": 5.22504
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:313",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 313,
+      "end_line": 322,
+      "nloc": 9,
+      "mean_line_surprisal": 1.74077,
+      "max_line_surprisal": 3.11093
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:307",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 307,
+      "end_line": 311,
+      "nloc": 5,
+      "mean_line_surprisal": 1.4361,
+      "max_line_surprisal": 2.09983
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:303",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 303,
+      "end_line": 305,
+      "nloc": 3,
+      "mean_line_surprisal": 2.26875,
+      "max_line_surprisal": 3.65438
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:290",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 290,
+      "end_line": 301,
+      "nloc": 12,
+      "mean_line_surprisal": 1.55009,
+      "max_line_surprisal": 2.20449
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:263",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 263,
+      "end_line": 271,
+      "nloc": 8,
+      "mean_line_surprisal": 1.77927,
+      "max_line_surprisal": 2.48714
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:242",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 242,
+      "end_line": 261,
+      "nloc": 17,
+      "mean_line_surprisal": 1.56416,
+      "max_line_surprisal": 2.1018
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:235",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 235,
+      "end_line": 240,
+      "nloc": 6,
+      "mean_line_surprisal": 1.48799,
+      "max_line_surprisal": 2.19701
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:229",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 229,
+      "end_line": 233,
+      "nloc": 4,
+      "mean_line_surprisal": 1.4162,
+      "max_line_surprisal": 1.968
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:222",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 222,
+      "end_line": 227,
+      "nloc": 6,
+      "mean_line_surprisal": 2.41135,
+      "max_line_surprisal": 5.68775
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:216",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 216,
+      "end_line": 220,
+      "nloc": 5,
+      "mean_line_surprisal": 1.75379,
+      "max_line_surprisal": 2.37412
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:128",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 128,
+      "end_line": 214,
+      "nloc": 75,
+      "mean_line_surprisal": 1.45877,
+      "max_line_surprisal": 4.07779
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:123",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 123,
+      "end_line": 126,
+      "nloc": 4,
+      "mean_line_surprisal": 1.90153,
+      "max_line_surprisal": 2.46107
+    },
+    {
+      "function_id": "lib/reply.js::<anonymous>:118",
+      "file_path": "lib/reply.js",
+      "name": "<anonymous>",
+      "start_line": 118,
+      "end_line": 121,
+      "nloc": 4,
+      "mean_line_surprisal": 1.523,
+      "max_line_surprisal": 2.04102
+    },
+    {
+      "function_id": "lib/reply.js::get:112",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 112,
+      "end_line": 114,
+      "nloc": 3,
+      "mean_line_surprisal": 1.02725,
+      "max_line_surprisal": 1.88693
+    },
+    {
+      "function_id": "lib/reply.js::set:107",
+      "file_path": "lib/reply.js",
+      "name": "set",
+      "start_line": 107,
+      "end_line": 109,
+      "nloc": 3,
+      "mean_line_surprisal": 2.02138,
+      "max_line_surprisal": 2.45736
+    },
+    {
+      "function_id": "lib/reply.js::get:104",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 104,
+      "end_line": 106,
+      "nloc": 3,
+      "mean_line_surprisal": 1.55145,
+      "max_line_surprisal": 2.68926
+    },
+    {
+      "function_id": "lib/reply.js::get:98",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 98,
+      "end_line": 101,
+      "nloc": 4,
+      "mean_line_surprisal": 2.0162,
+      "max_line_surprisal": 2.48528
+    },
+    {
+      "function_id": "lib/reply.js::get:92",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 92,
+      "end_line": 94,
+      "nloc": 3,
+      "mean_line_surprisal": 1.00135,
+      "max_line_surprisal": 1.58513
+    },
+    {
+      "function_id": "lib/reply.js::get:84",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 84,
+      "end_line": 89,
+      "nloc": 6,
+      "mean_line_surprisal": 2.3486,
+      "max_line_surprisal": 5.56412
+    },
+    {
+      "function_id": "lib/reply.js::get:79",
+      "file_path": "lib/reply.js",
+      "name": "get",
+      "start_line": 79,
+      "end_line": 81,
+      "nloc": 3,
+      "mean_line_surprisal": 3.21134,
+      "max_line_surprisal": 6.67783
+    },
+    {
+      "function_id": "lib/reply.js::Reply:62",
+      "file_path": "lib/reply.js",
+      "name": "Reply",
+      "start_line": 62,
+      "end_line": 74,
+      "nloc": 13,
+      "mean_line_surprisal": 1.74691,
+      "max_line_surprisal": 2.9507
+    },
+    {
+      "function_id": "lib/req-id-gen-factory.js::buildOptionalHeaderReqId:43",
+      "file_path": "lib/req-id-gen-factory.js",
+      "name": "buildOptionalHeaderReqId",
+      "start_line": 43,
+      "end_line": 47,
+      "nloc": 5,
+      "mean_line_surprisal": 1.77547,
+      "max_line_surprisal": 2.09105
+    },
+    {
+      "function_id": "lib/req-id-gen-factory.js::buildDefaultGenReqId:28",
+      "file_path": "lib/req-id-gen-factory.js",
+      "name": "buildDefaultGenReqId",
+      "start_line": 28,
+      "end_line": 41,
+      "nloc": 13,
+      "mean_line_surprisal": 1.91468,
+      "max_line_surprisal": 3.17167
+    },
+    {
+      "function_id": "lib/req-id-gen-factory.js::getGenReqId:24",
+      "file_path": "lib/req-id-gen-factory.js",
+      "name": "getGenReqId",
+      "start_line": 24,
+      "end_line": 26,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70755,
+      "max_line_surprisal": 1.90603
+    },
+    {
+      "function_id": "lib/req-id-gen-factory.js::reqIdGenFactory:14",
+      "file_path": "lib/req-id-gen-factory.js",
+      "name": "reqIdGenFactory",
+      "start_line": 14,
+      "end_line": 22,
+      "nloc": 7,
+      "mean_line_surprisal": 2.11409,
+      "max_line_surprisal": 3.59893
+    },
+    {
+      "function_id": "lib/request.js::<anonymous>:365",
+      "file_path": "lib/request.js",
+      "name": "<anonymous>",
+      "start_line": 365,
+      "end_line": 369,
+      "nloc": 4,
+      "mean_line_surprisal": 1.6614,
+      "max_line_surprisal": 2.46945
+    },
+    {
+      "function_id": "lib/request.js::<anonymous>:353",
+      "file_path": "lib/request.js",
+      "name": "<anonymous>",
+      "start_line": 353,
+      "end_line": 362,
+      "nloc": 8,
+      "mean_line_surprisal": 1.79192,
+      "max_line_surprisal": 3.37449
+    },
+    {
+      "function_id": "lib/request.js::<anonymous>:321",
+      "file_path": "lib/request.js",
+      "name": "<anonymous>",
+      "start_line": 321,
+      "end_line": 350,
+      "nloc": 25,
+      "mean_line_surprisal": 1.55257,
+      "max_line_surprisal": 2.88299
+    },
+    {
+      "function_id": "lib/request.js::<anonymous>:283",
+      "file_path": "lib/request.js",
+      "name": "<anonymous>",
+      "start_line": 283,
+      "end_line": 318,
+      "nloc": 30,
+      "mean_line_surprisal": 1.64373,
+      "max_line_surprisal": 2.83572
+    },
+    {
+      "function_id": "lib/request.js::<anonymous>:273",
+      "file_path": "lib/request.js",
+      "name": "<anonymous>",
+      "start_line": 273,
+      "end_line": 280,
+      "nloc": 8,
+      "mean_line_surprisal": 1.62011,
+      "max_line_surprisal": 2.51423
+    },
+    {
+      "function_id": "lib/request.js::set:268",
+      "file_path": "lib/request.js",
+      "name": "set",
+      "start_line": 268,
+      "end_line": 270,
+      "nloc": 3,
+      "mean_line_surprisal": 1.85435,
+      "max_line_surprisal": 2.61863
+    },
+    {
+      "function_id": "lib/request.js::get:262",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 262,
+      "end_line": 267,
+      "nloc": 6,
+      "mean_line_surprisal": 1.59615,
+      "max_line_surprisal": 2.39872
+    },
+    {
+      "function_id": "lib/request.js::get:255",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 255,
+      "end_line": 259,
+      "nloc": 5,
+      "mean_line_surprisal": 1.77855,
+      "max_line_surprisal": 5.27874
+    },
+    {
+      "function_id": "lib/request.js::get:238",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 238,
+      "end_line": 252,
+      "nloc": 15,
+      "mean_line_surprisal": 1.81341,
+      "max_line_surprisal": 5.38964
+    },
+    {
+      "function_id": "lib/request.js::get:228",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 228,
+      "end_line": 235,
+      "nloc": 7,
+      "mean_line_surprisal": 1.82642,
+      "max_line_surprisal": 2.94062
+    },
+    {
+      "function_id": "lib/request.js::get:217",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 217,
+      "end_line": 225,
+      "nloc": 9,
+      "mean_line_surprisal": 0.77724,
+      "max_line_surprisal": 1.21546
+    },
+    {
+      "function_id": "lib/request.js::get:210",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 210,
+      "end_line": 214,
+      "nloc": 5,
+      "mean_line_surprisal": 1.05345,
+      "max_line_surprisal": 1.91443
+    },
+    {
+      "function_id": "lib/request.js::get:205",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 205,
+      "end_line": 207,
+      "nloc": 3,
+      "mean_line_surprisal": 1.62686,
+      "max_line_surprisal": 3.00892
+    },
+    {
+      "function_id": "lib/request.js::get:200",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 200,
+      "end_line": 202,
+      "nloc": 3,
+      "mean_line_surprisal": 1.0869,
+      "max_line_surprisal": 1.66647
+    },
+    {
+      "function_id": "lib/request.js::get:177",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 177,
+      "end_line": 197,
+      "nloc": 20,
+      "mean_line_surprisal": 1.7537,
+      "max_line_surprisal": 3.40306
+    },
+    {
+      "function_id": "lib/request.js::get:172",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 172,
+      "end_line": 174,
+      "nloc": 3,
+      "mean_line_surprisal": 1.29708,
+      "max_line_surprisal": 1.92284
+    },
+    {
+      "function_id": "lib/request.js::get:163",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 163,
+      "end_line": 169,
+      "nloc": 7,
+      "mean_line_surprisal": 1.55974,
+      "max_line_surprisal": 2.60627
+    },
+    {
+      "function_id": "lib/request.js::get:158",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 158,
+      "end_line": 160,
+      "nloc": 3,
+      "mean_line_surprisal": 1.12135,
+      "max_line_surprisal": 2.16734
+    },
+    {
+      "function_id": "lib/request.js::get:153",
+      "file_path": "lib/request.js",
+      "name": "get",
+      "start_line": 153,
+      "end_line": 155,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16031,
+      "max_line_surprisal": 2.11631
+    },
+    {
+      "function_id": "lib/request.js::assertsRequestDecoration:145",
+      "file_path": "lib/request.js",
+      "name": "assertsRequestDecoration",
+      "start_line": 145,
+      "end_line": 149,
+      "nloc": 5,
+      "mean_line_surprisal": 2.26481,
+      "max_line_surprisal": 4.29435
+    },
+    {
+      "function_id": "lib/request.js::buildRequestWithTrustProxy:97",
+      "file_path": "lib/request.js",
+      "name": "buildRequestWithTrustProxy",
+      "start_line": 97,
+      "end_line": 143,
+      "nloc": 44,
+      "mean_line_surprisal": 1.88566,
+      "max_line_surprisal": 6.40536
+    },
+    {
+      "function_id": "lib/request.js::getLastEntryInMultiHeaderValue:91",
+      "file_path": "lib/request.js",
+      "name": "getLastEntryInMultiHeaderValue",
+      "start_line": 91,
+      "end_line": 95,
+      "nloc": 5,
+      "mean_line_surprisal": 2.01024,
+      "max_line_surprisal": 3.39756
+    },
+    {
+      "function_id": "lib/request.js::buildRegularRequest:66",
+      "file_path": "lib/request.js",
+      "name": "buildRegularRequest",
+      "start_line": 66,
+      "end_line": 89,
+      "nloc": 22,
+      "mean_line_surprisal": 1.115,
+      "max_line_surprisal": 2.04428
+    },
+    {
+      "function_id": "lib/request.js::buildRequest:58",
+      "file_path": "lib/request.js",
+      "name": "buildRequest",
+      "start_line": 58,
+      "end_line": 64,
+      "nloc": 6,
+      "mean_line_surprisal": 2.18869,
+      "max_line_surprisal": 2.55272
+    },
+    {
+      "function_id": "lib/request.js::getTrustProxyFn:38",
+      "file_path": "lib/request.js",
+      "name": "getTrustProxyFn",
+      "start_line": 38,
+      "end_line": 56,
+      "nloc": 19,
+      "mean_line_surprisal": 1.96146,
+      "max_line_surprisal": 5.25903
+    },
+    {
+      "function_id": "lib/request.js::Request:27",
+      "file_path": "lib/request.js",
+      "name": "Request",
+      "start_line": 27,
+      "end_line": 35,
+      "nloc": 9,
+      "mean_line_surprisal": 1.52495,
+      "max_line_surprisal": 2.50964
+    },
+    {
+      "function_id": "lib/route.js::noop:629",
+      "file_path": "lib/route.js",
+      "name": "noop",
+      "start_line": 629,
+      "end_line": 629,
+      "nloc": 1,
+      "mean_line_surprisal": 2.43078,
+      "max_line_surprisal": 2.43078
+    },
+    {
+      "function_id": "lib/route.js::removeTrackedSocket:625",
+      "file_path": "lib/route.js",
+      "name": "removeTrackedSocket",
+      "start_line": 625,
+      "end_line": 627,
+      "nloc": 3,
+      "mean_line_surprisal": 2.25417,
+      "max_line_surprisal": 3.05965
+    },
+    {
+      "function_id": "lib/route.js::buildRouterOptions:602",
+      "file_path": "lib/route.js",
+      "name": "buildRouterOptions",
+      "start_line": 602,
+      "end_line": 618,
+      "nloc": 13,
+      "mean_line_surprisal": 2.25305,
+      "max_line_surprisal": 5.13351
+    },
+    {
+      "function_id": "lib/route.js::runPreParsing:585",
+      "file_path": "lib/route.js",
+      "name": "runPreParsing",
+      "start_line": 585,
+      "end_line": 600,
+      "nloc": 14,
+      "mean_line_surprisal": 1.78965,
+      "max_line_surprisal": 3.69986
+    },
+    {
+      "function_id": "lib/route.js::validateBodyLimitOption:578",
+      "file_path": "lib/route.js",
+      "name": "validateBodyLimitOption",
+      "start_line": 578,
+      "end_line": 583,
+      "nloc": 6,
+      "mean_line_surprisal": 2.06503,
+      "max_line_surprisal": 2.70131
+    },
+    {
+      "function_id": "lib/route.js::validateSchemaBodyOption:572",
+      "file_path": "lib/route.js",
+      "name": "validateSchemaBodyOption",
+      "start_line": 572,
+      "end_line": 576,
+      "nloc": 5,
+      "mean_line_surprisal": 1.38184,
+      "max_line_surprisal": 2.12313
+    },
+    {
+      "function_id": "lib/route.js::normalizeAndValidateMethod:559",
+      "file_path": "lib/route.js",
+      "name": "normalizeAndValidateMethod",
+      "start_line": 559,
+      "end_line": 570,
+      "nloc": 11,
+      "mean_line_surprisal": 2.07685,
+      "max_line_surprisal": 4.35039
+    },
+    {
+      "function_id": "lib/route.js::handleTimeout:549",
+      "file_path": "lib/route.js",
+      "name": "handleTimeout",
+      "start_line": 549,
+      "end_line": 557,
+      "nloc": 9,
+      "mean_line_surprisal": 2.03247,
+      "max_line_surprisal": 6.30195
+    },
+    {
+      "function_id": "lib/route.js::handleOnRequestAbortHooksErrors:543",
+      "file_path": "lib/route.js",
+      "name": "handleOnRequestAbortHooksErrors",
+      "start_line": 543,
+      "end_line": 547,
+      "nloc": 5,
+      "mean_line_surprisal": 2.21554,
+      "max_line_surprisal": 3.64311
+    },
+    {
+      "function_id": "lib/route.js::buildRouting:71",
+      "file_path": "lib/route.js",
+      "name": "buildRouting",
+      "start_line": 71,
+      "end_line": 541,
+      "nloc": 409,
+      "mean_line_surprisal": 1.8023,
+      "max_line_surprisal": 6.461
+    },
+    {
+      "function_id": "lib/schema-controller.js::setupSerializer:153",
+      "file_path": "lib/schema-controller.js",
+      "name": "setupSerializer",
+      "start_line": 153,
+      "end_line": 160,
+      "nloc": 7,
+      "mean_line_surprisal": 1.25991,
+      "max_line_surprisal": 3.31082
+    },
+    {
+      "function_id": "lib/schema-controller.js::setupValidator:140",
+      "file_path": "lib/schema-controller.js",
+      "name": "setupValidator",
+      "start_line": 140,
+      "end_line": 146,
+      "nloc": 7,
+      "mean_line_surprisal": 1.81638,
+      "max_line_surprisal": 4.26319
+    },
+    {
+      "function_id": "lib/schema-controller.js::getValidatorBuilder:131",
+      "file_path": "lib/schema-controller.js",
+      "name": "getValidatorBuilder",
+      "start_line": 131,
+      "end_line": 133,
+      "nloc": 3,
+      "mean_line_surprisal": 1.5007,
+      "max_line_surprisal": 2.38931
+    },
+    {
+      "function_id": "lib/schema-controller.js::getSerializerBuilder:127",
+      "file_path": "lib/schema-controller.js",
+      "name": "getSerializerBuilder",
+      "start_line": 127,
+      "end_line": 129,
+      "nloc": 3,
+      "mean_line_surprisal": 1.57021,
+      "max_line_surprisal": 2.40825
+    },
+    {
+      "function_id": "lib/schema-controller.js::getSerializerCompiler:123",
+      "file_path": "lib/schema-controller.js",
+      "name": "getSerializerCompiler",
+      "start_line": 123,
+      "end_line": 125,
+      "nloc": 3,
+      "mean_line_surprisal": 1.63356,
+      "max_line_surprisal": 2.31586
+    },
+    {
+      "function_id": "lib/schema-controller.js::getValidatorCompiler:119",
+      "file_path": "lib/schema-controller.js",
+      "name": "getValidatorCompiler",
+      "start_line": 119,
+      "end_line": 121,
+      "nloc": 3,
+      "mean_line_surprisal": 1.732,
+      "max_line_surprisal": 1.75636
+    },
+    {
+      "function_id": "lib/schema-controller.js::setSerializerCompiler:97",
+      "file_path": "lib/schema-controller.js",
+      "name": "setSerializerCompiler",
+      "start_line": 97,
+      "end_line": 117,
+      "nloc": 21,
+      "mean_line_surprisal": 1.21049,
+      "max_line_surprisal": 1.55451
+    },
+    {
+      "function_id": "lib/schema-controller.js::setValidatorCompiler:75",
+      "file_path": "lib/schema-controller.js",
+      "name": "setValidatorCompiler",
+      "start_line": 75,
+      "end_line": 95,
+      "nloc": 21,
+      "mean_line_surprisal": 1.5841,
+      "max_line_surprisal": 2.38304
+    },
+    {
+      "function_id": "lib/schema-controller.js::getSchemas:71",
+      "file_path": "lib/schema-controller.js",
+      "name": "getSchemas",
+      "start_line": 71,
+      "end_line": 73,
+      "nloc": 3,
+      "mean_line_surprisal": 1.60324,
+      "max_line_surprisal": 2.50864
+    },
+    {
+      "function_id": "lib/schema-controller.js::getSchema:67",
+      "file_path": "lib/schema-controller.js",
+      "name": "getSchema",
+      "start_line": 67,
+      "end_line": 69,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69348,
+      "max_line_surprisal": 2.32043
+    },
+    {
+      "function_id": "lib/schema-controller.js::add:62",
+      "file_path": "lib/schema-controller.js",
+      "name": "add",
+      "start_line": 62,
+      "end_line": 65,
+      "nloc": 4,
+      "mean_line_surprisal": 2.00034,
+      "max_line_surprisal": 2.31747
+    },
+    {
+      "function_id": "lib/schema-controller.js::constructor:41",
+      "file_path": "lib/schema-controller.js",
+      "name": "constructor",
+      "start_line": 41,
+      "end_line": 59,
+      "nloc": 17,
+      "mean_line_surprisal": 1.6171,
+      "max_line_surprisal": 2.29965
+    },
+    {
+      "function_id": "lib/schema-controller.js::buildSchemaController:11",
+      "file_path": "lib/schema-controller.js",
+      "name": "buildSchemaController",
+      "start_line": 11,
+      "end_line": 38,
+      "nloc": 24,
+      "mean_line_surprisal": 1.83619,
+      "max_line_surprisal": 6.41349
+    },
+    {
+      "function_id": "lib/schemas.js::buildSchemas:204",
+      "file_path": "lib/schemas.js",
+      "name": "buildSchemas",
+      "start_line": 204,
+      "end_line": 204,
+      "nloc": 1,
+      "mean_line_surprisal": 1.92978,
+      "max_line_surprisal": 1.92978
+    },
+    {
+      "function_id": "lib/schemas.js::getSchemaSerializer:144",
+      "file_path": "lib/schemas.js",
+      "name": "getSchemaSerializer",
+      "start_line": 144,
+      "end_line": 201,
+      "nloc": 50,
+      "mean_line_surprisal": 1.58957,
+      "max_line_surprisal": 4.38954
+    },
+    {
+      "function_id": "lib/schemas.js::generateFluentSchema:116",
+      "file_path": "lib/schemas.js",
+      "name": "generateFluentSchema",
+      "start_line": 116,
+      "end_line": 131,
+      "nloc": 15,
+      "mean_line_surprisal": 1.50578,
+      "max_line_surprisal": 2.41334
+    },
+    {
+      "function_id": "lib/schemas.js::normalizeSchema:57",
+      "file_path": "lib/schemas.js",
+      "name": "normalizeSchema",
+      "start_line": 57,
+      "end_line": 114,
+      "nloc": 51,
+      "mean_line_surprisal": 1.97723,
+      "max_line_surprisal": 7.75449
+    },
+    {
+      "function_id": "lib/schemas.js::isCustomSchemaPrototype:53",
+      "file_path": "lib/schemas.js",
+      "name": "isCustomSchemaPrototype",
+      "start_line": 53,
+      "end_line": 55,
+      "nloc": 3,
+      "mean_line_surprisal": 2.72964,
+      "max_line_surprisal": 4.22739
+    },
+    {
+      "function_id": "lib/schemas.js::<anonymous>:43",
+      "file_path": "lib/schemas.js",
+      "name": "<anonymous>",
+      "start_line": 43,
+      "end_line": 45,
+      "nloc": 3,
+      "mean_line_surprisal": 1.53437,
+      "max_line_surprisal": 2.01861
+    },
+    {
+      "function_id": "lib/schemas.js::<anonymous>:39",
+      "file_path": "lib/schemas.js",
+      "name": "<anonymous>",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 1.5352,
+      "max_line_surprisal": 1.90742
+    },
+    {
+      "function_id": "lib/schemas.js::<anonymous>:20",
+      "file_path": "lib/schemas.js",
+      "name": "<anonymous>",
+      "start_line": 20,
+      "end_line": 37,
+      "nloc": 15,
+      "mean_line_surprisal": 1.89604,
+      "max_line_surprisal": 3.21545
+    },
+    {
+      "function_id": "lib/schemas.js::Schemas:16",
+      "file_path": "lib/schemas.js",
+      "name": "Schemas",
+      "start_line": 16,
+      "end_line": 18,
+      "nloc": 3,
+      "mean_line_surprisal": 2.57904,
+      "max_line_surprisal": 3.60753
+    },
+    {
+      "function_id": "lib/server.js::createCloseHttp2SessionsByHttp2Server:403",
+      "file_path": "lib/server.js",
+      "name": "createCloseHttp2SessionsByHttp2Server",
+      "start_line": 403,
+      "end_line": 441,
+      "nloc": 33,
+      "mean_line_surprisal": 1.64344,
+      "max_line_surprisal": 4.086
+    },
+    {
+      "function_id": "lib/server.js::logServerAddress:376",
+      "file_path": "lib/server.js",
+      "name": "logServerAddress",
+      "start_line": 376,
+      "end_line": 397,
+      "nloc": 20,
+      "mean_line_surprisal": 1.93173,
+      "max_line_surprisal": 4.45558
+    },
+    {
+      "function_id": "lib/server.js::getAddresses:363",
+      "file_path": "lib/server.js",
+      "name": "getAddresses",
+      "start_line": 363,
+      "end_line": 374,
+      "nloc": 12,
+      "mean_line_surprisal": 1.57293,
+      "max_line_surprisal": 2.58321
+    },
+    {
+      "function_id": "lib/server.js::getServerInstance:309",
+      "file_path": "lib/server.js",
+      "name": "getServerInstance",
+      "start_line": 309,
+      "end_line": 348,
+      "nloc": 33,
+      "mean_line_surprisal": 1.78653,
+      "max_line_surprisal": 3.61128
+    },
+    {
+      "function_id": "lib/server.js::listenPromise:268",
+      "file_path": "lib/server.js",
+      "name": "listenPromise",
+      "start_line": 268,
+      "end_line": 307,
+      "nloc": 35,
+      "mean_line_surprisal": 1.33608,
+      "max_line_surprisal": 3.38689
+    },
+    {
+      "function_id": "lib/server.js::listenCallback:232",
+      "file_path": "lib/server.js",
+      "name": "listenCallback",
+      "start_line": 232,
+      "end_line": 266,
+      "nloc": 32,
+      "mean_line_surprisal": 1.54908,
+      "max_line_surprisal": 3.2135
+    },
+    {
+      "function_id": "lib/server.js::multipleBindings:151",
+      "file_path": "lib/server.js",
+      "name": "multipleBindings",
+      "start_line": 151,
+      "end_line": 230,
+      "nloc": 72,
+      "mean_line_surprisal": 1.7976,
+      "max_line_surprisal": 3.57754
+    },
+    {
+      "function_id": "lib/server.js::createServer:27",
+      "file_path": "lib/server.js",
+      "name": "createServer",
+      "start_line": 27,
+      "end_line": 149,
+      "nloc": 110,
+      "mean_line_surprisal": 1.72664,
+      "max_line_surprisal": 4.67833
+    },
+    {
+      "function_id": "lib/server.js::defaultResolveServerListeningText:23",
+      "file_path": "lib/server.js",
+      "name": "defaultResolveServerListeningText",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.65743,
+      "max_line_surprisal": 2.71358
+    },
+    {
+      "function_id": "lib/validation.js::getEssenceMediaType:270",
+      "file_path": "lib/validation.js",
+      "name": "getEssenceMediaType",
+      "start_line": 270,
+      "end_line": 273,
+      "nloc": 4,
+      "mean_line_surprisal": 1.88862,
+      "max_line_surprisal": 2.77843
+    },
+    {
+      "function_id": "lib/validation.js::wrapValidationError:249",
+      "file_path": "lib/validation.js",
+      "name": "wrapValidationError",
+      "start_line": 249,
+      "end_line": 263,
+      "nloc": 14,
+      "mean_line_surprisal": 1.68428,
+      "max_line_surprisal": 2.93797
+    },
+    {
+      "function_id": "lib/validation.js::validateAsyncHeaders:238",
+      "file_path": "lib/validation.js",
+      "name": "validateAsyncHeaders",
+      "start_line": 238,
+      "end_line": 247,
+      "nloc": 9,
+      "mean_line_surprisal": 1.47674,
+      "max_line_surprisal": 2.7024
+    },
+    {
+      "function_id": "lib/validation.js::validateAsyncQuery:227",
+      "file_path": "lib/validation.js",
+      "name": "validateAsyncQuery",
+      "start_line": 227,
+      "end_line": 236,
+      "nloc": 9,
+      "mean_line_surprisal": 1.32798,
+      "max_line_surprisal": 2.43685
+    },
+    {
+      "function_id": "lib/validation.js::validateAsyncBody:216",
+      "file_path": "lib/validation.js",
+      "name": "validateAsyncBody",
+      "start_line": 216,
+      "end_line": 225,
+      "nloc": 9,
+      "mean_line_surprisal": 1.42936,
+      "max_line_surprisal": 2.49672
+    },
+    {
+      "function_id": "lib/validation.js::validateAsyncParams:205",
+      "file_path": "lib/validation.js",
+      "name": "validateAsyncParams",
+      "start_line": 205,
+      "end_line": 214,
+      "nloc": 9,
+      "mean_line_surprisal": 1.68002,
+      "max_line_surprisal": 3.29796
+    },
+    {
+      "function_id": "lib/validation.js::validate:146",
+      "file_path": "lib/validation.js",
+      "name": "validate",
+      "start_line": 146,
+      "end_line": 203,
+      "nloc": 53,
+      "mean_line_surprisal": 1.6232,
+      "max_line_surprisal": 4.48412
+    },
+    {
+      "function_id": "lib/validation.js::validateParam:118",
+      "file_path": "lib/validation.js",
+      "name": "validateParam",
+      "start_line": 118,
+      "end_line": 144,
+      "nloc": 23,
+      "mean_line_surprisal": 1.96333,
+      "max_line_surprisal": 5.44581
+    },
+    {
+      "function_id": "lib/validation.js::compileSchemasForValidation:57",
+      "file_path": "lib/validation.js",
+      "name": "compileSchemasForValidation",
+      "start_line": 57,
+      "end_line": 116,
+      "nloc": 55,
+      "mean_line_surprisal": 1.42008,
+      "max_line_surprisal": 2.79203
+    },
+    {
+      "function_id": "lib/validation.js::compileSchemasForSerialization:18",
+      "file_path": "lib/validation.js",
+      "name": "compileSchemasForSerialization",
+      "start_line": 18,
+      "end_line": 55,
+      "nloc": 36,
+      "mean_line_surprisal": 1.8854,
+      "max_line_surprisal": 5.04026
+    },
+    {
+      "function_id": "lib/wrap-thenable.js::wrapThenable:11",
+      "file_path": "lib/wrap-thenable.js",
+      "name": "wrapThenable",
+      "start_line": 11,
+      "end_line": 79,
+      "nloc": 64,
+      "mean_line_surprisal": 1.80052,
+      "max_line_surprisal": 6.66377
+    }
+  ]
+}

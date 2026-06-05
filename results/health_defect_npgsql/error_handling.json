@@ -1,0 +1,2731 @@
+{
+  "meta": {
+    "repo": "npgsql",
+    "t0_sha": "98f28f354ea28ec6c0ea7f07b9e3a9810d08c1ac",
+    "n_files": 340,
+    "total_hits": 8,
+    "build_seconds": 7.2
+  },
+  "files": {
+    "src/Npgsql.DependencyInjection/NpgsqlServiceCollectionExtensions.Obsolete.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 211
+    },
+    "src/Npgsql.DependencyInjection/NpgsqlServiceCollectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 517
+    },
+    "src/Npgsql.DependencyInjection/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "src/Npgsql.GeoJSON/CrsMap.WellKnown.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 588
+    },
+    "src/Npgsql.GeoJSON/CrsMap.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "src/Npgsql.GeoJSON/CrsMapExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Npgsql.GeoJSON/GeoJSONOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql.GeoJSON/Internal/BoundingBoxBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Npgsql.GeoJSON/Internal/CrsMapBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Npgsql.GeoJSON/Internal/GeoJSONConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 599
+    },
+    "src/Npgsql.GeoJSON/Internal/GeoJSONTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "src/Npgsql.GeoJSON/NpgsqlGeoJSONExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "src/Npgsql.GeoJSON/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "src/Npgsql.Json.NET/Internal/JsonNetJsonConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "src/Npgsql.Json.NET/Internal/JsonNetPocoTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "src/Npgsql.Json.NET/Internal/JsonNetTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Npgsql.Json.NET/NpgsqlJsonNetExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "src/Npgsql.Json.NET/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "src/Npgsql.NetTopologySuite/Internal/NetTopologySuiteConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Npgsql.NetTopologySuite/Internal/NetTopologySuiteTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "src/Npgsql.NetTopologySuite/NpgsqlNetTopologySuiteExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Npgsql.NetTopologySuite/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "src/Npgsql.NodaTime/Internal/DateIntervalConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Npgsql.NodaTime/Internal/DurationConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Npgsql.NodaTime/Internal/IntervalConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Npgsql.NodaTime/Internal/LegacyConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Npgsql.NodaTime/Internal/LocalDateConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Npgsql.NodaTime/Internal/LocalTimeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Npgsql.NodaTime/Internal/NodaTimeTypeInfoResolverFactory.Multirange.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 134
+    },
+    "src/Npgsql.NodaTime/Internal/NodaTimeTypeInfoResolverFactory.Range.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Npgsql.NodaTime/Internal/NodaTimeTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "src/Npgsql.NodaTime/Internal/NodaTimeUtils.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Npgsql.NodaTime/Internal/OffsetTimeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql.NodaTime/Internal/PeriodConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Npgsql.NodaTime/Internal/TimestampConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "src/Npgsql.NodaTime/NpgsqlNodaTimeExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql.NodaTime/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "src/Npgsql.NodaTime/Properties/NpgsqlNodaTimeStrings.Designer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Npgsql.OpenTelemetry/MeterProviderBuilderExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql.OpenTelemetry/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "src/Npgsql.OpenTelemetry/TracerProviderBuilderExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Npgsql.SourceGenerators/EmbeddedResource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Npgsql.SourceGenerators/NpgsqlConnectionStringBuilderSourceGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 127
+    },
+    "src/Npgsql/BackendMessages/AuthenticationMessages.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 165
+    },
+    "src/Npgsql/BackendMessages/BackendKeyDataMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Npgsql/BackendMessages/BindCompleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/CloseCompletedMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/CommandCompleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Npgsql/BackendMessages/CopyMessages.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "src/Npgsql/BackendMessages/DataRowMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Npgsql/BackendMessages/EmptyQueryMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/ErrorOrNoticeMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 179
+    },
+    "src/Npgsql/BackendMessages/NoDataMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/ParameterDescriptionMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql/BackendMessages/ParseCompleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/PortalSuspendedMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/BackendMessages/ReadyForQueryMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Npgsql/BackendMessages/RowDescriptionMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 344
+    },
+    "src/Npgsql/Common.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Npgsql/DatabaseState.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "src/Npgsql/GlobalSuppressions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "src/Npgsql/ICancelable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "src/Npgsql/Internal/AdoSerializerHelpers.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Npgsql/Internal/BufferRequirements.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "src/Npgsql/Internal/ChainDbTypeResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/Internal/ChainTypeInfoResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/Internal/Composites/Metadata/CompositeBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "src/Npgsql/Internal/Composites/Metadata/CompositeFieldInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "src/Npgsql/Internal/Composites/Metadata/CompositeInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/Internal/Composites/ReflectionCompositeInfoFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 254
+    },
+    "src/Npgsql/Internal/Converters/ArrayConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 632
+    },
+    "src/Npgsql/Internal/Converters/AsyncHelpers.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "src/Npgsql/Internal/Converters/BitStringConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 201
+    },
+    "src/Npgsql/Internal/Converters/CastingConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Npgsql/Internal/Converters/CompositeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 195
+    },
+    "src/Npgsql/Internal/Converters/EnumConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "src/Npgsql/Internal/Converters/FullTextSearch/TsQueryConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 183
+    },
+    "src/Npgsql/Internal/Converters/FullTextSearch/TsVectorConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "src/Npgsql/Internal/Converters/Geometric/BoxConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Npgsql/Internal/Converters/Geometric/CircleConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql/Internal/Converters/Geometric/CubeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "src/Npgsql/Internal/Converters/Geometric/LineConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql/Internal/Converters/Geometric/LineSegmentConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Npgsql/Internal/Converters/Geometric/PathConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Npgsql/Internal/Converters/Geometric/PointConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Npgsql/Internal/Converters/Geometric/PolygonConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Npgsql/Internal/Converters/HstoreConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 125
+    },
+    "src/Npgsql/Internal/Converters/Internal/InternalCharConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Internal/PgLsnConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Npgsql/Internal/Converters/Internal/TidConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/Internal/Converters/Internal/UInt32Converter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/Internal/Converters/Internal/UInt64Converter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/Internal/Converters/Internal/VoidConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "src/Npgsql/Internal/Converters/JsonConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 171
+    },
+    "src/Npgsql/Internal/Converters/MoneyConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Npgsql/Internal/Converters/MultirangeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "src/Npgsql/Internal/Converters/Networking/IPAddressConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Npgsql/Internal/Converters/Networking/IPNetworkConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Npgsql/Internal/Converters/Networking/MacaddrConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Npgsql/Internal/Converters/Networking/NpgsqlCidrConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql/Internal/Converters/Networking/NpgsqlInetConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Npgsql/Internal/Converters/NullableConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "src/Npgsql/Internal/Converters/ObjectConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "src/Npgsql/Internal/Converters/PolymorphicConverterResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Npgsql/Internal/Converters/Primitive/BoolConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/Internal/Converters/Primitive/ByteaConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "src/Npgsql/Internal/Converters/Primitive/DoubleConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Primitive/GuidUuidConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Npgsql/Internal/Converters/Primitive/Int2Converter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Primitive/Int4Converter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Primitive/Int8Converter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Primitive/NumericConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 177
+    },
+    "src/Npgsql/Internal/Converters/Primitive/PgMoney.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/Internal/Converters/Primitive/PgNumeric.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 331
+    },
+    "src/Npgsql/Internal/Converters/Primitive/RealConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "src/Npgsql/Internal/Converters/Primitive/TextConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 256
+    },
+    "src/Npgsql/Internal/Converters/RangeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 187
+    },
+    "src/Npgsql/Internal/Converters/RecordConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "src/Npgsql/Internal/Converters/Temporal/DateConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Npgsql/Internal/Converters/Temporal/DateTimeConverterResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "src/Npgsql/Internal/Converters/Temporal/DateTimeConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Npgsql/Internal/Converters/Temporal/IntervalConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "src/Npgsql/Internal/Converters/Temporal/LegacyDateTimeConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "src/Npgsql/Internal/Converters/Temporal/PgTimestamp.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Npgsql/Internal/Converters/Temporal/TimeConverters.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/Internal/Converters/VersionPrefixedTextConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "src/Npgsql/Internal/DataFormat.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/Internal/DbTypeResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/Internal/DynamicTypeInfoResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "src/Npgsql/Internal/IDbTypeResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Npgsql/Internal/INpgsqlDatabaseInfoFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Npgsql/Internal/IPgTypeInfoResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "src/Npgsql/Internal/IntegratedSecurityHandler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Internal/NpgsqlConnector.Auth.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 334
+    },
+    "src/Npgsql/Internal/NpgsqlConnector.FrontendMessages.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 423
+    },
+    "src/Npgsql/Internal/NpgsqlConnector.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2822
+    },
+    "src/Npgsql/Internal/NpgsqlDatabaseInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 308
+    },
+    "src/Npgsql/Internal/NpgsqlReadBuffer.Stream.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 189
+    },
+    "src/Npgsql/Internal/NpgsqlReadBuffer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 690
+    },
+    "src/Npgsql/Internal/NpgsqlWriteBuffer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 473
+    },
+    "src/Npgsql/Internal/PgBufferedConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Npgsql/Internal/PgComposingConverterResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "src/Npgsql/Internal/PgConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 178
+    },
+    "src/Npgsql/Internal/PgConverterResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "src/Npgsql/Internal/PgReader.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 678
+    },
+    "src/Npgsql/Internal/PgSerializerOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 128
+    },
+    "src/Npgsql/Internal/PgStreamingConverter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "src/Npgsql/Internal/PgTypeInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 273
+    },
+    "src/Npgsql/Internal/PgTypeInfoResolverChainBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 154
+    },
+    "src/Npgsql/Internal/PgTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/Internal/PgWriter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 465
+    },
+    "src/Npgsql/Internal/Postgres/DataTypeName.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 210
+    },
+    "src/Npgsql/Internal/Postgres/DataTypeNames.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Npgsql/Internal/Postgres/Field.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "src/Npgsql/Internal/Postgres/Oid.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/Internal/Postgres/PgTypeId.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "src/Npgsql/Internal/ResolverFactories/AdoTypeInfoResolverFactory.Multirange.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 225
+    },
+    "src/Npgsql/Internal/ResolverFactories/AdoTypeInfoResolverFactory.Range.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 133
+    },
+    "src/Npgsql/Internal/ResolverFactories/AdoTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 459
+    },
+    "src/Npgsql/Internal/ResolverFactories/CubeTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/Internal/ResolverFactories/ExtraConversionsTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 200
+    },
+    "src/Npgsql/Internal/ResolverFactories/FullTextSearchTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "src/Npgsql/Internal/ResolverFactories/GeometricTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "src/Npgsql/Internal/ResolverFactories/JsonDynamicTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 137
+    },
+    "src/Npgsql/Internal/ResolverFactories/JsonTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "src/Npgsql/Internal/ResolverFactories/LTreeTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Npgsql/Internal/ResolverFactories/NetworkTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "src/Npgsql/Internal/ResolverFactories/RecordTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Npgsql/Internal/ResolverFactories/TupledRecordTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "src/Npgsql/Internal/ResolverFactories/UnmappedTypeInfoResolverFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 150
+    },
+    "src/Npgsql/Internal/ResolverFactories/UnsupportedTypeInfoResolver.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "src/Npgsql/Internal/Size.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "src/Npgsql/Internal/TransportSecurityHandler.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Npgsql/Internal/TypeInfoCache.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "src/Npgsql/Internal/TypeInfoMapping.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 710
+    },
+    "src/Npgsql/Internal/ValueMetadata.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "src/Npgsql/KerberosUsernameProvider.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "src/Npgsql/LogMessages.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 421
+    },
+    "src/Npgsql/MetricsReporter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 208
+    },
+    "src/Npgsql/MultiHostDataSourceWrapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Npgsql/MultiplexingDataSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 354
+    },
+    "src/Npgsql/NameTranslation/INpgsqlNameTranslator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/NameTranslation/NpgsqlNullNameTranslator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "src/Npgsql/NameTranslation/NpgsqlSnakeCaseNameTranslator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "src/Npgsql/NpgsqlActivitySource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 156
+    },
+    "src/Npgsql/NpgsqlBatch.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 170
+    },
+    "src/Npgsql/NpgsqlBatchCommand.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 333
+    },
+    "src/Npgsql/NpgsqlBatchCommandCollection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "src/Npgsql/NpgsqlBinaryExporter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 494
+    },
+    "src/Npgsql/NpgsqlBinaryImporter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 546
+    },
+    "src/Npgsql/NpgsqlCommand.cs": {
+      "swallowed_catch": 2,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 1718
+    },
+    "src/Npgsql/NpgsqlCommandBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 290
+    },
+    "src/Npgsql/NpgsqlConnection.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 1746
+    },
+    "src/Npgsql/NpgsqlConnectionStringBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1729
+    },
+    "src/Npgsql/NpgsqlDataAdapter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 203
+    },
+    "src/Npgsql/NpgsqlDataReader.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1902
+    },
+    "src/Npgsql/NpgsqlDataSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 482
+    },
+    "src/Npgsql/NpgsqlDataSourceBatch.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/NpgsqlDataSourceBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 604
+    },
+    "src/Npgsql/NpgsqlDataSourceCommand.cs": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 61
+    },
+    "src/Npgsql/NpgsqlDataSourceConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "src/Npgsql/NpgsqlDiagnostics.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/NpgsqlEventId.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "src/Npgsql/NpgsqlEventSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 240
+    },
+    "src/Npgsql/NpgsqlException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "src/Npgsql/NpgsqlFactory.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "src/Npgsql/NpgsqlLargeObjectManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 212
+    },
+    "src/Npgsql/NpgsqlLargeObjectStream.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 254
+    },
+    "src/Npgsql/NpgsqlLoggingConfiguration.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Npgsql/NpgsqlMetricsOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "src/Npgsql/NpgsqlMultiHostDataSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 404
+    },
+    "src/Npgsql/NpgsqlNestedDataReader.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 446
+    },
+    "src/Npgsql/NpgsqlNotificationEventArgs.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Npgsql/NpgsqlOperationInProgressException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Npgsql/NpgsqlParameter.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 785
+    },
+    "src/Npgsql/NpgsqlParameterCollection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 641
+    },
+    "src/Npgsql/NpgsqlParameter`.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 132
+    },
+    "src/Npgsql/NpgsqlRawCopyStream.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 533
+    },
+    "src/Npgsql/NpgsqlSchema.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1044
+    },
+    "src/Npgsql/NpgsqlSlimDataSourceBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 856
+    },
+    "src/Npgsql/NpgsqlSqlEventSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Npgsql/NpgsqlTracingOptionsBuilder.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "src/Npgsql/NpgsqlTransaction.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 367
+    },
+    "src/Npgsql/NpgsqlTypeLoadingOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 99
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlCube.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 221
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlDbType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 821
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlInterval.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlLogSequenceNumber.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 307
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlRange.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 438
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlTsQuery.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 639
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlTsVector.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 481
+    },
+    "src/Npgsql/NpgsqlTypes/NpgsqlTypes.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 505
+    },
+    "src/Npgsql/NpgsqlTypes/PgNameAttribute.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Npgsql/PgPassFile.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 172
+    },
+    "src/Npgsql/PoolManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Npgsql/PoolingDataSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 381
+    },
+    "src/Npgsql/PostgresDatabaseInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 538
+    },
+    "src/Npgsql/PostgresEnvironment.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "src/Npgsql/PostgresErrorCodes.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 354
+    },
+    "src/Npgsql/PostgresException.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 326
+    },
+    "src/Npgsql/PostgresMinimalDatabaseInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "src/Npgsql/PostgresNotice.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 174
+    },
+    "src/Npgsql/PostgresTypes/PostgresArrayType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Npgsql/PostgresTypes/PostgresBaseType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "src/Npgsql/PostgresTypes/PostgresCompositeType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Npgsql/PostgresTypes/PostgresDomainType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/PostgresTypes/PostgresEnumType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/PostgresTypes/PostgresFacets.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "src/Npgsql/PostgresTypes/PostgresMultirangeType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Npgsql/PostgresTypes/PostgresRangeType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Npgsql/PostgresTypes/PostgresType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "src/Npgsql/PostgresTypes/PostgresTypeKind.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Npgsql/PostgresTypes/PostgresUnknownType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Npgsql/PregeneratedMessages.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Npgsql/PreparedStatement.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 142
+    },
+    "src/Npgsql/PreparedStatementManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 261
+    },
+    "src/Npgsql/PreparedTextReader.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "src/Npgsql/Properties/AssemblyInfo.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/Properties/NpgsqlStrings.Designer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 296
+    },
+    "src/Npgsql/Replication/Internal/LogicalReplicationConnectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 170
+    },
+    "src/Npgsql/Replication/Internal/LogicalReplicationSlot.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Npgsql/Replication/LogicalReplicationConnection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/Replication/LogicalSlotSnapshotInitMode.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Npgsql/Replication/PgDateTime.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/BeginMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/BeginPrepareMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/CommitMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/CommitPreparedMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/DefaultUpdateMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/DeleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/FullDeleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/FullUpdateMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/IndexUpdateMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/InsertMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/KeyDeleteMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/LogicalDecodingMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/OriginMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/PgOutputReplicationMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/PrepareMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/PrepareMessageBase.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/PreparedTransactionControlMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/RelationMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/RelationMessageColumn.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/RollbackPreparedMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/StreamAbortMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/StreamCommitMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/StreamPrepareMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/StreamStartMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/StreamStopMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/TransactionControlMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/TransactionalMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/TruncateMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/TypeMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "src/Npgsql/Replication/PgOutput/Messages/UpdateMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputAsyncEnumerable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 493
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputConnectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputProtocolVersion.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputReplicationOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 165
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputReplicationSlot.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "src/Npgsql/Replication/PgOutput/PgOutputStreamingMode.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "src/Npgsql/Replication/PgOutput/ReadonlyArrayBuffer.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "src/Npgsql/Replication/PgOutput/ReplicationTuple.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "src/Npgsql/Replication/PgOutput/ReplicationValue.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 172
+    },
+    "src/Npgsql/Replication/PgOutput/TupleDataKind.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Npgsql/Replication/PgOutput/TupleEnumerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "src/Npgsql/Replication/PgOutput/TupleType.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/Npgsql/Replication/PhysicalReplicationConnection.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 169
+    },
+    "src/Npgsql/Replication/PhysicalReplicationSlot.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Npgsql/Replication/ReplicationConnection.cs": {
+      "swallowed_catch": 4,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 4,
+      "code_lines": 776
+    },
+    "src/Npgsql/Replication/ReplicationMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Npgsql/Replication/ReplicationSlot.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "src/Npgsql/Replication/ReplicationSlotOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "src/Npgsql/Replication/ReplicationSystemIdentification.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Npgsql/Replication/TestDecoding/TestDecodingAsyncEnumerable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "src/Npgsql/Replication/TestDecoding/TestDecodingConnectionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "src/Npgsql/Replication/TestDecoding/TestDecodingData.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "src/Npgsql/Replication/TestDecoding/TestDecodingOptions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "src/Npgsql/Replication/TestDecoding/TestDecodingReplicationSlot.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "src/Npgsql/Replication/TimelineHistoryFile.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "src/Npgsql/Replication/XLogDataMessage.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/Npgsql/Schema/DbColumnSchemaGenerator.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 247
+    },
+    "src/Npgsql/Schema/NpgsqlDbColumn.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 199
+    },
+    "src/Npgsql/SqlQueryParser.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 486
+    },
+    "src/Npgsql/TargetSessionAttributes.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "src/Npgsql/ThrowHelper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "src/Npgsql/TypeMapping/GlobalTypeMapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 316
+    },
+    "src/Npgsql/TypeMapping/INpgsqlTypeMapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 242
+    },
+    "src/Npgsql/TypeMapping/UserTypeMapper.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 224
+    },
+    "src/Npgsql/UnpooledDataSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "src/Npgsql/Util/GSSStream.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "src/Npgsql/Util/LoggingEnumerable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "src/Npgsql/Util/ManualResetValueTaskSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "src/Npgsql/Util/NpgsqlTimeout.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "src/Npgsql/Util/ResettableCancellationTokenSource.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "src/Npgsql/Util/Statics.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "src/Npgsql/Util/StrongBox.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "src/Npgsql/Util/SubReadStream.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 162
+    },
+    "src/Npgsql/Util/TaskSchedulerAwaitable.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "src/Npgsql/Util/VersionExtensions.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "src/Npgsql/VolatileResourceManager.cs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 276
+    }
+  }
+}

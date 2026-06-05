@@ -1,0 +1,4564 @@
+{
+  "meta": {
+    "repo": "bat",
+    "t0_sha": "1e4a4b765f4a1cad74f3a4204112268f3b303f2f",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 1554,
+    "n_files": 35,
+    "n_tokens": 53602,
+    "n_functions": 430,
+    "build_seconds": 2.3,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "src/assets.rs": {
+      "mean_line_surprisal": 1.58214,
+      "top_decile_line_surprisal": 3.58098,
+      "token_cross_entropy": 1.39712,
+      "n_lines": 585,
+      "n_tokens": 4049
+    },
+    "src/bin/bat/app.rs": {
+      "mean_line_surprisal": 1.83833,
+      "top_decile_line_surprisal": 4.03921,
+      "token_cross_entropy": 1.50997,
+      "n_lines": 435,
+      "n_tokens": 3209
+    },
+    "src/bin/bat/assets.rs": {
+      "mean_line_surprisal": 1.88121,
+      "top_decile_line_surprisal": 4.11886,
+      "token_cross_entropy": 1.6384,
+      "n_lines": 47,
+      "n_tokens": 306
+    },
+    "src/bin/bat/clap_app.rs": {
+      "mean_line_surprisal": 1.0093,
+      "top_decile_line_surprisal": 3.10686,
+      "token_cross_entropy": 0.90442,
+      "n_lines": 643,
+      "n_tokens": 3436
+    },
+    "src/bin/bat/completions.rs": {
+      "mean_line_surprisal": 1.07845,
+      "top_decile_line_surprisal": 1.70202,
+      "token_cross_entropy": 0.97068,
+      "n_lines": 5,
+      "n_tokens": 81
+    },
+    "src/bin/bat/config.rs": {
+      "mean_line_surprisal": 1.70434,
+      "top_decile_line_surprisal": 3.59751,
+      "token_cross_entropy": 1.58039,
+      "n_lines": 152,
+      "n_tokens": 1075
+    },
+    "src/bin/bat/directories.rs": {
+      "mean_line_surprisal": 1.89789,
+      "top_decile_line_surprisal": 3.54673,
+      "token_cross_entropy": 1.73867,
+      "n_lines": 42,
+      "n_tokens": 237
+    },
+    "src/bin/bat/input.rs": {
+      "mean_line_surprisal": 2.14858,
+      "top_decile_line_surprisal": 6.51682,
+      "token_cross_entropy": 1.7826,
+      "n_lines": 17,
+      "n_tokens": 176
+    },
+    "src/bin/bat/main.rs": {
+      "mean_line_surprisal": 1.80536,
+      "top_decile_line_surprisal": 3.82344,
+      "token_cross_entropy": 1.64002,
+      "n_lines": 389,
+      "n_tokens": 2975
+    },
+    "src/config.rs": {
+      "mean_line_surprisal": 1.67566,
+      "top_decile_line_surprisal": 3.25663,
+      "token_cross_entropy": 1.67209,
+      "n_lines": 111,
+      "n_tokens": 569
+    },
+    "src/controller.rs": {
+      "mean_line_surprisal": 1.91864,
+      "top_decile_line_surprisal": 4.03037,
+      "token_cross_entropy": 1.69209,
+      "n_lines": 301,
+      "n_tokens": 1978
+    },
+    "src/decorations.rs": {
+      "mean_line_surprisal": 1.66664,
+      "top_decile_line_surprisal": 3.42,
+      "token_cross_entropy": 1.46718,
+      "n_lines": 141,
+      "n_tokens": 813
+    },
+    "src/diff.rs": {
+      "mean_line_surprisal": 1.80092,
+      "top_decile_line_surprisal": 3.8766,
+      "token_cross_entropy": 1.70483,
+      "n_lines": 66,
+      "n_tokens": 486
+    },
+    "src/error.rs": {
+      "mean_line_surprisal": 1.53442,
+      "top_decile_line_surprisal": 3.35356,
+      "token_cross_entropy": 1.3423,
+      "n_lines": 74,
+      "n_tokens": 546
+    },
+    "src/input.rs": {
+      "mean_line_surprisal": 1.54071,
+      "top_decile_line_surprisal": 3.40521,
+      "token_cross_entropy": 1.42773,
+      "n_lines": 360,
+      "n_tokens": 2602
+    },
+    "src/less.rs": {
+      "mean_line_surprisal": 1.3134,
+      "top_decile_line_surprisal": 2.56558,
+      "token_cross_entropy": 1.41454,
+      "n_lines": 76,
+      "n_tokens": 550
+    },
+    "src/lessopen.rs": {
+      "mean_line_surprisal": 1.66566,
+      "top_decile_line_surprisal": 3.92567,
+      "token_cross_entropy": 1.39098,
+      "n_lines": 321,
+      "n_tokens": 2226
+    },
+    "src/lib.rs": {
+      "mean_line_surprisal": 1.11068,
+      "top_decile_line_surprisal": 3.06196,
+      "token_cross_entropy": 1.19711,
+      "n_lines": 58,
+      "n_tokens": 258
+    },
+    "src/line_range.rs": {
+      "mean_line_surprisal": 1.09177,
+      "top_decile_line_surprisal": 2.93582,
+      "token_cross_entropy": 0.90346,
+      "n_lines": 701,
+      "n_tokens": 4712
+    },
+    "src/macros.rs": {
+      "mean_line_surprisal": 1.89844,
+      "top_decile_line_surprisal": 3.61429,
+      "token_cross_entropy": 1.72466,
+      "n_lines": 7,
+      "n_tokens": 56
+    },
+    "src/nonprintable_notation.rs": {
+      "mean_line_surprisal": 1.59092,
+      "top_decile_line_surprisal": 3.58057,
+      "token_cross_entropy": 1.37071,
+      "n_lines": 21,
+      "n_tokens": 82
+    },
+    "src/output.rs": {
+      "mean_line_surprisal": 1.79001,
+      "top_decile_line_surprisal": 3.97169,
+      "token_cross_entropy": 1.55778,
+      "n_lines": 206,
+      "n_tokens": 1398
+    },
+    "src/pager.rs": {
+      "mean_line_surprisal": 1.83371,
+      "top_decile_line_surprisal": 4.11632,
+      "token_cross_entropy": 1.82817,
+      "n_lines": 112,
+      "n_tokens": 644
+    },
+    "src/paging.rs": {
+      "mean_line_surprisal": 1.79999,
+      "top_decile_line_surprisal": 2.60848,
+      "token_cross_entropy": 1.67491,
+      "n_lines": 7,
+      "n_tokens": 32
+    },
+    "src/preprocessor.rs": {
+      "mean_line_surprisal": 1.70783,
+      "top_decile_line_surprisal": 4.13437,
+      "token_cross_entropy": 1.30632,
+      "n_lines": 184,
+      "n_tokens": 1457
+    },
+    "src/pretty_printer.rs": {
+      "mean_line_surprisal": 1.39315,
+      "top_decile_line_surprisal": 3.39555,
+      "token_cross_entropy": 1.48267,
+      "n_lines": 346,
+      "n_tokens": 2261
+    },
+    "src/printer.rs": {
+      "mean_line_surprisal": 1.76859,
+      "top_decile_line_surprisal": 3.99046,
+      "token_cross_entropy": 1.58097,
+      "n_lines": 793,
+      "n_tokens": 4981
+    },
+    "src/style.rs": {
+      "mean_line_surprisal": 1.46212,
+      "top_decile_line_surprisal": 2.92929,
+      "token_cross_entropy": 1.40889,
+      "n_lines": 323,
+      "n_tokens": 1979
+    },
+    "src/syntax_mapping.rs": {
+      "mean_line_surprisal": 1.5726,
+      "top_decile_line_surprisal": 3.84601,
+      "token_cross_entropy": 1.50888,
+      "n_lines": 230,
+      "n_tokens": 1334
+    },
+    "src/syntax_mapping/builtin.rs": {
+      "mean_line_surprisal": 1.15885,
+      "top_decile_line_surprisal": 3.58292,
+      "token_cross_entropy": 1.52869,
+      "n_lines": 84,
+      "n_tokens": 270
+    },
+    "src/syntax_mapping/ignored_suffixes.rs": {
+      "mean_line_surprisal": 1.77241,
+      "top_decile_line_surprisal": 5.04094,
+      "token_cross_entropy": 1.49625,
+      "n_lines": 99,
+      "n_tokens": 587
+    },
+    "src/terminal.rs": {
+      "mean_line_surprisal": 1.73626,
+      "top_decile_line_surprisal": 4.5683,
+      "token_cross_entropy": 1.70513,
+      "n_lines": 77,
+      "n_tokens": 401
+    },
+    "src/theme.rs": {
+      "mean_line_surprisal": 1.55146,
+      "top_decile_line_surprisal": 3.54336,
+      "token_cross_entropy": 1.39108,
+      "n_lines": 505,
+      "n_tokens": 2969
+    },
+    "src/vscreen.rs": {
+      "mean_line_surprisal": 1.47969,
+      "top_decile_line_surprisal": 3.44473,
+      "token_cross_entropy": 1.38431,
+      "n_lines": 855,
+      "n_tokens": 4819
+    },
+    "src/wrapping.rs": {
+      "mean_line_surprisal": 1.8823,
+      "top_decile_line_surprisal": 2.90047,
+      "token_cross_entropy": 1.74911,
+      "n_lines": 11,
+      "n_tokens": 48
+    }
+  },
+  "functions": [
+    {
+      "function_id": "src/assets.rs::syntax_detection_for_symlinked_file:666",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_for_symlinked_file",
+      "start_line": 666,
+      "end_line": 688,
+      "nloc": 19,
+      "mean_line_surprisal": 1.64552,
+      "max_line_surprisal": 7.95836
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_stdin_filename:652",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_stdin_filename",
+      "start_line": 652,
+      "end_line": 662,
+      "nloc": 10,
+      "mean_line_surprisal": 1.69421,
+      "max_line_surprisal": 3.57453
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_is_case_insensitive:632",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_is_case_insensitive",
+      "start_line": 632,
+      "end_line": 649,
+      "nloc": 15,
+      "mean_line_surprisal": 1.15136,
+      "max_line_surprisal": 2.99764
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_with_extension_mapping_to_unknown:596",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_with_extension_mapping_to_unknown",
+      "start_line": 596,
+      "end_line": 629,
+      "nloc": 30,
+      "mean_line_surprisal": 1.49184,
+      "max_line_surprisal": 3.86032
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_with_custom_mapping:585",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_with_custom_mapping",
+      "start_line": 585,
+      "end_line": 593,
+      "nloc": 8,
+      "mean_line_surprisal": 1.41896,
+      "max_line_surprisal": 2.67088
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_first_line_with_utf8_bom:550",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_first_line_with_utf8_bom",
+      "start_line": 550,
+      "end_line": 582,
+      "nloc": 29,
+      "mean_line_surprisal": 1.65661,
+      "max_line_surprisal": 4.40125
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_first_line:532",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_first_line",
+      "start_line": 532,
+      "end_line": 547,
+      "nloc": 15,
+      "mean_line_surprisal": 0.97381,
+      "max_line_surprisal": 2.38826
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_well_defined_mapping_for_duplicate_extensions:521",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_well_defined_mapping_for_duplicate_extensions",
+      "start_line": 521,
+      "end_line": 529,
+      "nloc": 8,
+      "mean_line_surprisal": 1.0745,
+      "max_line_surprisal": 2.44705
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_same_for_inputkinds:500",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_same_for_inputkinds",
+      "start_line": 500,
+      "end_line": 518,
+      "nloc": 17,
+      "mean_line_surprisal": 1.36483,
+      "max_line_surprisal": 2.99824
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_invalid_utf8:488",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_invalid_utf8",
+      "start_line": 488,
+      "end_line": 497,
+      "nloc": 8,
+      "mean_line_surprisal": 1.59846,
+      "max_line_surprisal": 2.4023
+    },
+    {
+      "function_id": "src/assets.rs::syntax_detection_basic:472",
+      "file_path": "src/assets.rs",
+      "name": "syntax_detection_basic",
+      "start_line": 472,
+      "end_line": 484,
+      "nloc": 12,
+      "mean_line_surprisal": 1.1195,
+      "max_line_surprisal": 2.67653
+    },
+    {
+      "function_id": "src/assets.rs::syntax_is_same_for_inputkinds:455",
+      "file_path": "src/assets.rs",
+      "name": "syntax_is_same_for_inputkinds",
+      "start_line": 455,
+      "end_line": 468,
+      "nloc": 12,
+      "mean_line_surprisal": 1.81567,
+      "max_line_surprisal": 5.44711
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_stdin_with_content:448",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_stdin_with_content",
+      "start_line": 448,
+      "end_line": 453,
+      "nloc": 5,
+      "mean_line_surprisal": 1.16107,
+      "max_line_surprisal": 1.60325
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_file:444",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_file",
+      "start_line": 444,
+      "end_line": 446,
+      "nloc": 3,
+      "mean_line_surprisal": 1.66243,
+      "max_line_surprisal": 2.00827
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_file_with_content:440",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_file_with_content",
+      "start_line": 440,
+      "end_line": 442,
+      "nloc": 3,
+      "mean_line_surprisal": 1.53069,
+      "max_line_surprisal": 1.82427
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_file_os:436",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_file_os",
+      "start_line": 436,
+      "end_line": 438,
+      "nloc": 3,
+      "mean_line_surprisal": 1.98893,
+      "max_line_surprisal": 2.62414
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_file_with_content_os:425",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_file_with_content_os",
+      "start_line": 425,
+      "end_line": 433,
+      "nloc": 8,
+      "mean_line_surprisal": 1.31037,
+      "max_line_surprisal": 2.61807
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_real_file_with_content_os:407",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_real_file_with_content_os",
+      "start_line": 407,
+      "end_line": 423,
+      "nloc": 11,
+      "mean_line_surprisal": 1.78962,
+      "max_line_surprisal": 3.18844
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax_name:395",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax_name",
+      "start_line": 395,
+      "end_line": 405,
+      "nloc": 6,
+      "mean_line_surprisal": 1.64142,
+      "max_line_surprisal": 3.51509
+    },
+    {
+      "function_id": "src/assets.rs::new:387",
+      "file_path": "src/assets.rs",
+      "name": "new",
+      "start_line": 387,
+      "end_line": 393,
+      "nloc": 7,
+      "mean_line_surprisal": 2.11921,
+      "max_line_surprisal": 3.8534
+    },
+    {
+      "function_id": "src/assets.rs::asset_from_cache:353",
+      "file_path": "src/assets.rs",
+      "name": "asset_from_cache",
+      "start_line": 353,
+      "end_line": 366,
+      "nloc": 10,
+      "mean_line_surprisal": 1.40974,
+      "max_line_surprisal": 2.27505
+    },
+    {
+      "function_id": "src/assets.rs::asset_from_contents:340",
+      "file_path": "src/assets.rs",
+      "name": "asset_from_contents",
+      "start_line": 340,
+      "end_line": 351,
+      "nloc": 8,
+      "mean_line_surprisal": 1.78693,
+      "max_line_surprisal": 2.77841
+    },
+    {
+      "function_id": "src/assets.rs::from_binary:335",
+      "file_path": "src/assets.rs",
+      "name": "from_binary",
+      "start_line": 335,
+      "end_line": 338,
+      "nloc": 4,
+      "mean_line_surprisal": 1.80383,
+      "max_line_surprisal": 3.24288
+    },
+    {
+      "function_id": "src/assets.rs::get_acknowledgements:328",
+      "file_path": "src/assets.rs",
+      "name": "get_acknowledgements",
+      "start_line": 328,
+      "end_line": 333,
+      "nloc": 6,
+      "mean_line_surprisal": 2.03892,
+      "max_line_surprisal": 4.48698
+    },
+    {
+      "function_id": "src/assets.rs::get_integrated_themeset:324",
+      "file_path": "src/assets.rs",
+      "name": "get_integrated_themeset",
+      "start_line": 324,
+      "end_line": 326,
+      "nloc": 3,
+      "mean_line_surprisal": 1.84405,
+      "max_line_surprisal": 2.25047
+    },
+    {
+      "function_id": "src/assets.rs::get_serialized_integrated_syntaxset:320",
+      "file_path": "src/assets.rs",
+      "name": "get_serialized_integrated_syntaxset",
+      "start_line": 320,
+      "end_line": 322,
+      "nloc": 3,
+      "mean_line_surprisal": 2.0252,
+      "max_line_surprisal": 3.42044
+    },
+    {
+      "function_id": "src/assets.rs::get_first_line_syntax:304",
+      "file_path": "src/assets.rs",
+      "name": "get_first_line_syntax",
+      "start_line": 304,
+      "end_line": 317,
+      "nloc": 11,
+      "mean_line_surprisal": 1.52981,
+      "max_line_surprisal": 2.86646
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax_for_file_extension:288",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax_for_file_extension",
+      "start_line": 288,
+      "end_line": 302,
+      "nloc": 11,
+      "mean_line_surprisal": 1.19561,
+      "max_line_surprisal": 2.99725
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax_for_file_name:272",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax_for_file_name",
+      "start_line": 272,
+      "end_line": 286,
+      "nloc": 11,
+      "mean_line_surprisal": 1.81543,
+      "max_line_surprisal": 3.71662
+    },
+    {
+      "function_id": "src/assets.rs::find_syntax_by_token:265",
+      "file_path": "src/assets.rs",
+      "name": "find_syntax_by_token",
+      "start_line": 265,
+      "end_line": 270,
+      "nloc": 6,
+      "mean_line_surprisal": 1.02114,
+      "max_line_surprisal": 1.37362
+    },
+    {
+      "function_id": "src/assets.rs::find_syntax_by_extension:254",
+      "file_path": "src/assets.rs",
+      "name": "find_syntax_by_extension",
+      "start_line": 254,
+      "end_line": 263,
+      "nloc": 7,
+      "mean_line_surprisal": 1.57109,
+      "max_line_surprisal": 3.32328
+    },
+    {
+      "function_id": "src/assets.rs::find_syntax_by_name:244",
+      "file_path": "src/assets.rs",
+      "name": "find_syntax_by_name",
+      "start_line": 244,
+      "end_line": 252,
+      "nloc": 6,
+      "mean_line_surprisal": 1.58478,
+      "max_line_surprisal": 2.91827
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax:210",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax",
+      "start_line": 210,
+      "end_line": 242,
+      "nloc": 26,
+      "mean_line_surprisal": 1.83032,
+      "max_line_surprisal": 3.97493
+    },
+    {
+      "function_id": "src/assets.rs::get_theme:189",
+      "file_path": "src/assets.rs",
+      "name": "get_theme",
+      "start_line": 189,
+      "end_line": 208,
+      "nloc": 20,
+      "mean_line_surprisal": 2.42581,
+      "max_line_surprisal": 5.88701
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax_for_path:151",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax_for_path",
+      "start_line": 151,
+      "end_line": 186,
+      "nloc": 25,
+      "mean_line_surprisal": 1.99428,
+      "max_line_surprisal": 4.80383
+    },
+    {
+      "function_id": "src/assets.rs::syntax_for_file_name:119",
+      "file_path": "src/assets.rs",
+      "name": "syntax_for_file_name",
+      "start_line": 119,
+      "end_line": 127,
+      "nloc": 5,
+      "mean_line_surprisal": 1.62142,
+      "max_line_surprisal": 2.26936
+    },
+    {
+      "function_id": "src/assets.rs::themes:113",
+      "file_path": "src/assets.rs",
+      "name": "themes",
+      "start_line": 113,
+      "end_line": 115,
+      "nloc": 3,
+      "mean_line_surprisal": 1.89777,
+      "max_line_surprisal": 2.35093
+    },
+    {
+      "function_id": "src/assets.rs::get_theme_set:109",
+      "file_path": "src/assets.rs",
+      "name": "get_theme_set",
+      "start_line": 109,
+      "end_line": 111,
+      "nloc": 3,
+      "mean_line_surprisal": 1.8779,
+      "max_line_surprisal": 2.29553
+    },
+    {
+      "function_id": "src/assets.rs::get_syntaxes:105",
+      "file_path": "src/assets.rs",
+      "name": "get_syntaxes",
+      "start_line": 105,
+      "end_line": 107,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69784,
+      "max_line_surprisal": 1.89944
+    },
+    {
+      "function_id": "src/assets.rs::syntaxes:99",
+      "file_path": "src/assets.rs",
+      "name": "syntaxes",
+      "start_line": 99,
+      "end_line": 103,
+      "nloc": 5,
+      "mean_line_surprisal": 2.2125,
+      "max_line_surprisal": 3.11489
+    },
+    {
+      "function_id": "src/assets.rs::get_syntax_set:92",
+      "file_path": "src/assets.rs",
+      "name": "get_syntax_set",
+      "start_line": 92,
+      "end_line": 95,
+      "nloc": 4,
+      "mean_line_surprisal": 2.37925,
+      "max_line_surprisal": 3.22867
+    },
+    {
+      "function_id": "src/assets.rs::set_fallback_theme:87",
+      "file_path": "src/assets.rs",
+      "name": "set_fallback_theme",
+      "start_line": 87,
+      "end_line": 89,
+      "nloc": 3,
+      "mean_line_surprisal": 2.25572,
+      "max_line_surprisal": 2.53737
+    },
+    {
+      "function_id": "src/assets.rs::from_binary:80",
+      "file_path": "src/assets.rs",
+      "name": "from_binary",
+      "start_line": 80,
+      "end_line": 85,
+      "nloc": 6,
+      "mean_line_surprisal": 2.55156,
+      "max_line_surprisal": 4.13037
+    },
+    {
+      "function_id": "src/assets.rs::from_cache:73",
+      "file_path": "src/assets.rs",
+      "name": "from_cache",
+      "start_line": 73,
+      "end_line": 78,
+      "nloc": 6,
+      "mean_line_surprisal": 2.13085,
+      "max_line_surprisal": 2.80431
+    },
+    {
+      "function_id": "src/assets.rs::new:64",
+      "file_path": "src/assets.rs",
+      "name": "new",
+      "start_line": 64,
+      "end_line": 71,
+      "nloc": 8,
+      "mean_line_surprisal": 1.90909,
+      "max_line_surprisal": 3.32992
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::theme_options:464",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "theme_options",
+      "start_line": 464,
+      "end_line": 483,
+      "nloc": 20,
+      "mean_line_surprisal": 1.46858,
+      "max_line_surprisal": 4.87944
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::style_components:431",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "style_components",
+      "start_line": 431,
+      "end_line": 462,
+      "nloc": 27,
+      "mean_line_surprisal": 1.97634,
+      "max_line_surprisal": 3.9558
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::forced_style_components:404",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "forced_style_components",
+      "start_line": 404,
+      "end_line": 429,
+      "nloc": 23,
+      "mean_line_surprisal": 2.09999,
+      "max_line_surprisal": 5.38863
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::inputs:358",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "inputs",
+      "start_line": 358,
+      "end_line": 402,
+      "nloc": 41,
+      "mean_line_surprisal": 1.83494,
+      "max_line_surprisal": 3.23838
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::config:114",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "config",
+      "start_line": 114,
+      "end_line": 356,
+      "nloc": 232,
+      "mean_line_surprisal": 1.74163,
+      "max_line_surprisal": 6.25957
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::matches:59",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "matches",
+      "start_line": 59,
+      "end_line": 112,
+      "nloc": 43,
+      "mean_line_surprisal": 2.31872,
+      "max_line_surprisal": 8.05905
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::new:47",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "new",
+      "start_line": 47,
+      "end_line": 57,
+      "nloc": 9,
+      "mean_line_surprisal": 2.0788,
+      "max_line_surprisal": 3.20663
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::env_no_color:37",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "env_no_color",
+      "start_line": 37,
+      "end_line": 39,
+      "nloc": 3,
+      "mean_line_surprisal": 2.16829,
+      "max_line_surprisal": 2.87576
+    },
+    {
+      "function_id": "src/bin/bat/app.rs::is_truecolor_terminal:31",
+      "file_path": "src/bin/bat/app.rs",
+      "name": "is_truecolor_terminal",
+      "start_line": 31,
+      "end_line": 35,
+      "nloc": 5,
+      "mean_line_surprisal": 2.18873,
+      "max_line_surprisal": 2.73737
+    },
+    {
+      "function_id": "src/bin/bat/assets.rs::clear_asset:46",
+      "file_path": "src/bin/bat/assets.rs",
+      "name": "clear_asset",
+      "start_line": 46,
+      "end_line": 57,
+      "nloc": 12,
+      "mean_line_surprisal": 1.83851,
+      "max_line_surprisal": 3.79965
+    },
+    {
+      "function_id": "src/bin/bat/assets.rs::assets_from_cache_or_binary:18",
+      "file_path": "src/bin/bat/assets.rs",
+      "name": "assets_from_cache_or_binary",
+      "start_line": 18,
+      "end_line": 44,
+      "nloc": 23,
+      "mean_line_surprisal": 2.10577,
+      "max_line_surprisal": 5.38631
+    },
+    {
+      "function_id": "src/bin/bat/assets.rs::clear_assets:12",
+      "file_path": "src/bin/bat/assets.rs",
+      "name": "clear_assets",
+      "start_line": 12,
+      "end_line": 16,
+      "nloc": 5,
+      "mean_line_surprisal": 1.66978,
+      "max_line_surprisal": 3.38185
+    },
+    {
+      "function_id": "src/bin/bat/clap_app.rs::verify_app:733",
+      "file_path": "src/bin/bat/clap_app.rs",
+      "name": "verify_app",
+      "start_line": 733,
+      "end_line": 735,
+      "nloc": 3,
+      "mean_line_surprisal": 2.44797,
+      "max_line_surprisal": 2.80515
+    },
+    {
+      "function_id": "src/bin/bat/clap_app.rs::build_app:23",
+      "file_path": "src/bin/bat/clap_app.rs",
+      "name": "build_app",
+      "start_line": 23,
+      "end_line": 730,
+      "nloc": 701,
+      "mean_line_surprisal": 0.97484,
+      "max_line_surprisal": 9.42463
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::comments:201",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "comments",
+      "start_line": 201,
+      "end_line": 216,
+      "nloc": 14,
+      "mean_line_surprisal": 1.19245,
+      "max_line_surprisal": 2.31974
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::multi_line:187",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "multi_line",
+      "start_line": 187,
+      "end_line": 198,
+      "nloc": 11,
+      "mean_line_surprisal": 1.42144,
+      "max_line_surprisal": 2.45896
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::quotes:179",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "quotes",
+      "start_line": 179,
+      "end_line": 184,
+      "nloc": 6,
+      "mean_line_surprisal": 1.16038,
+      "max_line_surprisal": 2.14855
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::multiple:171",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "multiple",
+      "start_line": 171,
+      "end_line": 176,
+      "nloc": 6,
+      "mean_line_surprisal": 1.26214,
+      "max_line_surprisal": 2.1599
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::single:166",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "single",
+      "start_line": 166,
+      "end_line": 168,
+      "nloc": 3,
+      "mean_line_surprisal": 1.74451,
+      "max_line_surprisal": 2.18303
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::empty:160",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "empty",
+      "start_line": 160,
+      "end_line": 163,
+      "nloc": 4,
+      "mean_line_surprisal": 2.09372,
+      "max_line_surprisal": 2.50069
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::get_args_from_env_vars:139",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "get_args_from_env_vars",
+      "start_line": 139,
+      "end_line": 157,
+      "nloc": 19,
+      "mean_line_surprisal": 1.88905,
+      "max_line_surprisal": 5.92792
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::get_args_from_str:123",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "get_args_from_str",
+      "start_line": 123,
+      "end_line": 137,
+      "nloc": 14,
+      "mean_line_surprisal": 1.83735,
+      "max_line_surprisal": 3.40187
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::get_args_from_env_opts_var:119",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "get_args_from_env_opts_var",
+      "start_line": 119,
+      "end_line": 121,
+      "nloc": 3,
+      "mean_line_surprisal": 1.5894,
+      "max_line_surprisal": 1.9024
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::get_args_from_config_file:104",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "get_args_from_config_file",
+      "start_line": 104,
+      "end_line": 117,
+      "nloc": 11,
+      "mean_line_surprisal": 1.78201,
+      "max_line_surprisal": 3.3425
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::generate_config_file:32",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "generate_config_file",
+      "start_line": 32,
+      "end_line": 102,
+      "nloc": 60,
+      "mean_line_surprisal": 1.87658,
+      "max_line_surprisal": 3.92024
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::config_file:25",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "config_file",
+      "start_line": 25,
+      "end_line": 30,
+      "nloc": 6,
+      "mean_line_surprisal": 2.28543,
+      "max_line_surprisal": 4.66313
+    },
+    {
+      "function_id": "src/bin/bat/config.rs::system_config_file:15",
+      "file_path": "src/bin/bat/config.rs",
+      "name": "system_config_file",
+      "start_line": 15,
+      "end_line": 23,
+      "nloc": 7,
+      "mean_line_surprisal": 1.93265,
+      "max_line_surprisal": 2.84134
+    },
+    {
+      "function_id": "src/bin/bat/directories.rs::config_dir:45",
+      "file_path": "src/bin/bat/directories.rs",
+      "name": "config_dir",
+      "start_line": 45,
+      "end_line": 47,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47839,
+      "max_line_surprisal": 1.56401
+    },
+    {
+      "function_id": "src/bin/bat/directories.rs::cache_dir:41",
+      "file_path": "src/bin/bat/directories.rs",
+      "name": "cache_dir",
+      "start_line": 41,
+      "end_line": 43,
+      "nloc": 3,
+      "mean_line_surprisal": 1.83428,
+      "max_line_surprisal": 2.43532
+    },
+    {
+      "function_id": "src/bin/bat/directories.rs::new:15",
+      "file_path": "src/bin/bat/directories.rs",
+      "name": "new",
+      "start_line": 15,
+      "end_line": 39,
+      "nloc": 22,
+      "mean_line_surprisal": 2.01246,
+      "max_line_surprisal": 4.63069
+    },
+    {
+      "function_id": "src/bin/bat/input.rs::named:12",
+      "file_path": "src/bin/bat/input.rs",
+      "name": "named",
+      "start_line": 12,
+      "end_line": 20,
+      "nloc": 9,
+      "mean_line_surprisal": 2.19971,
+      "max_line_surprisal": 6.51682
+    },
+    {
+      "function_id": "src/bin/bat/input.rs::new_stdin_input:8",
+      "file_path": "src/bin/bat/input.rs",
+      "name": "new_stdin_input",
+      "start_line": 8,
+      "end_line": 10,
+      "nloc": 3,
+      "mean_line_surprisal": 1.48198,
+      "max_line_surprisal": 1.60171
+    },
+    {
+      "function_id": "src/bin/bat/input.rs::new_file_input:4",
+      "file_path": "src/bin/bat/input.rs",
+      "name": "new_file_input",
+      "start_line": 4,
+      "end_line": 6,
+      "nloc": 3,
+      "mean_line_surprisal": 2.78058,
+      "max_line_surprisal": 4.64987
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::main:428",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "main",
+      "start_line": 428,
+      "end_line": 444,
+      "nloc": 16,
+      "mean_line_surprisal": 2.04861,
+      "max_line_surprisal": 3.90086
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::run:345",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "run",
+      "start_line": 345,
+      "end_line": 426,
+      "nloc": 77,
+      "mean_line_surprisal": 1.66709,
+      "max_line_surprisal": 4.38905
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::invoke_bugreport:287",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "invoke_bugreport",
+      "start_line": 287,
+      "end_line": 341,
+      "nloc": 51,
+      "mean_line_surprisal": 1.56635,
+      "max_line_surprisal": 4.93805
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::run_controller:277",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "run_controller",
+      "start_line": 277,
+      "end_line": 284,
+      "nloc": 8,
+      "mean_line_surprisal": 1.76626,
+      "max_line_surprisal": 3.39881
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::get_new_terminal_title:266",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "get_new_terminal_title",
+      "start_line": 266,
+      "end_line": 275,
+      "nloc": 10,
+      "mean_line_surprisal": 2.37107,
+      "max_line_surprisal": 7.19203
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::set_terminal_title_to:259",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "set_terminal_title_to",
+      "start_line": 259,
+      "end_line": 264,
+      "nloc": 6,
+      "mean_line_surprisal": 2.04226,
+      "max_line_surprisal": 2.63968
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::list_themes:196",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "list_themes",
+      "start_line": 196,
+      "end_line": 257,
+      "nloc": 51,
+      "mean_line_surprisal": 1.66454,
+      "max_line_surprisal": 3.46594
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::theme_preview_file:192",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "theme_preview_file",
+      "start_line": 192,
+      "end_line": 194,
+      "nloc": 3,
+      "mean_line_surprisal": 2.69498,
+      "max_line_surprisal": 3.88925
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::get_languages:101",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "get_languages",
+      "start_line": 101,
+      "end_line": 190,
+      "nloc": 76,
+      "mean_line_surprisal": 2.08248,
+      "max_line_surprisal": 5.26224
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::get_syntax_mapping_to_paths:86",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "get_syntax_mapping_to_paths",
+      "start_line": 86,
+      "end_line": 99,
+      "nloc": 10,
+      "mean_line_surprisal": 2.30151,
+      "max_line_surprisal": 7.06803
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::run_cache_subcommand:64",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "run_cache_subcommand",
+      "start_line": 64,
+      "end_line": 84,
+      "nloc": 15,
+      "mean_line_surprisal": 1.61256,
+      "max_line_surprisal": 3.80867
+    },
+    {
+      "function_id": "src/bin/bat/main.rs::build_assets:49",
+      "file_path": "src/bin/bat/main.rs",
+      "name": "build_assets",
+      "start_line": 49,
+      "end_line": 62,
+      "nloc": 13,
+      "mean_line_surprisal": 2.17208,
+      "max_line_surprisal": 4.3947
+    },
+    {
+      "function_id": "src/config.rs::default_config_should_highlight_no_lines:132",
+      "file_path": "src/config.rs",
+      "name": "default_config_should_highlight_no_lines",
+      "start_line": 132,
+      "end_line": 143,
+      "nloc": 11,
+      "mean_line_surprisal": 1.45671,
+      "max_line_surprisal": 5.63678
+    },
+    {
+      "function_id": "src/config.rs::default_config_should_include_all_lines:121",
+      "file_path": "src/config.rs",
+      "name": "default_config_should_include_all_lines",
+      "start_line": 121,
+      "end_line": 129,
+      "nloc": 8,
+      "mean_line_surprisal": 1.85586,
+      "max_line_surprisal": 2.68327
+    },
+    {
+      "function_id": "src/config.rs::get_pager_executable:113",
+      "file_path": "src/config.rs",
+      "name": "get_pager_executable",
+      "start_line": 113,
+      "end_line": 118,
+      "nloc": 6,
+      "mean_line_surprisal": 2.11951,
+      "max_line_surprisal": 3.13282
+    },
+    {
+      "function_id": "src/config.rs::default:31",
+      "file_path": "src/config.rs",
+      "name": "default",
+      "start_line": 31,
+      "end_line": 33,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23217,
+      "max_line_surprisal": 3.34387
+    },
+    {
+      "function_id": "src/config.rs::diff_mode:21",
+      "file_path": "src/config.rs",
+      "name": "diff_mode",
+      "start_line": 21,
+      "end_line": 27,
+      "nloc": 7,
+      "mean_line_surprisal": 2.01054,
+      "max_line_surprisal": 3.18808
+    },
+    {
+      "function_id": "src/controller.rs::print_file_ranges:251",
+      "file_path": "src/controller.rs",
+      "name": "print_file_ranges",
+      "start_line": 251,
+      "end_line": 337,
+      "nloc": 72,
+      "mean_line_surprisal": 1.96837,
+      "max_line_surprisal": 5.20915
+    },
+    {
+      "function_id": "src/controller.rs::print_file:213",
+      "file_path": "src/controller.rs",
+      "name": "print_file",
+      "start_line": 213,
+      "end_line": 249,
+      "nloc": 25,
+      "mean_line_surprisal": 1.77605,
+      "max_line_surprisal": 3.48721
+    },
+    {
+      "function_id": "src/controller.rs::print_input:141",
+      "file_path": "src/controller.rs",
+      "name": "print_input",
+      "start_line": 141,
+      "end_line": 211,
+      "nloc": 59,
+      "mean_line_surprisal": 2.04727,
+      "max_line_surprisal": 8.6886
+    },
+    {
+      "function_id": "src/controller.rs::run_with_error_handler:47",
+      "file_path": "src/controller.rs",
+      "name": "run_with_error_handler",
+      "start_line": 47,
+      "end_line": 139,
+      "nloc": 78,
+      "mean_line_surprisal": 1.94137,
+      "max_line_surprisal": 7.3789
+    },
+    {
+      "function_id": "src/controller.rs::run:39",
+      "file_path": "src/controller.rs",
+      "name": "run",
+      "start_line": 39,
+      "end_line": 45,
+      "nloc": 3,
+      "mean_line_surprisal": 1.95968,
+      "max_line_surprisal": 3.18291
+    },
+    {
+      "function_id": "src/controller.rs::new:30",
+      "file_path": "src/controller.rs",
+      "name": "new",
+      "start_line": 30,
+      "end_line": 37,
+      "nloc": 8,
+      "mean_line_surprisal": 2.08324,
+      "max_line_surprisal": 3.84184
+    },
+    {
+      "function_id": "src/decorations.rs::width:155",
+      "file_path": "src/decorations.rs",
+      "name": "width",
+      "start_line": 155,
+      "end_line": 157,
+      "nloc": 3,
+      "mean_line_surprisal": 1.06685,
+      "max_line_surprisal": 1.36696
+    },
+    {
+      "function_id": "src/decorations.rs::generate:146",
+      "file_path": "src/decorations.rs",
+      "name": "generate",
+      "start_line": 146,
+      "end_line": 153,
+      "nloc": 3,
+      "mean_line_surprisal": 1.38749,
+      "max_line_surprisal": 2.56772
+    },
+    {
+      "function_id": "src/decorations.rs::new:135",
+      "file_path": "src/decorations.rs",
+      "name": "new",
+      "start_line": 135,
+      "end_line": 142,
+      "nloc": 8,
+      "mean_line_surprisal": 1.39125,
+      "max_line_surprisal": 3.46301
+    },
+    {
+      "function_id": "src/decorations.rs::width:125",
+      "file_path": "src/decorations.rs",
+      "name": "width",
+      "start_line": 125,
+      "end_line": 127,
+      "nloc": 3,
+      "mean_line_surprisal": 1.46509,
+      "max_line_surprisal": 1.86175
+    },
+    {
+      "function_id": "src/decorations.rs::generate:104",
+      "file_path": "src/decorations.rs",
+      "name": "generate",
+      "start_line": 104,
+      "end_line": 123,
+      "nloc": 14,
+      "mean_line_surprisal": 1.49236,
+      "max_line_surprisal": 2.98603
+    },
+    {
+      "function_id": "src/decorations.rs::new:91",
+      "file_path": "src/decorations.rs",
+      "name": "new",
+      "start_line": 91,
+      "end_line": 99,
+      "nloc": 9,
+      "mean_line_surprisal": 1.6108,
+      "max_line_surprisal": 3.4586
+    },
+    {
+      "function_id": "src/decorations.rs::generate_cached:84",
+      "file_path": "src/decorations.rs",
+      "name": "generate_cached",
+      "start_line": 84,
+      "end_line": 89,
+      "nloc": 6,
+      "mean_line_surprisal": 1.67495,
+      "max_line_surprisal": 2.67865
+    },
+    {
+      "function_id": "src/decorations.rs::width:67",
+      "file_path": "src/decorations.rs",
+      "name": "width",
+      "start_line": 67,
+      "end_line": 69,
+      "nloc": 3,
+      "mean_line_surprisal": 2.10923,
+      "max_line_surprisal": 3.71043
+    },
+    {
+      "function_id": "src/decorations.rs::generate:42",
+      "file_path": "src/decorations.rs",
+      "name": "generate",
+      "start_line": 42,
+      "end_line": 65,
+      "nloc": 18,
+      "mean_line_surprisal": 1.68586,
+      "max_line_surprisal": 4.14019
+    },
+    {
+      "function_id": "src/decorations.rs::new:29",
+      "file_path": "src/decorations.rs",
+      "name": "new",
+      "start_line": 29,
+      "end_line": 38,
+      "nloc": 10,
+      "mean_line_surprisal": 2.15843,
+      "max_line_surprisal": 3.34931
+    },
+    {
+      "function_id": "src/diff.rs::get_git_diff:19",
+      "file_path": "src/diff.rs",
+      "name": "get_git_diff",
+      "start_line": 19,
+      "end_line": 83,
+      "nloc": 53,
+      "mean_line_surprisal": 1.8764,
+      "max_line_surprisal": 7.70475
+    },
+    {
+      "function_id": "src/error.rs::default_error_handler:56",
+      "file_path": "src/error.rs",
+      "name": "default_error_handler",
+      "start_line": 56,
+      "end_line": 80,
+      "nloc": 24,
+      "mean_line_surprisal": 1.916,
+      "max_line_surprisal": 3.42148
+    },
+    {
+      "function_id": "src/error.rs::from:49",
+      "file_path": "src/error.rs",
+      "name": "from",
+      "start_line": 49,
+      "end_line": 51,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70683,
+      "max_line_surprisal": 3.14685
+    },
+    {
+      "function_id": "src/error.rs::from:43",
+      "file_path": "src/error.rs",
+      "name": "from",
+      "start_line": 43,
+      "end_line": 45,
+      "nloc": 3,
+      "mean_line_surprisal": 2.33569,
+      "max_line_surprisal": 3.39041
+    },
+    {
+      "function_id": "src/input.rs::utf16le_issue3367:385",
+      "file_path": "src/input.rs",
+      "name": "utf16le_issue3367",
+      "start_line": 385,
+      "end_line": 432,
+      "nloc": 39,
+      "mean_line_surprisal": 0.63769,
+      "max_line_surprisal": 2.17813
+    },
+    {
+      "function_id": "src/input.rs::utf16le:356",
+      "file_path": "src/input.rs",
+      "name": "utf16le",
+      "start_line": 356,
+      "end_line": 382,
+      "nloc": 20,
+      "mean_line_surprisal": 0.79668,
+      "max_line_surprisal": 2.20067
+    },
+    {
+      "function_id": "src/input.rs::basic:327",
+      "file_path": "src/input.rs",
+      "name": "basic",
+      "start_line": 327,
+      "end_line": 353,
+      "nloc": 20,
+      "mean_line_surprisal": 1.16533,
+      "max_line_surprisal": 2.33675
+    },
+    {
+      "function_id": "src/input.rs::read_utf16_line:300",
+      "file_path": "src/input.rs",
+      "name": "read_utf16_line",
+      "start_line": 300,
+      "end_line": 324,
+      "nloc": 20,
+      "mean_line_surprisal": 1.8154,
+      "max_line_surprisal": 5.36706
+    },
+    {
+      "function_id": "src/input.rs::read_line:282",
+      "file_path": "src/input.rs",
+      "name": "read_line",
+      "start_line": 282,
+      "end_line": 297,
+      "nloc": 14,
+      "mean_line_surprisal": 1.57554,
+      "max_line_surprisal": 2.97148
+    },
+    {
+      "function_id": "src/input.rs::new:259",
+      "file_path": "src/input.rs",
+      "name": "new",
+      "start_line": 259,
+      "end_line": 280,
+      "nloc": 19,
+      "mean_line_surprisal": 2.06012,
+      "max_line_surprisal": 6.25937
+    },
+    {
+      "function_id": "src/input.rs::open:190",
+      "file_path": "src/input.rs",
+      "name": "open",
+      "start_line": 190,
+      "end_line": 249,
+      "nloc": 52,
+      "mean_line_surprisal": 1.66493,
+      "max_line_surprisal": 3.85962
+    },
+    {
+      "function_id": "src/input.rs::description_mut:186",
+      "file_path": "src/input.rs",
+      "name": "description_mut",
+      "start_line": 186,
+      "end_line": 188,
+      "nloc": 3,
+      "mean_line_surprisal": 1.94385,
+      "max_line_surprisal": 2.27764
+    },
+    {
+      "function_id": "src/input.rs::description:182",
+      "file_path": "src/input.rs",
+      "name": "description",
+      "start_line": 182,
+      "end_line": 184,
+      "nloc": 3,
+      "mean_line_surprisal": 2.04337,
+      "max_line_surprisal": 2.25978
+    },
+    {
+      "function_id": "src/input.rs::_with_name:173",
+      "file_path": "src/input.rs",
+      "name": "_with_name",
+      "start_line": 173,
+      "end_line": 180,
+      "nloc": 7,
+      "mean_line_surprisal": 2.69946,
+      "max_line_surprisal": 5.60965
+    },
+    {
+      "function_id": "src/input.rs::with_name:169",
+      "file_path": "src/input.rs",
+      "name": "with_name",
+      "start_line": 169,
+      "end_line": 171,
+      "nloc": 3,
+      "mean_line_surprisal": 2.29687,
+      "max_line_surprisal": 3.40707
+    },
+    {
+      "function_id": "src/input.rs::is_stdin:165",
+      "file_path": "src/input.rs",
+      "name": "is_stdin",
+      "start_line": 165,
+      "end_line": 167,
+      "nloc": 3,
+      "mean_line_surprisal": 1.58311,
+      "max_line_surprisal": 2.08028
+    },
+    {
+      "function_id": "src/input.rs::from_reader:156",
+      "file_path": "src/input.rs",
+      "name": "from_reader",
+      "start_line": 156,
+      "end_line": 163,
+      "nloc": 8,
+      "mean_line_surprisal": 1.02499,
+      "max_line_surprisal": 2.29531
+    },
+    {
+      "function_id": "src/input.rs::stdin:147",
+      "file_path": "src/input.rs",
+      "name": "stdin",
+      "start_line": 147,
+      "end_line": 154,
+      "nloc": 8,
+      "mean_line_surprisal": 1.32306,
+      "max_line_surprisal": 3.29446
+    },
+    {
+      "function_id": "src/input.rs::_ordinary_file:133",
+      "file_path": "src/input.rs",
+      "name": "_ordinary_file",
+      "start_line": 133,
+      "end_line": 145,
+      "nloc": 12,
+      "mean_line_surprisal": 2.18028,
+      "max_line_surprisal": 4.73032
+    },
+    {
+      "function_id": "src/input.rs::ordinary_file:129",
+      "file_path": "src/input.rs",
+      "name": "ordinary_file",
+      "start_line": 129,
+      "end_line": 131,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23005,
+      "max_line_surprisal": 3.31383
+    },
+    {
+      "function_id": "src/input.rs::path:117",
+      "file_path": "src/input.rs",
+      "name": "path",
+      "start_line": 117,
+      "end_line": 125,
+      "nloc": 9,
+      "mean_line_surprisal": 1.71645,
+      "max_line_surprisal": 2.97559
+    },
+    {
+      "function_id": "src/input.rs::description:79",
+      "file_path": "src/input.rs",
+      "name": "description",
+      "start_line": 79,
+      "end_line": 85,
+      "nloc": 7,
+      "mean_line_surprisal": 1.83938,
+      "max_line_surprisal": 3.17597
+    },
+    {
+      "function_id": "src/input.rs::summary:64",
+      "file_path": "src/input.rs",
+      "name": "summary",
+      "start_line": 64,
+      "end_line": 69,
+      "nloc": 6,
+      "mean_line_surprisal": 2.13411,
+      "max_line_surprisal": 3.03557
+    },
+    {
+      "function_id": "src/input.rs::kind:60",
+      "file_path": "src/input.rs",
+      "name": "kind",
+      "start_line": 60,
+      "end_line": 62,
+      "nloc": 3,
+      "mean_line_surprisal": 2.91871,
+      "max_line_surprisal": 5.02676
+    },
+    {
+      "function_id": "src/input.rs::title:53",
+      "file_path": "src/input.rs",
+      "name": "title",
+      "start_line": 53,
+      "end_line": 58,
+      "nloc": 6,
+      "mean_line_surprisal": 2.03982,
+      "max_line_surprisal": 2.57966
+    },
+    {
+      "function_id": "src/input.rs::set_title:49",
+      "file_path": "src/input.rs",
+      "name": "set_title",
+      "start_line": 49,
+      "end_line": 51,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50961,
+      "max_line_surprisal": 2.18011
+    },
+    {
+      "function_id": "src/input.rs::set_summary:45",
+      "file_path": "src/input.rs",
+      "name": "set_summary",
+      "start_line": 45,
+      "end_line": 47,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50677,
+      "max_line_surprisal": 1.97733
+    },
+    {
+      "function_id": "src/input.rs::set_kind:41",
+      "file_path": "src/input.rs",
+      "name": "set_kind",
+      "start_line": 41,
+      "end_line": 43,
+      "nloc": 3,
+      "mean_line_surprisal": 1.8563,
+      "max_line_surprisal": 2.54612
+    },
+    {
+      "function_id": "src/input.rs::new:32",
+      "file_path": "src/input.rs",
+      "name": "new",
+      "start_line": 32,
+      "end_line": 39,
+      "nloc": 8,
+      "mean_line_surprisal": 2.2053,
+      "max_line_surprisal": 3.35283
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_invalid_utf_8:126",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_invalid_utf_8",
+      "start_line": 126,
+      "end_line": 131,
+      "nloc": 5,
+      "mean_line_surprisal": 0.98424,
+      "max_line_surprisal": 2.08969
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_busybox:101",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_busybox",
+      "start_line": 101,
+      "end_line": 123,
+      "nloc": 19,
+      "mean_line_surprisal": 0.76933,
+      "max_line_surprisal": 2.09922
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_wrong_program:93",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_wrong_program",
+      "start_line": 93,
+      "end_line": 98,
+      "nloc": 5,
+      "mean_line_surprisal": 1.155,
+      "max_line_surprisal": 2.10969
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_581_2:80",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_581_2",
+      "start_line": 80,
+      "end_line": 90,
+      "nloc": 9,
+      "mean_line_surprisal": 0.87667,
+      "max_line_surprisal": 2.12355
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_551:67",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_551",
+      "start_line": 67,
+      "end_line": 77,
+      "nloc": 9,
+      "mean_line_surprisal": 0.92516,
+      "max_line_surprisal": 2.14283
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_529:54",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_529",
+      "start_line": 54,
+      "end_line": 64,
+      "nloc": 9,
+      "mean_line_surprisal": 1.03932,
+      "max_line_surprisal": 2.17728
+    },
+    {
+      "function_id": "src/less.rs::test_parse_less_version_487:41",
+      "file_path": "src/less.rs",
+      "name": "test_parse_less_version_487",
+      "start_line": 41,
+      "end_line": 51,
+      "nloc": 9,
+      "mean_line_surprisal": 1.7422,
+      "max_line_surprisal": 2.32687
+    },
+    {
+      "function_id": "src/less.rs::parse_less_version_busybox:33",
+      "file_path": "src/less.rs",
+      "name": "parse_less_version_busybox",
+      "start_line": 33,
+      "end_line": 38,
+      "nloc": 6,
+      "mean_line_surprisal": 1.51656,
+      "max_line_surprisal": 2.08479
+    },
+    {
+      "function_id": "src/less.rs::parse_less_version:23",
+      "file_path": "src/less.rs",
+      "name": "parse_less_version",
+      "start_line": 23,
+      "end_line": 31,
+      "nloc": 8,
+      "mean_line_surprisal": 2.05121,
+      "max_line_surprisal": 3.37897
+    },
+    {
+      "function_id": "src/less.rs::retrieve_less_version:12",
+      "file_path": "src/less.rs",
+      "name": "retrieve_less_version",
+      "start_line": 12,
+      "end_line": 21,
+      "nloc": 9,
+      "mean_line_surprisal": 1.77819,
+      "max_line_surprisal": 2.39466
+    },
+    {
+      "function_id": "src/lessopen.rs::replace_part_of_argument:376",
+      "file_path": "src/lessopen.rs",
+      "name": "replace_part_of_argument",
+      "start_line": 376,
+      "end_line": 386,
+      "nloc": 8,
+      "mean_line_surprisal": 1.04408,
+      "max_line_surprisal": 2.12401
+    },
+    {
+      "function_id": "src/lessopen.rs::test_lessopen_prefixes:326",
+      "file_path": "src/lessopen.rs",
+      "name": "test_lessopen_prefixes",
+      "start_line": 326,
+      "end_line": 372,
+      "nloc": 34,
+      "mean_line_surprisal": 0.85214,
+      "max_line_surprisal": 2.24516
+    },
+    {
+      "function_id": "src/lessopen.rs::test_both_lessopen_and_lessclose:312",
+      "file_path": "src/lessopen.rs",
+      "name": "test_both_lessopen_and_lessclose",
+      "start_line": 312,
+      "end_line": 322,
+      "nloc": 8,
+      "mean_line_surprisal": 1.25675,
+      "max_line_surprisal": 2.3761
+    },
+    {
+      "function_id": "src/lessopen.rs::test_just_lessclose:300",
+      "file_path": "src/lessopen.rs",
+      "name": "test_just_lessclose",
+      "start_line": 300,
+      "end_line": 308,
+      "nloc": 6,
+      "mean_line_surprisal": 1.47159,
+      "max_line_surprisal": 2.573
+    },
+    {
+      "function_id": "src/lessopen.rs::test_just_lessopen:287",
+      "file_path": "src/lessopen.rs",
+      "name": "test_just_lessopen",
+      "start_line": 287,
+      "end_line": 296,
+      "nloc": 7,
+      "mean_line_surprisal": 1.8576,
+      "max_line_surprisal": 2.80184
+    },
+    {
+      "function_id": "src/lessopen.rs::reset_env_vars:280",
+      "file_path": "src/lessopen.rs",
+      "name": "reset_env_vars",
+      "start_line": 280,
+      "end_line": 283,
+      "nloc": 4,
+      "mean_line_surprisal": 1.94411,
+      "max_line_surprisal": 2.60997
+    },
+    {
+      "function_id": "src/lessopen.rs::drop:252",
+      "file_path": "src/lessopen.rs",
+      "name": "drop",
+      "start_line": 252,
+      "end_line": 268,
+      "nloc": 15,
+      "mean_line_surprisal": 1.81154,
+      "max_line_surprisal": 4.76777
+    },
+    {
+      "function_id": "src/lessopen.rs::read:246",
+      "file_path": "src/lessopen.rs",
+      "name": "read",
+      "start_line": 246,
+      "end_line": 248,
+      "nloc": 3,
+      "mean_line_surprisal": 1.66025,
+      "max_line_surprisal": 2.69931
+    },
+    {
+      "function_id": "src/lessopen.rs::read:232",
+      "file_path": "src/lessopen.rs",
+      "name": "read",
+      "start_line": 232,
+      "end_line": 237,
+      "nloc": 6,
+      "mean_line_surprisal": 1.51842,
+      "max_line_surprisal": 2.18757
+    },
+    {
+      "function_id": "src/lessopen.rs::mock_new:209",
+      "file_path": "src/lessopen.rs",
+      "name": "mock_new",
+      "start_line": 209,
+      "end_line": 223,
+      "nloc": 13,
+      "mean_line_surprisal": 2.1905,
+      "max_line_surprisal": 5.96859
+    },
+    {
+      "function_id": "src/lessopen.rs::fall_back_to_original_file:201",
+      "file_path": "src/lessopen.rs",
+      "name": "fall_back_to_original_file",
+      "start_line": 201,
+      "end_line": 204,
+      "nloc": 4,
+      "mean_line_surprisal": 1.98148,
+      "max_line_surprisal": 2.53515
+    },
+    {
+      "function_id": "src/lessopen.rs::open:77",
+      "file_path": "src/lessopen.rs",
+      "name": "open",
+      "start_line": 77,
+      "end_line": 199,
+      "nloc": 106,
+      "mean_line_surprisal": 1.6715,
+      "max_line_surprisal": 7.17032
+    },
+    {
+      "function_id": "src/lessopen.rs::new:35",
+      "file_path": "src/lessopen.rs",
+      "name": "new",
+      "start_line": 35,
+      "end_line": 75,
+      "nloc": 37,
+      "mean_line_surprisal": 2.26321,
+      "max_line_surprisal": 7.1564
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_none:761",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_none",
+      "start_line": 761,
+      "end_line": 768,
+      "nloc": 7,
+      "mean_line_surprisal": 1.30561,
+      "max_line_surprisal": 3.10563
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_all:751",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_all",
+      "start_line": 751,
+      "end_line": 758,
+      "nloc": 7,
+      "mean_line_surprisal": 1.03204,
+      "max_line_surprisal": 2.12352
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_absolute_bound_and_offset:726",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_absolute_bound_and_offset",
+      "start_line": 726,
+      "end_line": 748,
+      "nloc": 23,
+      "mean_line_surprisal": 0.50325,
+      "max_line_surprisal": 2.12477
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_multiple_negative_offsets_to_end:705",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_multiple_negative_offsets_to_end",
+      "start_line": 705,
+      "end_line": 723,
+      "nloc": 19,
+      "mean_line_surprisal": 0.58275,
+      "max_line_surprisal": 2.12621
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_3_from_back_up_to_end:667",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_3_from_back_up_to_end",
+      "start_line": 667,
+      "end_line": 702,
+      "nloc": 35,
+      "mean_line_surprisal": 0.51548,
+      "max_line_surprisal": 2.12696
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_multiple_negative_from_back:630",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_multiple_negative_from_back",
+      "start_line": 630,
+      "end_line": 664,
+      "nloc": 35,
+      "mean_line_surprisal": 0.51079,
+      "max_line_surprisal": 2.12762
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_open_up_to_3_from_end:589",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_open_up_to_3_from_end",
+      "start_line": 589,
+      "end_line": 627,
+      "nloc": 39,
+      "mean_line_surprisal": 0.53737,
+      "max_line_surprisal": 2.12798
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_open_high:551",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_open_high",
+      "start_line": 551,
+      "end_line": 586,
+      "nloc": 35,
+      "mean_line_surprisal": 0.55245,
+      "max_line_surprisal": 2.12843
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_open_low:529",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_open_low",
+      "start_line": 529,
+      "end_line": 548,
+      "nloc": 19,
+      "mean_line_surprisal": 0.65841,
+      "max_line_surprisal": 2.12985
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_advanced:495",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_advanced",
+      "start_line": 495,
+      "end_line": 526,
+      "nloc": 31,
+      "mean_line_surprisal": 0.68149,
+      "max_line_surprisal": 2.13038
+    },
+    {
+      "function_id": "src/line_range.rs::test_ranges_simple:477",
+      "file_path": "src/line_range.rs",
+      "name": "test_ranges_simple",
+      "start_line": 477,
+      "end_line": 492,
+      "nloc": 15,
+      "mean_line_surprisal": 1.00668,
+      "max_line_surprisal": 2.13207
+    },
+    {
+      "function_id": "src/line_range.rs::ranges:472",
+      "file_path": "src/line_range.rs",
+      "name": "ranges",
+      "start_line": 472,
+      "end_line": 474,
+      "nloc": 3,
+      "mean_line_surprisal": 2.1852,
+      "max_line_surprisal": 3.10146
+    },
+    {
+      "function_id": "src/line_range.rs::default:466",
+      "file_path": "src/line_range.rs",
+      "name": "default",
+      "start_line": 466,
+      "end_line": 468,
+      "nloc": 3,
+      "mean_line_surprisal": 2.0731,
+      "max_line_surprisal": 3.39081
+    },
+    {
+      "function_id": "src/line_range.rs::default:457",
+      "file_path": "src/line_range.rs",
+      "name": "default",
+      "start_line": 457,
+      "end_line": 459,
+      "nloc": 3,
+      "mean_line_surprisal": 2.08698,
+      "max_line_surprisal": 3.13546
+    },
+    {
+      "function_id": "src/line_range.rs::largest_offset_from_end:451",
+      "file_path": "src/line_range.rs",
+      "name": "largest_offset_from_end",
+      "start_line": 451,
+      "end_line": 453,
+      "nloc": 3,
+      "mean_line_surprisal": 2.11254,
+      "max_line_surprisal": 3.45519
+    },
+    {
+      "function_id": "src/line_range.rs::check:430",
+      "file_path": "src/line_range.rs",
+      "name": "check",
+      "start_line": 430,
+      "end_line": 449,
+      "nloc": 16,
+      "mean_line_surprisal": 1.7133,
+      "max_line_surprisal": 3.47336
+    },
+    {
+      "function_id": "src/line_range.rs::from:397",
+      "file_path": "src/line_range.rs",
+      "name": "from",
+      "start_line": 397,
+      "end_line": 428,
+      "nloc": 29,
+      "mean_line_surprisal": 1.6207,
+      "max_line_surprisal": 3.3213
+    },
+    {
+      "function_id": "src/line_range.rs::all:393",
+      "file_path": "src/line_range.rs",
+      "name": "all",
+      "start_line": 393,
+      "end_line": 395,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70003,
+      "max_line_surprisal": 2.16872
+    },
+    {
+      "function_id": "src/line_range.rs::none:389",
+      "file_path": "src/line_range.rs",
+      "name": "none",
+      "start_line": 389,
+      "end_line": 391,
+      "nloc": 3,
+      "mean_line_surprisal": 2.21037,
+      "max_line_surprisal": 2.54551
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_context_fail:343",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_context_fail",
+      "start_line": 343,
+      "end_line": 354,
+      "nloc": 12,
+      "mean_line_surprisal": 0.68877,
+      "max_line_surprisal": 2.11923
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_context_edge_cases:325",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_context_edge_cases",
+      "start_line": 325,
+      "end_line": 340,
+      "nloc": 14,
+      "mean_line_surprisal": 1.06721,
+      "max_line_surprisal": 3.74653
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_context_range:313",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_context_range",
+      "start_line": 313,
+      "end_line": 322,
+      "nloc": 9,
+      "mean_line_surprisal": 1.40738,
+      "max_line_surprisal": 4.61121
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_context_single_line:306",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_context_single_line",
+      "start_line": 306,
+      "end_line": 310,
+      "nloc": 5,
+      "mean_line_surprisal": 0.76289,
+      "max_line_surprisal": 2.12471
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_minus_fail:296",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_minus_fail",
+      "start_line": 296,
+      "end_line": 303,
+      "nloc": 8,
+      "mean_line_surprisal": 0.80906,
+      "max_line_surprisal": 2.12654
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_minus_edge_cases_success:283",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_minus_edge_cases_success",
+      "start_line": 283,
+      "end_line": 293,
+      "nloc": 11,
+      "mean_line_surprisal": 0.59083,
+      "max_line_surprisal": 2.1276
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_minus_success:276",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_minus_success",
+      "start_line": 276,
+      "end_line": 280,
+      "nloc": 5,
+      "mean_line_surprisal": 0.74952,
+      "max_line_surprisal": 2.13093
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_plus_fail:266",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_plus_fail",
+      "start_line": 266,
+      "end_line": 273,
+      "nloc": 8,
+      "mean_line_surprisal": 0.85111,
+      "max_line_surprisal": 2.13362
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_plus_overflow:259",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_plus_overflow",
+      "start_line": 259,
+      "end_line": 263,
+      "nloc": 5,
+      "mean_line_surprisal": 0.96753,
+      "max_line_surprisal": 2.1373
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_plus:252",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_plus",
+      "start_line": 252,
+      "end_line": 256,
+      "nloc": 5,
+      "mean_line_surprisal": 0.76192,
+      "max_line_surprisal": 2.14156
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_fail:237",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_fail",
+      "start_line": 237,
+      "end_line": 249,
+      "nloc": 13,
+      "mean_line_surprisal": 1.70204,
+      "max_line_surprisal": 5.46904
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_single:230",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_single",
+      "start_line": 230,
+      "end_line": 234,
+      "nloc": 5,
+      "mean_line_surprisal": 0.76926,
+      "max_line_surprisal": 2.15049
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_partial_max:223",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_partial_max",
+      "start_line": 223,
+      "end_line": 227,
+      "nloc": 5,
+      "mean_line_surprisal": 0.80812,
+      "max_line_surprisal": 2.1569
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_relative_negative_from_back_partial:216",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_relative_negative_from_back_partial",
+      "start_line": 216,
+      "end_line": 220,
+      "nloc": 5,
+      "mean_line_surprisal": 0.88002,
+      "max_line_surprisal": 2.16493
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_partial_relative_negative_from_back:209",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_partial_relative_negative_from_back",
+      "start_line": 209,
+      "end_line": 213,
+      "nloc": 5,
+      "mean_line_surprisal": 0.91842,
+      "max_line_surprisal": 2.17669
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_partial_min:202",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_partial_min",
+      "start_line": 202,
+      "end_line": 206,
+      "nloc": 5,
+      "mean_line_surprisal": 0.94146,
+      "max_line_surprisal": 2.20128
+    },
+    {
+      "function_id": "src/line_range.rs::test_parse_full:195",
+      "file_path": "src/line_range.rs",
+      "name": "test_parse_full",
+      "start_line": 195,
+      "end_line": 199,
+      "nloc": 5,
+      "mean_line_surprisal": 1.23543,
+      "max_line_surprisal": 2.33812
+    },
+    {
+      "function_id": "src/line_range.rs::is_inside:136",
+      "file_path": "src/line_range.rs",
+      "name": "is_inside",
+      "start_line": 136,
+      "end_line": 191,
+      "nloc": 52,
+      "mean_line_surprisal": 1.64692,
+      "max_line_surprisal": 4.83465
+    },
+    {
+      "function_id": "src/line_range.rs::parse_range:40",
+      "file_path": "src/line_range.rs",
+      "name": "parse_range",
+      "start_line": 40,
+      "end_line": 131,
+      "nloc": 87,
+      "mean_line_surprisal": 1.465,
+      "max_line_surprisal": 4.50335
+    },
+    {
+      "function_id": "src/line_range.rs::from:36",
+      "file_path": "src/line_range.rs",
+      "name": "from",
+      "start_line": 36,
+      "end_line": 38,
+      "nloc": 3,
+      "mean_line_surprisal": 1.60919,
+      "max_line_surprisal": 2.21204
+    },
+    {
+      "function_id": "src/line_range.rs::new:29",
+      "file_path": "src/line_range.rs",
+      "name": "new",
+      "start_line": 29,
+      "end_line": 34,
+      "nloc": 6,
+      "mean_line_surprisal": 1.53282,
+      "max_line_surprisal": 2.3778
+    },
+    {
+      "function_id": "src/line_range.rs::default:20",
+      "file_path": "src/line_range.rs",
+      "name": "default",
+      "start_line": 20,
+      "end_line": 25,
+      "nloc": 6,
+      "mean_line_surprisal": 1.51357,
+      "max_line_surprisal": 2.35173
+    },
+    {
+      "function_id": "src/output.rs::write_fmt:228",
+      "file_path": "src/output.rs",
+      "name": "write_fmt",
+      "start_line": 228,
+      "end_line": 233,
+      "nloc": 6,
+      "mean_line_surprisal": 1.75382,
+      "max_line_surprisal": 3.01143
+    },
+    {
+      "function_id": "src/output.rs::drop:207",
+      "file_path": "src/output.rs",
+      "name": "drop",
+      "start_line": 207,
+      "end_line": 219,
+      "nloc": 13,
+      "mean_line_surprisal": 1.89862,
+      "max_line_surprisal": 2.46502
+    },
+    {
+      "function_id": "src/output.rs::handle:189",
+      "file_path": "src/output.rs",
+      "name": "handle",
+      "start_line": 189,
+      "end_line": 202,
+      "nloc": 14,
+      "mean_line_surprisal": 1.75398,
+      "max_line_surprisal": 3.80655
+    },
+    {
+      "function_id": "src/output.rs::is_pager:185",
+      "file_path": "src/output.rs",
+      "name": "is_pager",
+      "start_line": 185,
+      "end_line": 187,
+      "nloc": 3,
+      "mean_line_surprisal": 2.50333,
+      "max_line_surprisal": 5.70373
+    },
+    {
+      "function_id": "src/output.rs::is_pager:180",
+      "file_path": "src/output.rs",
+      "name": "is_pager",
+      "start_line": 180,
+      "end_line": 182,
+      "nloc": 3,
+      "mean_line_surprisal": 1.99366,
+      "max_line_surprisal": 2.39031
+    },
+    {
+      "function_id": "src/output.rs::stdout:175",
+      "file_path": "src/output.rs",
+      "name": "stdout",
+      "start_line": 175,
+      "end_line": 177,
+      "nloc": 3,
+      "mean_line_surprisal": 2.19697,
+      "max_line_surprisal": 3.05453
+    },
+    {
+      "function_id": "src/output.rs::try_pager:81",
+      "file_path": "src/output.rs",
+      "name": "try_pager",
+      "start_line": 81,
+      "end_line": 173,
+      "nloc": 76,
+      "mean_line_surprisal": 1.73208,
+      "max_line_surprisal": 6.43534
+    },
+    {
+      "function_id": "src/output.rs::from_mode:64",
+      "file_path": "src/output.rs",
+      "name": "from_mode",
+      "start_line": 64,
+      "end_line": 77,
+      "nloc": 10,
+      "mean_line_surprisal": 2.04987,
+      "max_line_surprisal": 3.25865
+    },
+    {
+      "function_id": "src/output.rs::fmt:38",
+      "file_path": "src/output.rs",
+      "name": "fmt",
+      "start_line": 38,
+      "end_line": 43,
+      "nloc": 6,
+      "mean_line_surprisal": 2.83942,
+      "max_line_surprisal": 9.4272
+    },
+    {
+      "function_id": "src/output.rs::new:24",
+      "file_path": "src/output.rs",
+      "name": "new",
+      "start_line": 24,
+      "end_line": 33,
+      "nloc": 10,
+      "mean_line_surprisal": 2.18169,
+      "max_line_surprisal": 3.28267
+    },
+    {
+      "function_id": "src/pager.rs::get_pager:100",
+      "file_path": "src/pager.rs",
+      "name": "get_pager",
+      "start_line": 100,
+      "end_line": 138,
+      "nloc": 35,
+      "mean_line_surprisal": 1.86989,
+      "max_line_surprisal": 7.34186
+    },
+    {
+      "function_id": "src/pager.rs::new:89",
+      "file_path": "src/pager.rs",
+      "name": "new",
+      "start_line": 89,
+      "end_line": 96,
+      "nloc": 8,
+      "mean_line_surprisal": 1.71081,
+      "max_line_surprisal": 3.30288
+    },
+    {
+      "function_id": "src/pager.rs::from_bin:43",
+      "file_path": "src/pager.rs",
+      "name": "from_bin",
+      "start_line": 43,
+      "end_line": 69,
+      "nloc": 22,
+      "mean_line_surprisal": 1.75535,
+      "max_line_surprisal": 3.18643
+    },
+    {
+      "function_id": "src/preprocessor.rs::test_strip_ansi:205",
+      "file_path": "src/preprocessor.rs",
+      "name": "test_strip_ansi",
+      "start_line": 205,
+      "end_line": 213,
+      "nloc": 9,
+      "mean_line_surprisal": 1.72691,
+      "max_line_surprisal": 4.32984
+    },
+    {
+      "function_id": "src/preprocessor.rs::test_try_parse_utf8_char:161",
+      "file_path": "src/preprocessor.rs",
+      "name": "test_try_parse_utf8_char",
+      "start_line": 161,
+      "end_line": 202,
+      "nloc": 36,
+      "mean_line_surprisal": 0.61361,
+      "max_line_surprisal": 2.35522
+    },
+    {
+      "function_id": "src/preprocessor.rs::strip_ansi:140",
+      "file_path": "src/preprocessor.rs",
+      "name": "strip_ansi",
+      "start_line": 140,
+      "end_line": 150,
+      "nloc": 9,
+      "mean_line_surprisal": 1.6754,
+      "max_line_surprisal": 5.26712
+    },
+    {
+      "function_id": "src/preprocessor.rs::replace_nonprintable:59",
+      "file_path": "src/preprocessor.rs",
+      "name": "replace_nonprintable",
+      "start_line": 59,
+      "end_line": 137,
+      "nloc": 69,
+      "mean_line_surprisal": 1.99787,
+      "max_line_surprisal": 7.12268
+    },
+    {
+      "function_id": "src/preprocessor.rs::try_parse_utf8_char:45",
+      "file_path": "src/preprocessor.rs",
+      "name": "try_parse_utf8_char",
+      "start_line": 45,
+      "end_line": 57,
+      "nloc": 11,
+      "mean_line_surprisal": 1.5459,
+      "max_line_surprisal": 3.25797
+    },
+    {
+      "function_id": "src/preprocessor.rs::expand_tabs:9",
+      "file_path": "src/preprocessor.rs",
+      "name": "expand_tabs",
+      "start_line": 9,
+      "end_line": 43,
+      "nloc": 30,
+      "mean_line_surprisal": 2.35633,
+      "max_line_surprisal": 6.74969
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from:402",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from",
+      "start_line": 402,
+      "end_line": 404,
+      "nloc": 3,
+      "mean_line_surprisal": 1.94128,
+      "max_line_surprisal": 2.87656
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from:396",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from",
+      "start_line": 396,
+      "end_line": 398,
+      "nloc": 3,
+      "mean_line_surprisal": 1.71197,
+      "max_line_surprisal": 2.42379
+    },
+    {
+      "function_id": "src/pretty_printer.rs::title:389",
+      "file_path": "src/pretty_printer.rs",
+      "name": "title",
+      "start_line": 389,
+      "end_line": 392,
+      "nloc": 4,
+      "mean_line_surprisal": 1.3892,
+      "max_line_surprisal": 1.81018
+    },
+    {
+      "function_id": "src/pretty_printer.rs::kind:379",
+      "file_path": "src/pretty_printer.rs",
+      "name": "kind",
+      "start_line": 379,
+      "end_line": 385,
+      "nloc": 7,
+      "mean_line_surprisal": 1.81351,
+      "max_line_surprisal": 2.97138
+    },
+    {
+      "function_id": "src/pretty_printer.rs::name:373",
+      "file_path": "src/pretty_printer.rs",
+      "name": "name",
+      "start_line": 373,
+      "end_line": 376,
+      "nloc": 4,
+      "mean_line_surprisal": 1.49298,
+      "max_line_surprisal": 2.24068
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from_stdin:367",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from_stdin",
+      "start_line": 367,
+      "end_line": 369,
+      "nloc": 3,
+      "mean_line_surprisal": 1.698,
+      "max_line_surprisal": 2.11711
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from_bytes:362",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from_bytes",
+      "start_line": 362,
+      "end_line": 364,
+      "nloc": 3,
+      "mean_line_surprisal": 1.52012,
+      "max_line_surprisal": 2.19021
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from_file:357",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from_file",
+      "start_line": 357,
+      "end_line": 359,
+      "nloc": 3,
+      "mean_line_surprisal": 1.72472,
+      "max_line_surprisal": 2.48595
+    },
+    {
+      "function_id": "src/pretty_printer.rs::from_reader:352",
+      "file_path": "src/pretty_printer.rs",
+      "name": "from_reader",
+      "start_line": 352,
+      "end_line": 354,
+      "nloc": 3,
+      "mean_line_surprisal": 2.21895,
+      "max_line_surprisal": 3.4601
+    },
+    {
+      "function_id": "src/pretty_printer.rs::default:340",
+      "file_path": "src/pretty_printer.rs",
+      "name": "default",
+      "start_line": 340,
+      "end_line": 342,
+      "nloc": 3,
+      "mean_line_surprisal": 2.83426,
+      "max_line_surprisal": 4.76008
+    },
+    {
+      "function_id": "src/pretty_printer.rs::print_with_writer:289",
+      "file_path": "src/pretty_printer.rs",
+      "name": "print_with_writer",
+      "start_line": 289,
+      "end_line": 336,
+      "nloc": 44,
+      "mean_line_surprisal": 1.72773,
+      "max_line_surprisal": 4.18046
+    },
+    {
+      "function_id": "src/pretty_printer.rs::print:284",
+      "file_path": "src/pretty_printer.rs",
+      "name": "print",
+      "start_line": 284,
+      "end_line": 286,
+      "nloc": 3,
+      "mean_line_surprisal": 1.83318,
+      "max_line_surprisal": 1.93249
+    },
+    {
+      "function_id": "src/pretty_printer.rs::syntaxes:267",
+      "file_path": "src/pretty_printer.rs",
+      "name": "syntaxes",
+      "start_line": 267,
+      "end_line": 279,
+      "nloc": 13,
+      "mean_line_surprisal": 1.96272,
+      "max_line_surprisal": 3.44834
+    },
+    {
+      "function_id": "src/pretty_printer.rs::themes:263",
+      "file_path": "src/pretty_printer.rs",
+      "name": "themes",
+      "start_line": 263,
+      "end_line": 265,
+      "nloc": 3,
+      "mean_line_surprisal": 1.8852,
+      "max_line_surprisal": 1.96445
+    },
+    {
+      "function_id": "src/pretty_printer.rs::syntax_mapping:258",
+      "file_path": "src/pretty_printer.rs",
+      "name": "syntax_mapping",
+      "start_line": 258,
+      "end_line": 261,
+      "nloc": 4,
+      "mean_line_surprisal": 0.99477,
+      "max_line_surprisal": 1.85787
+    },
+    {
+      "function_id": "src/pretty_printer.rs::theme:252",
+      "file_path": "src/pretty_printer.rs",
+      "name": "theme",
+      "start_line": 252,
+      "end_line": 255,
+      "nloc": 4,
+      "mean_line_surprisal": 1.36257,
+      "max_line_surprisal": 1.99143
+    },
+    {
+      "function_id": "src/pretty_printer.rs::squeeze_empty_lines:244",
+      "file_path": "src/pretty_printer.rs",
+      "name": "squeeze_empty_lines",
+      "start_line": 244,
+      "end_line": 247,
+      "nloc": 4,
+      "mean_line_surprisal": 0.88277,
+      "max_line_surprisal": 1.5424
+    },
+    {
+      "function_id": "src/pretty_printer.rs::highlight_range:238",
+      "file_path": "src/pretty_printer.rs",
+      "name": "highlight_range",
+      "start_line": 238,
+      "end_line": 241,
+      "nloc": 4,
+      "mean_line_surprisal": 1.24598,
+      "max_line_surprisal": 1.53752
+    },
+    {
+      "function_id": "src/pretty_printer.rs::highlight:230",
+      "file_path": "src/pretty_printer.rs",
+      "name": "highlight",
+      "start_line": 230,
+      "end_line": 233,
+      "nloc": 4,
+      "mean_line_surprisal": 1.34937,
+      "max_line_surprisal": 2.08069
+    },
+    {
+      "function_id": "src/pretty_printer.rs::line_ranges:222",
+      "file_path": "src/pretty_printer.rs",
+      "name": "line_ranges",
+      "start_line": 222,
+      "end_line": 225,
+      "nloc": 4,
+      "mean_line_surprisal": 1.05438,
+      "max_line_surprisal": 1.52786
+    },
+    {
+      "function_id": "src/pretty_printer.rs::pager:216",
+      "file_path": "src/pretty_printer.rs",
+      "name": "pager",
+      "start_line": 216,
+      "end_line": 219,
+      "nloc": 4,
+      "mean_line_surprisal": 1.09943,
+      "max_line_surprisal": 1.81647
+    },
+    {
+      "function_id": "src/pretty_printer.rs::paging_mode:209",
+      "file_path": "src/pretty_printer.rs",
+      "name": "paging_mode",
+      "start_line": 209,
+      "end_line": 212,
+      "nloc": 4,
+      "mean_line_surprisal": 0.76404,
+      "max_line_surprisal": 1.56065
+    },
+    {
+      "function_id": "src/pretty_printer.rs::use_italics:202",
+      "file_path": "src/pretty_printer.rs",
+      "name": "use_italics",
+      "start_line": 202,
+      "end_line": 205,
+      "nloc": 4,
+      "mean_line_surprisal": 0.56952,
+      "max_line_surprisal": 1.39857
+    },
+    {
+      "function_id": "src/pretty_printer.rs::wrapping_mode:196",
+      "file_path": "src/pretty_printer.rs",
+      "name": "wrapping_mode",
+      "start_line": 196,
+      "end_line": 199,
+      "nloc": 4,
+      "mean_line_surprisal": 0.77197,
+      "max_line_surprisal": 1.56601
+    },
+    {
+      "function_id": "src/pretty_printer.rs::strip_ansi:190",
+      "file_path": "src/pretty_printer.rs",
+      "name": "strip_ansi",
+      "start_line": 190,
+      "end_line": 193,
+      "nloc": 4,
+      "mean_line_surprisal": 0.92644,
+      "max_line_surprisal": 1.78995
+    },
+    {
+      "function_id": "src/pretty_printer.rs::snip:181",
+      "file_path": "src/pretty_printer.rs",
+      "name": "snip",
+      "start_line": 181,
+      "end_line": 184,
+      "nloc": 4,
+      "mean_line_surprisal": 0.51749,
+      "max_line_surprisal": 1.19202
+    },
+    {
+      "function_id": "src/pretty_printer.rs::show_nonprintable:175",
+      "file_path": "src/pretty_printer.rs",
+      "name": "show_nonprintable",
+      "start_line": 175,
+      "end_line": 178,
+      "nloc": 4,
+      "mean_line_surprisal": 0.59537,
+      "max_line_surprisal": 1.481
+    },
+    {
+      "function_id": "src/pretty_printer.rs::vcs_modification_markers:169",
+      "file_path": "src/pretty_printer.rs",
+      "name": "vcs_modification_markers",
+      "start_line": 169,
+      "end_line": 172,
+      "nloc": 4,
+      "mean_line_surprisal": 0.56681,
+      "max_line_surprisal": 1.1967
+    },
+    {
+      "function_id": "src/pretty_printer.rs::rule:161",
+      "file_path": "src/pretty_printer.rs",
+      "name": "rule",
+      "start_line": 161,
+      "end_line": 164,
+      "nloc": 4,
+      "mean_line_surprisal": 0.54696,
+      "max_line_surprisal": 1.27772
+    },
+    {
+      "function_id": "src/pretty_printer.rs::grid:155",
+      "file_path": "src/pretty_printer.rs",
+      "name": "grid",
+      "start_line": 155,
+      "end_line": 158,
+      "nloc": 4,
+      "mean_line_surprisal": 0.57202,
+      "max_line_surprisal": 1.35529
+    },
+    {
+      "function_id": "src/pretty_printer.rs::line_numbers:149",
+      "file_path": "src/pretty_printer.rs",
+      "name": "line_numbers",
+      "start_line": 149,
+      "end_line": 152,
+      "nloc": 4,
+      "mean_line_surprisal": 0.58828,
+      "max_line_surprisal": 1.38385
+    },
+    {
+      "function_id": "src/pretty_printer.rs::header:143",
+      "file_path": "src/pretty_printer.rs",
+      "name": "header",
+      "start_line": 143,
+      "end_line": 146,
+      "nloc": 4,
+      "mean_line_surprisal": 0.66147,
+      "max_line_surprisal": 1.64706
+    },
+    {
+      "function_id": "src/pretty_printer.rs::true_color:137",
+      "file_path": "src/pretty_printer.rs",
+      "name": "true_color",
+      "start_line": 137,
+      "end_line": 140,
+      "nloc": 4,
+      "mean_line_surprisal": 0.66988,
+      "max_line_surprisal": 1.55203
+    },
+    {
+      "function_id": "src/pretty_printer.rs::colored_output:131",
+      "file_path": "src/pretty_printer.rs",
+      "name": "colored_output",
+      "start_line": 131,
+      "end_line": 134,
+      "nloc": 4,
+      "mean_line_surprisal": 0.85111,
+      "max_line_surprisal": 1.73322
+    },
+    {
+      "function_id": "src/pretty_printer.rs::tab_width:125",
+      "file_path": "src/pretty_printer.rs",
+      "name": "tab_width",
+      "start_line": 125,
+      "end_line": 128,
+      "nloc": 4,
+      "mean_line_surprisal": 1.35992,
+      "max_line_surprisal": 1.71207
+    },
+    {
+      "function_id": "src/pretty_printer.rs::term_width:119",
+      "file_path": "src/pretty_printer.rs",
+      "name": "term_width",
+      "start_line": 119,
+      "end_line": 122,
+      "nloc": 4,
+      "mean_line_surprisal": 1.40965,
+      "max_line_surprisal": 2.15999
+    },
+    {
+      "function_id": "src/pretty_printer.rs::language:113",
+      "file_path": "src/pretty_printer.rs",
+      "name": "language",
+      "start_line": 113,
+      "end_line": 116,
+      "nloc": 4,
+      "mean_line_surprisal": 1.26075,
+      "max_line_surprisal": 2.00078
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input_from_reader:107",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input_from_reader",
+      "start_line": 107,
+      "end_line": 110,
+      "nloc": 4,
+      "mean_line_surprisal": 1.28742,
+      "max_line_surprisal": 1.68065
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input_from_bytes:102",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input_from_bytes",
+      "start_line": 102,
+      "end_line": 104,
+      "nloc": 3,
+      "mean_line_surprisal": 1.63227,
+      "max_line_surprisal": 1.95259
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input_stdin:96",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input_stdin",
+      "start_line": 96,
+      "end_line": 99,
+      "nloc": 4,
+      "mean_line_surprisal": 1.60762,
+      "max_line_surprisal": 2.8708
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input_files:87",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input_files",
+      "start_line": 87,
+      "end_line": 93,
+      "nloc": 3,
+      "mean_line_surprisal": 2.11762,
+      "max_line_surprisal": 5.64802
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input_file:82",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input_file",
+      "start_line": 82,
+      "end_line": 84,
+      "nloc": 3,
+      "mean_line_surprisal": 2.44349,
+      "max_line_surprisal": 4.025
+    },
+    {
+      "function_id": "src/pretty_printer.rs::inputs:74",
+      "file_path": "src/pretty_printer.rs",
+      "name": "inputs",
+      "start_line": 74,
+      "end_line": 79,
+      "nloc": 6,
+      "mean_line_surprisal": 2.68704,
+      "max_line_surprisal": 7.2038
+    },
+    {
+      "function_id": "src/pretty_printer.rs::input:68",
+      "file_path": "src/pretty_printer.rs",
+      "name": "input",
+      "start_line": 68,
+      "end_line": 71,
+      "nloc": 4,
+      "mean_line_surprisal": 2.07988,
+      "max_line_surprisal": 2.62009
+    },
+    {
+      "function_id": "src/pretty_printer.rs::new:49",
+      "file_path": "src/pretty_printer.rs",
+      "name": "new",
+      "start_line": 49,
+      "end_line": 65,
+      "nloc": 15,
+      "mean_line_surprisal": 2.02219,
+      "max_line_surprisal": 3.59856
+    },
+    {
+      "function_id": "src/printer.rs::colored:881",
+      "file_path": "src/printer.rs",
+      "name": "colored",
+      "start_line": 881,
+      "end_line": 904,
+      "nloc": 23,
+      "mean_line_surprisal": 1.88777,
+      "max_line_surprisal": 3.47798
+    },
+    {
+      "function_id": "src/printer.rs::plain:877",
+      "file_path": "src/printer.rs",
+      "name": "plain",
+      "start_line": 877,
+      "end_line": 879,
+      "nloc": 3,
+      "mean_line_surprisal": 1.48379,
+      "max_line_surprisal": 1.92398
+    },
+    {
+      "function_id": "src/printer.rs::print_line:588",
+      "file_path": "src/printer.rs",
+      "name": "print_line",
+      "start_line": 588,
+      "end_line": 860,
+      "nloc": 234,
+      "mean_line_surprisal": 1.69499,
+      "max_line_surprisal": 6.74177
+    },
+    {
+      "function_id": "src/printer.rs::print_snip:564",
+      "file_path": "src/printer.rs",
+      "name": "print_snip",
+      "start_line": 564,
+      "end_line": 586,
+      "nloc": 18,
+      "mean_line_surprisal": 1.54058,
+      "max_line_surprisal": 2.9291
+    },
+    {
+      "function_id": "src/printer.rs::print_footer:552",
+      "file_path": "src/printer.rs",
+      "name": "print_footer",
+      "start_line": 552,
+      "end_line": 562,
+      "nloc": 11,
+      "mean_line_surprisal": 1.55976,
+      "max_line_surprisal": 2.58423
+    },
+    {
+      "function_id": "src/printer.rs::print_header:445",
+      "file_path": "src/printer.rs",
+      "name": "print_header",
+      "start_line": 445,
+      "end_line": 550,
+      "nloc": 93,
+      "mean_line_surprisal": 1.88938,
+      "max_line_surprisal": 8.772
+    },
+    {
+      "function_id": "src/printer.rs::preprocess:434",
+      "file_path": "src/printer.rs",
+      "name": "preprocess",
+      "start_line": 434,
+      "end_line": 441,
+      "nloc": 7,
+      "mean_line_surprisal": 2.02702,
+      "max_line_surprisal": 4.12888
+    },
+    {
+      "function_id": "src/printer.rs::highlight_regions_for_line:409",
+      "file_path": "src/printer.rs",
+      "name": "highlight_regions_for_line",
+      "start_line": 409,
+      "end_line": 432,
+      "nloc": 16,
+      "mean_line_surprisal": 1.94424,
+      "max_line_surprisal": 3.35521
+    },
+    {
+      "function_id": "src/printer.rs::print_header_multiline_component:390",
+      "file_path": "src/printer.rs",
+      "name": "print_header_multiline_component",
+      "start_line": 390,
+      "end_line": 407,
+      "nloc": 13,
+      "mean_line_surprisal": 1.71568,
+      "max_line_surprisal": 3.35223
+    },
+    {
+      "function_id": "src/printer.rs::print_header_component_with_indent:381",
+      "file_path": "src/printer.rs",
+      "name": "print_header_component_with_indent",
+      "start_line": 381,
+      "end_line": 388,
+      "nloc": 4,
+      "mean_line_surprisal": 1.82382,
+      "max_line_surprisal": 4.20477
+    },
+    {
+      "function_id": "src/printer.rs::print_header_component_indent:366",
+      "file_path": "src/printer.rs",
+      "name": "print_header_component_indent",
+      "start_line": 366,
+      "end_line": 379,
+      "nloc": 14,
+      "mean_line_surprisal": 1.48982,
+      "max_line_surprisal": 2.73978
+    },
+    {
+      "function_id": "src/printer.rs::get_header_component_indent_length:358",
+      "file_path": "src/printer.rs",
+      "name": "get_header_component_indent_length",
+      "start_line": 358,
+      "end_line": 364,
+      "nloc": 7,
+      "mean_line_surprisal": 2.013,
+      "max_line_surprisal": 4.57093
+    },
+    {
+      "function_id": "src/printer.rs::create_fake_panel:341",
+      "file_path": "src/printer.rs",
+      "name": "create_fake_panel",
+      "start_line": 341,
+      "end_line": 356,
+      "nloc": 15,
+      "mean_line_surprisal": 2.09724,
+      "max_line_surprisal": 7.40726
+    },
+    {
+      "function_id": "src/printer.rs::print_horizontal_line:329",
+      "file_path": "src/printer.rs",
+      "name": "print_horizontal_line",
+      "start_line": 329,
+      "end_line": 339,
+      "nloc": 10,
+      "mean_line_surprisal": 1.58266,
+      "max_line_surprisal": 2.19168
+    },
+    {
+      "function_id": "src/printer.rs::print_horizontal_line_term:316",
+      "file_path": "src/printer.rs",
+      "name": "print_horizontal_line_term",
+      "start_line": 316,
+      "end_line": 327,
+      "nloc": 8,
+      "mean_line_surprisal": 1.52982,
+      "max_line_surprisal": 3.20093
+    },
+    {
+      "function_id": "src/printer.rs::new:205",
+      "file_path": "src/printer.rs",
+      "name": "new",
+      "start_line": 205,
+      "end_line": 314,
+      "nloc": 90,
+      "mean_line_surprisal": 2.05232,
+      "max_line_surprisal": 7.28337
+    },
+    {
+      "function_id": "src/printer.rs::new:181",
+      "file_path": "src/printer.rs",
+      "name": "new",
+      "start_line": 181,
+      "end_line": 186,
+      "nloc": 6,
+      "mean_line_surprisal": 1.60801,
+      "max_line_surprisal": 2.42153
+    },
+    {
+      "function_id": "src/printer.rs::print_line:124",
+      "file_path": "src/printer.rs",
+      "name": "print_line",
+      "start_line": 124,
+      "end_line": 172,
+      "nloc": 41,
+      "mean_line_surprisal": 1.86241,
+      "max_line_surprisal": 5.43427
+    },
+    {
+      "function_id": "src/printer.rs::print_snip:120",
+      "file_path": "src/printer.rs",
+      "name": "print_snip",
+      "start_line": 120,
+      "end_line": 122,
+      "nloc": 3,
+      "mean_line_surprisal": 0.84862,
+      "max_line_surprisal": 1.13944
+    },
+    {
+      "function_id": "src/printer.rs::print_footer:116",
+      "file_path": "src/printer.rs",
+      "name": "print_footer",
+      "start_line": 116,
+      "end_line": 118,
+      "nloc": 3,
+      "mean_line_surprisal": 0.95166,
+      "max_line_surprisal": 1.32339
+    },
+    {
+      "function_id": "src/printer.rs::print_header:107",
+      "file_path": "src/printer.rs",
+      "name": "print_header",
+      "start_line": 107,
+      "end_line": 114,
+      "nloc": 3,
+      "mean_line_surprisal": 1.43375,
+      "max_line_surprisal": 3.35311
+    },
+    {
+      "function_id": "src/printer.rs::new:98",
+      "file_path": "src/printer.rs",
+      "name": "new",
+      "start_line": 98,
+      "end_line": 103,
+      "nloc": 6,
+      "mean_line_surprisal": 2.30265,
+      "max_line_surprisal": 3.80607
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_default_builds_on_auto:348",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_default_builds_on_auto",
+      "start_line": 348,
+      "end_line": 363,
+      "nloc": 16,
+      "mean_line_surprisal": 1.83617,
+      "max_line_surprisal": 4.50095
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_to_components_precedence_merges_previous_lists:331",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_to_components_precedence_merges_previous_lists",
+      "start_line": 331,
+      "end_line": 345,
+      "nloc": 15,
+      "mean_line_surprisal": 0.79038,
+      "max_line_surprisal": 2.29203
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_to_components_precedence_overrides_previous_lists:315",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_to_components_precedence_overrides_previous_lists",
+      "start_line": 315,
+      "end_line": 328,
+      "nloc": 14,
+      "mean_line_surprisal": 0.92807,
+      "max_line_surprisal": 3.47326
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_expand_negates_subcomponents:305",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_expand_negates_subcomponents",
+      "start_line": 305,
+      "end_line": 312,
+      "nloc": 8,
+      "mean_line_surprisal": 1.62952,
+      "max_line_surprisal": 2.98348
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_to_components_expands_subcomponents:292",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_to_components_expands_subcomponents",
+      "start_line": 292,
+      "end_line": 302,
+      "nloc": 11,
+      "mean_line_surprisal": 0.96215,
+      "max_line_surprisal": 2.3347
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_to_components_removes_negated:279",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_to_components_removes_negated",
+      "start_line": 279,
+      "end_line": 289,
+      "nloc": 11,
+      "mean_line_surprisal": 0.84421,
+      "max_line_surprisal": 1.67794
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_to_components:266",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_to_components",
+      "start_line": 266,
+      "end_line": 276,
+      "nloc": 11,
+      "mean_line_surprisal": 1.26545,
+      "max_line_surprisal": 1.72623
+    },
+    {
+      "function_id": "src/style.rs::style_component_list_parse:246",
+      "file_path": "src/style.rs",
+      "name": "style_component_list_parse",
+      "start_line": 246,
+      "end_line": 263,
+      "nloc": 17,
+      "mean_line_surprisal": 1.80788,
+      "max_line_surprisal": 2.96876
+    },
+    {
+      "function_id": "src/style.rs::from_str:225",
+      "file_path": "src/style.rs",
+      "name": "from_str",
+      "start_line": 225,
+      "end_line": 232,
+      "nloc": 8,
+      "mean_line_surprisal": 1.85543,
+      "max_line_surprisal": 2.55386
+    },
+    {
+      "function_id": "src/style.rs::default:217",
+      "file_path": "src/style.rs",
+      "name": "default",
+      "start_line": 217,
+      "end_line": 219,
+      "nloc": 3,
+      "mean_line_surprisal": 1.92942,
+      "max_line_surprisal": 2.1473
+    },
+    {
+      "function_id": "src/style.rs::to_components:195",
+      "file_path": "src/style.rs",
+      "name": "to_components",
+      "start_line": 195,
+      "end_line": 213,
+      "nloc": 13,
+      "mean_line_surprisal": 1.97217,
+      "max_line_surprisal": 3.86551
+    },
+    {
+      "function_id": "src/style.rs::contains_override:176",
+      "file_path": "src/style.rs",
+      "name": "contains_override",
+      "start_line": 176,
+      "end_line": 178,
+      "nloc": 3,
+      "mean_line_surprisal": 1.44318,
+      "max_line_surprisal": 1.68489
+    },
+    {
+      "function_id": "src/style.rs::expand_into:163",
+      "file_path": "src/style.rs",
+      "name": "expand_into",
+      "start_line": 163,
+      "end_line": 173,
+      "nloc": 10,
+      "mean_line_surprisal": 1.57338,
+      "max_line_surprisal": 2.76647
+    },
+    {
+      "function_id": "src/style.rs::extract_from_str:150",
+      "file_path": "src/style.rs",
+      "name": "extract_from_str",
+      "start_line": 150,
+      "end_line": 156,
+      "nloc": 7,
+      "mean_line_surprisal": 1.58931,
+      "max_line_surprisal": 2.1584
+    },
+    {
+      "function_id": "src/style.rs::clear:137",
+      "file_path": "src/style.rs",
+      "name": "clear",
+      "start_line": 137,
+      "end_line": 139,
+      "nloc": 3,
+      "mean_line_surprisal": 1.83632,
+      "max_line_surprisal": 2.16697
+    },
+    {
+      "function_id": "src/style.rs::insert:133",
+      "file_path": "src/style.rs",
+      "name": "insert",
+      "start_line": 133,
+      "end_line": 135,
+      "nloc": 3,
+      "mean_line_surprisal": 1.67261,
+      "max_line_surprisal": 1.88665
+    },
+    {
+      "function_id": "src/style.rs::plain:129",
+      "file_path": "src/style.rs",
+      "name": "plain",
+      "start_line": 129,
+      "end_line": 131,
+      "nloc": 3,
+      "mean_line_surprisal": 1.79506,
+      "max_line_surprisal": 2.49287
+    },
+    {
+      "function_id": "src/style.rs::snip:125",
+      "file_path": "src/style.rs",
+      "name": "snip",
+      "start_line": 125,
+      "end_line": 127,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54992,
+      "max_line_surprisal": 2.6249
+    },
+    {
+      "function_id": "src/style.rs::numbers:121",
+      "file_path": "src/style.rs",
+      "name": "numbers",
+      "start_line": 121,
+      "end_line": 123,
+      "nloc": 3,
+      "mean_line_surprisal": 1.56689,
+      "max_line_surprisal": 2.63543
+    },
+    {
+      "function_id": "src/style.rs::header_filesize:117",
+      "file_path": "src/style.rs",
+      "name": "header_filesize",
+      "start_line": 117,
+      "end_line": 119,
+      "nloc": 3,
+      "mean_line_surprisal": 1.36868,
+      "max_line_surprisal": 2.0033
+    },
+    {
+      "function_id": "src/style.rs::header_filename:113",
+      "file_path": "src/style.rs",
+      "name": "header_filename",
+      "start_line": 113,
+      "end_line": 115,
+      "nloc": 3,
+      "mean_line_surprisal": 1.59462,
+      "max_line_surprisal": 2.53066
+    },
+    {
+      "function_id": "src/style.rs::header:109",
+      "file_path": "src/style.rs",
+      "name": "header",
+      "start_line": 109,
+      "end_line": 111,
+      "nloc": 3,
+      "mean_line_surprisal": 1.93215,
+      "max_line_surprisal": 2.45773
+    },
+    {
+      "function_id": "src/style.rs::rule:105",
+      "file_path": "src/style.rs",
+      "name": "rule",
+      "start_line": 105,
+      "end_line": 107,
+      "nloc": 3,
+      "mean_line_surprisal": 1.66691,
+      "max_line_surprisal": 2.91137
+    },
+    {
+      "function_id": "src/style.rs::grid:101",
+      "file_path": "src/style.rs",
+      "name": "grid",
+      "start_line": 101,
+      "end_line": 103,
+      "nloc": 3,
+      "mean_line_surprisal": 1.68338,
+      "max_line_surprisal": 2.64226
+    },
+    {
+      "function_id": "src/style.rs::changes:97",
+      "file_path": "src/style.rs",
+      "name": "changes",
+      "start_line": 97,
+      "end_line": 99,
+      "nloc": 3,
+      "mean_line_surprisal": 2.12312,
+      "max_line_surprisal": 2.58533
+    },
+    {
+      "function_id": "src/style.rs::new:92",
+      "file_path": "src/style.rs",
+      "name": "new",
+      "start_line": 92,
+      "end_line": 94,
+      "nloc": 3,
+      "mean_line_surprisal": 2.41862,
+      "max_line_surprisal": 3.31028
+    },
+    {
+      "function_id": "src/style.rs::from_str:68",
+      "file_path": "src/style.rs",
+      "name": "from_str",
+      "start_line": 68,
+      "end_line": 85,
+      "nloc": 18,
+      "mean_line_surprisal": 1.41757,
+      "max_line_surprisal": 2.94882
+    },
+    {
+      "function_id": "src/style.rs::components:25",
+      "file_path": "src/style.rs",
+      "name": "components",
+      "start_line": 25,
+      "end_line": 62,
+      "nloc": 38,
+      "mean_line_surprisal": 1.55676,
+      "max_line_surprisal": 2.94848
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::custom_mappings_precedence:252",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "custom_mappings_precedence",
+      "start_line": 252,
+      "end_line": 263,
+      "nloc": 11,
+      "mean_line_surprisal": 0.94056,
+      "max_line_surprisal": 2.14154
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::custom_mappings_override_builtin:236",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "custom_mappings_override_builtin",
+      "start_line": 236,
+      "end_line": 249,
+      "nloc": 13,
+      "mean_line_surprisal": 0.99101,
+      "max_line_surprisal": 2.14638
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::custom_mappings_work:216",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "custom_mappings_work",
+      "start_line": 216,
+      "end_line": 233,
+      "nloc": 16,
+      "mean_line_surprisal": 1.19563,
+      "max_line_surprisal": 2.33687
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::builtin_mappings_matcher_only_compile_once:199",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "builtin_mappings_matcher_only_compile_once",
+      "start_line": 199,
+      "end_line": 213,
+      "nloc": 13,
+      "mean_line_surprisal": 2.01216,
+      "max_line_surprisal": 4.29945
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::all_fixed_builtin_mappings_can_compile:190",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "all_fixed_builtin_mappings_can_compile",
+      "start_line": 190,
+      "end_line": 196,
+      "nloc": 6,
+      "mean_line_surprisal": 2.09368,
+      "max_line_surprisal": 4.05557
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::builtin_mappings_work:180",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "builtin_mappings_work",
+      "start_line": 180,
+      "end_line": 187,
+      "nloc": 7,
+      "mean_line_surprisal": 1.87516,
+      "max_line_surprisal": 2.34726
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::insert_ignored_suffix:170",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "insert_ignored_suffix",
+      "start_line": 170,
+      "end_line": 172,
+      "nloc": 3,
+      "mean_line_surprisal": 1.4882,
+      "max_line_surprisal": 1.80828
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::get_syntax_for:148",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "get_syntax_for",
+      "start_line": 148,
+      "end_line": 168,
+      "nloc": 21,
+      "mean_line_surprisal": 2.15982,
+      "max_line_surprisal": 5.29585
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::custom_mappings:144",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "custom_mappings",
+      "start_line": 144,
+      "end_line": 146,
+      "nloc": 3,
+      "mean_line_surprisal": 2.16446,
+      "max_line_surprisal": 2.56179
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::builtin_mappings:135",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "builtin_mappings",
+      "start_line": 135,
+      "end_line": 141,
+      "nloc": 5,
+      "mean_line_surprisal": 2.41081,
+      "max_line_surprisal": 5.9581
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::all_mappings:112",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "all_mappings",
+      "start_line": 112,
+      "end_line": 124,
+      "nloc": 13,
+      "mean_line_surprisal": 1.69042,
+      "max_line_surprisal": 3.36885
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::insert:99",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "insert",
+      "start_line": 99,
+      "end_line": 103,
+      "nloc": 5,
+      "mean_line_surprisal": 2.04575,
+      "max_line_surprisal": 3.23071
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::start_offload_build_all:82",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "start_offload_build_all",
+      "start_line": 82,
+      "end_line": 97,
+      "nloc": 16,
+      "mean_line_surprisal": 2.1627,
+      "max_line_surprisal": 7.14165
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::new:72",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "new",
+      "start_line": 72,
+      "end_line": 74,
+      "nloc": 3,
+      "mean_line_surprisal": 1.98512,
+      "max_line_surprisal": 2.27662
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::drop:65",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "drop",
+      "start_line": 65,
+      "end_line": 68,
+      "nloc": 4,
+      "mean_line_surprisal": 2.06117,
+      "max_line_surprisal": 2.94354
+    },
+    {
+      "function_id": "src/syntax_mapping.rs::make_glob_matcher:20",
+      "file_path": "src/syntax_mapping.rs",
+      "name": "make_glob_matcher",
+      "start_line": 20,
+      "end_line": 27,
+      "nloc": 8,
+      "mean_line_surprisal": 2.10702,
+      "max_line_surprisal": 3.44931
+    },
+    {
+      "function_id": "src/syntax_mapping/builtin.rs::build_matcher_dynamic:67",
+      "file_path": "src/syntax_mapping/builtin.rs",
+      "name": "build_matcher_dynamic",
+      "start_line": 67,
+      "end_line": 82,
+      "nloc": 16,
+      "mean_line_surprisal": 2.11659,
+      "max_line_surprisal": 3.26884
+    },
+    {
+      "function_id": "src/syntax_mapping/builtin.rs::build_matcher_fixed:56",
+      "file_path": "src/syntax_mapping/builtin.rs",
+      "name": "build_matcher_fixed",
+      "start_line": 56,
+      "end_line": 58,
+      "nloc": 3,
+      "mean_line_surprisal": 3.29125,
+      "max_line_surprisal": 6.47264
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::external_suffixes:90",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "external_suffixes",
+      "start_line": 90,
+      "end_line": 109,
+      "nloc": 19,
+      "mean_line_surprisal": 1.08001,
+      "max_line_surprisal": 2.15392
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::internal_suffixes:70",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "internal_suffixes",
+      "start_line": 70,
+      "end_line": 87,
+      "nloc": 17,
+      "mean_line_surprisal": 1.80663,
+      "max_line_surprisal": 4.26226
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::try_with_stripped_suffix:56",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "try_with_stripped_suffix",
+      "start_line": 56,
+      "end_line": 66,
+      "nloc": 8,
+      "mean_line_surprisal": 2.24015,
+      "max_line_surprisal": 4.43288
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::strip_suffix:45",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "strip_suffix",
+      "start_line": 45,
+      "end_line": 52,
+      "nloc": 8,
+      "mean_line_surprisal": 2.48155,
+      "max_line_surprisal": 7.09545
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::add_suffix:41",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "add_suffix",
+      "start_line": 41,
+      "end_line": 43,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48253,
+      "max_line_surprisal": 2.91603
+    },
+    {
+      "function_id": "src/syntax_mapping/ignored_suffixes.rs::default:13",
+      "file_path": "src/syntax_mapping/ignored_suffixes.rs",
+      "name": "default",
+      "start_line": 13,
+      "end_line": 37,
+      "nloc": 25,
+      "mean_line_surprisal": 1.82816,
+      "max_line_surprisal": 7.10217
+    },
+    {
+      "function_id": "src/terminal.rs::as_terminal_escaped:49",
+      "file_path": "src/terminal.rs",
+      "name": "as_terminal_escaped",
+      "start_line": 49,
+      "end_line": 82,
+      "nloc": 25,
+      "mean_line_surprisal": 2.02306,
+      "max_line_surprisal": 8.29361
+    },
+    {
+      "function_id": "src/terminal.rs::to_ansi_color:6",
+      "file_path": "src/terminal.rs",
+      "name": "to_ansi_color",
+      "start_line": 6,
+      "end_line": 47,
+      "nloc": 42,
+      "mean_line_surprisal": 1.51732,
+      "max_line_surprisal": 7.28837
+    },
+    {
+      "function_id": "src/theme.rs::color_schemes:567",
+      "file_path": "src/theme.rs",
+      "name": "color_schemes",
+      "start_line": 567,
+      "end_line": 569,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23354,
+      "max_line_surprisal": 3.00077
+    },
+    {
+      "function_id": "src/theme.rs::optional:563",
+      "file_path": "src/theme.rs",
+      "name": "optional",
+      "start_line": 563,
+      "end_line": 565,
+      "nloc": 3,
+      "mean_line_surprisal": 2.05659,
+      "max_line_surprisal": 2.58524
+    },
+    {
+      "function_id": "src/theme.rs::detect:558",
+      "file_path": "src/theme.rs",
+      "name": "detect",
+      "start_line": 558,
+      "end_line": 560,
+      "nloc": 3,
+      "mean_line_surprisal": 2.39253,
+      "max_line_surprisal": 4.16206
+    },
+    {
+      "function_id": "src/theme.rs::should_detect:554",
+      "file_path": "src/theme.rs",
+      "name": "should_detect",
+      "start_line": 554,
+      "end_line": 556,
+      "nloc": 3,
+      "mean_line_surprisal": 1.21181,
+      "max_line_surprisal": 2.84565
+    },
+    {
+      "function_id": "src/theme.rs::detect:545",
+      "file_path": "src/theme.rs",
+      "name": "detect",
+      "start_line": 545,
+      "end_line": 548,
+      "nloc": 4,
+      "mean_line_surprisal": 1.9409,
+      "max_line_surprisal": 2.79837
+    },
+    {
+      "function_id": "src/theme.rs::should_detect:541",
+      "file_path": "src/theme.rs",
+      "name": "should_detect",
+      "start_line": 541,
+      "end_line": 543,
+      "nloc": 3,
+      "mean_line_surprisal": 1.74439,
+      "max_line_surprisal": 3.28148
+    },
+    {
+      "function_id": "src/theme.rs::should_not_detect:531",
+      "file_path": "src/theme.rs",
+      "name": "should_not_detect",
+      "start_line": 531,
+      "end_line": 537,
+      "nloc": 7,
+      "mean_line_surprisal": 1.49266,
+      "max_line_surprisal": 2.59552
+    },
+    {
+      "function_id": "src/theme.rs::should_detect:523",
+      "file_path": "src/theme.rs",
+      "name": "should_detect",
+      "start_line": 523,
+      "end_line": 529,
+      "nloc": 7,
+      "mean_line_surprisal": 1.75952,
+      "max_line_surprisal": 3.11662
+    },
+    {
+      "function_id": "src/theme.rs::values_roundtrip_via_display:500",
+      "file_path": "src/theme.rs",
+      "name": "values_roundtrip_via_display",
+      "start_line": 500,
+      "end_line": 513,
+      "nloc": 14,
+      "mean_line_surprisal": 1.51817,
+      "max_line_surprisal": 2.68699
+    },
+    {
+      "function_id": "src/theme.rs::chooses_light_theme_if_light:485",
+      "file_path": "src/theme.rs",
+      "name": "chooses_light_theme_if_light",
+      "start_line": 485,
+      "end_line": 493,
+      "nloc": 9,
+      "mean_line_surprisal": 1.00675,
+      "max_line_surprisal": 2.1374
+    },
+    {
+      "function_id": "src/theme.rs::chooses_dark_theme_if_dark_or_unknown:474",
+      "file_path": "src/theme.rs",
+      "name": "chooses_dark_theme_if_dark_or_unknown",
+      "start_line": 474,
+      "end_line": 482,
+      "nloc": 9,
+      "mean_line_surprisal": 1.029,
+      "max_line_surprisal": 2.13958
+    },
+    {
+      "function_id": "src/theme.rs::chooses_default_theme_if_unknown:460",
+      "file_path": "src/theme.rs",
+      "name": "chooses_default_theme_if_unknown",
+      "start_line": 460,
+      "end_line": 471,
+      "nloc": 12,
+      "mean_line_surprisal": 1.02798,
+      "max_line_surprisal": 2.14201
+    },
+    {
+      "function_id": "src/theme.rs::varies_depending_on_color_scheme:436",
+      "file_path": "src/theme.rs",
+      "name": "varies_depending_on_color_scheme",
+      "start_line": 436,
+      "end_line": 453,
+      "nloc": 18,
+      "mean_line_surprisal": 1.51207,
+      "max_line_surprisal": 4.24772
+    },
+    {
+      "function_id": "src/theme.rs::default_dark_if_requested_explicitly_through_theme:421",
+      "file_path": "src/theme.rs",
+      "name": "default_dark_if_requested_explicitly_through_theme",
+      "start_line": 421,
+      "end_line": 433,
+      "nloc": 13,
+      "mean_line_surprisal": 1.02744,
+      "max_line_surprisal": 2.15395
+    },
+    {
+      "function_id": "src/theme.rs::default_dark_if_unable_to_detect_color_scheme:410",
+      "file_path": "src/theme.rs",
+      "name": "default_dark_if_unable_to_detect_color_scheme",
+      "start_line": 410,
+      "end_line": 416,
+      "nloc": 7,
+      "mean_line_surprisal": 1.24501,
+      "max_line_surprisal": 2.15912
+    },
+    {
+      "function_id": "src/theme.rs::detector_is_not_called_if_theme_is_present:395",
+      "file_path": "src/theme.rs",
+      "name": "detector_is_not_called_if_theme_is_present",
+      "start_line": 395,
+      "end_line": 403,
+      "nloc": 9,
+      "mean_line_surprisal": 1.09411,
+      "max_line_surprisal": 2.16463
+    },
+    {
+      "function_id": "src/theme.rs::theme_is_preferred_over_light_or_dark_themes:375",
+      "file_path": "src/theme.rs",
+      "name": "theme_is_preferred_over_light_or_dark_themes",
+      "start_line": 375,
+      "end_line": 392,
+      "nloc": 18,
+      "mean_line_surprisal": 1.77344,
+      "max_line_surprisal": 3.66933
+    },
+    {
+      "function_id": "src/theme.rs::not_called_for_auto_if_not_should_detect:364",
+      "file_path": "src/theme.rs",
+      "name": "not_called_for_auto_if_not_should_detect",
+      "start_line": 364,
+      "end_line": 368,
+      "nloc": 5,
+      "mean_line_surprisal": 1.28604,
+      "max_line_surprisal": 2.18089
+    },
+    {
+      "function_id": "src/theme.rs::called_for_auto_if_should_detect:357",
+      "file_path": "src/theme.rs",
+      "name": "called_for_auto_if_should_detect",
+      "start_line": 357,
+      "end_line": 361,
+      "nloc": 5,
+      "mean_line_surprisal": 1.37663,
+      "max_line_surprisal": 2.19469
+    },
+    {
+      "function_id": "src/theme.rs::called_for_always:341",
+      "file_path": "src/theme.rs",
+      "name": "called_for_always",
+      "start_line": 341,
+      "end_line": 354,
+      "nloc": 14,
+      "mean_line_surprisal": 1.71301,
+      "max_line_surprisal": 5.67348
+    },
+    {
+      "function_id": "src/theme.rs::not_called_for_dark_or_light:328",
+      "file_path": "src/theme.rs",
+      "name": "not_called_for_dark_or_light",
+      "start_line": 328,
+      "end_line": 338,
+      "nloc": 11,
+      "mean_line_surprisal": 1.84815,
+      "max_line_surprisal": 2.76438
+    },
+    {
+      "function_id": "src/theme.rs::detect:312",
+      "file_path": "src/theme.rs",
+      "name": "detect",
+      "start_line": 312,
+      "end_line": 314,
+      "nloc": 3,
+      "mean_line_surprisal": 1.78766,
+      "max_line_surprisal": 3.15298
+    },
+    {
+      "function_id": "src/theme.rs::should_detect:308",
+      "file_path": "src/theme.rs",
+      "name": "should_detect",
+      "start_line": 308,
+      "end_line": 310,
+      "nloc": 3,
+      "mean_line_surprisal": 2.23756,
+      "max_line_surprisal": 4.70419
+    },
+    {
+      "function_id": "src/theme.rs::color_scheme_from_system:287",
+      "file_path": "src/theme.rs",
+      "name": "color_scheme_from_system",
+      "start_line": 287,
+      "end_line": 304,
+      "nloc": 16,
+      "mean_line_surprisal": 1.91609,
+      "max_line_surprisal": 4.36786
+    },
+    {
+      "function_id": "src/theme.rs::color_scheme_from_system:278",
+      "file_path": "src/theme.rs",
+      "name": "color_scheme_from_system",
+      "start_line": 278,
+      "end_line": 284,
+      "nloc": 7,
+      "mean_line_surprisal": 2.1943,
+      "max_line_surprisal": 8.18964
+    },
+    {
+      "function_id": "src/theme.rs::detect:268",
+      "file_path": "src/theme.rs",
+      "name": "detect",
+      "start_line": 268,
+      "end_line": 274,
+      "nloc": 7,
+      "mean_line_surprisal": 1.37376,
+      "max_line_surprisal": 1.7072
+    },
+    {
+      "function_id": "src/theme.rs::should_detect:255",
+      "file_path": "src/theme.rs",
+      "name": "should_detect",
+      "start_line": 255,
+      "end_line": 266,
+      "nloc": 12,
+      "mean_line_surprisal": 1.27118,
+      "max_line_surprisal": 3.70189
+    },
+    {
+      "function_id": "src/theme.rs::color_scheme_impl:234",
+      "file_path": "src/theme.rs",
+      "name": "color_scheme_impl",
+      "start_line": 234,
+      "end_line": 244,
+      "nloc": 8,
+      "mean_line_surprisal": 2.07438,
+      "max_line_surprisal": 3.17866
+    },
+    {
+      "function_id": "src/theme.rs::choose_theme:227",
+      "file_path": "src/theme.rs",
+      "name": "choose_theme",
+      "start_line": 227,
+      "end_line": 232,
+      "nloc": 6,
+      "mean_line_surprisal": 1.19397,
+      "max_line_surprisal": 1.59531
+    },
+    {
+      "function_id": "src/theme.rs::choose_theme_opt:218",
+      "file_path": "src/theme.rs",
+      "name": "choose_theme_opt",
+      "start_line": 218,
+      "end_line": 225,
+      "nloc": 8,
+      "mean_line_surprisal": 1.71196,
+      "max_line_surprisal": 2.36536
+    },
+    {
+      "function_id": "src/theme.rs::theme_impl:204",
+      "file_path": "src/theme.rs",
+      "name": "theme_impl",
+      "start_line": 204,
+      "end_line": 216,
+      "nloc": 13,
+      "mean_line_surprisal": 1.79981,
+      "max_line_surprisal": 2.94961
+    },
+    {
+      "function_id": "src/theme.rs::fmt:196",
+      "file_path": "src/theme.rs",
+      "name": "fmt",
+      "start_line": 196,
+      "end_line": 201,
+      "nloc": 6,
+      "mean_line_surprisal": 1.49184,
+      "max_line_surprisal": 2.32654
+    },
+    {
+      "function_id": "src/theme.rs::fmt:157",
+      "file_path": "src/theme.rs",
+      "name": "fmt",
+      "start_line": 157,
+      "end_line": 162,
+      "nloc": 6,
+      "mean_line_surprisal": 1.34343,
+      "max_line_surprisal": 2.84712
+    },
+    {
+      "function_id": "src/theme.rs::from_str:151",
+      "file_path": "src/theme.rs",
+      "name": "from_str",
+      "start_line": 151,
+      "end_line": 153,
+      "nloc": 3,
+      "mean_line_surprisal": 1.09936,
+      "max_line_surprisal": 1.39498
+    },
+    {
+      "function_id": "src/theme.rs::new:138",
+      "file_path": "src/theme.rs",
+      "name": "new",
+      "start_line": 138,
+      "end_line": 145,
+      "nloc": 8,
+      "mean_line_surprisal": 1.92357,
+      "max_line_surprisal": 3.22389
+    },
+    {
+      "function_id": "src/theme.rs::fmt:110",
+      "file_path": "src/theme.rs",
+      "name": "fmt",
+      "start_line": 110,
+      "end_line": 120,
+      "nloc": 11,
+      "mean_line_surprisal": 1.46907,
+      "max_line_surprisal": 3.52306
+    },
+    {
+      "function_id": "src/theme.rs::from_str:104",
+      "file_path": "src/theme.rs",
+      "name": "from_str",
+      "start_line": 104,
+      "end_line": 106,
+      "nloc": 3,
+      "mean_line_surprisal": 1.6153,
+      "max_line_surprisal": 1.97122
+    },
+    {
+      "function_id": "src/theme.rs::new:87",
+      "file_path": "src/theme.rs",
+      "name": "new",
+      "start_line": 87,
+      "end_line": 98,
+      "nloc": 12,
+      "mean_line_surprisal": 1.8927,
+      "max_line_surprisal": 2.80063
+    },
+    {
+      "function_id": "src/theme.rs::default:80",
+      "file_path": "src/theme.rs",
+      "name": "default",
+      "start_line": 80,
+      "end_line": 82,
+      "nloc": 3,
+      "mean_line_surprisal": 2.07032,
+      "max_line_surprisal": 2.76097
+    },
+    {
+      "function_id": "src/theme.rs::color_scheme:38",
+      "file_path": "src/theme.rs",
+      "name": "color_scheme",
+      "start_line": 38,
+      "end_line": 40,
+      "nloc": 3,
+      "mean_line_surprisal": 1.19488,
+      "max_line_surprisal": 1.79612
+    },
+    {
+      "function_id": "src/theme.rs::default_theme:30",
+      "file_path": "src/theme.rs",
+      "name": "default_theme",
+      "start_line": 30,
+      "end_line": 35,
+      "nloc": 6,
+      "mean_line_surprisal": 2.64907,
+      "max_line_surprisal": 5.33961
+    },
+    {
+      "function_id": "src/theme.rs::theme:24",
+      "file_path": "src/theme.rs",
+      "name": "theme",
+      "start_line": 24,
+      "end_line": 26,
+      "nloc": 3,
+      "mean_line_surprisal": 1.46044,
+      "max_line_surprisal": 1.89063
+    },
+    {
+      "function_id": "src/vscreen.rs::test_sgr_attributes_do_not_leak_into_wrong_field:922",
+      "file_path": "src/vscreen.rs",
+      "name": "test_sgr_attributes_do_not_leak_into_wrong_field",
+      "start_line": 922,
+      "end_line": 952,
+      "nloc": 27,
+      "mean_line_surprisal": 1.60359,
+      "max_line_surprisal": 3.90956
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_iterator_iterates:883",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_iterator_iterates",
+      "start_line": 883,
+      "end_line": 919,
+      "nloc": 37,
+      "mean_line_surprisal": 1.30835,
+      "max_line_surprisal": 3.12151
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_iterates:846",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_iterates",
+      "start_line": 846,
+      "end_line": 880,
+      "nloc": 35,
+      "mean_line_surprisal": 0.70844,
+      "max_line_surprisal": 2.12152
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_nf_thats_broken:833",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_nf_thats_broken",
+      "start_line": 833,
+      "end_line": 843,
+      "nloc": 11,
+      "mean_line_surprisal": 0.81919,
+      "max_line_surprisal": 2.1233
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_nf:820",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_nf",
+      "start_line": 820,
+      "end_line": 830,
+      "nloc": 11,
+      "mean_line_surprisal": 0.86659,
+      "max_line_surprisal": 2.12518
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_csi_thats_broken:781",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_csi_thats_broken",
+      "start_line": 781,
+      "end_line": 817,
+      "nloc": 35,
+      "mean_line_surprisal": 0.67739,
+      "max_line_surprisal": 2.12588
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_csi_with_parameters_and_intermediates:766",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_csi_with_parameters_and_intermediates",
+      "start_line": 766,
+      "end_line": 778,
+      "nloc": 13,
+      "mean_line_surprisal": 0.79436,
+      "max_line_surprisal": 2.128
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_csi_with_intermediates:751",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_csi_with_intermediates",
+      "start_line": 751,
+      "end_line": 763,
+      "nloc": 13,
+      "mean_line_surprisal": 0.826,
+      "max_line_surprisal": 2.13031
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_csi_with_parameters:736",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_csi_with_parameters",
+      "start_line": 736,
+      "end_line": 748,
+      "nloc": 13,
+      "mean_line_surprisal": 0.87371,
+      "max_line_surprisal": 2.13288
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_csi:721",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_csi",
+      "start_line": 721,
+      "end_line": 733,
+      "nloc": 13,
+      "mean_line_surprisal": 0.96757,
+      "max_line_surprisal": 2.13585
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_osc_thats_broken:707",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_osc_thats_broken",
+      "start_line": 707,
+      "end_line": 718,
+      "nloc": 12,
+      "mean_line_surprisal": 1.11428,
+      "max_line_surprisal": 2.13952
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_osc_with_st:693",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_osc_with_st",
+      "start_line": 693,
+      "end_line": 704,
+      "nloc": 12,
+      "mean_line_surprisal": 1.20134,
+      "max_line_surprisal": 2.23854
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_osc_with_bel:679",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_osc_with_bel",
+      "start_line": 679,
+      "end_line": 690,
+      "nloc": 12,
+      "mean_line_surprisal": 1.43844,
+      "max_line_surprisal": 2.92173
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_text_stops_at_esc:670",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_text_stops_at_esc",
+      "start_line": 670,
+      "end_line": 676,
+      "nloc": 7,
+      "mean_line_surprisal": 1.06898,
+      "max_line_surprisal": 2.17418
+    },
+    {
+      "function_id": "src/vscreen.rs::test_escape_sequence_offsets_iterator_parses_text:661",
+      "file_path": "src/vscreen.rs",
+      "name": "test_escape_sequence_offsets_iterator_parses_text",
+      "start_line": 661,
+      "end_line": 667,
+      "nloc": 7,
+      "mean_line_surprisal": 1.37794,
+      "max_line_surprisal": 2.30711
+    },
+    {
+      "function_id": "src/vscreen.rs::raw:641",
+      "file_path": "src/vscreen.rs",
+      "name": "raw",
+      "start_line": 641,
+      "end_line": 650,
+      "nloc": 10,
+      "mean_line_surprisal": 1.47725,
+      "max_line_surprisal": 2.78131
+    },
+    {
+      "function_id": "src/vscreen.rs::next:576",
+      "file_path": "src/vscreen.rs",
+      "name": "next",
+      "start_line": 576,
+      "end_line": 612,
+      "nloc": 37,
+      "mean_line_surprisal": 1.37216,
+      "max_line_surprisal": 2.97588
+    },
+    {
+      "function_id": "src/vscreen.rs::new:566",
+      "file_path": "src/vscreen.rs",
+      "name": "new",
+      "start_line": 566,
+      "end_line": 571,
+      "nloc": 6,
+      "mean_line_surprisal": 1.68512,
+      "max_line_surprisal": 3.87383
+    },
+    {
+      "function_id": "src/vscreen.rs::next:544",
+      "file_path": "src/vscreen.rs",
+      "name": "next",
+      "start_line": 544,
+      "end_line": 550,
+      "nloc": 7,
+      "mean_line_surprisal": 1.48999,
+      "max_line_surprisal": 2.77059
+    },
+    {
+      "function_id": "src/vscreen.rs::next_nf:510",
+      "file_path": "src/vscreen.rs",
+      "name": "next_nf",
+      "start_line": 510,
+      "end_line": 539,
+      "nloc": 26,
+      "mean_line_surprisal": 1.64398,
+      "max_line_surprisal": 4.2507
+    },
+    {
+      "function_id": "src/vscreen.rs::next_csi:477",
+      "file_path": "src/vscreen.rs",
+      "name": "next_csi",
+      "start_line": 477,
+      "end_line": 508,
+      "nloc": 27,
+      "mean_line_surprisal": 1.66882,
+      "max_line_surprisal": 4.22145
+    },
+    {
+      "function_id": "src/vscreen.rs::next_osc:413",
+      "file_path": "src/vscreen.rs",
+      "name": "next_osc",
+      "start_line": 413,
+      "end_line": 475,
+      "nloc": 53,
+      "mean_line_surprisal": 1.83844,
+      "max_line_surprisal": 6.33132
+    },
+    {
+      "function_id": "src/vscreen.rs::next_sequence:393",
+      "file_path": "src/vscreen.rs",
+      "name": "next_sequence",
+      "start_line": 393,
+      "end_line": 411,
+      "nloc": 18,
+      "mean_line_surprisal": 1.78503,
+      "max_line_surprisal": 3.24361
+    },
+    {
+      "function_id": "src/vscreen.rs::next_text:388",
+      "file_path": "src/vscreen.rs",
+      "name": "next_text",
+      "start_line": 388,
+      "end_line": 391,
+      "nloc": 4,
+      "mean_line_surprisal": 1.68192,
+      "max_line_surprisal": 1.9166
+    },
+    {
+      "function_id": "src/vscreen.rs::chars_take_while:371",
+      "file_path": "src/vscreen.rs",
+      "name": "chars_take_while",
+      "start_line": 371,
+      "end_line": 386,
+      "nloc": 13,
+      "mean_line_surprisal": 1.8969,
+      "max_line_surprisal": 2.78611
+    },
+    {
+      "function_id": "src/vscreen.rs::new:362",
+      "file_path": "src/vscreen.rs",
+      "name": "new",
+      "start_line": 362,
+      "end_line": 367,
+      "nloc": 6,
+      "mean_line_surprisal": 2.01962,
+      "max_line_surprisal": 3.88038
+    },
+    {
+      "function_id": "src/vscreen.rs::index_past_end:337",
+      "file_path": "src/vscreen.rs",
+      "name": "index_past_end",
+      "start_line": 337,
+      "end_line": 346,
+      "nloc": 10,
+      "mean_line_surprisal": 1.27675,
+      "max_line_surprisal": 2.65402
+    },
+    {
+      "function_id": "src/vscreen.rs::index_of_start:325",
+      "file_path": "src/vscreen.rs",
+      "name": "index_of_start",
+      "start_line": 325,
+      "end_line": 334,
+      "nloc": 10,
+      "mean_line_surprisal": 1.44985,
+      "max_line_surprisal": 2.97528
+    },
+    {
+      "function_id": "src/vscreen.rs::join:274",
+      "file_path": "src/vscreen.rs",
+      "name": "join",
+      "start_line": 274,
+      "end_line": 284,
+      "nloc": 7,
+      "mean_line_surprisal": 2.11633,
+      "max_line_surprisal": 5.14621
+    },
+    {
+      "function_id": "src/vscreen.rs::fmt:256",
+      "file_path": "src/vscreen.rs",
+      "name": "fmt",
+      "start_line": 256,
+      "end_line": 271,
+      "nloc": 16,
+      "mean_line_surprisal": 2.19936,
+      "max_line_surprisal": 3.35497
+    },
+    {
+      "function_id": "src/vscreen.rs::to_reset_sequence:233",
+      "file_path": "src/vscreen.rs",
+      "name": "to_reset_sequence",
+      "start_line": 233,
+      "end_line": 252,
+      "nloc": 16,
+      "mean_line_surprisal": 2.24388,
+      "max_line_surprisal": 7.30138
+    },
+    {
+      "function_id": "src/vscreen.rs::parse_color:219",
+      "file_path": "src/vscreen.rs",
+      "name": "parse_color",
+      "start_line": 219,
+      "end_line": 230,
+      "nloc": 12,
+      "mean_line_surprisal": 1.74906,
+      "max_line_surprisal": 3.45261
+    },
+    {
+      "function_id": "src/vscreen.rs::update_with_charset:214",
+      "file_path": "src/vscreen.rs",
+      "name": "update_with_charset",
+      "start_line": 214,
+      "end_line": 217,
+      "nloc": 4,
+      "mean_line_surprisal": 3.318,
+      "max_line_surprisal": 9.07627
+    },
+    {
+      "function_id": "src/vscreen.rs::update_with_hyperlink:202",
+      "file_path": "src/vscreen.rs",
+      "name": "update_with_hyperlink",
+      "start_line": 202,
+      "end_line": 212,
+      "nloc": 10,
+      "mean_line_surprisal": 2.32845,
+      "max_line_surprisal": 7.26345
+    },
+    {
+      "function_id": "src/vscreen.rs::update_with_unsupported:197",
+      "file_path": "src/vscreen.rs",
+      "name": "update_with_unsupported",
+      "start_line": 197,
+      "end_line": 200,
+      "nloc": 4,
+      "mean_line_surprisal": 1.73819,
+      "max_line_surprisal": 2.73343
+    },
+    {
+      "function_id": "src/vscreen.rs::update_with_sgr:161",
+      "file_path": "src/vscreen.rs",
+      "name": "update_with_sgr",
+      "start_line": 161,
+      "end_line": 195,
+      "nloc": 33,
+      "mean_line_surprisal": 1.8762,
+      "max_line_surprisal": 7.0828
+    },
+    {
+      "function_id": "src/vscreen.rs::sgr_reset:148",
+      "file_path": "src/vscreen.rs",
+      "name": "sgr_reset",
+      "start_line": 148,
+      "end_line": 159,
+      "nloc": 11,
+      "mean_line_surprisal": 1.85722,
+      "max_line_surprisal": 3.18628
+    },
+    {
+      "function_id": "src/vscreen.rs::update:107",
+      "file_path": "src/vscreen.rs",
+      "name": "update",
+      "start_line": 107,
+      "end_line": 146,
+      "nloc": 39,
+      "mean_line_surprisal": 1.77279,
+      "max_line_surprisal": 4.47115
+    },
+    {
+      "function_id": "src/vscreen.rs::new:87",
+      "file_path": "src/vscreen.rs",
+      "name": "new",
+      "start_line": 87,
+      "end_line": 103,
+      "nloc": 16,
+      "mean_line_surprisal": 1.48113,
+      "max_line_surprisal": 3.6012
+    },
+    {
+      "function_id": "src/vscreen.rs::fmt:36",
+      "file_path": "src/vscreen.rs",
+      "name": "fmt",
+      "start_line": 36,
+      "end_line": 41,
+      "nloc": 6,
+      "mean_line_surprisal": 1.43737,
+      "max_line_surprisal": 2.12462
+    },
+    {
+      "function_id": "src/vscreen.rs::to_reset_sequence:27",
+      "file_path": "src/vscreen.rs",
+      "name": "to_reset_sequence",
+      "start_line": 27,
+      "end_line": 32,
+      "nloc": 6,
+      "mean_line_surprisal": 2.0334,
+      "max_line_surprisal": 3.48675
+    },
+    {
+      "function_id": "src/vscreen.rs::update:17",
+      "file_path": "src/vscreen.rs",
+      "name": "update",
+      "start_line": 17,
+      "end_line": 25,
+      "nloc": 9,
+      "mean_line_surprisal": 2.19035,
+      "max_line_surprisal": 2.93915
+    },
+    {
+      "function_id": "src/vscreen.rs::new:13",
+      "file_path": "src/vscreen.rs",
+      "name": "new",
+      "start_line": 13,
+      "end_line": 15,
+      "nloc": 3,
+      "mean_line_surprisal": 1.71238,
+      "max_line_surprisal": 1.8809
+    },
+    {
+      "function_id": "src/wrapping.rs::default:9",
+      "file_path": "src/wrapping.rs",
+      "name": "default",
+      "start_line": 9,
+      "end_line": 11,
+      "nloc": 3,
+      "mean_line_surprisal": 1.88551,
+      "max_line_surprisal": 2.23429
+    }
+  ]
+}

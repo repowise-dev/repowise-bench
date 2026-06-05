@@ -80,7 +80,20 @@ _UTF8_ENV = {
 }
 
 # Argv prefix for invoking the local repowise CLI.
-_REPOWISE_CMD = [sys.executable, "-m", "repowise.cli.main"]
+# `python -m repowise.cli.main` is a NO-OP on branches where main.py has no
+# __main__ guard (it builds the click group but never invokes it), so prefer the
+# console-script exe when available. Override with REPOWISE_EXE.
+def _resolve_repowise_cmd() -> list:
+    env_exe = os.environ.get("REPOWISE_EXE")
+    if env_exe and Path(env_exe).exists():
+        return [env_exe]
+    candidate = Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts" / "repowise.exe"
+    if candidate.exists():
+        return [str(candidate)]
+    return [sys.executable, "-m", "repowise.cli.main"]
+
+
+_REPOWISE_CMD = _resolve_repowise_cmd()
 
 # ---------------------------------------------------------------------------
 # SWE-QA repo name mapping (split name -> GitHub org/repo)
@@ -446,11 +459,15 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
     cache_key = f"{repo_name.replace('/', '_')}_{mode}"
     cache_dir = Path(index_dir) / cache_key
 
-    # Restore from cache (mode-specific)
+    # Restore from cache (mode-specific). Idempotent: if the repo already has a
+    # restored wiki.db, SKIP the rmtree+copytree. A long-lived MCP server from a
+    # prior C2 task in the same repo holds wiki.db / lancedb open, so re-wiping
+    # .repowise under it fails with WinError 32 (file in use). The cache content
+    # is identical once restored, so skipping is correct, not just a workaround.
     if cache_dir.exists():
         cached_idx = cache_dir / ".repowise"
         dest_idx = repo_path / ".repowise"
-        if cached_idx.exists():
+        if cached_idx.exists() and not (dest_idx / "wiki.db").exists():
             _restore_index_from_cache(cached_idx, dest_idx)
         return True, 0.0
 
@@ -1099,19 +1116,35 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     )
     metrics.prompt_sent = prompt
 
-    # Run agent
+    # Run agent — dispatch on the configured harness.
     per_task_budget = config.get("budget", {}).get("max_per_task_usd", 2.0)
+    harness = config["agent"].get("harness", "claude_code")
     start = time.time()
-    output, retries = run_claude_code(
-        prompt=prompt,
-        repo_path=str(repo_path),
-        condition=condition,
-        model=config["agent"]["model"],
-        timeout=config["agent"]["timeout_seconds"],
-        max_budget_usd=per_task_budget,
-        mcp_config_path=mcp_config_path,
-        benchmark="swe_qa",
-    )
+    if harness == "opencode":
+        from harness.opencode_runner import (
+            run_opencode, get_shared_server, build_opencode_system_prompt,
+        )
+        output, retries = run_opencode(
+            prompt=prompt,
+            repo_path=str(repo_path),
+            condition=condition,
+            model=config["agent"]["model"],
+            timeout=config["agent"]["timeout_seconds"],
+            server=get_shared_server(),
+            benchmark="swe_qa",
+            system_prompt=build_opencode_system_prompt(condition, "swe_qa"),
+        )
+    else:
+        output, retries = run_claude_code(
+            prompt=prompt,
+            repo_path=str(repo_path),
+            condition=condition,
+            model=config["agent"]["model"],
+            timeout=config["agent"]["timeout_seconds"],
+            max_budget_usd=per_task_budget,
+            mcp_config_path=mcp_config_path,
+            benchmark="swe_qa",
+        )
     metrics.wall_clock_seconds = time.time() - start
     metrics.retries = retries
 
