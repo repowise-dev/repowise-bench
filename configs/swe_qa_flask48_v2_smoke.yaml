@@ -1,0 +1,72 @@
+﻿# flask48 SWE-QA benchmark â€” v2 rerun (2026-06).
+#
+# Same design as configs/swe_qa_flask48.yaml (the published flask48 run):
+# 48 paired tasks, C0_bare vs C2_full, same model and judge. Differences:
+#
+#   * repowise code: current local checkout (post-Distill â€” MCP response
+#     budgeting with _meta.omitted, skeleton rendering, perf overhaul),
+#     selected via the REPOWISE_ROOT env var
+#   * documentation index: OpenAI gpt-5.4-nano (was gemini-3.1-flash-lite),
+#     OpenAI embeddings
+#   * results land in results/swe_qa_flask48_v2_smoke/ so the published v1 results
+#     stay untouched
+#
+# Run:
+#   $env:REPOWISE_ROOT = "<checkout-or-worktree>"
+#   $env:OPENAI_API_KEY = "<key>"   # docs + embeddings + get_answer synthesis
+#   python harness/run_experiment.py --config configs/swe_qa_flask48_v2_smoke.yaml
+
+experiment_name: "swe_qa_flask48_v2_smoke"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 2
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/swe_qa_flask48_v2_smoke"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48_v2_smoke"
+
+budget:
+  max_total_usd: 25.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

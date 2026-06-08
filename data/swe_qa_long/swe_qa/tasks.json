@@ -1,0 +1,37 @@
+[
+  {
+    "id": "flask_long_000",
+    "repo": "pallets/flask",
+    "split_name": "long_investigation",
+    "question": "Using the git history and the actual commit diffs (e.g. `git log -p` on the src/flask/json package), trace how Flask's JSON handling was refactored from the older custom JSONEncoder/JSONDecoder approach to the JSONProvider architecture. Which classes/files were added or removed, what is the resulting design, and roughly when did the change happen? Cite specific files and summarize the diffs you examined.",
+    "answer": "The git history of src/flask/json shows a move from module-level json helpers plus custom JSONEncoder/JSONDecoder classes (configured via app.config flags like JSON_SORT_KEYS / JSON_AS_ASCII) to a pluggable provider architecture. The refactor introduced JSONProvider and DefaultJSONProvider in src/flask/json/provider.py, exposed as app.json, with dumps/loads/response/jsonify and configurable attributes (ensure_ascii, sort_keys). The old JSONEncoder/JSONDecoder and the JSON_* config flags were removed/deprecated; htmlsafe handling and the |tojson filter were consolidated, and src/flask/json/tag.py keeps the TaggedJSONSerializer used by sessions. Net result: serialization is controlled by a provider object on the app rather than config flags and encoder subclasses."
+  },
+  {
+    "id": "flask_long_001",
+    "repo": "pallets/flask",
+    "split_name": "long_investigation",
+    "question": "Catalogue how the `current_app` proxy is used across the entire Flask codebase: search for every reference, group them by module, and explain the access pattern. Then explain exactly how the proxy resolves to the real application object. Cite the files involved.",
+    "answer": "current_app is a LocalProxy defined in src/flask/globals.py, bound to the _cv_app ContextVar's app attribute (via app_ctx). References appear across the package — app.py, ctx.py, helpers.py, cli.py, blueprints/sansio, json/provider.py, templating.py, etc. — typically either reading configuration/state (current_app.config, current_app.logger, current_app.extensions) or dispatching to app methods. Resolution: current_app = LocalProxy(_cv_app, ...) reads the AppContext pushed onto the _cv_app ContextVar (src/flask/ctx.py); accessing it with no active app context raises a RuntimeError ('Working outside of application context')."
+  },
+  {
+    "id": "flask_long_002",
+    "repo": "pallets/flask",
+    "split_name": "long_investigation",
+    "question": "By examining the commit diffs of the core application module (src/flask/app.py and the src/flask/sansio package), summarize the most significant structural refactors in its recent history. In particular, explain the 'sansio' split: what moved, why, and what the resulting layering is. Cite the commits/files you looked at.",
+    "answer": "The git history shows app.py being decomposed: the framework-agnostic, transport-independent logic (the App/Scaffold base, blueprint bookkeeping, url_map setup, config handling) was extracted into src/flask/sansio/ (sansio/app.py, sansio/scaffold.py, sansio/blueprints.py), leaving src/flask/app.py as the WSGI-specific Flask subclass (wsgi_app, request/app context creation, run/test helpers). The 'sansio' split separates the parts that don't depend on WSGI/the request-response cycle from the WSGI binding, enabling reuse (e.g. async/ASGI or quart-style frameworks) and clearer layering: Scaffold -> sansio.App -> Flask."
+  },
+  {
+    "id": "flask_long_003",
+    "repo": "pallets/flask",
+    "split_name": "long_investigation",
+    "question": "Trace the complete SECRET_KEY / session-signing flow end to end. Search the whole codebase for references to secret_key, the signing serializer, and the session interface, then explain how a session cookie is signed and verified, which library does the crypto, and how the key is resolved. Cite exact files and methods.",
+    "answer": "SecureCookieSessionInterface in src/flask/sessions.py is the default session interface. open_session/save_session call get_signing_serializer(app), which builds an itsdangerous URLSafeTimedSerializer from app.secret_key (resolved from the SECRET_KEY config, with SECRET_KEY_FALLBACKS for rotation), using a salt and a TaggedJSONSerializer (src/flask/json/tag.py) for the payload, signed with HMAC (sha1 by default). app.secret_key is a property on the app reading config['SECRET_KEY'] (src/flask/sansio/app.py). If no secret key is set, get_signing_serializer returns None and saving a session raises. current_app/session proxies (globals.py) expose the active session."
+  },
+  {
+    "id": "flask_long_004",
+    "repo": "pallets/flask",
+    "split_name": "long_investigation",
+    "question": "Examine the git history (with diffs) of Flask's blueprints implementation and summarize how blueprint registration evolved, including the move of shared logic into the sansio layer and how nested blueprints / url_prefix merging are handled today. Cite the files and key methods.",
+    "answer": "Blueprint logic was split into src/flask/sansio/blueprints.py (the framework-agnostic Blueprint and BlueprintSetupState, record()/record_once() deferred_functions, register(), add_url_rule) and src/flask/blueprints.py (the Flask-specific subclass adding send_static_file/open_resource). Routes/handlers declared before registration are stored as deferred_functions and replayed against a BlueprintSetupState when app.register_blueprint() calls Blueprint.register(). Nested blueprints are registered recursively (register() iterates self._blueprints), merging url_prefix (parent + child) and dotted name prefixes via the setup state. The history shows this consolidation into sansio plus the addition of nested-blueprint support."
+  }
+]

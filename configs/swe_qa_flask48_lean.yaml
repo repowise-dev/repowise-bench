@@ -1,0 +1,77 @@
+# flask48 SWE-QA — lean-MCP smoke (3 arms, 2 tasks).
+#
+# Isolates the MCP schema-tax lever: C2_lean launches the server with
+# `--profile core` so only the four tools the agent actually uses are
+# advertised (get_answer, get_context, get_symbol, search_codebase) — the
+# other five schemas never enter the agent's context. Same index as C2_full.
+#
+# Expectation: C2_lean writes far fewer cache tokens than C2_full (no unused
+# schemas), shrinking the per-task cost gap to C0 while keeping the navigation
+# wins. Short read-only Q&A → modest gains; the long Bash+distill arm is where
+# the gains compound.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise"
+#   $env:OPENAI_API_KEY = "<key>"
+#   python harness/run_experiment.py --config configs/swe_qa_flask48_lean.yaml
+
+experiment_name: "swe_qa_flask48_lean"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 6
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_lean"
+    repowise_enabled: true
+    repowise_mode: "lean"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/swe_qa_flask48_lean"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48_lean"
+
+budget:
+  max_total_usd: 25.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

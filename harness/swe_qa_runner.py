@@ -33,8 +33,11 @@ from harness.metrics import (
 # three local package src dirs. The MCP server is launched the same way via
 # `python -m repowise.cli.main mcp <repo> --transport stdio`.
 # swe_qa_runner.py is at <repowise>/repowise-bench/harness/, so parents[2] IS
-# the repowise checkout root.
-_REPOWISE_ROOT = Path(__file__).resolve().parents[2]
+# the repowise checkout root. Override with REPOWISE_ROOT to benchmark a git
+# worktree (or any other checkout) without touching the main clone.
+_REPOWISE_ROOT = Path(
+    os.environ.get("REPOWISE_ROOT") or Path(__file__).resolve().parents[2]
+)
 _REPOWISE_PKG_SRCS = [
     _REPOWISE_ROOT / "packages" / "cli" / "src",
     _REPOWISE_ROOT / "packages" / "core" / "src",
@@ -73,14 +76,49 @@ _UTF8_ENV = {
     **os.environ,
     "PYTHONIOENCODING": "utf-8",
     "PYTHONUTF8": "1",
+    # Modern Claude Code DEFERS MCP tool schemas (lazy-loaded via ToolSearch)
+    # and connects MCP servers asynchronously. Give the repowise server ample
+    # time to come up so its tools are resolvable on the agent's first turn
+    # instead of racing the conversation start.
+    "MCP_TIMEOUT": os.environ.get("MCP_TIMEOUT", "60000"),
     "PYTHONPATH": os.pathsep.join(
         [str(p) for p in _REPOWISE_PKG_SRCS]
         + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     ),
+    # Put the venv's Scripts dir on PATH so the agent's Bash can resolve the
+    # `repowise` console script for `repowise distill <cmd>` in the long
+    # (Bash-enabled) arm. Harmless for the read-only arms.
+    "PATH": os.pathsep.join(
+        [str(Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts")]
+        + ([os.environ["PATH"]] if os.environ.get("PATH") else [])
+    ),
 }
 
+# Provider credentials the MCP server needs in its OWN environment so that
+# query-time embeddings (search_codebase) and answer synthesis (get_answer)
+# work — Claude Code launches the server with the config's `env` block, so
+# these must be forwarded explicitly rather than relying on inheritance.
+_MCP_PASSTHROUGH_ENV = (
+    "OPENAI_API_KEY", "OPENAI_BASE_URL",
+    "GEMINI_API_KEY", "GOOGLE_API_KEY", "ANTHROPIC_API_KEY",
+    "REPOWISE_EMBEDDER", "REPOWISE_DOC_MODEL",
+)
+
 # Argv prefix for invoking the local repowise CLI.
-_REPOWISE_CMD = [sys.executable, "-m", "repowise.cli.main"]
+# `python -m repowise.cli.main` is a NO-OP on branches where main.py has no
+# __main__ guard (it builds the click group but never invokes it), so prefer the
+# console-script exe when available. Override with REPOWISE_EXE.
+def _resolve_repowise_cmd() -> list:
+    env_exe = os.environ.get("REPOWISE_EXE")
+    if env_exe and Path(env_exe).exists():
+        return [env_exe]
+    candidate = Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts" / "repowise.exe"
+    if candidate.exists():
+        return [str(candidate)]
+    return [sys.executable, "-m", "repowise.cli.main"]
+
+
+_REPOWISE_CMD = _resolve_repowise_cmd()
 
 # ---------------------------------------------------------------------------
 # SWE-QA repo name mapping (split name -> GitHub org/repo)
@@ -305,28 +343,52 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
 # Repowise indexing + MCP config
 # ---------------------------------------------------------------------------
 
-def generate_mcp_config(repo_path: Path, bench_root: Path) -> Path:
-    """Write per-repo MCP config JSON. Returns absolute path."""
+def generate_mcp_config(
+    repo_path: Path, bench_root: Path, profile: Optional[str] = None
+) -> Path:
+    """Write per-repo MCP config JSON. Returns absolute path.
+
+    ``profile`` (e.g. "core") makes the server advertise only a curated tool
+    surface via ``repowise mcp --profile``, so unused tool schemas never enter
+    the agent's context. ``None`` advertises the full nine-tool surface. The
+    profile is baked into the config filename so full and lean arms get
+    distinct server launches against the same restored index.
+    """
     config_dir = bench_root / "mcp_configs"
     config_dir.mkdir(parents=True, exist_ok=True)
 
     repo_abs = str(repo_path.resolve()).replace("\\", "/")
-    config_name = f"{repo_path.parent.name}_{repo_path.name}.json"
+    suffix = f"_{profile}" if profile else ""
+    config_name = f"{repo_path.parent.name}_{repo_path.name}{suffix}.json"
     config_path = config_dir / config_name
 
+    server_args = _REPOWISE_CMD[1:] + ["mcp", repo_abs, "--transport", "stdio"]
+    if profile:
+        server_args += ["--profile", profile]
+
+    # The server's own env: PYTHONPATH for the local checkout, UTF-8, plus any
+    # provider credentials present so embeddings + get_answer synthesis work
+    # (Claude Code launches the server with exactly this env block).
+    server_env = {
+        "PYTHONPATH": _UTF8_ENV["PYTHONPATH"],
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+    }
+    for key in _MCP_PASSTHROUGH_ENV:
+        val = os.environ.get(key)
+        if val:
+            server_env[key] = val
+
+    # NOTE: `python -m repowise.cli.main` is a no-op (main.py has no __main__
+    # guard), so the server must be launched through the resolved CLI command —
+    # the console-script exe, or REPOWISE_EXE. PYTHONPATH still points at the
+    # local checkout's src dirs, which shadow the venv's editable install.
     mcp_config = {
         "mcpServers": {
             "repowise": {
-                "command": sys.executable,
-                "args": [
-                    "-m", "repowise.cli.main",
-                    "mcp", repo_abs, "--transport", "stdio",
-                ],
-                "env": {
-                    "PYTHONPATH": _UTF8_ENV["PYTHONPATH"],
-                    "PYTHONIOENCODING": "utf-8",
-                    "PYTHONUTF8": "1",
-                },
+                "command": _REPOWISE_CMD[0],
+                "args": server_args,
+                "env": server_env,
             }
         }
     }
@@ -435,7 +497,9 @@ def get_c0_worktree(repo_path: Path) -> Path:
 
 
 def index_repo(repo_name: str, repos_dir: str, index_dir: str,
-               mode: str, repowise_bin: str, doc_model: str) -> tuple:
+               mode: str, repowise_bin: str, doc_model: str,
+               provider: Optional[str] = None,
+               embedder: Optional[str] = None) -> tuple:
     """Run repowise init from the local checkout. Returns (success, time_seconds).
 
     Uses --resume so a previous partial run continues instead of restarting.
@@ -446,11 +510,15 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
     cache_key = f"{repo_name.replace('/', '_')}_{mode}"
     cache_dir = Path(index_dir) / cache_key
 
-    # Restore from cache (mode-specific)
+    # Restore from cache (mode-specific). Idempotent: if the repo already has a
+    # restored wiki.db, SKIP the rmtree+copytree. A long-lived MCP server from a
+    # prior C2 task in the same repo holds wiki.db / lancedb open, so re-wiping
+    # .repowise under it fails with WinError 32 (file in use). The cache content
+    # is identical once restored, so skipping is correct, not just a workaround.
     if cache_dir.exists():
         cached_idx = cache_dir / ".repowise"
         dest_idx = repo_path / ".repowise"
-        if cached_idx.exists():
+        if cached_idx.exists() and not (dest_idx / "wiki.db").exists():
             _restore_index_from_cache(cached_idx, dest_idx)
         return True, 0.0
 
@@ -465,6 +533,14 @@ def index_repo(repo_name: str, repos_dir: str, index_dir: str,
     else:
         # Cap LLM concurrency to avoid rate-limit thrash and improve prompt-cache reuse.
         cmd.extend(["--concurrency", "3"])
+        # `init` does NOT read REPOWISE_DOC_MODEL — provider/model must be
+        # passed explicitly or it falls back to API-key autodetection.
+        if provider:
+            cmd.extend(["--provider", provider])
+        if doc_model:
+            cmd.extend(["--model", doc_model])
+        if embedder:
+            cmd.extend(["--embedder", embedder])
 
     # Force DB to repo-local .repowise/wiki.db so the MCP server can find it.
     # NOTE: this places repowise artifacts inside the working tree, so the
@@ -601,6 +677,10 @@ worth inspecting. Never call get_overview, search_codebase, dead_code, or archit
 
 SWEQA_PROMPT_FULL = """You have repowise MCP tools. They are accurate. Trust them.
 
+These tools are loaded on demand: if a repowise tool is not immediately
+available, call ToolSearch with the tool name first (e.g. ToolSearch
+"mcp__repowise__get_answer") to load it, then call it. Do this silently.
+
 STRICT WORKFLOW:
   1. mcp__repowise__get_answer(question) — ALWAYS your first call.
   2. If response.confidence == "high" AND response.answer names concrete file paths
@@ -642,6 +722,18 @@ TOOLS_FULL = (
     ",mcp__repowise__get_why"
     ",mcp__repowise__get_dependency_path"
     ",mcp__repowise__get_overview"
+)
+
+# C2 lean: the four tools the agent actually reached for on flask48 v2
+# (get_symbol, get_answer, get_context, search_codebase). The MCP server is
+# launched with `--profile core`, so ONLY these four schemas are advertised —
+# the per-task schema "tax" the other five would otherwise add never enters the
+# agent's context. Same index as full; only the served surface differs.
+TOOLS_LEAN = (
+    ",mcp__repowise__get_answer"
+    ",mcp__repowise__get_symbol"
+    ",mcp__repowise__search_codebase"
+    ",mcp__repowise__get_context"
 )
 
 # CLAUDE.md written into repo root for C1 runs.
@@ -745,6 +837,24 @@ def write_repo_claude_md(repo_path: Path, mode: str) -> None:
     claude_md = repo_path / "CLAUDE.md"
     claude_md.write_text(content, encoding="utf-8")
 
+# Appended for the long (Bash-enabled) arm when distill is on. Teaches the
+# agent to route noisy command output through `repowise distill`, which
+# compresses it (errors-first, reversible) before it lands in context — and to
+# expand a marker instead of re-running. Voluntary-prefix path (no Claude Code
+# hook needed); the distilled output the agent reads is identical to what the
+# rewrite hook would have produced.
+DISTILL_PROMPT = """\
+
+When you run a shell command whose output is long or noisy — test runs
+(pytest), `git log`, `git diff`, `git show`, or wide `grep`/search floods —
+prefix it with `repowise distill`, e.g. `repowise distill pytest tests/test_json.py`
+or `repowise distill git log -n 50 -- src/flask/json`. It runs the command
+unchanged (same exit code) and prints a compact, errors-first rendering, so you
+spend far fewer tokens reading output. If you see a marker like
+`[repowise#<ref>: N lines omitted ...]`, run `repowise expand <ref>` to restore
+the omitted lines instead of re-running the command.
+"""
+
 MAX_RETRIES = 6
 
 
@@ -759,39 +869,49 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
 
     benchmark: "swe_qa" or "swe_bench" — selects the right system prompt.
     """
-    # SWE-QA is read-only code understanding — no Bash needed.
+    # SWE-QA is read-only code understanding — no Bash by default.
     # Bash lets the agent escape the repo (read arbitrary files, call repowise CLI
-    # manually, access the benchmark's own data/tasks.json answer key).
-    base_tools = "Read,Grep,Glob" if benchmark == "swe_qa" else "Read,Grep,Glob,Bash,Edit,Write"
+    # manually, access the benchmark's own data/tasks.json answer key), so it is
+    # opt-in per condition via `enable_bash` (the long investigation arm), where
+    # it is needed to run the test/git/grep commands distill compresses.
+    if benchmark == "swe_qa":
+        base_tools = "Read,Grep,Glob,Bash" if condition.get("enable_bash") else "Read,Grep,Glob"
+    else:
+        base_tools = "Read,Grep,Glob,Bash,Edit,Write"
 
-    # System prompt applied to ALL conditions — prevents repo escape
+    repowise_enabled = bool(condition.get("repowise_enabled"))
+
+    # System prompt applied to ALL conditions — prevents repo escape.
+    # Modern Claude Code DEFERS MCP tool schemas: the repowise tools are not in
+    # the initial tool list, they are loaded on demand via ToolSearch. So C2
+    # arms MUST be allowed to use ToolSearch or the tools are unreachable; C0
+    # (no MCP) keeps it blocked. ListMcpResourcesTool / ReadMcpResourceTool are
+    # the repo-escape vectors (they read arbitrary MCP resource URIs) and stay
+    # blocked everywhere.
     base_system_prompt = (
         "You are answering a question about the code repository in your current directory. "
         "Only read files within the current repository. "
         "Do NOT access files outside the current directory. "
-        "Do NOT use ToolSearch or ListMcpResourcesTool. "
-        "Answer based solely on what you find in the source code."
+        "Do NOT read any benchmark, test-harness, or evaluation data. "
+        "Do NOT use ListMcpResourcesTool or ReadMcpResourceTool. "
+        + ("" if repowise_enabled else "Do NOT use ToolSearch. ")
+        + "Answer based solely on what you find in the source code."
     )
 
-    # Block everything that isn't explicitly needed for the condition.
-    # Personal MCP servers (Notion, Gmail, Canva, Invideo…) bleed in from the
-    # user's global Claude Code config — block them unconditionally so no
-    # condition can reach outside the repo.
-    # ReadMcpResourceTool is a *top-level* tool (not under mcp__*) that lets
-    # the agent read any MCP resource URI (e.g. `repowise://context?...`).
-    # Block it unconditionally so `mcp__*` disallow can't be bypassed through
-    # the resource namespace. Same for ListMcpResourcesTool/ToolSearch.
-    disallowed = (
-        "ToolSearch,ListMcpResourcesTool,ReadMcpResourceTool,"
-        "mcp__claude_ai_*"
-    )
+    # ListMcpResourcesTool / ReadMcpResourceTool are top-level tools (not under
+    # mcp__*) that read any MCP resource URI — block them unconditionally so the
+    # mcp__* disallow can't be bypassed through the resource namespace. Personal
+    # MCP servers (Notion, Gmail, …) bleed in from the user's global config;
+    # --strict-mcp-config already excludes them, and mcp__claude_ai_* belt-and-
+    # braces blocks the hosted ones.
+    disallowed = "ListMcpResourcesTool,ReadMcpResourceTool,mcp__claude_ai_*"
 
-    if not condition.get("repowise_enabled"):
+    if not repowise_enabled:
         # C0 — no MCP servers at all. Run in a git worktree so .repowise/
         # and .mcp.json from prior runs are physically absent.  If worktree
         # creation fails we FAIL LOUDLY rather than fall back to the real
         # repo dir (that's how C0 got silently contaminated before).
-        disallowed += ",mcp__*"
+        disallowed += ",ToolSearch,mcp__*"
         repo_path = str(get_c0_worktree(Path(repo_path)))
     else:
         mode = condition.get("repowise_mode", "full")
@@ -806,6 +926,13 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 ",mcp__repowise__get_dead_code"
                 ",mcp__repowise__update_decision_records"
             )
+        elif mode == "lean":
+            # The server (launched with --profile core) advertises only the four
+            # core tools, so there is nothing else to block — the unused schemas
+            # never reach the client in the first place. This is the whole point
+            # of the lean arm: cut the schema tax at the source, not via the
+            # client allow-list.
+            pass
         else:
             # C2 full — block only the genuinely useless ones
             disallowed += (
@@ -827,6 +954,9 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
 
     allowed_tools = base_tools
     if condition.get("repowise_enabled"):
+        # Deferred MCP tools are loaded via ToolSearch — allow it so the agent
+        # can pull the repowise tool schemas into context on first use.
+        allowed_tools += ",ToolSearch"
         mode = condition.get("repowise_mode", "full")
         if mode == "index-only":
             allowed_tools += TOOLS_INDEX_ONLY
@@ -835,6 +965,14 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
             # agent gets the nudge even if CLAUDE.md is somehow missing.
             system_prompt = (SWEBENCH_PROMPT_INDEX_ONLY if benchmark == "swe_bench"
                              else "Use the repowise tools listed in CLAUDE.md before reading source.")
+        elif mode == "lean":
+            # Same four-tool workflow as full (the SWE-QA full prompt only ever
+            # references get_answer / get_symbol / get_context / search_codebase),
+            # but the server advertises just those four — so we get full-arm
+            # behaviour at a fraction of the schema cost.
+            allowed_tools += TOOLS_LEAN
+            system_prompt = (SWEBENCH_PROMPT_FULL if benchmark == "swe_bench"
+                             else SWEQA_PROMPT_FULL)
         else:
             allowed_tools += TOOLS_FULL
             system_prompt = (SWEBENCH_PROMPT_FULL if benchmark == "swe_bench"
@@ -854,6 +992,11 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
             empty_cfg_path.parent.mkdir(parents=True, exist_ok=True)
             empty_cfg_path.write_text('{"mcpServers": {}}')
         cmd.extend(["--strict-mcp-config", "--mcp-config", str(empty_cfg_path)])
+
+    # Distill instruction (long arm): teach the agent to route noisy command
+    # output through `repowise distill`. Independent of the MCP surface.
+    if condition.get("distill"):
+        cmd.extend(["--append-system-prompt", DISTILL_PROMPT])
 
     cmd.extend(["--allowed-tools", allowed_tools])
 
@@ -1065,13 +1208,21 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     mcp_config_path = None
     if condition.get("repowise_enabled"):
         mode = condition.get("repowise_mode", "full")
+        # The served tool surface (full vs lean) is orthogonal to how the repo
+        # is indexed. "lean" reuses the same full doc+graph index as "full" and
+        # differs only in which tool schemas the MCP server advertises, so it
+        # must NOT trigger a separate (re-)index.
+        index_mode = "index-only" if mode == "index-only" else "full"
+        served_profile = "core" if mode == "lean" else None
         try:
             ok, idx_time = index_repo(
                 repo_name, repos_dir,
                 config["repowise"]["index_dir"],
-                mode,
+                index_mode,
                 config["repowise"]["binary"],
                 config["repowise"]["doc_model"],
+                provider=config["repowise"].get("provider"),
+                embedder=config["repowise"].get("embedder"),
             )
             metrics.index_time_seconds = idx_time
             if not ok:
@@ -1082,7 +1233,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             return metrics
 
         bench_root = Path(__file__).resolve().parent.parent
-        mcp_cfg = generate_mcp_config(repo_path, bench_root)
+        mcp_cfg = generate_mcp_config(repo_path, bench_root, profile=served_profile)
         mcp_config_path = str(mcp_cfg)
 
         # Write CLAUDE.md into the repo so Claude Code loads it as project
@@ -1099,19 +1250,35 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     )
     metrics.prompt_sent = prompt
 
-    # Run agent
+    # Run agent — dispatch on the configured harness.
     per_task_budget = config.get("budget", {}).get("max_per_task_usd", 2.0)
+    harness = config["agent"].get("harness", "claude_code")
     start = time.time()
-    output, retries = run_claude_code(
-        prompt=prompt,
-        repo_path=str(repo_path),
-        condition=condition,
-        model=config["agent"]["model"],
-        timeout=config["agent"]["timeout_seconds"],
-        max_budget_usd=per_task_budget,
-        mcp_config_path=mcp_config_path,
-        benchmark="swe_qa",
-    )
+    if harness == "opencode":
+        from harness.opencode_runner import (
+            run_opencode, get_shared_server, build_opencode_system_prompt,
+        )
+        output, retries = run_opencode(
+            prompt=prompt,
+            repo_path=str(repo_path),
+            condition=condition,
+            model=config["agent"]["model"],
+            timeout=config["agent"]["timeout_seconds"],
+            server=get_shared_server(),
+            benchmark="swe_qa",
+            system_prompt=build_opencode_system_prompt(condition, "swe_qa"),
+        )
+    else:
+        output, retries = run_claude_code(
+            prompt=prompt,
+            repo_path=str(repo_path),
+            condition=condition,
+            model=config["agent"]["model"],
+            timeout=config["agent"]["timeout_seconds"],
+            max_budget_usd=per_task_budget,
+            mcp_config_path=mcp_config_path,
+            benchmark="swe_qa",
+        )
     metrics.wall_clock_seconds = time.time() - start
     metrics.retries = retries
 

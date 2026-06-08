@@ -65,7 +65,7 @@ def run_swe_qa_experiment(config: dict, conditions: list,
 
     bench_cfg = config["benchmarks"]["swe_qa"]
     tasks = load_swe_qa_tasks(
-        data_dir="./data",
+        data_dir=bench_cfg.get("data_dir", "./data"),
         max_tasks=bench_cfg.get("max_tasks"),
         repos=bench_cfg.get("repos"),
         skip_tasks=bench_cfg.get("skip_tasks", 0),
