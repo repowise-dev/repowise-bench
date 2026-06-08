@@ -1,0 +1,73 @@
+# flask SWE-QA — LONG investigation arm smoke (Bash + distill).
+#
+# The complement to the short read-only arm. Long, multi-step investigation
+# tasks where the agent runs real test/git/grep commands. This is where the
+# token-reduction story compounds:
+#   * lean MCP (get_answer/get_context/get_symbol/search_codebase) localises
+#     the answer so the agent reads fewer files, and
+#   * `repowise distill` compresses the noisy command output (pytest/git/grep)
+#     before it lands in context.
+#
+# C0_long_bare : Bash, no repowise, raw command output.
+# C2_long      : Bash + lean MCP surface + distill (the full repowise story).
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise"
+#   $env:OPENAI_API_KEY = "<key>"
+#   python harness/run_experiment.py --config configs/swe_qa_flask48_long.yaml
+
+experiment_name: "swe_qa_flask48_long"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 5
+    data_dir: "./data/swe_qa_long"
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_long_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    enable_bash: true
+    distill: false
+
+  - name: "C2_long"
+    repowise_enabled: true
+    repowise_mode: "lean"
+    enable_bash: true
+    distill: true
+
+agent:
+  model: "sonnet"
+  max_turns: 30
+  timeout_seconds: 600
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/swe_qa_flask48_long"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48_long"
+
+budget:
+  max_total_usd: 25.0
+  max_per_task_usd: 4.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
