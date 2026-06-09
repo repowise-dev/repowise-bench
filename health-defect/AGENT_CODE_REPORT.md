@@ -108,6 +108,16 @@ Within-repo Δ vs human, cluster-bootstrap 95% CI (main pool):
 
 ## 6. Induction & survival: no evidence agents induce more defects
 
+![Agent-written code is no more bug-prone than human code, and its lines last
+longer](figures/agent_vs_human_code_quality.png)
+
+_Panel A: adjusted odds of a commit introducing a bug, by authorship tier, vs
+human commits in the same repo (human baseline = 1.0; below 1.0 = fewer bugs).
+Panel B: paired line-survival to HEAD, human vs human-driven agent (T2), in the
+four repos with enough T2 volume. Regenerate with
+`python make_agent_vs_human_figure.py` (values hard-coded from §6 / the
+`_szz` and `_survival` scorecards — no corpus needed)._
+
 **AG-SZZ, 112,382 eligible commits, 14 repos, size/churn-adjusted (logit:
 tier + log la/ld/nf + repo FE, cluster-bootstrap OR):**
 
