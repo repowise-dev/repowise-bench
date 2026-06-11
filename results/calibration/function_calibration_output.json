@@ -1,0 +1,266 @@
+{
+  "corpus": {
+    "axios": 126,
+    "bat": 430,
+    "chi": 168,
+    "clap": 1775,
+    "fastify": 218,
+    "fd": 190,
+    "fiber": 1178,
+    "gin": 506,
+    "hono": 229,
+    "litestar": 1382,
+    "pydantic": 1201,
+    "rich": 603,
+    "zod": 777
+  },
+  "n_functions": 8783,
+  "n_positive": 317,
+  "file_level_reference": {
+    "binary_pooled_oof_auc": 0.699,
+    "continuous_pooled_oof_auc": 0.744,
+    "n_files": 830,
+    "n_positives": 216
+  },
+  "results": {
+    "structural_only": {
+      "C": 0.05,
+      "pooled_oof_auc": 0.7315,
+      "mean_fold_auc": 0.7432,
+      "pooled_oof_auc_ci95": {
+        "lo": 0.6682,
+        "hi": 0.802,
+        "n_boot": 500
+      },
+      "popt": 0.4509,
+      "precision_at_20pct_loc": 0.2051,
+      "coefficients": {
+        "ccn": 0.1995,
+        "cognitive": 0.3835,
+        "max_nesting": -0.1496,
+        "nloc": 0.6085,
+        "param_count": -0.1745,
+        "n_conditions": 0.0254,
+        "bumps": -0.1886
+      },
+      "per_fold": [
+        {
+          "held_out": "axios",
+          "auc": 0.8019,
+          "n": 126,
+          "n_pos": 80
+        },
+        {
+          "held_out": "bat",
+          "auc": 0.9217,
+          "n": 430,
+          "n_pos": 12
+        },
+        {
+          "held_out": "chi",
+          "auc": 0.5808,
+          "n": 168,
+          "n_pos": 1
+        },
+        {
+          "held_out": "clap",
+          "auc": 0.7522,
+          "n": 1775,
+          "n_pos": 37
+        },
+        {
+          "held_out": "fastify",
+          "auc": 0.8562,
+          "n": 218,
+          "n_pos": 10
+        },
+        {
+          "held_out": "fd",
+          "auc": 0.7211,
+          "n": 190,
+          "n_pos": 4
+        },
+        {
+          "held_out": "fiber",
+          "auc": 0.8016,
+          "n": 1178,
+          "n_pos": 86
+        },
+        {
+          "held_out": "gin",
+          "auc": 0.992,
+          "n": 506,
+          "n_pos": 5
+        },
+        {
+          "held_out": "hono",
+          "auc": 0.6838,
+          "n": 229,
+          "n_pos": 16
+        },
+        {
+          "held_out": "litestar",
+          "auc": 0.7465,
+          "n": 1382,
+          "n_pos": 28
+        },
+        {
+          "held_out": "pydantic",
+          "auc": 0.799,
+          "n": 1201,
+          "n_pos": 10
+        },
+        {
+          "held_out": "rich",
+          "auc": 0.3587,
+          "n": 603,
+          "n_pos": 7
+        },
+        {
+          "held_out": "zod",
+          "auc": 0.646,
+          "n": 777,
+          "n_pos": 21
+        }
+      ]
+    },
+    "structural+process": {
+      "C": 0.05,
+      "pooled_oof_auc": 0.7132,
+      "mean_fold_auc": 0.7436,
+      "pooled_oof_auc_ci95": {
+        "lo": 0.6601,
+        "hi": 0.8193,
+        "n_boot": 500
+      },
+      "popt": 0.457,
+      "precision_at_20pct_loc": 0.2164,
+      "coefficients": {
+        "ccn": 0.1203,
+        "cognitive": 0.4496,
+        "max_nesting": -0.148,
+        "nloc": 0.5807,
+        "param_count": -0.1689,
+        "n_conditions": 0.0257,
+        "bumps": -0.1986,
+        "mod_count": 0.0143,
+        "recent_mods": 0.1619,
+        "age_days": -0.1887
+      },
+      "per_fold": [
+        {
+          "held_out": "axios",
+          "auc": 0.7799,
+          "n": 126,
+          "n_pos": 80
+        },
+        {
+          "held_out": "bat",
+          "auc": 0.9348,
+          "n": 430,
+          "n_pos": 12
+        },
+        {
+          "held_out": "chi",
+          "auc": 0.5329,
+          "n": 168,
+          "n_pos": 1
+        },
+        {
+          "held_out": "clap",
+          "auc": 0.7612,
+          "n": 1775,
+          "n_pos": 37
+        },
+        {
+          "held_out": "fastify",
+          "auc": 0.8673,
+          "n": 218,
+          "n_pos": 10
+        },
+        {
+          "held_out": "fd",
+          "auc": 0.7406,
+          "n": 190,
+          "n_pos": 4
+        },
+        {
+          "held_out": "fiber",
+          "auc": 0.7653,
+          "n": 1178,
+          "n_pos": 86
+        },
+        {
+          "held_out": "gin",
+          "auc": 0.9896,
+          "n": 506,
+          "n_pos": 5
+        },
+        {
+          "held_out": "hono",
+          "auc": 0.6447,
+          "n": 229,
+          "n_pos": 16
+        },
+        {
+          "held_out": "litestar",
+          "auc": 0.752,
+          "n": 1382,
+          "n_pos": 28
+        },
+        {
+          "held_out": "pydantic",
+          "auc": 0.8083,
+          "n": 1201,
+          "n_pos": 10
+        },
+        {
+          "held_out": "rich",
+          "auc": 0.3603,
+          "n": 603,
+          "n_pos": 7
+        },
+        {
+          "held_out": "zod",
+          "auc": 0.7294,
+          "n": 777,
+          "n_pos": 21
+        }
+      ]
+    }
+  },
+  "sensitivity": {
+    "-axios": {
+      "structural_only": {
+        "C": 0.05,
+        "pooled_oof_auc": 0.7459,
+        "popt": 0.4595,
+        "n_functions": 8657,
+        "n_positive": 237
+      },
+      "structural+process": {
+        "C": 0.05,
+        "pooled_oof_auc": 0.7779,
+        "popt": 0.512,
+        "n_functions": 8657,
+        "n_positive": 237
+      }
+    },
+    "-axios,-chi": {
+      "structural_only": {
+        "C": 0.05,
+        "pooled_oof_auc": 0.7472,
+        "popt": 0.4612,
+        "n_functions": 8489,
+        "n_positive": 236
+      },
+      "structural+process": {
+        "C": 0.05,
+        "pooled_oof_auc": 0.7774,
+        "popt": 0.5092,
+        "n_functions": 8489,
+        "n_positive": 236
+      }
+    }
+  }
+}

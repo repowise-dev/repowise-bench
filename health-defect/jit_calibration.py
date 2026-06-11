@@ -28,7 +28,10 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import sys
 from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent / "experiments"))
 
 import numpy as np
 import yaml

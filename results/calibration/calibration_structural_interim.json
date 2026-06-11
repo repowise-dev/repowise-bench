@@ -1,0 +1,212 @@
+{
+  "corpus": {
+    "axios": {
+      "files": 41,
+      "positives": 33
+    },
+    "bat": {
+      "files": 34,
+      "positives": 8
+    },
+    "chi": {
+      "files": 31,
+      "positives": 3
+    },
+    "clap": {
+      "files": 81,
+      "positives": 16
+    },
+    "fastify": {
+      "files": 24,
+      "positives": 8
+    },
+    "fd": {
+      "files": 18,
+      "positives": 5
+    },
+    "fiber": {
+      "files": 115,
+      "positives": 52
+    },
+    "gin": {
+      "files": 43,
+      "positives": 8
+    },
+    "hono": {
+      "files": 60,
+      "positives": 20
+    },
+    "litestar": {
+      "files": 198,
+      "positives": 31
+    },
+    "pydantic": {
+      "files": 86,
+      "positives": 17
+    },
+    "requests": {
+      "files": 14,
+      "positives": 10
+    },
+    "rich": {
+      "files": 72,
+      "positives": 6
+    },
+    "valibot": {
+      "files": 235,
+      "positives": 13
+    },
+    "zod": {
+      "files": 27,
+      "positives": 9
+    }
+  },
+  "n_files": 1079,
+  "n_positives": 239,
+  "chosen_C": 0.1,
+  "pooled_oof_auc": 0.7051280135485156,
+  "cross_project_mean_fold_auc": 0.7364812123807261,
+  "per_fold": [
+    {
+      "held_out": "axios",
+      "auc": 0.5379,
+      "n_test": 41,
+      "n_pos": 33
+    },
+    {
+      "held_out": "bat",
+      "auc": 0.9279,
+      "n_test": 34,
+      "n_pos": 8
+    },
+    {
+      "held_out": "chi",
+      "auc": 0.8214,
+      "n_test": 31,
+      "n_pos": 3
+    },
+    {
+      "held_out": "clap",
+      "auc": 0.8048,
+      "n_test": 81,
+      "n_pos": 16
+    },
+    {
+      "held_out": "fastify",
+      "auc": 0.7344,
+      "n_test": 24,
+      "n_pos": 8
+    },
+    {
+      "held_out": "fd",
+      "auc": 0.8308,
+      "n_test": 18,
+      "n_pos": 5
+    },
+    {
+      "held_out": "fiber",
+      "auc": 0.7421,
+      "n_test": 115,
+      "n_pos": 52
+    },
+    {
+      "held_out": "gin",
+      "auc": 0.8571,
+      "n_test": 43,
+      "n_pos": 8
+    },
+    {
+      "held_out": "hono",
+      "auc": 0.6869,
+      "n_test": 60,
+      "n_pos": 20
+    },
+    {
+      "held_out": "litestar",
+      "auc": 0.656,
+      "n_test": 198,
+      "n_pos": 31
+    },
+    {
+      "held_out": "pydantic",
+      "auc": 0.6394,
+      "n_test": 86,
+      "n_pos": 17
+    },
+    {
+      "held_out": "requests",
+      "auc": 0.675,
+      "n_test": 14,
+      "n_pos": 10
+    },
+    {
+      "held_out": "rich",
+      "auc": 0.8157,
+      "n_test": 72,
+      "n_pos": 6
+    },
+    {
+      "held_out": "valibot",
+      "auc": 0.6235,
+      "n_test": 235,
+      "n_pos": 13
+    },
+    {
+      "held_out": "zod",
+      "auc": 0.6944,
+      "n_test": 27,
+      "n_pos": 9
+    }
+  ],
+  "coefficients": {
+    "brain_method": -0.03255215676020382,
+    "low_cohesion": -0.16905653523029643,
+    "god_class": 0.05670698276309847,
+    "nested_complexity": 0.027056485233820295,
+    "complex_method": 0.2277000459911933,
+    "bumpy_road": -0.09769431023519427,
+    "complex_conditional": 0.1734215439480571,
+    "large_method": 0.14714701268988636,
+    "primitive_obsession": -0.12423965713763563,
+    "dry_violation": -0.2885451335123322,
+    "untested_hotspot": -0.08534779486720098,
+    "coverage_gap": 0.0,
+    "developer_congestion": 0.0,
+    "knowledge_loss": 0.0,
+    "hidden_coupling": 0.0,
+    "function_hotspot": 0.10634664076068542,
+    "code_age_volatility": 0.0,
+    "ownership_risk": 0.31581968128483884,
+    "churn_risk": 0.0,
+    "change_entropy": 0.0,
+    "co_change_scatter": 0.0,
+    "large_assertion_block": 0.0,
+    "duplicated_assertion_block": 0.0,
+    "nloc_log": 0.5263203471904565
+  },
+  "proposed_multipliers": {
+    "brain_method": 0.0,
+    "low_cohesion": 0.0,
+    "god_class": 0.359,
+    "nested_complexity": 0.171,
+    "complex_method": 1.442,
+    "bumpy_road": 0.0,
+    "complex_conditional": 1.098,
+    "large_method": 0.932,
+    "primitive_obsession": 0.0,
+    "dry_violation": 0.0,
+    "untested_hotspot": 0.0,
+    "coverage_gap": 0.0,
+    "developer_congestion": 0.0,
+    "knowledge_loss": 0.0,
+    "hidden_coupling": 0.0,
+    "function_hotspot": 0.673,
+    "code_age_volatility": 0.0,
+    "ownership_risk": 2.0,
+    "churn_risk": 0.0,
+    "change_entropy": 0.0,
+    "co_change_scatter": 0.0,
+    "large_assertion_block": 0.0,
+    "duplicated_assertion_block": 0.0
+  }
+}
