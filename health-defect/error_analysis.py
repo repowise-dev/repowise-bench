@@ -231,6 +231,11 @@ def main() -> None:
     ap.add_argument("--label", default="keyword",
                     help="Defect ground truth: keyword (shipped calibration "
                          "label, default) / szz / issue / joined.")
+    ap.add_argument("--nloc-cuts", default=None,
+                    help="Optional fixed NLOC quartile cuts as 'c1,c2,c3' "
+                         "(e.g. '28,68,162') instead of the corpus quartiles. "
+                         "Used to report a within-band table on cuts that match "
+                         "another corpus for cross-comparability.")
     args = ap.parse_args()
 
     langs, roots = load_config_langs(args.config)
@@ -243,7 +248,11 @@ def main() -> None:
     print(f"\n=== Corpus: {len(langs)} repos | {n} files | {npos} positives "
           f"({npos/n:.1%}) | pooled AUC {base_auc:.3f} ===\n")
 
-    cuts = nloc_quartiles(rows)
+    if args.nloc_cuts:
+        cuts = [float(c) for c in args.nloc_cuts.split(",")]
+        print(f"(using fixed NLOC cuts {cuts} instead of corpus quartiles)")
+    else:
+        cuts = nloc_quartiles(rows)
     for r in rows:
         r["band"] = band_of(r["nloc"], cuts)
 
