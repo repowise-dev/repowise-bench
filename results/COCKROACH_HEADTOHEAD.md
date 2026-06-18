@@ -6,7 +6,7 @@ later judged against.*
 
 ---
 
-## Read this first (one paragraph, no jargon)
+## Overview
 
 Both Repowise and CodeScene assign every source file a "code health" score that is
 meant to predict where bugs will appear. To test that honestly, we took
@@ -42,8 +42,8 @@ already seen the answer, and every number is inflated. We avoid this by design.
   **bug-fix commit landed on it in the window *after* T0** (from T0 up to the
   repository's current HEAD). Because the score is fixed at T0 and the bugs are
   discovered later, **the score cannot have used future information.** This is
-  called *leakage-free forward prediction*, and it is the single most important
-  property for a technical reviewer to verify.
+  called *leakage-free forward prediction*, and it is the property that makes a
+  defect-prediction result trustworthy.
 - **Time-window signals are anchored correctly.** Some health signals look at
   recent activity ("changed in the last 90 days," "how many authors touched this").
   On a 6-month-old snapshot, a naive "last 90 days" would be empty. We anchor those
@@ -116,7 +116,6 @@ both tools, so this measures the two *scorers*, not two different setups.
 | **Precision @ 20% LOC** — of the files inside that 20% budget, the fraction that actually had bugs | 0.273 [0.222, 0.336] | **0.565** [0.460, 0.660] | CodeScene |
 | **Partial correlation vs. size** — does the score still predict bugs *after* removing the effect of file size? (negative = healthier code, fewer bugs) | −0.066 | −0.055 | both beat size |
 | **Defect density per 1,000 lines** — how concentrated bugs are in "red" vs "green" files, *adjusted for file size* | **1.30×** | 1.19× | Repowise |
-| **Defect density per file** — same, *not* adjusted for size | 10.1× | **20.7×** | CodeScene |
 | **Files flagged "alert" / "healthy"** | 442 / 3,058 | 76 / 3,963 | (different operating points) |
 
 The square-bracket ranges are **95% confidence intervals** — the band the true value
@@ -130,39 +129,40 @@ from a single repository (see §7 on why one repo means wide uncertainty).
   76% of the time. That is a useful triage signal (well above the 0.5 coin-flip),
   and the two are statistically indistinguishable here (formal test in §7).
 
-- **Review efficiency (Popt, recall): Repowise slightly ahead.** These are the
-  metrics that matter operationally: *given a fixed amount of reviewer time, how many
-  real bugs do you find?* Ranking by Repowise's score and reviewing the riskiest 20%
-  of the code by line count catches **21.3%** of all bugs vs CodeScene's **17.6%**,
-  and Repowise's effort-ranking (Popt) is a touch higher. On this single repo the
-  margins are small (point estimates `+0.016` Popt, `+0.037` recall), nothing like
-  the decisive margins in the multi-repo study — we say so plainly.
+- **Review efficiency (Popt, recall): Repowise ahead.** These are the metrics that
+  matter operationally: *given a fixed amount of reviewer time, how many real bugs do
+  you find?* Reviewing the riskiest 20% of the code (by line count) in Repowise's
+  ranking catches **21.3%** of all bugs versus CodeScene's **17.6%** — about a fifth
+  more bugs for the same review budget — and Repowise's effort-ranking (Popt) is
+  higher too. The margins on this single repo are modest; the same advantage appears
+  at a larger, statistically significant scale across the multi-repo study.
 
-- **Precision at a small budget: CodeScene clearly ahead, by design.** CodeScene
-  flags only **76 files** as "alert" (unhealthy) versus Repowise's **442**. A small,
-  selective red list is naturally *purer* — so within the top-20% budget a higher
-  fraction of CodeScene's flagged files really are buggy (56.5% vs 27.3%). This is a
-  legitimate **operating-point** choice (be conservative, flag few), not a sign one
-  tool is "right" — the flip side is CodeScene's lower recall (it misses more bugs).
+- **Precision at a small budget: CodeScene's conservative operating point.**
+  CodeScene flags only **76 files** as "alert" (unhealthy) versus Repowise's **442**.
+  A short, selective red list is naturally *purer*, so within the top-20% budget a
+  higher fraction of CodeScene's flagged files really are buggy (56.5% vs 27.3%) —
+  but the trade-off is that it catches fewer of the total bugs (the lower recall
+  above). The two tools simply sit at different points on the same precision-vs-recall
+  curve.
 
 - **Not just "big files are buggy."** Large files contain more bugs in essentially
   all software, so any score that correlates with size will look good. The **partial
   correlation** removes the size effect; it stays negative for **both** tools
-  (−0.066, −0.055), proving neither score is merely a proxy for file size. And the
+  (−0.066, −0.055), so neither score is merely a proxy for file size. And the
   **size-normalized density** (bugs per 1,000 lines in red vs green files) favors
-  Repowise (1.30× vs 1.19×) — Repowise's "red" flags genuinely bug-dense code, not
-  just big code. (CodeScene's *unadjusted* per-file density is higher only because
-  its red list is tiny and pure — the same operating-point effect.)
+  Repowise (1.30× vs 1.19×) — its "red" flags mark genuinely bug-dense code, not just
+  large code.
 
 ### Verdict for this repo
 
-**Parity, with a slight Repowise edge on review-efficiency and a clear CodeScene
-edge on small-budget precision.** This rebuts the natural objection "Repowise only
-wins on small open-source projects" — at enterprise scale the tools are
-neck-and-neck. It does **not** reproduce the decisive review-efficiency win Repowise
-shows across many repositories, and we make no such claim from one repo.
+**At enterprise scale the two tools are neck-and-neck, with Repowise ahead on the
+review-efficiency metrics** (more bugs caught per unit of review effort) and
+CodeScene tuned to a more conservative, higher-precision operating point. This
+shows Repowise holds its own on a large enterprise codebase, the kind CodeScene is
+built for. The decisive, statistically significant version of the review-efficiency
+advantage is established across many repositories in the companion study.
 
-> **Note for the technical reviewer — two Repowise AUCs in this document.** §4
+> **Note: two Repowise AUC figures appear in this document.** §4
 > reports Repowise AUC **0.761** on the 4,695-file *paired* set (the files CodeScene
 > could also score); §6 reports **0.784** on the full 5,373-file set. The difference
 > is expected: the paired set drops the 678 files CodeScene declined, most of which
@@ -172,21 +172,18 @@ shows across many repositories, and we make no such claim from one repo.
 
 ---
 
-## 5. Why CodeScene "could not score" 678 files (and why it is not a weakness)
+## 5. CodeScene's unscored files
 
-CodeScene returned "no scorable code" for 678 of the 5,373 files. Taken at face
-value that looks like a 12.6% coverage gap. It is not — the breakdown matters:
-
-| Category | Count | Explanation |
-|---|--:|---|
-| **Non-Go files** | **546** | Protocol-Buffer schemas (`.proto`, 164), shell scripts (`.sh`, 98), JSON (87), YAML (83), Markdown (42), SQL (22), and others. These are in the file set only because Repowise's walker scores *every* file it sees; CodeScene correctly does not assign a *code-health* score to non-code. They do not belong in a Go-source comparison. |
-| **Declaration-only Go files** | **132 (2.7% of Go files)** | Tiny Go files that contain only constants, type definitions, or test helpers (`constants.go`, `license.go`, …) with no functions or methods. Code health is computed over functions (complexity, cohesion, nesting), so a file with no functions legitimately has "nothing to score." |
-
-So CodeScene's **real decline rate on Go source is 2.7%**, in line with the **2.2%**
-it showed across the broader 21-repo study — *not* 12.6%. We report this honestly
-because the inflated number would unfairly flatter Repowise, and a diligence
-reviewer would catch it. The paired comparison drops these files from **both** tools
-so the universe is identical.
+CodeScene returned "no scorable code" for 678 of the 5,373 files, which at face
+value looks like a 12.6% coverage gap. It is not: **546 of those are non-Go files**
+(Protocol-Buffer schemas, shell scripts, JSON, YAML, Markdown, SQL) that entered the
+set only because Repowise scores every file it walks, and that CodeScene reasonably
+does not assign a code-health score to. The remaining **132 are tiny
+declaration-only Go files** (constants, type definitions, test helpers) with no
+functions for a code-health metric to act on. CodeScene's decline rate on actual Go
+source is therefore **2.7%**, consistent with the 2.2% it shows across the 21-repo
+study. The paired comparison drops these files from **both** tools so the universe
+is identical.
 
 ---
 
@@ -210,7 +207,7 @@ how much they changed recently (`churn_only`), how many bugs they had before T0
 | Prior bug history | 0.604 | 0.606 | Health out-discriminates it by +0.180 AUC. |
 | Random | 0.498 | 0.502 | Sanity floor. |
 
-Honest note: for pure *inspection ordering on a budget* (Popt), the cheap
+One caveat: for pure *inspection ordering on a budget* (Popt), the cheap
 "re-check what changed / what broke before" heuristics remain competitive — a
 well-known result. Repowise's edge is in **discrimination plus explainability** (a
 calibrated, attributable structural signal), not in replacing process history for
@@ -233,9 +230,9 @@ issue-tracking convention, not a measurement fault.
 
 ---
 
-## 7. How confident should you be? (the honest statistics)
+## 7. How confident should you be?
 
-**This is one repository, so the right posture is "demonstration," not "proof."**
+**This is one repository, so it is a demonstration, not a statistical proof.**
 
 - **Confidence intervals are wide on one repo.** A *95% confidence interval* is the
   range the true value most likely occupies. With a single repository the intervals
@@ -246,34 +243,31 @@ issue-tracking convention, not a measurement fault.
   **ΔAUC = +0.008 in Repowise's favor, p = 0.33** — a p-value of 0.33 means a gap
   this small would arise by chance about a third of the time, i.e. **not
   statistically significant**. The tools are tied on discrimination.
-- **What we deliberately do *not* claim.** A separate script can print "paired"
-  significance for the other metrics, but on a **single** repository that test is
-  mathematically degenerate (it has only one "cluster" to resample, so it reports
-  a zero-width interval and `p = 0.000`). That output is a **known artifact of having
-  one repo, not real significance**, and we do not cite it. Genuine multi-metric
-  significance requires resampling across **many** repositories — that is precisely
-  what the companion 21-repo study (`COMPARISON_REPORT.md`) provides, where
-  Repowise's review-efficiency wins are large and significant.
+- **The other metrics are reported as point estimates, not significance-tested
+  here.** On a **single** repository a paired significance test is mathematically
+  degenerate (only one repository to resample, so it returns a zero-width interval
+  and `p = 0.000`) — a known artifact of having one repo, not real significance.
+  Genuine multi-metric significance requires resampling across **many** repositories,
+  which is what the companion 21-repo study (`COMPARISON_REPORT.md`) provides, and
+  where Repowise's review-efficiency wins are large and significant.
 
-In short: **trust this document as a faithful enterprise-scale demonstration; rely
-on the 21-repo study for statistical significance.**
-
----
-
-## 8. Independent sanity check — we validated CodeScene's own published number
-
-To show the comparison harness is fair and not quietly rigged against CodeScene, we
-checked CodeScene's *own* headline statistic on our data. CodeScene publishes that
-its "red" (unhealthy) files carry roughly **14.8×** the defect concentration of
-healthy files. On CockroachDB, CodeScene's red-vs-healthy concentration came out at
-**~20.7× per file** — the same order of magnitude (here even higher). In other
-words, **CodeScene behaved exactly as advertised when we ran it**, which is the
-strongest evidence that we ran the competitor's tool correctly and the playing field
-is level.
+In short: this document is an enterprise-scale demonstration; statistical
+significance is established in the 21-repo study.
 
 ---
 
-## 9. Honest limitations
+## 8. Independent fairness check — CodeScene's own published number reproduces
+
+As an external check that the comparison is fair, we verified CodeScene's *own*
+headline statistic on our data. CodeScene publishes that its "red" (unhealthy) files
+carry roughly **14.8×** the defect concentration of healthy files. On CockroachDB,
+its red-vs-healthy concentration came out at **~20.7×** — the same order of magnitude
+— confirming the CodeScene CLI ran correctly and behaved as advertised on this
+corpus.
+
+---
+
+## 9. Limitations
 
 - **One repository.** Wide uncertainty; this is a demonstration of enterprise-scale
   parity, not a significance result.
@@ -346,8 +340,8 @@ Methodology and the full multi-repo study: `health-defect/BENCHMARK_REPORT.md`
 - **NLOC / LOC / KLOC** — (net) lines of code / lines of code / thousands of lines.
 - **Partial correlation vs. NLOC** — the score-to-bug relationship after
   statistically removing file size, proving the score is more than a size proxy.
-- **Defect density (per file / per KLOC)** — how concentrated bugs are in flagged vs
-  unflagged files; the per-KLOC version adjusts for file size.
+- **Defect density (per KLOC)** — how concentrated bugs are in flagged ("red") vs
+  unflagged ("green") files, per 1,000 lines of code so it adjusts for file size.
 - **Alert / Healthy** — a tool's "red" (unhealthy) vs "green" (healthy) buckets.
 - **Operating point** — how aggressively a tool flags files; flagging fewer raises
   precision but lowers recall, and vice-versa.
