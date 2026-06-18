@@ -290,3 +290,36 @@ repos:
     bug_keywords: ["fix", "bug", "patch", "resolve"]
     exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
     exclude: [".github/", "doc/", "database/", "test/", "tests/"]
+  # ---- Large-repo demonstration (NOT part of the calibration corpus) ----
+  # CockroachDB: enterprise-scale Go distributed database. Added 2026-06-18 as a
+  # single VERY LARGE repo for an investor-facing CodeScene head-to-head
+  # ("we ran one more big repo in a day"). source_root pkg/ holds the Go source;
+  # the excludes drop vendored deps, the TS DB-console frontend, C deps, and the
+  # dominant GENERATED Go (protobuf/execgen/optgen/stringer) so the score and the
+  # comparison universe aren't polluted by machine-written giants. VERIFY the
+  # file count + worst-performers after the first index; if any generated file
+  # still tops the worst list, add its glob here and re-run.
+  - name: "cockroach"
+    repo_url: "https://github.com/cockroachdb/cockroach.git"
+    language: "go"
+    source_root: "pkg/"
+    extensions: [".go"]
+    t0_date: "2025-11-23"
+    defect_strategy: "keyword"
+    bug_keywords: ["fix", "bug", "patch", "resolve"]
+    exclude_keywords: ["typo", "docs", "style", "lint", "bump", "chore", "format", "deps"]
+    exclude:
+      - "vendor/"
+      - "pkg/ui/"
+      - "pkg/gen/"
+      - "c-deps/"
+      - "docs/"
+      - ".github/"
+      - "build/"
+      - "bin/"
+      - "artifacts/"
+      - "*.pb.go"
+      - "*.pb.gw.go"
+      - "*.eg.go"
+      - "*.og.go"
+      - "*_string.go"
