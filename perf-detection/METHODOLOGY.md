@@ -97,10 +97,10 @@ commodity tool is often broader — establishing **complementarity, not competit
 
 | Corpus | Repos | Marker | n | Precision | 95% CI |
 |--------|-------|--------|--:|----------:|--------|
-| Mature | headroom + repowise (Python) | io_in_loop | 53 | **96.2%** | [87, 99] |
+| Mature | Python web-app corpus + repowise | io_in_loop | 53 | **96.2%** | [87, 99] |
 | Mature | dub (TS, Prisma) | io_in_loop | 30 | **100%** | [88, 100] |
 | Mature | syft/gin/gitleaks/osv (Go) | io_in_loop | 30 | **96.7%** | [83, 99] |
-| Hard (vibe-coded) | 20k-file TS monorepo | io_in_loop | 30 | **90% shape / 73% actionable** | [74, 96] |
+| Hard (vibe-coded) | openclaw (~20k-file TS monorepo) | io_in_loop | 30 | **90% shape / 73% actionable** | [74, 96] |
 
 The academic gate is **≥70%** (Jin et al., PLDI'12). All clear it. The hard-corpus
 gate caught and fixed a real false-positive class (see §5).
@@ -173,9 +173,9 @@ The hard-corpus precision gate (§3) surfaced a systematic TS/JS false positive:
 ALL_CAPS constant was flagged as io-in-loop, though the iteration count is a small
 compile-time constant. The Python dialect already skipped this; the TS/JS dialect
 did not. Fix shipped (ported the Python `is_constant_loop` logic), with regression
-tests; the defect score is byte-for-byte unchanged. **Measured impact on the 20k-file
-monorepo: io_in_loop 1,805 → 1,615 (−190 false positives), with no true-positive
-loss.** Shipped as repowise PR #545.
+tests; the defect score is byte-for-byte unchanged. **Measured impact on openclaw
+(the ~20k-file monorepo): io_in_loop 1,805 → 1,615 (−190 false positives), with no
+true-positive loss.** Shipped as repowise PR #545.
 
 This is the gate doing its job: a precision discipline that catches its own FP
 classes at scale, not a detector taken on faith.

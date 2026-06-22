@@ -43,7 +43,7 @@ A detector that cries wolf is worse than useless. We hand-verified findings agai
 | Corpus type | Example repos | Precision (findings that are real) |
 |-------------|---------------|-----------------------------------:|
 | Mature, well-maintained | Django, FastAPI, Go web tools | **96–100%** |
-| Large, fast-moving ("vibe-coded") | a 20,000-file TypeScript product | **90%** |
+| Large, fast-moving ("vibe-coded") | **openclaw** (popular open-source AI agent, ~20,000 files) | **90%** |
 
 For comparison, the academic bar for "trustworthy" static performance detection is **70%**. We clear it comfortably, even on messy real-world code.
 
@@ -61,13 +61,15 @@ Finding bugs is only half the job. A migration script that runs once a year and 
 
 Repowise ranks findings by **how central the code is** (how much of the system flows through it) and **how often it changes**. We validated this against history: *do the findings we rank highest line up with where developers actually shipped performance fixes?*
 
+Validated on Repowise's own codebase (we run it on ourselves), measured against where real performance fixes actually landed in the project's history:
+
 | Ranking method | Quality score (NDCG) |
 |----------------|---------------------:|
 | Raw detection order | 0.29 |
 | By severity alone | 0.29 |
 | **Repowise (centrality + activity)** | **0.76** |
 
-> Repowise's ranking is **2.6× better** at floating the bugs that mattered to the top. The **top 5 findings were all real, impactful issues.** Confirmed on a second, much larger codebase (2,634 findings) with a 2.4× improvement.
+> Repowise's ranking is **2.6× better** at floating the bugs that mattered to the top. The **top 5 findings were all real, impactful issues.** Confirmed again on **openclaw** (2,634 findings, 12× larger) with a 2.4× improvement.
 
 This is the difference between handing a developer a 500-item wall of noise and handing them the 10 things to fix this week.
 
@@ -75,7 +77,7 @@ This is the difference between handing a developer a 500-item wall of noise and 
 
 ## It works at real scale
 
-On a single 20,000-file production TypeScript monorepo, Repowise built a map of **176,769 connections between functions** and traced performance bugs across it — including hundreds that span multiple files. This is not a toy that works on small examples; it runs on the size of codebase a real company has.
+On **openclaw** — a popular open-source AI-agent project, ~20,000 files — Repowise built a map of **176,769 connections between functions** and traced performance bugs across it, including hundreds that span multiple files. This is not a toy that works on small examples; it runs on the size of codebase a real company has.
 
 ---
 
@@ -124,7 +126,7 @@ Everything above is reproducible:
 - **The moat comparison** ran the real linters (`ruff --select PERF,ASYNC`, ESLint `no-await-in-loop`, `golangci-lint` perf linters) and Repowise on the same files, then compared finding sets. Standard tools have no io-in-loop / N+1 / cross-function rule — verifiable from each tool's published rule list.
 - **Precision** was hand-labeled against real source: a stratified sample per language, two independent passes, scored with confidence intervals.
 - **Ranking quality** mined each project's git history for commits that shipped a performance fix (`perf:`, `N+1`, `optimize`, …), then measured whether our top-ranked findings landed where those fixes did, using standard ranking metrics (Precision@k, NDCG).
-- **Corpora** are all public, well-known projects: Django, FastAPI, Pydantic, Scrapy, Celery, dub, Hono, Zod, gitleaks, and a large production TypeScript monorepo.
+- **Corpora** are all public, well-known projects: Django, FastAPI, Pydantic, Scrapy, Celery, dub, Hono, Zod, gitleaks, and openclaw (the large fast-moving TypeScript monorepo). Repowise's own codebase is used as the dogfood example for ranking.
 
 Full methodology, per-repo numbers, and the detector internals are documented in the engineering appendix (`METHODOLOGY.md`).
 
