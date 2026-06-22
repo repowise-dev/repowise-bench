@@ -55,6 +55,28 @@ On a read-through of the findings in **FastAPI** and **Django** — two of the m
 
 ---
 
+## We confirmed the slowdowns are real
+
+Flagging a pattern is one thing. We took 7 already-verified findings, wrote a tiny before/after benchmark for each, fixed it the obvious way, and **measured the speedup** on the same machine with the same inputs. Every one was faster.
+
+| # | The waste | The fix | Speedup |
+|---|-----------|---------|--------:|
+| 1 | Searching a growing list inside a loop | Use a set | up to **2,500x** |
+| 2 | **FastAPI's own request core** searching a list repeatedly | Use a set | up to **186x** |
+| 3 | Building a string with `+=` in a loop | Join a list | **2.5x** (honest small one) |
+| 4 | Prepending to a list in a loop | Append then reverse | up to **350x** |
+| 5 | Rebuilding an array each step of a reduce | Push into one array | up to **805x** |
+| 6 | One database query **per item** (N+1) | One batched query | **~30x** |
+| 7 | Opening a database connection every iteration | Open it once | **~10x** |
+
+> **7 of 7 confirmed faster. Median ~50x at realistic sizes; up to 800x+ on the quadratic blow-ups and ~30x on N+1 database batching.** The N+1 number is the conservative floor: it was measured against a local database with zero network latency, so against a real networked database the win is far larger.
+
+We're deliberately honest about the spread. The string-concat finding is only ~2.5x because the Python runtime already optimizes that exact case, and the connection-in-loop finding stays ~10x no matter the size because it's a fixed per-connection cost, not a runaway loop. That last point is *why* the ranking below exists: a 10x win on cold setup code matters less than a 2x win on your hottest request path.
+
+*(Benchmarks and raw numbers: [`benchmarks/`](./benchmarks/).)*
+
+---
+
 ## We tell you which ones actually matter
 
 Finding bugs is only half the job. A migration script that runs once a year and a function on your hottest request path both "have" the same pattern — but only one is worth fixing.
@@ -99,7 +121,7 @@ The academic literature names the exact blocker that stops standard tools from d
 
 Trust comes from being clear about the edges:
 
-- We detect **patterns that waste work**, not measured millisecond slowdowns. We're a static analyzer, not a profiler.
+- We detect **patterns that waste work** statically; we're an analyzer, not a profiler. (We *did* confirm the waste is real by fixing 7 findings and measuring the speedup above, but in normal use we flag the pattern, we don't time your code.)
 - We deliberately **don't** chase database "lazy-loading" N+1s (where the query is hidden behind an innocent-looking attribute access). Those are invisible to *any* static tool — claiming them would be dishonest. We catch the *visible* call-in-loop family, with high precision.
 - On very mature frameworks, many true findings sit in cold paths (one-time setup, migrations). That's why the **ranking** above matters — and why we built it.
 
@@ -113,6 +135,7 @@ Trust comes from being clear about the edges:
 | Standard tools' coverage | **0** — they read one file at a time and have no rule for this |
 | Repowise findings (12k+ files of famous OSS) | **557**, ~90 spanning multiple functions |
 | Precision | **96–100%** on mature code, **90%** on messy real-world code |
+| Confirmed runtime impact | **7/7** findings measurably faster after the fix; median ~50x, up to 800x+ |
 | Ranking quality vs. raw | **2.6×** better at surfacing what matters |
 | Proven scale | **20,000 files**, a **176,769-edge** call graph |
 | Languages | Python, TypeScript/JavaScript, Java, Go, C# (Rust in progress) |
@@ -125,6 +148,7 @@ Everything above is reproducible:
 
 - **The moat comparison** ran the real linters (`ruff --select PERF,ASYNC`, ESLint `no-await-in-loop`, `golangci-lint` perf linters) and Repowise on the same files, then compared finding sets. Standard tools have no io-in-loop / N+1 / cross-function rule — verifiable from each tool's published rule list.
 - **Precision** was hand-labeled against real source: a stratified sample per language, two independent passes, scored with confidence intervals.
+- **Confirmed runtime impact** took 7 already-verified findings, wrote a before/after microbenchmark for each, and timed the pattern vs the obvious fix on the same inputs back to back (Python / Node / SQLite). Scripts and raw output are in [`benchmarks/`](./benchmarks/).
 - **Ranking quality** mined each project's git history for commits that shipped a performance fix (`perf:`, `N+1`, `optimize`, …), then measured whether our top-ranked findings landed where those fixes did, using standard ranking metrics (Precision@k, NDCG).
 - **Corpora** are all public, well-known projects: Django, FastAPI, Pydantic, Scrapy, Celery, dub, Hono, Zod, gitleaks, and openclaw (the large fast-moving TypeScript monorepo). Repowise's own codebase is used as the dogfood example for ranking.
 

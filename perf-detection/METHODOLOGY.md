@@ -107,6 +107,53 @@ gate caught and fixed a real false-positive class (see §5).
 
 ---
 
+## 3b. Experiment E4 — runtime confirmation
+
+**Question:** the findings flag *patterns* that waste work. Does the waste cost
+measurable runtime, and how much does the obvious fix recover?
+
+**Method:** for 7 already-verified findings, time the pattern **as written** vs the
+**obvious fix**, same inputs, back to back, one machine. 1 run per config (n large
+enough that the gap is unambiguous; several n reported per finding so the headline
+isn't tied to one size). Python via the project venv, Node for the TS/JS finding,
+stdlib `sqlite3` against a real on-disk db for the I/O ones. Scripts + raw output:
+`benchmarks/` (`bench_01..07`, `RESULTS.md`). Environment: Python 3.13.5, Node
+v22.19.0, sqlite 3.50.2.
+
+| # | Finding (marker) | Real source | Fix | n (repr) | Speedup (repr) | Speedup (peak) | Shape |
+|---|------------------|-------------|-----|---------:|---------------:|---------------:|-------|
+| 1 | `membership_test_against_list_in_loop` | FastAPI-style; Django ~50 | list → set | 10,000 | 605x | 2,521x @50k | O(n²)→O(n) |
+| 2 | O(n²) list-membership, recursive walk | FastAPI `dependencies/utils.py` `get_flat_dependant` | `visited` list → set | 2,000 nodes | 51x | 186x @8k | O(n²)→O(n) |
+| 3 | `string_concat_in_loop` | repowise + many TS repos | list + `"".join` | 20,000 | 2.5x | 5.7x @80k | bounded (CPython `+=` opt) |
+| 4 | `list_insert_zero_in_loop` | Django (7) | append+reverse / `deque` | 20,000 | 163x | 350x @50k | O(n²)→O(n) |
+| 5 | `array_spread_in_reduce` | dub (TS) | push into one array | 8,000 | 57x | 805x @20k | O(n²)→O(n) (Node) |
+| 6 | `io_in_loop` / N+1 | repowise `scheduler.py`; synthetic | one `WHERE id IN (...)` | 500 | 29x | 30x @2k | N round-trips → 1 |
+| 7 | `resource_construction_in_loop` | repowise `app.py` | open once, reuse | 5,000 | 10x | 11x @20k | constant overhead × N |
+
+**Result:** 7/7 measurably faster. Median speedup **186x** at the largest sizes
+tested, **51x** at representative mid-range sizes, range 2.5x → 2,521x.
+
+**Honest reading:**
+- Findings 1, 2, 4, 5 are genuine **O(n²)→O(n)** collapses; their speedup grows
+  with n (we report several sizes rather than cherry-pick one).
+- Finding 3 (string-concat) is the floor at **2.5x**: CPython special-cases `s += t`
+  with an in-place resize when the accumulator is singly-referenced, so the textbook
+  O(n²) is mostly dodged in this exact shape. The `"".join` fix is still faster and
+  *is* O(n²) on PyPy / when the accumulator is aliased; here the win is modest, and
+  we report it as such.
+- Finding 6 (N+1) is **~30x against local SQLite** with zero network latency: the
+  conservative floor; a networked DB at 0.5 to 5 ms/round-trip multiplies it.
+- Finding 7 (connect-in-loop) is **~10x and flat in n**, a constant-overhead win,
+  not an algorithmic collapse. This is precisely why the pillar ranks by centrality
+  (E3): runtime magnitude alone isn't the signal, blast radius is.
+
+The FastAPI finding (#2) was replicated faithfully from real source (`visited`
+list, `visited.append(cache_key)`, `if cache_key in visited: continue`) over a
+synthesized dependency tree; the others are the canonical minimal form of each
+marker.
+
+---
+
 ## 4. Experiment E3 — does ranking surface what matters?
 
 **Question:** does ranking by centrality × churn × severity concentrate the
@@ -215,6 +262,10 @@ python probes/probe_perf_multilang.py  test-repos/<repo>  <label>   # then hand-
 # E3 ranking
 python probes/probe_perf_ranking.py    test-repos/openclaw openclaw         # all history
 python probes/probe_perf_ranking.py    test-repos/django   django 2023-01-01 # recent window
+
+# E4 runtime confirmation (before/after microbenchmarks)
+.venv\Scripts\python.exe benchmarks/bench_01_membership_list.py   # ... bench_02..04, 06, 07
+node                       benchmarks/bench_05_array_spread_in_reduce.js
 ```
 
 Detector source lives in the public `repowise` package
@@ -227,9 +278,8 @@ are in the `performance-pillar` workspace.
 
 **Shipped:** the five-language detector, the three platform primitives, ~20 gated
 markers, E1 (3 languages), precision validation (4 corpora), E3 (2 repos +
-boundary characterization), and PR #545 (the constant-loop FP fix).
+boundary characterization), E4 (runtime confirmation, 7 findings), and PR #545
+(the constant-loop FP fix).
 
-**Next:** Rust dialect (corpora ready); runtime confirmation (fix N real findings,
-microbenchmark before/after — turns "wastes work" into "measurably faster");
-inter-rater agreement; the full component ablation (isolating each platform asset's
-contribution to precision).
+**Next:** Rust dialect (corpora ready); inter-rater agreement (E5); the full
+component ablation (E2, isolating each platform asset's contribution to precision).
