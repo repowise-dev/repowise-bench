@@ -1,0 +1,321 @@
+{
+  "label": "keyword",
+  "n_boot": 2000,
+  "seed": 12345,
+  "repos": [
+    "cockroach"
+  ],
+  "coverage": {
+    "cockroach": {
+      "n_repowise_scored": 5373,
+      "n_codescene_scored": 4695,
+      "n_codescene_null": 678,
+      "n_codescene_absent": 0,
+      "n_paired": 4695,
+      "n_defective_paired": 347
+    }
+  },
+  "n_paired_files": 4695,
+  "n_defective_paired": 347,
+  "repowise": {
+    "auc": {
+      "cross_project_mean": {
+        "point": 0.7611412978639356,
+        "lo": 0.7356794201638281,
+        "hi": 0.7872072940818967,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.7611412978639356
+        }
+      },
+      "pooled": {
+        "point": 0.7611412978639356,
+        "lo": 0.7356794201638281,
+        "hi": 0.7872072940818967,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "partial_rho_nloc": {
+      "cross_project_mean": {
+        "point": -0.06619529009462122,
+        "lo": -0.09182598680378415,
+        "hi": -0.03887223612346224,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": -0.06619529009462122
+        }
+      },
+      "pooled": {
+        "point": -0.06619529009462122,
+        "lo": -0.09182598680378415,
+        "hi": -0.03887223612346224,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "popt": {
+      "cross_project_mean": {
+        "point": 0.5408189640278931,
+        "lo": 0.5092802109327131,
+        "hi": 0.5750890229285475,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.5408189640278931
+        }
+      },
+      "pooled": {
+        "point": 0.5408189640278931,
+        "lo": 0.5092802109327131,
+        "hi": 0.5750890229285475,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "precision_at_20pct_loc": {
+      "cross_project_mean": {
+        "point": 0.2730627306273063,
+        "lo": 0.2222222222222222,
+        "hi": 0.3358801255167003,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.2730627306273063
+        }
+      },
+      "pooled": {
+        "point": 0.2730627306273063,
+        "lo": 0.2222222222222222,
+        "hi": 0.3358801255167003,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "recall_at_20pct_loc": {
+      "cross_project_mean": {
+        "point": 0.2132564841498559,
+        "lo": 0.17856842231842232,
+        "hi": 0.2529429482636428,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.2132564841498559
+        }
+      },
+      "pooled": {
+        "point": 0.2132564841498559,
+        "lo": 0.17856842231842232,
+        "hi": 0.2529429482636428,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "defect_concentration": {
+      "mean_defects_per_file_ratio": {
+        "point": 10.063348416289593,
+        "lo": 10.063348416289593,
+        "hi": 10.063348416289593,
+        "n_boot": 2000
+      },
+      "defects_per_kloc_ratio": {
+        "point": 1.2982414270299207,
+        "lo": 1.2982414270299207,
+        "hi": 1.2982414270299207,
+        "n_boot": 2000
+      }
+    },
+    "categories": {
+      "healthy": {
+        "files": 3058,
+        "total_defects": 110,
+        "mean_defects_per_file": 0.03597122302158273,
+        "defects_per_kloc": 0.34493139001078693
+      },
+      "warning": {
+        "files": 1195,
+        "total_defects": 197,
+        "mean_defects_per_file": 0.16485355648535566,
+        "defects_per_kloc": 0.4232435928009917
+      },
+      "alert": {
+        "files": 442,
+        "total_defects": 160,
+        "mean_defects_per_file": 0.36199095022624433,
+        "defects_per_kloc": 0.4478042199950182
+      }
+    },
+    "health_vs_defectcount_spearman": {
+      "rho": -0.24238571010115664,
+      "p_value": 9.507601819845041e-64,
+      "n": 4695
+    }
+  },
+  "codescene": {
+    "auc": {
+      "cross_project_mean": {
+        "point": 0.7535376827001848,
+        "lo": 0.725125685942348,
+        "hi": 0.7825424451144872,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.7535376827001848
+        }
+      },
+      "pooled": {
+        "point": 0.7535376827001848,
+        "lo": 0.725125685942348,
+        "hi": 0.7825424451144872,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "partial_rho_nloc": {
+      "cross_project_mean": {
+        "point": -0.055268968772327474,
+        "lo": -0.08070007491595325,
+        "hi": -0.029556267325889406,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": -0.055268968772327474
+        }
+      },
+      "pooled": {
+        "point": -0.055268968772327474,
+        "lo": -0.08070007491595325,
+        "hi": -0.029556267325889406,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "popt": {
+      "cross_project_mean": {
+        "point": 0.5246543245039504,
+        "lo": 0.4898077113201661,
+        "hi": 0.5603701388617981,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.5246543245039504
+        }
+      },
+      "pooled": {
+        "point": 0.5246543245039504,
+        "lo": 0.4898077113201661,
+        "hi": 0.5603701388617981,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "precision_at_20pct_loc": {
+      "cross_project_mean": {
+        "point": 0.5648148148148148,
+        "lo": 0.45965164928450164,
+        "hi": 0.6595799517438035,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.5648148148148148
+        }
+      },
+      "pooled": {
+        "point": 0.5648148148148148,
+        "lo": 0.45965164928450164,
+        "hi": 0.6595799517438035,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "recall_at_20pct_loc": {
+      "cross_project_mean": {
+        "point": 0.17579250720461095,
+        "lo": 0.1409556100858117,
+        "hi": 0.20992040485025176,
+        "n": 1,
+        "n_boot": 2000,
+        "ci": 0.95,
+        "per_repo": {
+          "cockroach": 0.17579250720461095
+        }
+      },
+      "pooled": {
+        "point": 0.17579250720461095,
+        "lo": 0.1409556100858117,
+        "hi": 0.20992040485025176,
+        "n": 4695,
+        "n_boot": 2000,
+        "ci": 0.95
+      }
+    },
+    "defect_concentration": {
+      "mean_defects_per_file_ratio": {
+        "point": 20.70819692772601,
+        "lo": 20.70819692772601,
+        "hi": 20.70819692772601,
+        "n_boot": 2000
+      },
+      "defects_per_kloc_ratio": {
+        "point": 1.1900634551999587,
+        "lo": 1.1900634551999587,
+        "hi": 1.1900634551999587,
+        "n_boot": 2000
+      }
+    },
+    "categories": {
+      "healthy": {
+        "files": 3963,
+        "total_defects": 209,
+        "mean_defects_per_file": 0.05273782488014131,
+        "defects_per_kloc": 0.3901685005208469
+      },
+      "warning": {
+        "files": 656,
+        "total_defects": 175,
+        "mean_defects_per_file": 0.26676829268292684,
+        "defects_per_kloc": 0.40960967708713686
+      },
+      "alert": {
+        "files": 76,
+        "total_defects": 83,
+        "mean_defects_per_file": 1.0921052631578947,
+        "defects_per_kloc": 0.464325273840026
+      }
+    },
+    "health_vs_defectcount_spearman": {
+      "rho": -0.2402776643451189,
+      "p_value": 1.2101637777230844e-62,
+      "n": 4695
+    }
+  },
+  "paired_delong_auc": {
+    "auc_repowise": 0.7611412978639356,
+    "auc_codescene": 0.7535376827001848,
+    "delta": 0.007603615163750743,
+    "z": 0.969836865910371,
+    "p_value": 0.33212781361308397,
+    "n_pos": 347,
+    "n_neg": 4348
+  }
+}
