@@ -1,202 +1,155 @@
-# health-defect — Code Health vs. Defect Prediction Benchmark
+# health-defect — leakage-free, size-orthogonal code-health defect evaluation
 
-A reproducible benchmark proving that Repowise's deterministic code health
-scores predict real-world defects in open-source Python projects.
+The benchmark harness behind Repowise's code-health score and the ICSE 2027 paper
+*"The Size-Confound Wall: A Leakage-Free, Size-Orthogonal Re-Evaluation of
+Code-Health Defect Prediction."* It scores files at a frozen point in time (T0),
+counts the bug-fixing commits that land afterward, and measures whether the health
+score discriminates defective files **beyond the file-size confound**.
 
-## Headline numbers
+> This README was rewritten 2026-06-24 (closing code-health-v2 plan item H4). The
+> earlier version described a 3-repo Django/Pydantic/FastAPI pilot with at-HEAD
+> numbers (AUC ~0.70); those are superseded by the 21-repo, 9-language, T0-anchored
+> evaluation below. The honest source of truth for scoring is
+> `local-stash/code-health-v2/STATE_OF_HEALTH.md`.
 
-Across three public repositories (862 source files, 6-month defect window):
+## Headline numbers (canonical 21-repo corpus)
 
-| Repo | Files | Spearman ρ | p-value | Defect ratio | ROC AUC | Precision@20 |
-|------|------:|----------:|---------:|-------------:|--------:|-------------:|
-| Django   | 542 | **-0.337** | <0.0001 | **12x** | 0.698 | **70%** |
-| Pydantic | 216 | -0.229 | 0.0007 | 10x | **0.742** | 30% |
-| FastAPI  | 104 | -0.272 | 0.0053 | 75x | 0.715 | 35% |
+21 open-source repositories, 9 languages, 2{,}826 source files, T0 = 2025-11-23,
+6-month forward defect window. Leakage-free: every feature is computed from a
+worktree truncated at T0; recency windows are re-anchored to the T0 commit.
 
-**Files scoring below 4.0 have 10-75x more bug-fixing commits than files
-scoring above 8.0.** The correlation is statistically significant (p < 0.01)
-across all three codebases.
+| Metric | Value | Note |
+|---|---|---|
+| ROC AUC, cross-project mean | **0.737 [0.683, 0.787]** | the headline; repo-cluster bootstrap |
+| ROC AUC, file-pooled | **0.732** | file-level counterpart |
+| Partial Spearman vs NLOC | **-0.156 [-0.233, -0.080]** | discrimination beyond file size |
+| Popt vs LOC | **+0.134 [+0.080, +0.198]** | effort-aware, not a size proxy |
 
-Top biomarker predictors (by Cliff's delta effect size):
+Do NOT quote 0.699 (old 13-repo), 0.746 (LORO pooled), or 0.87 (Hugo HEAD-scored)
+as the headline. See `BENCHMARK_REPORT.md` for the full table + CIs and
+`local-stash/code-health-v2/STATE_OF_HEALTH.md` for the numbers-discipline ledger.
 
-1. `developer_congestion` — δ = +0.78 (Django)
-2. `untested_hotspot` — δ = +0.69 (Django), +0.67 (FastAPI)
-3. `brain_method` — δ = +0.62 (Pydantic), +0.43 (Django)
+### The size-confound wall (the paper's payload)
 
-> **Full analysis:** See [BENCHMARK_REPORT.md](BENCHMARK_REPORT.md) for per-repo deep
-> dives, biomarker breakdowns, CodeScene comparison, and limitations discussion.
+Within a fixed NLOC quartile, discrimination collapses on small and medium files:
 
----
+| NLOC band | files | pos. | within-band AUC [95% CI] |
+|---|---:|---:|---|
+| Q1 (<=22)   | 727 | 35  | 0.525 [0.438, 0.629] |
+| Q2 (23-48)  | 696 | 47  | 0.572 [0.472, 0.700] |
+| Q3 (49-108) | 698 | 89  | 0.593 [0.534, 0.642] |
+| Q4 (>108)   | 705 | 208 | 0.718 [0.669, 0.757] |
+
+A pooled AUC of 0.73 is largely the between-band size contrast; once size is held
+fixed, signal survives only where files are large. Q1/Q2 straddle 0.5.
+
+## Layout
+
+```
+health-defect/
+  run_benchmark.py          T0 scoring + defect counting + per-repo stats
+  reproduce.py              re-derive the locked summaries from cache (seeded)
+  statistical_rigor.py      headline AUC / partial-Spearman / Popt + cluster bootstrap CIs
+  error_analysis.py         failure forensics + within-band (NLOC-quartile) AUC (--nloc-cuts)
+  within_band_ci.py         per-band repo-cluster bootstrap CIs (the wall table, Sec 4.1)
+  f4_curve.py               effort-aware cost curve (recall@20%LOC, Popt) vs CodeScene / LOC
+  codescene_*.py            CodeScene head-to-head (Sec 5.4 vignette)
+  candidate_eval.py         the 5-part promotion scorecard (a column in, a verdict out)
+  bootstrap_tost.py         fixed-prediction percentile-bootstrap TOST (six-null equivalence)
+  calibrate_health_weights.py   the L2-logistic calibration the score ships
+  rescore_benchmark.py      re-score the corpus from a changed scoring model
+  experiments/              concluded one-off candidate generators (centrality, change
+                            bursts, error-handling, naturalness, GAM, coverage, JIT, ...)
+  config.yaml               the corpus (22 repos; cockroach is the large-repo demo, excluded)
+  lib/                      shared metric primitives (roc_auc, partial_spearman, popt, ...)
+```
+
+`error_analysis.py` lives at BOTH this top level and in `experiments/` (each is
+path-adapted to its directory). Run the paper pipeline from this top-level dir so
+`import error_analysis` resolves to the top-level copy.
+
+## ICSE R&R experiment gates (2026-06-24)
+
+Pre-June-30 gates the unbiased review panel demanded. Each is cache-only,
+deterministic (seed 12345); small JSON summaries are tracked under `../results/`.
+
+| Gate | Script | Artifact | Result |
+|---|---|---|---|
+| **F** prior-defect ablation | `prior_defect_ablation.py` | `prior_defect_ablation.json` | Drop `prior_defect` from the calibrated score: mean AUC unchanged 0.737, pooled 0.732->0.729, partial-rho strengthens -0.156->-0.160, wall stays monotone 0.535/0.557/0.597/0.709. The wall is not an artifact of it. |
+| **G2** positive control | `positive_control.py` | `positive_control.json` | A synthetic size-orthogonal effect run through the within-band pipeline: per-band MDE (80% power) Q1 0.640 / Q2 0.622; MC power at A*=0.72 is 0.998/1.000 in Q1/Q2. The Q1/Q2 collapse is a real absence of signal, not a base-rate/power artifact. |
+| **G5** refit-resampling TOST | `refit_bootstrap_tost.py` | `refit_bootstrap_tost.json` | Bootstrap TOST that re-runs the full LORO fit per replicate (includes model-refit variance). On review coverage the 90% CI widens 1.9x and the verdict moves equivalent@0.02 -> non-equivalent. The three firm nulls need their candidate columns regenerated from `experiments/` (R&R window). |
+
+The full gate ledger (with the R&R-window gates G1/G3/G4) lives in
+`research/40_experiments/R_AND_R_EXPERIMENTS.md`.
+
+The validated build of `prior_defect_ablation.py`: the shipped file score is
+exactly `health = max(1, 10 - sum|impact|)` over the scoring biomarkers (verified
+on all 2{,}826 files, 0 mismatch), so dropping a biomarker is reconstructed
+faithfully from the cached per-finding `health_impact`.
 
 ## Methodology
 
 ```
-T0 (6 months ago)                    T1 (today)
-│                                     │
-│  1. Run repowise health at T0      │
-│     → per-file health scores (1-10) │
-│                                     │
-│  2. Count bug-fixing commits T0→T1  │
-│     → per-file defect counts        │
-│                                     │
-│  3. Correlate: low score → more bugs│
-└─────────────────────────────────────┘
+T0 (2025-11-23)                       T0 + 6 months
+│                                      │
+│  1. Score each repo at T0 with a     │
+│     worktree truncated to T0         │
+│     -> per-file health (1-10)        │
+│                                      │
+│  2. Count bug-fixing commits T0->T1  │
+│     under the keyword AND SZZ labels │
+│     -> per-file defect counts        │
+│                                      │
+│  3. Evaluate discrimination, holding │
+│     file size fixed (within-band)    │
+└──────────────────────────────────────┘
 ```
 
-### Defect identification
-
-| Repo | Strategy | Precision |
-|------|----------|-----------|
-| FastAPI | Gitmoji: commits with 🐛 emoji | ~95% |
-| Django | Prefix: commits starting with `Fixed #` | ~95% |
-| Pydantic | Keyword: `fix`, `bug`, `patch`, `resolve` with exclusions | ~85% |
-
-### Statistical tests
-
-1. **Spearman rank correlation** — non-parametric, handles zero-inflated data
-2. **Partial Spearman** controlling for NLOC — isolates signal beyond file size
-3. **Kruskal-Wallis** across red/yellow/green health categories
-4. **ROC/AUC** — binary classification (had bugs or not)
-5. **Precision@K** — of the K unhealthiest files, how many had bugs?
-6. **Per-biomarker Mann-Whitney U** with Cliff's delta effect sizes
-
-### Filters
-
-- Only source files (no tests, docs, configs)
-- Minimum 10 NLOC
-- Only `.py` files under `source_root`
-
----
+- **Labels.** Per repo: `keyword` / `prefix` / `gitmoji` heuristics, plus an
+  independent SZZ label set, so the wall can be shown label-robust.
+- **Metrics.** ROC AUC, size-controlled partial Spearman, effort-aware Popt and
+  recall@20%LOC, all with two-stage repo-cluster bootstrap CIs (the repository is
+  the unit of generalization).
+- **Filters.** Source files only (no tests/docs/config), minimum NLOC, under
+  `source_root`.
 
 ## Reproduction
 
-### Prerequisites
-
-- Python 3.11+
-- Repowise installed (or local checkout with venv)
-- `scipy`, `matplotlib`, `pyyaml`
-
-### Step 1: Clone repos
+Run with the shared venv and `PYTHONIOENCODING=utf-8` (the scorecard writers crash
+on cp1252). Deterministic, seed 12345.
 
 ```bash
 cd repowise-bench/health-defect
-python run_benchmark.py --clone --skip-health
+
+# Re-derive the locked headline summaries from the committed cache (no re-index):
+PYTHONIOENCODING=utf-8 ../../.venv/Scripts/python.exe reproduce.py
+
+# Headline AUC / partial-Spearman / Popt with bootstrap CIs:
+PYTHONIOENCODING=utf-8 ../../.venv/Scripts/python.exe statistical_rigor.py
+
+# The within-band wall + per-band CIs:
+PYTHONIOENCODING=utf-8 ../../.venv/Scripts/python.exe within_band_ci.py
+
+# The R&R gates:
+PYTHONIOENCODING=utf-8 ../../.venv/Scripts/python.exe prior_defect_ablation.py   # F
+PYTHONIOENCODING=utf-8 ../../.venv/Scripts/python.exe positive_control.py        # G2
+PYTHONIOENCODING=utf-8 PYTHONPATH=. ../../.venv/Scripts/python.exe refit_bootstrap_tost.py  # G5
 ```
 
-Or manually clone into `../repos/`:
+Re-scoring from source requires the corpus checkouts under `../repos/` (gitignored,
+fetched on demand) and a per-repo Repowise index; see `run_benchmark.py --help`.
+The committed `../results/health_defect_<repo>/{joined_data,health_scores}.json`
+caches let every headline number reproduce without re-indexing.
 
-```bash
-git clone --depth=5000 https://github.com/fastapi/fastapi.git ../repos/fastapi
-git clone --depth=5000 https://github.com/django/django.git ../repos/django
-git clone --depth=5000 https://github.com/pydantic/pydantic.git ../repos/pydantic
-```
+## Adding a repo
 
-### Step 2: Index repos
+Add an entry to `config.yaml` (`name`, `repo_url`, `language`, `source_root`,
+`t0_date`, `defect_strategy` + its keyword/prefix/gitmoji fields), clone + index it
+under `../repos/`, then `python run_benchmark.py --repo <name>`.
 
-Each repo needs a Repowise index before health analysis:
+## Pointers
 
-```bash
-cd ../repos/fastapi && repowise init -y --index-only
-cd ../repos/django && repowise init -y --index-only
-cd ../repos/pydantic && repowise init -y --index-only
-```
-
-### Step 3: Run benchmark
-
-```bash
-# All repos
-python run_benchmark.py
-
-# Single repo
-python run_benchmark.py --repo django
-
-# Reuse existing health scores (only re-count defects + re-analyze)
-python run_benchmark.py --skip-health
-
-# Custom repo location
-python run_benchmark.py --repos-dir /path/to/repos
-```
-
-### Step 4: View results
-
-Results are saved to `../results/health_defect_{repo}/`:
-
-```
-health_defect_django/
-├── health_scores.json      # Raw repowise health output
-├── defect_counts.json      # Per-file bug-fix commit counts
-├── correlation.json        # All statistical results
-├── joined_data.json        # Merged health + defect data
-└── charts/
-    ├── scatter.png          # Health score vs. defect count
-    ├── density_ratio.png    # Defects per KLOC by health bucket
-    ├── biomarker_importance.png  # Cliff's delta per biomarker
-    ├── roc.png              # ROC curve
-    └── top_k_table.png      # Top 20 unhealthiest files
-```
-
----
-
-## Output schema
-
-### correlation.json
-
-```json
-{
-  "descriptive": {
-    "n_files": 542,
-    "n_with_defects": 149,
-    "pct_zero_defects": 72.5
-  },
-  "spearman": {
-    "rho": -0.337,
-    "p_value": 0.0000,
-    "n": 542
-  },
-  "partial_spearman_nloc": -0.127,
-  "kruskal_wallis": {
-    "h_stat": 65.36,
-    "p_value": 0.0000,
-    "group_sizes": {"red": 12, "yellow": 129, "green": 401}
-  },
-  "density_ratio": {
-    "raw_ratio": 12.7,
-    "nloc_normalized_ratio": 1.2,
-    "low_group": {"count": 12, "defects_per_kloc": 3.28},
-    "high_group": {"count": 385, "defects_per_kloc": 2.77}
-  },
-  "roc_auc": {"auc": 0.698},
-  "precision_at_k": {"k": 20, "precision": 0.70},
-  "per_biomarker": [
-    {"biomarker": "developer_congestion", "cliffs_delta": 0.775, "p_value": 0.0000}
-  ]
-}
-```
-
----
-
-## Adding a new repo
-
-1. Add an entry to `config.yaml`:
-
-```yaml
-  - name: "myrepo"
-    repo_url: "https://github.com/org/myrepo.git"
-    language: "python"
-    source_root: "myrepo/"
-    t0_date: "2025-11-23"
-    defect_strategy: "keyword"      # or "gitmoji" or "prefix"
-    bug_keywords: ["fix", "bug"]
-    exclude_keywords: ["typo", "docs"]
-```
-
-2. Clone and index: `cd ../repos/myrepo && repowise init -y --index-only`
-3. Run: `python run_benchmark.py --repo myrepo`
-
-### Defect strategies
-
-| Strategy | Config fields | Best for |
-|----------|---------------|----------|
-| `gitmoji` | `gitmoji_bug: "🐛"` | Repos using gitmoji convention |
-| `prefix` | `bug_prefix: "Fixed #"` | Repos with structured commit prefixes |
-| `keyword` | `bug_keywords`, `exclude_keywords` | General fallback |
+- Honest scoring source of truth: `local-stash/code-health-v2/STATE_OF_HEALTH.md`.
+- Live scoring code: `packages/core/src/repowise/core/analysis/health/`.
+- ICSE paper workspace (single entry point): `research/README.md`.
+- Numbers discipline + the six-null ledger: `code-health-v2/OSS_PROMOTION_LEDGER.md`.
