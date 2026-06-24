@@ -340,6 +340,7 @@ def evaluate_candidate(
             "delta_ci95": [round(delta_ci[0], 4), round(delta_ci[1], 4)] if delta_ci else None,
             "ci_lower_ge_zero_and_positive": delta_ci_ge_zero,
             "n_boot": len(delta_boot),
+            "delta_boot": [round(float(d), 6) for d in delta_boot],
         },
         "within_band_auc": {
             "nloc_quartile_cuts": [round(c) for c in cuts],
