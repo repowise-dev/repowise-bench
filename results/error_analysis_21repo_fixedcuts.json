@@ -1,0 +1,646 @@
+{
+  "corpus": {
+    "repos": 21,
+    "files": 2826,
+    "positives": 379,
+    "pooled_auc": 0.7320745989111647
+  },
+  "nloc_quartile_cuts": [
+    28.0,
+    68.0,
+    162.0
+  ],
+  "false_positives": [
+    {
+      "repo": "pydantic",
+      "language": "python",
+      "file_path": "pydantic/_internal/_typing_extra.py",
+      "nloc": 471,
+      "risk": 9.0,
+      "dominant": "untested_hotspot",
+      "biomarkers": {
+        "brain_method": 3.0,
+        "nested_complexity": 7.0,
+        "complex_method": 8.0,
+        "bumpy_road": 2.0,
+        "large_method": 2.0,
+        "primitive_obsession": 2.0,
+        "untested_hotspot": 4.0,
+        "function_hotspot": 7.0,
+        "change_entropy": 3.0,
+        "prior_defect": 4.0
+      }
+    }
+  ],
+  "false_negatives": [
+    {
+      "repo": "pydantic",
+      "language": "python",
+      "file_path": "pydantic/v1/version.py",
+      "nloc": 20,
+      "risk": 0.0,
+      "defect_count": 1,
+      "dominant": "<none>",
+      "biomarkers": {}
+    }
+  ],
+  "clusters": {
+    "by_language": [
+      {
+        "cluster": "java",
+        "n": 646,
+        "positives": 35,
+        "defect_rate": 0.054,
+        "within_auc": 0.746,
+        "loo_auc": 0.733,
+        "loo_delta_auc": 0.001,
+        "mean_nloc": 94.1,
+        "mean_risk": 1.01
+      },
+      {
+        "cluster": "csharp",
+        "n": 641,
+        "positives": 62,
+        "defect_rate": 0.097,
+        "within_auc": 0.77,
+        "loo_auc": 0.72,
+        "loo_delta_auc": -0.012,
+        "mean_nloc": 170.4,
+        "mean_risk": 1.03
+      },
+      {
+        "cluster": "kotlin",
+        "n": 619,
+        "positives": 46,
+        "defect_rate": 0.074,
+        "within_auc": 0.661,
+        "loo_auc": 0.739,
+        "loo_delta_auc": 0.0065,
+        "mean_nloc": 57.7,
+        "mean_risk": 0.67
+      },
+      {
+        "cluster": "python",
+        "n": 356,
+        "positives": 54,
+        "defect_rate": 0.152,
+        "within_auc": 0.686,
+        "loo_auc": 0.739,
+        "loo_delta_auc": 0.0067,
+        "mean_nloc": 159.7,
+        "mean_risk": 2.05
+      },
+      {
+        "cluster": "go",
+        "n": 189,
+        "positives": 63,
+        "defect_rate": 0.333,
+        "within_auc": 0.81,
+        "loo_auc": 0.714,
+        "loo_delta_auc": -0.0182,
+        "mean_nloc": 112.0,
+        "mean_risk": 2.16
+      },
+      {
+        "cluster": "rust",
+        "n": 133,
+        "positives": 29,
+        "defect_rate": 0.218,
+        "within_auc": 0.82,
+        "loo_auc": 0.723,
+        "loo_delta_auc": -0.0093,
+        "mean_nloc": 218.6,
+        "mean_risk": 2.03
+      },
+      {
+        "cluster": "cpp",
+        "n": 90,
+        "positives": 20,
+        "defect_rate": 0.222,
+        "within_auc": 0.7,
+        "loo_auc": 0.734,
+        "loo_delta_auc": 0.0021,
+        "mean_nloc": 233.2,
+        "mean_risk": 1.58
+      },
+      {
+        "cluster": "typescript",
+        "n": 87,
+        "positives": 29,
+        "defect_rate": 0.333,
+        "within_auc": 0.752,
+        "loo_auc": 0.728,
+        "loo_delta_auc": -0.0038,
+        "mean_nloc": 123.1,
+        "mean_risk": 2.14
+      },
+      {
+        "cluster": "javascript",
+        "n": 65,
+        "positives": 41,
+        "defect_rate": 0.631,
+        "within_auc": 0.51,
+        "loo_auc": 0.756,
+        "loo_delta_auc": 0.0242,
+        "mean_nloc": 117.4,
+        "mean_risk": 1.54
+      }
+    ],
+    "by_nloc_band": [
+      {
+        "cluster": "Q1 (<= 28)",
+        "n": 940,
+        "positives": 42,
+        "defect_rate": 0.045,
+        "within_auc": 0.551,
+        "loo_auc": 0.712,
+        "loo_delta_auc": -0.0204,
+        "mean_nloc": 17.6,
+        "mean_risk": 0.33
+      },
+      {
+        "cluster": "Q2 (<= 68)",
+        "n": 810,
+        "positives": 71,
+        "defect_rate": 0.088,
+        "within_auc": 0.532,
+        "loo_auc": 0.769,
+        "loo_delta_auc": 0.0372,
+        "mean_nloc": 45.8,
+        "mean_risk": 0.68
+      },
+      {
+        "cluster": "Q3 (<= 162)",
+        "n": 611,
+        "positives": 117,
+        "defect_rate": 0.191,
+        "within_auc": 0.634,
+        "loo_auc": 0.744,
+        "loo_delta_auc": 0.0122,
+        "mean_nloc": 105.7,
+        "mean_risk": 1.54
+      },
+      {
+        "cluster": "Q4 (> 162)",
+        "n": 465,
+        "positives": 149,
+        "defect_rate": 0.32,
+        "within_auc": 0.747,
+        "loo_auc": 0.656,
+        "loo_delta_auc": -0.0765,
+        "mean_nloc": 503.1,
+        "mean_risk": 3.79
+      }
+    ],
+    "by_dominant_biomarker": [
+      {
+        "cluster": "dry_violation",
+        "n": 942,
+        "positives": 59,
+        "defect_rate": 0.063,
+        "within_auc": 0.524,
+        "loo_auc": 0.745,
+        "loo_delta_auc": 0.0129,
+        "mean_nloc": 60.8,
+        "mean_risk": 0.35
+      },
+      {
+        "cluster": "<none>",
+        "n": 615,
+        "positives": 40,
+        "defect_rate": 0.065,
+        "within_auc": 0.5,
+        "loo_auc": 0.745,
+        "loo_delta_auc": 0.0125,
+        "mean_nloc": 47.5,
+        "mean_risk": 0.0
+      },
+      {
+        "cluster": "low_cohesion",
+        "n": 288,
+        "positives": 23,
+        "defect_rate": 0.08,
+        "within_auc": 0.565,
+        "loo_auc": 0.743,
+        "loo_delta_auc": 0.0114,
+        "mean_nloc": 118.8,
+        "mean_risk": 1.2
+      },
+      {
+        "cluster": "function_hotspot",
+        "n": 189,
+        "positives": 67,
+        "defect_rate": 0.354,
+        "within_auc": 0.706,
+        "loo_auc": 0.705,
+        "loo_delta_auc": -0.0275,
+        "mean_nloc": 303.4,
+        "mean_risk": 4.52
+      },
+      {
+        "cluster": "nested_complexity",
+        "n": 177,
+        "positives": 47,
+        "defect_rate": 0.266,
+        "within_auc": 0.71,
+        "loo_auc": 0.72,
+        "loo_delta_auc": -0.0117,
+        "mean_nloc": 318.7,
+        "mean_risk": 3.47
+      },
+      {
+        "cluster": "complex_method",
+        "n": 145,
+        "positives": 29,
+        "defect_rate": 0.2,
+        "within_auc": 0.598,
+        "loo_auc": 0.732,
+        "loo_delta_auc": -0.0004,
+        "mean_nloc": 141.0,
+        "mean_risk": 2.01
+      },
+      {
+        "cluster": "untested_hotspot",
+        "n": 89,
+        "positives": 23,
+        "defect_rate": 0.258,
+        "within_auc": 0.745,
+        "loo_auc": 0.727,
+        "loo_delta_auc": -0.0047,
+        "mean_nloc": 327.9,
+        "mean_risk": 4.02
+      },
+      {
+        "cluster": "prior_defect",
+        "n": 84,
+        "positives": 20,
+        "defect_rate": 0.238,
+        "within_auc": 0.635,
+        "loo_auc": 0.733,
+        "loo_delta_auc": 0.0006,
+        "mean_nloc": 105.5,
+        "mean_risk": 2.17
+      },
+      {
+        "cluster": "ownership_risk",
+        "n": 54,
+        "positives": 13,
+        "defect_rate": 0.241,
+        "within_auc": 0.593,
+        "loo_auc": 0.733,
+        "loo_delta_auc": 0.001,
+        "mean_nloc": 189.7,
+        "mean_risk": 1.27
+      },
+      {
+        "cluster": "primitive_obsession",
+        "n": 53,
+        "positives": 8,
+        "defect_rate": 0.151,
+        "within_auc": 0.46,
+        "loo_auc": 0.736,
+        "loo_delta_auc": 0.0037,
+        "mean_nloc": 172.5,
+        "mean_risk": 1.08
+      },
+      {
+        "cluster": "change_entropy",
+        "n": 50,
+        "positives": 15,
+        "defect_rate": 0.3,
+        "within_auc": 0.742,
+        "loo_auc": 0.728,
+        "loo_delta_auc": -0.0041,
+        "mean_nloc": 221.7,
+        "mean_risk": 3.89
+      },
+      {
+        "cluster": "knowledge_loss",
+        "n": 43,
+        "positives": 2,
+        "defect_rate": 0.047,
+        "within_auc": 0.494,
+        "loo_auc": 0.733,
+        "loo_delta_auc": 0.0009,
+        "mean_nloc": 41.3,
+        "mean_risk": 0.49
+      },
+      {
+        "cluster": "large_method",
+        "n": 34,
+        "positives": 8,
+        "defect_rate": 0.235,
+        "within_auc": 0.62,
+        "loo_auc": 0.732,
+        "loo_delta_auc": 0.0002,
+        "mean_nloc": 549.0,
+        "mean_risk": 1.38
+      },
+      {
+        "cluster": "co_change_scatter",
+        "n": 27,
+        "positives": 16,
+        "defect_rate": 0.593,
+        "within_auc": 0.852,
+        "loo_auc": 0.724,
+        "loo_delta_auc": -0.0082,
+        "mean_nloc": 120.0,
+        "mean_risk": 3.77
+      },
+      {
+        "cluster": "complex_conditional",
+        "n": 18,
+        "positives": 4,
+        "defect_rate": 0.222,
+        "within_auc": 0.83,
+        "loo_auc": 0.731,
+        "loo_delta_auc": -0.0013,
+        "mean_nloc": 127.9,
+        "mean_risk": 2.67
+      },
+      {
+        "cluster": "hidden_coupling",
+        "n": 9,
+        "positives": 4,
+        "defect_rate": 0.444,
+        "within_auc": 0.725,
+        "loo_auc": 0.73,
+        "loo_delta_auc": -0.0018,
+        "mean_nloc": 112.4,
+        "mean_risk": 4.33
+      },
+      {
+        "cluster": "duplicated_assertion_block",
+        "n": 7,
+        "positives": 0,
+        "defect_rate": 0.0,
+        "within_auc": null,
+        "loo_auc": 0.732,
+        "loo_delta_auc": 0.0002,
+        "mean_nloc": 185.4,
+        "mean_risk": 0.89
+      },
+      {
+        "cluster": "god_class",
+        "n": 1,
+        "positives": 1,
+        "defect_rate": 1.0,
+        "within_auc": null,
+        "loo_auc": 0.731,
+        "loo_delta_auc": -0.0006,
+        "mean_nloc": 397.0,
+        "mean_risk": 4.37
+      },
+      {
+        "cluster": "bumpy_road",
+        "n": 1,
+        "positives": 0,
+        "defect_rate": 0.0,
+        "within_auc": null,
+        "loo_auc": 0.732,
+        "loo_delta_auc": -0.0001,
+        "mean_nloc": 68.0,
+        "mean_risk": 0.15
+      }
+    ],
+    "by_repo": [
+      {
+        "cluster": "quartznet",
+        "n": 424,
+        "positives": 44,
+        "defect_rate": 0.104,
+        "within_auc": 0.751,
+        "loo_auc": 0.727,
+        "loo_delta_auc": -0.0052,
+        "mean_nloc": 195.3,
+        "mean_risk": 0.82
+      },
+      {
+        "cluster": "detekt",
+        "n": 395,
+        "positives": 27,
+        "defect_rate": 0.068,
+        "within_auc": 0.647,
+        "loo_auc": 0.739,
+        "loo_delta_auc": 0.0065,
+        "mean_nloc": 42.1,
+        "mean_risk": 0.66
+      },
+      {
+        "cluster": "caffeine",
+        "n": 358,
+        "positives": 28,
+        "defect_rate": 0.078,
+        "within_auc": 0.752,
+        "loo_auc": 0.734,
+        "loo_delta_auc": 0.0023,
+        "mean_nloc": 120.3,
+        "mean_risk": 1.27
+      },
+      {
+        "cluster": "mockito",
+        "n": 288,
+        "positives": 7,
+        "defect_rate": 0.024,
+        "within_auc": 0.646,
+        "loo_auc": 0.73,
+        "loo_delta_auc": -0.0017,
+        "mean_nloc": 61.6,
+        "mean_risk": 0.69
+      },
+      {
+        "cluster": "coroutines",
+        "n": 224,
+        "positives": 19,
+        "defect_rate": 0.085,
+        "within_auc": 0.696,
+        "loo_auc": 0.732,
+        "loo_delta_auc": 0.0002,
+        "mean_nloc": 85.2,
+        "mean_risk": 0.7
+      },
+      {
+        "cluster": "npgsql",
+        "n": 217,
+        "positives": 18,
+        "defect_rate": 0.083,
+        "within_auc": 0.847,
+        "loo_auc": 0.727,
+        "loo_delta_auc": -0.0051,
+        "mean_nloc": 121.7,
+        "mean_risk": 1.43
+      },
+      {
+        "cluster": "litestar",
+        "n": 198,
+        "positives": 31,
+        "defect_rate": 0.157,
+        "within_auc": 0.666,
+        "loo_auc": 0.738,
+        "loo_delta_auc": 0.0061,
+        "mean_nloc": 113.4,
+        "mean_risk": 1.33
+      },
+      {
+        "cluster": "fiber",
+        "n": 115,
+        "positives": 52,
+        "defect_rate": 0.452,
+        "within_auc": 0.766,
+        "loo_auc": 0.717,
+        "loo_delta_auc": -0.0148,
+        "mean_nloc": 128.0,
+        "mean_risk": 2.88
+      },
+      {
+        "cluster": "pydantic",
+        "n": 86,
+        "positives": 17,
+        "defect_rate": 0.198,
+        "within_auc": 0.723,
+        "loo_auc": 0.732,
+        "loo_delta_auc": -0.0002,
+        "mean_nloc": 263.4,
+        "mean_risk": 3.8
+      },
+      {
+        "cluster": "clap",
+        "n": 81,
+        "positives": 16,
+        "defect_rate": 0.198,
+        "within_auc": 0.833,
+        "loo_auc": 0.727,
+        "loo_delta_auc": -0.0052,
+        "mean_nloc": 245.8,
+        "mean_risk": 1.79
+      },
+      {
+        "cluster": "spdlog",
+        "n": 76,
+        "positives": 13,
+        "defect_rate": 0.171,
+        "within_auc": 0.618,
+        "loo_auc": 0.737,
+        "loo_delta_auc": 0.0054,
+        "mean_nloc": 166.1,
+        "mean_risk": 1.05
+      },
+      {
+        "cluster": "rich",
+        "n": 72,
+        "positives": 6,
+        "defect_rate": 0.083,
+        "within_auc": 0.756,
+        "loo_auc": 0.733,
+        "loo_delta_auc": 0.0005,
+        "mean_nloc": 163.2,
+        "mean_risk": 1.97
+      },
+      {
+        "cluster": "hono",
+        "n": 60,
+        "positives": 20,
+        "defect_rate": 0.333,
+        "within_auc": 0.702,
+        "loo_auc": 0.732,
+        "loo_delta_auc": 0.0003,
+        "mean_nloc": 58.0,
+        "mean_risk": 1.89
+      },
+      {
+        "cluster": "gin",
+        "n": 43,
+        "positives": 8,
+        "defect_rate": 0.186,
+        "within_auc": 0.821,
+        "loo_auc": 0.731,
+        "loo_delta_auc": -0.0014,
+        "mean_nloc": 97.3,
+        "mean_risk": 1.23
+      },
+      {
+        "cluster": "axios",
+        "n": 41,
+        "positives": 33,
+        "defect_rate": 0.805,
+        "within_auc": 0.553,
+        "loo_auc": 0.757,
+        "loo_delta_auc": 0.0245,
+        "mean_nloc": 72.2,
+        "mean_risk": 1.18
+      },
+      {
+        "cluster": "bat",
+        "n": 34,
+        "positives": 8,
+        "defect_rate": 0.235,
+        "within_auc": 0.827,
+        "loo_auc": 0.729,
+        "loo_delta_auc": -0.0033,
+        "mean_nloc": 195.9,
+        "mean_risk": 2.54
+      },
+      {
+        "cluster": "chi",
+        "n": 31,
+        "positives": 3,
+        "defect_rate": 0.097,
+        "within_auc": 0.845,
+        "loo_auc": 0.731,
+        "loo_delta_auc": -0.0012,
+        "mean_nloc": 73.1,
+        "mean_risk": 0.79
+      },
+      {
+        "cluster": "zod",
+        "n": 27,
+        "positives": 9,
+        "defect_rate": 0.333,
+        "within_auc": 0.864,
+        "loo_auc": 0.728,
+        "loo_delta_auc": -0.0039,
+        "mean_nloc": 267.9,
+        "mean_risk": 2.7
+      },
+      {
+        "cluster": "fastify",
+        "n": 24,
+        "positives": 8,
+        "defect_rate": 0.333,
+        "within_auc": 0.707,
+        "loo_auc": 0.731,
+        "loo_delta_auc": -0.0007,
+        "mean_nloc": 194.7,
+        "mean_risk": 2.15
+      },
+      {
+        "cluster": "fd",
+        "n": 18,
+        "positives": 5,
+        "defect_rate": 0.278,
+        "within_auc": 0.754,
+        "loo_auc": 0.732,
+        "loo_delta_auc": -0.0004,
+        "mean_nloc": 139.6,
+        "mean_risk": 2.17
+      },
+      {
+        "cluster": "fmt",
+        "n": 14,
+        "positives": 7,
+        "defect_rate": 0.5,
+        "within_auc": 0.704,
+        "loo_auc": 0.729,
+        "loo_delta_auc": -0.0032,
+        "mean_nloc": 597.4,
+        "mean_risk": 4.46
+      }
+    ]
+  },
+  "size_regime_auc": {
+    "Q1 (<= 28)": 0.5513840279987273,
+    "Q2 (<= 68)": 0.5318854942918676,
+    "Q3 (<= 162)": 0.6336464929582338,
+    "Q4 (> 162)": 0.7465805793900263
+  }
+}

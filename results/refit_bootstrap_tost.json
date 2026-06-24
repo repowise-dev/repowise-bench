@@ -1,0 +1,63 @@
+{
+  "signal": "review coverage (reviewed_fraction)",
+  "n_files": 1184,
+  "n_positives": 249,
+  "n_repos": 19,
+  "seed": 12345,
+  "n_boot": 1000,
+  "sesois": [
+    0.005,
+    0.01,
+    0.02
+  ],
+  "fixed_prediction": {
+    "delta_point": -0.00311,
+    "n_boot": 1000,
+    "ci90": [
+      -0.01123,
+      0.00276
+    ],
+    "ci95": [
+      -0.01346,
+      0.0046
+    ],
+    "tost@0.005": {
+      "p": 0.3,
+      "equivalent": false
+    },
+    "tost@0.01": {
+      "p": 0.07,
+      "equivalent": false
+    },
+    "tost@0.02": {
+      "p": 0.002,
+      "equivalent": true
+    }
+  },
+  "refit_resampling": {
+    "delta_point": -0.00311,
+    "n_boot": 1000,
+    "ci90": [
+      -0.02124,
+      0.00511
+    ],
+    "ci95": [
+      -0.0291,
+      0.00924
+    ],
+    "tost@0.005": {
+      "p": 0.467,
+      "equivalent": false
+    },
+    "tost@0.01": {
+      "p": 0.211,
+      "equivalent": false
+    },
+    "tost@0.02": {
+      "p": 0.062,
+      "equivalent": false
+    }
+  },
+  "ci90_width_ratio_refit_over_fixed": 1.883,
+  "note": "Only review_coverage's raw candidate column is cached; the three firmly powered nulls need their columns regenerated from the experiment scripts (absent from this worktree), so their refit TOST is deferred to the R&R window."
+}

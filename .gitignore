@@ -57,6 +57,17 @@ __pycache__/
 !/results/codescene_paired_deltas.json
 !/results/resolution_time.json
 !/results/pr_effort_signals.json
+# ICSE paper evidence artifacts — small JSON summaries the paper's numbers cite
+# (the canonical wall, effort curve, TOST, and the R&R experiment gates). Tracked
+# so every headline figure reproduces from cache; the heavy per-repo inputs stay local.
+!/results/error_analysis_21repo.json
+!/results/error_analysis_21repo_fixedcuts.json
+!/results/within_band_ci.json
+!/results/f4_curve.json
+!/results/bootstrap_tost.json
+!/results/prior_defect_ablation.json
+!/results/positive_control.json
+!/results/refit_bootstrap_tost.json
 
 # Heavy per-repo extraction caches — regenerable from the repo checkouts, too
 # large for git (70+ MB each across the corpus). The derived scorecards and
