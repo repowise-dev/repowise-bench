@@ -1,0 +1,875 @@
+{
+  "meta": {
+    "repo": "zod",
+    "t0_sha": "5bfc8f269a81d9edc283e7920868161e4129fb23",
+    "n_files": 108,
+    "total_hits": 27,
+    "build_seconds": 2.1
+  },
+  "files": {
+    "packages/zod/src/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "packages/zod/src/locales/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "packages/zod/src/mini/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "packages/zod/src/v3/ZodError.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 281
+    },
+    "packages/zod/src/v3/benchmarks/datetime.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "packages/zod/src/v3/benchmarks/discriminatedUnion.ts": {
+      "swallowed_catch": 4,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 4,
+      "code_lines": 70
+    },
+    "packages/zod/src/v3/benchmarks/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "packages/zod/src/v3/benchmarks/ipv4.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "packages/zod/src/v3/benchmarks/object.ts": {
+      "swallowed_catch": 3,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 62
+    },
+    "packages/zod/src/v3/benchmarks/primitives.ts": {
+      "swallowed_catch": 10,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 10,
+      "code_lines": 144
+    },
+    "packages/zod/src/v3/benchmarks/realworld.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "packages/zod/src/v3/benchmarks/string.ts": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 49
+    },
+    "packages/zod/src/v3/benchmarks/union.ts": {
+      "swallowed_catch": 4,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 4,
+      "code_lines": 70
+    },
+    "packages/zod/src/v3/errors.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "packages/zod/src/v3/external.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "packages/zod/src/v3/helpers/enumUtil.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "packages/zod/src/v3/helpers/errorUtil.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "packages/zod/src/v3/helpers/parseUtil.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 155
+    },
+    "packages/zod/src/v3/helpers/partialUtil.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "packages/zod/src/v3/helpers/typeAliases.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "packages/zod/src/v3/helpers/util.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 194
+    },
+    "packages/zod/src/v3/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "packages/zod/src/v3/locales/en.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "packages/zod/src/v3/standard-schema.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "packages/zod/src/v3/types.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4636
+    },
+    "packages/zod/src/v4-mini/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "packages/zod/src/v4/classic/checks.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "packages/zod/src/v4/classic/coerce.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "packages/zod/src/v4/classic/compat.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "packages/zod/src/v4/classic/errors.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "packages/zod/src/v4/classic/external.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "packages/zod/src/v4/classic/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "packages/zod/src/v4/classic/iso.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "packages/zod/src/v4/classic/parse.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "packages/zod/src/v4/classic/schemas.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1961
+    },
+    "packages/zod/src/v4/core/api.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1533
+    },
+    "packages/zod/src/v4/core/checks.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1111
+    },
+    "packages/zod/src/v4/core/config.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "packages/zod/src/v4/core/core.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "packages/zod/src/v4/core/doc.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "packages/zod/src/v4/core/errors.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 363
+    },
+    "packages/zod/src/v4/core/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "packages/zod/src/v4/core/json-schema.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 133
+    },
+    "packages/zod/src/v4/core/parse.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 157
+    },
+    "packages/zod/src/v4/core/regexes.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 151
+    },
+    "packages/zod/src/v4/core/registries.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "packages/zod/src/v4/core/schemas.ts": {
+      "swallowed_catch": 5,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 5,
+      "code_lines": 3704
+    },
+    "packages/zod/src/v4/core/standard-schema.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "packages/zod/src/v4/core/to-json-schema.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 913
+    },
+    "packages/zod/src/v4/core/util.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 817
+    },
+    "packages/zod/src/v4/core/versions.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "packages/zod/src/v4/core/zsf.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 265
+    },
+    "packages/zod/src/v4/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "packages/zod/src/v4/locales/ar.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/az.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "packages/zod/src/v4/locales/be.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 171
+    },
+    "packages/zod/src/v4/locales/bg.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 123
+    },
+    "packages/zod/src/v4/locales/ca.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "packages/zod/src/v4/locales/cs.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 134
+    },
+    "packages/zod/src/v4/locales/da.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "packages/zod/src/v4/locales/de.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/en.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "packages/zod/src/v4/locales/eo.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/es.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 149
+    },
+    "packages/zod/src/v4/locales/fa.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "packages/zod/src/v4/locales/fi.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 123
+    },
+    "packages/zod/src/v4/locales/fr-CA.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/fr.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/he.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 224
+    },
+    "packages/zod/src/v4/locales/hu.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/id.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "packages/zod/src/v4/locales/is.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/it.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/ja.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 114
+    },
+    "packages/zod/src/v4/locales/ka.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "packages/zod/src/v4/locales/kh.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "packages/zod/src/v4/locales/km.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/ko.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "packages/zod/src/v4/locales/lt.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 250
+    },
+    "packages/zod/src/v4/locales/mk.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "packages/zod/src/v4/locales/ms.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/nl.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/no.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/ota.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/pl.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "packages/zod/src/v4/locales/ps.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "packages/zod/src/v4/locales/pt.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/ru.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 171
+    },
+    "packages/zod/src/v4/locales/sl.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "packages/zod/src/v4/locales/sv.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "packages/zod/src/v4/locales/ta.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/th.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/tr.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "packages/zod/src/v4/locales/ua.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "packages/zod/src/v4/locales/uk.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/ur.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/locales/vi.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "packages/zod/src/v4/locales/yo.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 114
+    },
+    "packages/zod/src/v4/locales/zh-CN.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "packages/zod/src/v4/locales/zh-TW.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "packages/zod/src/v4/mini/checks.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "packages/zod/src/v4/mini/coerce.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "packages/zod/src/v4/mini/external.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "packages/zod/src/v4/mini/index.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "packages/zod/src/v4/mini/iso.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "packages/zod/src/v4/mini/parse.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "packages/zod/src/v4/mini/schemas.ts": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1551
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "sesois": [
+    0.005,
+    0.01,
+    0.02
+  ],
+  "method": "percentile-bootstrap TOST from persisted delta_boot",
+  "signals": [
+    {
+      "delta_point": -0.0002,
+      "n_boot": 1000,
+      "ci90": [
+        -0.00435,
+        0.00402
+      ],
+      "ci95": [
+        -0.00505,
+        0.00492
+      ],
+      "tost@0.005": {
+        "p": 0.027,
+        "equivalent": true
+      },
+      "tost@0.01": {
+        "p": 0.002,
+        "equivalent": true
+      },
+      "tost@0.02": {
+        "p": 0.0,
+        "equivalent": true
+      },
+      "signal": "graph centrality (pagerank)"
+    },
+    {
+      "delta_point": 0.0005,
+      "n_boot": 1000,
+      "ci90": [
+        -0.0071,
+        0.00701
+      ],
+      "ci95": [
+        -0.00899,
+        0.00796
+      ],
+      "tost@0.005": {
+        "p": 0.151,
+        "equivalent": false
+      },
+      "tost@0.01": {
+        "p": 0.013,
+        "equivalent": true
+      },
+      "tost@0.02": {
+        "p": 0.0,
+        "equivalent": true
+      },
+      "signal": "code naturalness"
+    },
+    {
+      "delta_point": -0.003,
+      "n_boot": 1000,
+      "ci90": [
+        -0.00671,
+        -0.00016
+      ],
+      "ci95": [
+        -0.00746,
+        0.00011
+      ],
+      "tost@0.005": {
+        "p": 0.153,
+        "equivalent": false
+      },
+      "tost@0.01": {
+        "p": 0.0,
+        "equivalent": true
+      },
+      "tost@0.02": {
+        "p": 0.0,
+        "equivalent": true
+      },
+      "signal": "change bursts (n_bursts)"
+    },
+    {
+      "delta_point": -0.0031,
+      "n_boot": 1000,
+      "ci90": [
+        -0.01111,
+        0.00274
+      ],
+      "ci95": [
+        -0.01375,
+        0.00423
+      ],
+      "tost@0.005": {
+        "p": 0.3,
+        "equivalent": false
+      },
+      "tost@0.01": {
+        "p": 0.068,
+        "equivalent": false
+      },
+      "tost@0.02": {
+        "p": 0.003,
+        "equivalent": true
+      },
+      "signal": "review coverage (reviewed_fraction)"
+    },
+    {
+      "delta_point": -0.0004,
+      "n_boot": 1000,
+      "ci90": [
+        -0.00577,
+        0.00424
+      ],
+      "ci95": [
+        -0.00683,
+        0.00531
+      ],
+      "tost@0.005": {
+        "p": 0.085,
+        "equivalent": false
+      },
+      "tost@0.01": {
+        "p": 0.001,
+        "equivalent": true
+      },
+      "tost@0.02": {
+        "p": 0.0,
+        "equivalent": true
+      },
+      "signal": "error-handling (eh_density)"
+    }
+  ]
+}

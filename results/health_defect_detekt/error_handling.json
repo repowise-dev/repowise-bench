@@ -1,0 +1,5275 @@
+{
+  "meta": {
+    "repo": "detekt",
+    "t0_sha": "3b440a6fac5709cd07f45dbfde231e475b1ec604",
+    "n_files": 658,
+    "total_hits": 0,
+    "build_seconds": 12.7
+  },
+  "files": {
+    "build-logic/src/main/kotlin/Constants.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "build-logic/src/main/kotlin/ConsumeGeneratedConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "build-logic/src/main/kotlin/UpdateVersionInFileTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "build-logic/src/main/kotlin/Versions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ActiveByDefault.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Alias.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Autocorrect.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Config.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ConfigProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 150
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Configuration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ConsoleReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/DetektVisitor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Detektion.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Entity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Extension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/FileProcessListener.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Finding.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Issue.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Location.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Notification.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/OutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ProjectMetric.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/PropertiesAware.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ReportingExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/RequiresAnalysisApi.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Rule.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/RuleSet.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/RuleSetProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/SetupContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/Severity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/SplitPattern.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/ValuesWithReason.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/internal/AutoCorrectable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/internal/DefaultRuleSetProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/internal/Signatures.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/internal/Validation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "detekt-api/src/main/kotlin/dev/detekt/api/internal/Versions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-api/src/testFixtures/kotlin/dev/detekt/api/testfixtures/TestDetektion.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-api/src/testFixtures/kotlin/dev/detekt/api/testfixtures/TestFactory.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "detekt-api/src/testFixtures/kotlin/dev/detekt/api/testfixtures/TestSetupContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/ArgumentConverters.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/CliArgs.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 215
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/CliRunner.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/DetektProgressListener.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/Errors.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/FailureSeverity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/JCommander.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/Junk.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/Main.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/ReportPath.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/Spec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/runners/ConfigExporter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/runners/ElementPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/runners/Executable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/runners/Runner.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-cli/src/main/kotlin/dev/detekt/cli/runners/VersionPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/DetektAnalysisExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/DetektCommandLineProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 124
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/DetektCompilerPluginRegistrar.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/Keys.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/internal/AppendableAdapter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/internal/CompilerConfigToProcessingSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/internal/DetektService.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-compiler-plugin/src/main/kotlin/io/github/detekt/compiler/plugin/internal/MessageCollectorExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/Analyzer.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 123
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/FileProcessorLocator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/Junk.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/KtFileModifier.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/ProcessingSettings.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/RuleDescriptor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/TaskPool.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/BaselineFormat.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/BaselineHandler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/BaselineResultMapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/DefaultBaseline.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/IndentingXMLStreamWriter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/baseline/XmlExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/AllRulesConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/BaseConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/CompositeConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/DisabledAutoCorrectConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/FailurePolicies.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/YamlConfig.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/AbstractYamlConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/ConfigValidation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/DefaultPropertiesConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/DeprecatedPropertiesConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/Deprecations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/InvalidPropertiesConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/MissingRulesConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/ValidatableConfiguration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/config/validation/ValidationSettings.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/extensions/Loading.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/extensions/Reporting.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/Colorizer.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/OutputFacade.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/Reporting.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/AbstractIssuesReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/ComplexityReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/FileBasedIssuesReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/IssuesReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/LiteIssuesReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/NotificationReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/reporting/console/ProjectStatisticsReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/rules/RuleSets.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/rules/SingleRuleProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/settings/ClassloaderAware.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/settings/EnvironmentAware.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 140
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/settings/LoggingAware.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/settings/PropertiesFacade.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/suppressors/AnnotationSuppressor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/suppressors/FunctionSuppressor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/suppressors/Suppressions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/suppressors/Suppressor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/AnalysisFacade.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/DefaultConfigProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/DefaultDetektProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/DefaultVersionProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/Lifecycle.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/tooling/ProcessingSpecSettingsBridge.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/util/ConfigExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-core/src/main/kotlin/dev/detekt/core/util/PerformanceMonitor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/DetektPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/Generator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/GeneratorArgs.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/Main.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/Annotations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/Collector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/Configuration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/ConfigurationCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 217
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/DefaultActivationStatus.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/DefaultValue.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/DefaultValues.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/DetektCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/DocumentationCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/KDocTags.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/Rule.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/RuleCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/RuleSetPage.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/RuleSetProviderCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 148
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/RuleVisitor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/exception/InvalidCodeExampleDocumentationException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/exception/InvalidDocumentationException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/collection/exception/InvalidIssueDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/out/AbstractWriter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/ConfigurationsPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/DeprecatedPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/DocumentationPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/RulePrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/RuleSetPagePrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/defaultconfig/ConfigPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/defaultconfig/Exclusion.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "detekt-generator/src/main/kotlin/dev/detekt/generator/printer/defaultconfig/RuleSetConfigPrinter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/ConfigurationCacheSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/CreateBaselineTaskDslSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektAndroidSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 737
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektMultiplatformSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 373
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektReportMergeSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 137
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektTaskDslSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 522
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektTaskGroovyDslSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektTaskMultiModuleSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 219
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/DetektTaskSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/GenerateConfigTaskSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/IsolatedProjectsSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/JvmSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/PluginTaskBehaviorSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/plugin/DetektBasePluginSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 196
+    },
+    "detekt-gradle-plugin/src/functionalTest/kotlin/dev/detekt/gradle/report/ReportMergeSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 191
+    },
+    "detekt-gradle-plugin/src/functionalTest/resources/jvm/src/main/kotlin/Callee.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-gradle-plugin/src/functionalTest/resources/jvm/src/main/kotlin/Caller.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-gradle-plugin/src/functionalTest/resources/jvm/src/main/kotlin/Errors.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-gradle-plugin/src/functionalTestMinSupportedGradle/kotlin/dev/detekt/gradle/GradleVersionSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/Detekt.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 218
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/DetektCreateBaselineTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 179
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/DetektGenerateConfigTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/CustomDetektReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/DetektCompilerPluginReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/DetektExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/DetektReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/DetektReportType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/DetektReports.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/FailOnSeverity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/extensions/KotlinCompileTaskDetektExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/internal/ClassLoaderCache.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/internal/DetektPlain.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/internal/FileMangling.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/internal/SharedTasks.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/invoke/CliArgument.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 153
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/invoke/DetektInvoker.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/DetektBasePlugin.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 128
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/DetektKotlinCompilerPlugin.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 100
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/DetektPlugin.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 140
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/internal/DetektAndroidCompilations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/internal/DetektJvmCompilations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/internal/DetektKmpJvmCompilations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/internal/GradleCompat.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/plugin/internal/SharedTasks.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/report/CheckstyleReportMerger.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "detekt-gradle-plugin/src/main/kotlin/dev/detekt/gradle/report/ReportMergeTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-gradle-plugin/src/testFixtures/kotlin/dev/detekt/gradle/testkit/DslGradleRunner.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 162
+    },
+    "detekt-gradle-plugin/src/testFixtures/kotlin/dev/detekt/gradle/testkit/DslTestBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "detekt-gradle-plugin/src/testFixtures/kotlin/dev/detekt/gradle/testkit/GradleRunnerExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-gradle-plugin/src/testFixtures/kotlin/dev/detekt/gradle/testkit/Helpers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-gradle-plugin/src/testFixtures/kotlin/dev/detekt/gradle/testkit/ProjectLayout.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-kotlin-analysis-api-standalone/src/main/kotlin/com/google/devtools/ksp/standalone/KspLibraryModuleBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 130
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/CognitiveComplexity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 182
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/ComplexityMetric.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/ComplexityReportGenerator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/CyclomaticComplexity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/LinesOfCode.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/AbstractProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/AbstractProjectMetricProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ClassCountProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/FunctionCountProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/KtFileCountProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/PackageCountProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectCLOCProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectCognitiveComplexityProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectComplexityProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectLLOCProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectLOCProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/ProjectSLOCProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/PropertyCountProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-metrics/src/main/kotlin/dev/detekt/metrics/processors/util/LLOC.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "detekt-parser/src/main/kotlin/dev/detekt/parser/DetektMessageCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-parser/src/main/kotlin/dev/detekt/parser/DetektPomModel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-parser/src/main/kotlin/dev/detekt/parser/KotlinEnvironmentUtils.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 82
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/AllowedExceptionNamePattern.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/AnnotationExcluder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/FunctionMatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 199
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/IsPartOfUtils.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/Junk.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtAnnotatedExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtBinaryExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtCallExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtFiles.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtLambdaExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtModifierList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/KtValueArgument.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/MethodSignature.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/StringExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/ThrowExtensions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/TypeUtils.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/internal/FullQualifiedNameGuesser.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "detekt-psi-utils/src/main/kotlin/dev/detekt/psi/internal/KotlinNoImportClasses.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 192
+    },
+    "detekt-report-checkstyle/src/main/kotlin/dev/detekt/report/xml/CheckstyleOutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-report-checkstyle/src/main/kotlin/dev/detekt/report/xml/XmlEscape.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 386
+    },
+    "detekt-report-html/src/main/kotlin/dev/detekt/report/html/HtmlOutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 162
+    },
+    "detekt-report-html/src/main/kotlin/dev/detekt/report/html/HtmlUtils.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    },
+    "detekt-report-markdown/src/main/kotlin/dev/detekt/report/markdown/MarkdownOutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 152
+    },
+    "detekt-report-sarif/src/main/kotlin/dev/detekt/report/sarif/Results.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "detekt-report-sarif/src/main/kotlin/dev/detekt/report/sarif/RuleDescriptors.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-report-sarif/src/main/kotlin/dev/detekt/report/sarif/SarifOutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/CognitiveComplexMethod.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/ComplexCondition.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/ComplexInterface.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/ComplexityProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/CyclomaticComplexMethod.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/LabeledExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/LargeClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/LongMethod.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/LongParameterList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/MethodOverloading.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/NamedArguments.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/NestedBlockDepth.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/NestedScopeFunctions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 113
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/ReplaceSafeCallChainWithRun.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/StringLiteralDuplication.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 99
+    },
+    "detekt-rules-complexity/src/main/kotlin/dev/detekt/rules/complexity/TooManyFunctions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 144
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/CoroutineLaunchedInTestWithoutRunTest.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 125
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/CoroutinesProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/GlobalCoroutineUsage.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/InjectDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 97
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/RedundantSuspendModifier.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/SleepInsteadOfDelay.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 151
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/SuspendFunInFinallySection.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/SuspendFunSwallowedCancellation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 332
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/SuspendFunWithCoroutineScopeReceiver.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/SuspendFunWithFlowReturnType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "detekt-rules-coroutines/src/main/kotlin/dev/detekt/rules/coroutines/utils/TypeUtils.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/AbsentOrWrongFileLicense.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/CommentSmellProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/CommentUtil.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/DeprecatedBlockTag.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/DocumentationOverPrivateFunction.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/DocumentationOverPrivateProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/EndOfSentenceFormat.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/KDocReferencesNonPublicProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/LicenceHeaderLoaderExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/OutdatedDocumentation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 212
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/UndocumentedPublicClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/UndocumentedPublicFunction.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/UndocumentedPublicProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "detekt-rules-documentation/src/main/kotlin/dev/detekt/rules/documentation/internal/Traversing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyCatchBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyClassBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyCodeProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyDefaultConstructor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyDoWhileBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyElseBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyFinallyBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyForBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyFunctionBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyIfBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyInitBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyKotlinFile.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyRule.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptySecondaryConstructor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyTryBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyWhenBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/EmptyWhileBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-empty/src/main/kotlin/dev/detekt/rules/empty/internal/ContainsComments.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/AvoidReferentialEquality.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/CastNullableToNonNullableType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/CastToNullableType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/CharArrayToStringCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/Deprecation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/DontDowncastCollectionTypes.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/DoubleMutabilityForCollection.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/ElseCaseInsteadOfExhaustiveWhen.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/EqualsAlwaysReturnsTrueOrFalse.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/EqualsWithHashCodeExist.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/ExitOutsideMain.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/ExplicitGarbageCollectionCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/HasPlatformType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/IgnoredReturnValue.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 195
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/ImplicitDefaultLocale.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/ImplicitUnitReturnType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/InvalidRange.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/IteratorHasNextCallsNextMethod.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/IteratorNotThrowingNoSuchElementException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/LateinitUsage.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/MapGetWithNotNullAssertionOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 70
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/MissingPackageDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/MissingSuperCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/MissingUseCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 265
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/NullCheckOnMutableProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 145
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/NullableToStringCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/PotentialBugProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/PropertyUsedBeforeDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnconditionalJumpStatementInLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 82
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnnamedParameterUse.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 183
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnnecessaryNotNullCheck.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnnecessaryNotNullOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnnecessarySafeCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnreachableCatchBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnreachableCode.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnsafeCallOnNullableType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnsafeCast.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UnusedUnaryOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/UselessPostfixExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 112
+    },
+    "detekt-rules-errorprone/src/main/kotlin/dev/detekt/rules/bugs/WrongEqualsTypeParameter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ErrorUsageWithThrowable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ExceptionRaisedInUnexpectedLocation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ExceptionsProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/InstanceOfCheckForException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 75
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/NotImplementedDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ObjectExtendsThrowable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/PrintStackTrace.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/RethrowCaughtException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 81
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ReturnFromFinally.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 115
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/SwallowedException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 160
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ThrowingExceptionFromFinally.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ThrowingExceptionInMain.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ThrowingExceptionsWithoutMessageOrCause.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/ThrowingNewInstanceOfSameException.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/TooGenericExceptionCaught.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-rules-exceptions/src/main/kotlin/dev/detekt/rules/exceptions/TooGenericExceptionThrown.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/ConfigProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/KtLintLineColCalculator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/KtlintRule.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 118
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/KtlintWrapperProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 299
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/RuleSetConfigProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/AnnotationOnSeparateLine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/AnnotationSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ArgumentListWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/BackingPropertyNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/BinaryExpressionWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/BlankLineBeforeDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/BlankLineBetweenWhenConditions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/BlockCommentInitialStarAlignment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ChainMethodContinuation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ChainWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ClassName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ClassSignature.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/CommentSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/CommentWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ConditionWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ContextReceiverListWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ContextReceiverMapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/EnumEntryNameCase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/EnumWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ExpressionOperandWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/Filename.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FinalNewline.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunKeywordSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionExpressionBody.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionLiteral.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionReturnTypeSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionSignature.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionStartOfBodySpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionTypeModifierSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/FunctionTypeReferenceSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/IfElseBracing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/IfElseWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ImportOrdering.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/Indentation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/Kdoc.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/KdocWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/MaximumLineLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/MixedConditionOperators.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ModifierListSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ModifierOrdering.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/MultiLineIfElse.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/MultilineExpressionWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/MultilineLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoBlankLineBeforeRbrace.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoBlankLineInList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoBlankLinesInChainedMethodCalls.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoConsecutiveBlankLines.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoConsecutiveComments.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoEmptyClassBody.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoEmptyFile.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoEmptyFirstLineInClassBody.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoEmptyFirstLineInMethodBlock.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoLineBreakAfterElse.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoLineBreakBeforeAssignment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoMultipleSpaces.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoSemicolons.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoSingleLineBlockComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoTrailingSpaces.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoUnitReturn.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoUnusedImports.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NoWildcardImports.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/NullableTypeSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/PackageName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ParameterListSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ParameterListWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ParameterWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/PropertyName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/PropertyWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundAngleBrackets.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundColon.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundComma.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundCurly.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundDot.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundDoubleColon.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundKeyword.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundOperators.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundParens.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundRangeOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundSquareBrackets.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingAroundUnaryOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingBetweenDeclarationsWithAnnotations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingBetweenDeclarationsWithComments.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/SpacingBetweenFunctionNameAndOpeningParenthesis.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/StatementWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/StringTemplate.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/StringTemplateIndent.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ThenSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TrailingCommaOnCallSite.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TrailingCommaOnDeclarationSite.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TryCatchFinallySpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TypeArgumentComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TypeArgumentListSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TypeParameterComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/TypeParameterListSpacing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/UnnecessaryParenthesesBeforeTrailingLambda.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ValueArgumentComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/ValueParameterComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/WhenEntryBracing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-ktlint-wrapper/src/main/kotlin/dev/detekt/rules/ktlintwrapper/wrappers/Wrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-rules-libraries/src/main/kotlin/dev/detekt/rules/libraries/ForbiddenPublicDataClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-rules-libraries/src/main/kotlin/dev/detekt/rules/libraries/LibraryCodeMustSpecifyReturnType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "detekt-rules-libraries/src/main/kotlin/dev/detekt/rules/libraries/LibraryEntitiesShouldNotBePublic.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "detekt-rules-libraries/src/main/kotlin/dev/detekt/rules/libraries/RuleLibrariesProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/BooleanPropertyNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 71
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/ClassNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/ConstructorParameterNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/EnumNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/ForbiddenClassName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/FunctionNameMaxLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/FunctionNameMinLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/FunctionNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/FunctionParameterNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/InvalidPackageDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/LambdaParameterNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/MatchingDeclarationName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/MemberNameEqualsClassName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/NamingProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 38
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/NoNameShadowing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 161
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/NonBooleanPropertyPrefixedWithIs.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/ObjectPropertyNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/PackageNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/TopLevelPropertyNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/VariableMaxLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/VariableMinLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/VariableNaming.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "detekt-rules-naming/src/main/kotlin/dev/detekt/rules/naming/util/ExcludeClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/ArrayPrimitive.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/CouldBeSequence.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/ForEachOnRange.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/PerformanceProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/SpreadOperator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/UnnecessaryInitOnArray.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/UnnecessaryPartOfBinaryExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/UnnecessaryTemporaryInstantiation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-rules-performance/src/main/kotlin/dev/detekt/rules/performance/UnnecessaryTypeCasting.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "detekt-rules-ruleauthors/src/main/kotlin/dev/detekt/rules/ruleauthors/RuleAuthorsProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-rules-ruleauthors/src/main/kotlin/dev/detekt/rules/ruleauthors/UseEntityAtName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/AbstractClassCanBeConcreteClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/AbstractClassCanBeInterface.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/AlsoCouldBeApply.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/BracesOnIfStatements.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 253
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/BracesOnWhenStatements.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 231
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/CanBeNonNullable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 570
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/CascadingCallWrapping.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ClassOrdering.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 170
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/CollapsibleIfStatements.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/DataClassContainsFunctions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/DataClassShouldBeImmutable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/DestructuringDeclarationWithTooManyEntries.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/DoubleNegativeExpression.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/DoubleNegativeLambda.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/EqualsNullCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/EqualsOnSignatureLine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 48
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ExplicitCollectionElementAccessMethod.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ExplicitItLambdaMultipleParameters.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ExplicitItLambdaParameter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ExpressionBodySyntax.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenAnnotation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenComment.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 179
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenImport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenMethodCall.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 173
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenNamedParam.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenOptIn.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenSuppress.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ForbiddenVoid.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/FunctionOnlyReturningConstant.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/Junk.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/LoopWithTooManyJumpStatements.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 82
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MagicNumber.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 211
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MaxChainedCallsOnSameLine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MaxLineLength.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MayBeConstant.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ModifierOrder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MultilineLambdaItParameter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/MultilineRawStringIndentation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 176
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/NestedClassesVisibility.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/NewLineAtEndOfFile.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/NoTabs.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/NullableBooleanCheck.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ObjectLiteralToLambda.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/OptionalAbstractKeyword.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ProtectedMemberInFinalClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/RangeUntilInsteadOfRangeTo.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/RedundantConstructorKeyword.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/RedundantExplicitType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/RedundantHigherOrderMapUsage.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 145
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/RedundantVisibilityModifier.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 122
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ReturnCount.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/SafeCast.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/SerialVersionUIDInSerializableClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/SpacingAfterPackageDeclaration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/StringShouldBeRawString.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 150
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/StyleGuideProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/ThrowsCount.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/TrailingWhitespace.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/TrimMultilineRawString.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnderscoresInNumericLiterals.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryAny.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 200
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryApply.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryBackticks.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryFilter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 149
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryInheritance.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryInnerClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryLet.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 127
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryParentheses.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 180
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnnecessaryReversed.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedImport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 198
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedParameter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedPrivateClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 176
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedPrivateFunction.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 188
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedPrivateProperty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 186
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UnusedVariable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseAnyOrNoneInsteadOfFind.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseArrayLiteralsInAnnotations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseCheckNotNull.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseCheckOrError.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseDataClass.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 154
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseEmptyCounterpart.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseIfEmptyOrIfBlank.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 129
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseIfInsteadOfWhen.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseIsNullOrEmpty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 169
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseLet.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 49
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseOrEmpty.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseRequire.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseRequireNotNull.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UseSumOfInsteadOfFlatMapSize.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 66
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UselessCallOnNotNull.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 112
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/UtilityClassWithPublicConstructor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/VarCouldBeVal.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 221
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/WildcardImport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/movelambdaout/MoveLambdaOutsideParenthesesInspection.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 89
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/movelambdaout/UnnecessaryBracesAroundTrailingLambda.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/optional/MandatoryBracesLoops.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 93
+    },
+    "detekt-rules-style/src/main/kotlin/dev/detekt/rules/style/optional/OptionalUnit.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 143
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/SampleConfigValidator.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/SampleProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/processors/NumberOfLoopsProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/processors/QualifiedNameProcessor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/reports/QualifiedNamesConsoleReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/reports/QualifiedNamesOutputReport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/reports/Reports.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/rules/TooManyFunctions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "detekt-sample-extensions/src/main/kotlin/io/gitlab/arturbosch/detekt/sample/extensions/rules/TooManyFunctionsTwo.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/AnalysisMode.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/AnalysisResult.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/BaselineProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/DefaultConfigurationProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/Detekt.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/DetektCli.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/DetektError.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/DetektProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/VersionProvider.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/BaselineSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/CompilerSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ConfigSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ExecutionSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ExtensionsSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/LoggingSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ProcessingSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ProjectSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/ReportsSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/api/spec/RulesSpec.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/BaselineSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/Builder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/CompilerSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ConfigSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ExecutionSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ExtensionsSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/LoggingSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ProcessingModelDsl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ProcessingSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ProjectSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/ReportsSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/dsl/RulesSpecBuilder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/internal/DefaultAnalysisResult.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/internal/EmptyContainer.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/internal/NotApiButProbablyUsedByUsers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "detekt-tooling/src/main/kotlin/dev/detekt/tooling/internal/PluginsHolder.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "detekt-utils/src/main/kotlin/dev/detekt/utils/Markdown.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 45
+    },
+    "detekt-utils/src/main/kotlin/dev/detekt/utils/PathFilters.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "detekt-utils/src/main/kotlin/dev/detekt/utils/PathMatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "detekt-utils/src/main/kotlin/dev/detekt/utils/Resources.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "detekt-utils/src/main/kotlin/dev/detekt/utils/Yaml.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    }
+  }
+}

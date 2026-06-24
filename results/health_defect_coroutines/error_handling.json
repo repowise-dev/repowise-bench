@@ -1,0 +1,2643 @@
+{
+  "meta": {
+    "repo": "coroutines",
+    "t0_sha": "ebad55576fd4c6f7ea6ca4d5672bc29153256c67",
+    "n_files": 329,
+    "total_hits": 5,
+    "build_seconds": 6.2
+  },
+  "files": {
+    "buildSrc/src/main/kotlin/AuxBuildConfiguration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "buildSrc/src/main/kotlin/CacheRedirector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 146
+    },
+    "buildSrc/src/main/kotlin/CommunityProjectsBuild.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 187
+    },
+    "buildSrc/src/main/kotlin/Dokka.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "buildSrc/src/main/kotlin/GlobalKotlinCompilerOptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "buildSrc/src/main/kotlin/Idea.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "buildSrc/src/main/kotlin/Java9Modularity.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 129
+    },
+    "buildSrc/src/main/kotlin/Platform.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "buildSrc/src/main/kotlin/Projects.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "buildSrc/src/main/kotlin/Publishing.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 188
+    },
+    "buildSrc/src/main/kotlin/SourceSets.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "buildSrc/src/main/kotlin/UnpackAar.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "buildSrc/src/main/kotlin/VersionFile.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "integration/kotlinx-coroutines-guava/src/ListenableFuture.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 476
+    },
+    "integration/kotlinx-coroutines-play-services/src/Tasks.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "integration/kotlinx-coroutines-slf4j/src/MDCContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 102
+    },
+    "kotlinx-coroutines-core/common/src/AbstractCoroutine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 120
+    },
+    "kotlinx-coroutines-core/common/src/Annotations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "kotlinx-coroutines-core/common/src/Await.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "kotlinx-coroutines-core/common/src/Builders.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 243
+    },
+    "kotlinx-coroutines-core/common/src/CancellableContinuation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 480
+    },
+    "kotlinx-coroutines-core/common/src/CancellableContinuationImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 625
+    },
+    "kotlinx-coroutines-core/common/src/CloseableCoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/common/src/CompletableDeferred.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "kotlinx-coroutines-core/common/src/CompletableJob.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "kotlinx-coroutines-core/common/src/CompletionHandler.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "kotlinx-coroutines-core/common/src/CompletionState.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineContext.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 292
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineExceptionHandler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineName.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineScope.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 362
+    },
+    "kotlinx-coroutines-core/common/src/CoroutineStart.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 364
+    },
+    "kotlinx-coroutines-core/common/src/Debug.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "kotlinx-coroutines-core/common/src/Deferred.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "kotlinx-coroutines-core/common/src/Delay.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "kotlinx-coroutines-core/common/src/Dispatchers.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "kotlinx-coroutines-core/common/src/EventLoop.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 471
+    },
+    "kotlinx-coroutines-core/common/src/Exceptions.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "kotlinx-coroutines-core/common/src/Guidance.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "kotlinx-coroutines-core/common/src/Job.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 628
+    },
+    "kotlinx-coroutines-core/common/src/JobSupport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1440
+    },
+    "kotlinx-coroutines-core/common/src/MainCoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 67
+    },
+    "kotlinx-coroutines-core/common/src/NonCancellable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 119
+    },
+    "kotlinx-coroutines-core/common/src/Runnable.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/common/src/SchedulerTask.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "kotlinx-coroutines-core/common/src/Supervisor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "kotlinx-coroutines-core/common/src/Timeout.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 177
+    },
+    "kotlinx-coroutines-core/common/src/Unconfined.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "kotlinx-coroutines-core/common/src/Waiter.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "kotlinx-coroutines-core/common/src/Yield.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 164
+    },
+    "kotlinx-coroutines-core/common/src/channels/Broadcast.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "kotlinx-coroutines-core/common/src/channels/BroadcastChannel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 329
+    },
+    "kotlinx-coroutines-core/common/src/channels/BufferOverflow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "kotlinx-coroutines-core/common/src/channels/BufferedChannel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2944
+    },
+    "kotlinx-coroutines-core/common/src/channels/Channel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1433
+    },
+    "kotlinx-coroutines-core/common/src/channels/ChannelCoroutine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "kotlinx-coroutines-core/common/src/channels/Channels.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 257
+    },
+    "kotlinx-coroutines-core/common/src/channels/ConflatedBufferedChannel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "kotlinx-coroutines-core/common/src/channels/Deprecated.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 459
+    },
+    "kotlinx-coroutines-core/common/src/channels/Produce.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 291
+    },
+    "kotlinx-coroutines-core/common/src/flow/Builders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 323
+    },
+    "kotlinx-coroutines-core/common/src/flow/Channels.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 142
+    },
+    "kotlinx-coroutines-core/common/src/flow/Flow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 240
+    },
+    "kotlinx-coroutines-core/common/src/flow/FlowCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "kotlinx-coroutines-core/common/src/flow/Migration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 453
+    },
+    "kotlinx-coroutines-core/common/src/flow/SharedFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 697
+    },
+    "kotlinx-coroutines-core/common/src/flow/SharingStarted.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 187
+    },
+    "kotlinx-coroutines-core/common/src/flow/StateFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 400
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/AbstractSharedFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 116
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/ChannelFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/Combine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/FlowCoroutine.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/FlowExceptions.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/Merge.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/NopCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/NullSurrogate.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/SafeCollector.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 103
+    },
+    "kotlinx-coroutines-core/common/src/flow/internal/SendingCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Context.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 279
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Delay.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 391
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Distinct.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 68
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Emitters.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 204
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Errors.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 209
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Limit.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Lint.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 179
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Merge.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 200
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Share.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 455
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Transform.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 151
+    },
+    "kotlinx-coroutines-core/common/src/flow/operators/Zip.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 307
+    },
+    "kotlinx-coroutines-core/common/src/flow/terminal/Collect.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "kotlinx-coroutines-core/common/src/flow/terminal/Collection.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "kotlinx-coroutines-core/common/src/flow/terminal/Count.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "kotlinx-coroutines-core/common/src/flow/terminal/Logic.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "kotlinx-coroutines-core/common/src/flow/terminal/Reduce.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 152
+    },
+    "kotlinx-coroutines-core/common/src/internal/Concurrent.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "kotlinx-coroutines-core/common/src/internal/ConcurrentLinkedList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 235
+    },
+    "kotlinx-coroutines-core/common/src/internal/CoroutineExceptionHandlerImpl.common.kt": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 60
+    },
+    "kotlinx-coroutines-core/common/src/internal/DispatchedContinuation.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 296
+    },
+    "kotlinx-coroutines-core/common/src/internal/DispatchedTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 199
+    },
+    "kotlinx-coroutines-core/common/src/internal/InlineList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "kotlinx-coroutines-core/common/src/internal/InternalAnnotations.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-core/common/src/internal/LimitedDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "kotlinx-coroutines-core/common/src/internal/LocalAtomics.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "kotlinx-coroutines-core/common/src/internal/LockFreeLinkedList.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "kotlinx-coroutines-core/common/src/internal/LockFreeTaskQueue.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 269
+    },
+    "kotlinx-coroutines-core/common/src/internal/MainDispatcherFactory.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "kotlinx-coroutines-core/common/src/internal/NamedDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "kotlinx-coroutines-core/common/src/internal/OnUndeliveredElement.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "kotlinx-coroutines-core/common/src/internal/ProbesSupport.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "kotlinx-coroutines-core/common/src/internal/Scopes.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "kotlinx-coroutines-core/common/src/internal/StackTraceRecovery.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "kotlinx-coroutines-core/common/src/internal/Symbol.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-core/common/src/internal/Synchronized.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/common/src/internal/SystemProps.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "kotlinx-coroutines-core/common/src/internal/ThreadContext.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "kotlinx-coroutines-core/common/src/internal/ThreadLocal.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/common/src/internal/ThreadSafeHeap.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 138
+    },
+    "kotlinx-coroutines-core/common/src/intrinsics/Cancellable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "kotlinx-coroutines-core/common/src/intrinsics/Undispatched.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 96
+    },
+    "kotlinx-coroutines-core/common/src/selects/OnTimeout.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "kotlinx-coroutines-core/common/src/selects/Select.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 830
+    },
+    "kotlinx-coroutines-core/common/src/selects/SelectOld.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 131
+    },
+    "kotlinx-coroutines-core/common/src/selects/SelectUnbiased.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "kotlinx-coroutines-core/common/src/selects/WhileSelect.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "kotlinx-coroutines-core/common/src/sync/Mutex.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 282
+    },
+    "kotlinx-coroutines-core/common/src/sync/Semaphore.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 360
+    },
+    "kotlinx-coroutines-core/concurrent/src/Builders.concurrent.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "kotlinx-coroutines-core/concurrent/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 39
+    },
+    "kotlinx-coroutines-core/concurrent/src/MultithreadedDispatchers.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "kotlinx-coroutines-core/concurrent/src/channels/Channels.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "kotlinx-coroutines-core/concurrent/src/internal/LockFreeLinkedList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 257
+    },
+    "kotlinx-coroutines-core/concurrent/src/internal/OnDemandAllocatingPool.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "kotlinx-coroutines-core/js/src/CoroutineContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "kotlinx-coroutines-core/js/src/Debug.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "kotlinx-coroutines-core/js/src/JSDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "kotlinx-coroutines-core/js/src/Promise.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "kotlinx-coroutines-core/js/src/Window.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 51
+    },
+    "kotlinx-coroutines-core/js/src/internal/CopyOnWriteList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 72
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/CloseableCoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/CoroutineContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 25
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/Exceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/Runnable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/SchedulerTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/flow/internal/FlowExceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/flow/internal/SafeCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/Concurrent.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 26
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/CoroutineExceptionHandlerImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/LinkedList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/LocalAtomics.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/ProbesSupport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/StackTraceRecovery.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/Synchronized.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/SystemProps.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/ThreadContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "kotlinx-coroutines-core/jsAndWasmShared/src/internal/ThreadLocal.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-core/jvm/src/AbstractTimeSource.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "kotlinx-coroutines-core/jvm/src/Builders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "kotlinx-coroutines-core/jvm/src/CoroutineContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 298
+    },
+    "kotlinx-coroutines-core/jvm/src/Debug.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "kotlinx-coroutines-core/jvm/src/DebugStrings.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-core/jvm/src/DefaultExecutor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 167
+    },
+    "kotlinx-coroutines-core/jvm/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 94
+    },
+    "kotlinx-coroutines-core/jvm/src/EventLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "kotlinx-coroutines-core/jvm/src/Exceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "kotlinx-coroutines-core/jvm/src/Executors.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 189
+    },
+    "kotlinx-coroutines-core/jvm/src/Future.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 27
+    },
+    "kotlinx-coroutines-core/jvm/src/Interruptible.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 146
+    },
+    "kotlinx-coroutines-core/jvm/src/Runnable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 9
+    },
+    "kotlinx-coroutines-core/jvm/src/SchedulerTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "kotlinx-coroutines-core/jvm/src/ThreadContextElement.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 275
+    },
+    "kotlinx-coroutines-core/jvm/src/ThreadPoolDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "kotlinx-coroutines-core/jvm/src/channels/Actor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 182
+    },
+    "kotlinx-coroutines-core/jvm/src/channels/TickerChannels.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 101
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/CoroutineDebugging.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/AgentInstallationType.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/AgentPremain.kt": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 83
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/ConcurrentWeakMap.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 245
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/DebugCoroutineInfo.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/DebugCoroutineInfoImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 161
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/DebugProbes.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/DebugProbesImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 551
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/DebuggerInfo.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "kotlinx-coroutines-core/jvm/src/debug/internal/StackTraceFrame.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "kotlinx-coroutines-core/jvm/src/flow/internal/FlowExceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "kotlinx-coroutines-core/jvm/src/flow/internal/SafeCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 164
+    },
+    "kotlinx-coroutines-core/jvm/src/future/Future.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 194
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/Concurrent.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/CoroutineExceptionHandlerImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/ExceptionsConstructor.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 98
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/FastServiceLoader.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 156
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/InternalAnnotations.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/LocalAtomics.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/MainDispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/ProbesSupport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/ResizableAtomicArray.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/StackTraceRecovery.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 181
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/Synchronized.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/SystemProps.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/ThreadContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "kotlinx-coroutines-core/jvm/src/internal/ThreadLocal.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "kotlinx-coroutines-core/jvm/src/scheduling/CoroutineScheduler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 930
+    },
+    "kotlinx-coroutines-core/jvm/src/scheduling/Dispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 121
+    },
+    "kotlinx-coroutines-core/jvm/src/scheduling/Tasks.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 86
+    },
+    "kotlinx-coroutines-core/jvm/src/scheduling/WorkQueue.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 219
+    },
+    "kotlinx-coroutines-core/jvm/src/stream/Stream.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 24
+    },
+    "kotlinx-coroutines-core/jvm/src/time/Time.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "kotlinx-coroutines-core/native/src/Builders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 83
+    },
+    "kotlinx-coroutines-core/native/src/CloseableCoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "kotlinx-coroutines-core/native/src/CoroutineContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 40
+    },
+    "kotlinx-coroutines-core/native/src/Debug.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "kotlinx-coroutines-core/native/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 36
+    },
+    "kotlinx-coroutines-core/native/src/EventLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/native/src/Exceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "kotlinx-coroutines-core/native/src/MultithreadedDispatchers.kt": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 158
+    },
+    "kotlinx-coroutines-core/native/src/Runnable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "kotlinx-coroutines-core/native/src/SchedulerTask.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/native/src/flow/internal/FlowExceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "kotlinx-coroutines-core/native/src/flow/internal/SafeCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "kotlinx-coroutines-core/native/src/internal/Concurrent.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "kotlinx-coroutines-core/native/src/internal/CopyOnWriteList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "kotlinx-coroutines-core/native/src/internal/CoroutineExceptionHandlerImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "kotlinx-coroutines-core/native/src/internal/LocalAtomics.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "kotlinx-coroutines-core/native/src/internal/ProbesSupport.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "kotlinx-coroutines-core/native/src/internal/StackTraceRecovery.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 15
+    },
+    "kotlinx-coroutines-core/native/src/internal/Synchronized.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "kotlinx-coroutines-core/native/src/internal/SystemProps.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2
+    },
+    "kotlinx-coroutines-core/native/src/internal/ThreadContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 3
+    },
+    "kotlinx-coroutines-core/native/src/internal/ThreadLocal.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "kotlinx-coroutines-core/nativeDarwin/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "kotlinx-coroutines-core/nativeOther/src/Dispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "kotlinx-coroutines-core/wasmJs/src/CoroutineContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "kotlinx-coroutines-core/wasmJs/src/Debug.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "kotlinx-coroutines-core/wasmJs/src/JSDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "kotlinx-coroutines-core/wasmJs/src/Promise.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "kotlinx-coroutines-core/wasmJs/src/internal/CopyOnWriteList.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 57
+    },
+    "kotlinx-coroutines-core/wasmWasi/src/Debug.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 6
+    },
+    "kotlinx-coroutines-core/wasmWasi/src/EventLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "kotlinx-coroutines-core/wasmWasi/src/internal/CoroutineExceptionHandlerImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 47
+    },
+    "kotlinx-coroutines-core/wasmWasi/src/internal/CoroutineRunner.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "kotlinx-coroutines-core/web/src/EventLoop.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "kotlinx-coroutines-core/web/src/internal/CoroutineExceptionHandlerImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "kotlinx-coroutines-core/web/src/internal/JSDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "kotlinx-coroutines-debug/src/Attach.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "kotlinx-coroutines-debug/src/CoroutineInfo.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 77
+    },
+    "kotlinx-coroutines-debug/src/CoroutinesBlockHoundIntegration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 167
+    },
+    "kotlinx-coroutines-debug/src/DebugProbes.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 166
+    },
+    "kotlinx-coroutines-debug/src/NoOpProbes.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-debug/src/junit/CoroutinesTimeoutImpl.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 69
+    },
+    "kotlinx-coroutines-debug/src/junit/junit4/CoroutinesTimeout.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 84
+    },
+    "kotlinx-coroutines-debug/src/junit/junit4/CoroutinesTimeoutStatement.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 23
+    },
+    "kotlinx-coroutines-debug/src/junit/junit5/CoroutinesTimeout.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 58
+    },
+    "kotlinx-coroutines-debug/src/junit/junit5/CoroutinesTimeoutExtension.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 258
+    },
+    "kotlinx-coroutines-test/common/src/TestBuilders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 594
+    },
+    "kotlinx-coroutines-test/common/src/TestCoroutineDispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 143
+    },
+    "kotlinx-coroutines-test/common/src/TestCoroutineScheduler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 244
+    },
+    "kotlinx-coroutines-test/common/src/TestDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 55
+    },
+    "kotlinx-coroutines-test/common/src/TestDispatchers.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "kotlinx-coroutines-test/common/src/TestScope.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 304
+    },
+    "kotlinx-coroutines-test/common/src/internal/ExceptionCollector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 87
+    },
+    "kotlinx-coroutines-test/common/src/internal/ReportingSupervisorJob.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "kotlinx-coroutines-test/common/src/internal/TestMainDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 80
+    },
+    "kotlinx-coroutines-test/js/src/TestBuilders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "kotlinx-coroutines-test/js/src/internal/JsPromiseInterfaceForTesting.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 18
+    },
+    "kotlinx-coroutines-test/js/src/internal/TestMainDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-test/jvm/src/TestBuildersJvm.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "kotlinx-coroutines-test/jvm/src/internal/TestMainDispatcherJvm.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "kotlinx-coroutines-test/jvm/src/migration/TestBuildersDeprecated.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 213
+    },
+    "kotlinx-coroutines-test/jvm/src/migration/TestCoroutineDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 59
+    },
+    "kotlinx-coroutines-test/jvm/src/migration/TestCoroutineExceptionHandler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 30
+    },
+    "kotlinx-coroutines-test/jvm/src/migration/TestCoroutineScope.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 181
+    },
+    "kotlinx-coroutines-test/native/src/TestBuilders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "kotlinx-coroutines-test/native/src/internal/TestMainDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-test/wasmJs/src/TestBuilders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "kotlinx-coroutines-test/wasmJs/src/internal/JsPromiseInterfaceForTesting.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "kotlinx-coroutines-test/wasmJs/src/internal/TestMainDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "kotlinx-coroutines-test/wasmWasi/src/TestBuilders.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "kotlinx-coroutines-test/wasmWasi/src/internal/TestMainDispatcher.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 8
+    },
+    "reactive/kotlinx-coroutines-jdk9/src/Await.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "reactive/kotlinx-coroutines-jdk9/src/Publish.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 32
+    },
+    "reactive/kotlinx-coroutines-jdk9/src/ReactiveFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 41
+    },
+    "reactive/kotlinx-coroutines-reactive/src/Await.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 303
+    },
+    "reactive/kotlinx-coroutines-reactive/src/Channel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "reactive/kotlinx-coroutines-reactive/src/ContextInjector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "reactive/kotlinx-coroutines-reactive/src/Convert.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 12
+    },
+    "reactive/kotlinx-coroutines-reactive/src/Migration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "reactive/kotlinx-coroutines-reactive/src/Publish.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 311
+    },
+    "reactive/kotlinx-coroutines-reactive/src/ReactiveFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 236
+    },
+    "reactive/kotlinx-coroutines-reactor/src/Convert.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "reactive/kotlinx-coroutines-reactor/src/Flux.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 88
+    },
+    "reactive/kotlinx-coroutines-reactor/src/Migration.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "reactive/kotlinx-coroutines-reactor/src/Mono.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 236
+    },
+    "reactive/kotlinx-coroutines-reactor/src/ReactorContext.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "reactive/kotlinx-coroutines-reactor/src/ReactorContextInjector.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "reactive/kotlinx-coroutines-reactor/src/ReactorFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "reactive/kotlinx-coroutines-reactor/src/Scheduler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 43
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxAwait.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 260
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxCancellable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxChannel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 76
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxCompletable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 64
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxConvert.kt": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 150
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxFlowable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 46
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxMaybe.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 63
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxObservable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 196
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxScheduler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 149
+    },
+    "reactive/kotlinx-coroutines-rx2/src/RxSingle.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 62
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxAwait.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 247
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxCancellable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxChannel.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxCompletable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxConvert.kt": {
+      "swallowed_catch": 1,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 141
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxFlowable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 33
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxMaybe.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 53
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxObservable.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 186
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxScheduler.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 149
+    },
+    "reactive/kotlinx-coroutines-rx3/src/RxSingle.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "test-utils/common/src/LaunchFlow.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 85
+    },
+    "test-utils/common/src/MainDispatcherTestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 264
+    },
+    "test-utils/common/src/TestBase.common.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 248
+    },
+    "test-utils/js/src/TestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "test-utils/jvm/src/Exceptions.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "test-utils/jvm/src/ExecutorRule.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 37
+    },
+    "test-utils/jvm/src/FieldWalker.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 169
+    },
+    "test-utils/jvm/src/TestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 218
+    },
+    "test-utils/jvm/src/Threads.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 60
+    },
+    "test-utils/native/src/TestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 52
+    },
+    "test-utils/wasmJs/src/TestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "test-utils/wasmWasi/src/TestBase.kt": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 56
+    }
+  }
+}

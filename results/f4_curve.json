@@ -1,0 +1,51 @@
+{
+  "label": "keyword",
+  "n_paired": 2770,
+  "n_defective": 376,
+  "budgets_pct": [
+    5,
+    10,
+    20,
+    30,
+    50,
+    100
+  ],
+  "series": {
+    "health(repowise)": {
+      "recall_files": {
+        "5pct": 0.0346,
+        "10pct": 0.0824,
+        "20pct": 0.1729,
+        "30pct": 0.3085,
+        "50pct": 0.5106,
+        "100pct": 1.0
+      },
+      "popt": 0.6068,
+      "recall_at_20pct_loc": 0.1729
+    },
+    "codescene": {
+      "recall_files": {
+        "5pct": 0.0027,
+        "10pct": 0.0186,
+        "20pct": 0.0745,
+        "30pct": 0.1223,
+        "50pct": 0.3005,
+        "100pct": 1.0
+      },
+      "popt": 0.4624,
+      "recall_at_20pct_loc": 0.0745
+    },
+    "loc_only": {
+      "recall_files": {
+        "5pct": 0.0,
+        "10pct": 0.008,
+        "20pct": 0.0372,
+        "30pct": 0.0824,
+        "50pct": 0.2394,
+        "100pct": 1.0
+      },
+      "popt": 0.3855,
+      "recall_at_20pct_loc": 0.0372
+    }
+  }
+}

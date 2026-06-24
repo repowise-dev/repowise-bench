@@ -1,0 +1,5511 @@
+{
+  "meta": {
+    "repo": "gin",
+    "t0_sha": "ecb3f7b5e2f3915bf1db240ed5eee572f8dbea36",
+    "order": 4,
+    "cache_weight": 0.4,
+    "vocab_size": 1396,
+    "n_files": 56,
+    "n_tokens": 33182,
+    "n_functions": 510,
+    "build_seconds": 2.6,
+    "smoothing": "interpolated_witten_bell",
+    "token_normalization": "comments dropped; <STR>/<NUM> literal folding"
+  },
+  "files": {
+    "auth.go": {
+      "mean_line_surprisal": 1.54097,
+      "top_decile_line_surprisal": 3.49636,
+      "token_cross_entropy": 1.53017,
+      "n_lines": 80,
+      "n_tokens": 465
+    },
+    "binding/binding.go": {
+      "mean_line_surprisal": 1.51768,
+      "top_decile_line_surprisal": 3.05358,
+      "token_cross_entropy": 1.4786,
+      "n_lines": 78,
+      "n_tokens": 327
+    },
+    "binding/binding_nomsgpack.go": {
+      "mean_line_surprisal": 1.54596,
+      "top_decile_line_surprisal": 3.24047,
+      "token_cross_entropy": 1.49753,
+      "n_lines": 73,
+      "n_tokens": 292
+    },
+    "binding/default_validator.go": {
+      "mean_line_surprisal": 1.76464,
+      "top_decile_line_surprisal": 3.3535,
+      "token_cross_entropy": 1.68454,
+      "n_lines": 72,
+      "n_tokens": 425
+    },
+    "binding/form.go": {
+      "mean_line_surprisal": 1.20111,
+      "top_decile_line_surprisal": 3.41052,
+      "token_cross_entropy": 1.14682,
+      "n_lines": 50,
+      "n_tokens": 286
+    },
+    "binding/form_mapping.go": {
+      "mean_line_surprisal": 1.44538,
+      "top_decile_line_surprisal": 3.28742,
+      "token_cross_entropy": 1.39342,
+      "n_lines": 425,
+      "n_tokens": 2830
+    },
+    "binding/header.go": {
+      "mean_line_surprisal": 1.59222,
+      "top_decile_line_surprisal": 3.60599,
+      "token_cross_entropy": 1.5258,
+      "n_lines": 24,
+      "n_tokens": 172
+    },
+    "binding/json.go": {
+      "mean_line_surprisal": 1.48791,
+      "top_decile_line_surprisal": 3.63709,
+      "token_cross_entropy": 1.41503,
+      "n_lines": 36,
+      "n_tokens": 188
+    },
+    "binding/msgpack.go": {
+      "mean_line_surprisal": 1.34807,
+      "top_decile_line_surprisal": 3.53033,
+      "token_cross_entropy": 1.3273,
+      "n_lines": 24,
+      "n_tokens": 144
+    },
+    "binding/multipart_form_mapping.go": {
+      "mean_line_surprisal": 1.62347,
+      "top_decile_line_surprisal": 3.40262,
+      "token_cross_entropy": 1.51846,
+      "n_lines": 58,
+      "n_tokens": 428
+    },
+    "binding/plain.go": {
+      "mean_line_surprisal": 1.50646,
+      "top_decile_line_surprisal": 3.30878,
+      "token_cross_entropy": 1.58895,
+      "n_lines": 43,
+      "n_tokens": 231
+    },
+    "binding/protobuf.go": {
+      "mean_line_surprisal": 1.48676,
+      "top_decile_line_surprisal": 3.61169,
+      "token_cross_entropy": 1.55295,
+      "n_lines": 28,
+      "n_tokens": 147
+    },
+    "binding/query.go": {
+      "mean_line_surprisal": 1.80515,
+      "top_decile_line_surprisal": 4.5178,
+      "token_cross_entropy": 1.66478,
+      "n_lines": 13,
+      "n_tokens": 74
+    },
+    "binding/toml.go": {
+      "mean_line_surprisal": 1.34431,
+      "top_decile_line_surprisal": 3.53096,
+      "token_cross_entropy": 1.28321,
+      "n_lines": 24,
+      "n_tokens": 136
+    },
+    "binding/uri.go": {
+      "mean_line_surprisal": 1.76832,
+      "top_decile_line_surprisal": 4.36836,
+      "token_cross_entropy": 1.63733,
+      "n_lines": 11,
+      "n_tokens": 64
+    },
+    "binding/xml.go": {
+      "mean_line_surprisal": 1.34619,
+      "top_decile_line_surprisal": 3.53096,
+      "token_cross_entropy": 1.28587,
+      "n_lines": 24,
+      "n_tokens": 136
+    },
+    "binding/yaml.go": {
+      "mean_line_surprisal": 1.34431,
+      "top_decile_line_surprisal": 3.53096,
+      "token_cross_entropy": 1.28321,
+      "n_lines": 24,
+      "n_tokens": 136
+    },
+    "codec/json/api.go": {
+      "mean_line_surprisal": 1.76783,
+      "top_decile_line_surprisal": 4.02208,
+      "token_cross_entropy": 1.47158,
+      "n_lines": 19,
+      "n_tokens": 103
+    },
+    "codec/json/go_json.go": {
+      "mean_line_surprisal": 1.31026,
+      "top_decile_line_surprisal": 2.47067,
+      "token_cross_entropy": 1.29613,
+      "n_lines": 25,
+      "n_tokens": 165
+    },
+    "codec/json/json.go": {
+      "mean_line_surprisal": 1.31026,
+      "top_decile_line_surprisal": 2.47067,
+      "token_cross_entropy": 1.29613,
+      "n_lines": 25,
+      "n_tokens": 165
+    },
+    "codec/json/jsoniter.go": {
+      "mean_line_surprisal": 1.35543,
+      "top_decile_line_surprisal": 2.66829,
+      "token_cross_entropy": 1.32056,
+      "n_lines": 26,
+      "n_tokens": 172
+    },
+    "codec/json/sonic.go": {
+      "mean_line_surprisal": 1.28254,
+      "top_decile_line_surprisal": 2.47067,
+      "token_cross_entropy": 1.27798,
+      "n_lines": 26,
+      "n_tokens": 171
+    },
+    "context.go": {
+      "mean_line_surprisal": 1.44476,
+      "top_decile_line_surprisal": 3.13073,
+      "token_cross_entropy": 1.44262,
+      "n_lines": 895,
+      "n_tokens": 6373
+    },
+    "context_appengine.go": {
+      "mean_line_surprisal": 1.85109,
+      "top_decile_line_surprisal": 3.16708,
+      "token_cross_entropy": 2.00232,
+      "n_lines": 4,
+      "n_tokens": 11
+    },
+    "debug.go": {
+      "mean_line_surprisal": 1.67645,
+      "top_decile_line_surprisal": 3.32356,
+      "token_cross_entropy": 1.70201,
+      "n_lines": 79,
+      "n_tokens": 456
+    },
+    "deprecated.go": {
+      "mean_line_surprisal": 1.513,
+      "top_decile_line_surprisal": 2.46253,
+      "token_cross_entropy": 1.67219,
+      "n_lines": 10,
+      "n_tokens": 47
+    },
+    "doc.go": {
+      "mean_line_surprisal": 1.51723,
+      "top_decile_line_surprisal": 1.51723,
+      "token_cross_entropy": 1.51723,
+      "n_lines": 1,
+      "n_tokens": 2
+    },
+    "errors.go": {
+      "mean_line_surprisal": 1.69011,
+      "top_decile_line_surprisal": 3.74556,
+      "token_cross_entropy": 1.55369,
+      "n_lines": 124,
+      "n_tokens": 693
+    },
+    "fs.go": {
+      "mean_line_surprisal": 1.65504,
+      "top_decile_line_surprisal": 3.1322,
+      "token_cross_entropy": 1.73082,
+      "n_lines": 28,
+      "n_tokens": 137
+    },
+    "gin.go": {
+      "mean_line_surprisal": 1.59214,
+      "top_decile_line_surprisal": 3.39849,
+      "token_cross_entropy": 1.50874,
+      "n_lines": 566,
+      "n_tokens": 3721
+    },
+    "ginS/gins.go": {
+      "mean_line_surprisal": 1.15551,
+      "top_decile_line_surprisal": 2.56429,
+      "token_cross_entropy": 1.26738,
+      "n_lines": 85,
+      "n_tokens": 663
+    },
+    "internal/bytesconv/bytesconv.go": {
+      "mean_line_surprisal": 1.85704,
+      "top_decile_line_surprisal": 3.63207,
+      "token_cross_entropy": 1.89293,
+      "n_lines": 10,
+      "n_tokens": 64
+    },
+    "internal/fs/fs.go": {
+      "mean_line_surprisal": 1.86453,
+      "top_decile_line_surprisal": 3.63205,
+      "token_cross_entropy": 1.86946,
+      "n_lines": 15,
+      "n_tokens": 69
+    },
+    "logger.go": {
+      "mean_line_surprisal": 1.58106,
+      "top_decile_line_surprisal": 2.98015,
+      "token_cross_entropy": 1.5707,
+      "n_lines": 215,
+      "n_tokens": 1134
+    },
+    "mode.go": {
+      "mean_line_surprisal": 1.5784,
+      "top_decile_line_surprisal": 3.12747,
+      "token_cross_entropy": 1.5805,
+      "n_lines": 61,
+      "n_tokens": 246
+    },
+    "path.go": {
+      "mean_line_surprisal": 1.62763,
+      "top_decile_line_surprisal": 3.15695,
+      "token_cross_entropy": 1.53113,
+      "n_lines": 81,
+      "n_tokens": 459
+    },
+    "recovery.go": {
+      "mean_line_surprisal": 1.74658,
+      "top_decile_line_surprisal": 3.97119,
+      "token_cross_entropy": 1.6652,
+      "n_lines": 133,
+      "n_tokens": 835
+    },
+    "render/data.go": {
+      "mean_line_surprisal": 2.22365,
+      "top_decile_line_surprisal": 6.87572,
+      "token_cross_entropy": 1.67491,
+      "n_lines": 14,
+      "n_tokens": 81
+    },
+    "render/html.go": {
+      "mean_line_surprisal": 1.49233,
+      "top_decile_line_surprisal": 3.14762,
+      "token_cross_entropy": 1.38906,
+      "n_lines": 71,
+      "n_tokens": 460
+    },
+    "render/json.go": {
+      "mean_line_surprisal": 1.05646,
+      "top_decile_line_surprisal": 2.97093,
+      "token_cross_entropy": 1.15983,
+      "n_lines": 139,
+      "n_tokens": 832
+    },
+    "render/msgpack.go": {
+      "mean_line_surprisal": 1.62761,
+      "top_decile_line_surprisal": 3.01698,
+      "token_cross_entropy": 1.58322,
+      "n_lines": 23,
+      "n_tokens": 122
+    },
+    "render/protobuf.go": {
+      "mean_line_surprisal": 1.35717,
+      "top_decile_line_surprisal": 2.63193,
+      "token_cross_entropy": 1.5243,
+      "n_lines": 21,
+      "n_tokens": 108
+    },
+    "render/reader.go": {
+      "mean_line_surprisal": 1.81568,
+      "top_decile_line_surprisal": 3.97945,
+      "token_cross_entropy": 1.6787,
+      "n_lines": 35,
+      "n_tokens": 203
+    },
+    "render/redirect.go": {
+      "mean_line_surprisal": 1.62635,
+      "top_decile_line_surprisal": 3.19653,
+      "token_cross_entropy": 1.70596,
+      "n_lines": 18,
+      "n_tokens": 116
+    },
+    "render/render.go": {
+      "mean_line_surprisal": 1.71861,
+      "top_decile_line_surprisal": 4.85291,
+      "token_cross_entropy": 1.36022,
+      "n_lines": 30,
+      "n_tokens": 236
+    },
+    "render/text.go": {
+      "mean_line_surprisal": 1.64868,
+      "top_decile_line_surprisal": 2.92598,
+      "token_cross_entropy": 1.66919,
+      "n_lines": 26,
+      "n_tokens": 153
+    },
+    "render/toml.go": {
+      "mean_line_surprisal": 1.35178,
+      "top_decile_line_surprisal": 2.63246,
+      "token_cross_entropy": 1.50435,
+      "n_lines": 21,
+      "n_tokens": 102
+    },
+    "render/xml.go": {
+      "mean_line_surprisal": 1.51479,
+      "top_decile_line_surprisal": 2.80213,
+      "token_cross_entropy": 1.54374,
+      "n_lines": 16,
+      "n_tokens": 84
+    },
+    "render/yaml.go": {
+      "mean_line_surprisal": 1.35176,
+      "top_decile_line_surprisal": 2.63233,
+      "token_cross_entropy": 1.50431,
+      "n_lines": 21,
+      "n_tokens": 102
+    },
+    "response_writer.go": {
+      "mean_line_surprisal": 1.63086,
+      "top_decile_line_surprisal": 3.36098,
+      "token_cross_entropy": 1.52507,
+      "n_lines": 97,
+      "n_tokens": 547
+    },
+    "routergroup.go": {
+      "mean_line_surprisal": 1.4127,
+      "top_decile_line_surprisal": 2.87816,
+      "token_cross_entropy": 1.32577,
+      "n_lines": 169,
+      "n_tokens": 1300
+    },
+    "test_helpers.go": {
+      "mean_line_surprisal": 1.70852,
+      "top_decile_line_surprisal": 3.54314,
+      "token_cross_entropy": 1.74605,
+      "n_lines": 15,
+      "n_tokens": 95
+    },
+    "testdata/protoexample/test.pb.go": {
+      "mean_line_surprisal": 1.39089,
+      "top_decile_line_surprisal": 3.68706,
+      "token_cross_entropy": 1.0002,
+      "n_lines": 246,
+      "n_tokens": 1724
+    },
+    "tree.go": {
+      "mean_line_surprisal": 1.47046,
+      "top_decile_line_surprisal": 3.00312,
+      "token_cross_entropy": 1.44774,
+      "n_lines": 650,
+      "n_tokens": 4001
+    },
+    "utils.go": {
+      "mean_line_surprisal": 1.82621,
+      "top_decile_line_surprisal": 4.04816,
+      "token_cross_entropy": 1.73689,
+      "n_lines": 133,
+      "n_tokens": 741
+    },
+    "version.go": {
+      "mean_line_surprisal": 1.56054,
+      "top_decile_line_surprisal": 1.60385,
+      "token_cross_entropy": 1.58219,
+      "n_lines": 2,
+      "n_tokens": 8
+    }
+  },
+  "functions": [
+    {
+      "function_id": "auth.go::BasicAuthForProxy:98",
+      "file_path": "auth.go",
+      "name": "BasicAuthForProxy",
+      "start_line": 98,
+      "end_line": 116,
+      "nloc": 19,
+      "mean_line_surprisal": 1.15982,
+      "max_line_surprisal": 3.88769
+    },
+    {
+      "function_id": "auth.go::authorizationHeader:91",
+      "file_path": "auth.go",
+      "name": "authorizationHeader",
+      "start_line": 91,
+      "end_line": 94,
+      "nloc": 4,
+      "mean_line_surprisal": 1.53142,
+      "max_line_surprisal": 2.35565
+    },
+    {
+      "function_id": "auth.go::processAccounts:76",
+      "file_path": "auth.go",
+      "name": "processAccounts",
+      "start_line": 76,
+      "end_line": 89,
+      "nloc": 14,
+      "mean_line_surprisal": 1.89577,
+      "max_line_surprisal": 5.63425
+    },
+    {
+      "function_id": "auth.go::BasicAuth:72",
+      "file_path": "auth.go",
+      "name": "BasicAuth",
+      "start_line": 72,
+      "end_line": 74,
+      "nloc": 3,
+      "mean_line_surprisal": 2.31511,
+      "max_line_surprisal": 3.35348
+    },
+    {
+      "function_id": "auth.go::BasicAuthForRealm:48",
+      "file_path": "auth.go",
+      "name": "BasicAuthForRealm",
+      "start_line": 48,
+      "end_line": 68,
+      "nloc": 20,
+      "mean_line_surprisal": 1.7627,
+      "max_line_surprisal": 4.5411
+    },
+    {
+      "function_id": "auth.go::searchCredential:32",
+      "file_path": "auth.go",
+      "name": "searchCredential",
+      "start_line": 32,
+      "end_line": 42,
+      "nloc": 11,
+      "mean_line_surprisal": 1.37662,
+      "max_line_surprisal": 2.17969
+    },
+    {
+      "function_id": "binding/binding.go::validate:118",
+      "file_path": "binding/binding.go",
+      "name": "validate",
+      "start_line": 118,
+      "end_line": 123,
+      "nloc": 6,
+      "mean_line_surprisal": 1.87579,
+      "max_line_surprisal": 2.99517
+    },
+    {
+      "function_id": "binding/binding.go::Default:93",
+      "file_path": "binding/binding.go",
+      "name": "Default",
+      "start_line": 93,
+      "end_line": 116,
+      "nloc": 23,
+      "mean_line_surprisal": 1.15807,
+      "max_line_surprisal": 1.97485
+    },
+    {
+      "function_id": "binding/binding_nomsgpack.go::validate:112",
+      "file_path": "binding/binding_nomsgpack.go",
+      "name": "validate",
+      "start_line": 112,
+      "end_line": 117,
+      "nloc": 6,
+      "mean_line_surprisal": 1.87418,
+      "max_line_surprisal": 2.99331
+    },
+    {
+      "function_id": "binding/binding_nomsgpack.go::Default:89",
+      "file_path": "binding/binding_nomsgpack.go",
+      "name": "Default",
+      "start_line": 89,
+      "end_line": 110,
+      "nloc": 21,
+      "mean_line_surprisal": 1.26413,
+      "max_line_surprisal": 3.77547
+    },
+    {
+      "function_id": "binding/default_validator.go::lazyinit:90",
+      "file_path": "binding/default_validator.go",
+      "name": "lazyinit",
+      "start_line": 90,
+      "end_line": 95,
+      "nloc": 6,
+      "mean_line_surprisal": 1.80235,
+      "max_line_surprisal": 3.85386
+    },
+    {
+      "function_id": "binding/default_validator.go::Engine:85",
+      "file_path": "binding/default_validator.go",
+      "name": "Engine",
+      "start_line": 85,
+      "end_line": 88,
+      "nloc": 4,
+      "mean_line_surprisal": 1.56588,
+      "max_line_surprisal": 2.94702
+    },
+    {
+      "function_id": "binding/default_validator.go::validateStruct:76",
+      "file_path": "binding/default_validator.go",
+      "name": "validateStruct",
+      "start_line": 76,
+      "end_line": 79,
+      "nloc": 4,
+      "mean_line_surprisal": 1.66061,
+      "max_line_surprisal": 2.45623
+    },
+    {
+      "function_id": "binding/default_validator.go::ValidateStruct:44",
+      "file_path": "binding/default_validator.go",
+      "name": "ValidateStruct",
+      "start_line": 44,
+      "end_line": 73,
+      "nloc": 29,
+      "mean_line_surprisal": 1.82311,
+      "max_line_surprisal": 3.79194
+    },
+    {
+      "function_id": "binding/default_validator.go::Error:24",
+      "file_path": "binding/default_validator.go",
+      "name": "Error",
+      "start_line": 24,
+      "end_line": 39,
+      "nloc": 15,
+      "mean_line_surprisal": 2.16928,
+      "max_line_surprisal": 3.33223
+    },
+    {
+      "function_id": "binding/form.go::Bind:55",
+      "file_path": "binding/form.go",
+      "name": "Bind",
+      "start_line": 55,
+      "end_line": 64,
+      "nloc": 9,
+      "mean_line_surprisal": 0.529,
+      "max_line_surprisal": 1.59981
+    },
+    {
+      "function_id": "binding/form.go::Name:51",
+      "file_path": "binding/form.go",
+      "name": "Name",
+      "start_line": 51,
+      "end_line": 53,
+      "nloc": 3,
+      "mean_line_surprisal": 1.34547,
+      "max_line_surprisal": 2.19612
+    },
+    {
+      "function_id": "binding/form.go::Bind:41",
+      "file_path": "binding/form.go",
+      "name": "Bind",
+      "start_line": 41,
+      "end_line": 49,
+      "nloc": 9,
+      "mean_line_surprisal": 0.49497,
+      "max_line_surprisal": 0.8893
+    },
+    {
+      "function_id": "binding/form.go::Name:37",
+      "file_path": "binding/form.go",
+      "name": "Name",
+      "start_line": 37,
+      "end_line": 39,
+      "nloc": 3,
+      "mean_line_surprisal": 1.5841,
+      "max_line_surprisal": 2.70623
+    },
+    {
+      "function_id": "binding/form.go::Bind:24",
+      "file_path": "binding/form.go",
+      "name": "Bind",
+      "start_line": 24,
+      "end_line": 35,
+      "nloc": 12,
+      "mean_line_surprisal": 1.13172,
+      "max_line_surprisal": 2.13087
+    },
+    {
+      "function_id": "binding/form.go::Name:20",
+      "file_path": "binding/form.go",
+      "name": "Name",
+      "start_line": 20,
+      "end_line": 22,
+      "nloc": 3,
+      "mean_line_surprisal": 2.41959,
+      "max_line_surprisal": 4.49641
+    },
+    {
+      "function_id": "binding/form_mapping.go::setFormMap:491",
+      "file_path": "binding/form_mapping.go",
+      "name": "setFormMap",
+      "start_line": 491,
+      "end_line": 513,
+      "nloc": 19,
+      "mean_line_surprisal": 1.49834,
+      "max_line_surprisal": 3.19895
+    },
+    {
+      "function_id": "binding/form_mapping.go::head:486",
+      "file_path": "binding/form_mapping.go",
+      "name": "head",
+      "start_line": 486,
+      "end_line": 489,
+      "nloc": 4,
+      "mean_line_surprisal": 1.7643,
+      "max_line_surprisal": 2.12341
+    },
+    {
+      "function_id": "binding/form_mapping.go::setTimeDuration:477",
+      "file_path": "binding/form_mapping.go",
+      "name": "setTimeDuration",
+      "start_line": 477,
+      "end_line": 484,
+      "nloc": 8,
+      "mean_line_surprisal": 0.87499,
+      "max_line_surprisal": 2.09771
+    },
+    {
+      "function_id": "binding/form_mapping.go::setSlice:467",
+      "file_path": "binding/form_mapping.go",
+      "name": "setSlice",
+      "start_line": 467,
+      "end_line": 475,
+      "nloc": 9,
+      "mean_line_surprisal": 0.92089,
+      "max_line_surprisal": 1.71346
+    },
+    {
+      "function_id": "binding/form_mapping.go::setArray:457",
+      "file_path": "binding/form_mapping.go",
+      "name": "setArray",
+      "start_line": 457,
+      "end_line": 465,
+      "nloc": 9,
+      "mean_line_surprisal": 1.56747,
+      "max_line_surprisal": 4.8411
+    },
+    {
+      "function_id": "binding/form_mapping.go::setTimeField:401",
+      "file_path": "binding/form_mapping.go",
+      "name": "setTimeField",
+      "start_line": 401,
+      "end_line": 455,
+      "nloc": 47,
+      "mean_line_surprisal": 1.24469,
+      "max_line_surprisal": 3.08305
+    },
+    {
+      "function_id": "binding/form_mapping.go::setFloatField:390",
+      "file_path": "binding/form_mapping.go",
+      "name": "setFloatField",
+      "start_line": 390,
+      "end_line": 399,
+      "nloc": 10,
+      "mean_line_surprisal": 1.29377,
+      "max_line_surprisal": 3.87178
+    },
+    {
+      "function_id": "binding/form_mapping.go::setBoolField:379",
+      "file_path": "binding/form_mapping.go",
+      "name": "setBoolField",
+      "start_line": 379,
+      "end_line": 388,
+      "nloc": 10,
+      "mean_line_surprisal": 1.44593,
+      "max_line_surprisal": 4.05567
+    },
+    {
+      "function_id": "binding/form_mapping.go::setUintField:368",
+      "file_path": "binding/form_mapping.go",
+      "name": "setUintField",
+      "start_line": 368,
+      "end_line": 377,
+      "nloc": 10,
+      "mean_line_surprisal": 1.44239,
+      "max_line_surprisal": 4.27655
+    },
+    {
+      "function_id": "binding/form_mapping.go::setIntField:357",
+      "file_path": "binding/form_mapping.go",
+      "name": "setIntField",
+      "start_line": 357,
+      "end_line": 366,
+      "nloc": 10,
+      "mean_line_surprisal": 1.75596,
+      "max_line_surprisal": 4.55077
+    },
+    {
+      "function_id": "binding/form_mapping.go::setWithProperType:302",
+      "file_path": "binding/form_mapping.go",
+      "name": "setWithProperType",
+      "start_line": 302,
+      "end_line": 355,
+      "nloc": 54,
+      "mean_line_surprisal": 1.39806,
+      "max_line_surprisal": 3.86052
+    },
+    {
+      "function_id": "binding/form_mapping.go::setByForm:226",
+      "file_path": "binding/form_mapping.go",
+      "name": "setByForm",
+      "start_line": 226,
+      "end_line": 300,
+      "nloc": 64,
+      "mean_line_surprisal": 1.36269,
+      "max_line_surprisal": 3.49692
+    },
+    {
+      "function_id": "binding/form_mapping.go::trySplit:194",
+      "file_path": "binding/form_mapping.go",
+      "name": "trySplit",
+      "start_line": 194,
+      "end_line": 224,
+      "nloc": 28,
+      "mean_line_surprisal": 1.61485,
+      "max_line_surprisal": 5.29277
+    },
+    {
+      "function_id": "binding/form_mapping.go::trySetCustom:186",
+      "file_path": "binding/form_mapping.go",
+      "name": "trySetCustom",
+      "start_line": 186,
+      "end_line": 192,
+      "nloc": 7,
+      "mean_line_surprisal": 1.67429,
+      "max_line_surprisal": 3.02204
+    },
+    {
+      "function_id": "binding/form_mapping.go::tryToSetValue:142",
+      "file_path": "binding/form_mapping.go",
+      "name": "tryToSetValue",
+      "start_line": 142,
+      "end_line": 175,
+      "nloc": 28,
+      "mean_line_surprisal": 1.65552,
+      "max_line_surprisal": 3.6516
+    },
+    {
+      "function_id": "binding/form_mapping.go::mapping:83",
+      "file_path": "binding/form_mapping.go",
+      "name": "mapping",
+      "start_line": 83,
+      "end_line": 135,
+      "nloc": 48,
+      "mean_line_surprisal": 1.53664,
+      "max_line_surprisal": 4.61905
+    },
+    {
+      "function_id": "binding/form_mapping.go::mappingByPtr:78",
+      "file_path": "binding/form_mapping.go",
+      "name": "mappingByPtr",
+      "start_line": 78,
+      "end_line": 81,
+      "nloc": 4,
+      "mean_line_surprisal": 1.63549,
+      "max_line_surprisal": 2.57071
+    },
+    {
+      "function_id": "binding/form_mapping.go::TrySet:74",
+      "file_path": "binding/form_mapping.go",
+      "name": "TrySet",
+      "start_line": 74,
+      "end_line": 76,
+      "nloc": 3,
+      "mean_line_surprisal": 1.10405,
+      "max_line_surprisal": 1.87286
+    },
+    {
+      "function_id": "binding/form_mapping.go::mapFormByTag:45",
+      "file_path": "binding/form_mapping.go",
+      "name": "mapFormByTag",
+      "start_line": 45,
+      "end_line": 62,
+      "nloc": 17,
+      "mean_line_surprisal": 1.64959,
+      "max_line_surprisal": 3.15452
+    },
+    {
+      "function_id": "binding/form_mapping.go::MapFormWithTag:39",
+      "file_path": "binding/form_mapping.go",
+      "name": "MapFormWithTag",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 1.43811,
+      "max_line_surprisal": 2.15434
+    },
+    {
+      "function_id": "binding/form_mapping.go::mapForm:35",
+      "file_path": "binding/form_mapping.go",
+      "name": "mapForm",
+      "start_line": 35,
+      "end_line": 37,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47775,
+      "max_line_surprisal": 2.20755
+    },
+    {
+      "function_id": "binding/form_mapping.go::mapURI:31",
+      "file_path": "binding/form_mapping.go",
+      "name": "mapURI",
+      "start_line": 31,
+      "end_line": 33,
+      "nloc": 3,
+      "mean_line_surprisal": 2.00182,
+      "max_line_surprisal": 2.7414
+    },
+    {
+      "function_id": "binding/header.go::TrySet:35",
+      "file_path": "binding/header.go",
+      "name": "TrySet",
+      "start_line": 35,
+      "end_line": 37,
+      "nloc": 3,
+      "mean_line_surprisal": 1.18937,
+      "max_line_surprisal": 1.57401
+    },
+    {
+      "function_id": "binding/header.go::mapHeader:27",
+      "file_path": "binding/header.go",
+      "name": "mapHeader",
+      "start_line": 27,
+      "end_line": 29,
+      "nloc": 3,
+      "mean_line_surprisal": 2.04684,
+      "max_line_surprisal": 2.67397
+    },
+    {
+      "function_id": "binding/header.go::Bind:19",
+      "file_path": "binding/header.go",
+      "name": "Bind",
+      "start_line": 19,
+      "end_line": 25,
+      "nloc": 6,
+      "mean_line_surprisal": 1.35149,
+      "max_line_surprisal": 2.01198
+    },
+    {
+      "function_id": "binding/header.go::Name:15",
+      "file_path": "binding/header.go",
+      "name": "Name",
+      "start_line": 15,
+      "end_line": 17,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48439,
+      "max_line_surprisal": 4.538
+    },
+    {
+      "function_id": "binding/json.go::decodeJSON:44",
+      "file_path": "binding/json.go",
+      "name": "decodeJSON",
+      "start_line": 44,
+      "end_line": 56,
+      "nloc": 13,
+      "mean_line_surprisal": 1.59238,
+      "max_line_surprisal": 3.42672
+    },
+    {
+      "function_id": "binding/json.go::BindBody:40",
+      "file_path": "binding/json.go",
+      "name": "BindBody",
+      "start_line": 40,
+      "end_line": 42,
+      "nloc": 3,
+      "mean_line_surprisal": 0.77212,
+      "max_line_surprisal": 1.25826
+    },
+    {
+      "function_id": "binding/json.go::Bind:33",
+      "file_path": "binding/json.go",
+      "name": "Bind",
+      "start_line": 33,
+      "end_line": 38,
+      "nloc": 6,
+      "mean_line_surprisal": 1.67806,
+      "max_line_surprisal": 2.73349
+    },
+    {
+      "function_id": "binding/json.go::Name:29",
+      "file_path": "binding/json.go",
+      "name": "Name",
+      "start_line": 29,
+      "end_line": 31,
+      "nloc": 3,
+      "mean_line_surprisal": 2.50065,
+      "max_line_surprisal": 4.54804
+    },
+    {
+      "function_id": "binding/msgpack.go::decodeMsgPack:31",
+      "file_path": "binding/msgpack.go",
+      "name": "decodeMsgPack",
+      "start_line": 31,
+      "end_line": 37,
+      "nloc": 7,
+      "mean_line_surprisal": 1.3516,
+      "max_line_surprisal": 2.13363
+    },
+    {
+      "function_id": "binding/msgpack.go::BindBody:27",
+      "file_path": "binding/msgpack.go",
+      "name": "BindBody",
+      "start_line": 27,
+      "end_line": 29,
+      "nloc": 3,
+      "mean_line_surprisal": 0.65787,
+      "max_line_surprisal": 0.93261
+    },
+    {
+      "function_id": "binding/msgpack.go::Bind:23",
+      "file_path": "binding/msgpack.go",
+      "name": "Bind",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16507,
+      "max_line_surprisal": 1.62993
+    },
+    {
+      "function_id": "binding/msgpack.go::Name:19",
+      "file_path": "binding/msgpack.go",
+      "name": "Name",
+      "start_line": 19,
+      "end_line": 21,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48859,
+      "max_line_surprisal": 4.54419
+    },
+    {
+      "function_id": "binding/multipart_form_mapping.go::setArrayOfMultipartFormFiles:63",
+      "file_path": "binding/multipart_form_mapping.go",
+      "name": "setArrayOfMultipartFormFiles",
+      "start_line": 63,
+      "end_line": 74,
+      "nloc": 12,
+      "mean_line_surprisal": 1.70955,
+      "max_line_surprisal": 4.06863
+    },
+    {
+      "function_id": "binding/multipart_form_mapping.go::setByMultipartFormFile:35",
+      "file_path": "binding/multipart_form_mapping.go",
+      "name": "setByMultipartFormFile",
+      "start_line": 35,
+      "end_line": 61,
+      "nloc": 27,
+      "mean_line_surprisal": 1.56474,
+      "max_line_surprisal": 3.05916
+    },
+    {
+      "function_id": "binding/multipart_form_mapping.go::TrySet:27",
+      "file_path": "binding/multipart_form_mapping.go",
+      "name": "TrySet",
+      "start_line": 27,
+      "end_line": 33,
+      "nloc": 6,
+      "mean_line_surprisal": 1.62946,
+      "max_line_surprisal": 1.98196
+    },
+    {
+      "function_id": "binding/plain.go::decodePlain:31",
+      "file_path": "binding/plain.go",
+      "name": "decodePlain",
+      "start_line": 31,
+      "end_line": 56,
+      "nloc": 21,
+      "mean_line_surprisal": 1.67109,
+      "max_line_surprisal": 3.62257
+    },
+    {
+      "function_id": "binding/plain.go::BindBody:27",
+      "file_path": "binding/plain.go",
+      "name": "BindBody",
+      "start_line": 27,
+      "end_line": 29,
+      "nloc": 3,
+      "mean_line_surprisal": 0.9314,
+      "max_line_surprisal": 1.70987
+    },
+    {
+      "function_id": "binding/plain.go::Bind:18",
+      "file_path": "binding/plain.go",
+      "name": "Bind",
+      "start_line": 18,
+      "end_line": 25,
+      "nloc": 7,
+      "mean_line_surprisal": 1.31211,
+      "max_line_surprisal": 2.08954
+    },
+    {
+      "function_id": "binding/plain.go::Name:14",
+      "file_path": "binding/plain.go",
+      "name": "Name",
+      "start_line": 14,
+      "end_line": 16,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48393,
+      "max_line_surprisal": 4.5472
+    },
+    {
+      "function_id": "binding/protobuf.go::BindBody:29",
+      "file_path": "binding/protobuf.go",
+      "name": "BindBody",
+      "start_line": 29,
+      "end_line": 41,
+      "nloc": 13,
+      "mean_line_surprisal": 1.44073,
+      "max_line_surprisal": 2.67919
+    },
+    {
+      "function_id": "binding/protobuf.go::Bind:21",
+      "file_path": "binding/protobuf.go",
+      "name": "Bind",
+      "start_line": 21,
+      "end_line": 27,
+      "nloc": 7,
+      "mean_line_surprisal": 1.40127,
+      "max_line_surprisal": 2.1599
+    },
+    {
+      "function_id": "binding/protobuf.go::Name:17",
+      "file_path": "binding/protobuf.go",
+      "name": "Name",
+      "start_line": 17,
+      "end_line": 19,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48461,
+      "max_line_surprisal": 4.54419
+    },
+    {
+      "function_id": "binding/query.go::Bind:15",
+      "file_path": "binding/query.go",
+      "name": "Bind",
+      "start_line": 15,
+      "end_line": 21,
+      "nloc": 7,
+      "mean_line_surprisal": 1.46092,
+      "max_line_surprisal": 2.12913
+    },
+    {
+      "function_id": "binding/query.go::Name:11",
+      "file_path": "binding/query.go",
+      "name": "Name",
+      "start_line": 11,
+      "end_line": 13,
+      "nloc": 3,
+      "mean_line_surprisal": 2.47715,
+      "max_line_surprisal": 4.5178
+    },
+    {
+      "function_id": "binding/toml.go::decodeToml:29",
+      "file_path": "binding/toml.go",
+      "name": "decodeToml",
+      "start_line": 29,
+      "end_line": 35,
+      "nloc": 7,
+      "mean_line_surprisal": 1.33843,
+      "max_line_surprisal": 2.01263
+    },
+    {
+      "function_id": "binding/toml.go::BindBody:25",
+      "file_path": "binding/toml.go",
+      "name": "BindBody",
+      "start_line": 25,
+      "end_line": 27,
+      "nloc": 3,
+      "mean_line_surprisal": 0.65793,
+      "max_line_surprisal": 0.93261
+    },
+    {
+      "function_id": "binding/toml.go::Bind:21",
+      "file_path": "binding/toml.go",
+      "name": "Bind",
+      "start_line": 21,
+      "end_line": 23,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16512,
+      "max_line_surprisal": 1.62993
+    },
+    {
+      "function_id": "binding/toml.go::Name:17",
+      "file_path": "binding/toml.go",
+      "name": "Name",
+      "start_line": 17,
+      "end_line": 19,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48875,
+      "max_line_surprisal": 4.54419
+    },
+    {
+      "function_id": "binding/uri.go::BindUri:13",
+      "file_path": "binding/uri.go",
+      "name": "BindUri",
+      "start_line": 13,
+      "end_line": 18,
+      "nloc": 6,
+      "mean_line_surprisal": 1.41272,
+      "max_line_surprisal": 2.01103
+    },
+    {
+      "function_id": "binding/uri.go::Name:9",
+      "file_path": "binding/uri.go",
+      "name": "Name",
+      "start_line": 9,
+      "end_line": 11,
+      "nloc": 3,
+      "mean_line_surprisal": 2.50245,
+      "max_line_surprisal": 4.36836
+    },
+    {
+      "function_id": "binding/xml.go::decodeXML:28",
+      "file_path": "binding/xml.go",
+      "name": "decodeXML",
+      "start_line": 28,
+      "end_line": 34,
+      "nloc": 7,
+      "mean_line_surprisal": 1.34487,
+      "max_line_surprisal": 2.05776
+    },
+    {
+      "function_id": "binding/xml.go::BindBody:24",
+      "file_path": "binding/xml.go",
+      "name": "BindBody",
+      "start_line": 24,
+      "end_line": 26,
+      "nloc": 3,
+      "mean_line_surprisal": 0.65793,
+      "max_line_surprisal": 0.93261
+    },
+    {
+      "function_id": "binding/xml.go::Bind:20",
+      "file_path": "binding/xml.go",
+      "name": "Bind",
+      "start_line": 20,
+      "end_line": 22,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16512,
+      "max_line_surprisal": 1.62993
+    },
+    {
+      "function_id": "binding/xml.go::Name:16",
+      "file_path": "binding/xml.go",
+      "name": "Name",
+      "start_line": 16,
+      "end_line": 18,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48875,
+      "max_line_surprisal": 4.54419
+    },
+    {
+      "function_id": "binding/yaml.go::decodeYAML:29",
+      "file_path": "binding/yaml.go",
+      "name": "decodeYAML",
+      "start_line": 29,
+      "end_line": 35,
+      "nloc": 7,
+      "mean_line_surprisal": 1.33843,
+      "max_line_surprisal": 2.01263
+    },
+    {
+      "function_id": "binding/yaml.go::BindBody:25",
+      "file_path": "binding/yaml.go",
+      "name": "BindBody",
+      "start_line": 25,
+      "end_line": 27,
+      "nloc": 3,
+      "mean_line_surprisal": 0.65793,
+      "max_line_surprisal": 0.93261
+    },
+    {
+      "function_id": "binding/yaml.go::Bind:21",
+      "file_path": "binding/yaml.go",
+      "name": "Bind",
+      "start_line": 21,
+      "end_line": 23,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16512,
+      "max_line_surprisal": 1.62993
+    },
+    {
+      "function_id": "binding/yaml.go::Name:17",
+      "file_path": "binding/yaml.go",
+      "name": "Name",
+      "start_line": 17,
+      "end_line": 19,
+      "nloc": 3,
+      "mean_line_surprisal": 2.48875,
+      "max_line_surprisal": 4.54419
+    },
+    {
+      "function_id": "codec/json/go_json.go::NewDecoder:40",
+      "file_path": "codec/json/go_json.go",
+      "name": "NewDecoder",
+      "start_line": 40,
+      "end_line": 42,
+      "nloc": 3,
+      "mean_line_surprisal": 0.90817,
+      "max_line_surprisal": 1.04071
+    },
+    {
+      "function_id": "codec/json/go_json.go::NewEncoder:36",
+      "file_path": "codec/json/go_json.go",
+      "name": "NewEncoder",
+      "start_line": 36,
+      "end_line": 38,
+      "nloc": 3,
+      "mean_line_surprisal": 0.9282,
+      "max_line_surprisal": 1.0983
+    },
+    {
+      "function_id": "codec/json/go_json.go::MarshalIndent:32",
+      "file_path": "codec/json/go_json.go",
+      "name": "MarshalIndent",
+      "start_line": 32,
+      "end_line": 34,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91548,
+      "max_line_surprisal": 1.14031
+    },
+    {
+      "function_id": "codec/json/go_json.go::Unmarshal:28",
+      "file_path": "codec/json/go_json.go",
+      "name": "Unmarshal",
+      "start_line": 28,
+      "end_line": 30,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91718,
+      "max_line_surprisal": 1.2988
+    },
+    {
+      "function_id": "codec/json/go_json.go::Marshal:24",
+      "file_path": "codec/json/go_json.go",
+      "name": "Marshal",
+      "start_line": 24,
+      "end_line": 26,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54088,
+      "max_line_surprisal": 1.8724
+    },
+    {
+      "function_id": "codec/json/go_json.go::init:18",
+      "file_path": "codec/json/go_json.go",
+      "name": "init",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 2.00953,
+      "max_line_surprisal": 2.28139
+    },
+    {
+      "function_id": "codec/json/json.go::NewDecoder:39",
+      "file_path": "codec/json/json.go",
+      "name": "NewDecoder",
+      "start_line": 39,
+      "end_line": 41,
+      "nloc": 3,
+      "mean_line_surprisal": 0.90817,
+      "max_line_surprisal": 1.04071
+    },
+    {
+      "function_id": "codec/json/json.go::NewEncoder:35",
+      "file_path": "codec/json/json.go",
+      "name": "NewEncoder",
+      "start_line": 35,
+      "end_line": 37,
+      "nloc": 3,
+      "mean_line_surprisal": 0.9282,
+      "max_line_surprisal": 1.0983
+    },
+    {
+      "function_id": "codec/json/json.go::MarshalIndent:31",
+      "file_path": "codec/json/json.go",
+      "name": "MarshalIndent",
+      "start_line": 31,
+      "end_line": 33,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91548,
+      "max_line_surprisal": 1.14031
+    },
+    {
+      "function_id": "codec/json/json.go::Unmarshal:27",
+      "file_path": "codec/json/json.go",
+      "name": "Unmarshal",
+      "start_line": 27,
+      "end_line": 29,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91718,
+      "max_line_surprisal": 1.2988
+    },
+    {
+      "function_id": "codec/json/json.go::Marshal:23",
+      "file_path": "codec/json/json.go",
+      "name": "Marshal",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54088,
+      "max_line_surprisal": 1.8724
+    },
+    {
+      "function_id": "codec/json/json.go::init:17",
+      "file_path": "codec/json/json.go",
+      "name": "init",
+      "start_line": 17,
+      "end_line": 19,
+      "nloc": 3,
+      "mean_line_surprisal": 2.00953,
+      "max_line_surprisal": 2.28139
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::NewDecoder:42",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "NewDecoder",
+      "start_line": 42,
+      "end_line": 44,
+      "nloc": 3,
+      "mean_line_surprisal": 0.90895,
+      "max_line_surprisal": 1.04153
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::NewEncoder:38",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "NewEncoder",
+      "start_line": 38,
+      "end_line": 40,
+      "nloc": 3,
+      "mean_line_surprisal": 0.92904,
+      "max_line_surprisal": 1.09914
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::MarshalIndent:34",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "MarshalIndent",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91635,
+      "max_line_surprisal": 1.14141
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::Unmarshal:30",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "Unmarshal",
+      "start_line": 30,
+      "end_line": 32,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91827,
+      "max_line_surprisal": 1.30057
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::Marshal:26",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "Marshal",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54272,
+      "max_line_surprisal": 1.87222
+    },
+    {
+      "function_id": "codec/json/jsoniter.go::init:18",
+      "file_path": "codec/json/jsoniter.go",
+      "name": "init",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 2.01046,
+      "max_line_surprisal": 2.28192
+    },
+    {
+      "function_id": "codec/json/sonic.go::NewDecoder:42",
+      "file_path": "codec/json/sonic.go",
+      "name": "NewDecoder",
+      "start_line": 42,
+      "end_line": 44,
+      "nloc": 3,
+      "mean_line_surprisal": 0.90889,
+      "max_line_surprisal": 1.04149
+    },
+    {
+      "function_id": "codec/json/sonic.go::NewEncoder:38",
+      "file_path": "codec/json/sonic.go",
+      "name": "NewEncoder",
+      "start_line": 38,
+      "end_line": 40,
+      "nloc": 3,
+      "mean_line_surprisal": 0.92897,
+      "max_line_surprisal": 1.09902
+    },
+    {
+      "function_id": "codec/json/sonic.go::MarshalIndent:34",
+      "file_path": "codec/json/sonic.go",
+      "name": "MarshalIndent",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91628,
+      "max_line_surprisal": 1.14136
+    },
+    {
+      "function_id": "codec/json/sonic.go::Unmarshal:30",
+      "file_path": "codec/json/sonic.go",
+      "name": "Unmarshal",
+      "start_line": 30,
+      "end_line": 32,
+      "nloc": 3,
+      "mean_line_surprisal": 0.9182,
+      "max_line_surprisal": 1.30049
+    },
+    {
+      "function_id": "codec/json/sonic.go::Marshal:26",
+      "file_path": "codec/json/sonic.go",
+      "name": "Marshal",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.54247,
+      "max_line_surprisal": 1.87195
+    },
+    {
+      "function_id": "codec/json/sonic.go::init:18",
+      "file_path": "codec/json/sonic.go",
+      "name": "init",
+      "start_line": 18,
+      "end_line": 20,
+      "nloc": 3,
+      "mean_line_surprisal": 2.00953,
+      "max_line_surprisal": 2.28139
+    },
+    {
+      "function_id": "context.go::Value:1439",
+      "file_path": "context.go",
+      "name": "Value",
+      "start_line": 1439,
+      "end_line": 1455,
+      "nloc": 17,
+      "mean_line_surprisal": 1.97495,
+      "max_line_surprisal": 6.46097
+    },
+    {
+      "function_id": "context.go::Err:1429",
+      "file_path": "context.go",
+      "name": "Err",
+      "start_line": 1429,
+      "end_line": 1434,
+      "nloc": 6,
+      "mean_line_surprisal": 1.72457,
+      "max_line_surprisal": 2.79791
+    },
+    {
+      "function_id": "context.go::Done:1421",
+      "file_path": "context.go",
+      "name": "Done",
+      "start_line": 1421,
+      "end_line": 1426,
+      "nloc": 6,
+      "mean_line_surprisal": 1.86709,
+      "max_line_surprisal": 3.35802
+    },
+    {
+      "function_id": "context.go::Deadline:1413",
+      "file_path": "context.go",
+      "name": "Deadline",
+      "start_line": 1413,
+      "end_line": 1418,
+      "nloc": 6,
+      "mean_line_surprisal": 2.44076,
+      "max_line_surprisal": 3.89135
+    },
+    {
+      "function_id": "context.go::hasRequestContext:1406",
+      "file_path": "context.go",
+      "name": "hasRequestContext",
+      "start_line": 1406,
+      "end_line": 1410,
+      "nloc": 5,
+      "mean_line_surprisal": 1.49415,
+      "max_line_surprisal": 1.90143
+    },
+    {
+      "function_id": "context.go::SetAccepted:1397",
+      "file_path": "context.go",
+      "name": "SetAccepted",
+      "start_line": 1397,
+      "end_line": 1399,
+      "nloc": 3,
+      "mean_line_surprisal": 1.52413,
+      "max_line_surprisal": 2.26939
+    },
+    {
+      "function_id": "context.go::NegotiateFormat:1366",
+      "file_path": "context.go",
+      "name": "NegotiateFormat",
+      "start_line": 1366,
+      "end_line": 1394,
+      "nloc": 28,
+      "mean_line_surprisal": 1.82782,
+      "max_line_surprisal": 3.7537
+    },
+    {
+      "function_id": "context.go::Negotiate:1334",
+      "file_path": "context.go",
+      "name": "Negotiate",
+      "start_line": 1334,
+      "end_line": 1363,
+      "nloc": 24,
+      "mean_line_surprisal": 1.48319,
+      "max_line_surprisal": 3.29682
+    },
+    {
+      "function_id": "context.go::Stream:1299",
+      "file_path": "context.go",
+      "name": "Stream",
+      "start_line": 1299,
+      "end_line": 1314,
+      "nloc": 16,
+      "mean_line_surprisal": 1.91754,
+      "max_line_surprisal": 3.16535
+    },
+    {
+      "function_id": "context.go::SSEvent:1290",
+      "file_path": "context.go",
+      "name": "SSEvent",
+      "start_line": 1290,
+      "end_line": 1295,
+      "nloc": 6,
+      "mean_line_surprisal": 1.06483,
+      "max_line_surprisal": 1.63405
+    },
+    {
+      "function_id": "context.go::FileAttachment:1280",
+      "file_path": "context.go",
+      "name": "FileAttachment",
+      "start_line": 1280,
+      "end_line": 1287,
+      "nloc": 8,
+      "mean_line_surprisal": 1.35387,
+      "max_line_surprisal": 2.42684
+    },
+    {
+      "function_id": "context.go::escapeQuotes:1274",
+      "file_path": "context.go",
+      "name": "escapeQuotes",
+      "start_line": 1274,
+      "end_line": 1276,
+      "nloc": 3,
+      "mean_line_surprisal": 2.11081,
+      "max_line_surprisal": 2.52476
+    },
+    {
+      "function_id": "context.go::FileFromFS:1262",
+      "file_path": "context.go",
+      "name": "FileFromFS",
+      "start_line": 1262,
+      "end_line": 1270,
+      "nloc": 7,
+      "mean_line_surprisal": 1.48486,
+      "max_line_surprisal": 1.84629
+    },
+    {
+      "function_id": "context.go::File:1257",
+      "file_path": "context.go",
+      "name": "File",
+      "start_line": 1257,
+      "end_line": 1259,
+      "nloc": 3,
+      "mean_line_surprisal": 1.35861,
+      "max_line_surprisal": 2.03974
+    },
+    {
+      "function_id": "context.go::DataFromReader:1247",
+      "file_path": "context.go",
+      "name": "DataFromReader",
+      "start_line": 1247,
+      "end_line": 1254,
+      "nloc": 8,
+      "mean_line_surprisal": 0.99974,
+      "max_line_surprisal": 1.34622
+    },
+    {
+      "function_id": "context.go::Data:1239",
+      "file_path": "context.go",
+      "name": "Data",
+      "start_line": 1239,
+      "end_line": 1244,
+      "nloc": 6,
+      "mean_line_surprisal": 1.1399,
+      "max_line_surprisal": 1.57162
+    },
+    {
+      "function_id": "context.go::Redirect:1230",
+      "file_path": "context.go",
+      "name": "Redirect",
+      "start_line": 1230,
+      "end_line": 1236,
+      "nloc": 7,
+      "mean_line_surprisal": 1.45484,
+      "max_line_surprisal": 3.127
+    },
+    {
+      "function_id": "context.go::String:1225",
+      "file_path": "context.go",
+      "name": "String",
+      "start_line": 1225,
+      "end_line": 1227,
+      "nloc": 3,
+      "mean_line_surprisal": 1.01014,
+      "max_line_surprisal": 1.41435
+    },
+    {
+      "function_id": "context.go::ProtoBuf:1220",
+      "file_path": "context.go",
+      "name": "ProtoBuf",
+      "start_line": 1220,
+      "end_line": 1222,
+      "nloc": 3,
+      "mean_line_surprisal": 0.69136,
+      "max_line_surprisal": 1.07175
+    },
+    {
+      "function_id": "context.go::TOML:1215",
+      "file_path": "context.go",
+      "name": "TOML",
+      "start_line": 1215,
+      "end_line": 1217,
+      "nloc": 3,
+      "mean_line_surprisal": 0.70444,
+      "max_line_surprisal": 1.08452
+    },
+    {
+      "function_id": "context.go::YAML:1210",
+      "file_path": "context.go",
+      "name": "YAML",
+      "start_line": 1210,
+      "end_line": 1212,
+      "nloc": 3,
+      "mean_line_surprisal": 0.71383,
+      "max_line_surprisal": 1.09309
+    },
+    {
+      "function_id": "context.go::XML:1205",
+      "file_path": "context.go",
+      "name": "XML",
+      "start_line": 1205,
+      "end_line": 1207,
+      "nloc": 3,
+      "mean_line_surprisal": 0.72516,
+      "max_line_surprisal": 1.10306
+    },
+    {
+      "function_id": "context.go::PureJSON:1199",
+      "file_path": "context.go",
+      "name": "PureJSON",
+      "start_line": 1199,
+      "end_line": 1201,
+      "nloc": 3,
+      "mean_line_surprisal": 0.72024,
+      "max_line_surprisal": 1.0692
+    },
+    {
+      "function_id": "context.go::AsciiJSON:1193",
+      "file_path": "context.go",
+      "name": "AsciiJSON",
+      "start_line": 1193,
+      "end_line": 1195,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74023,
+      "max_line_surprisal": 1.10658
+    },
+    {
+      "function_id": "context.go::JSON:1187",
+      "file_path": "context.go",
+      "name": "JSON",
+      "start_line": 1187,
+      "end_line": 1189,
+      "nloc": 3,
+      "mean_line_surprisal": 0.70245,
+      "max_line_surprisal": 1.18367
+    },
+    {
+      "function_id": "context.go::JSONP:1176",
+      "file_path": "context.go",
+      "name": "JSONP",
+      "start_line": 1176,
+      "end_line": 1183,
+      "nloc": 8,
+      "mean_line_surprisal": 1.68611,
+      "max_line_surprisal": 4.29149
+    },
+    {
+      "function_id": "context.go::SecureJSON:1169",
+      "file_path": "context.go",
+      "name": "SecureJSON",
+      "start_line": 1169,
+      "end_line": 1171,
+      "nloc": 3,
+      "mean_line_surprisal": 0.87912,
+      "max_line_surprisal": 1.2623
+    },
+    {
+      "function_id": "context.go::IndentedJSON:1162",
+      "file_path": "context.go",
+      "name": "IndentedJSON",
+      "start_line": 1162,
+      "end_line": 1164,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91347,
+      "max_line_surprisal": 1.23799
+    },
+    {
+      "function_id": "context.go::HTML:1153",
+      "file_path": "context.go",
+      "name": "HTML",
+      "start_line": 1153,
+      "end_line": 1156,
+      "nloc": 4,
+      "mean_line_surprisal": 1.71764,
+      "max_line_surprisal": 2.36297
+    },
+    {
+      "function_id": "context.go::Render:1134",
+      "file_path": "context.go",
+      "name": "Render",
+      "start_line": 1134,
+      "end_line": 1148,
+      "nloc": 13,
+      "mean_line_surprisal": 2.22778,
+      "max_line_surprisal": 4.69362
+    },
+    {
+      "function_id": "context.go::Cookie:1124",
+      "file_path": "context.go",
+      "name": "Cookie",
+      "start_line": 1124,
+      "end_line": 1131,
+      "nloc": 8,
+      "mean_line_surprisal": 1.60915,
+      "max_line_surprisal": 2.63335
+    },
+    {
+      "function_id": "context.go::SetCookieData:1110",
+      "file_path": "context.go",
+      "name": "SetCookieData",
+      "start_line": 1110,
+      "end_line": 1118,
+      "nloc": 9,
+      "mean_line_surprisal": 2.03734,
+      "max_line_surprisal": 4.17989
+    },
+    {
+      "function_id": "context.go::SetCookie:1091",
+      "file_path": "context.go",
+      "name": "SetCookie",
+      "start_line": 1091,
+      "end_line": 1105,
+      "nloc": 15,
+      "mean_line_surprisal": 1.63649,
+      "max_line_surprisal": 4.54508
+    },
+    {
+      "function_id": "context.go::SetSameSite:1084",
+      "file_path": "context.go",
+      "name": "SetSameSite",
+      "start_line": 1084,
+      "end_line": 1086,
+      "nloc": 3,
+      "mean_line_surprisal": 1.46793,
+      "max_line_surprisal": 2.13632
+    },
+    {
+      "function_id": "context.go::GetRawData:1076",
+      "file_path": "context.go",
+      "name": "GetRawData",
+      "start_line": 1076,
+      "end_line": 1081,
+      "nloc": 6,
+      "mean_line_surprisal": 1.82509,
+      "max_line_surprisal": 2.65138
+    },
+    {
+      "function_id": "context.go::GetHeader:1071",
+      "file_path": "context.go",
+      "name": "GetHeader",
+      "start_line": 1071,
+      "end_line": 1073,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70021,
+      "max_line_surprisal": 2.04252
+    },
+    {
+      "function_id": "context.go::Header:1062",
+      "file_path": "context.go",
+      "name": "Header",
+      "start_line": 1062,
+      "end_line": 1068,
+      "nloc": 7,
+      "mean_line_surprisal": 1.71566,
+      "max_line_surprisal": 2.97062
+    },
+    {
+      "function_id": "context.go::Status:1055",
+      "file_path": "context.go",
+      "name": "Status",
+      "start_line": 1055,
+      "end_line": 1057,
+      "nloc": 3,
+      "mean_line_surprisal": 2.11544,
+      "max_line_surprisal": 3.06548
+    },
+    {
+      "function_id": "context.go::bodyAllowedForStatus:1042",
+      "file_path": "context.go",
+      "name": "bodyAllowedForStatus",
+      "start_line": 1042,
+      "end_line": 1052,
+      "nloc": 11,
+      "mean_line_surprisal": 1.75769,
+      "max_line_surprisal": 3.10978
+    },
+    {
+      "function_id": "context.go::requestHeader:1033",
+      "file_path": "context.go",
+      "name": "requestHeader",
+      "start_line": 1033,
+      "end_line": 1035,
+      "nloc": 3,
+      "mean_line_surprisal": 1.55798,
+      "max_line_surprisal": 1.92447
+    },
+    {
+      "function_id": "context.go::IsWebsocket:1025",
+      "file_path": "context.go",
+      "name": "IsWebsocket",
+      "start_line": 1025,
+      "end_line": 1031,
+      "nloc": 7,
+      "mean_line_surprisal": 1.92357,
+      "max_line_surprisal": 4.1719
+    },
+    {
+      "function_id": "context.go::ContentType:1019",
+      "file_path": "context.go",
+      "name": "ContentType",
+      "start_line": 1019,
+      "end_line": 1021,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69702,
+      "max_line_surprisal": 2.07397
+    },
+    {
+      "function_id": "context.go::RemoteIP:1010",
+      "file_path": "context.go",
+      "name": "RemoteIP",
+      "start_line": 1010,
+      "end_line": 1016,
+      "nloc": 7,
+      "mean_line_surprisal": 1.61113,
+      "max_line_surprisal": 3.21178
+    },
+    {
+      "function_id": "context.go::ClientIP:972",
+      "file_path": "context.go",
+      "name": "ClientIP",
+      "start_line": 972,
+      "end_line": 1007,
+      "nloc": 33,
+      "mean_line_surprisal": 1.69849,
+      "max_line_surprisal": 3.21919
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWithPlain:963",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWithPlain",
+      "start_line": 963,
+      "end_line": 965,
+      "nloc": 3,
+      "mean_line_surprisal": 0.63314,
+      "max_line_surprisal": 0.96519
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWithTOML:958",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWithTOML",
+      "start_line": 958,
+      "end_line": 960,
+      "nloc": 3,
+      "mean_line_surprisal": 0.67631,
+      "max_line_surprisal": 0.96591
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWithYAML:953",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWithYAML",
+      "start_line": 953,
+      "end_line": 955,
+      "nloc": 3,
+      "mean_line_surprisal": 0.68447,
+      "max_line_surprisal": 0.96666
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWithXML:948",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWithXML",
+      "start_line": 948,
+      "end_line": 950,
+      "nloc": 3,
+      "mean_line_surprisal": 0.69641,
+      "max_line_surprisal": 0.96745
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWithJSON:943",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWithJSON",
+      "start_line": 943,
+      "end_line": 945,
+      "nloc": 3,
+      "mean_line_surprisal": 0.7294,
+      "max_line_surprisal": 1.01518
+    },
+    {
+      "function_id": "context.go::ShouldBindBodyWith:925",
+      "file_path": "context.go",
+      "name": "ShouldBindBodyWith",
+      "start_line": 925,
+      "end_line": 940,
+      "nloc": 16,
+      "mean_line_surprisal": 1.4028,
+      "max_line_surprisal": 2.44587
+    },
+    {
+      "function_id": "context.go::ShouldBindWith:916",
+      "file_path": "context.go",
+      "name": "ShouldBindWith",
+      "start_line": 916,
+      "end_line": 918,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16709,
+      "max_line_surprisal": 2.16971
+    },
+    {
+      "function_id": "context.go::ShouldBindUri:906",
+      "file_path": "context.go",
+      "name": "ShouldBindUri",
+      "start_line": 906,
+      "end_line": 912,
+      "nloc": 7,
+      "mean_line_surprisal": 1.38101,
+      "max_line_surprisal": 1.78044
+    },
+    {
+      "function_id": "context.go::ShouldBindHeader:900",
+      "file_path": "context.go",
+      "name": "ShouldBindHeader",
+      "start_line": 900,
+      "end_line": 902,
+      "nloc": 3,
+      "mean_line_surprisal": 0.78718,
+      "max_line_surprisal": 0.96924
+    },
+    {
+      "function_id": "context.go::ShouldBindPlain:894",
+      "file_path": "context.go",
+      "name": "ShouldBindPlain",
+      "start_line": 894,
+      "end_line": 896,
+      "nloc": 3,
+      "mean_line_surprisal": 0.63505,
+      "max_line_surprisal": 0.97019
+    },
+    {
+      "function_id": "context.go::ShouldBindTOML:888",
+      "file_path": "context.go",
+      "name": "ShouldBindTOML",
+      "start_line": 888,
+      "end_line": 890,
+      "nloc": 3,
+      "mean_line_surprisal": 0.67786,
+      "max_line_surprisal": 0.9712
+    },
+    {
+      "function_id": "context.go::ShouldBindYAML:882",
+      "file_path": "context.go",
+      "name": "ShouldBindYAML",
+      "start_line": 882,
+      "end_line": 884,
+      "nloc": 3,
+      "mean_line_surprisal": 0.68341,
+      "max_line_surprisal": 0.97497
+    },
+    {
+      "function_id": "context.go::ShouldBindQuery:876",
+      "file_path": "context.go",
+      "name": "ShouldBindQuery",
+      "start_line": 876,
+      "end_line": 878,
+      "nloc": 3,
+      "mean_line_surprisal": 0.68388,
+      "max_line_surprisal": 0.9735
+    },
+    {
+      "function_id": "context.go::ShouldBindXML:870",
+      "file_path": "context.go",
+      "name": "ShouldBindXML",
+      "start_line": 870,
+      "end_line": 872,
+      "nloc": 3,
+      "mean_line_surprisal": 0.69522,
+      "max_line_surprisal": 0.97483
+    },
+    {
+      "function_id": "context.go::ShouldBindJSON:864",
+      "file_path": "context.go",
+      "name": "ShouldBindJSON",
+      "start_line": 864,
+      "end_line": 866,
+      "nloc": 3,
+      "mean_line_surprisal": 0.71134,
+      "max_line_surprisal": 0.97898
+    },
+    {
+      "function_id": "context.go::ShouldBind:835",
+      "file_path": "context.go",
+      "name": "ShouldBind",
+      "start_line": 835,
+      "end_line": 838,
+      "nloc": 4,
+      "mean_line_surprisal": 1.09217,
+      "max_line_surprisal": 1.16909
+    },
+    {
+      "function_id": "context.go::MustBindWith:807",
+      "file_path": "context.go",
+      "name": "MustBindWith",
+      "start_line": 807,
+      "end_line": 824,
+      "nloc": 17,
+      "mean_line_surprisal": 1.4433,
+      "max_line_surprisal": 2.83502
+    },
+    {
+      "function_id": "context.go::BindUri:796",
+      "file_path": "context.go",
+      "name": "BindUri",
+      "start_line": 796,
+      "end_line": 802,
+      "nloc": 7,
+      "mean_line_surprisal": 1.45687,
+      "max_line_surprisal": 2.92277
+    },
+    {
+      "function_id": "context.go::BindHeader:790",
+      "file_path": "context.go",
+      "name": "BindHeader",
+      "start_line": 790,
+      "end_line": 792,
+      "nloc": 3,
+      "mean_line_surprisal": 1.05503,
+      "max_line_surprisal": 1.2875
+    },
+    {
+      "function_id": "context.go::BindPlain:785",
+      "file_path": "context.go",
+      "name": "BindPlain",
+      "start_line": 785,
+      "end_line": 787,
+      "nloc": 3,
+      "mean_line_surprisal": 0.82789,
+      "max_line_surprisal": 0.98232
+    },
+    {
+      "function_id": "context.go::BindTOML:780",
+      "file_path": "context.go",
+      "name": "BindTOML",
+      "start_line": 780,
+      "end_line": 782,
+      "nloc": 3,
+      "mean_line_surprisal": 0.89219,
+      "max_line_surprisal": 0.98491
+    },
+    {
+      "function_id": "context.go::BindYAML:775",
+      "file_path": "context.go",
+      "name": "BindYAML",
+      "start_line": 775,
+      "end_line": 777,
+      "nloc": 3,
+      "mean_line_surprisal": 0.90443,
+      "max_line_surprisal": 0.99121
+    },
+    {
+      "function_id": "context.go::BindQuery:770",
+      "file_path": "context.go",
+      "name": "BindQuery",
+      "start_line": 770,
+      "end_line": 772,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91101,
+      "max_line_surprisal": 1.0043
+    },
+    {
+      "function_id": "context.go::BindXML:765",
+      "file_path": "context.go",
+      "name": "BindXML",
+      "start_line": 765,
+      "end_line": 767,
+      "nloc": 3,
+      "mean_line_surprisal": 0.94903,
+      "max_line_surprisal": 1.01019
+    },
+    {
+      "function_id": "context.go::BindJSON:760",
+      "file_path": "context.go",
+      "name": "BindJSON",
+      "start_line": 760,
+      "end_line": 762,
+      "nloc": 3,
+      "mean_line_surprisal": 1.03006,
+      "max_line_surprisal": 1.22766
+    },
+    {
+      "function_id": "context.go::Bind:754",
+      "file_path": "context.go",
+      "name": "Bind",
+      "start_line": 754,
+      "end_line": 757,
+      "nloc": 4,
+      "mean_line_surprisal": 1.65831,
+      "max_line_surprisal": 1.82786
+    },
+    {
+      "function_id": "context.go::SaveUploadedFile:716",
+      "file_path": "context.go",
+      "name": "SaveUploadedFile",
+      "start_line": 716,
+      "end_line": 743,
+      "nloc": 25,
+      "mean_line_surprisal": 1.24577,
+      "max_line_surprisal": 2.49804
+    },
+    {
+      "function_id": "context.go::MultipartForm:710",
+      "file_path": "context.go",
+      "name": "MultipartForm",
+      "start_line": 710,
+      "end_line": 713,
+      "nloc": 4,
+      "mean_line_surprisal": 1.45346,
+      "max_line_surprisal": 1.81973
+    },
+    {
+      "function_id": "context.go::FormFile:695",
+      "file_path": "context.go",
+      "name": "FormFile",
+      "start_line": 695,
+      "end_line": 707,
+      "nloc": 13,
+      "mean_line_surprisal": 1.65336,
+      "max_line_surprisal": 3.43977
+    },
+    {
+      "function_id": "context.go::getMapFromFormData:671",
+      "file_path": "context.go",
+      "name": "getMapFromFormData",
+      "start_line": 671,
+      "end_line": 692,
+      "nloc": 18,
+      "mean_line_surprisal": 1.99464,
+      "max_line_surprisal": 4.18755
+    },
+    {
+      "function_id": "context.go::GetPostFormMap:664",
+      "file_path": "context.go",
+      "name": "GetPostFormMap",
+      "start_line": 664,
+      "end_line": 667,
+      "nloc": 4,
+      "mean_line_surprisal": 1.06428,
+      "max_line_surprisal": 1.75423
+    },
+    {
+      "function_id": "context.go::PostFormMap:657",
+      "file_path": "context.go",
+      "name": "PostFormMap",
+      "start_line": 657,
+      "end_line": 660,
+      "nloc": 4,
+      "mean_line_surprisal": 1.05228,
+      "max_line_surprisal": 1.5946
+    },
+    {
+      "function_id": "context.go::GetPostFormArray:650",
+      "file_path": "context.go",
+      "name": "GetPostFormArray",
+      "start_line": 650,
+      "end_line": 654,
+      "nloc": 5,
+      "mean_line_surprisal": 1.05707,
+      "max_line_surprisal": 1.63322
+    },
+    {
+      "function_id": "context.go::initFormCache:635",
+      "file_path": "context.go",
+      "name": "initFormCache",
+      "start_line": 635,
+      "end_line": 646,
+      "nloc": 12,
+      "mean_line_surprisal": 1.70788,
+      "max_line_surprisal": 2.55139
+    },
+    {
+      "function_id": "context.go::PostFormArray:630",
+      "file_path": "context.go",
+      "name": "PostFormArray",
+      "start_line": 630,
+      "end_line": 633,
+      "nloc": 4,
+      "mean_line_surprisal": 1.04852,
+      "max_line_surprisal": 1.6846
+    },
+    {
+      "function_id": "context.go::GetPostForm:621",
+      "file_path": "context.go",
+      "name": "GetPostForm",
+      "start_line": 621,
+      "end_line": 626,
+      "nloc": 6,
+      "mean_line_surprisal": 0.81963,
+      "max_line_surprisal": 1.37022
+    },
+    {
+      "function_id": "context.go::DefaultPostForm:606",
+      "file_path": "context.go",
+      "name": "DefaultPostForm",
+      "start_line": 606,
+      "end_line": 611,
+      "nloc": 6,
+      "mean_line_surprisal": 0.93476,
+      "max_line_surprisal": 1.5682
+    },
+    {
+      "function_id": "context.go::PostForm:598",
+      "file_path": "context.go",
+      "name": "PostForm",
+      "start_line": 598,
+      "end_line": 601,
+      "nloc": 4,
+      "mean_line_surprisal": 1.1252,
+      "max_line_surprisal": 1.70814
+    },
+    {
+      "function_id": "context.go::GetQueryMap:591",
+      "file_path": "context.go",
+      "name": "GetQueryMap",
+      "start_line": 591,
+      "end_line": 594,
+      "nloc": 4,
+      "mean_line_surprisal": 1.18532,
+      "max_line_surprisal": 2.12048
+    },
+    {
+      "function_id": "context.go::QueryMap:584",
+      "file_path": "context.go",
+      "name": "QueryMap",
+      "start_line": 584,
+      "end_line": 587,
+      "nloc": 4,
+      "mean_line_surprisal": 1.25664,
+      "max_line_surprisal": 1.86086
+    },
+    {
+      "function_id": "context.go::GetQueryArray:577",
+      "file_path": "context.go",
+      "name": "GetQueryArray",
+      "start_line": 577,
+      "end_line": 581,
+      "nloc": 5,
+      "mean_line_surprisal": 1.20926,
+      "max_line_surprisal": 1.77101
+    },
+    {
+      "function_id": "context.go::initQueryCache:565",
+      "file_path": "context.go",
+      "name": "initQueryCache",
+      "start_line": 565,
+      "end_line": 573,
+      "nloc": 9,
+      "mean_line_surprisal": 2.08228,
+      "max_line_surprisal": 2.75877
+    },
+    {
+      "function_id": "context.go::QueryArray:560",
+      "file_path": "context.go",
+      "name": "QueryArray",
+      "start_line": 560,
+      "end_line": 563,
+      "nloc": 4,
+      "mean_line_surprisal": 1.33864,
+      "max_line_surprisal": 2.07426
+    },
+    {
+      "function_id": "context.go::GetQuery:551",
+      "file_path": "context.go",
+      "name": "GetQuery",
+      "start_line": 551,
+      "end_line": 556,
+      "nloc": 6,
+      "mean_line_surprisal": 1.41741,
+      "max_line_surprisal": 2.03236
+    },
+    {
+      "function_id": "context.go::DefaultQuery:535",
+      "file_path": "context.go",
+      "name": "DefaultQuery",
+      "start_line": 535,
+      "end_line": 540,
+      "nloc": 6,
+      "mean_line_surprisal": 1.44513,
+      "max_line_surprisal": 2.53196
+    },
+    {
+      "function_id": "context.go::Query:522",
+      "file_path": "context.go",
+      "name": "Query",
+      "start_line": 522,
+      "end_line": 525,
+      "nloc": 4,
+      "mean_line_surprisal": 1.6013,
+      "max_line_surprisal": 2.39637
+    },
+    {
+      "function_id": "context.go::AddParam:509",
+      "file_path": "context.go",
+      "name": "AddParam",
+      "start_line": 509,
+      "end_line": 511,
+      "nloc": 3,
+      "mean_line_surprisal": 1.38466,
+      "max_line_surprisal": 1.89709
+    },
+    {
+      "function_id": "context.go::Param:500",
+      "file_path": "context.go",
+      "name": "Param",
+      "start_line": 500,
+      "end_line": 502,
+      "nloc": 3,
+      "mean_line_surprisal": 1.69314,
+      "max_line_surprisal": 1.93378
+    },
+    {
+      "function_id": "context.go::Delete:479",
+      "file_path": "context.go",
+      "name": "Delete",
+      "start_line": 479,
+      "end_line": 485,
+      "nloc": 7,
+      "mean_line_surprisal": 1.79323,
+      "max_line_surprisal": 5.78453
+    },
+    {
+      "function_id": "context.go::GetStringMapStringSlice:473",
+      "file_path": "context.go",
+      "name": "GetStringMapStringSlice",
+      "start_line": 473,
+      "end_line": 475,
+      "nloc": 3,
+      "mean_line_surprisal": 0.64937,
+      "max_line_surprisal": 1.07879
+    },
+    {
+      "function_id": "context.go::GetStringMapString:468",
+      "file_path": "context.go",
+      "name": "GetStringMapString",
+      "start_line": 468,
+      "end_line": 470,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74469,
+      "max_line_surprisal": 1.2047
+    },
+    {
+      "function_id": "context.go::GetStringMap:463",
+      "file_path": "context.go",
+      "name": "GetStringMap",
+      "start_line": 463,
+      "end_line": 465,
+      "nloc": 3,
+      "mean_line_surprisal": 0.85184,
+      "max_line_surprisal": 1.4553
+    },
+    {
+      "function_id": "context.go::GetStringSlice:458",
+      "file_path": "context.go",
+      "name": "GetStringSlice",
+      "start_line": 458,
+      "end_line": 460,
+      "nloc": 3,
+      "mean_line_surprisal": 0.80345,
+      "max_line_surprisal": 1.18054
+    },
+    {
+      "function_id": "context.go::GetFloat64Slice:453",
+      "file_path": "context.go",
+      "name": "GetFloat64Slice",
+      "start_line": 453,
+      "end_line": 455,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74493,
+      "max_line_surprisal": 1.37014
+    },
+    {
+      "function_id": "context.go::GetFloat32Slice:448",
+      "file_path": "context.go",
+      "name": "GetFloat32Slice",
+      "start_line": 448,
+      "end_line": 450,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74721,
+      "max_line_surprisal": 1.37363
+    },
+    {
+      "function_id": "context.go::GetUint64Slice:443",
+      "file_path": "context.go",
+      "name": "GetUint64Slice",
+      "start_line": 443,
+      "end_line": 445,
+      "nloc": 3,
+      "mean_line_surprisal": 0.75414,
+      "max_line_surprisal": 1.3825
+    },
+    {
+      "function_id": "context.go::GetUint32Slice:438",
+      "file_path": "context.go",
+      "name": "GetUint32Slice",
+      "start_line": 438,
+      "end_line": 440,
+      "nloc": 3,
+      "mean_line_surprisal": 0.7551,
+      "max_line_surprisal": 1.38475
+    },
+    {
+      "function_id": "context.go::GetUint16Slice:433",
+      "file_path": "context.go",
+      "name": "GetUint16Slice",
+      "start_line": 433,
+      "end_line": 435,
+      "nloc": 3,
+      "mean_line_surprisal": 0.77396,
+      "max_line_surprisal": 1.3877
+    },
+    {
+      "function_id": "context.go::GetUint8Slice:428",
+      "file_path": "context.go",
+      "name": "GetUint8Slice",
+      "start_line": 428,
+      "end_line": 430,
+      "nloc": 3,
+      "mean_line_surprisal": 0.76466,
+      "max_line_surprisal": 1.3914
+    },
+    {
+      "function_id": "context.go::GetUintSlice:423",
+      "file_path": "context.go",
+      "name": "GetUintSlice",
+      "start_line": 423,
+      "end_line": 425,
+      "nloc": 3,
+      "mean_line_surprisal": 0.76194,
+      "max_line_surprisal": 1.39722
+    },
+    {
+      "function_id": "context.go::GetInt64Slice:418",
+      "file_path": "context.go",
+      "name": "GetInt64Slice",
+      "start_line": 418,
+      "end_line": 420,
+      "nloc": 3,
+      "mean_line_surprisal": 0.77959,
+      "max_line_surprisal": 1.33943
+    },
+    {
+      "function_id": "context.go::GetInt32Slice:413",
+      "file_path": "context.go",
+      "name": "GetInt32Slice",
+      "start_line": 413,
+      "end_line": 415,
+      "nloc": 3,
+      "mean_line_surprisal": 0.80102,
+      "max_line_surprisal": 1.38272
+    },
+    {
+      "function_id": "context.go::GetInt16Slice:408",
+      "file_path": "context.go",
+      "name": "GetInt16Slice",
+      "start_line": 408,
+      "end_line": 410,
+      "nloc": 3,
+      "mean_line_surprisal": 0.78033,
+      "max_line_surprisal": 1.42699
+    },
+    {
+      "function_id": "context.go::GetInt8Slice:403",
+      "file_path": "context.go",
+      "name": "GetInt8Slice",
+      "start_line": 403,
+      "end_line": 405,
+      "nloc": 3,
+      "mean_line_surprisal": 0.80315,
+      "max_line_surprisal": 1.44759
+    },
+    {
+      "function_id": "context.go::GetIntSlice:398",
+      "file_path": "context.go",
+      "name": "GetIntSlice",
+      "start_line": 398,
+      "end_line": 400,
+      "nloc": 3,
+      "mean_line_surprisal": 0.87469,
+      "max_line_surprisal": 1.45812
+    },
+    {
+      "function_id": "context.go::GetDuration:393",
+      "file_path": "context.go",
+      "name": "GetDuration",
+      "start_line": 393,
+      "end_line": 395,
+      "nloc": 3,
+      "mean_line_surprisal": 0.84237,
+      "max_line_surprisal": 1.44543
+    },
+    {
+      "function_id": "context.go::GetTime:388",
+      "file_path": "context.go",
+      "name": "GetTime",
+      "start_line": 388,
+      "end_line": 390,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91887,
+      "max_line_surprisal": 1.52636
+    },
+    {
+      "function_id": "context.go::GetFloat64:383",
+      "file_path": "context.go",
+      "name": "GetFloat64",
+      "start_line": 383,
+      "end_line": 385,
+      "nloc": 3,
+      "mean_line_surprisal": 0.82636,
+      "max_line_surprisal": 1.46792
+    },
+    {
+      "function_id": "context.go::GetFloat32:378",
+      "file_path": "context.go",
+      "name": "GetFloat32",
+      "start_line": 378,
+      "end_line": 380,
+      "nloc": 3,
+      "mean_line_surprisal": 0.83057,
+      "max_line_surprisal": 1.46943
+    },
+    {
+      "function_id": "context.go::GetUint64:373",
+      "file_path": "context.go",
+      "name": "GetUint64",
+      "start_line": 373,
+      "end_line": 375,
+      "nloc": 3,
+      "mean_line_surprisal": 0.83871,
+      "max_line_surprisal": 1.47542
+    },
+    {
+      "function_id": "context.go::GetUint32:368",
+      "file_path": "context.go",
+      "name": "GetUint32",
+      "start_line": 368,
+      "end_line": 370,
+      "nloc": 3,
+      "mean_line_surprisal": 0.84291,
+      "max_line_surprisal": 1.47564
+    },
+    {
+      "function_id": "context.go::GetUint16:363",
+      "file_path": "context.go",
+      "name": "GetUint16",
+      "start_line": 363,
+      "end_line": 365,
+      "nloc": 3,
+      "mean_line_surprisal": 0.88208,
+      "max_line_surprisal": 1.46313
+    },
+    {
+      "function_id": "context.go::GetUint8:358",
+      "file_path": "context.go",
+      "name": "GetUint8",
+      "start_line": 358,
+      "end_line": 360,
+      "nloc": 3,
+      "mean_line_surprisal": 0.87508,
+      "max_line_surprisal": 1.47047
+    },
+    {
+      "function_id": "context.go::GetUint:353",
+      "file_path": "context.go",
+      "name": "GetUint",
+      "start_line": 353,
+      "end_line": 355,
+      "nloc": 3,
+      "mean_line_surprisal": 0.86372,
+      "max_line_surprisal": 1.48019
+    },
+    {
+      "function_id": "context.go::GetInt64:348",
+      "file_path": "context.go",
+      "name": "GetInt64",
+      "start_line": 348,
+      "end_line": 350,
+      "nloc": 3,
+      "mean_line_surprisal": 0.88541,
+      "max_line_surprisal": 1.48776
+    },
+    {
+      "function_id": "context.go::GetInt32:343",
+      "file_path": "context.go",
+      "name": "GetInt32",
+      "start_line": 343,
+      "end_line": 345,
+      "nloc": 3,
+      "mean_line_surprisal": 0.93635,
+      "max_line_surprisal": 1.48154
+    },
+    {
+      "function_id": "context.go::GetInt16:338",
+      "file_path": "context.go",
+      "name": "GetInt16",
+      "start_line": 338,
+      "end_line": 340,
+      "nloc": 3,
+      "mean_line_surprisal": 0.91082,
+      "max_line_surprisal": 1.49664
+    },
+    {
+      "function_id": "context.go::GetInt8:333",
+      "file_path": "context.go",
+      "name": "GetInt8",
+      "start_line": 333,
+      "end_line": 335,
+      "nloc": 3,
+      "mean_line_surprisal": 0.95017,
+      "max_line_surprisal": 1.45046
+    },
+    {
+      "function_id": "context.go::GetInt:328",
+      "file_path": "context.go",
+      "name": "GetInt",
+      "start_line": 328,
+      "end_line": 330,
+      "nloc": 3,
+      "mean_line_surprisal": 1.02592,
+      "max_line_surprisal": 1.51833
+    },
+    {
+      "function_id": "context.go::GetBool:323",
+      "file_path": "context.go",
+      "name": "GetBool",
+      "start_line": 323,
+      "end_line": 325,
+      "nloc": 3,
+      "mean_line_surprisal": 1.113,
+      "max_line_surprisal": 1.47921
+    },
+    {
+      "function_id": "context.go::GetString:318",
+      "file_path": "context.go",
+      "name": "GetString",
+      "start_line": 318,
+      "end_line": 320,
+      "nloc": 3,
+      "mean_line_surprisal": 1.34324,
+      "max_line_surprisal": 1.75638
+    },
+    {
+      "function_id": "context.go::getTyped:310",
+      "file_path": "context.go",
+      "name": "getTyped",
+      "start_line": 310,
+      "end_line": 315,
+      "nloc": 6,
+      "mean_line_surprisal": 2.25515,
+      "max_line_surprisal": 4.85557
+    },
+    {
+      "function_id": "context.go::MustGet:303",
+      "file_path": "context.go",
+      "name": "MustGet",
+      "start_line": 303,
+      "end_line": 308,
+      "nloc": 6,
+      "mean_line_surprisal": 1.49412,
+      "max_line_surprisal": 2.15667
+    },
+    {
+      "function_id": "context.go::Get:295",
+      "file_path": "context.go",
+      "name": "Get",
+      "start_line": 295,
+      "end_line": 300,
+      "nloc": 6,
+      "mean_line_surprisal": 1.30785,
+      "max_line_surprisal": 1.75196
+    },
+    {
+      "function_id": "context.go::Set:283",
+      "file_path": "context.go",
+      "name": "Set",
+      "start_line": 283,
+      "end_line": 291,
+      "nloc": 8,
+      "mean_line_surprisal": 1.7353,
+      "max_line_surprisal": 2.55827
+    },
+    {
+      "function_id": "context.go::Error:259",
+      "file_path": "context.go",
+      "name": "Error",
+      "start_line": 259,
+      "end_line": 275,
+      "nloc": 15,
+      "mean_line_surprisal": 1.70457,
+      "max_line_surprisal": 3.18932
+    },
+    {
+      "function_id": "context.go::AbortWithError:245",
+      "file_path": "context.go",
+      "name": "AbortWithError",
+      "start_line": 245,
+      "end_line": 248,
+      "nloc": 4,
+      "mean_line_surprisal": 1.77757,
+      "max_line_surprisal": 2.34494
+    },
+    {
+      "function_id": "context.go::AbortWithStatusJSON:237",
+      "file_path": "context.go",
+      "name": "AbortWithStatusJSON",
+      "start_line": 237,
+      "end_line": 240,
+      "nloc": 4,
+      "mean_line_surprisal": 0.97737,
+      "max_line_surprisal": 1.72811
+    },
+    {
+      "function_id": "context.go::AbortWithStatusPureJSON:229",
+      "file_path": "context.go",
+      "name": "AbortWithStatusPureJSON",
+      "start_line": 229,
+      "end_line": 232,
+      "nloc": 4,
+      "mean_line_surprisal": 1.42753,
+      "max_line_surprisal": 2.23536
+    },
+    {
+      "function_id": "context.go::AbortWithStatus:220",
+      "file_path": "context.go",
+      "name": "AbortWithStatus",
+      "start_line": 220,
+      "end_line": 224,
+      "nloc": 5,
+      "mean_line_surprisal": 1.88489,
+      "max_line_surprisal": 2.07691
+    },
+    {
+      "function_id": "context.go::Abort:214",
+      "file_path": "context.go",
+      "name": "Abort",
+      "start_line": 214,
+      "end_line": 216,
+      "nloc": 3,
+      "mean_line_surprisal": 1.60544,
+      "max_line_surprisal": 1.84399
+    },
+    {
+      "function_id": "context.go::IsAborted:206",
+      "file_path": "context.go",
+      "name": "IsAborted",
+      "start_line": 206,
+      "end_line": 208,
+      "nloc": 3,
+      "mean_line_surprisal": 1.57505,
+      "max_line_surprisal": 2.30433
+    },
+    {
+      "function_id": "context.go::Next:195",
+      "file_path": "context.go",
+      "name": "Next",
+      "start_line": 195,
+      "end_line": 203,
+      "nloc": 9,
+      "mean_line_surprisal": 1.95982,
+      "max_line_surprisal": 2.5637
+    },
+    {
+      "function_id": "context.go::FullPath:184",
+      "file_path": "context.go",
+      "name": "FullPath",
+      "start_line": 184,
+      "end_line": 186,
+      "nloc": 3,
+      "mean_line_surprisal": 2.31639,
+      "max_line_surprisal": 3.34436
+    },
+    {
+      "function_id": "context.go::Handler:174",
+      "file_path": "context.go",
+      "name": "Handler",
+      "start_line": 174,
+      "end_line": 176,
+      "nloc": 3,
+      "mean_line_surprisal": 2.22722,
+      "max_line_surprisal": 3.58077
+    },
+    {
+      "function_id": "context.go::HandlerNames:162",
+      "file_path": "context.go",
+      "name": "HandlerNames",
+      "start_line": 162,
+      "end_line": 171,
+      "nloc": 10,
+      "mean_line_surprisal": 2.38045,
+      "max_line_surprisal": 6.22661
+    },
+    {
+      "function_id": "context.go::HandlerName:156",
+      "file_path": "context.go",
+      "name": "HandlerName",
+      "start_line": 156,
+      "end_line": 158,
+      "nloc": 3,
+      "mean_line_surprisal": 2.04064,
+      "max_line_surprisal": 2.57382
+    },
+    {
+      "function_id": "context.go::Copy:129",
+      "file_path": "context.go",
+      "name": "Copy",
+      "start_line": 129,
+      "end_line": 152,
+      "nloc": 20,
+      "mean_line_surprisal": 1.71105,
+      "max_line_surprisal": 2.77484
+    },
+    {
+      "function_id": "context.go::reset:110",
+      "file_path": "context.go",
+      "name": "reset",
+      "start_line": 110,
+      "end_line": 125,
+      "nloc": 15,
+      "mean_line_surprisal": 1.94871,
+      "max_line_surprisal": 3.27974
+    },
+    {
+      "function_id": "context.go::safeInt8:59",
+      "file_path": "context.go",
+      "name": "safeInt8",
+      "start_line": 59,
+      "end_line": 64,
+      "nloc": 6,
+      "mean_line_surprisal": 1.46676,
+      "max_line_surprisal": 2.49096
+    },
+    {
+      "function_id": "context_appengine.go::init:9",
+      "file_path": "context_appengine.go",
+      "name": "init",
+      "start_line": 9,
+      "end_line": 11,
+      "nloc": 3,
+      "mean_line_surprisal": 1.96238,
+      "max_line_surprisal": 3.16708
+    },
+    {
+      "function_id": "debug.go::debugPrintError:108",
+      "file_path": "debug.go",
+      "name": "debugPrintError",
+      "start_line": 108,
+      "end_line": 112,
+      "nloc": 5,
+      "mean_line_surprisal": 1.94514,
+      "max_line_surprisal": 2.23914
+    },
+    {
+      "function_id": "debug.go::debugPrintWARNINGSetHTMLTemplate:98",
+      "file_path": "debug.go",
+      "name": "debugPrintWARNINGSetHTMLTemplate",
+      "start_line": 98,
+      "end_line": 106,
+      "nloc": 7,
+      "mean_line_surprisal": 1.10305,
+      "max_line_surprisal": 2.56598
+    },
+    {
+      "function_id": "debug.go::debugPrintWARNINGNew:90",
+      "file_path": "debug.go",
+      "name": "debugPrintWARNINGNew",
+      "start_line": 90,
+      "end_line": 96,
+      "nloc": 6,
+      "mean_line_surprisal": 1.21305,
+      "max_line_surprisal": 2.66037
+    },
+    {
+      "function_id": "debug.go::debugPrintWARNINGDefault:79",
+      "file_path": "debug.go",
+      "name": "debugPrintWARNINGDefault",
+      "start_line": 79,
+      "end_line": 88,
+      "nloc": 8,
+      "mean_line_surprisal": 1.33247,
+      "max_line_surprisal": 2.77416
+    },
+    {
+      "function_id": "debug.go::getMinVer:70",
+      "file_path": "debug.go",
+      "name": "getMinVer",
+      "start_line": 70,
+      "end_line": 77,
+      "nloc": 8,
+      "mean_line_surprisal": 1.72339,
+      "max_line_surprisal": 2.39278
+    },
+    {
+      "function_id": "debug.go::debugPrint:54",
+      "file_path": "debug.go",
+      "name": "debugPrint",
+      "start_line": 54,
+      "end_line": 68,
+      "nloc": 13,
+      "mean_line_surprisal": 2.32862,
+      "max_line_surprisal": 4.54889
+    },
+    {
+      "function_id": "debug.go::debugPrintLoadTemplate:42",
+      "file_path": "debug.go",
+      "name": "debugPrintLoadTemplate",
+      "start_line": 42,
+      "end_line": 52,
+      "nloc": 11,
+      "mean_line_surprisal": 1.95397,
+      "max_line_surprisal": 2.79045
+    },
+    {
+      "function_id": "debug.go::debugPrintRoute:30",
+      "file_path": "debug.go",
+      "name": "debugPrintRoute",
+      "start_line": 30,
+      "end_line": 40,
+      "nloc": 11,
+      "mean_line_surprisal": 1.76996,
+      "max_line_surprisal": 2.73624
+    },
+    {
+      "function_id": "debug.go::IsDebugging:20",
+      "file_path": "debug.go",
+      "name": "IsDebugging",
+      "start_line": 20,
+      "end_line": 22,
+      "nloc": 3,
+      "mean_line_surprisal": 1.49337,
+      "max_line_surprisal": 1.76821
+    },
+    {
+      "function_id": "deprecated.go::BindWith:17",
+      "file_path": "deprecated.go",
+      "name": "BindWith",
+      "start_line": 17,
+      "end_line": 23,
+      "nloc": 7,
+      "mean_line_surprisal": 1.70496,
+      "max_line_surprisal": 1.99698
+    },
+    {
+      "function_id": "errors.go::String:163",
+      "file_path": "errors.go",
+      "name": "String",
+      "start_line": 163,
+      "end_line": 175,
+      "nloc": 13,
+      "mean_line_surprisal": 1.65429,
+      "max_line_surprisal": 2.64108
+    },
+    {
+      "function_id": "errors.go::MarshalJSON:159",
+      "file_path": "errors.go",
+      "name": "MarshalJSON",
+      "start_line": 159,
+      "end_line": 161,
+      "nloc": 3,
+      "mean_line_surprisal": 1.08437,
+      "max_line_surprisal": 1.24881
+    },
+    {
+      "function_id": "errors.go::JSON:143",
+      "file_path": "errors.go",
+      "name": "JSON",
+      "start_line": 143,
+      "end_line": 156,
+      "nloc": 14,
+      "mean_line_surprisal": 1.70364,
+      "max_line_surprisal": 3.10376
+    },
+    {
+      "function_id": "errors.go::Errors:132",
+      "file_path": "errors.go",
+      "name": "Errors",
+      "start_line": 132,
+      "end_line": 141,
+      "nloc": 10,
+      "mean_line_surprisal": 1.73201,
+      "max_line_surprisal": 4.76598
+    },
+    {
+      "function_id": "errors.go::Last:118",
+      "file_path": "errors.go",
+      "name": "Last",
+      "start_line": 118,
+      "end_line": 123,
+      "nloc": 6,
+      "mean_line_surprisal": 1.6505,
+      "max_line_surprisal": 2.78478
+    },
+    {
+      "function_id": "errors.go::ByType:100",
+      "file_path": "errors.go",
+      "name": "ByType",
+      "start_line": 100,
+      "end_line": 114,
+      "nloc": 15,
+      "mean_line_surprisal": 1.87372,
+      "max_line_surprisal": 4.67687
+    },
+    {
+      "function_id": "errors.go::Unwrap:94",
+      "file_path": "errors.go",
+      "name": "Unwrap",
+      "start_line": 94,
+      "end_line": 96,
+      "nloc": 3,
+      "mean_line_surprisal": 1.81546,
+      "max_line_surprisal": 2.70752
+    },
+    {
+      "function_id": "errors.go::IsType:89",
+      "file_path": "errors.go",
+      "name": "IsType",
+      "start_line": 89,
+      "end_line": 91,
+      "nloc": 3,
+      "mean_line_surprisal": 2.60203,
+      "max_line_surprisal": 5.03331
+    },
+    {
+      "function_id": "errors.go::Error:84",
+      "file_path": "errors.go",
+      "name": "Error",
+      "start_line": 84,
+      "end_line": 86,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50671,
+      "max_line_surprisal": 1.58983
+    },
+    {
+      "function_id": "errors.go::MarshalJSON:79",
+      "file_path": "errors.go",
+      "name": "MarshalJSON",
+      "start_line": 79,
+      "end_line": 81,
+      "nloc": 3,
+      "mean_line_surprisal": 1.80655,
+      "max_line_surprisal": 2.41393
+    },
+    {
+      "function_id": "errors.go::JSON:57",
+      "file_path": "errors.go",
+      "name": "JSON",
+      "start_line": 57,
+      "end_line": 76,
+      "nloc": 20,
+      "mean_line_surprisal": 2.1291,
+      "max_line_surprisal": 5.03032
+    },
+    {
+      "function_id": "errors.go::SetMeta:51",
+      "file_path": "errors.go",
+      "name": "SetMeta",
+      "start_line": 51,
+      "end_line": 54,
+      "nloc": 4,
+      "mean_line_surprisal": 1.0717,
+      "max_line_surprisal": 1.57106
+    },
+    {
+      "function_id": "errors.go::SetType:45",
+      "file_path": "errors.go",
+      "name": "SetType",
+      "start_line": 45,
+      "end_line": 48,
+      "nloc": 4,
+      "mean_line_surprisal": 1.4881,
+      "max_line_surprisal": 1.88014
+    },
+    {
+      "function_id": "fs.go::Dir:42",
+      "file_path": "fs.go",
+      "name": "Dir",
+      "start_line": 42,
+      "end_line": 50,
+      "nloc": 7,
+      "mean_line_surprisal": 1.56972,
+      "max_line_surprisal": 2.18052
+    },
+    {
+      "function_id": "fs.go::Readdir:33",
+      "file_path": "fs.go",
+      "name": "Readdir",
+      "start_line": 33,
+      "end_line": 36,
+      "nloc": 4,
+      "mean_line_surprisal": 1.35326,
+      "max_line_surprisal": 1.78244
+    },
+    {
+      "function_id": "fs.go::Open:18",
+      "file_path": "fs.go",
+      "name": "Open",
+      "start_line": 18,
+      "end_line": 25,
+      "nloc": 7,
+      "mean_line_surprisal": 1.56281,
+      "max_line_surprisal": 2.17774
+    },
+    {
+      "function_id": "gin.go::redirectRequest:803",
+      "file_path": "gin.go",
+      "name": "redirectRequest",
+      "start_line": 803,
+      "end_line": 815,
+      "nloc": 12,
+      "mean_line_surprisal": 1.42461,
+      "max_line_surprisal": 2.20616
+    },
+    {
+      "function_id": "gin.go::redirectFixedPath:791",
+      "file_path": "gin.go",
+      "name": "redirectFixedPath",
+      "start_line": 791,
+      "end_line": 801,
+      "nloc": 10,
+      "mean_line_surprisal": 1.45357,
+      "max_line_surprisal": 2.58654
+    },
+    {
+      "function_id": "gin.go::redirectTrailingSlash:775",
+      "file_path": "gin.go",
+      "name": "redirectTrailingSlash",
+      "start_line": 775,
+      "end_line": 789,
+      "nloc": 14,
+      "mean_line_surprisal": 1.84948,
+      "max_line_surprisal": 4.44816
+    },
+    {
+      "function_id": "gin.go::serveError:758",
+      "file_path": "gin.go",
+      "name": "serveError",
+      "start_line": 758,
+      "end_line": 773,
+      "nloc": 16,
+      "mean_line_surprisal": 2.19396,
+      "max_line_surprisal": 4.06205
+    },
+    {
+      "function_id": "gin.go::handleHTTPRequest:688",
+      "file_path": "gin.go",
+      "name": "handleHTTPRequest",
+      "start_line": 688,
+      "end_line": 754,
+      "nloc": 63,
+      "mean_line_surprisal": 1.82474,
+      "max_line_surprisal": 5.16917
+    },
+    {
+      "function_id": "gin.go::HandleContext:678",
+      "file_path": "gin.go",
+      "name": "HandleContext",
+      "start_line": 678,
+      "end_line": 686,
+      "nloc": 8,
+      "mean_line_surprisal": 1.91751,
+      "max_line_surprisal": 2.93275
+    },
+    {
+      "function_id": "gin.go::ServeHTTP:660",
+      "file_path": "gin.go",
+      "name": "ServeHTTP",
+      "start_line": 660,
+      "end_line": 673,
+      "nloc": 11,
+      "mean_line_surprisal": 2.12941,
+      "max_line_surprisal": 4.00726
+    },
+    {
+      "function_id": "gin.go::RunListener:643",
+      "file_path": "gin.go",
+      "name": "RunListener",
+      "start_line": 643,
+      "end_line": 657,
+      "nloc": 13,
+      "mean_line_surprisal": 0.88532,
+      "max_line_surprisal": 2.03591
+    },
+    {
+      "function_id": "gin.go::RunQUIC:628",
+      "file_path": "gin.go",
+      "name": "RunQUIC",
+      "start_line": 628,
+      "end_line": 639,
+      "nloc": 10,
+      "mean_line_surprisal": 1.2493,
+      "max_line_surprisal": 2.29011
+    },
+    {
+      "function_id": "gin.go::RunFd:605",
+      "file_path": "gin.go",
+      "name": "RunFd",
+      "start_line": 605,
+      "end_line": 623,
+      "nloc": 17,
+      "mean_line_surprisal": 1.14194,
+      "max_line_surprisal": 3.06852
+    },
+    {
+      "function_id": "gin.go::RunUnix:579",
+      "file_path": "gin.go",
+      "name": "RunUnix",
+      "start_line": 579,
+      "end_line": 600,
+      "nloc": 19,
+      "mean_line_surprisal": 1.23378,
+      "max_line_surprisal": 3.61087
+    },
+    {
+      "function_id": "gin.go::RunTLS:559",
+      "file_path": "gin.go",
+      "name": "RunTLS",
+      "start_line": 559,
+      "end_line": 574,
+      "nloc": 14,
+      "mean_line_surprisal": 1.30374,
+      "max_line_surprisal": 2.48868
+    },
+    {
+      "function_id": "gin.go::Run:538",
+      "file_path": "gin.go",
+      "name": "Run",
+      "start_line": 538,
+      "end_line": 554,
+      "nloc": 16,
+      "mean_line_surprisal": 1.69957,
+      "max_line_surprisal": 3.14282
+    },
+    {
+      "function_id": "gin.go::parseIP:523",
+      "file_path": "gin.go",
+      "name": "parseIP",
+      "start_line": 523,
+      "end_line": 533,
+      "nloc": 9,
+      "mean_line_surprisal": 1.65385,
+      "max_line_surprisal": 3.92824
+    },
+    {
+      "function_id": "gin.go::updateRouteTrees:515",
+      "file_path": "gin.go",
+      "name": "updateRouteTrees",
+      "start_line": 515,
+      "end_line": 519,
+      "nloc": 5,
+      "mean_line_surprisal": 1.40378,
+      "max_line_surprisal": 2.74653
+    },
+    {
+      "function_id": "gin.go::updateRouteTree:502",
+      "file_path": "gin.go",
+      "name": "updateRouteTree",
+      "start_line": 502,
+      "end_line": 512,
+      "nloc": 11,
+      "mean_line_surprisal": 1.91937,
+      "max_line_surprisal": 4.92024
+    },
+    {
+      "function_id": "gin.go::validateHeader:480",
+      "file_path": "gin.go",
+      "name": "validateHeader",
+      "start_line": 480,
+      "end_line": 499,
+      "nloc": 19,
+      "mean_line_surprisal": 1.69288,
+      "max_line_surprisal": 6.35645
+    },
+    {
+      "function_id": "gin.go::isTrustedProxy:467",
+      "file_path": "gin.go",
+      "name": "isTrustedProxy",
+      "start_line": 467,
+      "end_line": 477,
+      "nloc": 11,
+      "mean_line_surprisal": 2.22132,
+      "max_line_surprisal": 3.82094
+    },
+    {
+      "function_id": "gin.go::parseTrustedProxies:460",
+      "file_path": "gin.go",
+      "name": "parseTrustedProxies",
+      "start_line": 460,
+      "end_line": 464,
+      "nloc": 5,
+      "mean_line_surprisal": 1.50047,
+      "max_line_surprisal": 2.31622
+    },
+    {
+      "function_id": "gin.go::isUnsafeTrustedProxies:455",
+      "file_path": "gin.go",
+      "name": "isUnsafeTrustedProxies",
+      "start_line": 455,
+      "end_line": 457,
+      "nloc": 3,
+      "mean_line_surprisal": 1.7989,
+      "max_line_surprisal": 2.63645
+    },
+    {
+      "function_id": "gin.go::SetTrustedProxies:449",
+      "file_path": "gin.go",
+      "name": "SetTrustedProxies",
+      "start_line": 449,
+      "end_line": 452,
+      "nloc": 4,
+      "mean_line_surprisal": 1.87142,
+      "max_line_surprisal": 2.63372
+    },
+    {
+      "function_id": "gin.go::prepareTrustedCIDRs:412",
+      "file_path": "gin.go",
+      "name": "prepareTrustedCIDRs",
+      "start_line": 412,
+      "end_line": 439,
+      "nloc": 26,
+      "mean_line_surprisal": 1.80036,
+      "max_line_surprisal": 4.8615
+    },
+    {
+      "function_id": "gin.go::iterate:395",
+      "file_path": "gin.go",
+      "name": "iterate",
+      "start_line": 395,
+      "end_line": 410,
+      "nloc": 16,
+      "mean_line_surprisal": 1.39448,
+      "max_line_surprisal": 2.7002
+    },
+    {
+      "function_id": "gin.go::Routes:388",
+      "file_path": "gin.go",
+      "name": "Routes",
+      "start_line": 388,
+      "end_line": 393,
+      "nloc": 6,
+      "mean_line_surprisal": 1.77217,
+      "max_line_surprisal": 4.10509
+    },
+    {
+      "function_id": "gin.go::addRoute:362",
+      "file_path": "gin.go",
+      "name": "addRoute",
+      "start_line": 362,
+      "end_line": 384,
+      "nloc": 19,
+      "mean_line_surprisal": 1.664,
+      "max_line_surprisal": 2.25365
+    },
+    {
+      "function_id": "gin.go::rebuild405Handlers:358",
+      "file_path": "gin.go",
+      "name": "rebuild405Handlers",
+      "start_line": 358,
+      "end_line": 360,
+      "nloc": 3,
+      "mean_line_surprisal": 1.27338,
+      "max_line_surprisal": 1.72226
+    },
+    {
+      "function_id": "gin.go::rebuild404Handlers:354",
+      "file_path": "gin.go",
+      "name": "rebuild404Handlers",
+      "start_line": 354,
+      "end_line": 356,
+      "nloc": 3,
+      "mean_line_surprisal": 1.37892,
+      "max_line_surprisal": 2.06087
+    },
+    {
+      "function_id": "gin.go::With:346",
+      "file_path": "gin.go",
+      "name": "With",
+      "start_line": 346,
+      "end_line": 352,
+      "nloc": 6,
+      "mean_line_surprisal": 1.29816,
+      "max_line_surprisal": 2.10254
+    },
+    {
+      "function_id": "gin.go::Use:338",
+      "file_path": "gin.go",
+      "name": "Use",
+      "start_line": 338,
+      "end_line": 343,
+      "nloc": 6,
+      "mean_line_surprisal": 1.78728,
+      "max_line_surprisal": 2.72926
+    },
+    {
+      "function_id": "gin.go::NoMethod:330",
+      "file_path": "gin.go",
+      "name": "NoMethod",
+      "start_line": 330,
+      "end_line": 333,
+      "nloc": 4,
+      "mean_line_surprisal": 1.58227,
+      "max_line_surprisal": 2.42687
+    },
+    {
+      "function_id": "gin.go::NoRoute:324",
+      "file_path": "gin.go",
+      "name": "NoRoute",
+      "start_line": 324,
+      "end_line": 327,
+      "nloc": 4,
+      "mean_line_surprisal": 1.78674,
+      "max_line_surprisal": 2.57631
+    },
+    {
+      "function_id": "gin.go::SetFuncMap:319",
+      "file_path": "gin.go",
+      "name": "SetFuncMap",
+      "start_line": 319,
+      "end_line": 321,
+      "nloc": 3,
+      "mean_line_surprisal": 1.57305,
+      "max_line_surprisal": 2.34295
+    },
+    {
+      "function_id": "gin.go::SetHTMLTemplate:310",
+      "file_path": "gin.go",
+      "name": "SetHTMLTemplate",
+      "start_line": 310,
+      "end_line": 316,
+      "nloc": 6,
+      "mean_line_surprisal": 1.85583,
+      "max_line_surprisal": 2.52677
+    },
+    {
+      "function_id": "gin.go::LoadHTMLFS:298",
+      "file_path": "gin.go",
+      "name": "LoadHTMLFS",
+      "start_line": 298,
+      "end_line": 307,
+      "nloc": 9,
+      "mean_line_surprisal": 0.77088,
+      "max_line_surprisal": 1.30566
+    },
+    {
+      "function_id": "gin.go::LoadHTMLFiles:286",
+      "file_path": "gin.go",
+      "name": "LoadHTMLFiles",
+      "start_line": 286,
+      "end_line": 294,
+      "nloc": 8,
+      "mean_line_surprisal": 0.94748,
+      "max_line_surprisal": 1.52432
+    },
+    {
+      "function_id": "gin.go::LoadHTMLGlob:270",
+      "file_path": "gin.go",
+      "name": "LoadHTMLGlob",
+      "start_line": 270,
+      "end_line": 282,
+      "nloc": 11,
+      "mean_line_surprisal": 1.48346,
+      "max_line_surprisal": 2.63251
+    },
+    {
+      "function_id": "gin.go::SecureJsonPrefix:263",
+      "file_path": "gin.go",
+      "name": "SecureJsonPrefix",
+      "start_line": 263,
+      "end_line": 266,
+      "nloc": 4,
+      "mean_line_surprisal": 1.35364,
+      "max_line_surprisal": 2.13591
+    },
+    {
+      "function_id": "gin.go::Delims:257",
+      "file_path": "gin.go",
+      "name": "Delims",
+      "start_line": 257,
+      "end_line": 260,
+      "nloc": 4,
+      "mean_line_surprisal": 1.38722,
+      "max_line_surprisal": 1.66957
+    },
+    {
+      "function_id": "gin.go::allocateContext:250",
+      "file_path": "gin.go",
+      "name": "allocateContext",
+      "start_line": 250,
+      "end_line": 254,
+      "nloc": 5,
+      "mean_line_surprisal": 1.63446,
+      "max_line_surprisal": 2.17505
+    },
+    {
+      "function_id": "gin.go::Handler:241",
+      "file_path": "gin.go",
+      "name": "Handler",
+      "start_line": 241,
+      "end_line": 248,
+      "nloc": 7,
+      "mean_line_surprisal": 1.93868,
+      "max_line_surprisal": 4.8037
+    },
+    {
+      "function_id": "gin.go::Default:234",
+      "file_path": "gin.go",
+      "name": "Default",
+      "start_line": 234,
+      "end_line": 239,
+      "nloc": 6,
+      "mean_line_surprisal": 1.41962,
+      "max_line_surprisal": 2.11792
+    },
+    {
+      "function_id": "gin.go::New:201",
+      "file_path": "gin.go",
+      "name": "New",
+      "start_line": 201,
+      "end_line": 231,
+      "nloc": 31,
+      "mean_line_surprisal": 1.64798,
+      "max_line_surprisal": 2.76498
+    },
+    {
+      "function_id": "gin.go::Last:66",
+      "file_path": "gin.go",
+      "name": "Last",
+      "start_line": 66,
+      "end_line": 71,
+      "nloc": 6,
+      "mean_line_surprisal": 2.1047,
+      "max_line_surprisal": 2.80464
+    },
+    {
+      "function_id": "ginS/gins.go::RunFd:157",
+      "file_path": "ginS/gins.go",
+      "name": "RunFd",
+      "start_line": 157,
+      "end_line": 159,
+      "nloc": 3,
+      "mean_line_surprisal": 1.45067,
+      "max_line_surprisal": 1.63194
+    },
+    {
+      "function_id": "ginS/gins.go::RunUnix:150",
+      "file_path": "ginS/gins.go",
+      "name": "RunUnix",
+      "start_line": 150,
+      "end_line": 152,
+      "nloc": 3,
+      "mean_line_surprisal": 1.59807,
+      "max_line_surprisal": 2.05908
+    },
+    {
+      "function_id": "ginS/gins.go::RunTLS:143",
+      "file_path": "ginS/gins.go",
+      "name": "RunTLS",
+      "start_line": 143,
+      "end_line": 145,
+      "nloc": 3,
+      "mean_line_surprisal": 1.2516,
+      "max_line_surprisal": 1.4686
+    },
+    {
+      "function_id": "ginS/gins.go::Run:136",
+      "file_path": "ginS/gins.go",
+      "name": "Run",
+      "start_line": 136,
+      "end_line": 138,
+      "nloc": 3,
+      "mean_line_surprisal": 1.15558,
+      "max_line_surprisal": 1.86832
+    },
+    {
+      "function_id": "ginS/gins.go::Routes:129",
+      "file_path": "ginS/gins.go",
+      "name": "Routes",
+      "start_line": 129,
+      "end_line": 131,
+      "nloc": 3,
+      "mean_line_surprisal": 2.08652,
+      "max_line_surprisal": 2.75081
+    },
+    {
+      "function_id": "ginS/gins.go::Use:124",
+      "file_path": "ginS/gins.go",
+      "name": "Use",
+      "start_line": 124,
+      "end_line": 126,
+      "nloc": 3,
+      "mean_line_surprisal": 0.82283,
+      "max_line_surprisal": 1.11474
+    },
+    {
+      "function_id": "ginS/gins.go::StaticFS:117",
+      "file_path": "ginS/gins.go",
+      "name": "StaticFS",
+      "start_line": 117,
+      "end_line": 119,
+      "nloc": 3,
+      "mean_line_surprisal": 1.36168,
+      "max_line_surprisal": 1.45857
+    },
+    {
+      "function_id": "ginS/gins.go::Static:112",
+      "file_path": "ginS/gins.go",
+      "name": "Static",
+      "start_line": 112,
+      "end_line": 114,
+      "nloc": 3,
+      "mean_line_surprisal": 1.26689,
+      "max_line_surprisal": 1.66174
+    },
+    {
+      "function_id": "ginS/gins.go::StaticFile:101",
+      "file_path": "ginS/gins.go",
+      "name": "StaticFile",
+      "start_line": 101,
+      "end_line": 103,
+      "nloc": 3,
+      "mean_line_surprisal": 1.17642,
+      "max_line_surprisal": 1.69863
+    },
+    {
+      "function_id": "ginS/gins.go::Any:96",
+      "file_path": "ginS/gins.go",
+      "name": "Any",
+      "start_line": 96,
+      "end_line": 98,
+      "nloc": 3,
+      "mean_line_surprisal": 0.65656,
+      "max_line_surprisal": 1.05423
+    },
+    {
+      "function_id": "ginS/gins.go::HEAD:91",
+      "file_path": "ginS/gins.go",
+      "name": "HEAD",
+      "start_line": 91,
+      "end_line": 93,
+      "nloc": 3,
+      "mean_line_surprisal": 0.66114,
+      "max_line_surprisal": 1.05187
+    },
+    {
+      "function_id": "ginS/gins.go::OPTIONS:86",
+      "file_path": "ginS/gins.go",
+      "name": "OPTIONS",
+      "start_line": 86,
+      "end_line": 88,
+      "nloc": 3,
+      "mean_line_surprisal": 0.66133,
+      "max_line_surprisal": 1.05851
+    },
+    {
+      "function_id": "ginS/gins.go::PUT:81",
+      "file_path": "ginS/gins.go",
+      "name": "PUT",
+      "start_line": 81,
+      "end_line": 83,
+      "nloc": 3,
+      "mean_line_surprisal": 0.66475,
+      "max_line_surprisal": 1.06172
+    },
+    {
+      "function_id": "ginS/gins.go::PATCH:76",
+      "file_path": "ginS/gins.go",
+      "name": "PATCH",
+      "start_line": 76,
+      "end_line": 78,
+      "nloc": 3,
+      "mean_line_surprisal": 0.6694,
+      "max_line_surprisal": 1.06626
+    },
+    {
+      "function_id": "ginS/gins.go::DELETE:71",
+      "file_path": "ginS/gins.go",
+      "name": "DELETE",
+      "start_line": 71,
+      "end_line": 73,
+      "nloc": 3,
+      "mean_line_surprisal": 0.67616,
+      "max_line_surprisal": 1.07333
+    },
+    {
+      "function_id": "ginS/gins.go::GET:66",
+      "file_path": "ginS/gins.go",
+      "name": "GET",
+      "start_line": 66,
+      "end_line": 68,
+      "nloc": 3,
+      "mean_line_surprisal": 0.68988,
+      "max_line_surprisal": 1.08171
+    },
+    {
+      "function_id": "ginS/gins.go::POST:61",
+      "file_path": "ginS/gins.go",
+      "name": "POST",
+      "start_line": 61,
+      "end_line": 63,
+      "nloc": 3,
+      "mean_line_surprisal": 0.70977,
+      "max_line_surprisal": 1.11492
+    },
+    {
+      "function_id": "ginS/gins.go::Handle:56",
+      "file_path": "ginS/gins.go",
+      "name": "Handle",
+      "start_line": 56,
+      "end_line": 58,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74269,
+      "max_line_surprisal": 1.13039
+    },
+    {
+      "function_id": "ginS/gins.go::Group:51",
+      "file_path": "ginS/gins.go",
+      "name": "Group",
+      "start_line": 51,
+      "end_line": 53,
+      "nloc": 3,
+      "mean_line_surprisal": 1.04248,
+      "max_line_surprisal": 1.5462
+    },
+    {
+      "function_id": "ginS/gins.go::NoMethod:45",
+      "file_path": "ginS/gins.go",
+      "name": "NoMethod",
+      "start_line": 45,
+      "end_line": 47,
+      "nloc": 3,
+      "mean_line_surprisal": 0.88043,
+      "max_line_surprisal": 1.40299
+    },
+    {
+      "function_id": "ginS/gins.go::NoRoute:40",
+      "file_path": "ginS/gins.go",
+      "name": "NoRoute",
+      "start_line": 40,
+      "end_line": 42,
+      "nloc": 3,
+      "mean_line_surprisal": 1.08752,
+      "max_line_surprisal": 1.84281
+    },
+    {
+      "function_id": "ginS/gins.go::SetHTMLTemplate:35",
+      "file_path": "ginS/gins.go",
+      "name": "SetHTMLTemplate",
+      "start_line": 35,
+      "end_line": 37,
+      "nloc": 3,
+      "mean_line_surprisal": 1.35567,
+      "max_line_surprisal": 1.80636
+    },
+    {
+      "function_id": "ginS/gins.go::LoadHTMLFS:30",
+      "file_path": "ginS/gins.go",
+      "name": "LoadHTMLFS",
+      "start_line": 30,
+      "end_line": 32,
+      "nloc": 3,
+      "mean_line_surprisal": 1.31044,
+      "max_line_surprisal": 1.68729
+    },
+    {
+      "function_id": "ginS/gins.go::LoadHTMLFiles:25",
+      "file_path": "ginS/gins.go",
+      "name": "LoadHTMLFiles",
+      "start_line": 25,
+      "end_line": 27,
+      "nloc": 3,
+      "mean_line_surprisal": 1.58588,
+      "max_line_surprisal": 1.97294
+    },
+    {
+      "function_id": "ginS/gins.go::LoadHTMLGlob:20",
+      "file_path": "ginS/gins.go",
+      "name": "LoadHTMLGlob",
+      "start_line": 20,
+      "end_line": 22,
+      "nloc": 3,
+      "mean_line_surprisal": 1.90064,
+      "max_line_surprisal": 2.10158
+    },
+    {
+      "function_id": "internal/bytesconv/bytesconv.go::BytesToString:19",
+      "file_path": "internal/bytesconv/bytesconv.go",
+      "name": "BytesToString",
+      "start_line": 19,
+      "end_line": 21,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70006,
+      "max_line_surprisal": 2.41335
+    },
+    {
+      "function_id": "internal/bytesconv/bytesconv.go::StringToBytes:13",
+      "file_path": "internal/bytesconv/bytesconv.go",
+      "name": "StringToBytes",
+      "start_line": 13,
+      "end_line": 15,
+      "nloc": 3,
+      "mean_line_surprisal": 1.89535,
+      "max_line_surprisal": 2.51399
+    },
+    {
+      "function_id": "internal/fs/fs.go::Open:14",
+      "file_path": "internal/fs/fs.go",
+      "name": "Open",
+      "start_line": 14,
+      "end_line": 21,
+      "nloc": 7,
+      "mean_line_surprisal": 1.56063,
+      "max_line_surprisal": 2.20209
+    },
+    {
+      "function_id": "logger.go::LoggerWithConfig:240",
+      "file_path": "logger.go",
+      "name": "LoggerWithConfig",
+      "start_line": 240,
+      "end_line": 309,
+      "nloc": 53,
+      "mean_line_surprisal": 1.7797,
+      "max_line_surprisal": 3.92242
+    },
+    {
+      "function_id": "logger.go::LoggerWithWriter:232",
+      "file_path": "logger.go",
+      "name": "LoggerWithWriter",
+      "start_line": 232,
+      "end_line": 237,
+      "nloc": 6,
+      "mean_line_surprisal": 1.08004,
+      "max_line_surprisal": 1.94829
+    },
+    {
+      "function_id": "logger.go::LoggerWithFormatter:224",
+      "file_path": "logger.go",
+      "name": "LoggerWithFormatter",
+      "start_line": 224,
+      "end_line": 228,
+      "nloc": 5,
+      "mean_line_surprisal": 1.22971,
+      "max_line_surprisal": 1.90658
+    },
+    {
+      "function_id": "logger.go::Logger:219",
+      "file_path": "logger.go",
+      "name": "Logger",
+      "start_line": 219,
+      "end_line": 221,
+      "nloc": 3,
+      "mean_line_surprisal": 1.86503,
+      "max_line_surprisal": 2.10314
+    },
+    {
+      "function_id": "logger.go::ErrorLoggerT:207",
+      "file_path": "logger.go",
+      "name": "ErrorLoggerT",
+      "start_line": 207,
+      "end_line": 215,
+      "nloc": 9,
+      "mean_line_surprisal": 1.98409,
+      "max_line_surprisal": 3.0265
+    },
+    {
+      "function_id": "logger.go::ErrorLogger:202",
+      "file_path": "logger.go",
+      "name": "ErrorLogger",
+      "start_line": 202,
+      "end_line": 204,
+      "nloc": 3,
+      "mean_line_surprisal": 1.31315,
+      "max_line_surprisal": 1.89348
+    },
+    {
+      "function_id": "logger.go::ForceConsoleColor:197",
+      "file_path": "logger.go",
+      "name": "ForceConsoleColor",
+      "start_line": 197,
+      "end_line": 199,
+      "nloc": 3,
+      "mean_line_surprisal": 1.27003,
+      "max_line_surprisal": 1.6867
+    },
+    {
+      "function_id": "logger.go::DisableConsoleColor:192",
+      "file_path": "logger.go",
+      "name": "DisableConsoleColor",
+      "start_line": 192,
+      "end_line": 194,
+      "nloc": 3,
+      "mean_line_surprisal": 2.22287,
+      "max_line_surprisal": 3.0814
+    },
+    {
+      "function_id": "logger.go::IsOutputColor:157",
+      "file_path": "logger.go",
+      "name": "IsOutputColor",
+      "start_line": 157,
+      "end_line": 159,
+      "nloc": 3,
+      "mean_line_surprisal": 1.21635,
+      "max_line_surprisal": 1.46606
+    },
+    {
+      "function_id": "logger.go::ResetColor:152",
+      "file_path": "logger.go",
+      "name": "ResetColor",
+      "start_line": 152,
+      "end_line": 154,
+      "nloc": 3,
+      "mean_line_surprisal": 1.52488,
+      "max_line_surprisal": 3.37151
+    },
+    {
+      "function_id": "logger.go::MethodColor:128",
+      "file_path": "logger.go",
+      "name": "MethodColor",
+      "start_line": 128,
+      "end_line": 149,
+      "nloc": 21,
+      "mean_line_surprisal": 1.45528,
+      "max_line_surprisal": 2.55713
+    },
+    {
+      "function_id": "logger.go::LatencyColor:107",
+      "file_path": "logger.go",
+      "name": "LatencyColor",
+      "start_line": 107,
+      "end_line": 125,
+      "nloc": 19,
+      "mean_line_surprisal": 1.30016,
+      "max_line_surprisal": 2.74757
+    },
+    {
+      "function_id": "logger.go::StatusCodeColor:89",
+      "file_path": "logger.go",
+      "name": "StatusCodeColor",
+      "start_line": 89,
+      "end_line": 104,
+      "nloc": 15,
+      "mean_line_surprisal": 1.40166,
+      "max_line_surprisal": 2.62834
+    },
+    {
+      "function_id": "mode.go::Mode:98",
+      "file_path": "mode.go",
+      "name": "Mode",
+      "start_line": 98,
+      "end_line": 100,
+      "nloc": 3,
+      "mean_line_surprisal": 2.1505,
+      "max_line_surprisal": 2.93353
+    },
+    {
+      "function_id": "mode.go::EnableJsonDecoderDisallowUnknownFields:93",
+      "file_path": "mode.go",
+      "name": "EnableJsonDecoderDisallowUnknownFields",
+      "start_line": 93,
+      "end_line": 95,
+      "nloc": 3,
+      "mean_line_surprisal": 1.15952,
+      "max_line_surprisal": 1.5275
+    },
+    {
+      "function_id": "mode.go::EnableJsonDecoderUseNumber:87",
+      "file_path": "mode.go",
+      "name": "EnableJsonDecoderUseNumber",
+      "start_line": 87,
+      "end_line": 89,
+      "nloc": 3,
+      "mean_line_surprisal": 1.63158,
+      "max_line_surprisal": 1.84904
+    },
+    {
+      "function_id": "mode.go::DisableBindValidation:81",
+      "file_path": "mode.go",
+      "name": "DisableBindValidation",
+      "start_line": 81,
+      "end_line": 83,
+      "nloc": 3,
+      "mean_line_surprisal": 2.12136,
+      "max_line_surprisal": 2.50941
+    },
+    {
+      "function_id": "mode.go::SetMode:58",
+      "file_path": "mode.go",
+      "name": "SetMode",
+      "start_line": 58,
+      "end_line": 78,
+      "nloc": 20,
+      "mean_line_surprisal": 1.64202,
+      "max_line_surprisal": 3.64505
+    },
+    {
+      "function_id": "mode.go::init:52",
+      "file_path": "mode.go",
+      "name": "init",
+      "start_line": 52,
+      "end_line": 55,
+      "nloc": 4,
+      "mean_line_surprisal": 1.55324,
+      "max_line_surprisal": 2.10951
+    },
+    {
+      "function_id": "path.go::bufApp:127",
+      "file_path": "path.go",
+      "name": "bufApp",
+      "start_line": 127,
+      "end_line": 150,
+      "nloc": 22,
+      "mean_line_surprisal": 1.55755,
+      "max_line_surprisal": 2.1487
+    },
+    {
+      "function_id": "path.go::cleanPath:21",
+      "file_path": "path.go",
+      "name": "cleanPath",
+      "start_line": 21,
+      "end_line": 123,
+      "nloc": 85,
+      "mean_line_surprisal": 1.64829,
+      "max_line_surprisal": 4.54955
+    },
+    {
+      "function_id": "recovery.go::timeFormat:177",
+      "file_path": "recovery.go",
+      "name": "timeFormat",
+      "start_line": 177,
+      "end_line": 179,
+      "nloc": 3,
+      "mean_line_surprisal": 1.66227,
+      "max_line_surprisal": 2.24699
+    },
+    {
+      "function_id": "recovery.go::function:152",
+      "file_path": "recovery.go",
+      "name": "function",
+      "start_line": 152,
+      "end_line": 174,
+      "nloc": 23,
+      "mean_line_surprisal": 1.92298,
+      "max_line_surprisal": 4.87075
+    },
+    {
+      "function_id": "recovery.go::source:143",
+      "file_path": "recovery.go",
+      "name": "source",
+      "start_line": 143,
+      "end_line": 149,
+      "nloc": 7,
+      "mean_line_surprisal": 1.92201,
+      "max_line_surprisal": 3.91989
+    },
+    {
+      "function_id": "recovery.go::stack:116",
+      "file_path": "recovery.go",
+      "name": "stack",
+      "start_line": 116,
+      "end_line": 140,
+      "nloc": 25,
+      "mean_line_surprisal": 1.9666,
+      "max_line_surprisal": 7.41059
+    },
+    {
+      "function_id": "recovery.go::defaultHandleRecovery:111",
+      "file_path": "recovery.go",
+      "name": "defaultHandleRecovery",
+      "start_line": 111,
+      "end_line": 113,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70693,
+      "max_line_surprisal": 2.17469
+    },
+    {
+      "function_id": "recovery.go::secureRequestDump:100",
+      "file_path": "recovery.go",
+      "name": "secureRequestDump",
+      "start_line": 100,
+      "end_line": 109,
+      "nloc": 10,
+      "mean_line_surprisal": 2.28249,
+      "max_line_surprisal": 4.55066
+    },
+    {
+      "function_id": "recovery.go::CustomRecoveryWithWriter:50",
+      "file_path": "recovery.go",
+      "name": "CustomRecoveryWithWriter",
+      "start_line": 50,
+      "end_line": 94,
+      "nloc": 45,
+      "mean_line_surprisal": 1.86242,
+      "max_line_surprisal": 3.69719
+    },
+    {
+      "function_id": "recovery.go::RecoveryWithWriter:42",
+      "file_path": "recovery.go",
+      "name": "RecoveryWithWriter",
+      "start_line": 42,
+      "end_line": 47,
+      "nloc": 6,
+      "mean_line_surprisal": 1.81838,
+      "max_line_surprisal": 2.30826
+    },
+    {
+      "function_id": "recovery.go::CustomRecovery:37",
+      "file_path": "recovery.go",
+      "name": "CustomRecovery",
+      "start_line": 37,
+      "end_line": 39,
+      "nloc": 3,
+      "mean_line_surprisal": 1.29139,
+      "max_line_surprisal": 1.84602
+    },
+    {
+      "function_id": "recovery.go::Recovery:32",
+      "file_path": "recovery.go",
+      "name": "Recovery",
+      "start_line": 32,
+      "end_line": 34,
+      "nloc": 3,
+      "mean_line_surprisal": 1.50537,
+      "max_line_surprisal": 1.83971
+    },
+    {
+      "function_id": "render/data.go::WriteContentType:23",
+      "file_path": "render/data.go",
+      "name": "WriteContentType",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.19091,
+      "max_line_surprisal": 1.74994
+    },
+    {
+      "function_id": "render/data.go::Render:16",
+      "file_path": "render/data.go",
+      "name": "Render",
+      "start_line": 16,
+      "end_line": 20,
+      "nloc": 5,
+      "mean_line_surprisal": 2.26591,
+      "max_line_surprisal": 5.03433
+    },
+    {
+      "function_id": "render/html.go::WriteContentType:99",
+      "file_path": "render/html.go",
+      "name": "WriteContentType",
+      "start_line": 99,
+      "end_line": 101,
+      "nloc": 3,
+      "mean_line_surprisal": 1.18339,
+      "max_line_surprisal": 1.64372
+    },
+    {
+      "function_id": "render/html.go::Render:89",
+      "file_path": "render/html.go",
+      "name": "Render",
+      "start_line": 89,
+      "end_line": 96,
+      "nloc": 7,
+      "mean_line_surprisal": 1.54044,
+      "max_line_surprisal": 1.97884
+    },
+    {
+      "function_id": "render/html.go::loadTemplate:71",
+      "file_path": "render/html.go",
+      "name": "loadTemplate",
+      "start_line": 71,
+      "end_line": 86,
+      "nloc": 16,
+      "mean_line_surprisal": 1.61413,
+      "max_line_surprisal": 2.68264
+    },
+    {
+      "function_id": "render/html.go::Instance:63",
+      "file_path": "render/html.go",
+      "name": "Instance",
+      "start_line": 63,
+      "end_line": 69,
+      "nloc": 7,
+      "mean_line_surprisal": 0.77839,
+      "max_line_surprisal": 1.20895
+    },
+    {
+      "function_id": "render/html.go::Instance:54",
+      "file_path": "render/html.go",
+      "name": "Instance",
+      "start_line": 54,
+      "end_line": 60,
+      "nloc": 7,
+      "mean_line_surprisal": 1.38091,
+      "max_line_surprisal": 1.86258
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:192",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 192,
+      "end_line": 194,
+      "nloc": 3,
+      "mean_line_surprisal": 0.56002,
+      "max_line_surprisal": 0.82068
+    },
+    {
+      "function_id": "render/json.go::Render:184",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 184,
+      "end_line": 189,
+      "nloc": 6,
+      "mean_line_surprisal": 1.22306,
+      "max_line_surprisal": 1.71376
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:179",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 179,
+      "end_line": 181,
+      "nloc": 3,
+      "mean_line_surprisal": 1.04836,
+      "max_line_surprisal": 1.21293
+    },
+    {
+      "function_id": "render/json.go::Render:155",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 155,
+      "end_line": 176,
+      "nloc": 19,
+      "mean_line_surprisal": 1.3426,
+      "max_line_surprisal": 3.31391
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:150",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 150,
+      "end_line": 152,
+      "nloc": 3,
+      "mean_line_surprisal": 1.05472,
+      "max_line_surprisal": 1.2211
+    },
+    {
+      "function_id": "render/json.go::Render:117",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 117,
+      "end_line": 147,
+      "nloc": 25,
+      "mean_line_surprisal": 0.79434,
+      "max_line_surprisal": 2.96163
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:112",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 112,
+      "end_line": 114,
+      "nloc": 3,
+      "mean_line_surprisal": 0.61379,
+      "max_line_surprisal": 0.91826
+    },
+    {
+      "function_id": "render/json.go::Render:94",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 94,
+      "end_line": 109,
+      "nloc": 16,
+      "mean_line_surprisal": 0.94161,
+      "max_line_surprisal": 4.94766
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:89",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 89,
+      "end_line": 91,
+      "nloc": 3,
+      "mean_line_surprisal": 0.68049,
+      "max_line_surprisal": 0.91096
+    },
+    {
+      "function_id": "render/json.go::Render:78",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 78,
+      "end_line": 86,
+      "nloc": 9,
+      "mean_line_surprisal": 0.79051,
+      "max_line_surprisal": 1.55627
+    },
+    {
+      "function_id": "render/json.go::WriteJSON:67",
+      "file_path": "render/json.go",
+      "name": "WriteJSON",
+      "start_line": 67,
+      "end_line": 75,
+      "nloc": 9,
+      "mean_line_surprisal": 1.28478,
+      "max_line_surprisal": 1.90147
+    },
+    {
+      "function_id": "render/json.go::WriteContentType:62",
+      "file_path": "render/json.go",
+      "name": "WriteContentType",
+      "start_line": 62,
+      "end_line": 64,
+      "nloc": 3,
+      "mean_line_surprisal": 1.06501,
+      "max_line_surprisal": 1.20646
+    },
+    {
+      "function_id": "render/json.go::Render:57",
+      "file_path": "render/json.go",
+      "name": "Render",
+      "start_line": 57,
+      "end_line": 59,
+      "nloc": 3,
+      "mean_line_surprisal": 2.01021,
+      "max_line_surprisal": 2.18738
+    },
+    {
+      "function_id": "render/msgpack.go::WriteMsgPack:39",
+      "file_path": "render/msgpack.go",
+      "name": "WriteMsgPack",
+      "start_line": 39,
+      "end_line": 43,
+      "nloc": 5,
+      "mean_line_surprisal": 1.47036,
+      "max_line_surprisal": 1.61062
+    },
+    {
+      "function_id": "render/msgpack.go::Render:34",
+      "file_path": "render/msgpack.go",
+      "name": "Render",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 1.65809,
+      "max_line_surprisal": 2.10575
+    },
+    {
+      "function_id": "render/msgpack.go::WriteContentType:29",
+      "file_path": "render/msgpack.go",
+      "name": "WriteContentType",
+      "start_line": 29,
+      "end_line": 31,
+      "nloc": 3,
+      "mean_line_surprisal": 1.70481,
+      "max_line_surprisal": 1.9731
+    },
+    {
+      "function_id": "render/protobuf.go::WriteContentType:34",
+      "file_path": "render/protobuf.go",
+      "name": "WriteContentType",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 1.24849,
+      "max_line_surprisal": 1.67409
+    },
+    {
+      "function_id": "render/protobuf.go::Render:21",
+      "file_path": "render/protobuf.go",
+      "name": "Render",
+      "start_line": 21,
+      "end_line": 31,
+      "nloc": 9,
+      "mean_line_surprisal": 1.25246,
+      "max_line_surprisal": 1.8179
+    },
+    {
+      "function_id": "render/reader.go::writeHeaders:41",
+      "file_path": "render/reader.go",
+      "name": "writeHeaders",
+      "start_line": 41,
+      "end_line": 48,
+      "nloc": 8,
+      "mean_line_surprisal": 1.92921,
+      "max_line_surprisal": 3.53436
+    },
+    {
+      "function_id": "render/reader.go::WriteContentType:36",
+      "file_path": "render/reader.go",
+      "name": "WriteContentType",
+      "start_line": 36,
+      "end_line": 38,
+      "nloc": 3,
+      "mean_line_surprisal": 1.18162,
+      "max_line_surprisal": 1.70407
+    },
+    {
+      "function_id": "render/reader.go::Render:22",
+      "file_path": "render/reader.go",
+      "name": "Render",
+      "start_line": 22,
+      "end_line": 33,
+      "nloc": 12,
+      "mean_line_surprisal": 1.9949,
+      "max_line_surprisal": 3.53637
+    },
+    {
+      "function_id": "render/redirect.go::WriteContentType:29",
+      "file_path": "render/redirect.go",
+      "name": "WriteContentType",
+      "start_line": 29,
+      "end_line": 29,
+      "nloc": 1,
+      "mean_line_surprisal": 1.7995,
+      "max_line_surprisal": 1.7995
+    },
+    {
+      "function_id": "render/redirect.go::Render:20",
+      "file_path": "render/redirect.go",
+      "name": "Render",
+      "start_line": 20,
+      "end_line": 26,
+      "nloc": 7,
+      "mean_line_surprisal": 1.56031,
+      "max_line_surprisal": 1.86537
+    },
+    {
+      "function_id": "render/render.go::writeContentType:36",
+      "file_path": "render/render.go",
+      "name": "writeContentType",
+      "start_line": 36,
+      "end_line": 41,
+      "nloc": 6,
+      "mean_line_surprisal": 1.89153,
+      "max_line_surprisal": 2.30799
+    },
+    {
+      "function_id": "render/text.go::WriteString:33",
+      "file_path": "render/text.go",
+      "name": "WriteString",
+      "start_line": 33,
+      "end_line": 41,
+      "nloc": 9,
+      "mean_line_surprisal": 1.6466,
+      "max_line_surprisal": 2.16504
+    },
+    {
+      "function_id": "render/text.go::WriteContentType:28",
+      "file_path": "render/text.go",
+      "name": "WriteContentType",
+      "start_line": 28,
+      "end_line": 30,
+      "nloc": 3,
+      "mean_line_surprisal": 1.36686,
+      "max_line_surprisal": 1.8042
+    },
+    {
+      "function_id": "render/text.go::Render:23",
+      "file_path": "render/text.go",
+      "name": "Render",
+      "start_line": 23,
+      "end_line": 25,
+      "nloc": 3,
+      "mean_line_surprisal": 1.99591,
+      "max_line_surprisal": 2.21164
+    },
+    {
+      "function_id": "render/toml.go::WriteContentType:34",
+      "file_path": "render/toml.go",
+      "name": "WriteContentType",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 1.24973,
+      "max_line_surprisal": 1.66962
+    },
+    {
+      "function_id": "render/toml.go::Render:21",
+      "file_path": "render/toml.go",
+      "name": "Render",
+      "start_line": 21,
+      "end_line": 31,
+      "nloc": 9,
+      "mean_line_surprisal": 1.23934,
+      "max_line_surprisal": 1.83527
+    },
+    {
+      "function_id": "render/xml.go::WriteContentType:26",
+      "file_path": "render/xml.go",
+      "name": "WriteContentType",
+      "start_line": 26,
+      "end_line": 28,
+      "nloc": 3,
+      "mean_line_surprisal": 1.15972,
+      "max_line_surprisal": 1.62269
+    },
+    {
+      "function_id": "render/xml.go::Render:20",
+      "file_path": "render/xml.go",
+      "name": "Render",
+      "start_line": 20,
+      "end_line": 23,
+      "nloc": 4,
+      "mean_line_surprisal": 1.81841,
+      "max_line_surprisal": 2.21192
+    },
+    {
+      "function_id": "render/yaml.go::WriteContentType:34",
+      "file_path": "render/yaml.go",
+      "name": "WriteContentType",
+      "start_line": 34,
+      "end_line": 36,
+      "nloc": 3,
+      "mean_line_surprisal": 1.2497,
+      "max_line_surprisal": 1.66962
+    },
+    {
+      "function_id": "render/yaml.go::Render:21",
+      "file_path": "render/yaml.go",
+      "name": "Render",
+      "start_line": 21,
+      "end_line": 31,
+      "nloc": 9,
+      "mean_line_surprisal": 1.23933,
+      "max_line_surprisal": 1.83527
+    },
+    {
+      "function_id": "response_writer.go::Pusher:134",
+      "file_path": "response_writer.go",
+      "name": "Pusher",
+      "start_line": 134,
+      "end_line": 139,
+      "nloc": 6,
+      "mean_line_surprisal": 1.5622,
+      "max_line_surprisal": 3.14301
+    },
+    {
+      "function_id": "response_writer.go::Flush:129",
+      "file_path": "response_writer.go",
+      "name": "Flush",
+      "start_line": 129,
+      "end_line": 132,
+      "nloc": 4,
+      "mean_line_surprisal": 1.56483,
+      "max_line_surprisal": 2.74057
+    },
+    {
+      "function_id": "response_writer.go::CloseNotify:124",
+      "file_path": "response_writer.go",
+      "name": "CloseNotify",
+      "start_line": 124,
+      "end_line": 126,
+      "nloc": 3,
+      "mean_line_surprisal": 1.73259,
+      "max_line_surprisal": 2.80173
+    },
+    {
+      "function_id": "response_writer.go::Hijack:111",
+      "file_path": "response_writer.go",
+      "name": "Hijack",
+      "start_line": 111,
+      "end_line": 121,
+      "nloc": 11,
+      "mean_line_surprisal": 1.78961,
+      "max_line_surprisal": 2.60966
+    },
+    {
+      "function_id": "response_writer.go::Written:106",
+      "file_path": "response_writer.go",
+      "name": "Written",
+      "start_line": 106,
+      "end_line": 108,
+      "nloc": 3,
+      "mean_line_surprisal": 1.20039,
+      "max_line_surprisal": 1.63114
+    },
+    {
+      "function_id": "response_writer.go::Size:102",
+      "file_path": "response_writer.go",
+      "name": "Size",
+      "start_line": 102,
+      "end_line": 104,
+      "nloc": 3,
+      "mean_line_surprisal": 1.95749,
+      "max_line_surprisal": 3.97429
+    },
+    {
+      "function_id": "response_writer.go::Status:98",
+      "file_path": "response_writer.go",
+      "name": "Status",
+      "start_line": 98,
+      "end_line": 100,
+      "nloc": 3,
+      "mean_line_surprisal": 1.99615,
+      "max_line_surprisal": 3.55361
+    },
+    {
+      "function_id": "response_writer.go::WriteString:91",
+      "file_path": "response_writer.go",
+      "name": "WriteString",
+      "start_line": 91,
+      "end_line": 96,
+      "nloc": 6,
+      "mean_line_surprisal": 0.87635,
+      "max_line_surprisal": 2.01964
+    },
+    {
+      "function_id": "response_writer.go::Write:84",
+      "file_path": "response_writer.go",
+      "name": "Write",
+      "start_line": 84,
+      "end_line": 89,
+      "nloc": 6,
+      "mean_line_surprisal": 1.27913,
+      "max_line_surprisal": 1.92194
+    },
+    {
+      "function_id": "response_writer.go::WriteHeaderNow:77",
+      "file_path": "response_writer.go",
+      "name": "WriteHeaderNow",
+      "start_line": 77,
+      "end_line": 82,
+      "nloc": 6,
+      "mean_line_surprisal": 1.575,
+      "max_line_surprisal": 1.96925
+    },
+    {
+      "function_id": "response_writer.go::WriteHeader:67",
+      "file_path": "response_writer.go",
+      "name": "WriteHeader",
+      "start_line": 67,
+      "end_line": 75,
+      "nloc": 9,
+      "mean_line_surprisal": 1.82758,
+      "max_line_surprisal": 2.28869
+    },
+    {
+      "function_id": "response_writer.go::reset:61",
+      "file_path": "response_writer.go",
+      "name": "reset",
+      "start_line": 61,
+      "end_line": 65,
+      "nloc": 5,
+      "mean_line_surprisal": 1.65087,
+      "max_line_surprisal": 2.69552
+    },
+    {
+      "function_id": "response_writer.go::Unwrap:57",
+      "file_path": "response_writer.go",
+      "name": "Unwrap",
+      "start_line": 57,
+      "end_line": 59,
+      "nloc": 3,
+      "mean_line_surprisal": 2.56859,
+      "max_line_surprisal": 4.3038
+    },
+    {
+      "function_id": "routergroup.go::returnObj:254",
+      "file_path": "routergroup.go",
+      "name": "returnObj",
+      "start_line": 254,
+      "end_line": 259,
+      "nloc": 6,
+      "mean_line_surprisal": 2.02552,
+      "max_line_surprisal": 3.35295
+    },
+    {
+      "function_id": "routergroup.go::calculateAbsolutePath:250",
+      "file_path": "routergroup.go",
+      "name": "calculateAbsolutePath",
+      "start_line": 250,
+      "end_line": 252,
+      "nloc": 3,
+      "mean_line_surprisal": 1.81081,
+      "max_line_surprisal": 2.13076
+    },
+    {
+      "function_id": "routergroup.go::combineHandlers:241",
+      "file_path": "routergroup.go",
+      "name": "combineHandlers",
+      "start_line": 241,
+      "end_line": 248,
+      "nloc": 8,
+      "mean_line_surprisal": 1.68878,
+      "max_line_surprisal": 3.09177
+    },
+    {
+      "function_id": "routergroup.go::createStaticHandler:216",
+      "file_path": "routergroup.go",
+      "name": "createStaticHandler",
+      "start_line": 216,
+      "end_line": 239,
+      "nloc": 21,
+      "mean_line_surprisal": 1.64556,
+      "max_line_surprisal": 3.13992
+    },
+    {
+      "function_id": "routergroup.go::StaticFS:203",
+      "file_path": "routergroup.go",
+      "name": "StaticFS",
+      "start_line": 203,
+      "end_line": 214,
+      "nloc": 11,
+      "mean_line_surprisal": 1.15627,
+      "max_line_surprisal": 2.02944
+    },
+    {
+      "function_id": "routergroup.go::Static:197",
+      "file_path": "routergroup.go",
+      "name": "Static",
+      "start_line": 197,
+      "end_line": 199,
+      "nloc": 3,
+      "mean_line_surprisal": 1.37616,
+      "max_line_surprisal": 1.72184
+    },
+    {
+      "function_id": "routergroup.go::staticFileHandler:181",
+      "file_path": "routergroup.go",
+      "name": "staticFileHandler",
+      "start_line": 181,
+      "end_line": 188,
+      "nloc": 8,
+      "mean_line_surprisal": 1.28328,
+      "max_line_surprisal": 2.14326
+    },
+    {
+      "function_id": "routergroup.go::StaticFileFS:175",
+      "file_path": "routergroup.go",
+      "name": "StaticFileFS",
+      "start_line": 175,
+      "end_line": 179,
+      "nloc": 5,
+      "mean_line_surprisal": 1.30647,
+      "max_line_surprisal": 1.95902
+    },
+    {
+      "function_id": "routergroup.go::StaticFile:166",
+      "file_path": "routergroup.go",
+      "name": "StaticFile",
+      "start_line": 166,
+      "end_line": 170,
+      "nloc": 5,
+      "mean_line_surprisal": 1.78808,
+      "max_line_surprisal": 2.70772
+    },
+    {
+      "function_id": "routergroup.go::Match:156",
+      "file_path": "routergroup.go",
+      "name": "Match",
+      "start_line": 156,
+      "end_line": 162,
+      "nloc": 6,
+      "mean_line_surprisal": 0.81889,
+      "max_line_surprisal": 1.22115
+    },
+    {
+      "function_id": "routergroup.go::Any:147",
+      "file_path": "routergroup.go",
+      "name": "Any",
+      "start_line": 147,
+      "end_line": 153,
+      "nloc": 6,
+      "mean_line_surprisal": 0.99327,
+      "max_line_surprisal": 2.0799
+    },
+    {
+      "function_id": "routergroup.go::HEAD:141",
+      "file_path": "routergroup.go",
+      "name": "HEAD",
+      "start_line": 141,
+      "end_line": 143,
+      "nloc": 3,
+      "mean_line_surprisal": 0.74937,
+      "max_line_surprisal": 0.9117
+    },
+    {
+      "function_id": "routergroup.go::OPTIONS:136",
+      "file_path": "routergroup.go",
+      "name": "OPTIONS",
+      "start_line": 136,
+      "end_line": 138,
+      "nloc": 3,
+      "mean_line_surprisal": 0.76098,
+      "max_line_surprisal": 0.92383
+    },
+    {
+      "function_id": "routergroup.go::PUT:131",
+      "file_path": "routergroup.go",
+      "name": "PUT",
+      "start_line": 131,
+      "end_line": 133,
+      "nloc": 3,
+      "mean_line_surprisal": 0.78081,
+      "max_line_surprisal": 0.94016
+    },
+    {
+      "function_id": "routergroup.go::PATCH:126",
+      "file_path": "routergroup.go",
+      "name": "PATCH",
+      "start_line": 126,
+      "end_line": 128,
+      "nloc": 3,
+      "mean_line_surprisal": 0.80812,
+      "max_line_surprisal": 0.96317
+    },
+    {
+      "function_id": "routergroup.go::DELETE:121",
+      "file_path": "routergroup.go",
+      "name": "DELETE",
+      "start_line": 121,
+      "end_line": 123,
+      "nloc": 3,
+      "mean_line_surprisal": 0.84799,
+      "max_line_surprisal": 0.99787
+    },
+    {
+      "function_id": "routergroup.go::GET:116",
+      "file_path": "routergroup.go",
+      "name": "GET",
+      "start_line": 116,
+      "end_line": 118,
+      "nloc": 3,
+      "mean_line_surprisal": 0.92084,
+      "max_line_surprisal": 1.07195
+    },
+    {
+      "function_id": "routergroup.go::POST:111",
+      "file_path": "routergroup.go",
+      "name": "POST",
+      "start_line": 111,
+      "end_line": 113,
+      "nloc": 3,
+      "mean_line_surprisal": 1.02235,
+      "max_line_surprisal": 1.15071
+    },
+    {
+      "function_id": "routergroup.go::Handle:103",
+      "file_path": "routergroup.go",
+      "name": "Handle",
+      "start_line": 103,
+      "end_line": 108,
+      "nloc": 6,
+      "mean_line_surprisal": 1.58855,
+      "max_line_surprisal": 2.70395
+    },
+    {
+      "function_id": "routergroup.go::handle:86",
+      "file_path": "routergroup.go",
+      "name": "handle",
+      "start_line": 86,
+      "end_line": 91,
+      "nloc": 6,
+      "mean_line_surprisal": 1.24983,
+      "max_line_surprisal": 2.01552
+    },
+    {
+      "function_id": "routergroup.go::BasePath:82",
+      "file_path": "routergroup.go",
+      "name": "BasePath",
+      "start_line": 82,
+      "end_line": 84,
+      "nloc": 3,
+      "mean_line_surprisal": 1.97838,
+      "max_line_surprisal": 2.63688
+    },
+    {
+      "function_id": "routergroup.go::Group:72",
+      "file_path": "routergroup.go",
+      "name": "Group",
+      "start_line": 72,
+      "end_line": 78,
+      "nloc": 7,
+      "mean_line_surprisal": 1.65255,
+      "max_line_surprisal": 2.35025
+    },
+    {
+      "function_id": "routergroup.go::Use:65",
+      "file_path": "routergroup.go",
+      "name": "Use",
+      "start_line": 65,
+      "end_line": 68,
+      "nloc": 4,
+      "mean_line_surprisal": 1.59444,
+      "max_line_surprisal": 2.02694
+    },
+    {
+      "function_id": "test_helpers.go::CreateTestContextOnly:26",
+      "file_path": "test_helpers.go",
+      "name": "CreateTestContextOnly",
+      "start_line": 26,
+      "end_line": 31,
+      "nloc": 6,
+      "mean_line_surprisal": 1.21917,
+      "max_line_surprisal": 1.87627
+    },
+    {
+      "function_id": "test_helpers.go::CreateTestContext:13",
+      "file_path": "test_helpers.go",
+      "name": "CreateTestContext",
+      "start_line": 13,
+      "end_line": 19,
+      "nloc": 7,
+      "mean_line_surprisal": 2.14684,
+      "max_line_surprisal": 3.54314
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::file_test_proto_init:249",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "file_test_proto_init",
+      "start_line": 249,
+      "end_line": 298,
+      "nloc": 50,
+      "mean_line_surprisal": 1.38235,
+      "max_line_surprisal": 5.17097
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::init:248",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "init",
+      "start_line": 248,
+      "end_line": 248,
+      "nloc": 1,
+      "mean_line_surprisal": 1.96329,
+      "max_line_surprisal": 1.96329
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::file_test_proto_rawDescGZIP:225",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "file_test_proto_rawDescGZIP",
+      "start_line": 225,
+      "end_line": 230,
+      "nloc": 6,
+      "mean_line_surprisal": 1.71855,
+      "max_line_surprisal": 3.24585
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::GetRequiredField:192",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "GetRequiredField",
+      "start_line": 192,
+      "end_line": 197,
+      "nloc": 6,
+      "mean_line_surprisal": 1.20985,
+      "max_line_surprisal": 1.97146
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Descriptor:188",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Descriptor",
+      "start_line": 188,
+      "end_line": 190,
+      "nloc": 3,
+      "mean_line_surprisal": 1.16871,
+      "max_line_surprisal": 1.36222
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::ProtoReflect:175",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "ProtoReflect",
+      "start_line": 175,
+      "end_line": 185,
+      "nloc": 11,
+      "mean_line_surprisal": 0.66677,
+      "max_line_surprisal": 1.85303
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::ProtoMessage:173",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "ProtoMessage",
+      "start_line": 173,
+      "end_line": 173,
+      "nloc": 1,
+      "mean_line_surprisal": 1.61114,
+      "max_line_surprisal": 1.61114
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::String:169",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "String",
+      "start_line": 169,
+      "end_line": 171,
+      "nloc": 3,
+      "mean_line_surprisal": 0.95284,
+      "max_line_surprisal": 1.12353
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Reset:160",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Reset",
+      "start_line": 160,
+      "end_line": 167,
+      "nloc": 8,
+      "mean_line_surprisal": 0.78072,
+      "max_line_surprisal": 1.53272
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::GetOptionalgroup:145",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "GetOptionalgroup",
+      "start_line": 145,
+      "end_line": 150,
+      "nloc": 6,
+      "mean_line_surprisal": 1.00994,
+      "max_line_surprisal": 1.73209
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::GetReps:138",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "GetReps",
+      "start_line": 138,
+      "end_line": 143,
+      "nloc": 6,
+      "mean_line_surprisal": 1.21276,
+      "max_line_surprisal": 2.51749
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::GetType:131",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "GetType",
+      "start_line": 131,
+      "end_line": 136,
+      "nloc": 6,
+      "mean_line_surprisal": 1.43418,
+      "max_line_surprisal": 2.54706
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::GetLabel:124",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "GetLabel",
+      "start_line": 124,
+      "end_line": 129,
+      "nloc": 6,
+      "mean_line_surprisal": 1.67755,
+      "max_line_surprisal": 2.07433
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Descriptor:120",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Descriptor",
+      "start_line": 120,
+      "end_line": 122,
+      "nloc": 3,
+      "mean_line_surprisal": 0.81117,
+      "max_line_surprisal": 1.11465
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::ProtoReflect:107",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "ProtoReflect",
+      "start_line": 107,
+      "end_line": 117,
+      "nloc": 11,
+      "mean_line_surprisal": 1.20405,
+      "max_line_surprisal": 3.90946
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::ProtoMessage:105",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "ProtoMessage",
+      "start_line": 105,
+      "end_line": 105,
+      "nloc": 1,
+      "mean_line_surprisal": 2.2956,
+      "max_line_surprisal": 2.2956
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::String:101",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "String",
+      "start_line": 101,
+      "end_line": 103,
+      "nloc": 3,
+      "mean_line_surprisal": 1.13063,
+      "max_line_surprisal": 1.28318
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Reset:92",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Reset",
+      "start_line": 92,
+      "end_line": 99,
+      "nloc": 8,
+      "mean_line_surprisal": 1.37048,
+      "max_line_surprisal": 2.20608
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::EnumDescriptor:72",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "EnumDescriptor",
+      "start_line": 72,
+      "end_line": 74,
+      "nloc": 3,
+      "mean_line_surprisal": 1.47031,
+      "max_line_surprisal": 1.68742
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::UnmarshalJSON:62",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "UnmarshalJSON",
+      "start_line": 62,
+      "end_line": 69,
+      "nloc": 8,
+      "mean_line_surprisal": 1.37866,
+      "max_line_surprisal": 2.12716
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Number:57",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Number",
+      "start_line": 57,
+      "end_line": 59,
+      "nloc": 3,
+      "mean_line_surprisal": 1.31163,
+      "max_line_surprisal": 1.73398
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Type:53",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Type",
+      "start_line": 53,
+      "end_line": 55,
+      "nloc": 3,
+      "mean_line_surprisal": 2.12183,
+      "max_line_surprisal": 3.79156
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Descriptor:49",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Descriptor",
+      "start_line": 49,
+      "end_line": 51,
+      "nloc": 3,
+      "mean_line_surprisal": 2.31482,
+      "max_line_surprisal": 3.46281
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::String:45",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "String",
+      "start_line": 45,
+      "end_line": 47,
+      "nloc": 3,
+      "mean_line_surprisal": 1.96536,
+      "max_line_surprisal": 2.91281
+    },
+    {
+      "function_id": "testdata/protoexample/test.pb.go::Enum:39",
+      "file_path": "testdata/protoexample/test.pb.go",
+      "name": "Enum",
+      "start_line": 39,
+      "end_line": 43,
+      "nloc": 5,
+      "mean_line_surprisal": 1.61514,
+      "max_line_surprisal": 2.32137
+    },
+    {
+      "function_id": "tree.go::findCaseInsensitivePathRec:717",
+      "file_path": "tree.go",
+      "name": "findCaseInsensitivePathRec",
+      "start_line": 717,
+      "end_line": 899,
+      "nloc": 161,
+      "mean_line_surprisal": 1.41854,
+      "max_line_surprisal": 4.27654
+    },
+    {
+      "function_id": "tree.go::shiftNRuneBytes:701",
+      "file_path": "tree.go",
+      "name": "shiftNRuneBytes",
+      "start_line": 701,
+      "end_line": 714,
+      "nloc": 14,
+      "mean_line_surprisal": 1.82304,
+      "max_line_surprisal": 3.2381
+    },
+    {
+      "function_id": "tree.go::findCaseInsensitivePath:680",
+      "file_path": "tree.go",
+      "name": "findCaseInsensitivePath",
+      "start_line": 680,
+      "end_line": 698,
+      "nloc": 16,
+      "mean_line_surprisal": 1.75911,
+      "max_line_surprisal": 2.96332
+    },
+    {
+      "function_id": "tree.go::getValue:427",
+      "file_path": "tree.go",
+      "name": "getValue",
+      "start_line": 427,
+      "end_line": 674,
+      "nloc": 223,
+      "mean_line_surprisal": 1.31518,
+      "max_line_surprisal": 4.42775
+    },
+    {
+      "function_id": "tree.go::insertChild:297",
+      "file_path": "tree.go",
+      "name": "insertChild",
+      "start_line": 297,
+      "end_line": 406,
+      "nloc": 94,
+      "mean_line_surprisal": 1.44905,
+      "max_line_surprisal": 4.04318
+    },
+    {
+      "function_id": "tree.go::findWildcard:262",
+      "file_path": "tree.go",
+      "name": "findWildcard",
+      "start_line": 262,
+      "end_line": 295,
+      "nloc": 33,
+      "mean_line_surprisal": 1.73093,
+      "max_line_surprisal": 3.834
+    },
+    {
+      "function_id": "tree.go::addRoute:144",
+      "file_path": "tree.go",
+      "name": "addRoute",
+      "start_line": 144,
+      "end_line": 258,
+      "nloc": 102,
+      "mean_line_surprisal": 1.64075,
+      "max_line_surprisal": 3.29501
+    },
+    {
+      "function_id": "tree.go::incrementChildPrio:120",
+      "file_path": "tree.go",
+      "name": "incrementChildPrio",
+      "start_line": 120,
+      "end_line": 140,
+      "nloc": 18,
+      "mean_line_surprisal": 1.7805,
+      "max_line_surprisal": 3.19415
+    },
+    {
+      "function_id": "tree.go::countSections:95",
+      "file_path": "tree.go",
+      "name": "countSections",
+      "start_line": 95,
+      "end_line": 97,
+      "nloc": 3,
+      "mean_line_surprisal": 1.85669,
+      "max_line_surprisal": 2.557
+    },
+    {
+      "function_id": "tree.go::countParams:89",
+      "file_path": "tree.go",
+      "name": "countParams",
+      "start_line": 89,
+      "end_line": 93,
+      "nloc": 5,
+      "mean_line_surprisal": 1.65245,
+      "max_line_surprisal": 2.26763
+    },
+    {
+      "function_id": "tree.go::safeUint16:82",
+      "file_path": "tree.go",
+      "name": "safeUint16",
+      "start_line": 82,
+      "end_line": 87,
+      "nloc": 6,
+      "mean_line_surprisal": 1.49328,
+      "max_line_surprisal": 2.22916
+    },
+    {
+      "function_id": "tree.go::addChild:72",
+      "file_path": "tree.go",
+      "name": "addChild",
+      "start_line": 72,
+      "end_line": 79,
+      "nloc": 8,
+      "mean_line_surprisal": 1.6365,
+      "max_line_surprisal": 2.14557
+    },
+    {
+      "function_id": "tree.go::longestCommonPrefix:62",
+      "file_path": "tree.go",
+      "name": "longestCommonPrefix",
+      "start_line": 62,
+      "end_line": 69,
+      "nloc": 8,
+      "mean_line_surprisal": 1.75277,
+      "max_line_surprisal": 2.0751
+    },
+    {
+      "function_id": "tree.go::get:53",
+      "file_path": "tree.go",
+      "name": "get",
+      "start_line": 53,
+      "end_line": 60,
+      "nloc": 8,
+      "mean_line_surprisal": 1.57132,
+      "max_line_surprisal": 3.04624
+    },
+    {
+      "function_id": "tree.go::ByName:41",
+      "file_path": "tree.go",
+      "name": "ByName",
+      "start_line": 41,
+      "end_line": 44,
+      "nloc": 4,
+      "mean_line_surprisal": 1.94943,
+      "max_line_surprisal": 3.13168
+    },
+    {
+      "function_id": "tree.go::Get:30",
+      "file_path": "tree.go",
+      "name": "Get",
+      "start_line": 30,
+      "end_line": 37,
+      "nloc": 8,
+      "mean_line_surprisal": 1.41534,
+      "max_line_surprisal": 2.24252
+    },
+    {
+      "function_id": "utils.go::isASCII:157",
+      "file_path": "utils.go",
+      "name": "isASCII",
+      "start_line": 157,
+      "end_line": 164,
+      "nloc": 8,
+      "mean_line_surprisal": 2.2215,
+      "max_line_surprisal": 3.10892
+    },
+    {
+      "function_id": "utils.go::resolveAddress:140",
+      "file_path": "utils.go",
+      "name": "resolveAddress",
+      "start_line": 140,
+      "end_line": 154,
+      "nloc": 15,
+      "mean_line_surprisal": 2.01814,
+      "max_line_surprisal": 3.69658
+    },
+    {
+      "function_id": "utils.go::joinPaths:128",
+      "file_path": "utils.go",
+      "name": "joinPaths",
+      "start_line": 128,
+      "end_line": 138,
+      "nloc": 10,
+      "mean_line_surprisal": 2.21965,
+      "max_line_surprisal": 4.54695
+    },
+    {
+      "function_id": "utils.go::nameOfFunction:124",
+      "file_path": "utils.go",
+      "name": "nameOfFunction",
+      "start_line": 124,
+      "end_line": 126,
+      "nloc": 3,
+      "mean_line_surprisal": 2.42695,
+      "max_line_surprisal": 3.85867
+    },
+    {
+      "function_id": "utils.go::lastChar:117",
+      "file_path": "utils.go",
+      "name": "lastChar",
+      "start_line": 117,
+      "end_line": 122,
+      "nloc": 6,
+      "mean_line_surprisal": 1.71359,
+      "max_line_surprisal": 2.24391
+    },
+    {
+      "function_id": "utils.go::parseAccept:103",
+      "file_path": "utils.go",
+      "name": "parseAccept",
+      "start_line": 103,
+      "end_line": 115,
+      "nloc": 13,
+      "mean_line_surprisal": 1.91547,
+      "max_line_surprisal": 4.52735
+    },
+    {
+      "function_id": "utils.go::chooseData:93",
+      "file_path": "utils.go",
+      "name": "chooseData",
+      "start_line": 93,
+      "end_line": 101,
+      "nloc": 9,
+      "mean_line_surprisal": 1.87638,
+      "max_line_surprisal": 3.90031
+    },
+    {
+      "function_id": "utils.go::filterFlags:84",
+      "file_path": "utils.go",
+      "name": "filterFlags",
+      "start_line": 84,
+      "end_line": 91,
+      "nloc": 8,
+      "mean_line_surprisal": 2.10291,
+      "max_line_surprisal": 3.21985
+    },
+    {
+      "function_id": "utils.go::assert1:78",
+      "file_path": "utils.go",
+      "name": "assert1",
+      "start_line": 78,
+      "end_line": 82,
+      "nloc": 5,
+      "mean_line_surprisal": 1.75373,
+      "max_line_surprisal": 3.26632
+    },
+    {
+      "function_id": "utils.go::MarshalXML:57",
+      "file_path": "utils.go",
+      "name": "MarshalXML",
+      "start_line": 57,
+      "end_line": 76,
+      "nloc": 19,
+      "mean_line_surprisal": 1.7165,
+      "max_line_surprisal": 5.41537
+    },
+    {
+      "function_id": "utils.go::WrapH:47",
+      "file_path": "utils.go",
+      "name": "WrapH",
+      "start_line": 47,
+      "end_line": 51,
+      "nloc": 5,
+      "mean_line_surprisal": 0.97615,
+      "max_line_surprisal": 1.70354
+    },
+    {
+      "function_id": "utils.go::WrapF:40",
+      "file_path": "utils.go",
+      "name": "WrapF",
+      "start_line": 40,
+      "end_line": 44,
+      "nloc": 5,
+      "mean_line_surprisal": 1.55004,
+      "max_line_surprisal": 2.30581
+    },
+    {
+      "function_id": "utils.go::Bind:22",
+      "file_path": "utils.go",
+      "name": "Bind",
+      "start_line": 22,
+      "end_line": 37,
+      "nloc": 15,
+      "mean_line_surprisal": 2.11425,
+      "max_line_surprisal": 4.9304
+    }
+  ]
+}

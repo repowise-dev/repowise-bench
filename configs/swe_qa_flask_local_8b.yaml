@@ -1,0 +1,64 @@
+# Local-model SWE-QA config — the opencode + Ollama arm of the
+# local-vs-frontier benchmark (cells A / B in LOCAL_VS_FRONTIER_BENCH.md).
+#
+#   * C0_bare        — qwen3.5:4b via opencode, read/grep/glob only
+#   * C2_repowise    — same model + repowise MCP (index-only; that's what's cached)
+#
+# Judge is pinned to a NEUTRAL model (sonnet) so the local model never grades
+# itself. Start with a 5-task flask smoke; scale max_tasks after the numbers
+# look sane.
+
+experiment_name: "swe_qa_flask_local_8b"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 5
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_repowise"
+    repowise_enabled: true
+    repowise_mode: "full"          # 0.15.2 full index: wiki docs + gemini embeddings
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  harness: "opencode"          # dispatch to opencode_runner instead of claude_code
+  model: "ollama/qwen3:8b-16k"
+  max_turns: 15
+  timeout_seconds: 500         # local 4b on a ~7k prompt is ~120-135s/task
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gemini-3.1-flash-lite-preview"
+
+paths:
+  results_dir: "./results/swe_qa_flask_local_8b_full"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask_local_8b_full"
+
+budget:
+  # Local inference is free; the cap only guards the judge (Claude) calls.
+  max_total_usd: 5.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"        # neutral judge across all cells — never the agent model
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1               # single local GPU — one inference at a time

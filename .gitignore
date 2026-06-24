@@ -13,8 +13,19 @@ __pycache__/
 # Cloned target repositories — fetched on demand by scripts/download_benchmarks.py
 /repos/
 
-# Generated repowise indexes — built on demand by the harness on first run
-/indexes/
+# Generated repowise indexes — built on demand by the harness on first run.
+# Exception: the flask48-v2 full index is committed so the C2 arm reproduces
+# without paying doc-generation cost (gpt-5.4-nano docs + openai embeddings,
+# flask @ 7ee9ceb). Only the LLM-cost artifacts are tracked — parse/centrality
+# caches and job state are regenerable.
+/indexes/*
+!/indexes/pallets_flask_full/
+/indexes/pallets_flask_full/*
+!/indexes/pallets_flask_full/.repowise/
+/indexes/pallets_flask_full/.repowise/*
+!/indexes/pallets_flask_full/.repowise/wiki.db
+!/indexes/pallets_flask_full/.repowise/config.yaml
+!/indexes/pallets_flask_full/.repowise/lancedb/
 
 # Per-run logs and raw outputs — useful locally, not part of the published artifact
 /logs/
@@ -33,6 +44,9 @@ __pycache__/
 !/results/swe_qa_sklearn48/
 !/results/swe_qa_sklearn48/swe_qa.jsonl
 !/results/swe_qa_sklearn48/experiment_meta.json
+!/results/swe_qa_flask48_v2/
+!/results/swe_qa_flask48_v2/swe_qa.jsonl
+!/results/swe_qa_flask48_v2/experiment_meta.json
 !/results/health_defect_*/
 !/results/health_defect_*/correlation.json
 !/results/health_defect_*/joined_data.json
@@ -46,3 +60,29 @@ __pycache__/
 !/results/codescene_paired_deltas.json
 !/results/resolution_time.json
 !/results/pr_effort_signals.json
+# ICSE paper evidence artifacts — small JSON summaries the paper's numbers cite
+# (the canonical wall, effort curve, TOST, and the R&R experiment gates). Tracked
+# so every headline figure reproduces from cache; the heavy per-repo inputs stay local.
+!/results/error_analysis_21repo.json
+!/results/error_analysis_21repo_fixedcuts.json
+!/results/within_band_ci.json
+!/results/f4_curve.json
+!/results/bootstrap_tost.json
+!/results/prior_defect_ablation.json
+!/results/positive_control.json
+!/results/refit_bootstrap_tost.json
+
+# Heavy per-repo extraction caches — regenerable from the repo checkouts, too
+# large for git (70+ MB each across the corpus). The derived scorecards and
+# per-hunk aggregates above ARE tracked.
+/results/health_defect_*/hunk_dataset.json
+/results/health_defect_*/hunk_tokens.json
+
+# Local experiment scratch — Ollama modelfiles, smoke logs, ad-hoc dumps
+Modelfile.*
+logs_smoke*.txt
+*_index.log
+tool_health_dump.json
+
+# opencode source clone (inspection only, local)
+opencode-src/

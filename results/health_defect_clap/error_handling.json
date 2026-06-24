@@ -1,0 +1,995 @@
+{
+  "meta": {
+    "repo": "clap",
+    "t0_sha": "8d87e70789ed7832aa93473779d248090712d66b",
+    "n_files": 123,
+    "total_hits": 155,
+    "build_seconds": 2.4
+  },
+  "files": {
+    "clap_bench/benches/complex.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 126
+    },
+    "clap_bench/benches/empty.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 28
+    },
+    "clap_bench/benches/ripgrep.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 892
+    },
+    "clap_bench/benches/rustup.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 400
+    },
+    "clap_bench/benches/simple.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 44
+    },
+    "clap_bench/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "clap_builder/src/builder/action.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 451
+    },
+    "clap_builder/src/builder/app_settings.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 79
+    },
+    "clap_builder/src/builder/arg.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 4925
+    },
+    "clap_builder/src/builder/arg_group.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 586
+    },
+    "clap_builder/src/builder/arg_predicate.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 17
+    },
+    "clap_builder/src/builder/arg_settings.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 78
+    },
+    "clap_builder/src/builder/command.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 14,
+      "go_swallow": 0,
+      "eh_count": 14,
+      "code_lines": 4958
+    },
+    "clap_builder/src/builder/debug_asserts.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 11,
+      "go_swallow": 0,
+      "eh_count": 11,
+      "code_lines": 730
+    },
+    "clap_builder/src/builder/ext.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 39
+    },
+    "clap_builder/src/builder/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 65
+    },
+    "clap_builder/src/builder/os_str.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 312
+    },
+    "clap_builder/src/builder/possible_value.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 223
+    },
+    "clap_builder/src/builder/range.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 262
+    },
+    "clap_builder/src/builder/resettable.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 186
+    },
+    "clap_builder/src/builder/str.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 299
+    },
+    "clap_builder/src/builder/styled_str.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 243
+    },
+    "clap_builder/src/builder/styling.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 195
+    },
+    "clap_builder/src/builder/tests.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 50
+    },
+    "clap_builder/src/builder/value_hint.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 90
+    },
+    "clap_builder/src/builder/value_parser.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 2530
+    },
+    "clap_builder/src/derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 414
+    },
+    "clap_builder/src/error/context.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 110
+    },
+    "clap_builder/src/error/format.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 469
+    },
+    "clap_builder/src/error/kind.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 347
+    },
+    "clap_builder/src/error/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 838
+    },
+    "clap_builder/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "clap_builder/src/macros.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 572
+    },
+    "clap_builder/src/mkeymap.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 164
+    },
+    "clap_builder/src/output/fmt.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "clap_builder/src/output/help.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 34
+    },
+    "clap_builder/src/output/help_template.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 1060
+    },
+    "clap_builder/src/output/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 20
+    },
+    "clap_builder/src/output/textwrap/core.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 139
+    },
+    "clap_builder/src/output/textwrap/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    },
+    "clap_builder/src/output/textwrap/word_separators.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 73
+    },
+    "clap_builder/src/output/textwrap/wrap_algorithms.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "clap_builder/src/output/usage.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 447
+    },
+    "clap_builder/src/parser/arg_matcher.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 209
+    },
+    "clap_builder/src/parser/error.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 58
+    },
+    "clap_builder/src/parser/features/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 1
+    },
+    "clap_builder/src/parser/features/suggestions.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 158
+    },
+    "clap_builder/src/parser/matches/arg_matches.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 28,
+      "go_swallow": 0,
+      "eh_count": 28,
+      "code_lines": 1911
+    },
+    "clap_builder/src/parser/matches/matched_arg.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 191
+    },
+    "clap_builder/src/parser/matches/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "clap_builder/src/parser/matches/value_source.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 16
+    },
+    "clap_builder/src/parser/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 21
+    },
+    "clap_builder/src/parser/parser.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 10,
+      "go_swallow": 0,
+      "eh_count": 10,
+      "code_lines": 1551
+    },
+    "clap_builder/src/parser/validator.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 483
+    },
+    "clap_builder/src/util/any_value.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 108
+    },
+    "clap_builder/src/util/color.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 94
+    },
+    "clap_builder/src/util/flat_map.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 6,
+      "go_swallow": 0,
+      "eh_count": 6,
+      "code_lines": 224
+    },
+    "clap_builder/src/util/flat_set.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 91
+    },
+    "clap_builder/src/util/graph.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 42
+    },
+    "clap_builder/src/util/id.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 169
+    },
+    "clap_builder/src/util/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 31
+    },
+    "clap_builder/src/util/str_to_bool.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "clap_complete/src/aot/generator/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 293
+    },
+    "clap_complete/src/aot/generator/utils.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 8,
+      "go_swallow": 0,
+      "eh_count": 8,
+      "code_lines": 242
+    },
+    "clap_complete/src/aot/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 54
+    },
+    "clap_complete/src/aot/shells/bash.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 7,
+      "go_swallow": 0,
+      "eh_count": 7,
+      "code_lines": 270
+    },
+    "clap_complete/src/aot/shells/elvish.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 126
+    },
+    "clap_complete/src/aot/shells/fish.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 5,
+      "go_swallow": 0,
+      "eh_count": 5,
+      "code_lines": 285
+    },
+    "clap_complete/src/aot/shells/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 13
+    },
+    "clap_complete/src/aot/shells/powershell.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 130
+    },
+    "clap_complete/src/aot/shells/shell.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 147
+    },
+    "clap_complete/src/aot/shells/zsh.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 9,
+      "go_swallow": 0,
+      "eh_count": 9,
+      "code_lines": 592
+    },
+    "clap_complete/src/engine/candidate.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 97
+    },
+    "clap_complete/src/engine/complete.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 6,
+      "go_swallow": 0,
+      "eh_count": 6,
+      "code_lines": 652
+    },
+    "clap_complete/src/engine/custom.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 345
+    },
+    "clap_complete/src/engine/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 14
+    },
+    "clap_complete/src/env/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 372
+    },
+    "clap_complete/src/env/shells.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 406
+    },
+    "clap_complete/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 104
+    },
+    "clap_complete/src/macros.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 11
+    },
+    "clap_complete_nushell/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 208
+    },
+    "clap_derive/src/attr.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 198
+    },
+    "clap_derive/src/derives/args.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 2,
+      "go_swallow": 0,
+      "eh_count": 2,
+      "code_lines": 722
+    },
+    "clap_derive/src/derives/into_app.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 106
+    },
+    "clap_derive/src/derives/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 22
+    },
+    "clap_derive/src/derives/parser.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "clap_derive/src/derives/subcommand.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 618
+    },
+    "clap_derive/src/derives/value_enum.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 117
+    },
+    "clap_derive/src/dummies.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 92
+    },
+    "clap_derive/src/item.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 1312
+    },
+    "clap_derive/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 109
+    },
+    "clap_derive/src/macros.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "clap_derive/src/utils/doc_comments.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 364
+    },
+    "clap_derive/src/utils/error.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 19
+    },
+    "clap_derive/src/utils/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 10
+    },
+    "clap_derive/src/utils/spanned.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 74
+    },
+    "clap_derive/src/utils/ty.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 147
+    },
+    "clap_lex/src/ext.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 271
+    },
+    "clap_lex/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 1,
+      "go_swallow": 0,
+      "eh_count": 1,
+      "code_lines": 472
+    },
+    "clap_mangen/src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 304
+    },
+    "clap_mangen/src/render.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 3,
+      "go_swallow": 0,
+      "eh_count": 3,
+      "code_lines": 349
+    },
+    "src/_concepts.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "src/_cookbook/cargo_example.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/cargo_example_derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/escaped_positional.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/escaped_positional_derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/find.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/git.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/git_derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 61
+    },
+    "src/_cookbook/multicall_busybox.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/multicall_hostname.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/pacman.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 7
+    },
+    "src/_cookbook/repl.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 5
+    },
+    "src/_cookbook/repl_derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 4
+    },
+    "src/_cookbook/typed_derive.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 35
+    },
+    "src/_derive/_tutorial.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 256
+    },
+    "src/_derive/mod.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 540
+    },
+    "src/_faq.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 95
+    },
+    "src/_features.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 29
+    },
+    "src/_tutorial.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 245
+    },
+    "src/bin/stdio-fixture.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 107
+    },
+    "src/lib.rs": {
+      "swallowed_catch": 0,
+      "bare_except": 0,
+      "unsafe_unwrap": 0,
+      "go_swallow": 0,
+      "eh_count": 0,
+      "code_lines": 105
+    }
+  }
+}
