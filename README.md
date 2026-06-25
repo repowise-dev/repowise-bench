@@ -305,6 +305,40 @@ For the health-defect output schema, see [health-defect/README.md](health-defect
 
 ---
 
+## Validation tooling
+
+### RefactoringMiner oracle (`harness/refactoringminer.py`)
+
+An external, type-level check for the refactoring code generation in Repowise.
+The product generates a diff from a deterministic plan and self-checks it
+in-process with an LCOM4/TCC cohesion delta (a *metric* answer: "did cohesion
+improve?"). This oracle adds the complementary *type* answer:
+[RefactoringMiner](https://github.com/tsantalis/RefactoringMiner) (MIT) detects
+which refactoring kinds occur between two commits, so it confirms a generated
+change is genuinely an "Extract Class" / "Move Method" rather than merely a
+cohesion-friendly edit.
+
+It is Java-only and commit-based, so it lives in the harness rather than the
+product. Apply a generated refactoring as a commit on a Java test repo, then:
+
+```bash
+# Gated on the jar; skips cleanly when REFACTORINGMINER_JAR is unset.
+REFACTORINGMINER_JAR=/path/to/RefactoringMiner.jar \
+  python -m harness.refactoringminer \
+    --repo /path/to/java-repo --commit <sha> --type extract_class \
+    --before-file src/Big.java --after-file src/Big.java
+
+# Validate the JSON parser without Java present:
+python -m harness.refactoringminer --self-test
+```
+
+The verdict pairs the RefactoringMiner type confirmation with a TCC before/after
+delta computed by reusing Repowise core's class walker
+(`walk_file(...).classes[*].tcc`), the same metric the in-process self-check
+reports. No new Python dependencies; RefactoringMiner is an external Java jar.
+
+---
+
 ## Citation
 
 If you use these benchmarks or their results, please cite the relevant report:
