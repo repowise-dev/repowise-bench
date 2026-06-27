@@ -1,4 +1,4 @@
-# Performance Detection — Methodology & Full Results
+# Performance Detection: Methodology & Full Results
 
 Engineering appendix to [`README.md`](./README.md). This is the rigorous version:
 exact per-repo numbers, experimental design, integrity checks, threats to
@@ -8,27 +8,27 @@ validity, and reproduction commands. All runs dated 2026-06-22.
 
 ## 1. What the detector does
 
-Repowise's performance pillar flags **static performance-risk patterns** —
-code shapes that waste work — across five languages (Python, TypeScript/JS,
-Java, Go, C#). The core marker family:
+Repowise's performance pillar flags **static performance-risk patterns**
+(code shapes that waste work) across six languages (Python, TypeScript/JS,
+Java, Go, C#, Rust). The core marker family:
 
 | Marker | Pattern |
 |--------|---------|
-| `io_in_loop` | an execution-sink I/O call (db / network / filesystem / subprocess) inside a data-dependent loop — **same-function and cross-function** |
+| `io_in_loop` | an execution-sink I/O call (db / network / filesystem / subprocess) inside a data-dependent loop, **same-function and cross-function** |
 | `nested_loop_with_io` | I/O in the inner body of a nested loop (O(n·m) round-trips) |
 | `hot_path_sync_io` | blocking I/O in a high-centrality function |
 | `membership_test_against_list_in_loop` | `x in big_list` inside a loop (O(n·m), should be a set) |
-| `string_concat_in_loop`, `serial_await_in_loop`, `resource_construction_in_loop`, … | other loop-level waste |
-| language-specific | `defer_in_loop` (Go), `regex_compile_in_loop` (Java/Go), `pandas_iterrows_in_loop` (Py), … |
+| `string_concat_in_loop`, `serial_await_in_loop`, `resource_construction_in_loop`, ... | other loop-level waste |
+| language-specific | `defer_in_loop` (Go), `regex_compile_in_loop` (Java/Go), `pandas_iterrows_in_loop` (Py), ... |
 
-The three platform assets that make this possible — and that a file-local linter
-lacks — are a **whole-program call graph**, a **classified dependency registry**
+The three platform assets that make this possible (and that a file-local linter
+lacks) are a **whole-program call graph**, a **classified dependency registry**
 (`io_kind ∈ {db, network, filesystem, subprocess, lock}`), and **per-function
 centrality + churn**.
 
 ---
 
-## 2. Experiment E1 — real-tool baseline (the moat)
+## 2. Experiment E1: real-tool baseline (the moat)
 
 **Question:** do the industry-standard file-local linters already find these bugs?
 
@@ -36,7 +36,7 @@ centrality + churn**.
 the *same* files, then compare finding sets. "Moat" = findings in categories the
 linter has no rule for (verifiable against each tool's published rule registry).
 
-### Python — ruff 0.15.6 (`--select PERF,ASYNC`)
+### Python: ruff 0.15.6 (`--select PERF,ASYNC`)
 
 | Repo | Files | ruff total (PERF/ASYNC) | Repowise total | **Moat (no ruff rule)** | Cross-fn |
 |------|------:|------------------------:|---------------:|------------------------:|---------:|
@@ -48,40 +48,43 @@ linter has no rule for (verifiable against each tool's published rule registry).
 | microdot | 176 | 10 | 12 | 8 | 0 |
 | **Total** | **7,529** | **278** | **259** | **253 (98%)** | **42** |
 
-ruff's PERF rules are a different class (loop→comprehension, try-except-in-loop);
+ruff's PERF rules are a different class (loop->comprehension, try-except-in-loop);
 its ASYNC family overlaps our `blocking_sync_in_async` only (6 findings, where ruff
 is actually broader: 17 vs our 6). **ruff has zero io-in-loop / N+1 rules.**
 
-### TypeScript/JS — ESLint 9 + typescript-eslint (`no-await-in-loop`)
+### TypeScript/JS: ESLint 9 + typescript-eslint (`no-await-in-loop`)
 
 | Repo | Files | ESLint no-await-in-loop | **Moat (no ESLint rule)** | Cross-fn | Serial-await agreement |
 |------|------:|------------------------:|--------------------------:|---------:|-----------------------:|
 | dub | 3,996 | 341 | 230 | 43 | 153/171 = 89% |
-| hono | 386 | 76 | 21 | 0 | — |
-| zod | 409 | 14 | 11 | 2 | — |
-| taxonomy | 129 | 0 | 0 | 0 | — |
+| hono | 386 | 76 | 21 | 0 | n/a |
+| zod | 409 | 14 | 11 | 2 | n/a |
+| taxonomy | 129 | 0 | 0 | 0 | n/a |
 | **Total** | **4,920** | **431** | **262** | **45** | **89%** |
 
-ESLint's only perf-adjacent rule (`no-await-in-loop`) is **purely syntactic** —
+ESLint's only perf-adjacent rule (`no-await-in-loop`) is **purely syntactic**:
 it flags every await in a loop (431, mostly harmless), 2.5× broader than our
 classified-I/O `serial_await_in_loop`. Where we both fire, 89% agree. ESLint has
 **no** io-in-loop / N+1 / string-concat / membership rule.
 
-### Go — golangci-lint v2.3.0 (prealloc, gocritic, bodyclose, makezero)
+### Go: golangci-lint v2.3.0 (prealloc, gocritic, bodyclose, makezero)
 
 On gitleaks (214 Go files): golangci-lint's perf linters found **0**; Repowise
 found **42** (24 `io_in_loop`, 7 `hot_path_sync_io`, 9 `defer_in_loop`, 2
 `regex_compile_in_loop`). golangci-lint bundles 100+ linters; none detects
 io-in-loop / N+1 / cross-function.
 
-### Rust — clippy
+### Rust: clippy
 
-clippy's `perf` lint group (`needless_collect`, `redundant_clone`, …) is all
+clippy's `perf` lint group (`needless_collect`, `redundant_clone`, ...) is all
 file-local micro-optimization with **no** io-in-loop / N+1 / cross-function lint
-(verifiable from the clippy registry). A measured run was blocked by the Windows
-build toolchain, and the Repowise Rust dialect is not built yet — so this is a
-catalogue-level claim and a clear next-build target (bevy / deepwiki-rs / rtk are
-ready corpora).
+(verifiable from the clippy registry). The Repowise Rust perf dialect now ships
+(`regex_compile_in_loop`, `resource_construction_in_loop`,
+`blocking_sync_in_async`), but a measured clippy run on the Rust corpus was
+blocked by the Windows build toolchain, so the clippy-vs-Repowise head-to-head on
+Rust was not completed end-to-end. That specific comparison therefore stays
+catalogue-level (a measured run is the clear next target; bevy / deepwiki-rs / rtk
+are ready corpora).
 
 ### E1 conclusion
 
@@ -89,7 +92,7 @@ Across 3 languages / 12,449 files, linters and the pillar produce **near-disjoin
 finding sets: **515 of the pillar's Python+TS findings (95%+) lie in categories the
 linters have no rule for**, including **~90 interprocedural** findings structurally
 impossible for a file-local tool. Where rules overlap, the tools agree and the
-commodity tool is often broader — establishing **complementarity, not competition.**
+commodity tool is often broader, establishing **complementarity, not competition.**
 
 ---
 
@@ -107,7 +110,7 @@ gate caught and fixed a real false-positive class (see §5).
 
 ---
 
-## 3b. Experiment E4 — runtime confirmation
+## 3b. Experiment E4: runtime confirmation
 
 **Question:** the findings flag *patterns* that waste work. Does the waste cost
 measurable runtime, and how much does the obvious fix recover?
@@ -122,19 +125,19 @@ v22.19.0, sqlite 3.50.2.
 
 | # | Finding (marker) | Real source | Fix | n (repr) | Speedup (repr) | Speedup (peak) | Shape |
 |---|------------------|-------------|-----|---------:|---------------:|---------------:|-------|
-| 1 | `membership_test_against_list_in_loop` | FastAPI-style; Django ~50 | list → set | 10,000 | 605x | 2,521x @50k | O(n²)→O(n) |
-| 2 | O(n²) list-membership, recursive walk | FastAPI `dependencies/utils.py` `get_flat_dependant` | `visited` list → set | 2,000 nodes | 51x | 186x @8k | O(n²)→O(n) |
+| 1 | `membership_test_against_list_in_loop` | FastAPI-style; Django ~50 | list -> set | 10,000 | 605x | 2,521x @50k | O(n²)->O(n) |
+| 2 | O(n²) list-membership, recursive walk | FastAPI `dependencies/utils.py` `get_flat_dependant` | `visited` list -> set | 2,000 nodes | 51x | 186x @8k | O(n²)->O(n) |
 | 3 | `string_concat_in_loop` | repowise + many TS repos | list + `"".join` | 20,000 | 2.5x | 5.7x @80k | bounded (CPython `+=` opt) |
-| 4 | `list_insert_zero_in_loop` | Django (7) | append+reverse / `deque` | 20,000 | 163x | 350x @50k | O(n²)→O(n) |
-| 5 | `array_spread_in_reduce` | dub (TS) | push into one array | 8,000 | 57x | 805x @20k | O(n²)→O(n) (Node) |
-| 6 | `io_in_loop` / N+1 | repowise `scheduler.py`; synthetic | one `WHERE id IN (...)` | 500 | 29x | 30x @2k | N round-trips → 1 |
+| 4 | `list_insert_zero_in_loop` | Django (7) | append+reverse / `deque` | 20,000 | 163x | 350x @50k | O(n²)->O(n) |
+| 5 | `array_spread_in_reduce` | dub (TS) | push into one array | 8,000 | 57x | 805x @20k | O(n²)->O(n) (Node) |
+| 6 | `io_in_loop` / N+1 | repowise `scheduler.py`; synthetic | one `WHERE id IN (...)` | 500 | 29x | 30x @2k | N round-trips -> 1 |
 | 7 | `resource_construction_in_loop` | repowise `app.py` | open once, reuse | 5,000 | 10x | 11x @20k | constant overhead × N |
 
 **Result:** 7/7 measurably faster. Median speedup **186x** at the largest sizes
-tested, **51x** at representative mid-range sizes, range 2.5x → 2,521x.
+tested, **51x** at representative mid-range sizes, range 2.5x -> 2,521x.
 
 **Honest reading:**
-- Findings 1, 2, 4, 5 are genuine **O(n²)→O(n)** collapses; their speedup grows
+- Findings 1, 2, 4, 5 are genuine **O(n²)->O(n)** collapses; their speedup grows
   with n (we report several sizes rather than cherry-pick one).
 - Finding 3 (string-concat) is the floor at **2.5x**: CPython special-cases `s += t`
   with an in-place resize when the accumulator is singly-referenced, so the textbook
@@ -154,18 +157,18 @@ marker.
 
 ---
 
-## 4. Experiment E3 — does ranking surface what matters?
+## 4. Experiment E3: does ranking surface what matters?
 
 **Question:** does ranking by centrality × churn × severity concentrate the
 findings where real perf fixes later landed, vs detection order or severity alone?
 
 **Method:** mine each repo's git history for perf-fix commits (`perf:`, `N+1`,
-`optimize`, `O(n`, `latency`, `batch`, …); take the changed line ranges). A finding
+`optimize`, `O(n`, `latency`, `batch`, ...); take the changed line ranges). A finding
 is **impactful** if it sits within ±8 lines of such a change (line-level) or in a
 file that was ever perf-fixed (file-level, drift-immune). Score three rankings with
 Precision@k and NDCG@20.
 
-### repowise (primary — young repo, line-stable, fully integrity-checked)
+### repowise (primary; young repo, line-stable, fully integrity-checked)
 
 n = 209 findings, 49 perf-fix commits, 108 impactful (base rate 0.52).
 
@@ -179,14 +182,14 @@ n = 209 findings, 49 perf-fix commits, 108 impactful (base rate 0.52).
 
 **Integrity checks (this is the part that makes it trustworthy):**
 - **Centrality is clean signal.** Call-graph in-degree is structurally independent
-  of commit history. Alone it lifts NDCG 0.29 → **0.44** and P@5 0.20 → **0.80** —
+  of commit history. Alone it lifts NDCG 0.29 -> **0.44** and P@5 0.20 -> **0.80**,
   zero circularity.
 - **Churn is not an artifact.** Worry: a perf-fix commit both defines the label and
   increments the file's churn. Recomputing churn **excluding the perf-fix commits
-  themselves** barely moved it (NDCG 0.634 → 0.599). The hotspot effect is real.
+  themselves** barely moved it (NDCG 0.634 -> 0.599). The hotspot effect is real.
 - **Combined: NDCG 0.755 vs 0.292** (2.6×), P@5 = 1.00, well above the 0.52 base.
 
-### openclaw (external generalization — 20k-file monorepo)
+### openclaw (external generalization; 20k-file monorepo)
 
 n = 2,634 findings, 2,205 perf-fix commits. File-level label (drift-immune, base 0.58):
 
@@ -199,15 +202,15 @@ n = 2,634 findings, 2,205 perf-fix commits. File-level label (drift-immune, base
 Confirms the direction at 12× the finding count: **2.4× lift** over detection order,
 P@10 0.80.
 
-### Django (honest non-result — documents the proxy's boundary)
+### Django (honest non-result; documents the proxy's boundary)
 
 n = 196 findings, but only **1–6 impactful** regardless of line/file granularity or
 history window. Root cause: **Django's static-visible findings (DDL/migration/test
 infra) and Django's actual perf work are disjoint.** Django's famous N+1s are
-**ORM lazy-load** (a query hidden behind attribute access) — the explicitly
+**ORM lazy-load** (a query hidden behind attribute access), the explicitly
 **static-blind** class we deliberately don't claim. So the impact-label proxy has
 almost no positives to rank. This is a property of the corpus + label, not a ranking
-failure — and it precisely illustrates the boundary of what static detection can
+failure, and it precisely illustrates the boundary of what static detection can
 claim. The proxy only has signal where a project's perf work is the
 statically-visible call-in-loop kind (repowise, openclaw).
 
@@ -221,7 +224,7 @@ ALL_CAPS constant was flagged as io-in-loop, though the iteration count is a sma
 compile-time constant. The Python dialect already skipped this; the TS/JS dialect
 did not. Fix shipped (ported the Python `is_constant_loop` logic), with regression
 tests; the defect score is byte-for-byte unchanged. **Measured impact on openclaw
-(the ~20k-file monorepo): io_in_loop 1,805 → 1,615 (−190 false positives), with no
+(the ~20k-file monorepo): io_in_loop 1,805 -> 1,615 (−190 false positives), with no
 true-positive loss.** Shipped as repowise PR #545.
 
 This is the gate doing its job: a precision discipline that catches its own FP
@@ -238,7 +241,7 @@ classes at scale, not a detector taken on faith.
   work to be statically visible (call-in-loop), not ORM-lazy-load. Reported, not
   hidden.
 - **Static call-graph soundness.** Dynamic dispatch, reflection, monkey-patching
-  produce no edge → missed cross-function findings. This caps **recall, not
+  produce no edge -> missed cross-function findings. This caps **recall, not
   precision** (a missing edge is a missed finding, never a false one).
 - **Line drift.** The line-level impact label degrades on old repos (historical
   diff line numbers diverge from HEAD). Mitigated with a file-level label and a
@@ -276,10 +279,12 @@ are in the `performance-pillar` workspace.
 
 ## 8. Status & roadmap
 
-**Shipped:** the five-language detector, the three platform primitives, ~20 gated
-markers, E1 (3 languages), precision validation (4 corpora), E3 (2 repos +
-boundary characterization), E4 (runtime confirmation, 7 findings), and PR #545
-(the constant-loop FP fix).
+**Shipped:** the six-language detector (Python, TS/JS, Java, Go, C#, Rust), the
+three platform primitives, ~20 gated markers, E1 (3 languages measured),
+precision validation (4 corpora), E3 (2 repos + boundary characterization), E4
+(runtime confirmation, 7 findings), and PR #545 (the constant-loop FP fix).
 
-**Next:** Rust dialect (corpora ready); inter-rater agreement (E5); the full
-component ablation (E2, isolating each platform asset's contribution to precision).
+**Next:** the measured clippy-vs-Repowise head-to-head on the Rust corpus (the
+dialect ships; the end-to-end run is blocked on the Windows build toolchain);
+inter-rater agreement (E5); the full component ablation (E2, isolating each
+platform asset's contribution to precision).
