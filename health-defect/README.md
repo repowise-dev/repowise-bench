@@ -1,4 +1,4 @@
-# health-defect — leakage-free, size-orthogonal code-health defect evaluation
+# health-defect: leakage-free, size-orthogonal code-health defect evaluation
 
 The benchmark harness behind Repowise's code-health score and the ICSE 2027 paper
 *"The Size-Confound Wall: A Leakage-Free, Size-Orthogonal Re-Evaluation of

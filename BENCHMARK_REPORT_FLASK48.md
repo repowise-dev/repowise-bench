@@ -8,7 +8,7 @@ We present a controlled, paired benchmark of two code question-answering configu
 
 ## 1. Introduction
 
-A large fraction of the cost of modern coding agents is spent on *exploration*: greping for symbols, reading candidate files, and re-reading them as the conversation grows. For repositories the agent has seen many times — its own monorepo, a popular open-source dependency — most of that exploration is redundant work that an offline indexing pass could have done once. The empirical question is whether such an offline pass actually pays for itself once the resulting index is queried inside a real agent loop, where every additional tool, every additional token in a tool description, and every additional cached message has a measurable cost.
+A large fraction of the cost of modern coding agents is spent on *exploration*: greping for symbols, reading candidate files, and re-reading them as the conversation grows. For repositories the agent has seen many times (its own monorepo, a popular open-source dependency) most of that exploration is redundant work that an offline indexing pass could have done once. The empirical question is whether such an offline pass actually pays for itself once the resulting index is queried inside a real agent loop, where every additional tool, every additional token in a tool description, and every additional cached message has a measurable cost.
 
 This report answers that question for one repository (`pallets/flask`) and one task distribution (48 SWE-QA questions about Flask). We treat C0 as the strong baseline that any documentation-augmented system has to beat in order to justify its existence, and we report results in the form an engineer evaluating the trade-off would actually want to see: paired per-task deltas, win counts, distributional summaries, and the worst regressions.
 
@@ -22,10 +22,10 @@ All tasks are drawn from `pallets/flask` at a fixed commit, indexed locally. Fla
 
 The flask48 task set is a 48-question subset of SWE-QA, the question-answering split of the SWE-bench family. Each task is a short natural-language question about the Flask codebase together with a reference answer used by the LLM judge. The questions cover four broad categories:
 
-1. **Localization** — *"Where is the request context popped at the end of a request?"*
-2. **Behavioral** — *"What happens if `before_request` raises an exception?"*
-3. **Configuration / API** — *"Which environment variables override `app.config['DEBUG']`?"*
-4. **Test-coverage** — *"Which test exercises the JSON encoder for datetime objects?"*
+1. **Localization**: *"Where is the request context popped at the end of a request?"*
+2. **Behavioral**: *"What happens if `before_request` raises an exception?"*
+3. **Configuration / API**: *"Which environment variables override `app.config['DEBUG']`?"*
+4. **Test-coverage**: *"Which test exercises the JSON encoder for datetime objects?"*
 
 The 48 tasks were sampled from the larger SWE-QA Flask split with no per-task tuning, no per-task prompt engineering, and no exclusion of "hard" tasks after the fact. The question text is identical across the two configurations.
 
@@ -43,7 +43,7 @@ Both configurations use the same underlying LLM (`claude-sonnet-4-6`), the same 
 
 C0 is intentionally a strong baseline. It is the same agent loop a developer would get by running Claude Code against a fresh checkout of Flask with no extra setup, and it is given full filesystem access plus the ability to spawn `Agent` subagents for parallel exploration. It is not crippled relative to public, off-the-shelf use.
 
-C2 has the same generic tools as C0 — it is *not* prevented from greping or reading files. The only addition is the four MCP tools that query a precomputed documentation index of the repository. The index is built once, ahead of time, by an ingestion pipeline that parses the repository, builds an import / call graph, ranks files, and emits compact descriptive cards per file and per symbol. The ingestion cost is paid once per repository version and is **not** included in any of the per-task numbers below; it is amortized across all queries against the same repository.
+C2 has the same generic tools as C0: it is *not* prevented from greping or reading files. The only addition is the four MCP tools that query a precomputed documentation index of the repository. The index is built once, ahead of time, by an ingestion pipeline that parses the repository, builds an import / call graph, ranks files, and emits compact descriptive cards per file and per symbol. The ingestion cost is paid once per repository version and is **not** included in any of the per-task numbers below; it is amortized across all queries against the same repository.
 
 ### 2.4 Harness
 
@@ -61,7 +61,7 @@ A single Python harness (`swe_qa_runner.py`) drives both configurations. For eac
    - the assistant's final answer.
 5. Submits the final answer to a separate LLM judge that produces a score in [0, 10] given the question and the reference answer.
 
-The cost field is read directly from Claude Code's per-model accounting, which sums across every model invoked under the parent session — including subagent invocations that bill against a different model than the parent. This is important because C0 spawns Haiku-backed `Agent` subagents on harder questions, and a naive token-based recomputation that only looks at the parent session's messages will miss that spend (see §6).
+The cost field is read directly from Claude Code's per-model accounting, which sums across every model invoked under the parent session, including subagent invocations that bill against a different model than the parent. This is important because C0 spawns Haiku-backed `Agent` subagents on harder questions, and a naive token-based recomputation that only looks at the parent session's messages will miss that spend (see §6).
 
 The judge is run once per (task, configuration) pair, with the configuration label hidden, and is the same model in both cases. Judge variance is non-zero but small; we discuss its impact on the parity claim in §5.
 
@@ -73,12 +73,12 @@ The 48 tasks are paired: every task is run under both C0 and C2, and every compa
 
 We report six metrics per task:
 
-- **Cost (USD)** — total billed dollars across all models invoked during the task.
-- **Wall (s)** — wall-clock seconds from the first request to the final answer.
-- **Tool calls** — total number of tool invocations made by the agent.
-- **Files read** — number of distinct source files opened via `Read`.
-- **Turns** — number of assistant messages in the session.
-- **Score (0–10)** — LLM judge score against the reference answer.
+- **Cost (USD)**: total billed dollars across all models invoked during the task.
+- **Wall (s)**: wall-clock seconds from the first request to the final answer.
+- **Tool calls**: total number of tool invocations made by the agent.
+- **Files read**: number of distinct source files opened via `Read`.
+- **Turns**: number of assistant messages in the session.
+- **Score (0–10)**: LLM judge score against the reference answer.
 
 For each metric we report the mean delta, the median delta, the trimmed mean (dropping the two highest and two lowest per-task deltas), and per-task win counts. Cost and wall are the metrics we care about most because they are the ones a deployment decision would actually be made on; score is the gating quality constraint.
 
@@ -99,7 +99,7 @@ All numbers in this section are over the full **n = 48 paired** flask48 task set
 | **Turns**      | 5.9     | 4.8     | **−19.7 %** | 4.0      | 5.0      | +25.0 %     |
 | **Score (0–10)** | 8.82  | 8.81    | −0.01       | 9.00     | 9.00     | tied        |
 
-The trimmed mean cost delta — dropping the two largest C2 wins and the two largest C2 losses — is approximately **−$0.030 / task (−27 %)**. Even after stripping the heaviest exploration tasks from both ends, C2 retains a clear cost advantage.
+The trimmed mean cost delta (dropping the two largest C2 wins and the two largest C2 losses) is approximately **−$0.030 / task (−27 %)**. Even after stripping the heaviest exploration tasks from both ends, C2 retains a clear cost advantage.
 
 ### 3.2 Totals over the benchmark
 
@@ -116,7 +116,7 @@ Run end-to-end on the full benchmark, C2 saves about a fifth of the dollar cost 
 - **Wall**: C2 faster on **25 / 48 (52 %)** tasks.
 - **Score**: C2 ≥ C0 on **30 / 48 (62 %)** tasks.
 
-C2 wins on cost much more often than it loses on cost. The wall-time win is closer to a coin flip — many tasks finish in under thirty seconds in both configurations and the ordering is dominated by network jitter — but C2 wins the long tail decisively (see §3.4).
+C2 wins on cost much more often than it loses on cost. The wall-time win is closer to a coin flip (many tasks finish in under thirty seconds in both configurations and the ordering is dominated by network jitter) but C2 wins the long tail decisively (see §3.4).
 
 ### 3.4 Cost-savings distribution
 
@@ -145,7 +145,7 @@ These two together are the mechanism: C2 is not winning because it has a faster 
 
 We highlight three tasks that illustrate the operating regime of the two configurations.
 
-### 4.1 The largest cost win — flask_002
+### 4.1 The largest cost win: flask_002
 
 | | C0 | C2 |
 |---|---|---|
@@ -155,7 +155,7 @@ We highlight three tasks that illustrate the operating regime of the two configu
 
 flask_002 asks a question about test coverage of a specific helper. Under C0, the agent issues a Grep, finds many candidate test files, opens several of them, dispatches a subagent to summarize the relevant test, and only then answers. The subagent invocation alone bills several times more than C2's entire run. Under C2, the agent issues one `get_answer` call, gets back a confident answer pointing at a concrete file and test name, and answers. The cost gap (~5× ratio in dollars, 4× ratio in wall time) is structural: C0 is paying for an exploration loop that C2 has already done offline.
 
-### 4.2 The largest score win — flask_029
+### 4.2 The largest score win: flask_029
 
 | | C0 | C2 |
 |---|---|---|
@@ -165,11 +165,11 @@ flask_002 asks a question about test coverage of a specific helper. Under C0, th
 
 (flask_029 dispatched no subagents under C0, so the projected and measured C0 cost are identical for this task.)
 
-flask_029 is the only task in the benchmark where C0 fails decisively (judge score below 5) and C2 succeeds. The question requires synthesizing information across two non-adjacent parts of the codebase, and C0's exploration loop converges on a partial answer. C2 issues additional tool calls — it is one of the few tasks where C2 spends *more* than C0 — and arrives at the correct answer. This is an instructive trade: on the hardest questions, the documentation-augmented agent is willing to pay extra cycles because the index gives it a clearer picture of what it is missing. C2 is not uniformly cheaper at the cost of being uniformly worse on quality; it is cheaper in aggregate *and* has a small set of decisive quality wins on the hardest questions.
+flask_029 is the only task in the benchmark where C0 fails decisively (judge score below 5) and C2 succeeds. The question requires synthesizing information across two non-adjacent parts of the codebase, and C0's exploration loop converges on a partial answer. C2 issues additional tool calls (it is one of the few tasks where C2 spends *more* than C0) and arrives at the correct answer. This is an instructive trade: on the hardest questions, the documentation-augmented agent is willing to pay extra cycles because the index gives it a clearer picture of what it is missing. C2 is not uniformly cheaper at the cost of being uniformly worse on quality; it is cheaper in aggregate *and* has a small set of decisive quality wins on the hardest questions.
 
-### 4.3 The largest wall win — flask_002 again
+### 4.3 The largest wall win: flask_002 again
 
-flask_002 is also the largest single wall-time win at −75 % (148 s → 37 s), driven by the same mechanism: the elimination of an exploration subagent loop.
+flask_002 is also the largest single wall-time win at −75 % (148 s -> 37 s), driven by the same mechanism: the elimination of an exploration subagent loop.
 
 ---
 
@@ -195,9 +195,9 @@ The judge is itself an LLM, and re-scoring the same answer twice can produce a d
 
 ### 6.1 Cost accounting
 
-We count cost by reading the agent runtime's per-model billing roll-up directly: for each task in each configuration we record the total dollar cost across every model invoked under the task — parent session and any subagents — and never recompute it from raw token counts. Both configurations are pinned to `claude-sonnet-4-6` for the parent session. C2 dispatches no subagents on flask48; its index queries make subexploration unnecessary. C0 dispatches `Agent` subagents on a small number of hard tasks and is billed for the full context build of each one.
+We count cost by reading the agent runtime's per-model billing roll-up directly: for each task in each configuration we record the total dollar cost across every model invoked under the task (parent session and any subagents) and never recompute it from raw token counts. Both configurations are pinned to `claude-sonnet-4-6` for the parent session. C2 dispatches no subagents on flask48; its index queries make subexploration unnecessary. C0 dispatches `Agent` subagents on a small number of hard tasks and is billed for the full context build of each one.
 
-For the cost numbers reported in this study, **we treat both the parent session and any subagent dispatches as billed at Sonnet rates** (`claude-sonnet-4-6` end-to-end). This is the configuration a practitioner gets when running a strong coding agent without explicitly configuring a cheaper subagent tier, and it is the apples-to-apples comparison to C2, which itself runs pure Sonnet. Holding the model constant on both sides keeps the comparison about *what the agent does* — how many tools it calls, how many files it reads, how many turns the conversation takes — rather than about which tier of model the runtime happens to dispatch under the hood.
+For the cost numbers reported in this study, **we treat both the parent session and any subagent dispatches as billed at Sonnet rates** (`claude-sonnet-4-6` end-to-end). This is the configuration a practitioner gets when running a strong coding agent without explicitly configuring a cheaper subagent tier, and it is the apples-to-apples comparison to C2, which itself runs pure Sonnet. Holding the model constant on both sides keeps the comparison about *what the agent does* (how many tools it calls, how many files it reads, how many turns the conversation takes) rather than about which tier of model the runtime happens to dispatch under the hood.
 
 The per-model decomposition on flask48 is:
 
@@ -233,7 +233,7 @@ The C2 index is built once against the same Flask checkout that both arms operat
 
 ### 6.5 Generalization
 
-This study reports results on **one** repository, **one** task distribution, **one** model, and **one** judge. Several thresholds inside C2 (file ranking parameters, card sizes, the test-file inclusion rule) were chosen to perform well on Python repositories of roughly Flask's size and shape. We do not claim that the headline numbers transfer unchanged to repositories with very different code-to-test ratios, very different file counts, or non-Python languages. We believe the *direction* of the result — that an offline documentation pass reduces exploration cost in a coding agent — is robust, because the underlying mechanism (skipping repeated greps and file reads) does not depend on Flask. We make no quantitative claim outside flask48.
+This study reports results on **one** repository, **one** task distribution, **one** model, and **one** judge. Several thresholds inside C2 (file ranking parameters, card sizes, the test-file inclusion rule) were chosen to perform well on Python repositories of roughly Flask's size and shape. We do not claim that the headline numbers transfer unchanged to repositories with very different code-to-test ratios, very different file counts, or non-Python languages. We believe the *direction* of the result (that an offline documentation pass reduces exploration cost in a coding agent) is robust, because the underlying mechanism (skipping repeated greps and file reads) does not depend on Flask. We make no quantitative claim outside flask48.
 
 ### 6.6 What we deliberately do not claim
 
@@ -252,11 +252,11 @@ To keep the framing honest, we list explicitly the claims we do *not* make:
 
 The mechanism behind the cost win is visible in the behavioral metrics rather than in the cost field itself. C2's dominant behavioral change vs C0 is that **the median task reads zero source files**. C0's median task reads one file, and the long tail reads many. Each file read in a long agent session contributes both a one-time read cost and a recurring cache-rewrite cost on every subsequent turn. Removing the read removes both. Compounded across a session of several turns, the saving per avoided read is several times the cost of the read itself.
 
-The secondary mechanism — and quantitatively the larger of the two — is the elimination of subagent dispatch on the hardest tasks. C0 spends roughly 30 % of its dollars on `Agent` subagents that explore in parallel; C2 spends none. The four C0 tasks that dominate the subagent line item are the four tasks where C2 posts its largest dollar wins. There is a one-to-one correspondence between "C0 dispatched a subagent" and "C2 won big on this task," and that correspondence holds because the documentation index is doing offline, ahead of time, the same kind of breadth-first exploration the subagent is doing online and per-task.
+The secondary mechanism (and quantitatively the larger of the two) is the elimination of subagent dispatch on the hardest tasks. C0 spends roughly 30 % of its dollars on `Agent` subagents that explore in parallel; C2 spends none. The four C0 tasks that dominate the subagent line item are the four tasks where C2 posts its largest dollar wins. There is a one-to-one correspondence between "C0 dispatched a subagent" and "C2 won big on this task," and that correspondence holds because the documentation index is doing offline, ahead of time, the same kind of breadth-first exploration the subagent is doing online and per-task.
 
 ### 7.2 Where the savings *don't* come from
 
-The savings are not coming from a cheaper model — both configurations are pinned to `claude-sonnet-4-6`. They are not coming from a shorter system prompt — both configurations use the same SWE-QA template. They are not coming from prompt-side compression of question text — the question text is identical. They are not coming from a smaller context window — both configurations use the same window. The only thing C2 has that C0 does not is the documentation index, which is the only variable that can plausibly explain the delta.
+The savings are not coming from a cheaper model: both configurations are pinned to `claude-sonnet-4-6`. They are not coming from a shorter system prompt: both configurations use the same SWE-QA template. They are not coming from prompt-side compression of question text: the question text is identical. They are not coming from a smaller context window: both configurations use the same window. The only thing C2 has that C0 does not is the documentation index, which is the only variable that can plausibly explain the delta.
 
 ### 7.3 Quality / cost / latency Pareto
 
@@ -264,7 +264,7 @@ C2 is Pareto-better than C0 on this benchmark on the joint axis of *cost, latenc
 
 ### 7.4 The asymmetry between mean and median
 
-The mean cost delta (−36.2 %) is much larger than the median cost delta (−7.9 %). This is not a sign that the result is driven by outliers — the trimmed mean (~−27 %) confirms the mean is stable — it is a sign that C0's cost distribution has a heavy right tail and C2's does not. C2 cuts the tail off. The typical task is modestly cheaper on C2; the expensive C0 tasks are *dramatically* cheaper on C2. From a deployment economics standpoint, the mean is the number that matters: a workload of a thousand tasks on C2 will run for roughly 36 % less money than the same thousand on C0, even though any individual task is closer to a coin flip with a moderate mean shift.
+The mean cost delta (−36.2 %) is much larger than the median cost delta (−7.9 %). This is not a sign that the result is driven by outliers; the trimmed mean (~−27 %) confirms the mean is stable. It is a sign that C0's cost distribution has a heavy right tail and C2's does not. C2 cuts the tail off. The typical task is modestly cheaper on C2; the expensive C0 tasks are *dramatically* cheaper on C2. From a deployment economics standpoint, the mean is the number that matters: a workload of a thousand tasks on C2 will run for roughly 36 % less money than the same thousand on C0, even though any individual task is closer to a coin flip with a moderate mean shift.
 
 ### 7.5 Failure modes of C2
 
@@ -295,7 +295,7 @@ We limit our claims explicitly:
 
 On a 48-question paired benchmark drawn from `pallets/flask`, augmenting a strong general-purpose coding agent with a precomputed documentation index reduces mean dollar cost by **36.2 %**, mean wall-clock latency by **18.6 %**, mean tool calls by **49 %**, and mean source-file reads by **89 %**, while matching the baseline on aggregate answer quality. The augmented configuration is the cheaper of the two on **two-thirds** of tasks, the faster on **half** of tasks, and at least as accurate on **62 %** of tasks. Its largest individual wins coincide exactly with the tasks on which the baseline pays for parallel subagent exploration. Its single significant quality regression is a known failure mode of trusting an offline index too aggressively.
 
-The result is consistent with a simple thesis: most of the cost in a real coding-agent loop is exploration cost, exploration is highly redundant across queries against the same repository, and a one-time offline pass that produces an index of where things live and what they do is a strict economic improvement over re-doing that exploration on every query. The size of the win on flask48 is large enough — more than a third of total spend, with no quality trade — that a practitioner choosing between the two configurations has a clear basis for picking the documentation-augmented one.
+The result is consistent with a simple thesis: most of the cost in a real coding-agent loop is exploration cost, exploration is highly redundant across queries against the same repository, and a one-time offline pass that produces an index of where things live and what they do is a strict economic improvement over re-doing that exploration on every query. The size of the win on flask48 is large enough (more than a third of total spend, with no quality trade) that a practitioner choosing between the two configurations has a clear basis for picking the documentation-augmented one.
 
 ---
 
@@ -303,9 +303,9 @@ The result is consistent with a simple thesis: most of the cost in a real coding
 
 | Metric | Best for C2 | Worst for C2 |
 |---|---|---|
-| Cost  | flask_002: $0.620 → $0.119 (**−81 %**) | flask_009: $0.077 → $0.108 (+40 %) |
-| Wall  | flask_002: 148 s → 37 s (**−75 %**)    | flask_029: 68 s → 144 s (+114 %)   |
-| Score | flask_029: 4.60 → 7.40 (**+2.80**)     | flask_010: 7.60 → 5.60 (−2.00)     |
+| Cost  | flask_002: $0.620 -> $0.119 (**−81 %**) | flask_009: $0.077 -> $0.108 (+40 %) |
+| Wall  | flask_002: 148 s -> 37 s (**−75 %**)    | flask_029: 68 s -> 144 s (+114 %)   |
+| Score | flask_029: 4.60 -> 7.40 (**+2.80**)     | flask_010: 7.60 -> 5.60 (−2.00)     |
 
 ## Appendix B. Per-model cost decomposition
 
