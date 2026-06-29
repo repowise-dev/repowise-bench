@@ -131,7 +131,12 @@ def run_one(task: dict, condition: dict, model: str, timeout: int,
             rec["error"] = "index_failed"
             rec["model_patch"] = ""
             return rec
-        mcp_cfg = generate_mcp_config(wt, _BENCH_ROOT, profile="core")
+        # NOTE: do NOT pass profile="core" — the repowise CLI on `main` has no
+        # --profile option, so the MCP server would crash on launch ("No such
+        # option: --profile") and the agent would silently fall back to bare
+        # Read/Grep (zero repowise calls). The index-only arm restricts the tool
+        # surface client-side via TOOLS_INDEX_ONLY in run_claude_code anyway.
+        mcp_cfg = generate_mcp_config(wt, _BENCH_ROOT, profile=None)
         mcp_config_path = str(mcp_cfg)
         write_repo_claude_md(wt, condition.get("repowise_mode", "index-only"))
 
