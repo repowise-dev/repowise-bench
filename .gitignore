@@ -86,3 +86,11 @@ tool_health_dump.json
 
 # opencode source clone (inspection only, local)
 opencode-src/
+
+# SWE-bench validation: generated artifacts (regenerable, heavy, or local-only)
+/experiments/               # sparse clone of swe-bench/experiments (leaderboard dumps)
+/swebench_venvs/            # per-instance native test venvs
+/swebench_harness_venv/     # official swebench package venv (Windows orchestration)
+/indexes_swebench/          # per-instance repowise index-only caches
+/scratch_swebench/          # per-instance base_commit worktrees
+results_swebench_goldgate_*.json   # ad-hoc gold-gate dumps

@@ -858,16 +858,59 @@ the omitted lines instead of re-running the command.
 MAX_RETRIES = 6
 
 
+class _StreamResult:
+    """Minimal subprocess-result stand-in for the streaming path."""
+    def __init__(self, returncode, stdout, stderr, timed_out):
+        self.returncode = returncode
+        self.stdout = stdout
+        self.stderr = stderr
+        self.timed_out = timed_out
+
+
+def _run_streamed(cmd, cwd, timeout, log_path):
+    """Run cmd, tee stdout to log_path live, enforce timeout, return result.
+
+    Unlike subprocess.run(capture_output, timeout), this preserves everything
+    the process emitted up to a timeout kill, so long agent runs stay
+    debuggable. stderr is captured to a sibling .err file and read back.
+    """
+    Path(log_path).parent.mkdir(parents=True, exist_ok=True)
+    err_path = str(log_path) + ".err"
+    with open(log_path, "w", encoding="utf-8") as out_f, \
+         open(err_path, "w", encoding="utf-8") as err_f:
+        proc = subprocess.Popen(
+            cmd, cwd=cwd, stdout=out_f, stderr=err_f, env=_UTF8_ENV,
+            text=True, encoding="utf-8", errors="replace",
+        )
+        timed_out = False
+        try:
+            proc.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            proc.kill()
+            proc.wait()
+    stdout = Path(log_path).read_text(encoding="utf-8", errors="replace")
+    stderr = Path(err_path).read_text(encoding="utf-8", errors="replace")
+    return _StreamResult(proc.returncode, stdout, stderr, timed_out)
+
+
 def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     model: str, timeout: int,
                     max_budget_usd: float = 2.0,
                     mcp_config_path: Optional[str] = None,
-                    benchmark: str = "swe_qa") -> tuple:
+                    benchmark: str = "swe_qa",
+                    manage_c0_worktree: bool = True,
+                    stream_log_path: Optional[str] = None) -> tuple:
     """
     Run Claude Code with retry on rate limits.
     Returns (output_dict, retries_used).
 
     benchmark: "swe_qa" or "swe_bench" — selects the right system prompt.
+    manage_c0_worktree: when True (default), a C0 (no-repowise) run is relocated
+        into a fresh HEAD git worktree via get_c0_worktree(). The SWE-bench
+        runner sets this False because it already supplies an isolated worktree
+        checked out at the instance's base_commit (a HEAD worktree would be the
+        wrong code) and captures the diff from that exact path.
     """
     # SWE-QA is read-only code understanding — no Bash by default.
     # Bash lets the agent escape the repo (read arbitrary files, call repowise CLI
@@ -912,7 +955,8 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         # creation fails we FAIL LOUDLY rather than fall back to the real
         # repo dir (that's how C0 got silently contaminated before).
         disallowed += ",ToolSearch,mcp__*"
-        repo_path = str(get_c0_worktree(Path(repo_path)))
+        if manage_c0_worktree:
+            repo_path = str(get_c0_worktree(Path(repo_path)))
     else:
         mode = condition.get("repowise_mode", "full")
         # Block every repowise tool that is NOT in the allowed list for this
@@ -1002,10 +1046,21 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
 
     for attempt in range(MAX_RETRIES):
         try:
-            result = subprocess.run(
-                cmd, cwd=repo_path, capture_output=True, text=True,
-                timeout=timeout, env=_UTF8_ENV, encoding="utf-8", errors="replace"
-            )
+            if stream_log_path:
+                # Stream stdout to a file in real time so a timeout (or any
+                # mid-run death) still leaves the full stream-json trail for
+                # diagnosis — subprocess.run(capture_output) discards it on
+                # TimeoutExpired, which left long agent runs un-debuggable.
+                result = _run_streamed(cmd, repo_path, timeout, stream_log_path)
+                if result.timed_out:
+                    raise subprocess.TimeoutExpired(cmd, timeout,
+                                                    output=result.stdout)
+            else:
+                result = subprocess.run(
+                    cmd, cwd=repo_path, capture_output=True, text=True,
+                    timeout=timeout, env=_UTF8_ENV, encoding="utf-8",
+                    errors="replace"
+                )
 
             if result.returncode == 0 and result.stdout.strip():
                 # stream-json: parse all lines, extract the result line + tool calls
@@ -1063,8 +1118,19 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     "_raw_stream_lines": raw_lines,
                 }, attempt
 
-        except subprocess.TimeoutExpired:
-            return {"error": "timeout", "timed_out": True}, attempt
+        except subprocess.TimeoutExpired as e:
+            # Preserve whatever the agent streamed before the kill so a timeout
+            # is diagnosable (which/how many tool calls, last action).
+            partial = e.output if isinstance(e.output, str) else ""
+            raw_lines = partial.strip().split("\n") if partial.strip() else []
+            tool_calls = sum(1 for ln in raw_lines if '"type":"assistant"' in ln
+                             and '"tool_use"' in ln)
+            return {
+                "error": f"timeout (streamed {len(raw_lines)} events, "
+                         f"~{tool_calls} tool calls before kill)",
+                "timed_out": True,
+                "_raw_stream_lines": raw_lines,
+            }, attempt
         except Exception as e:
             err = str(e)
             if is_rate_limit_error(err):
