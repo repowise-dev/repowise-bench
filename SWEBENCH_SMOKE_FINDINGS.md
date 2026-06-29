@@ -144,3 +144,40 @@ Key reliability fixes landed while proving this:
 Status: apparatus complete and validated. Remaining = run the paired C0/C1
 matrix on the failure-mined django tasks (tuning timeout/budget per task
 hardness) and write the per-task localization analysis.
+
+## First paired django run + a bug it surfaced (2026-06-29)
+
+Ran C0 and C1 on `django__django-10554` (a 1-4hr, 2-file query/compiler bug,
+failed by all 134 leaderboard systems). Outcome and lessons:
+
+- **MCP `--profile` bug (fixed).** The first C1 made zero repowise calls: the
+  repowise CLI on `main` has no `repowise mcp --profile` option, so launching the
+  server with `--profile core` crashed it on startup and the agent silently fell
+  back to bare Read/Grep. Fixed by not passing a profile for the index-only arm
+  (the tool surface is already restricted client-side via TOOLS_INDEX_ONLY).
+  After the fix, ToolSearch resolves `mcp__repowise__get_context`/`get_risk` and
+  the agent loads + calls them. Lesson: always assert the C1 stream contains
+  `mcp__repowise__*` calls before trusting a C1 result.
+
+- **Task too hard to yield signal.** Both arms TIMED OUT at 30 min with no patch:
+  C0 made ~56 tool calls, valid C1 made ~50 (incl. 2 repowise calls) — neither
+  ever committed an edit. django-10554 is simply beyond sonnet in 30 min/$5
+  whether or not repowise is present. A both-arms-DNF instance gives no
+  mechanism comparison: you need a task where each arm at least *produces* a
+  patch, so you can compare which files they localized to.
+
+- **Recommendation for the real run:** select hard-tail django instances rated
+  `15 min - 1 hour` (still failed by most systems, but completable), prefer
+  multi-file gold patches (e.g. django-12406, django-16631) so the cross-file
+  localization mechanism is actually exercised, and keep the gold patch's file
+  set as the localization yardstick. Reserve `1-4 hours` instances for a
+  longer-budget run, not the smoke.
+
+- **Minor harness TODO:** the timeout return path doesn't tally
+  `repowise_tools_called` into the meta record (the stream has them); parse from
+  `_raw_stream_lines` on timeout so timed-out runs still report repowise usage.
+
+What IS proven: the end-to-end apparatus (agent -> diff -> Docker scorer ->
+resolved) works, the C1 repowise wiring works after the profile fix, and the
+failure-mining surfaces genuinely hard tasks. The mechanism question is
+unanswered only because the first chosen instance was too hard to complete.
