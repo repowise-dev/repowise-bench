@@ -87,10 +87,19 @@ tool_health_dump.json
 # opencode source clone (inspection only, local)
 opencode-src/
 
-# SWE-bench validation: generated artifacts (regenerable, heavy, or local-only)
-/experiments/               # sparse clone of swe-bench/experiments (leaderboard dumps)
-/swebench_venvs/            # per-instance native test venvs
-/swebench_harness_venv/     # official swebench package venv (Windows orchestration)
-/indexes_swebench/          # per-instance repowise index-only caches
-/scratch_swebench/          # per-instance base_commit worktrees
-results_swebench_goldgate_*.json   # ad-hoc gold-gate dumps
+# SWE-bench validation: generated artifacts (regenerable, heavy, or local-only).
+# (gitignore has no inline comments — keep each comment on its own line.)
+# sparse clone of swe-bench/experiments (leaderboard dumps)
+/experiments/
+# per-instance native test venvs
+/swebench_venvs/
+# official swebench package venv (Windows orchestration)
+/swebench_harness_venv/
+# per-instance repowise index-only caches
+/indexes_swebench/
+# per-instance base_commit worktrees
+/scratch_swebench/
+# generated per-instance MCP configs for the swe_bench arm
+/mcp_configs/scratch_swebench_*.json
+# ad-hoc gold-gate dumps
+results_swebench_goldgate_*.json
