@@ -801,6 +801,9 @@ TOOLS_LEAN = (
     ",mcp__repowise__search_codebase"
     ",mcp__repowise__get_context"
     ",mcp__repowise__get_risk"
+    # Newer lean profiles also serve get_why; allowing it is harmless when
+    # the server under test predates that (an unserved tool cannot be called).
+    ",mcp__repowise__get_why"
 )
 
 # CLAUDE.md written into repo root for C1 runs.
