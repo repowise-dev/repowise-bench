@@ -58,6 +58,21 @@ def test_oversized_tool_flagged_against_host_cap(fake_rows):
     assert rows["oversized"].status == "OK"
 
 
+def test_mutating_tool_skipped_not_called(fake_rows):
+    rows, dump = fake_rows
+    assert rows["delete_everything"].status == "SKIP"
+    assert "delete_everything" not in dump  # never invoked, not even expecting an error
+
+
+def test_null_sample_arg_excludes_tool():
+    params = StdioServerParameters(command=sys.executable, args=[str(FAKE_SERVER)])
+    rows, dump = asyncio.run(check_stdio(params, {"boom": None}, "q", True))
+    by_name = {r.name: r for r in rows}
+    assert by_name["boom"].status == "SKIP"
+    assert "boom" not in dump
+    assert by_name["healthy"].status == "OK"  # others still probed
+
+
 def test_synthesize_args_fills_only_required():
     schema = {
         "type": "object",

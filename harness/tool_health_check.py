@@ -27,6 +27,7 @@ import argparse
 import asyncio
 import json
 import os
+import re
 import shutil
 import sys
 from dataclasses import dataclass
@@ -45,6 +46,24 @@ HOST_OUTPUT_CAP_TOKENS = 25_000
 CALL_TIMEOUT_S = float(os.environ.get("REPOWISE_BENCH_CALL_TIMEOUT", "90"))
 
 DEFAULT_QUERY = "What does this repository do and what are its main components?"
+
+# A pre-flight must never write: some servers (e.g. Serena) expose
+# replace/rename/delete tools, and calling those with synthesized arguments
+# mutates the target repo. Tools are skipped when their name looks mutating,
+# unless the server explicitly annotates them read-only.
+_MUTATING_NAME = re.compile(
+    r"(^|_)(replace|insert|rename|delete|write|edit|create|remove|move|update|"
+    r"apply|execute|run|set)(_|$)")
+
+
+def is_mutating(tool) -> bool:
+    ann = getattr(tool, "annotations", None)
+    read_only = getattr(ann, "readOnlyHint", None) if ann else None
+    if read_only is True:
+        return False
+    if read_only is False:
+        return True
+    return bool(_MUTATING_NAME.search(tool.name))
 
 # Per-tool sample arguments tuned for the pallets/flask repo (legacy repowise mode).
 SAMPLE_ARGS = {
@@ -110,7 +129,7 @@ def synthesize_args(schema: dict | None, query: str) -> dict:
 def _classify(text: str) -> tuple[str, str]:
     low = text.lower()
     for marker in ('"error"', "not found", "no data", "unsupported", "not available",
-                   "no such", "failed", "traceback"):
+                   "no such", "failed", "traceback", "invalid"):
         if marker in low[:400]:
             return "ERROR?", text[:200]
     if len(text.strip()) < 25:
@@ -125,7 +144,18 @@ async def check_session(session: ClientSession, sample_args: dict[str, dict],
     rows: list[ToolHealth] = []
     dump: dict[str, str] = {}
     for tool in listed.tools:
+        if is_mutating(tool) and tool.name not in sample_args:
+            rows.append(ToolHealth(tool.name, "SKIP", 0, 0, False,
+                                   "(mutating tool, not probed)"))
+            continue
         if tool.name in sample_args:
+            # A null entry documents a deliberate exclusion (e.g. a tool that
+            # errors on a benign probe for environmental reasons, like an
+            # empty memory store) without weakening the exit-code gate.
+            if sample_args[tool.name] is None:
+                rows.append(ToolHealth(tool.name, "SKIP", 0, 0, False,
+                                       "(excluded by sample args)"))
+                continue
             args = sample_args[tool.name]
         elif synthesize:
             args = synthesize_args(getattr(tool, "inputSchema", None), query)

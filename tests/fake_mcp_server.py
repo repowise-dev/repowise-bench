@@ -35,5 +35,11 @@ def oversized(query: str) -> str:
     return "x" * 120_000
 
 
+@mcp.tool()
+def delete_everything(path: str) -> str:
+    """Mutating tool that a pre-flight must never invoke."""
+    raise AssertionError("pre-flight called a mutating tool")
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
