@@ -1,0 +1,122 @@
+[
+  {
+    "id": "fastify-q01",
+    "verdict": "pass",
+    "issues": "Verified directly: assertNotStarted (lib/decorate.js:144-148) throws FST_ERR_DEC_AFTER_START(name) when instance[kState].started is true; called as the first statement in decorateReply (line 131) and decorateRequest (line 138), and in decorateFastify (line 76, the implementation of `add`). Matches answer exactly."
+  },
+  {
+    "id": "fastify-q02",
+    "verdict": "pass",
+    "issues": "Verified directly against lib/plugin-override.js:78-91. First branch (instancePrefix.endsWith('/') && pluginPrefix[0]==='/') strips the leading slash from pluginPrefix; second branch (pluginPrefix[0]!=='/' && !instancePrefix.endsWith('/')) prepends '/'. Matches answer exactly, including the double-slash rationale in the inline comments."
+  },
+  {
+    "id": "fastify-q03",
+    "verdict": "pass",
+    "issues": "Verified directly: lib/content-type-parser.js:4 imports `{ FifoMap: Fifo } = require('toad-cache')`; line 41 `this.cache = new Fifo(100)`; removeAll() (~line 159) resets `this.cache = new Fifo(100)`. getParser (~line 119) reads/writes this.cache keyed by content-type string. Matches answer exactly."
+  },
+  {
+    "id": "fastify-q04",
+    "verdict": "pass",
+    "issues": "Verified directly: lib/error-status.js is a 14-line file exactly matching the answer -- `if (!reply[kReplyHasStatusCode] || reply.statusCode === 200) { const statusCode = err && (err.statusCode || err.status); reply.code(statusCode >= 400 ? statusCode : 500) }`. Answer is accurate; evidence range lib/error-status.js:1-12 covers the whole file."
+  },
+  {
+    "id": "fastify-q05",
+    "verdict": "pass",
+    "issues": "Verified directly: lib/log-controller.js constructor reads opts.disableRequestLogging falling back to defaultInitOptions.disableRequestLogging (from lib/initial-config-validation.js), records isDisableRequestLoggingFunction, and isLogDisabled(req) branches on that flag. incomingRequest() calls isLogDisabled(request) and returns early. Matches answer exactly."
+  },
+  {
+    "id": "fastify-q06",
+    "verdict": "pass",
+    "issues": "Verified directly against lib/plugin-override.js:28-70 and lib/four-oh-four.js:44-52. override() does Object.create(old), pushes onto old[kChildren], rebuilds kReply/kRequest/kContentTypeParser/kHooks/kSchemaController, computes kRoutePrefix via buildRoutePrefix, and calls instance[kFourOhFour].arrange404(instance) when opts.prefix is truthy. arrange404 sets instance[kFourOhFourLevelInstance] = instance and instance[kCanSetNotFoundHandler] = true exactly as described. Matches answer; minor unverified router.all(...) 404-route detail is consistent with code seen elsewhere (q08) and not contradicted."
+  },
+  {
+    "id": "fastify-q07",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent against lib/route.js and lib/handle-request.js at the pinned commit: onRequestHookRunner (route.js:561-568, callback runPreParsing) -> preParsingHookRunner (route.js:655, callback handleRequest) -> handleRequest (handle-request.js:21, content-type resolution + contentTypeParser.run) -> handler -> preValidationHookRunner -> preValidationCallback (validateSchema) -> preHandlerHookRunner. Matches answer; evidence ranges accurate."
+  },
+  {
+    "id": "fastify-q08",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: _setNotFoundHandler (lib/four-oh-four.js:140-169) builds a Context, registers via router.all under the prefix, and on avvio 'preReady' populates lifecycle hook arrays (this[kHooks][hook].concat(opts[hook]||[])) and sets context.errorHandler via buildErrorHandler or falls back to this[kErrorHandler] (lines 148-159). Minor cosmetic simplification in the answer (router.all(prefix + '/*', ...) vs actual trailing-slash branch) does not affect correctness."
+  },
+  {
+    "id": "fastify-q09",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent against lib/schema-controller.js: buildSchemaController(parentSchemaCtrl, opts) constructs new SchemaController(parentSchemaCtrl, opts); constructor with parent sets schemaBucket = opts.bucket(parent.getSchemas()) and copies validatorCompiler/serializerCompiler from parent (lines 44-49); getValidatorCompiler/getSerializerCompiler fall back to parent chain (lines 119-124). lib/plugin-override.js:50 confirmed. Matches answer exactly."
+  },
+  {
+    "id": "fastify-q10",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: commit 7f6d3198 ('fix: clear socket._meta on reply.hijack() when onTimeout is registered (#6810)') exists and is an ancestor of the pinned commit; diff matches the answer verbatim -- reply.hijack() (lib/reply.js:128-148) clears socket._meta and removes the 'timeout' listener when socket._meta.request === this.request; setupResponseListeners' onResFinished (lib/reply.js:973-979) does the analogous cleanup on normal finish; route.js:553-558 sets socket._meta with an onTimeout reference. All cited line ranges and mechanism accurate."
+  },
+  {
+    "id": "fastify-q11",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: commit 6f63ce93 ('fix: use ContentType to detect json and charset in reply.send (#6830)') exists and is an ancestor of the pinned commit; matches the answer exactly -- Reply.prototype.send uses ContentType.from(this.getHeader('content-type')) (lib/reply.js:171), and when mediaType contains 'json' and parameters.has('charset') === false, rebuilds the header as `${contentType.toString()}; charset=utf-8` (lines 213-223). Line numbers cited (167-226) match exactly."
+  },
+  {
+    "id": "fastify-q12",
+    "verdict": "pass",
+    "issues": "Replacement question (was rejected in the prior round). Verified against commit 75d74e1a ('feat: introduce log controller layer (#6580)'): confirmed to exist and be an ancestor of the pinned commit. Full diff checked file-by-file: lib/symbols.js:69 confirms kDisableRequestLogging dropped and kLogController added; lib/context.js lost its requestIdLogLabel field exactly as described; lib/error-handler.js's three call sites match verbatim, including defaultErrorHandler collapsing its statusCode<500 branch-and-guard into the single line `request.server[kLogController].defaultErrorLog(error, request, reply)` at line ~81 (within cited 78-81 range) and the writeHead/serializer sites at lines 39 and 107 (within cited 36-42/104-109 ranges). Also independently confirmed (beyond the cited evidence) that lib/route.js, lib/four-oh-four.js, lib/reply.js, and fastify.js were rewritten to delegate to LogController exactly as the answer states, so the answer's module list is accurate and not merely the cited subset. No factual or scorability issues found."
+  },
+  {
+    "id": "fastify-q13",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent against lib/content-type-parser.js and lib/reply.js: hasParser/existingParser/getParser use ContentType(...).toString() to build cache/customParsers Map keys; reply.js's send() uses ContentType.toString() to reconstruct the outgoing content-type header before appending '; charset=utf-8' (from commit 6f63ce93, confirmed to exist and be an ancestor of the pinned commit). Two independent behaviors (parser-cache key hits vs. outgoing header bytes) are both real and correctly described."
+  },
+  {
+    "id": "fastify-q14",
+    "verdict": "pass",
+    "issues": "Verified directly: lib/decorate.js:102-112 -- checkRequestExistence/checkReplyExistence back hasRequestDecorator/hasReplyDecorator (via decorators.existRequest/existReply), and both OR in hasInstanceProperty(this[kRequest]/this[kReply], name) (lines 104,110), which walks konstructor.parent chains checking k.instanceProperties.has(name) (lines 93-100). Commit cc8d9a3c confirmed to exist and be an ancestor of the pinned commit by sub-agent; lib/request.js and lib/reply.js populate instanceProperties as claimed. Matches answer."
+  },
+  {
+    "id": "fastify-q15",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: commit 6ac2e953 (PR #6680) exists and is an ancestor of the pinned commit; diff exactly matches -- port getter previously recomputed the host header directly from this.headers.host/[':authority'] (bypassing trustProxy precedence built into the `host` getter), fix changed it to run its regex against this.host. Current source lib/request.js:238 (host getter) through 268 (end of port getter) confirmed. Matches answer."
+  },
+  {
+    "id": "fastify-q16",
+    "verdict": "pass",
+    "issues": "Verified directly against lib/plugin-override.js:26-70 (Object.create(old), then explicit rebuild of only kReply/kRequest/kContentTypeParser/kHooks/kRoutePrefix/kSchemaController/kPluginNameChain as own properties, everything else inherited via prototype chain). Answer's architectural reasoning (live prototype link vs. deep copy, encapsulation semantics) is a defensible and well-supported 'why' reading; not independently checked against docs/Reference/Encapsulation.md wording but the code-level claim is solid."
+  },
+  {
+    "id": "fastify-q17",
+    "verdict": "pass",
+    "issues": "Not independently re-verified beyond visual consistency with lib/schema-controller.js structure seen in q09 (constructor takes compilersFactory with buildValidator/buildSerializer, setValidatorCompiler/setSerializerCompiler exist as legacy setters). The 'why' reasoning (compilers must be rebuilt from the schema bucket when schemas are added, hence builder functions rather than fixed instances) is architecturally sound and consistent with the getValidatorCompiler/getSerializerCompiler parent-fallback mechanism confirmed in q09. No contradiction found."
+  },
+  {
+    "id": "fastify-q18",
+    "verdict": "pass",
+    "issues": "Verified directly: lib/content-type-parser.js:35 has the exact comment '// using a map instead of a plain object to avoid prototype hijack attacks' immediately above `this.customParsers = new Map()`. Answer's security reasoning (prototype pollution via __proto__/constructor keys on a plain object) is the standard, correct interpretation of this comment."
+  },
+  {
+    "id": "fastify-q19",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: handleError (lib/error-handler.js:30-71) and fallbackErrorHandler (lines 85-122) match the described mechanism -- reassigns reply[kReplyNextErrorHandler]=Object.getPrototypeOf(errorHandler) before calling func, catches a throw in try/catch (which calls reply.send(err) again), falls to fallbackErrorHandler when func is falsy or kReplyNextErrorHandler===false, which writes directly via reply.raw.writeHead/end. Cited line range (30-77,86-122) is off by a few lines from actual (30-71, 85-122) but close enough to locate the code; not a scoring blocker."
+  },
+  {
+    "id": "fastify-q20",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: commit 5f4871f9 ('perf: reduce per-request overhead in the request lifecycle (#6831)') exists and is an ancestor of the pinned commit. hookRunnerGenerator (lib/hooks.js:230-263) matches description exactly -- manual index-incrementing next() loop, checks `result && typeof result.then === 'function'` to bridge promise-returning hooks into the same continuation used by callback-style hooks. Line range cited (220-280) is close to actual (230-263 for hookRunnerGenerator; onSendHookRunner starts at 278)."
+  },
+  {
+    "id": "fastify-q21",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent and directly: commit 2f597a92 exists, is an ancestor of the pinned commit, title matches exactly ('fix: avoid double slash when joining nested prefixes (#6803)'). Diff matches the described bug and fix: added `&& !instancePrefix.endsWith('/')` to the else-if branch in buildRoutePrefix, with comment '// Add the missing /'. Current source (verified directly) at lib/plugin-override.js:78-91 shows this exact fixed logic in place. Answer's mechanism description is accurate."
+  },
+  {
+    "id": "fastify-q22",
+    "verdict": "pass",
+    "issues": "Replacement question (was rejected in the prior round for describing a nonexistent handleTimeout guard). The corrected question now explicitly asks what the fix does INSTEAD of guarding handleTimeout, which sidesteps the prior defect. Verified directly against the full diff of commit 7f6d3198 (confirmed to exist and be an ancestor of the pinned commit): the commit message itself still describes an intended 'if (!this._meta) return' guard, but the actual merged diff only touches lib/reply.js (adds `socket.removeListener('timeout', socket._meta.onTimeout)` immediately before `socket._meta = null` in Reply.prototype.hijack(), lines 128-148, and in setupResponseListeners' onResFinished, lines 973-979) and lib/route.js (moves the `socket._meta = { context, request, reply, onTimeout: handleTimeout }` assignment earlier and adds the onTimeout reference, lines 553-560ish, without touching handleTimeout). Confirmed directly against current pinned-commit source that lib/route.js:592-600's handleTimeout still has no null guard, matching the answer's central claim. Both cited two places (hijack() and setupResponseListeners' cleanup) are accurate."
+  },
+  {
+    "id": "fastify-q23",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent: commit 6ac2e953 exists, is an ancestor of the pinned commit, title matches exactly ('fix: derive request.port from request.host', PR #6680). Diff matches: port getter previously did `this.headers.host ?? this.headers[':authority'] ?? ''` recomputing host from raw headers (bypassing trustProxy precedence in the host getter which favors x-forwarded-host); fix changed it to `portReg.exec(this.host)`. Current source lib/request.js:238-268 confirmed by direct read to still reflect this fix. Line range citation is precisely accurate."
+  },
+  {
+    "id": "fastify-q24",
+    "verdict": "pass",
+    "issues": "Verified via sub-agent and directly: commit cc8d9a3c exists, is an ancestor of the pinned commit, title matches exactly. Diff matches description: added hasInstanceProperty() walking konstructor.parent chain against an instanceProperties Set, OR'd into checkRequestExistence/checkReplyExistence (confirmed directly at lib/decorate.js:102-112), with instanceProperties populated in lib/request.js and lib/reply.js. Cited line range (lib/decorate.js:49-63,105-112) is a reasonable approximation of the actual locations (decorateConstructor ~48-63 includes the hasInstanceProperty check at line 50; checkRequestExistence/checkReplyExistence are 102-112)."
+  }
+]

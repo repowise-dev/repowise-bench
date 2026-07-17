@@ -1,0 +1,78 @@
+[
+  {
+    "id": "why-q01",
+    "verdict": "pass",
+    "issues": "Commit eca5fd1 is an ancestor of the flask pin. CHANGES.rst diff matches the evidence quote verbatim, including :issue:`5895` reference. Question and answer are unambiguous and scorable."
+  },
+  {
+    "id": "why-q02",
+    "verdict": "pass",
+    "issues": "Commit c77a520 is an ancestor of the flask pin. CHANGES.rst quote verified verbatim (:issue:`5816`). The 'scheduled for removal in Flask 3.3' claim in the answer is independently confirmed by the actual DeprecationWarning text added in src/flask/app.py ('will be removed in Flask 3.3') and the .. deprecated:: 3.2 docstring note in sansio/app.py, so the rationale is fully reachable from the commit diff alone."
+  },
+  {
+    "id": "why-q03",
+    "verdict": "pass",
+    "issues": "Commit c2705ff is an ancestor of the flask pin. CHANGES.rst quote verified verbatim (:issue:`5639`)."
+  },
+  {
+    "id": "why-q04",
+    "verdict": "pass",
+    "issues": "Commit fb54159 is an ancestor of the flask pin. Commit message body itself (not just CHANGES.rst) contains the full rationale verbatim, matching the evidence quote exactly. Code diff in src/flask/sessions.py confirms the mechanism described (keys.append(app.secret_key) with an explanatory inline comment 'itsdangerous expects current key at top'), and the class name SecureCookieSessionInterface used in the question matches the actual class at src/flask/sessions.py:284. Independently cross-checked GHSA-4grg-w6v8-c28g via `gh api /advisories/...` — it exists, is about exactly this fallback-key-ordering bug, and links to the fix. No issues; this is the most intricate question but it is solidly grounded."
+  },
+  {
+    "id": "why-q05",
+    "verdict": "pass",
+    "issues": "Commit e13373f is an ancestor of the flask pin. CHANGES.rst quote verified verbatim (:issue:`5621`)."
+  },
+  {
+    "id": "why-q06",
+    "verdict": "pass",
+    "issues": "Commit 52df9ee is an ancestor of the flask pin. The evidence quote is from docs/extensiondev.rst (not CHANGES.rst) and is reproduced verbatim in the diff. CHANGES.rst confirms 'Drop support for Python 3.9. :pr:`5730`' in the same commit, matching the PR number cited in the answer."
+  },
+  {
+    "id": "why-q07",
+    "verdict": "pass",
+    "issues": "Commit 53b8f08 is an ancestor of the flask pin. CHANGES.rst quote verified verbatim (:issue:`5786`). Note the CHANGES.rst entry itself is terse ('final state of session is correct') and does not spell out the pop-vs-iterate mechanism the answer describes in detail; that mechanistic detail is plausible given the commit's one-line summary ('push preserved contexts in correct order') but was not independently verified against the actual code diff (test client contexts logic) in this pass. Low risk, but flagging since this is a case where the CHANGES.rst quote alone doesn't fully substantiate the more detailed causal claim in the answer.",
+    "suggested_fix": "Optionally verify against `git show 53b8f08 -- src/flask/testing.py` (or wherever the test client context-popping logic lives) that the diff actually changes a pop-in-a-loop pattern to an iterate-and-clear pattern, to fully substantiate the mechanistic explanation in the answer beyond the terse CHANGES.rst line."
+  },
+  {
+    "id": "why-q08",
+    "verdict": "pass",
+    "issues": "Commit da60039 is an ancestor of the flask pin. Full rationale is in the commit message body itself (not just CHANGES.rst), verified verbatim. CHANGES.rst also references :issue:5673 (note: missing the leading backtick before 5673 in the source, a pre-existing docs typo, not a verification problem)."
+  },
+  {
+    "id": "why-q09",
+    "verdict": "pass",
+    "issues": "Commit c89945df (merge commit of PR #6444) is an ancestor of the fastify pin. PR body fetched via `gh pr view 6444` matches the evidence quote verbatim, including the req/sec and latency numbers."
+  },
+  {
+    "id": "why-q10",
+    "verdict": "pass",
+    "issues": "Commit 309d9daf (merge commit of PR #5621) is an ancestor of the fastify pin. PR body fetched via `gh pr view 5621` contains the rationale; evidence quote is a close paraphrase/light-edit of the actual PR text (PR body reads '...for route \\'<pattern>\\'... Solution: Unfortunately, fastify does not possess the pattern, so IMO the best way is to drop the opts.url.' vs the evidence quote which reorders/condenses slightly) but is not an invention — content and causal claim match exactly."
+  },
+  {
+    "id": "why-q11",
+    "verdict": "pass",
+    "issues": "Commit 7381195d (merge commit of PR #4194) is an ancestor of the fastify pin. Evidence quote verified verbatim against issue #4192's body via `gh issue view 4192`. PR #4194 body explicitly states 'I believe the requestIdHeader should be opt-in instead of opt-out,' confirming the in-repo link from commit to PR to issue is traceable (PR body says 'Builds on #4193' but the issue link/rationale chain is intact via commit->PR->issue)."
+  },
+  {
+    "id": "why-q12",
+    "verdict": "pass",
+    "issues": "Commit dbac4e0a (merge commit of PR #4962) is an ancestor of the fastify pin. PR body fetched via `gh pr view 4962` matches the evidence quote verbatim: 'Node.js issue #43115 has been resolved so I have removed this check.'"
+  },
+  {
+    "id": "why-q13",
+    "verdict": "pass",
+    "issues": "Commit d338dca5 (merge commit of PR #6247) is an ancestor of the fastify pin. PR body fetched via `gh pr view 6247` matches the evidence quote verbatim, including the sync-vs-async distinction and the file/function names (lib/validation.js, validateParam)."
+  },
+  {
+    "id": "why-q14",
+    "verdict": "pass",
+    "issues": "Commit 5f4871f9 (merge commit of PR #6831, a bundled perf PR with 5 distinct changes) is an ancestor of the fastify pin. Extra scrutiny applied since this is a thin slice of a bundled PR: verified the PR body and the commit message body both itemize each of the 5 changes as separate bullets with distinct file names, so the writePayload/res.end(payload) slice is cleanly attributable and quotable in isolation, not conflated with the other 4 changes in the same commit. Evidence quote matches the PR body's lib/reply.js bullet verbatim."
+  },
+  {
+    "id": "why-q15",
+    "verdict": "pass",
+    "issues": "Same commit/PR as why-q14 (5f4871f9 / PR #6831), a different bullet in the same bundled perf change. Extra scrutiny applied: the logger-factory.js / performance.now() bullet is a distinct, separately-itemized line in both the PR body and commit message, cleanly separable from the other bundled changes (including from why-q14's reply.js change), so the two questions do not collide or share a scorable answer despite citing the same commit."
+  }
+]
