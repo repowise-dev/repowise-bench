@@ -1,0 +1,99 @@
+[
+  {
+    "id": "flask_002",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_004",
+    "verdict": "fail",
+    "issues": [
+      "Corrected answer cites 'add_url_rule (sansio/blueprints.py, method defined at line 85 ...)'. At commit 258d68b6, line 85 is `self.url_defaults.update(self.options.get(\"url_defaults\", ()))` (end of BlueprintSetupState.__init__); the actual `def add_url_rule(` for BlueprintSetupState is at line 87.",
+      "Corrected answer cites 'options.setdefault(\"subdomain\", self.subdomain) at line 98'. At this commit line 98 is `if self.url_prefix is not None:`; the actual `options.setdefault(\"subdomain\", self.subdomain)` statement is at line 103. All other claims in this answer (AppContext class at ctx.py:260, versionchanged/merge docstring, RequestContext deprecated alias via __getattr__ at ctx.py:528-540, AppContext.__init__ create_url_adapter call at ctx.py:326, test_testing.py lines 117/122/128/130/134, app.py create_url_adapter at 509 and test_request_context at 1517, helpers.py url_for at 200, wrappers.py Request.blueprints at ~180-194, and the claim that sansio/app.py's App class has no url_for method) were verified exact."
+    ]
+  },
+  {
+    "id": "flask_006",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_010",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_012",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_014",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_016",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_020",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_022",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_030",
+    "verdict": "fail",
+    "issues": [
+      "Corrected answer cites 'register_template_filter (490-491)' as the inline function that 'only calls state.app.add_template_filter(f, name=name)'. At this commit, lines 490-491 are the closing `\"\"\"` of add_app_template_filter's docstring and a blank line; the actual `def register_template_filter(state: BlueprintSetupState) -> None:` is at line 492 and its body (`state.app.add_template_filter(f, name=name)`) is at line 493.",
+      "Corrected answer cites 'add_app_template_filter is 475-494'; the method actually runs 475-495 (the closing `self.record_once(register_template_filter)` statement is on line 495, not 494). Minor boundary drift but the method's real last line was not fixed.",
+      "All other claims (app_template_filter overloads at 443-472, record_once at 233-244, first_bp_registration identity check at 316, add_template_filter dict assignment at sansio/app.py:708, test_add_template_filter at tests/test_blueprints.py:390 with variants at 416/462, and test_blueprint_url_defaults at 131-148 being unrelated to filters) were verified exact."
+    ]
+  },
+  {
+    "id": "flask_032",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_036",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_040",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_042",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_046",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_008",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_024",
+    "verdict": "pass",
+    "issues": []
+  },
+  {
+    "id": "flask_044",
+    "verdict": "pass",
+    "issues": []
+  }
+]
