@@ -104,7 +104,13 @@ _UTF8_ENV = {
 _MCP_PASSTHROUGH_ENV = (
     "OPENAI_API_KEY", "OPENAI_BASE_URL",
     "GEMINI_API_KEY", "GOOGLE_API_KEY", "ANTHROPIC_API_KEY",
-    "REPOWISE_EMBEDDER", "REPOWISE_DOC_MODEL",
+    # REPOWISE_PROVIDER must be forwarded explicitly: the server otherwise
+    # falls back to the provider persisted in the index's state.json, and an
+    # index built months ago under a different provider silently runs
+    # get_answer in retrieval-only mode when that provider's key is absent
+    # (observed: a gemini-built index + an openai-only env disabled synthesis
+    # for an entire benchmark arm without a single error).
+    "REPOWISE_PROVIDER", "REPOWISE_EMBEDDER", "REPOWISE_DOC_MODEL",
 )
 
 # Argv prefix for invoking the local repowise CLI.
