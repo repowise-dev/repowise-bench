@@ -86,11 +86,13 @@ _UTF8_ENV = {
         [str(p) for p in _REPOWISE_PKG_SRCS]
         + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     ),
-    # Put the venv's Scripts dir on PATH so the agent's Bash can resolve the
-    # `repowise` console script for `repowise distill <cmd>` in the long
-    # (Bash-enabled) arm. Harmless for the read-only arms.
+    # Put the venv's script dir (Scripts/ on Windows, bin/ on posix) on PATH
+    # so the agent's Bash can resolve the `repowise` console script for
+    # `repowise distill <cmd>` in the long (Bash-enabled) arm. Harmless for
+    # the read-only arms.
     "PATH": os.pathsep.join(
-        [str(Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts")]
+        [str(Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts"),
+         str(Path(__file__).resolve().parents[1].parent / ".venv" / "bin")]
         + ([os.environ["PATH"]] if os.environ.get("PATH") else [])
     ),
 }
@@ -107,16 +109,25 @@ _MCP_PASSTHROUGH_ENV = (
 
 # Argv prefix for invoking the local repowise CLI.
 # `python -m repowise.cli.main` is a NO-OP on branches where main.py has no
-# __main__ guard (it builds the click group but never invokes it), so prefer the
-# console-script exe when available. Override with REPOWISE_EXE.
+# __main__ guard (it builds the click group but never invokes it), so the
+# console script is REQUIRED — falling back to -m starts a server that serves
+# nothing and the arm silently degrades to bare. Both venv layouts are
+# checked (Scripts/ on Windows, bin/ on posix); the Windows-only lookup
+# previously sent every macOS run down the no-op path. Override with
+# REPOWISE_EXE.
 def _resolve_repowise_cmd() -> list:
     env_exe = os.environ.get("REPOWISE_EXE")
     if env_exe and Path(env_exe).exists():
         return [env_exe]
-    candidate = Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts" / "repowise.exe"
-    if candidate.exists():
-        return [str(candidate)]
-    return [sys.executable, "-m", "repowise.cli.main"]
+    venv = Path(__file__).resolve().parents[1].parent / ".venv"
+    for candidate in (venv / "Scripts" / "repowise.exe", venv / "bin" / "repowise"):
+        if candidate.exists():
+            return [str(candidate)]
+    raise RuntimeError(
+        f"No repowise console script under {venv} (checked Scripts/ and bin/). "
+        "Set REPOWISE_EXE. Refusing the `python -m repowise.cli.main` fallback: "
+        "it is a no-op and silently degrades repowise arms to bare agents."
+    )
 
 
 _REPOWISE_CMD = _resolve_repowise_cmd()
@@ -899,6 +910,17 @@ the omitted lines instead of re-running the command.
 
 MAX_RETRIES = 6
 
+# The one MCP sentence every augmented arm gets in neutral-comparison mode:
+# identical wording across arms except the server name, zero per-tool
+# coaching. "Use them when helpful" proved too weak in smoke runs — Sonnet
+# ignored every server (including one connected and listed) and answered
+# from Read/Grep, which measures nothing about the tools; "prefer" is the
+# minimum steering that produces adoption without describing any tool.
+NEUTRAL_MCP_PROMPT = (
+    "Prefer the '{prefix}' MCP tools for exploring and understanding this "
+    "repository before falling back to reading files directly."
+)
+
 
 def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     model: str, timeout: int,
@@ -1031,8 +1053,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         cmd.extend(["--strict-mcp-config", "--mcp-config",
                     str(mcp_server["config"])])
         cmd.extend(["--append-system-prompt",
-                    f"You have '{prefix}' MCP tools available; "
-                    "use them when helpful."])
+                    NEUTRAL_MCP_PROMPT.format(prefix=prefix)])
     elif condition.get("repowise_enabled"):
         # Deferred MCP tools are loaded via ToolSearch — allow it so the agent
         # can pull the repowise tool schemas into context on first use.
@@ -1062,6 +1083,11 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
             # (Figma/Notion/Apollo/Gmail/... from ~/.claude.json) and only
             # mount the repowise server from our config.
             cmd.extend(["--strict-mcp-config", "--mcp-config", mcp_config_path])
+        # Neutral-comparison mode: the repowise arm gets the SAME single
+        # sentence as every competitor arm instead of the repowise-specific
+        # workflow prompt, so no arm is coached more than another.
+        if condition.get("neutral_prompt"):
+            system_prompt = NEUTRAL_MCP_PROMPT.format(prefix="repowise")
         cmd.extend(["--append-system-prompt", system_prompt])
     else:
         # C0 — mount NO MCP servers at all. An empty strict config suppresses
@@ -1118,6 +1144,8 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     "files_explored": parsed["files_explored"],
                     "files_edited": parsed["files_edited"],
                     "repowise_tools_called": parsed["repowise_tools_called"],
+                    "server_tools_called": parsed.get("server_tools_called", {}),
+                    "token_source": parsed.get("token_source", ""),
                     # Keep raw lines for saving
                     "_raw_stream_lines": lines,
                 }
@@ -1247,8 +1275,8 @@ def judge_answer(question: str, gold_answer: str, agent_answer: str,
         try:
             result = subprocess.run(
                 ["claude", "-p", judge_prompt, "--output-format", "json",
-                 "--model", judge_model, "--max-budget-usd", "0.15"],
-                capture_output=True, text=True, timeout=90,
+                 "--model", judge_model, "--max-budget-usd", "0.40"],
+                capture_output=True, text=True, timeout=150,
                 env=_UTF8_ENV, encoding="utf-8", errors="replace"
             )
             if result.returncode == 0 and result.stdout.strip():
@@ -1261,7 +1289,10 @@ def judge_answer(question: str, gold_answer: str, agent_answer: str,
                     return {"error": err[:200]}
                 return _extract_json_scores(output.get("result", ""))
             err = result.stderr[:300]
-            if is_rate_limit_error(err):
+            if is_rate_limit_error(err) or not err.strip():
+                # Empty stderr on a non-zero exit is a transient CLI failure
+                # (observed on long judge prompts); retry rather than losing
+                # the row's score.
                 backoff_sleep(attempt, base=20.0)
                 continue
             return {"error": f"judge_failed: {err}"}
