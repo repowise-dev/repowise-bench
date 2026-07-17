@@ -187,9 +187,14 @@ def test_third_party_arm_mounts_static_config(captured_run, tmp_path):
     assert "mcp__serena" in allowed and "ToolSearch" in allowed
     disallowed = _flag(cmd, "--disallowed-tools")
     assert "mcp__*" not in disallowed
-    prompts = " ".join(cmd[i + 1] for i, a in enumerate(cmd)
-                       if a == "--append-system-prompt")
-    assert "serena" in prompts
+    # The CLI honors only the LAST --append-system-prompt: everything must
+    # arrive as one flag, carrying both the repo-escape rules and the arm's
+    # tool sentence.
+    appends = [cmd[i + 1] for i, a in enumerate(cmd)
+               if a == "--append-system-prompt"]
+    assert len(appends) == 1
+    assert "serena" in appends[0]
+    assert "Only read files within the current repository." in appends[0]
     assert output["result"] == "the answer"
 
 
@@ -216,6 +221,7 @@ def test_worktree_files_injected_for_packed_arm(captured_run, tmp_path):
         "q?", str(tmp_path / "repo"), condition, "sonnet", timeout=10)
     assert (tmp_path / "wt" / "repomix-output.xml").read_text() == "<repo/>"
     cmd = captured_run[0]["cmd"]
-    prompts = " ".join(cmd[i + 1] for i, a in enumerate(cmd)
-                       if a == "--append-system-prompt")
-    assert "repomix-output.xml" in prompts
+    appends = [cmd[i + 1] for i, a in enumerate(cmd)
+               if a == "--append-system-prompt"]
+    assert len(appends) == 1
+    assert "repomix-output.xml" in appends[0]

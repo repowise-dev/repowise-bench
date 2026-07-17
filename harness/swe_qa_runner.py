@@ -912,13 +912,15 @@ MAX_RETRIES = 6
 
 # The one MCP sentence every augmented arm gets in neutral-comparison mode:
 # identical wording across arms except the server name, zero per-tool
-# coaching. "Use them when helpful" proved too weak in smoke runs — Sonnet
-# ignored every server (including one connected and listed) and answered
-# from Read/Grep, which measures nothing about the tools; "prefer" is the
-# minimum steering that produces adoption without describing any tool.
+# coaching. Weaker phrasings ("use them when helpful", bare "prefer")
+# produced zero adoption in smoke runs — Sonnet answered every question from
+# Read/Grep, which measures nothing about the tools. The ToolSearch clause
+# is mechanics, not coaching: asynchronously-connecting servers expose their
+# tools as deferred, and without it the agent has no path to reach them.
 NEUTRAL_MCP_PROMPT = (
-    "Prefer the '{prefix}' MCP tools for exploring and understanding this "
-    "repository before falling back to reading files directly."
+    "Use the '{prefix}' MCP tools to explore and understand this repository "
+    "(load them via ToolSearch if they are not yet listed); fall back to "
+    "reading files directly only when those tools cannot answer."
 )
 
 
@@ -1036,11 +1038,17 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         "--verbose",
         "--model", model,
         "--max-budget-usd", str(max_budget_usd),
-        "--append-system-prompt", base_system_prompt,
         "--disallowed-tools", disallowed,
     ]
     if max_turns:
         cmd.extend(["--max-turns", str(max_turns)])
+
+    # The CLI honors only the LAST --append-system-prompt flag (verified
+    # empirically: two flags, only the second surfaced). Every prompt part
+    # is therefore collected here and emitted as ONE flag at the end —
+    # passing them as separate flags silently dropped the repo-escape rules
+    # or the arm's tool sentence depending on ordering.
+    system_prompt_parts = [base_system_prompt]
 
     allowed_tools = base_tools
     if mcp_server and not repowise_enabled:
@@ -1052,8 +1060,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         allowed_tools += f",ToolSearch,mcp__{prefix}"
         cmd.extend(["--strict-mcp-config", "--mcp-config",
                     str(mcp_server["config"])])
-        cmd.extend(["--append-system-prompt",
-                    NEUTRAL_MCP_PROMPT.format(prefix=prefix)])
+        system_prompt_parts.append(NEUTRAL_MCP_PROMPT.format(prefix=prefix))
     elif condition.get("repowise_enabled"):
         # Deferred MCP tools are loaded via ToolSearch — allow it so the agent
         # can pull the repowise tool schemas into context on first use.
@@ -1088,7 +1095,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         # workflow prompt, so no arm is coached more than another.
         if condition.get("neutral_prompt"):
             system_prompt = NEUTRAL_MCP_PROMPT.format(prefix="repowise")
-        cmd.extend(["--append-system-prompt", system_prompt])
+        system_prompt_parts.append(system_prompt)
     else:
         # C0 — mount NO MCP servers at all. An empty strict config suppresses
         # both the user's global servers and any project-level .mcp.json that
@@ -1102,13 +1109,14 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
     # Distill instruction (long arm): teach the agent to route noisy command
     # output through `repowise distill`. Independent of the MCP surface.
     if condition.get("distill"):
-        cmd.extend(["--append-system-prompt", DISTILL_PROMPT])
+        system_prompt_parts.append(DISTILL_PROMPT)
 
     # Arm-specific factual note, e.g. naming a file injected into the
     # worktree. One neutral sentence owned by the config, never coaching.
     if condition.get("system_note"):
-        cmd.extend(["--append-system-prompt", condition["system_note"]])
+        system_prompt_parts.append(condition["system_note"])
 
+    cmd.extend(["--append-system-prompt", "\n\n".join(system_prompt_parts)])
     cmd.extend(["--allowed-tools", allowed_tools])
 
     for attempt in range(MAX_RETRIES):
