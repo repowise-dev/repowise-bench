@@ -71,6 +71,7 @@ def run_swe_qa_experiment(config: dict, conditions: list,
         skip_tasks=bench_cfg.get("skip_tasks", 0),
         exclude_indices=bench_cfg.get("exclude_indices"),
         include_indices=bench_cfg.get("include_indices"),
+        tasks_file=bench_cfg.get("tasks_file"),
     )
 
     # Build work items: (task, condition) pairs — interleaved so we get
