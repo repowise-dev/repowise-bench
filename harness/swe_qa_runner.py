@@ -422,6 +422,14 @@ def generate_mcp_config(
                 "command": _REPOWISE_CMD[0],
                 "args": server_args,
                 "env": server_env,
+                # Load tool schemas eagerly. Current Claude Code defers every
+                # MCP tool behind ToolSearch by default, and agents answer
+                # from Read/Grep without ever loading a deferred schema —
+                # observed as zero MCP adoption across all benchmark arms.
+                # Eager schemas also match the regime under which all prior
+                # published numbers were measured (the schema tax is part of
+                # what the lean profile exists to reduce).
+                "alwaysLoad": True,
             }
         }
     }
@@ -912,15 +920,12 @@ MAX_RETRIES = 6
 
 # The one MCP sentence every augmented arm gets in neutral-comparison mode:
 # identical wording across arms except the server name, zero per-tool
-# coaching. Weaker phrasings ("use them when helpful", bare "prefer")
-# produced zero adoption in smoke runs — Sonnet answered every question from
-# Read/Grep, which measures nothing about the tools. The ToolSearch clause
-# is mechanics, not coaching: asynchronously-connecting servers expose their
-# tools as deferred, and without it the agent has no path to reach them.
+# coaching. Requires eagerly-loaded schemas (alwaysLoad in the server
+# config): with the default deferred loading, no phrasing produced any MCP
+# adoption because the tools were absent from the model's callable set.
 NEUTRAL_MCP_PROMPT = (
-    "Use the '{prefix}' MCP tools to explore and understand this repository "
-    "(load them via ToolSearch if they are not yet listed); fall back to "
-    "reading files directly only when those tools cannot answer."
+    "Use the '{prefix}' MCP tools to explore and understand this repository; "
+    "fall back to reading files directly only when those tools cannot answer."
 )
 
 
