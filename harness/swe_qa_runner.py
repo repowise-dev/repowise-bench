@@ -14,6 +14,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 import os
 from datetime import datetime, timezone
@@ -471,6 +472,18 @@ def get_c0_worktree(repo_path: Path, variant: str = "") -> Path:
     org = repo_path.parent.name
     name = f"{repo_path.name}__{variant}" if variant else repo_path.name
     wt_path = _C0_WORKTREES_ROOT / org / name
+
+    # Parallel workers race on create/remove of the same worktree (git
+    # worktree add fails with 128 when another worker is mid-prune) —
+    # serialize the check-and-create.
+    with _WORKTREE_LOCK:
+        return _ensure_worktree(repo_path, wt_path)
+
+
+_WORKTREE_LOCK = threading.Lock()
+
+
+def _ensure_worktree(repo_path: Path, wt_path: Path) -> Path:
     wt_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Check if the worktree is healthy and on the same HEAD as the source repo.
@@ -891,7 +904,8 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     model: str, timeout: int,
                     max_budget_usd: float = 2.0,
                     mcp_config_path: Optional[str] = None,
-                    benchmark: str = "swe_qa") -> tuple:
+                    benchmark: str = "swe_qa",
+                    max_turns: Optional[int] = None) -> tuple:
     """
     Run Claude Code with retry on rate limits.
     Returns (output_dict, retries_used).
@@ -1003,6 +1017,8 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         "--append-system-prompt", base_system_prompt,
         "--disallowed-tools", disallowed,
     ]
+    if max_turns:
+        cmd.extend(["--max-turns", str(max_turns)])
 
     allowed_tools = base_tools
     if mcp_server and not repowise_enabled:
@@ -1403,6 +1419,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             max_budget_usd=per_task_budget,
             mcp_config_path=mcp_config_path,
             benchmark="swe_qa",
+            max_turns=config["agent"].get("max_turns"),
         )
     metrics.wall_clock_seconds = time.time() - start
     metrics.retries = retries
