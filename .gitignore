@@ -94,3 +94,8 @@ tool_health_dump.json
 
 # opencode source clone (inspection only, local)
 opencode-src/
+
+# Context-tool benchmark results: raw JSONL + aggregates are the published
+# artifact (repo precedent); per-run transcripts under logs/ stay local.
+!/results/context_bench/
+!/results/context_bench/**

@@ -6,12 +6,14 @@ repeat runs, and question categories:
 
   * repeats live in separate results files (one per n); per (task, condition)
     the MEDIAN across repeats is taken before any aggregation
-  * rows whose attach-guard fired are EXCLUDED from every per-condition
-    aggregate and reported separately — a run that mounted a server but
-    never successfully called it is not evidence about that server
+  * rows whose attach-guard fired (server mounted, zero successful calls)
+    are genuine salience behavior once mounting is pre-flighted, so they are
+    NOT silently dropped: each condition reports an adoption_rate plus two
+    metric views — "all" rows and "adopted" rows only. Charts must say
+    which view they plot.
   * rows with errors (timeouts, max-turns exhaustion) are counted per
     condition, not silently dropped
-  * every aggregate is also sliced by question category
+  * every aggregate is also sliced by question category (adopted view)
 
 Emits a human-readable table and a machine-readable JSON for chart
 generation.
@@ -66,7 +68,8 @@ def load_rows(paths: list) -> list:
 def aggregate(rows: list) -> dict:
     # Bucket by (task, condition); collapse repeats to per-metric medians.
     buckets = defaultdict(list)
-    excluded = defaultdict(int)   # condition -> attach-guard exclusions
+    not_adopted = defaultdict(int)  # condition -> rows with zero server calls
+    mounted = defaultdict(int)      # condition -> rows where a server was mounted
     errors = defaultdict(lambda: defaultdict(int))  # condition -> error kind
     categories = {}
     for row in rows:
@@ -76,10 +79,13 @@ def aggregate(rows: list) -> dict:
                     else "timeout" if row.get("timed_out") else "other")
             errors[cond][kind] += 1
             continue
-        if row.get("attach_guard_fired"):
-            excluded[cond] += 1
-            continue
-        buckets[(row["task_id"], cond)].append(row_metrics(row))
+        if row.get("attach_guard_fired") is not None:
+            mounted[cond] += 1
+            if row["attach_guard_fired"]:
+                not_adopted[cond] += 1
+        metrics = row_metrics(row)
+        metrics["adopted"] = (row.get("attach_guard_fired") is not True)
+        buckets[(row["task_id"], cond)].append(metrics)
         categories[row["task_id"]] = row.get("category", "")
 
     collapsed = {}
@@ -89,6 +95,8 @@ def aggregate(rows: list) -> dict:
             vals = [r[m] for r in repeats if r[m] is not None]
             merged[m] = median(vals) if vals else None
         merged["n_repeats"] = len(repeats)
+        # A collapsed task counts as adopted when any repeat adopted.
+        merged["adopted"] = any(r["adopted"] for r in repeats)
         collapsed[key] = merged
 
     def summarize(items: list) -> dict:
@@ -106,12 +114,18 @@ def aggregate(rows: list) -> dict:
         by_condition[cond].append(merged)
         by_cond_cat[(cond, categories.get(task_id, ""))].append(merged)
 
+    def adopted_only(items: list) -> list:
+        return [it for it in items if it["adopted"]]
+
     return {
         "conditions": {cond: summarize(items)
                        for cond, items in sorted(by_condition.items())},
-        "by_category": {f"{cond}/{cat}": summarize(items)
+        "conditions_adopted": {cond: summarize(adopted_only(items))
+                               for cond, items in sorted(by_condition.items())},
+        "adoption_rate": {cond: round(1 - not_adopted[cond] / mounted[cond], 4)
+                          for cond in sorted(mounted) if mounted[cond]},
+        "by_category": {f"{cond}/{cat}": summarize(adopted_only(items))
                         for (cond, cat), items in sorted(by_cond_cat.items())},
-        "attach_guard_excluded": dict(excluded),
         "errors": {c: dict(k) for c, k in errors.items()},
         "tasks_per_condition": {cond: len(items)
                                 for cond, items in sorted(by_condition.items())},
@@ -131,8 +145,8 @@ def print_table(agg: dict) -> None:
             cells += f"{v['median'] if v else '-':>18}"
         n = s.get("num_tool_calls")
         print(f"{cond:16}{cells}{(n or {}).get('n', 0):>5}")
-    if agg["attach_guard_excluded"]:
-        print(f"\nattach-guard exclusions: {agg['attach_guard_excluded']}")
+    if agg["adoption_rate"]:
+        print(f"\nadoption rate (mounted arms): {agg['adoption_rate']}")
     if agg["errors"]:
         print(f"errored runs: {agg['errors']}")
 

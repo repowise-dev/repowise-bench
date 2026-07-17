@@ -1,0 +1,117 @@
+{
+  "config_path": "configs/context_bench_flask_smoke.yaml",
+  "started_at": "2026-07-17T09:06:20.007777+00:00",
+  "conditions": [
+    "C0_bare",
+    "C1_repowise",
+    "C2_codegraph",
+    "C3_serena",
+    "C4_repomix",
+    "C5_deepwiki"
+  ],
+  "config": {
+    "experiment_name": "context_bench_flask_smoke",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "max_tasks": 3,
+        "tasks_file": [
+          "data/context_bench/questions_flask.json"
+        ],
+        "repos": [
+          "pallets/flask"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "C0_bare",
+        "repowise_enabled": false
+      },
+      {
+        "name": "C1_repowise",
+        "repowise_enabled": true,
+        "repowise_mode": "lean",
+        "neutral_prompt": true,
+        "claude_md": false,
+        "clean_worktree": true
+      },
+      {
+        "name": "C2_codegraph",
+        "mcp_server": {
+          "prefix": "codegraph",
+          "config": "mcp_configs/codegraph_flask.json"
+        },
+        "clean_worktree": true
+      },
+      {
+        "name": "C3_serena",
+        "mcp_server": {
+          "prefix": "serena",
+          "config": "mcp_configs/serena_flask.json"
+        },
+        "clean_worktree": true
+      },
+      {
+        "name": "C4_repomix",
+        "repowise_enabled": false,
+        "worktree_variant": "repomix",
+        "worktree_files": {
+          "repomix-output.xml": "data/context_bench/repomix_packs/pallets_flask/default.xml"
+        },
+        "system_note": "The file repomix-output.xml in the repository root contains a packed XML representation of the whole repository."
+      },
+      {
+        "name": "C5_deepwiki",
+        "mcp_server": {
+          "prefix": "deepwiki",
+          "config": "mcp_configs/deepwiki_flask.json"
+        },
+        "clean_worktree": true,
+        "system_note": "The deepwiki MCP tools serve the public repository pallets/flask."
+      }
+    ],
+    "agent": {
+      "model": "sonnet",
+      "max_turns": 15,
+      "timeout_seconds": 300
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "doc_model": "gpt-5.4-nano",
+      "provider": "openai",
+      "embedder": "openai",
+      "assume_indexed": true
+    },
+    "paths": {
+      "results_dir": "./results/context_bench/smoke_flask",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/context_bench_smoke",
+      "repo_overrides": {
+        "pallets/flask": "~/bench-staging/pallets_flask"
+      }
+    },
+    "budget": {
+      "max_total_usd": 8.0,
+      "max_per_task_usd": 1.5,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "sonnet",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 3
+    }
+  }
+}
