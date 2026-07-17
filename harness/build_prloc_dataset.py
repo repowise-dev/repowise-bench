@@ -58,8 +58,9 @@ def eligible_files(files: list) -> list:
     return [f for f in files if not is_test_path(f)]
 
 
-def build(repo: str, sample_size: int, as_of: datetime) -> dict:
-    since = as_of - timedelta(days=WINDOW_DAYS)
+def build(repo: str, sample_size: int, as_of: datetime,
+          window_days: int = WINDOW_DAYS) -> dict:
+    since = as_of - timedelta(days=window_days)
     listed = _gh_json(["pr", "list", "--repo", repo, "--state", "merged",
                        "--limit", "400",
                        "--json", "number,title,body,mergedAt"])
@@ -104,7 +105,7 @@ def build(repo: str, sample_size: int, as_of: datetime) -> dict:
         "repo": repo,
         "built_as_of": as_of.isoformat(),
         "seed": SEED,
-        "filters": {"window_days": WINDOW_DAYS, "min_body_chars": MIN_BODY_CHARS,
+        "filters": {"window_days": window_days, "min_body_chars": MIN_BODY_CHARS,
                     "files_range": [MIN_FILES, MAX_FILES],
                     "excludes": "test files from targets; docs-only PRs"},
         "candidates_inspected": inspected,
@@ -118,11 +119,14 @@ def main() -> None:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--sample", type=int, default=40)
     ap.add_argument("--as-of", default=None,
-                    help="ISO date anchoring the 18-month window (for repro)")
+                    help="ISO date anchoring the merge window (for repro)")
+    ap.add_argument("--window-days", type=int, default=WINDOW_DAYS,
+                    help="merge window; widen for low-activity repos and "
+                         "record the difference in the results write-up")
     args = ap.parse_args()
     as_of = (datetime.fromisoformat(args.as_of).replace(tzinfo=timezone.utc)
              if args.as_of else datetime.now(timezone.utc))
-    data = build(args.repo, args.sample, as_of)
+    data = build(args.repo, args.sample, as_of, args.window_days)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n",
                         encoding="utf-8")
