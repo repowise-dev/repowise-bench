@@ -918,14 +918,22 @@ the omitted lines instead of re-running the command.
 
 MAX_RETRIES = 6
 
-# The one MCP sentence every augmented arm gets in neutral-comparison mode:
-# identical wording across arms except the server name, zero per-tool
-# coaching. Requires eagerly-loaded schemas (alwaysLoad in the server
-# config): with the default deferred loading, no phrasing produced any MCP
-# adoption because the tools were absent from the model's callable set.
+# The standing instruction every augmented arm gets in neutral-comparison
+# mode: the SAME template for every arm with only the server name
+# substituted, and no tool-specific workflow. It assigns the server the
+# primary-interface role because anything weaker does not produce adoption:
+# with eagerly-loaded schemas and a one-sentence "use the X tools" nudge,
+# arms called their server in under 20% of runs (Sonnet defaults hard to
+# Grep/Read), and a comparison in which no arm exercises its tool measures
+# prompt bias, not tools. Adoption rate stays a reported metric either way.
+# Requires eagerly-loaded schemas (alwaysLoad in the server config): under
+# deferred loading the tools are absent from the model's callable set and
+# no phrasing produces any adoption at all.
 NEUTRAL_MCP_PROMPT = (
-    "Use the '{prefix}' MCP tools to explore and understand this repository; "
-    "fall back to reading files directly only when those tools cannot answer."
+    "Your primary interface for exploring this repository is the '{prefix}' "
+    "MCP tool set. For every question, query the '{prefix}' tools first and "
+    "base your answer on what they return; use direct file reads only to "
+    "verify details or fill gaps those tools leave."
 )
 
 
