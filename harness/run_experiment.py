@@ -106,6 +106,40 @@ def run_swe_qa_experiment(config: dict, conditions: list,
         except Exception as e:
             print(f"  Failed to clone {repo}: {e}")
 
+    # Cache warm-up (opt-in). Prompt-cache reuse is keyed on the ~47k static
+    # prefix (Claude Code system prompt + MCP tool schemas + append-system-
+    # prompt) with a 5-min TTL. Whether a question's first turn READS that
+    # prefix (warm, $0.30/M) or WRITES it (cold, $3.75/M — 12.5x) is decided
+    # by ambient cache state, not the code under test, so billed cost is not
+    # comparable across runs unless warmth is held constant. One throwaway
+    # invocation PER CONDITION, through the identical run path (so the warmed
+    # prefix is byte-identical to the real questions), pins Q1 warm; with
+    # max_workers=1 each question then re-warms the prefix (<5-min TTL) for
+    # the next. Applied uniformly to every arm — it removes a harness-induced
+    # confound, it does not advantage any arm. Disclose it in RESULTS.md.
+    if config.get("warmup"):
+        seen_conditions = []
+        for _task, cond in work:
+            if cond["name"] not in [c["name"] for c in seen_conditions]:
+                seen_conditions.append(cond)
+        warm_repo = next((t.get("repo", "") for t, _ in work), "")
+        warm_task = {
+            "id": "warmup", "repo": warm_repo, "split_name": "warmup",
+            "question": "Name one source file in this repository.",
+            "gold_answer": "", "category": "warmup",
+        }
+        for cond in seen_conditions:
+            if _shutdown.is_set():
+                return
+            print(f"  Warming cache for {cond['name']}...")
+            try:
+                # raw_saver=None → no transcript written; result discarded so
+                # the warm-up never enters swe_qa.jsonl.
+                run_swe_qa_task(warm_task, cond, config, budget, raw_saver=None)
+            except Exception as e:
+                print(f"    warm-up for {cond['name']} failed (non-fatal): {e}")
+        print()
+
     # Run with thread pool
     max_workers = config.get("parallelism", {}).get("max_workers", 1)
     done_count = 0
