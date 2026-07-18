@@ -1200,11 +1200,33 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 if is_rate_limit_error(err):
                     backoff_sleep(attempt)
                     continue
-                return {
+                # A hard exit (notably error_max_turns) still burned real tokens
+                # and the result event carries the usage. Parse it so the row's
+                # cost is recorded honestly — otherwise an arm that thrashes to
+                # the turn cap looks CHEAPER than one that answers, biasing the
+                # very cost comparison this benchmark exists to make. The row
+                # stays an error (empty answer, not judged); only its accounting
+                # is filled in.
+                err_out = {
                     "error": err,
                     "returncode": result.returncode,
                     "_raw_stream_lines": raw_lines,
-                }, attempt
+                }
+                try:
+                    from harness.metrics import parse_claude_stream_output
+                    p = parse_claude_stream_output(raw_lines)
+                    err_out["total_cost_usd"] = p.get("total_cost_usd", 0.0)
+                    err_out["num_turns"] = p.get("num_turns", 0)
+                    err_out["usage"] = {
+                        "input_tokens": p.get("input_tokens", 0),
+                        "output_tokens": p.get("output_tokens", 0),
+                        "cache_read_input_tokens": p.get("cache_read_tokens", 0),
+                        "cache_creation_input_tokens": p.get("cache_write_tokens", 0),
+                    }
+                    err_out["token_source"] = p.get("token_source", "")
+                except Exception:
+                    pass  # accounting is best-effort; never mask the real error
+                return err_out, attempt
 
         except subprocess.TimeoutExpired:
             return {"error": "timeout", "timed_out": True}, attempt
@@ -1495,6 +1517,18 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         if isinstance(metrics.error, str) and len(metrics.error) > 500:
             metrics.error = metrics.error[:500]
         metrics.timed_out = output.get("timed_out", False)
+        # Honest cost accounting for hard failures (e.g. error_max_turns): the
+        # tokens were spent even though there is no answer. Populate from the
+        # parsed result event when present; the row stays an error and is not
+        # judged, but its cost/turns count toward the budget and the totals.
+        usage = output.get("usage", {})
+        metrics.input_tokens = usage.get("input_tokens", 0)
+        metrics.output_tokens = usage.get("output_tokens", 0)
+        metrics.cache_read_tokens = usage.get("cache_read_input_tokens", 0)
+        metrics.cache_write_tokens = usage.get("cache_creation_input_tokens", 0)
+        metrics.num_turns = output.get("num_turns", 0)
+        metrics.estimated_cost_usd = output.get("total_cost_usd", 0.0)
+        metrics.token_source = output.get("token_source", "")
     else:
         usage = output.get("usage", {})
         metrics.input_tokens = usage.get("input_tokens", 0)

@@ -85,6 +85,19 @@ def run_swe_qa_experiment(config: dict, conditions: list,
             if key not in completed:
                 work.append((task, condition))
 
+    # Warm regime: group each condition's tasks consecutively so a serial run
+    # keeps that arm's ~47k prefix warm across all of its questions (each
+    # question re-warms it for the next, within the 5-min TTL). The default
+    # task-major order interleaves arms, which cycles a different prefix every
+    # step and evicts each arm's cache before it is reused — the exact thrash
+    # that makes billed cost incomparable. Only reorder under warmup (the
+    # warm+serial regime); leave task-major as the default so an interrupted
+    # ordinary run still yields paired data. Stable sort preserves task order
+    # within each condition.
+    if config.get("warmup"):
+        cond_rank = {c["name"]: i for i, c in enumerate(conditions)}
+        work.sort(key=lambda tc: cond_rank.get(tc[1]["name"], 0))
+
     total = len(tasks) * len(conditions)
     skipped = total - len(work)
     print(f"\nSWE-QA: {len(tasks)} tasks x {len(conditions)} conditions = {total} runs")
