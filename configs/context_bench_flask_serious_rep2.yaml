@@ -1,0 +1,107 @@
+# Context-tool comparison, flask target — SERIOUS (publishable) run, repeat 2.
+#
+# Seven conditions answer the same frozen question set about the same pinned
+# checkout (pallets/flask @ 258d68b6, staged out-of-tree) under one model, one
+# blind judge, and — for every arm — the same warm+serial cache regime, so
+# billed cost is comparable. Every MCP-backed arm mounts a static, pre-flighted
+# config via --strict-mcp-config; the system prompt is identical across arms
+# except for the one sentence (or, for C6, the CLAUDE.md) naming which tools
+# exist. Agents run in clean git worktrees so no arm can read another tool's
+# on-disk artifacts. C6 injects the authentic `repowise generate-claude-md`
+# output into its private worktree — the shipped surface, not the lab-neutral one.
+
+experiment_name: "context_bench_flask_serious_rep2"
+warmup: true
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    tasks_file:
+      - data/context_bench/questions_flask.json
+      - data/context_bench/questions_why.json
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+
+  - name: "C1_repowise"
+    repowise_enabled: true
+    repowise_mode: "lean"
+    neutral_prompt: true       # one neutral sentence — parity with competitor arms
+    claude_md: false           # parity: no arm gets extra standing context
+    clean_worktree: true
+
+  - name: "C2_codegraph"
+    mcp_server:
+      prefix: "codegraph"
+      config: "mcp_configs/codegraph_flask.json"
+    clean_worktree: true
+
+  - name: "C3_serena"
+    mcp_server:
+      prefix: "serena"
+      config: "mcp_configs/serena_flask.json"
+    clean_worktree: true
+
+  - name: "C4_repomix"
+    repowise_enabled: false
+    worktree_variant: "repomix"
+    worktree_files:
+      "repomix-output.xml": "data/context_bench/repomix_packs/pallets_flask/default.xml"
+    system_note: "The file repomix-output.xml in the repository root contains a packed XML representation of the whole repository."
+
+  - name: "C5_deepwiki"
+    mcp_server:
+      prefix: "deepwiki"
+      config: "mcp_configs/deepwiki_flask.json"
+    clean_worktree: true
+    system_note: "The deepwiki MCP tools serve the public repository pallets/flask."
+
+  - name: "C6_repowise_claudemd"
+    repowise_enabled: true
+    repowise_mode: "lean"      # lean served surface — schema-cost-comparable to C1
+    neutral_prompt: false      # the repowise workflow prompt, not the neutral sentence
+    claude_md: false           # the write path is a no-op for lean; inject the real file instead
+    clean_worktree: true
+    worktree_variant: "claudemd"
+    worktree_files:
+      # Authentic `repowise generate-claude-md` output for the pinned flask index
+      # (the shipped surface: trust protocol + tool docs). Copied into the private
+      # worktree AFTER creation, so it survives the worktree leak-strip.
+      "CLAUDE.md": "data/context_bench/claude_md/pallets_flask.md"
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gpt-5.4-nano"
+  provider: "openai"
+  embedder: "openai"
+  assume_indexed: true         # the staged checkout carries the pinned index
+
+paths:
+  results_dir: "./results/context_bench/track1_flask_serious/rep2"
+  repos_dir: "./repos"
+  logs_dir: "./logs/context_bench_flask_serious/rep2"
+  repo_overrides:
+    "pallets/flask": "~/bench-staging/pallets_flask"
+
+budget:
+  max_total_usd: 45.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
