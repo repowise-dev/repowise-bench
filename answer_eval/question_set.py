@@ -10,7 +10,13 @@ because it looks like a measurement.
 
 Line format::
 
-    {"id": "q001", "question": "Where is X?", "expected_page_ids": ["file:a.py"]}
+    {"id": "q001", "question": "Where is X?",
+     "expected_paths": ["packages/core/src/repowise/core/cache.py::invalidate"]}
+
+``expected_paths`` holds the ``path`` values the answer tool puts on each
+retrieval hit. Those are target paths - a file path, optionally with a symbol
+suffix - and not the internal page id. The two are written in different spaces
+and a question set must be written in the space the tool actually returns.
 
 ``tags`` is the one optional key. Blank lines and ``#`` comment lines are
 skipped.
@@ -22,7 +28,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-REQUIRED_KEYS = frozenset({"id", "question", "expected_page_ids"})
+REQUIRED_KEYS = frozenset({"id", "question", "expected_paths"})
 OPTIONAL_KEYS = frozenset({"tags"})
 
 
@@ -32,11 +38,11 @@ class QuestionSetError(ValueError):
 
 @dataclass(frozen=True)
 class RetrievalQuestion:
-    """One question and the page ids a correct retrieval must surface."""
+    """One question and the target paths a correct retrieval must surface."""
 
     id: str
     question: str
-    expected_page_ids: frozenset[str]
+    expected_paths: frozenset[str]
     tags: frozenset[str] = field(default_factory=frozenset)
 
 
@@ -82,8 +88,8 @@ def _parse_line(path: Path, line_number: int, text: str) -> RetrievalQuestion:
     return RetrievalQuestion(
         id=payload["id"].strip(),
         question=payload["question"].strip(),
-        expected_page_ids=_read_string_list(
-            path, line_number, payload["expected_page_ids"], "expected_page_ids"
+        expected_paths=_read_string_list(
+            path, line_number, payload["expected_paths"], "expected_paths"
         ),
         tags=tags,
     )
