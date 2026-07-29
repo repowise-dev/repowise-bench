@@ -15,7 +15,7 @@ import logging
 import sys
 from pathlib import Path
 
-from answer_eval.index import build_index
+from answer_eval.index import build_index, read_build_report, write_build_report
 from answer_eval.question_set import load_retrieval_questions
 from answer_eval.runner import DEFAULT_K, run_question_set, write_blob
 from answer_eval.server_session import EmbedderConfig, answer_server
@@ -86,20 +86,36 @@ async def run(args: argparse.Namespace) -> Path:
         shutil.rmtree(repo_dir)
 
     if (repo_dir / ".repowise" / "wiki.db").is_file():
-        raise SystemExit(
-            f"an index already exists at {repo_dir}. Re-running against it is fine, but "
-            "the build report it was made with is not recoverable, and a blob without one "
-            "cannot be compared. Pass --rebuild-index, or point --work-dir somewhere new."
+        # Reused, not rebuilt. Safe only because the build report is on disk
+        # next to it - without that the run would report numbers with no
+        # record of the embedder or recipe that produced them, and
+        # read_build_report refuses rather than guessing.
+        index_report = read_build_report(repo_dir)
+        logger.info(
+            "reusing index at %s (%d pages, embedder=%s, recipe=%s). "
+            "Pass --rebuild-index to embed again.",
+            repo_dir,
+            index_report.pages_written,
+            index_report.embedder,
+            index_report.embed_recipe,
         )
-
-    logger.info("building index at %s - this embeds every page", repo_dir)
-    index_report = await build_index(pages, repo_dir=repo_dir, embedder_name=embedder.name)
-    logger.info(
-        "index built: %d pages, %d vectors, recipe=%s",
-        index_report.pages_written,
-        index_report.vectors_written,
-        index_report.embed_recipe,
-    )
+        if index_report.embedder != embedder.name:
+            raise SystemExit(
+                f"index at {repo_dir} was built with embedder "
+                f"{index_report.embedder!r} but this run is pinned to "
+                f"{embedder.name!r}. Querying it would compare vectors from two "
+                "different models. Pass --rebuild-index."
+            )
+    else:
+        logger.info("building index at %s - this embeds every page", repo_dir)
+        index_report = await build_index(pages, repo_dir=repo_dir, embedder_name=embedder.name)
+        write_build_report(index_report, repo_dir)
+        logger.info(
+            "index built: %d pages, %d vectors, recipe=%s",
+            index_report.pages_written,
+            index_report.vectors_written,
+            index_report.embed_recipe,
+        )
 
     async with answer_server(repo_dir, embedder) as answer_tool:
         report = await run_question_set(

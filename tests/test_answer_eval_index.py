@@ -8,7 +8,14 @@ and above all that a partial build is refused rather than measured.
 
 import pytest
 
-from answer_eval.index import IndexBuildError, build_index, embed_item
+from answer_eval.index import (
+    IndexBuildError,
+    build_index,
+    build_report_path,
+    embed_item,
+    read_build_report,
+    write_build_report,
+)
 from answer_eval.snapshot import SnapshotPage
 
 
@@ -109,3 +116,38 @@ class TestBuildIndex:
         )
         with pytest.raises(IndexBuildError, match="embed"):
             await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
+
+
+class TestBuildReportRoundTrip:
+    """An index is only safe to reuse if the report that describes it survives.
+
+    Reuse is what keeps a question-set iteration free instead of a re-embed.
+    The price is that an index with no report, or a report that does not match
+    the fields a build produces, must be refused rather than guessed at.
+    """
+
+    async def test_written_report_reads_back_identical(self, tmp_path):
+        report = await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
+        write_build_report(report, tmp_path)
+        assert read_build_report(tmp_path) == report
+
+    def test_an_index_with_no_report_is_refused(self, tmp_path):
+        with pytest.raises(IndexBuildError, match="no build report"):
+            read_build_report(tmp_path)
+
+    def test_an_unparseable_report_is_refused(self, tmp_path):
+        path = build_report_path(tmp_path)
+        path.parent.mkdir(parents=True)
+        path.write_text("{not json", encoding="utf-8")
+        with pytest.raises(IndexBuildError, match="valid JSON"):
+            read_build_report(tmp_path)
+
+    def test_a_report_missing_a_field_is_refused_rather_than_defaulted(self, tmp_path):
+        """A missing `embedder` must not read as an index built by nobody."""
+        import json
+
+        path = build_report_path(tmp_path)
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps({"pages_written": 3}), encoding="utf-8")
+        with pytest.raises(IndexBuildError, match="does not describe an index build"):
+            read_build_report(tmp_path)

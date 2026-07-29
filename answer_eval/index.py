@@ -33,7 +33,8 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
+from dataclasses import fields as dataclass_fields
 from pathlib import Path
 
 from repowise.core.persistence.database import create_engine, init_db
@@ -138,6 +139,54 @@ async def build_index(
         embed_recipe=EMBED_RECIPE,
         repo_dir=str(repo_dir),
     )
+
+
+BUILD_REPORT_FILENAME = "build_report.json"
+
+
+def build_report_path(repo_dir: str | Path) -> Path:
+    return Path(repo_dir) / ".repowise" / BUILD_REPORT_FILENAME
+
+
+def write_build_report(report: IndexBuildReport, repo_dir: str | Path) -> Path:
+    """Save the build report beside the index it describes.
+
+    An index on disk with no report cannot be scored against - the blob would
+    carry numbers with no record of the recipe or embedder behind them. Saving
+    it is what makes reusing an existing index safe, and safe reuse is what
+    makes iterating on a question set free rather than a re-embed each time.
+    """
+    import json
+
+    path = build_report_path(repo_dir)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(asdict(report), indent=2, sort_keys=True), encoding="utf-8")
+    return path
+
+
+def read_build_report(repo_dir: str | Path) -> IndexBuildReport:
+    """Load the report for an already-built index, or refuse to reuse it."""
+    import json
+
+    path = build_report_path(repo_dir)
+    if not path.is_file():
+        raise IndexBuildError(
+            f"index at {repo_dir} has no build report ({path}). It was built by an "
+            "older or interrupted run, so the embedder and recipe behind it are "
+            "unknown and its numbers could not be compared to anything. Rebuild it."
+        )
+    try:
+        fields = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise IndexBuildError(f"{path} is not valid JSON ({exc.msg})") from exc
+
+    expected = {field.name for field in dataclass_fields(IndexBuildReport)}
+    if set(fields) != expected:
+        raise IndexBuildError(
+            f"{path} does not describe an index build: expected fields "
+            f"{sorted(expected)}, got {sorted(fields)}"
+        )
+    return IndexBuildReport(**fields)
 
 
 async def _write_pages(engine, pages: Sequence[SnapshotPage]) -> int:
