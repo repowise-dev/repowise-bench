@@ -70,6 +70,10 @@ class IndexBuildReport:
     embedder: str
     embed_recipe: str
     repo_dir: str
+    symbols: dict | None = None
+    """The symbol index, when one was built. ``None`` means an index of pages
+    alone, which cannot produce a high-confidence answer - see
+    :mod:`answer_eval.symbols`."""
 
 
 def embed_item(page: SnapshotPage) -> tuple[str, str, dict]:
@@ -97,12 +101,19 @@ async def build_index(
     repo_dir: str | Path,
     embedder_name: str,
     batch_size: int = DEFAULT_EMBED_BATCH_SIZE,
+    checkout: str | Path | None = None,
+    expected_commit: str | None = None,
 ) -> IndexBuildReport:
     """Materialise a queryable repowise index under ``repo_dir/.repowise``.
 
     Raises ``IndexBuildError`` rather than returning a partial index: a store
     missing vectors scores as a retrieval miss and there is no way to tell the
     two apart afterwards.
+
+    ``checkout`` is a source tree at the snapshot's commit. Given one, the build
+    also writes the symbol rows the answer tool's confidence gates read; without
+    one the index holds pages alone and every answer is capped at medium, which
+    in the output looks like a calibration finding rather than a missing table.
     """
     if not pages:
         raise IndexBuildError("cannot build an index from no pages")
@@ -120,7 +131,21 @@ async def build_index(
     engine = create_engine(f"sqlite+aiosqlite:///{repowise_dir / 'wiki.db'}")
     try:
         await init_db(engine)
-        pages_written = await _write_pages(engine, pages)
+        pages_written, repository_id = await _write_pages(engine, pages)
+
+        symbol_report = None
+        if checkout is not None:
+            from answer_eval.symbols import build_symbol_index
+
+            symbol_report = await build_symbol_index(
+                engine, repository_id, checkout, expected_commit=expected_commit
+            )
+        else:
+            logger.warning(
+                "no checkout given: building an index of pages alone. Every answer "
+                "will be capped at medium confidence, because the citation-source "
+                "gate demotes any high answer that cannot cite symbol bodies."
+            )
 
         fts = FullTextSearch(engine)
         await fts.ensure_index()
@@ -138,6 +163,7 @@ async def build_index(
         embedder=embedder_name,
         embed_recipe=EMBED_RECIPE,
         repo_dir=str(repo_dir),
+        symbols=asdict(symbol_report) if symbol_report else None,
     )
 
 
@@ -181,7 +207,8 @@ def read_build_report(repo_dir: str | Path) -> IndexBuildReport:
         raise IndexBuildError(f"{path} is not valid JSON ({exc.msg})") from exc
 
     expected = {field.name for field in dataclass_fields(IndexBuildReport)}
-    if set(fields) != expected:
+    optional = {"symbols"}
+    if not (expected - optional) <= set(fields) <= expected:
         raise IndexBuildError(
             f"{path} does not describe an index build: expected fields "
             f"{sorted(expected)}, got {sorted(fields)}"
@@ -189,8 +216,12 @@ def read_build_report(repo_dir: str | Path) -> IndexBuildReport:
     return IndexBuildReport(**fields)
 
 
-async def _write_pages(engine, pages: Sequence[SnapshotPage]) -> int:
-    """Insert one ``Page`` row per snapshot page, under a single repository."""
+async def _write_pages(engine, pages: Sequence[SnapshotPage]) -> tuple[int, str]:
+    """Insert one ``Page`` row per snapshot page, and return the repository id.
+
+    The id is returned because symbols are written against the same repository
+    row; a symbol filed under a different one joins to nothing at query time.
+    """
     from datetime import UTC, datetime
 
     from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
@@ -226,7 +257,7 @@ async def _write_pages(engine, pages: Sequence[SnapshotPage]) -> int:
                 )
             )
         await session.commit()
-    return len(pages)
+    return len(pages), repository.id
 
 
 async def _embed_pages(
