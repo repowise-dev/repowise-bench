@@ -86,6 +86,40 @@ def test_the_set_spans_more_than_one_question_shape(questions):
     assert shapes == {"how", "why", "where", "what"}
 
 
+#: Questions reworded after reading the tool's answer to the original by hand,
+#: with the reason. Both originals scored zero while the tool was arguably or
+#: plainly right, which makes the set - not the tool - the thing that was
+#: wrong. Pinned here so a later edit cannot quietly restore either one; the
+#: reason is carried next to the text so the pin can be argued with.
+HAND_AUDITED = {
+    "q002": (
+        "Where is the walk option that skips any non-root directory containing "
+        "its own .git entry?",
+        "The original asked where 'the repo scan' stops descending into nested "
+        "git repositories. Two different scans do that - the file walk, and the "
+        "workspace scanner that discovers repos - so the question had two "
+        "correct answers and one expected path. It now names the walk option, "
+        "which only one of them has.",
+    ),
+    "q015": (
+        "Where does get_answer apply its domain penalty and intersection boost "
+        "to the candidate hits?",
+        "The original asked where get_answer runs its retrieval, and expected "
+        "the re-ranking module - whose own docstring says it operates on hits "
+        "'after the hybrid-retrieval stages in _answer_pipeline'. The tool "
+        "answered with the pipeline and was marked wrong for being right. It "
+        "now asks for what the expected module actually does.",
+    ),
+}
+
+
+@pytest.mark.parametrize("qid", sorted(HAND_AUDITED))
+def test_a_hand_audited_question_keeps_its_corrected_wording(questions, qid):
+    expected_text, _reason = HAND_AUDITED[qid]
+    by_id = {q.id: q for q in questions}
+    assert by_id[qid].question == expected_text
+
+
 def test_no_single_page_dominates_the_set(questions):
     """One page answering many questions would make the score mostly about it."""
     from collections import Counter
