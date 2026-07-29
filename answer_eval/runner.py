@@ -6,13 +6,24 @@ comparison between runs, so it carries the corpus and the embedding parameters
 next to every number - a recall figure with no record of what it was measured
 against cannot be compared to anything.
 
-**What is scored, and what is only counted.** Recall@k and MRR are computed
-over ``retrieval[].path``, which is what the tool actually returns. Some
-answers arrive with an empty ``retrieval`` list and a non-retrieval grounding -
-an exact symbol match, or a shape read straight off the data - and those score
-zero on a retrieval metric while being perfectly good answers. They are counted
-and reported separately rather than folded in, because a rise in that count
-looks identical to a retrieval regression once it is averaged away.
+**What is scored.** The paths the tool put in front of the caller: the
+``citations`` list first, then any ``retrieval[].path`` not already among them.
+
+Scoring ``retrieval`` alone is wrong, and wrong in the direction that matters.
+At high confidence the tool empties the retrieval block on purpose - the
+citations and the answer are held to suffice, so carrying five enriched hits
+through the conversation cache buys nothing::
+
+    if confidence == "high":
+        retrieval_view: list[dict] = []
+
+An eval keyed on ``retrieval[].path`` therefore scores zero on every confident
+answer, however good, and the harder the tool tries the worse it looks.
+``citations`` is present at every confidence level, so it leads; ``retrieval``
+supplements it at medium and low where it is populated.
+
+Both raw lists are kept per question, so the split between "cited it" and "had
+it in the candidate set" stays visible instead of being averaged away.
 
 Cost is deliberately absent. Retrieval scoring needs no judge, so a run is
 near-free; the cost figure belongs with the judged gold set, where it is a real
@@ -56,6 +67,11 @@ class QuestionResult:
     question: str
     expected_paths: list[str]
     retrieved_paths: list[str]
+    """What was scored: citations first, then retrieval paths not already in them."""
+    cited_paths: list[str]
+    retrieval_paths: list[str]
+    """The raw ``retrieval[].path`` list. Empty on every high-confidence answer
+    by design, which is why it is not what gets scored."""
     confidence: str
     grounding: str
     answered: bool
@@ -83,8 +99,11 @@ class RunReport:
     that can be measured without a model.
     """
     non_retrieval_grounding_counts: dict[str, int]
-    """Answers that came back with no retrieval hits, by grounding. These score
-    zero on recall while often being correct - counted, never folded in."""
+    """Answers that put no path in front of the caller at all, by grounding."""
+    n_citations_only: int
+    """Answers carrying citations but an empty retrieval block. Expected to be
+    every high-confidence answer; a jump at medium or low would mean the tool
+    stopped returning candidates somewhere it used to."""
     recall_at_k_by_file: float
     """Recall with the ``::symbol`` suffix stripped from both sides.
 
@@ -100,6 +119,13 @@ class RunReport:
     model as of the corpus, so two runs are only comparable if this matches."""
     questions: list[QuestionResult]
     elapsed_seconds: float
+    warnings: list[str] = field(default_factory=list)
+    """Conditions that make part of this blob unreadable as a finding.
+
+    An index with no symbols is the motivating case: it caps every answer at
+    medium, so its confidence distribution says nothing about the tool. Data
+    rather than a raised error, because recall and abstention from such a run
+    are still perfectly good numbers."""
 
     def as_blob(self) -> dict[str, Any]:
         return {
@@ -114,12 +140,41 @@ class RunReport:
             "abstention_rate": self.abstention_rate,
             "recall_at_k_when_high": self.recall_at_k_when_high,
             "non_retrieval_grounding_counts": self.non_retrieval_grounding_counts,
+            "n_citations_only": self.n_citations_only,
             "embedder": asdict(self.embedder),
             "synthesis": asdict(self.synthesis),
             "index": asdict(self.index),
             "elapsed_seconds": self.elapsed_seconds,
+            "warnings": self.warnings,
             "questions": [asdict(q) for q in self.questions],
         }
+
+
+def cited_paths(payload: dict) -> list[str]:
+    """The ``citations`` list, cleaned. Present at every confidence level."""
+    cites = payload.get("citations") or []
+    paths: list[str] = []
+    for position, cite in enumerate(cites):
+        if isinstance(cite, str) and cite.strip():
+            paths.append(cite.strip())
+        else:
+            logger.warning("citation at position %d is not a path: %r", position, cite)
+    return paths
+
+
+def answered_paths(payload: dict) -> list[str]:
+    """Every path the tool put in front of the caller, best first.
+
+    Citations lead because they are what the answer actually stands on, and
+    because they are the only list populated at high confidence.
+    """
+    seen: set[str] = set()
+    result: list[str] = []
+    for path in cited_paths(payload) + retrieved_paths(payload):
+        if path not in seen:
+            seen.add(path)
+            result.append(path)
+    return result
 
 
 def file_of(path: str) -> str:
@@ -177,7 +232,9 @@ async def run_question(answer_tool, question: RetrievalQuestion, k: int) -> Ques
             confidence,
         )
 
-    paths = retrieved_paths(payload)
+    cited = cited_paths(payload)
+    retrieval = retrieved_paths(payload)
+    paths = answered_paths(payload)
     expected = set(question.expected_paths)
 
     return QuestionResult(
@@ -185,6 +242,8 @@ async def run_question(answer_tool, question: RetrievalQuestion, k: int) -> Ques
         question=question.question,
         expected_paths=sorted(expected),
         retrieved_paths=paths,
+        cited_paths=cited,
+        retrieval_paths=retrieval,
         confidence=confidence,
         grounding=payload.get("grounding") or "retrieval",
         answered=bool((payload.get("answer") or "").strip()),
@@ -209,6 +268,16 @@ async def run_question_set(
     if not questions:
         raise RunnerError("cannot run an empty question set")
 
+    warnings: list[str] = []
+    if not index.symbols:
+        warnings.append(
+            "index has no symbols: the citation-source gate demotes every "
+            "high-confidence answer that cannot cite symbol bodies, so the "
+            "confidence distribution in this blob is a property of the index, "
+            "not of the tool. Recall and abstention are unaffected."
+        )
+        logger.warning(warnings[-1])
+
     started = time.perf_counter()
     results: list[QuestionResult] = []
     for position, question in enumerate(questions, start=1):
@@ -230,6 +299,7 @@ async def run_question_set(
 
     high = [r for r in results if r.confidence == "high"]
     no_hits = [r for r in results if not r.retrieved_paths]
+    cite_only = sum(1 for r in results if r.cited_paths and not r.retrieval_paths)
 
     return RunReport(
         snapshot_short_id=snapshot_short_id,
@@ -241,12 +311,14 @@ async def run_question_set(
             sum(r.recall_at_k for r in high) / len(high) if high else None
         ),
         non_retrieval_grounding_counts=dict(Counter(r.grounding for r in no_hits)),
+        n_citations_only=cite_only,
         recall_at_k_by_file=sum(_file_recall(r, k) for r in results) / len(results),
         index=index,
         embedder=embedder,
         synthesis=synthesis,
         questions=results,
         elapsed_seconds=time.perf_counter() - started,
+        warnings=warnings,
     )
 
 
