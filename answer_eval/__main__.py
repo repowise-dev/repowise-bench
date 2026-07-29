@@ -170,6 +170,7 @@ async def run(args: argparse.Namespace) -> Path:
         f"mrr={report.scores.mrr:.3f} "
         f"abstain={report.abstention_rate:.1%} "
         f"confidence={report.confidence_counts} "
+        f"named-not-cited={report.n_answers_naming_an_uncited_expected_path} "
         f"n={report.scores.n_questions}"
     )
     return out
