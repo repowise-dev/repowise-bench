@@ -47,6 +47,19 @@ class RunMetrics:
     files_explored: list = field(default_factory=list)
     files_edited: list = field(default_factory=list)
     repowise_tools_called: list = field(default_factory=list)
+    # Successful MCP tool calls per server prefix ({"serena": ["find_symbol", ...]}).
+    # Superset of repowise_tools_called, which is kept for older aggregations.
+    server_tools_called: dict = field(default_factory=dict)
+    # True when this condition mounted an MCP server that the agent never
+    # successfully called: the run silently degraded to a bare-agent run and
+    # is not evidence about the server. None for conditions with no server.
+    attach_guard_fired: Optional[bool] = None
+    # Which stream field the token counts came from ("modelUsage" is
+    # authoritative; "result_usage" is the legacy top-level field, which
+    # under-reports on current Claude Code versions).
+    token_source: str = ""
+    # Question category (context-bench taxonomy), for sliced aggregation.
+    category: str = ""
 
     # Timing
     wall_clock_seconds: float = 0.0
@@ -117,15 +130,47 @@ def parse_claude_code_output(json_output: dict) -> dict:
     }
 
 
+def _mcp_server_prefix(tool_name: str) -> Optional[str]:
+    """'mcp__serena__find_symbol' -> 'serena'; None for non-MCP tools."""
+    if not tool_name.startswith("mcp__"):
+        return None
+    rest = tool_name[len("mcp__"):]
+    return rest.split("__", 1)[0] if rest else None
+
+
+def _sum_model_usage(result_data: dict) -> dict:
+    """Aggregate result.modelUsage (per-model breakdown, camelCase fields).
+
+    Returns {} when absent. When present, this is the authoritative token
+    source: the top-level result.usage under-reports on current Claude Code
+    (observed cache_creation 46340 vs a true 98485 on a real transcript).
+    """
+    mu = result_data.get("modelUsage") or {}
+    if not isinstance(mu, dict) or not mu:
+        return {}
+    acc = {"input_tokens": 0, "output_tokens": 0,
+           "cache_read_tokens": 0, "cache_write_tokens": 0, "cost_usd": 0.0}
+    for u in mu.values():
+        if not isinstance(u, dict):
+            continue
+        acc["input_tokens"] += int(u.get("inputTokens", 0) or 0)
+        acc["output_tokens"] += int(u.get("outputTokens", 0) or 0)
+        acc["cache_read_tokens"] += int(u.get("cacheReadInputTokens", 0) or 0)
+        acc["cache_write_tokens"] += int(u.get("cacheCreationInputTokens", 0) or 0)
+        acc["cost_usd"] += float(u.get("costUSD", 0.0) or 0.0)
+    return acc
+
+
 def parse_claude_stream_output(stream_lines: list) -> dict:
     """Parse --output-format stream-json --verbose for tool-level detail."""
     tool_calls = []
     files_read = set()
     files_edited = set()
-    repowise_tools = []
+    server_tools = {}
     task_subagent_calls = 0
-    # Track pending repowise calls to verify they succeeded
-    _pending_repowise = []
+    # tool_use_id -> MCP tool name, so results are matched to their calls
+    # exactly (order-based matching breaks under parallel tool use).
+    _pending_mcp = {}
     result_data = {}
 
     for line in stream_lines:
@@ -152,8 +197,8 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         p = inp.get("file_path", "")
                         if p:
                             files_edited.add(p)
-                    elif tool_name.startswith("mcp__repowise"):
-                        _pending_repowise.append(tool_name)
+                    elif _mcp_server_prefix(tool_name):
+                        _pending_mcp[block.get("id", "")] = tool_name
                     elif tool_name == "Task":
                         # Sub-agent invocation. Parent stream collapses
                         # the entire sub-agent run into a single turn,
@@ -161,30 +206,43 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         # hidden work.
                         task_subagent_calls += 1
         elif msg_type == "user":
-            # Match tool results to pending repowise calls.
-            # Only count repowise calls that succeeded (not permission-denied).
+            # Only count MCP calls whose result came back without error
+            # (a permission-denied or crashed call is not an attach signal).
             for block in d.get("message", {}).get("content", []):
                 if isinstance(block, dict) and block.get("type") == "tool_result":
-                    if _pending_repowise:
-                        tool_name = _pending_repowise.pop(0)
-                        if not block.get("is_error", False):
-                            repowise_tools.append(tool_name)
+                    tool_name = _pending_mcp.pop(block.get("tool_use_id", ""), None)
+                    if tool_name and not block.get("is_error", False):
+                        server = _mcp_server_prefix(tool_name)
+                        server_tools.setdefault(server, []).append(tool_name)
         elif msg_type == "result":
             result_data = d
 
     usage = result_data.get("usage", {})
-    return {
+    tokens = {
         "input_tokens": usage.get("input_tokens", 0),
         "output_tokens": usage.get("output_tokens", 0),
         "cache_read_tokens": usage.get("cache_read_input_tokens", 0),
         "cache_write_tokens": usage.get("cache_creation_input_tokens", 0),
+        "token_source": "result_usage",
+    }
+    model_usage = _sum_model_usage(result_data)
+    if model_usage and any(v for k, v in model_usage.items() if k != "cost_usd"):
+        tokens = {k: model_usage[k] for k in
+                  ("input_tokens", "output_tokens",
+                   "cache_read_tokens", "cache_write_tokens")}
+        tokens["token_source"] = "modelUsage"
+
+    return {
+        **tokens,
         "num_turns": result_data.get("num_turns", 0),
         "task_subagent_calls": task_subagent_calls,
-        "total_cost_usd": result_data.get("total_cost_usd", 0.0),
+        "total_cost_usd": result_data.get("total_cost_usd", 0.0)
+                          or model_usage.get("cost_usd", 0.0),
         "num_tool_calls": len(tool_calls),
         "files_explored": sorted(files_read),
         "files_edited": sorted(files_edited),
-        "repowise_tools_called": repowise_tools,
+        "repowise_tools_called": server_tools.get("repowise", []),
+        "server_tools_called": server_tools,
         "answer": result_data.get("result", ""),
         "session_id": result_data.get("session_id", ""),
         "stop_reason": result_data.get("stop_reason", ""),

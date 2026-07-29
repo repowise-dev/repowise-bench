@@ -71,6 +71,7 @@ def run_swe_qa_experiment(config: dict, conditions: list,
         skip_tasks=bench_cfg.get("skip_tasks", 0),
         exclude_indices=bench_cfg.get("exclude_indices"),
         include_indices=bench_cfg.get("include_indices"),
+        tasks_file=bench_cfg.get("tasks_file"),
     )
 
     # Build work items: (task, condition) pairs — interleaved so we get
@@ -83,6 +84,19 @@ def run_swe_qa_experiment(config: dict, conditions: list,
             key = f"{tid}_{cname}"
             if key not in completed:
                 work.append((task, condition))
+
+    # Warm regime: group each condition's tasks consecutively so a serial run
+    # keeps that arm's ~47k prefix warm across all of its questions (each
+    # question re-warms it for the next, within the 5-min TTL). The default
+    # task-major order interleaves arms, which cycles a different prefix every
+    # step and evicts each arm's cache before it is reused — the exact thrash
+    # that makes billed cost incomparable. Only reorder under warmup (the
+    # warm+serial regime); leave task-major as the default so an interrupted
+    # ordinary run still yields paired data. Stable sort preserves task order
+    # within each condition.
+    if config.get("warmup"):
+        cond_rank = {c["name"]: i for i, c in enumerate(conditions)}
+        work.sort(key=lambda tc: cond_rank.get(tc[1]["name"], 0))
 
     total = len(tasks) * len(conditions)
     skipped = total - len(work)
@@ -104,6 +118,40 @@ def run_swe_qa_experiment(config: dict, conditions: list,
             ensure_repo_cloned(repo, repos_dir)
         except Exception as e:
             print(f"  Failed to clone {repo}: {e}")
+
+    # Cache warm-up (opt-in). Prompt-cache reuse is keyed on the ~47k static
+    # prefix (Claude Code system prompt + MCP tool schemas + append-system-
+    # prompt) with a 5-min TTL. Whether a question's first turn READS that
+    # prefix (warm, $0.30/M) or WRITES it (cold, $3.75/M — 12.5x) is decided
+    # by ambient cache state, not the code under test, so billed cost is not
+    # comparable across runs unless warmth is held constant. One throwaway
+    # invocation PER CONDITION, through the identical run path (so the warmed
+    # prefix is byte-identical to the real questions), pins Q1 warm; with
+    # max_workers=1 each question then re-warms the prefix (<5-min TTL) for
+    # the next. Applied uniformly to every arm — it removes a harness-induced
+    # confound, it does not advantage any arm. Disclose it in RESULTS.md.
+    if config.get("warmup"):
+        seen_conditions = []
+        for _task, cond in work:
+            if cond["name"] not in [c["name"] for c in seen_conditions]:
+                seen_conditions.append(cond)
+        warm_repo = next((t.get("repo", "") for t, _ in work), "")
+        warm_task = {
+            "id": "warmup", "repo": warm_repo, "split_name": "warmup",
+            "question": "Name one source file in this repository.",
+            "gold_answer": "", "category": "warmup",
+        }
+        for cond in seen_conditions:
+            if _shutdown.is_set():
+                return
+            print(f"  Warming cache for {cond['name']}...")
+            try:
+                # raw_saver=None → no transcript written; result discarded so
+                # the warm-up never enters swe_qa.jsonl.
+                run_swe_qa_task(warm_task, cond, config, budget, raw_saver=None)
+            except Exception as e:
+                print(f"    warm-up for {cond['name']} failed (non-fatal): {e}")
+        print()
 
     # Run with thread pool
     max_workers = config.get("parallelism", {}).get("max_workers", 1)

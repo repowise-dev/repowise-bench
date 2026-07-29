@@ -1,0 +1,826 @@
+{
+  "repo": "fastify/fastify",
+  "built_as_of": "2026-07-17T00:00:00+00:00",
+  "seed": 42,
+  "filters": {
+    "window_days": 548,
+    "min_body_chars": 200,
+    "files_range": [
+      2,
+      8
+    ],
+    "excludes": "test files from targets; docs-only PRs"
+  },
+  "candidates_inspected": 237,
+  "prs": [
+    {
+      "pr_number": 6334,
+      "repo": "fastify/fastify",
+      "title": "ci: improve citgm workflows",
+      "body": "The citgm workflow works suboptimal. \r\n\r\nPackages which use typescript can get typing errors which can be found in installed dev dependences when fastify is installed with `npm i`. So for fastify we  install dependencies with `--production`.\r\n\r\nCITGM uses node 20. I changed it to node 24.\r\n\r\nthe citgm workflow is only triggerable by adding the correct label. I added workflow_dispatch as trigger, so we can run the workflow also without a PR.\r\n\r\nThe label is not removed after the citgm pipeline failed. Added always() into the if-condition to run the job even if the citgm job failed.\r\n\r\ncitgm-package workflow is now more elegant when you want to trigger the workflow manually. You select the plugin, node version and operating system in drop downs. \r\n\r\n<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [ ] run `npm run test && npm run benchmark --if-present`\r\n- [ ] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [ ] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "da642ab1e44e63f6c940ca499ebc25511179d992",
+      "merged_at": "2025-09-25T22:52:33Z",
+      "changed_files": [
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/citgm.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/citgm.yml"
+      ]
+    },
+    {
+      "pr_number": 6421,
+      "repo": "fastify/fastify",
+      "title": "ci: remove broken links and add ecosystem link validator",
+      "body": "## Summary\n\n- Remove 24 community plugins with inaccessible GitHub repositories (404 or abandoned accounts)\n- Update 5 URLs that were redirecting (301) to new locations\n- Add validation script (`scripts/validate-ecosystem-links.js`) to check all GitHub links\n- Add weekly GitHub Action (`.github/workflows/validate-ecosystem-links.yml`) to automatically detect broken links\n\n### Removed plugins\n\nAbandoned accounts (as reported in security advisory):\n- `@fastify-userland/request-id`, `@fastify-userland/typeorm-query-runner`, `@fastify-userland/workflows`\n- `fastify-http-client` (kenuyx)\n- `fastify-knexjs`, `fastify-knexjs-mock`, `fastify-mongo-memory` (chapuletta)\n- `fastify-objectionjs` (jarcodallo)\n- `fastify-slonik` (Unbuttun)\n\nAdditional broken links found by validation:\n- `fastify-autocrud`, `fastify-file-upload`, `fastify-firebase`, `fastify-firebase-auth`\n- `fastify-nats`, `fastify-orientdb`, `fastify-socket.io`, `fastify-sse-v2`\n- `fastify-tokenize`, `fastify-twitch-ebs-tools`, `fastify-vite` (community), `typeorm-fastify-plugin`\n\n### Updated redirects\n\n| Old URL | New URL |\n|---------|---------|\n| zeit/next.js | vercel/next.js |\n| clerkinc/javascript | clerk/javascript |\n| nucleode/arecibo | ducktors/arecibo |\n| squaremo/amqp.node | amqp-node/amqplib |\n| Dev-Manny/fastify-appwrite | maniecodes/fastify-appwrite |\n\n## Test plan\n\n- [x] Run `node scripts/validate-ecosystem-links.js` with `GITHUB_TOKEN` - all 320 links pass\n- [ ] Verify GitHub Action runs successfully on schedule",
+      "base_sha": "1e0be1294e85734f1e6ac651f3ff664d389d7799",
+      "merged_at": "2026-03-01T21:31:35Z",
+      "changed_files": [
+        ".github/workflows/links-check.yml",
+        ".github/workflows/validate-ecosystem-links.yml",
+        "docs/Guides/Ecosystem.md",
+        "scripts/validate-ecosystem-links.js"
+      ],
+      "changed_files_all": [
+        ".github/workflows/links-check.yml",
+        ".github/workflows/validate-ecosystem-links.yml",
+        "docs/Guides/Ecosystem.md",
+        "scripts/validate-ecosystem-links.js",
+        "test/scripts/validate-ecosystem-links.test.js"
+      ]
+    },
+    {
+      "pr_number": 6444,
+      "repo": "fastify/fastify",
+      "title": "perf: use native WebStream API instead of Readable.fromWeb wrapper",
+      "body": "## Summary\n\n- Remove Node.js stream wrapping overhead by using the WebStream reader API directly\n- Provides ~20% throughput improvement when returning `Response` objects or `ReadableStream` from route handlers\n- Add benchmark for WebStream performance testing\n- Add tests for WebStream error handling paths\n\n## Benchmark Results\n\n| Metric | Before | After | Improvement |\n|--------|--------|-------|-------------|\n| Req/sec | 26,931 | 32,335 | **+20%** |\n| Latency (avg) | 36.6 ms | 30.4 ms | **-17%** |\n\n## Changes\n\n- `lib/reply.js`: Rewrote `sendWebStream()` to use `reader.getReader()` and `reader.read()` directly instead of `Readable.fromWeb()`\n- `examples/benchmark/webstream.js`: New benchmark file for WebStream performance testing\n- `test/web-api.test.js`: Added tests for error handling paths (stream errors before/after headers sent, headers already sent warning)\n\n## Test plan\n\n- [x] All existing tests pass\n- [x] New error handling tests added\n- [x] 100% code coverage for reply.js\n- [x] Benchmark verified ~20% improvement",
+      "base_sha": "1b3381e73a423b54563c8207b31017a3381aa122",
+      "merged_at": "2026-01-15T11:45:49Z",
+      "changed_files": [
+        "examples/benchmark/webstream.js",
+        "lib/reply.js"
+      ],
+      "changed_files_all": [
+        "examples/benchmark/webstream.js",
+        "lib/reply.js",
+        "test/web-api.test.js"
+      ]
+    },
+    {
+      "pr_number": 6496,
+      "repo": "fastify/fastify",
+      "title": "chore: support pino v9 and v10",
+      "body": "## Summary\n- relax peer dependency range to allow both pino v9 and v10\n- add a CI compatibility job that runs with pino@^9 and pino@^10\n- gate the package job on the new compatibility matrix\n\n## Testing\n- npm run test:typescript with pino@^9\n- npm run test:typescript with pino@^10\n- npm run unit (pino@^9)",
+      "base_sha": "d0c2f451ea16b9e611a160f72a088f395c373b02",
+      "merged_at": "2026-02-08T09:28:47Z",
+      "changed_files": [
+        ".github/workflows/ci.yml",
+        "package.json"
+      ],
+      "changed_files_all": [
+        ".github/workflows/ci.yml",
+        "package.json",
+        "test/web-api.test.js"
+      ]
+    },
+    {
+      "pr_number": 6572,
+      "repo": "fastify/fastify",
+      "title": "docs(types): mark request metadata accessors as untrusted input",
+      "body": "## Summary\n- document how request metadata accessors map to raw socket/header data\n- clarify that `request.ip`, `request.ips`, `request.host`, `request.hostname`, `request.port`, and `request.protocol` are untrusted input\n- add explicit guidance that users must validate these values before security-sensitive decisions\n- add matching security notes to TypeScript declarations for request accessors\n\n## Files changed\n- `docs/Reference/Request.md`\n- `docs/Reference/Server.md`\n- `types/request.d.ts`\n\n## Validation\n- `npx eslint types/request.d.ts`\n- `npx tsd --files test/types/request.test-d.ts`\n",
+      "base_sha": "121895b0af77aa86ec02f8c96a3aa5d835e80d90",
+      "merged_at": "2026-06-28T08:02:43Z",
+      "changed_files": [
+        "docs/Reference/Request.md",
+        "docs/Reference/Server.md",
+        "types/request.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Request.md",
+        "docs/Reference/Server.md",
+        "types/request.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6437,
+      "repo": "fastify/fastify",
+      "title": "fix: ajv options type validation",
+      "body": "<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\nFirst of all: Happy holidays! :)\r\n\r\nThe reason for this PR stems from https://github.com/fastify/fastify/pull/6223\r\n\r\nBelow i enumerate the two issues i found, with a bullet list:\r\n\r\n- Currently, in a TS project if I try to use the `onCreate` ajv option I still get met with a typescript error (requiring a ts-expect-error), as such option is not defined in the exposed fastify type, although made available by `fastify/ajv-compiler`\r\n(My suggested fix is to mirror the entire ajv options field type definition from the `ajv-compiler` itself, as fastify already proxies the object to it in the js implementation, this way the type definitions remain transparent to the implementation and future updates)\r\n\r\n- Additionally I have added also a test to showcase an error in the current ajv plugin type definition where the override of the plugin types is too generous, and allows for plugins to be passed, that would break the [ajv plugin definition fluent standard](https://github.com/ajv-validator/ajv/blob/82735a15826a30cc51e97a1bbfb59b3d388e4b98/lib/core.ts#L24-L27), so if i provide my own validatorCompiler, leveraging this Ajv feature, i get no warning from TS to alert me that perhaps these plugins might break my implementation because they are not returning the Ajv instance. \r\n(Again proxying the type directly from the library solves this as it enforces the Ajv plugin definition)\r\n\r\nI have committed types tests showcasing the 2 different use cases above, that would fail with the current type definition and following them up with the related fix, together with the dependency update of `fastify/ajv-compiler` that is required to apply these improvements.\r\n\r\nLastly I have added a small enrichment in docs for the ajv options and a little fix in jsdocs for fastify which i found while browsing the js code.\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "f18cda12d62a81f41d14b5c41cd674dd2abef817",
+      "merged_at": "2026-01-03T13:34:18Z",
+      "changed_files": [
+        "docs/Reference/Server.md",
+        "fastify.d.ts",
+        "fastify.js",
+        "package.json"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Server.md",
+        "fastify.d.ts",
+        "fastify.js",
+        "package.json",
+        "test/types/fastify.test-d.ts"
+      ]
+    },
+    {
+      "pr_number": 6537,
+      "repo": "fastify/fastify",
+      "title": "docs: clarify content-type parser/schema mismatch is outside threat model",
+      "body": "## Summary\n- Add a new non-vulnerability example to `SECURITY.md` explaining that content-type parser/schema mismatches (regex parser accepts a content type with no matching `schema.body.content` key) are an application configuration concern, not a framework vulnerability\n- Add a warning to `docs/Reference/Validation-and-Serialization.md` explaining that the `content` map uses exact MIME type matching and how this interacts with regex-based parsers\n- Add a note to `docs/Reference/ContentTypeParser.md` warning that regex parsers can accept content types that bypass per-content-type validation if the schema `content` map lacks a matching entry\n\n## Context\nThis addresses reports like the one described in the bug report where a regex-based content-type parser (e.g., `/^application\\/.*json$/`) matches requests with content types like `application/v1+json`, but the validation schema only has a key for `application/json`. The parser runs correctly but validation is skipped because the schema lookup is an exact string match. This is by design — schemas and configuration are trusted inputs in Fastify's threat model.\n\n## Test plan\n- [x] `npm run lint:markdown` passes (no new lint errors)\n- [x] Documentation-only change, no code changes\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+      "base_sha": "a0649e92e93c1ad8b164020f61be5d5fa287d506",
+      "merged_at": "2026-03-11T10:57:14Z",
+      "changed_files": [
+        ".github/workflows/links-check.yml",
+        "SECURITY.md",
+        "docs/Reference/ContentTypeParser.md",
+        "docs/Reference/Validation-and-Serialization.md"
+      ],
+      "changed_files_all": [
+        ".github/workflows/links-check.yml",
+        "SECURITY.md",
+        "docs/Reference/ContentTypeParser.md",
+        "docs/Reference/Validation-and-Serialization.md"
+      ]
+    },
+    {
+      "pr_number": 6227,
+      "repo": "fastify/fastify",
+      "title": "docs: setErrorHandler description",
+      "body": "Better reflect that setErrorHandler handles thrown exceptions during a request lifecycle, instead of the very vague \"whenever an error happens\".\r\n\r\nSee open discussion [here](https://github.com/fastify/fastify/discussions/6226).",
+      "base_sha": "f863b9a655261d9893921b6c6d06368889581124",
+      "merged_at": "2025-06-23T07:34:28Z",
+      "changed_files": [
+        "docs/Reference/Server.md",
+        "types/instance.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Server.md",
+        "types/instance.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6810,
+      "repo": "fastify/fastify",
+      "title": "fix: clear socket._meta on reply.hijack() when onTimeout is registered",
+      "body": "## Summary\r\nDuring review of #6799 (`socket._meta` cleanup), I found that `reply.hijack()` bypasses the normal response lifecycle and therefore skips `onResFinished`.\r\n\r\nWhen an `onTimeout` hook is registered, Fastify stores request metadata in `socket._meta`. Under the normal response lifecycle this metadata is cleared when the response finishes, but a hijacked reply never reaches that cleanup path. As a result, `socket._meta` can continue to retain references to the request and reply objects for the lifetime of the socket after a hijacked response.\r\n\r\nFix: clear `socket._meta` inside `reply.hijack()` when the current request owns the metadata.\r\n\r\n## Files changed\r\n\r\n| File | Change |\r\n| --- | --- |\r\n| `lib/reply.js` | Clear `socket._meta` in `reply.hijack()` when the current request owns it |\r\n| `lib/route.js` | Clear the socket timeout in `onResFinished` to prevent stale timeout events |\r\n| `test/hooks.test.js` | Add regression test covering `reply.hijack()` cleanup |\r\n\r\n## Test plan\r\n- [x] Added regression test in `test/hooks.test.js`:\r\n  - `socket._meta is cleared on reply.hijack() when onTimeout is registered`\r\n- [x] Existing `test/handler-timeout.test.js` — 20/20 pass\r\n- [x] Existing `test/hooks.test.js` — 96/96 pass\r\n- [x] Existing `test/keep-alive-timeout.test.js` — pass\r\n- [x] Full `npm test` — 2240 pass, 0 fail\r\n\r\n## Checklist\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added (no public API change)\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11) and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)",
+      "base_sha": "0c28b57cef28d15b6873df77c0f76a80a0ad2269",
+      "merged_at": "2026-07-01T09:06:20Z",
+      "changed_files": [
+        "lib/reply.js",
+        "lib/route.js"
+      ],
+      "changed_files_all": [
+        "lib/reply.js",
+        "lib/route.js",
+        "test/hooks.test.js"
+      ]
+    },
+    {
+      "pr_number": 6494,
+      "repo": "fastify/fastify",
+      "title": "chore: rename @sinclair/typebox to typebox",
+      "body": "Proposals:\r\n\r\n- Updated all imports from `@sinclair/typebox` to `typebox`\r\n- Replaced `@sinclair/typebox` with `typebox` in `package.json` (dependency reference and version bump to `^1.0.81`)\r\n- Updated references in `docs/Reference/Type-Providers.md`\r\n- Updated references in `docs/Reference/TypeScript.md`\r\n- Updated test files (`test/types/type-provider.test-d.ts`)\r\n\r\n\r\n`@sinclair/typebox` is the legacy package for TypeBox versions pre-1.0 (`0.34.x`). TypeBox versions 1.0 and above are published under the `typebox` package name ( see screenshot ). This PR migrates to the current package to use TypeBox 1.x. \r\n\r\n<img width=\"805\" height=\"113\" alt=\"screenshot\" src=\"https://github.com/user-attachments/assets/d8ec1023-fee7-4a99-a7c3-9401dac8b3bd\" />\r\n\r\nNote: \r\n\r\nThis update has already been made in this repository as well: https://github.com/fastify/fastify-type-provider-typebox",
+      "base_sha": "ae8ab65a5001facac11943a7fee5bfe27a617a53",
+      "merged_at": "2026-02-15T10:03:36Z",
+      "changed_files": [
+        "docs/Reference/Type-Providers.md",
+        "docs/Reference/TypeScript.md",
+        "package.json"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Type-Providers.md",
+        "docs/Reference/TypeScript.md",
+        "package.json",
+        "test/types/type-provider.test-d.ts"
+      ]
+    },
+    {
+      "pr_number": 6400,
+      "repo": "fastify/fastify",
+      "title": "chore: skip unnecessary object creation",
+      "body": "<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "012c24919679444313cf20d6be084cb9d22165e6",
+      "merged_at": "2025-11-30T09:41:37Z",
+      "changed_files": [
+        "fastify.js",
+        "lib/route.js"
+      ],
+      "changed_files_all": [
+        "fastify.js",
+        "lib/route.js"
+      ]
+    },
+    {
+      "pr_number": 6340,
+      "repo": "fastify/fastify",
+      "title": "chore: Bump actions/github-script from 7 to 8",
+      "body": "Bumps [actions/github-script](https://github.com/actions/github-script) from 7 to 8.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/github-script/releases\">actions/github-script's releases</a>.</em></p>\n<blockquote>\n<h2>v8.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update Node.js version support to 24.x by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/637\">actions/github-script#637</a></li>\n<li>README for updating actions/github-script from v7 to v8 by <a href=\"https://github.com/sneha-krip\"><code>@​sneha-krip</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/653\">actions/github-script#653</a></li>\n</ul>\n<h2>⚠️ Minimum Compatible Runner Version</h2>\n<p><strong>v2.327.1</strong><br />\n<a href=\"https://github.com/actions/runner/releases/tag/v2.327.1\">Release Notes</a></p>\n<p>Make sure your runner is updated to this version or newer to use this release.</p>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/637\">actions/github-script#637</a></li>\n<li><a href=\"https://github.com/sneha-krip\"><code>@​sneha-krip</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/653\">actions/github-script#653</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v7.1.0...v8.0.0\">https://github.com/actions/github-script/compare/v7.1.0...v8.0.0</a></p>\n<h2>v7.1.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Upgrade husky to v9 by <a href=\"https://github.com/benelan\"><code>@​benelan</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/482\">actions/github-script#482</a></li>\n<li>Add workflow file for publishing releases to immutable action package by <a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/485\">actions/github-script#485</a></li>\n<li>Upgrade IA Publish by <a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/486\">actions/github-script#486</a></li>\n<li>Fix workflow status badges by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/497\">actions/github-script#497</a></li>\n<li>Update usage of <code>actions/upload-artifact</code> by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/512\">actions/github-script#512</a></li>\n<li>Clear up package name confusion by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/514\">actions/github-script#514</a></li>\n<li>Update dependencies with <code>npm audit fix</code> by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/515\">actions/github-script#515</a></li>\n<li>Specify that the used script is JavaScript by <a href=\"https://github.com/timotk\"><code>@​timotk</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/478\">actions/github-script#478</a></li>\n<li>chore: Add Dependabot for NPM and Actions by <a href=\"https://github.com/nschonni\"><code>@​nschonni</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/472\">actions/github-script#472</a></li>\n<li>Define <code>permissions</code> in workflows and update actions by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/531\">actions/github-script#531</a></li>\n<li>chore: Add Dependabot for .github/actions/install-dependencies by <a href=\"https://github.com/nschonni\"><code>@​nschonni</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/532\">actions/github-script#532</a></li>\n<li>chore: Remove .vscode settings by <a href=\"https://github.com/nschonni\"><code>@​nschonni</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/533\">actions/github-script#533</a></li>\n<li>ci: Use github/setup-licensed by <a href=\"https://github.com/nschonni\"><code>@​nschonni</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/473\">actions/github-script#473</a></li>\n<li>make octokit instance available as octokit on top of github, to make it easier to seamlessly copy examples from GitHub rest api or octokit documentations by <a href=\"https://github.com/iamstarkov\"><code>@​iamstarkov</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/508\">actions/github-script#508</a></li>\n<li>Remove <code>octokit</code> README updates for v7 by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/557\">actions/github-script#557</a></li>\n<li>docs: add &quot;exec&quot; usage examples by <a href=\"https://github.com/neilime\"><code>@​neilime</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/546\">actions/github-script#546</a></li>\n<li>Bump ruby/setup-ruby from 1.213.0 to 1.222.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/github-script/pull/563\">actions/github-script#563</a></li>\n<li>Bump ruby/setup-ruby from 1.222.0 to 1.229.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/github-script/pull/575\">actions/github-script#575</a></li>\n<li>Clearly document passing inputs to the <code>script</code> by <a href=\"https://github.com/joshmgross\"><code>@​joshmgross</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/603\">actions/github-script#603</a></li>\n<li>Update README.md by <a href=\"https://github.com/nebuk89\"><code>@​nebuk89</code></a> in <a href=\"https://redirect.github.com/actions/github-script/pull/610\">actions/github-script#610</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/benelan\"><code>@​benelan</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/482\">actions/github-script#482</a></li>\n<li><a href=\"https://github.com/Jcambass\"><code>@​Jcambass</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/485\">actions/github-script#485</a></li>\n<li><a href=\"https://github.com/timotk\"><code>@​timotk</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/478\">actions/github-script#478</a></li>\n<li><a href=\"https://github.com/iamstarkov\"><code>@​iamstarkov</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/508\">actions/github-script#508</a></li>\n<li><a href=\"https://github.com/neilime\"><code>@​neilime</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/546\">actions/github-script#546</a></li>\n<li><a href=\"https://github.com/nebuk89\"><code>@​nebuk89</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/github-script/pull/610\">actions/github-script#610</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/github-script/compare/v7...v7.1.0\">https://github.com/actions/github-script/compare/v7...v7.1.0</a></p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/github-script/commit/ed597411d8f924073f98dfc5c65a23a2325f34cd\"><code>ed59741</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/github-script/issues/653\">#653</a> from actions/sneha-krip/readme-for-v8</li>\n<li><a href=\"https://github.com/actions/github-script/commit/2dc352e4baefd91bec0d06f6ae2f1045d1687ca3\"><code>2dc352e</code></a> Bold minimum Actions Runner version in README</li>\n<li><a href=\"https://github.com/actions/github-script/commit/01e118c8d0d22115597e46514b5794e7bc3d56f1\"><code>01e118c</code></a> Update README for Node 24 runtime requirements</li>\n<li><a href=\"https://github.com/actions/github-script/commit/8b222ac82eda86dcad7795c9d49b839f7bf5b18b\"><code>8b222ac</code></a> Apply suggestion from <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a></li>\n<li><a href=\"https://github.com/actions/github-script/commit/adc0eeac992408a7b276994ca87edde1c8ce4d25\"><code>adc0eea</code></a> README for updating actions/github-script from v7 to v8</li>\n<li><a href=\"https://github.com/actions/github-script/commit/20fe497b3fe0c7be8aae5c9df711ac716dc9c425\"><code>20fe497</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/github-script/issues/637\">#637</a> from actions/node24</li>\n<li><a href=\"https://github.com/actions/github-script/commit/e7b7f222b11a03e8b695c4c7afba89a02ea20164\"><code>e7b7f22</code></a> update licenses</li>\n<li><a href=\"https://github.com/actions/github-script/commit/2c81ba05f308415d095291e6eeffe983d822345b\"><code>2c81ba0</code></a> Update Node.js version support to 24.x</li>\n<li>See full diff in <a href=\"https://github.com/actions/github-script/compare/v7...v8\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/github-script&package-manager=github_actions&previous-version=7&new-version=8)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "base_sha": "d6d408a3d9c7292f7dfef090bcde422a9c374e8c",
+      "merged_at": "2025-10-01T15:22:59Z",
+      "changed_files": [
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/lint-ecosystem-order.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/lint-ecosystem-order.yml"
+      ]
+    },
+    {
+      "pr_number": 6458,
+      "repo": "fastify/fastify",
+      "title": "fix: enable diagnostics tracking for async error handlers",
+      "body": "When an async error handler returns a promise, `wrapThenable` was called\r\nwithout the `store` parameter, causing diagnostics channels to miss async\r\noperations in error handlers.\r\n\r\nThis fix creates a diagnostics store when channels have subscribers and\r\npasses it to `wrapThenable`, ensuring consistent diagnostics tracking\r\nacross both regular handlers and error handlers.",
+      "base_sha": "291b1f89b4250f22d9edbe62a1cf1bfbd5f3f3d1",
+      "merged_at": "2026-05-07T08:46:30Z",
+      "changed_files": [
+        "lib/error-handler.js",
+        "lib/handle-request.js",
+        "lib/symbols.js"
+      ],
+      "changed_files_all": [
+        "lib/error-handler.js",
+        "lib/handle-request.js",
+        "lib/symbols.js",
+        "test/diagnostics-channel/async-error-handler.test.js"
+      ]
+    },
+    {
+      "pr_number": 6221,
+      "repo": "fastify/fastify",
+      "title": "chore: add max-len ESLint rule with 120 character limit",
+      "body": "- Add max-len rule with 120 character limit as requested in #6029\r\n- Exclude TypeScript definition files from max-len rule  \r\n- Add ignore options for URLs, strings, templates, regex, and comments\r\n- Resolves remaining part of #6029 (line length limit)\r\n\r\n**Note:** This PR intentionally introduces 80 ESLint violations to demonstrate the current state of line length in the codebase. This is the expected behavior requested in issue #6029 to assess the impact of adding the max-len rule.\r\n\r\nThe failing tests show exactly what @Eomm wanted to evaluate: \"check if adding max-len with 120 hurts the codebase or not.\"\r\n\r\nFixes #6029\r\n\r\n<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [ ] run `npm run test` and `npm run benchmark`\r\n- [ ] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [ ] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "1564559c355b4aa1f00f7371f71f896ebe94f862",
+      "merged_at": "2025-10-30T15:59:46Z",
+      "changed_files": [
+        "eslint.config.js",
+        "fastify.js",
+        "lib/four-oh-four.js",
+        "lib/head-route.js",
+        "lib/reply.js",
+        "lib/route.js",
+        "lib/server.js"
+      ],
+      "changed_files_all": [
+        "eslint.config.js",
+        "fastify.js",
+        "lib/four-oh-four.js",
+        "lib/head-route.js",
+        "lib/reply.js",
+        "lib/route.js",
+        "lib/server.js",
+        "test/internals/reply.test.js",
+        "test/schema-validation.test.js",
+        "test/types/fastify.test-d.ts",
+        "test/types/hooks.test-d.ts",
+        "test/types/instance.test-d.ts",
+        "test/types/logger.test-d.ts",
+        "test/types/plugin.test-d.ts",
+        "test/types/register.test-d.ts",
+        "test/types/reply.test-d.ts",
+        "test/types/request.test-d.ts",
+        "test/types/route.test-d.ts"
+      ]
+    },
+    {
+      "pr_number": 6235,
+      "repo": "fastify/fastify",
+      "title": "fix: handle abort signal in fastify.listen",
+      "body": "Fixes #6230 \r\n\r\n#### Checklist\r\n\r\n- [ ] run `npm run test` and `npm run benchmark`\r\n- [ ] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [ ] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "e0315b9db2ac5e9eb447f95812785311b2df4eb9",
+      "merged_at": "2025-06-25T19:54:54Z",
+      "changed_files": [
+        "fastify.js",
+        "lib/server.js"
+      ],
+      "changed_files_all": [
+        "fastify.js",
+        "lib/server.js",
+        "test/server.test.js"
+      ]
+    },
+    {
+      "pr_number": 6728,
+      "repo": "fastify/fastify",
+      "title": "ci: add node 26 to test matrices",
+      "body": "<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "66128b035165f49c6eb62c3de231a5a393cf775a",
+      "merged_at": "2026-06-05T11:38:44Z",
+      "changed_files": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/citgm.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml",
+        "scripts/validate-ecosystem-links.js"
+      ],
+      "changed_files_all": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/citgm.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml",
+        "scripts/validate-ecosystem-links.js",
+        "test/hooks.test.js",
+        "test/http-methods/get.test.js",
+        "test/http2/secure-with-fallback.test.js",
+        "test/https/https.test.js",
+        "test/scripts/validate-ecosystem-links.test.js"
+      ]
+    },
+    {
+      "pr_number": 6308,
+      "repo": "fastify/fastify",
+      "title": "fix: handle non FastifyErrors in custom handler properly, set type of error-parameter for setErrorHandler and errorHandler to unknown, but configurable via generic TError",
+      "body": "### Change in TypeScript typings for `setErrorHandler` and `errorHandler`\r\n\r\nThe TypeScript typings of `setErrorHandler` and `errorHandler` have changed.\r\nThe `error` parameter is now typed as `unknown`.\r\n\r\nPreviously, it was assumed that `errorHandler` would always receive a `FastifyError`. However, this assumption is unsafe because JavaScript allows throwing any value, not just `Error` objects. For example:\r\n\r\n```js\r\nthrow null\r\n```\r\n\r\nThis value could be passed into the `errorHandler`. If your code then tries to access properties like `error.code` while assuming a `FastifyError`, it may result in runtime errors.\r\n\r\nTo make this explicit, the `error` parameter is now typed as `unknown`.\r\n\r\n---\r\n\r\n### Example\r\n\r\n```ts\r\nimport Fastify from 'fastify'\r\n// FastifyError is only exported as a type from fastify\r\n// Import it from @fastify/error for runtime checks with instanceof\r\n// Make sure version 4.2.0 or higher is used across your dependency tree\r\nimport { FastifyError } from '@fastify/error'\r\n\r\nconst server = Fastify()\r\n\r\n// TypeScript will now report an error because `error` is `unknown`\r\nserver.setErrorHandler(function (error, request, reply) {\r\n  if (error.code === 'FST_ERR_TEST') { // ❌ TS18046: 'error' is of type 'unknown'\r\n    // do stuff\r\n  }\r\n})\r\n```\r\n\r\n---\r\n\r\n### Workarounds\r\n\r\nYou *can* force the old behavior by typing `error` yourself, but this bypasses the safety of the new typings:\r\n\r\n1. **Using a generic (Not Recommended)**\r\n\r\n   ```ts\r\n   server.setErrorHandler<FastifyError>(function (error, request, reply) {\r\n     if (error.code === 'FST_ERR_TEST') {\r\n       // do stuff\r\n     }\r\n   })\r\n   ```\r\n\r\n2. **Typing the parameter directly (Not Recommended)**  \r\n\r\n   ```ts\r\n   server.setErrorHandler(function (error: FastifyError, request, reply) {\r\n     if (error.code === 'FST_ERR_TEST') {\r\n       // do stuff\r\n     }\r\n   })\r\n   ```\r\n\r\n3. **Type guard with property checks**\r\n\r\n   ```ts\r\n   function isFastifyError(error: unknown): error is FastifyError {\r\n     return (\r\n       error !== null &&\r\n       typeof error === 'object' &&\r\n       typeof (error as Record<string, any>).code === 'string' &&\r\n       typeof (error as Record<string, any>).statusCode === 'number' &&\r\n       typeof (error as Record<string, any>).message === 'string'\r\n     )\r\n   }\r\n\r\n   server.setErrorHandler(function (error, request, reply) {\r\n     if (isFastifyError(error)) {\r\n       if (error.code === 'FST_ERR_TEST') {\r\n         // do stuff\r\n       }\r\n     } else {\r\n       // Handle non-FastifyError values safely\r\n       reply.code(500).send({\r\n         message: 'Internal Server Error',\r\n         error: 'Internal Server Error',\r\n         statusCode: 500\r\n       })\r\n     }\r\n   })\r\n   ```\r\n\r\n⚠️ Do not rely on checking whether the `code` property starts with `'FST_'` to determine if a value is a FastifyError.\r\n\r\n---\r\n\r\n### Recommended Approach\r\n\r\nUse an `instanceof` check to ensure `error` is a `FastifyError`.\r\nThis approach is safer and avoids assumptions:\r\n\r\n```ts\r\nserver.setErrorHandler(function (error, request, reply) {\r\n  if (error instanceof FastifyError) {\r\n    if (error.code === 'FST_ERR_TEST') {\r\n      // do stuff\r\n    }\r\n  } else {\r\n    // Handle other error shapes safely\r\n    reply.code(500).send({\r\n      message: 'Internal Server Error',\r\n      error: 'Internal Server Error',\r\n      statusCode: 500\r\n    })\r\n  }\r\n})\r\n```\r\n\r\n⚠️ Ensure that your project (and all dependencies) use `@fastify/error` version **≥ 4.2.0** to guarantee `instanceof` works reliably.\r\n",
+      "base_sha": "6a428d94f6bf42792d4b91dd7643f74f5e2960eb",
+      "merged_at": "2025-09-25T22:12:11Z",
+      "changed_files": [
+        "lib/error-handler.js",
+        "types/instance.d.ts"
+      ],
+      "changed_files_all": [
+        "lib/error-handler.js",
+        "test/500s.test.js",
+        "test/types/instance.test-d.ts",
+        "types/instance.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6723,
+      "repo": "fastify/fastify",
+      "title": "fix: include hint and docs URL in FSTWRN004 warning message",
+      "body": "## Summary\r\n\r\nThe `FSTWRN004` warning was created in `lib/warnings.js` with a static\r\nmessage that contained no `%s` format placeholder. As a result, the\r\nhint string passed at the call site in `fastify.js` was silently dropped\r\nby `process-warning`, and users who triggered the warning never saw the\r\nactionable information about `allowErrorHandlerOverride`.\r\n\r\n## Root Cause\r\n\r\n`process-warning`'s `createWarning` only interpolates arguments when the\r\nmessage contains `%s` placeholders. With no placeholder present, any\r\nargument passed to the emitter function is a no-op.\r\n\r\n## Changes\r\n\r\n- **`lib/warnings.js`**: Embed the hint and docs URL directly into the\r\n  static message of `FSTWRN004`.\r\n- **`fastify.js`**: Remove the now-unused string argument from the\r\n  `FSTWRN004()` call.\r\n- **`test/set-error-handler.test.js`**: Add a test that asserts the\r\n  warning is emitted with `name`, `code`, and the docs URL in the\r\n  message when `setErrorHandler` is called more than once in the same\r\n  scope.\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "3e04cff927534744290f26cf15220f6824e9dc66",
+      "merged_at": "2026-05-30T11:45:56Z",
+      "changed_files": [
+        "docs/Reference/Warnings.md",
+        "fastify.js",
+        "lib/warnings.js"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Warnings.md",
+        "fastify.js",
+        "lib/warnings.js"
+      ]
+    },
+    {
+      "pr_number": 6746,
+      "repo": "fastify/fastify",
+      "title": "fix: chunk large HTTP/2 buffer replies",
+      "body": "Chunk large non-stream HTTP/2 payload writes to avoid poisoning the session after cancellation.\n\nUser-provided streams remain unmodified; docs note apps should chunk large stream emissions.\n\nTests:\n- node --test test/http2/plain.test.js\n- node --test test/http2/*.test.js\n- npm run lint\n- npx markdownlint-cli2 docs/Reference/Reply.md --no-globs\n",
+      "base_sha": "66128b035165f49c6eb62c3de231a5a393cf775a",
+      "merged_at": "2026-06-07T13:19:47Z",
+      "changed_files": [
+        "docs/Reference/Reply.md",
+        "lib/reply.js"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Reply.md",
+        "lib/reply.js",
+        "test/http2/plain.test.js"
+      ]
+    },
+    {
+      "pr_number": 6831,
+      "repo": "fastify/fastify",
+      "title": "perf: reduce per-request overhead in the request lifecycle",
+      "body": "## Summary\n\nCuts per-request work in the hot path, improving the \"simple\" benchmark (`npm run benchmark`) by roughly **+4% mean throughput** (47.5k vs 45.8k req/s on my machine, winning 10 of 11 paired alternating A/B rounds against `main`). This brings Fastify to within ~5% of a bare `node:http` server doing the same work.\n\nChanges, guided by CPU profiles of the benchmark:\n\n- **`lib/reply.js`** — when there are no trailers, `writePayload` calls `res.end(payload)` instead of `res.write(payload)` + `res.end(null)`. Node corks the socket inside `end(chunk)`, so headers, payload and the finishing chunk flush through the stream machinery once.\n- **`lib/validation.js`** — `validate()` bails out immediately when the route has no params/body/querystring/headers schemas, skipping four `validateParam` calls per request.\n- **`lib/route.js`** — with logging disabled and the default child logger factory, the null logger's `child()` returns itself, so `routeHandler` skips `createChildLogger` entirely (two object allocations and two calls per request).\n- **`lib/req-id-gen-factory.js`** — `getGenReqId` reads `contextServer[kGenReqId]` directly instead of going through the `genReqId` getter, which performed the same symbol read behind an extra call.\n- **`lib/logger-factory.js`** — `now()` uses `performance.now()` instead of `process.hrtime()`, which allocates a tuple on every call. Same monotonic origin; the value is only ever used for diffs.\n\nNo observable behavior changes: responses are byte-identical to `main` (verified via curl diff), and the trailers/HTTP2-chunking paths are untouched.\n\n## Checklist\n\n- [x] run `npm run test` and `npm run benchmark`\n- [x] tests and/or benchmarks are included\n- [x] documentation is changed or added\n- [x] commit message follows [commit guidelines](https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md#commit-message-guidelines)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nhttps://claude.ai/code/session_01Y1SqgPEDo1gytPt3KB7czh",
+      "base_sha": "6f63ce9324b7368ac8beff1f385b31addce35c2d",
+      "merged_at": "2026-07-05T08:44:59Z",
+      "changed_files": [
+        "lib/logger-factory.js",
+        "lib/reply.js",
+        "lib/req-id-gen-factory.js",
+        "lib/route.js",
+        "lib/validation.js"
+      ],
+      "changed_files_all": [
+        "lib/logger-factory.js",
+        "lib/reply.js",
+        "lib/req-id-gen-factory.js",
+        "lib/route.js",
+        "lib/validation.js",
+        "test/genReqId.test.js"
+      ]
+    },
+    {
+      "pr_number": 6267,
+      "repo": "fastify/fastify",
+      "title": "chore: refactor reply.send and prioritize kReplyIsError",
+      "body": "- Refactors `reply.send` to prioritize `this[kReplyIsError]`, which is a simple boolean check, over `instanceof Error`\r\n\r\nhttps://github.com/fastify/fastify/blob/afd7f509daec4d43ef9dac9d3ea1c8a0cf1ea092/lib/reply.js#L138\r\n\r\nThis should run faster when we throw one of our errors, and if it's not the case, the boolean check should be pretty much instant so it's another small win\r\n\r\n- Also simplifies the branching of the method\r\n\r\nNew benchmark, `benchmark:parser:error`:\r\n\r\nPR:\r\n```sh\r\n[1] Running 30s test @ http://localhost:3000/\r\n[1] 100 connections with 10 pipelining factor\r\n[1] \r\n[1] \r\n[1] ┌─────────┬────────┬──────────┬──────────┬──────────┬─────────────┬────────────┬──────────┐\r\n[1] │ Stat    │ 2.5%   │ 50%      │ 97.5%    │ 99%      │ Avg         │ Stdev      │ Max      │\r\n[1] ├─────────┼────────┼──────────┼──────────┼──────────┼─────────────┼────────────┼──────────┤\r\n[1] │ Latency │ 584 ms │ 10221 ms │ 26984 ms │ 27559 ms │ 11858.67 ms │ 8067.32 ms │ 28066 ms │\r\n[1] └─────────┴────────┴──────────┴──────────┴──────────┴─────────────┴────────────┴──────────┘\r\n[1] ┌───────────┬────────┬────────┬─────────┬─────────┬───────────┬──────────┬────────┐\r\n[1] │ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg       │ Stdev    │ Min    │\r\n[1] ├───────────┼────────┼────────┼─────────┼─────────┼───────────┼──────────┼────────┤\r\n[1] │ Req/Sec   │ 6,871  │ 6,871  │ 8,415   │ 14,255  │ 10,026.94 │ 2,702.45 │ 6,868  │\r\n[1] ├───────────┼────────┼────────┼─────────┼─────────┼───────────┼──────────┼────────┤\r\n[1] │ Bytes/Sec │ 996 kB │ 996 kB │ 1.22 MB │ 2.07 MB │ 1.45 MB   │ 392 kB   │ 996 kB │\r\n[1] └───────────┴────────┴────────┴─────────┴─────────┴───────────┴──────────┴────────┘\r\n[1] \r\n[1] Req/Bytes counts sampled once per second.\r\n[1] # of samples: 30\r\n[1] \r\n[1] 0 2xx responses, 300798 non 2xx responses\r\n[1] 3309k requests in 30.06s, 43.6 MB read\r\n```\r\nmain:\r\n\r\n```sh\r\n[1] Running 30s test @ http://localhost:3000/\r\n[1] 100 connections with 10 pipelining factor\r\n[1] \r\n[1] \r\n[1] ┌─────────┬────────┬──────────┬──────────┬──────────┬─────────────┬────────────┬──────────┐\r\n[1] │ Stat    │ 2.5%   │ 50%      │ 97.5%    │ 99%      │ Avg         │ Stdev      │ Max      │\r\n[1] ├─────────┼────────┼──────────┼──────────┼──────────┼─────────────┼────────────┼──────────┤\r\n[1] │ Latency │ 562 ms │ 10204 ms │ 26899 ms │ 27451 ms │ 11830.13 ms │ 7992.12 ms │ 27964 ms │\r\n[1] └─────────┴────────┴──────────┴──────────┴──────────┴─────────────┴────────────┴──────────┘\r\n[1] ┌───────────┬────────┬────────┬─────────┬────────┬──────────┬──────────┬────────┐\r\n[1] │ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%  │ Avg      │ Stdev    │ Min    │\r\n[1] ├───────────┼────────┼────────┼─────────┼────────┼──────────┼──────────┼────────┤\r\n[1] │ Req/Sec   │ 6,539  │ 6,539  │ 7,911   │ 13,807 │ 9,786.87 │ 2,691.72 │ 6,538  │\r\n[1] ├───────────┼────────┼────────┼─────────┼────────┼──────────┼──────────┼────────┤\r\n[1] │ Bytes/Sec │ 948 kB │ 948 kB │ 1.15 MB │ 2 MB   │ 1.42 MB  │ 390 kB   │ 948 kB │\r\n[1] └───────────┴────────┴────────┴─────────┴────────┴──────────┴──────────┴────────┘\r\n[1] \r\n[1] Req/Bytes counts sampled once per second.\r\n[1] # of samples: 30\r\n[1] \r\n[1] 0 2xx responses, 293605 non 2xx responses\r\n[1] 3230k requests in 30.05s, 42.6 MB read\r\n```",
+      "base_sha": "ad97fbb5630488b2c830ff7bc27f495b21b87243",
+      "merged_at": "2025-08-05T18:50:53Z",
+      "changed_files": [
+        "lib/error-handler.js",
+        "lib/reply.js",
+        "package.json"
+      ],
+      "changed_files_all": [
+        "lib/error-handler.js",
+        "lib/reply.js",
+        "package.json"
+      ]
+    },
+    {
+      "pr_number": 6137,
+      "repo": "fastify/fastify",
+      "title": "fix: close http2 sessions on close server",
+      "body": "<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\nRefs: https://github.com/fastify/fastify/issues/5716\r\n\r\n1) collecting http2 sessions into a Map\r\n2) close sessionts on fastify.close()\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test` and `npm run benchmark`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "c277b9f0ec27356de6551d7777117bd739057e99",
+      "merged_at": "2025-09-22T12:19:06Z",
+      "changed_files": [
+        "docs/Reference/Server.md",
+        "fastify.js",
+        "lib/server.js",
+        "lib/symbols.js"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Server.md",
+        "fastify.js",
+        "lib/server.js",
+        "lib/symbols.js",
+        "test/http2/closing.test.js"
+      ]
+    },
+    {
+      "pr_number": 6073,
+      "repo": "fastify/fastify",
+      "title": "refactor: node:http2 is always available",
+      "body": "Since we only support versions of node where `node:http2` is always available we can refactor and remove some dead code.\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test` and `npm run benchmark`\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "16a4f8206b2d9f90875308f8acaabb21b6666f4e",
+      "merged_at": "2025-04-30T13:48:34Z",
+      "changed_files": [
+        "docs/Reference/Errors.md",
+        "lib/errors.js",
+        "lib/server.js",
+        "types/errors.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Errors.md",
+        "lib/errors.js",
+        "lib/server.js",
+        "test/http2/missing-http2-module.test.js",
+        "test/internals/errors.test.js",
+        "test/types/errors.test-d.ts",
+        "types/errors.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6523,
+      "repo": "fastify/fastify",
+      "title": "fix: validate invalid route logLevel at registration",
+      "body": "## Description\n- validate route/plugin `logLevel` values during route registration\n- throw `FST_ERR_ROUTE_LOG_LEVEL_INVALID` instead of failing at request time\n- document the new error code and custom log-level behavior\n- add regression coverage for invalid route `logLevel`\n\n## Testing\n- `node --test test/logger/options.test.js`\n- `node --test test/internals/errors.test.js`\n- `npm run lint:eslint -- lib/route.js lib/errors.js test/logger/options.test.js test/internals/errors.test.js types/errors.d.ts`\n- `npm run lint:markdown -- docs/Reference/Routes.md docs/Reference/Errors.md`\n\nFixes #6124\n",
+      "base_sha": "a22217f9420f70017a419d8e18b2a3141ab27989",
+      "merged_at": "2026-04-21T09:38:52Z",
+      "changed_files": [
+        "docs/Reference/Errors.md",
+        "docs/Reference/Routes.md",
+        "lib/errors.js",
+        "lib/route.js",
+        "types/errors.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Errors.md",
+        "docs/Reference/Routes.md",
+        "lib/errors.js",
+        "lib/route.js",
+        "test/internals/errors.test.js",
+        "test/logger/options.test.js",
+        "types/errors.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6623,
+      "repo": "fastify/fastify",
+      "title": "ci: reduce cron scheduled workflows from daily/weekly to monthly",
+      "body": "This PR reduces the frequency of the two cron based workflows in this repo from daily/weekly to monthly, reducing the number of notifications we get every day and concentrating them to the first of every month.\r\n\r\nDependabot starts churning away making noise on the first of every month so they can join that!\r\n\r\n\r\n<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "8dee9be05ebf683cd212aeff1d294f6ea1ec405c",
+      "merged_at": "2026-03-29T11:06:21Z",
+      "changed_files": [
+        ".github/workflows/lock-threads.yml",
+        ".github/workflows/validate-ecosystem-links.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/lock-threads.yml",
+        ".github/workflows/validate-ecosystem-links.yml"
+      ]
+    },
+    {
+      "pr_number": 6108,
+      "repo": "fastify/fastify",
+      "title": "ci: ignore scripts",
+      "body": "Add the `--ignore-scripts` arg to disable the execution of any scripts by third-party packages.\r\n\r\nSee https://snyk.io/blog/npm-security-preventing-supply-chain-attacks/\r\n\r\n<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "5381a92a57c4bb78aba30407754c7d77405117d8",
+      "merged_at": "2025-05-07T11:53:31Z",
+      "changed_files": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml",
+        ".npmrc"
+      ],
+      "changed_files_all": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml",
+        ".npmrc"
+      ]
+    },
+    {
+      "pr_number": 6282,
+      "repo": "fastify/fastify",
+      "title": "feat(types): router option types",
+      "body": "#### Checklist\r\n\r\ntypes for https://github.com/fastify/fastify/pull/5985\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "812ef58f8ab1e765a148177d5491d6384670b19e",
+      "merged_at": "2025-08-15T06:13:18Z",
+      "changed_files": [
+        "fastify.d.ts",
+        "types/instance.d.ts"
+      ],
+      "changed_files_all": [
+        "fastify.d.ts",
+        "test/types/instance.test-d.ts",
+        "types/instance.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6692,
+      "repo": "fastify/fastify",
+      "title": "perf: defer ContentType parsing in getSchemaSerializer until needed",
+      "body": "In `getSchemaSerializer` (introduced by #6685), a `new ContentType` instance\r\nwas unconditionally created before checking whether the schema for that status\r\ncode is a plain-object (content-type-keyed) or a compiled function.\r\n\r\nThe vast majority of routes use a plain compiled serializer\r\n(`schema: { response: { 200: { type: 'object', ... } } }`), which means\r\n`responseSchemaDef[statusCode].constructor === Object` is `false` and the\r\n`ContentType` object is created and immediately discarded on every response.\r\n\r\nThis patch moves `new ContentType(contentType)` inside the\r\n`constructor === Object` branch so it is only instantiated when the schema\r\nis genuinely content-type-keyed. The fix is applied to all three lookup\r\npaths (`statusCode`, `fallbackStatusCode`, `default`).\r\n\r\nThis is a follow-up perf improvement to #6685.\r\n\r\n**Benchmark** (7 runs, 200k iterations, bias-controlled):\r\n\r\n| Scenario | OLD avg (ms) | NEW avg (ms) | Diff |\r\n|---|---|---|---|\r\n| `plain-200` (most common) | 143.09 | 18.62 | +86.99% |\r\n| `fallback-2xx` | 158.59 | 21.06 | +86.72% |\r\n| `default` | 154.17 | 21.80 | +85.86% |\r\n| `content-type-based` | 205.53 | 220.98 | ~0 (expected) |\r\n\r\nThe content-type-based scenario shows no regression — `new ContentType`\r\nis still created exactly when needed.\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)",
+      "base_sha": "21b4c3c101038030e552ad2cfcca3f43a349f464",
+      "merged_at": "2026-04-26T07:30:29Z",
+      "changed_files": [
+        "lib/content-type-parser.js",
+        "lib/schemas.js"
+      ],
+      "changed_files_all": [
+        "lib/content-type-parser.js",
+        "lib/schemas.js"
+      ]
+    },
+    {
+      "pr_number": 6774,
+      "repo": "fastify/fastify",
+      "title": "fix: replace `AssertionError` with `FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED` in `checkDependencies`",
+      "body": "## Summary\r\n\r\n`checkDependencies` throws a generic `AssertionError` when a plugin dependency\r\nis not registered, making it impossible to identify the error via `error.code`.\r\nThis was missed during the #2842 improvement pass — `checkDecorators` was\r\nalready migrated to `FST_ERR_PLUGIN_NOT_PRESENT_IN_INSTANCE` but\r\n`checkDependencies` was left with a bare `assert()`.\r\n\r\n## Root cause\r\n\r\n```js\r\ndependencies.forEach(dependency => {\r\n  assert(                              // throws AssertionError ❌\r\n    this[kRegisteredPlugins].indexOf(dependency) > -1,\r\n    `The dependency '${dependency}' of plugin '${meta.name}' is not registered`\r\n  )\r\n})\r\n```\r\n\r\n## Fix\r\n\r\nAdd `FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED` and replace `assert()` with\r\na proper `throw`, matching the existing pattern in `checkDecorators`.\r\n\r\n## Test\r\n\r\n- `test/internals/errors.test.js`: unit test for the new error constructor,\r\n  including interpolated arguments\r\n- `test/internals/plugin.test.js`: updated the existing errored case to also\r\n  assert `error.code === 'FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED'` and\r\n  `error.name === 'FastifyError'`\r\n- `test/types/errors.test-d.ts`: type-level assertion via `expectAssignable<FastifyErrorConstructor>`\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "27f4d6222dd945238e96c1fdaa632d5dc3c37b2c",
+      "merged_at": "2026-06-09T12:27:33Z",
+      "changed_files": [
+        "docs/Reference/Errors.md",
+        "lib/errors.js",
+        "lib/plugin-utils.js",
+        "types/errors.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Errors.md",
+        "lib/errors.js",
+        "lib/plugin-utils.js",
+        "test/internals/errors.test.js",
+        "test/internals/plugin.test.js",
+        "test/types/errors.test-d.ts",
+        "types/errors.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6432,
+      "repo": "fastify/fastify",
+      "title": "fix(types): require send() payload when Reply type is specified",
+      "body": "## Summary\n\nWhen a `Reply` type is explicitly specified, the `send()` method now requires a payload argument instead of making it optional. This prevents silent bugs where developers forget to send the expected response type.\n\nCloses #5534\n\n## Changes\n\n- Added `SendArgs<ReplyType>` helper type in `types/type-provider.d.ts` to determine payload requirement\n- Updated `send()` method signature in `types/reply.d.ts` to use spread parameters with `SendArgs`\n- Updated existing type tests to reflect new signature\n- Added new test cases verifying:\n  - `send()` without arguments errors when Reply type is specified\n  - `send()` without arguments is valid when Reply is `void`, `undefined`, or unspecified\n\n## Behavior\n\n| ReplyType | `send()` payload |\n|-----------|------------------|\n| `unknown` (default) | optional |\n| `void` | optional |\n| `undefined` | optional |\n| Specific type (e.g. `{ test: boolean }`) | **required** |\n\n> **Note on `undefined` vs `void`**: When using HTTP status code mappings like `{ 204: undefined }`, the `undefined` gets converted to `unknown` via `UndefinedToUnknown` in type-provider.d.ts. This means `send()` is optional but `send({})` is also allowed. Use `void` instead of `undefined` if you want stricter \"no payload allowed\" semantics.\n\n## Example\n\n```typescript\n// Before: no error when forgetting to send payload\nserver.get<{ Reply: { test: boolean } }>('/', (req, reply) => {\n  reply.send() // oops, forgot the payload - no TypeScript error\n})\n\n// After: TypeScript error\nserver.get<{ Reply: { test: boolean } }>('/', (req, reply) => {\n  reply.send() // Error: Expected 1 argument, but got 0\n  reply.send({ test: true }) // OK\n})\n```\n\n## AI Assistance Disclosure\n\nI used Codex to review the changes, sanity-check the implementation against existing patterns, and help spot potential edge cases.",
+      "base_sha": "ee9de39fb190199bd6e905347b175952b051dff7",
+      "merged_at": "2026-01-03T10:14:22Z",
+      "changed_files": [
+        "types/reply.d.ts",
+        "types/type-provider.d.ts"
+      ],
+      "changed_files_all": [
+        "test/types/instance.test-d.ts",
+        "test/types/reply.test-d.ts",
+        "test/types/type-provider.test-d.ts",
+        "types/reply.d.ts",
+        "types/type-provider.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6414,
+      "repo": "fastify/fastify",
+      "title": "chore: Updated content-type header parsing",
+      "body": "Resolves #6332.\r\n\r\nThis is a follow-on from #6303. This introduces a more robust content-type header value parsing algorithm.\r\n\r\n***IMPORTANT:*** this results in much stricter content-type handling. Prior to this PR, we were accepting, and handling, headers like `content-type: a-simple-string`. That is not valid. There must be a type **and** a subtype present. So a \"valid\" form would be `content-type: a-simple-string/foo`.\r\n\r\nThis change _also_ enforces normalization of the content-type value. For example, if the request has `application/json; charset=utf-8` as the value, it will be normalized to `application/json; charset=\"utf-8\"`.",
+      "base_sha": "d79fa759e2ba5837681bcf0e83220cbc1b7da711",
+      "merged_at": "2026-01-26T11:08:02Z",
+      "changed_files": [
+        "lib/content-type-parser.js",
+        "lib/content-type.js",
+        "lib/handle-request.js",
+        "package.json"
+      ],
+      "changed_files_all": [
+        "lib/content-type-parser.js",
+        "lib/content-type.js",
+        "lib/handle-request.js",
+        "package.json",
+        "test/content-parser.test.js",
+        "test/content-type.test.js",
+        "test/custom-parser.0.test.js",
+        "test/custom-parser.1.test.js",
+        "test/custom-parser.3.test.js",
+        "test/schema-validation.test.js"
+      ]
+    },
+    {
+      "pr_number": 6727,
+      "repo": "fastify/fastify",
+      "title": "chore: migrate type tests to TSTyche assertions (part two)",
+      "body": "Following up on #6532\r\nSplit from #6525\r\n\r\nThis PR follows up on #6532 and migrates assertions in the following types of tests to TSTyche:\r\n\r\n```\r\nregister.test-d.ts\r\nreply.test-d.ts\r\nrequest.test-d.ts\r\nroute.test-d.ts\r\nschema.test-d.ts\r\nserverFactory.test-d.ts\r\ntype-provider.test-d.ts\r\nusing.test-d.ts\r\n```\r\n\r\nFor the first part of migration see #6726. Hopefully, a smaller PR makes it easier to review the changes.\r\n\r\n### Changes\r\n\r\nA few notes on the changes made:\r\n\r\n- In `tsd` assertions, the expected value comes first (differently from JavaScript assertions), so I had to swap expected and actual like here:\r\n  ```diff\r\n  - expectType<FastifyBaseLogger>(fastify().log)\r\n  + expect(fastify().log).type.toBe<FastifyBaseLogger>()\r\n  ```\r\n- When possible, I used a stricter `.toBe()` instead of `.toBeAssignableTo()` (assignability can be assumed)\r\n- Where possible, I replaced `@ts-expect-error` with `.not.toBeCallableWith()` and `.not.toHaveProperty()` (improves readability)\r\n- I have sorted imports manually for consistency\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [ ] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "56ed8a72296d539fc2a9fcc1bd899061758e1cd2",
+      "merged_at": "2026-06-07T14:31:29Z",
+      "changed_files": [
+        ".github/dependabot.yml",
+        "eslint.config.js",
+        "package.json"
+      ],
+      "changed_files_all": [
+        ".github/dependabot.yml",
+        "eslint.config.js",
+        "package.json",
+        "test/types/register.test-d.ts",
+        "test/types/reply.test-d.ts",
+        "test/types/request.test-d.ts",
+        "test/types/route.test-d.ts",
+        "test/types/schema.test-d.ts",
+        "test/types/serverFactory.test-d.ts",
+        "test/types/type-provider.test-d.ts",
+        "test/types/using.test-d.ts"
+      ]
+    },
+    {
+      "pr_number": 6704,
+      "repo": "fastify/fastify",
+      "title": "chore: Bump pnpm/action-setup from 5.0.0 to 6.0.4",
+      "body": "Bumps [pnpm/action-setup](https://github.com/pnpm/action-setup) from 5.0.0 to 6.0.4.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/pnpm/action-setup/releases\">pnpm/action-setup's releases</a>.</em></p>\n<blockquote>\n<h2>v6.0.4</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>fix: use npm co-located with the action node binary by <a href=\"https://github.com/benquarmby\"><code>@​benquarmby</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/239\">pnpm/action-setup#239</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/benquarmby\"><code>@​benquarmby</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/239\">pnpm/action-setup#239</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/pnpm/action-setup/compare/v6.0.3...v6.0.4\">https://github.com/pnpm/action-setup/compare/v6.0.3...v6.0.4</a></p>\n<h2>v6.0.3</h2>\n<p>Updated pnpm to v11.0.0-rc.5</p>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/pnpm/action-setup/compare/v6.0.2...v6.0.3\">https://github.com/pnpm/action-setup/compare/v6.0.2...v6.0.3</a></p>\n<h2>v6.0.2</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>fix: pnpm self-update binary shadowed by bootstrap on PATH by <a href=\"https://github.com/oniani1\"><code>@​oniani1</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/230\">pnpm/action-setup#230</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/oniani1\"><code>@​oniani1</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/230\">pnpm/action-setup#230</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/pnpm/action-setup/compare/v6.0.1...v6.0.2\">https://github.com/pnpm/action-setup/compare/v6.0.1...v6.0.2</a></p>\n<h2>v6.0.1</h2>\n<p>Update pnpm to v11.0.0-rc.2. <code>pnpm-lock.yaml</code> will not be saved with two documents unless the <code>packageManager</code> is set via <code>devEngines.packageManager</code>. Related issue: <a href=\"https://redirect.github.com/pnpm/action-setup/issues/228\">pnpm/action-setup#228</a></p>\n<h2>v6.0.0</h2>\n<p>Added support for pnpm <a href=\"https://github.com/pnpm/pnpm/releases/tag/v11.0.0-rc.0\">v11</a>.</p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a\"><code>26f6d4f</code></a> fix: use npm co-located with the action node binary (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/239\">#239</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/903f9c1a6ebcba6cf41d87230be49611ac97822e\"><code>903f9c1</code></a> fix: update pnpm to 11.0.0-rc.5</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/bdf0af2a9d539c0fd91f655344d2934bfd5a2cdd\"><code>bdf0af2</code></a> test: add strict version-match jobs to reproduce <a href=\"https://redirect.github.com/pnpm/action-setup/issues/225\">#225</a> / <a href=\"https://redirect.github.com/pnpm/action-setup/issues/227\">#227</a></li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/71c92474e7e4f5bca283fb17ef80fba9cdb2b4b1\"><code>71c9247</code></a> fix: pnpm self-update binary shadowed by bootstrap on PATH (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/230\">#230</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/078e9d416474b29c0c387560859308974f7e9c53\"><code>078e9d4</code></a> fix: update pnpm to 11.0.0-rc.2</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/08c4be7e2e672a47d11bd04269e27e5f3e8529cb\"><code>08c4be7</code></a> docs(README): update action-setup version</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/579891461a117d7c030d0430bbc772562374d9e1\"><code>5798914</code></a> chore: update .gitignore</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/ddffd667542d33325b6f1d9bda9cfcc7861fc400\"><code>ddffd66</code></a> fix: remove accidentally committed file</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/b43f991918ce53332dce4c15c32ae14261d12d65\"><code>b43f991</code></a> fix: update pnpm to 11.0.0-rc.0</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/3852509c9e55070b5aac70d0500b8772d13ed4e6\"><code>3852509</code></a> README.md: bring versions up-to-date (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/222\">#222</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/pnpm/action-setup/compare/fc06bc1257f339d1d5d8b3a19a8cae5388b55320...26f6d4f2c533a43e6b5da0b4a5dd983f98f7b49a\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=pnpm/action-setup&package-manager=github_actions&previous-version=5.0.0&new-version=6.0.4)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "base_sha": "aab339f7b0c75da93e48bce77578c77c5e3ccd27",
+      "merged_at": "2026-05-01T17:14:31Z",
+      "changed_files": [
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ]
+    },
+    {
+      "pr_number": 6244,
+      "repo": "fastify/fastify",
+      "title": "ci: fix thollander/actions-comment-pull-request commit-hash",
+      "body": "Got the wrong one initially, should have been https://github.com/thollander/actions-comment-pull-request/commit/24bffb9b452ba05a4f3f77933840a6a841d1b32b, not https://github.com/thollander/actions-comment-pull-request/commit/65f9e5c9a1f2cd378bd74b2e057c9736982a8e74.\r\n\r\nCloses https://github.com/fastify/fastify/pull/6241\r\n\r\n<!--\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [ ] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "c3cd648461e958f48177d440936f37eca886649d",
+      "merged_at": "2025-07-02T09:56:36Z",
+      "changed_files": [
+        ".github/workflows/benchmark-parser.yml",
+        ".github/workflows/benchmark.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/benchmark-parser.yml",
+        ".github/workflows/benchmark.yml"
+      ]
+    },
+    {
+      "pr_number": 6364,
+      "repo": "fastify/fastify",
+      "title": "chore: add `@fastify/sse` as fastify core plugin to documentation and citgm",
+      "body": "closes #6363\r\n\r\n<!--  updated the docs of Ecosystem.md\r\nThank you for your pull request. Please provide a description above and review\r\nthe requirements below.\r\n\r\nBug fixes and new features should include tests and possibly benchmarks.\r\n\r\nContributors guide: https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md\r\n\r\nBy making a contribution to this project, I certify that:\r\n\r\n* (a) The contribution was created in whole or in part by me and I\r\n  have the right to submit it under the open source license\r\n  indicated in the file; or\r\n\r\n* (b) The contribution is based upon previous work that, to the best\r\n  of my knowledge, is covered under an appropriate open source\r\n  license and I have the right under that license to submit that\r\n  work with modifications, whether created in whole or in part\r\n  by me, under the same open source license (unless I am\r\n  permitted to submit under a different license), as indicated\r\n  in the file; or\r\n\r\n* (c) The contribution was provided directly to me by some other\r\n  person who certified (a), (b) or (c) and I have not modified\r\n  it.\r\n\r\n* (d) I understand and agree that this project and the contribution\r\n  are public and that a record of the contribution (including all\r\n  personal information I submit with it, including my sign-off) is\r\n  maintained indefinitely and may be redistributed consistent with\r\n  this project or the open source license(s) involved.\r\n-->\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [x] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "c94e4a1b729c880b1a7a9f9aaf0b43387fa25aaf",
+      "merged_at": "2025-10-12T22:03:16Z",
+      "changed_files": [
+        ".github/workflows/citgm.yml",
+        "docs/Guides/Ecosystem.md"
+      ],
+      "changed_files_all": [
+        ".github/workflows/citgm.yml",
+        "docs/Guides/Ecosystem.md"
+      ]
+    },
+    {
+      "pr_number": 6832,
+      "repo": "fastify/fastify",
+      "title": "feat: rfc10008 http query method",
+      "body": "Fixes #6807 \r\n\r\n@kalvenschraut Do point out a valid view about the \"Proposed Standard\" on RFC\r\n\r\nI have look though the history of RFC10008 and it takes about 11 years (2015 - 2026 Jun) to the current state. \r\nIt should receive good amount of reviews and good to use.\r\n\r\n#### Checklist\r\n\r\n- [ ] run `npm run test && npm run benchmark --if-present`\r\n- [ ] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [ ] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "94bcbcc6e2ef3b8e8f8e8797fe551ccbe7b942fd",
+      "merged_at": "2026-07-16T09:17:07Z",
+      "changed_files": [
+        "docs/Reference/Errors.md",
+        "docs/Reference/Server.md",
+        "fastify.js",
+        "lib/errors.js",
+        "lib/handle-request.js",
+        "types/errors.d.ts",
+        "types/instance.d.ts",
+        "types/utils.d.ts"
+      ],
+      "changed_files_all": [
+        "docs/Reference/Errors.md",
+        "docs/Reference/Server.md",
+        "fastify.js",
+        "lib/errors.js",
+        "lib/handle-request.js",
+        "test/internals/all.test.js",
+        "test/internals/errors.test.js",
+        "test/rfc-10008.test.js",
+        "test/route-shorthand.test.js",
+        "test/types/errors.tst.ts",
+        "test/types/route.tst.ts",
+        "types/errors.d.ts",
+        "types/instance.d.ts",
+        "types/utils.d.ts"
+      ]
+    },
+    {
+      "pr_number": 6629,
+      "repo": "fastify/fastify",
+      "title": "chore: Bump pnpm/action-setup from 4.2.0 to 5.0.0",
+      "body": "Bumps [pnpm/action-setup](https://github.com/pnpm/action-setup) from 4.2.0 to 5.0.0.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/pnpm/action-setup/releases\">pnpm/action-setup's releases</a>.</em></p>\n<blockquote>\n<h2>v5.0.0</h2>\n<p>Updated the action to use Node.js 24.</p>\n<h2>v4.4.0</h2>\n<p>Updated the action to use Node.js 24.</p>\n<h2>v4.3.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>docs: fix the run_install example in the Readme by <a href=\"https://github.com/dreyks\"><code>@​dreyks</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/175\">pnpm/action-setup#175</a></li>\n<li>chore: remove unused <code>@types/node-fetch</code> dependency by <a href=\"https://github.com/silverwind\"><code>@​silverwind</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/186\">pnpm/action-setup#186</a></li>\n<li>Clarify that package_json_file is relative to GITHUB_WORKSPACE by <a href=\"https://github.com/chris-martin\"><code>@​chris-martin</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/184\">pnpm/action-setup#184</a></li>\n<li>feat: store caching by <a href=\"https://github.com/jrmajor\"><code>@​jrmajor</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/188\">pnpm/action-setup#188</a></li>\n<li>refactor: remove star imports by <a href=\"https://github.com/KSXGitHub\"><code>@​KSXGitHub</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/196\">pnpm/action-setup#196</a></li>\n<li>fix(ci): exclude macos by <a href=\"https://github.com/KSXGitHub\"><code>@​KSXGitHub</code></a> in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/197\">pnpm/action-setup#197</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/dreyks\"><code>@​dreyks</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/175\">pnpm/action-setup#175</a></li>\n<li><a href=\"https://github.com/silverwind\"><code>@​silverwind</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/186\">pnpm/action-setup#186</a></li>\n<li><a href=\"https://github.com/chris-martin\"><code>@​chris-martin</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/184\">pnpm/action-setup#184</a></li>\n<li><a href=\"https://github.com/jrmajor\"><code>@​jrmajor</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/188\">pnpm/action-setup#188</a></li>\n<li><a href=\"https://github.com/Boosted-Bonobo\"><code>@​Boosted-Bonobo</code></a> made their first contribution in <a href=\"https://redirect.github.com/pnpm/action-setup/pull/199\">pnpm/action-setup#199</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/pnpm/action-setup/compare/v4.2.0...v4.3.0\">https://github.com/pnpm/action-setup/compare/v4.2.0...v4.3.0</a></p>\n</blockquote>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/fc06bc1257f339d1d5d8b3a19a8cae5388b55320\"><code>fc06bc1</code></a> feat!: run the action on Node.js 24 (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/205\">#205</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/b906affcce14559ad1aafd4ab0e942779e9f58b1\"><code>b906aff</code></a> Revert &quot;feat!: run the action on Node.js 24 (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/205\">#205</a>)&quot;</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/9b5745cdf0a2e8c2620f0746130f809adb911c19\"><code>9b5745c</code></a> feat!: run the action on Node.js 24 (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/205\">#205</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/1e1c8eafbd745f64b1ef30a7d7ed7965034c486c\"><code>1e1c8ea</code></a> ci: pin github actions (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/199\">#199</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/b9e1dbc72ff7358f971cc0b7c62c7a0d83f1068b\"><code>b9e1dbc</code></a> fix(ci): exclude macos (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/197\">#197</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/61bc82c7df449f480d8aa43c14cfced3c0aec42b\"><code>61bc82c</code></a> refactor: remove star imports (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/196\">#196</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/e94b270858c939f4f8b43f5c1438fa1d9a67ad5d\"><code>e94b270</code></a> feat: store caching (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/188\">#188</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/ee7b8711bd8dd0954f5783b045bb929cd6db2764\"><code>ee7b871</code></a> Clarify that package_json_file is relative to GITHUB_WORKSPACE (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/184\">#184</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/3a0024f0665291c8c6c9957134b033a5e639e837\"><code>3a0024f</code></a> Remove unused <code>@types/node-fetch</code> dependency (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/186\">#186</a>)</li>\n<li><a href=\"https://github.com/pnpm/action-setup/commit/72f04517b7dbf772394a70a3066a5fd9811b0491\"><code>72f0451</code></a> Update README.md (<a href=\"https://redirect.github.com/pnpm/action-setup/issues/175\">#175</a>)</li>\n<li>See full diff in <a href=\"https://github.com/pnpm/action-setup/compare/41ff72655975bd51cab0327fa583b6e92b6d3061...fc06bc1257f339d1d5d8b3a19a8cae5388b55320\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=pnpm/action-setup&package-manager=github_actions&previous-version=4.2.0&new-version=5.0.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "base_sha": "fd35d829a8cd496a3c1170c0c1c021130e3ca0e8",
+      "merged_at": "2026-04-01T18:20:42Z",
+      "changed_files": [
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/integration-alternative-runtimes.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ]
+    },
+    {
+      "pr_number": 6342,
+      "repo": "fastify/fastify",
+      "title": "chore: Bump actions/setup-node from 4 to 5",
+      "body": "Bumps [actions/setup-node](https://github.com/actions/setup-node) from 4 to 5.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/setup-node/releases\">actions/setup-node's releases</a>.</em></p>\n<blockquote>\n<h2>v5.0.0</h2>\n<h2>What's Changed</h2>\n<h3>Breaking Changes</h3>\n<ul>\n<li>Enhance caching in setup-node with automatic package manager detection by <a href=\"https://github.com/priya-kinthali\"><code>@​priya-kinthali</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1348\">actions/setup-node#1348</a></li>\n</ul>\n<p>This update, introduces automatic caching when a valid <code>packageManager</code> field is present in your <code>package.json</code>. This aims to improve workflow performance and make dependency management more seamless.\nTo disable this automatic caching, set <code>package-manager-cache: false</code></p>\n<pre lang=\"yaml\"><code>steps:\n- uses: actions/checkout@v5\n- uses: actions/setup-node@v5\n  with:\n    package-manager-cache: false\n</code></pre>\n<ul>\n<li>Upgrade action to use node24 by <a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1325\">actions/setup-node#1325</a></li>\n</ul>\n<p>Make sure your runner is on version v2.327.1 or later to ensure compatibility with this release. <a href=\"https://github.com/actions/runner/releases/tag/v2.327.1\">See Release Notes</a></p>\n<h3>Dependency Upgrades</h3>\n<ul>\n<li>Upgrade <code>@​octokit/request-error</code> and <code>@​actions/github</code> by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/setup-node/pull/1227\">actions/setup-node#1227</a></li>\n<li>Upgrade uuid from 9.0.1 to 11.1.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/setup-node/pull/1273\">actions/setup-node#1273</a></li>\n<li>Upgrade undici from 5.28.5 to 5.29.0 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/setup-node/pull/1295\">actions/setup-node#1295</a></li>\n<li>Upgrade form-data to bring in fix for critical vulnerability by <a href=\"https://github.com/gowridurgad\"><code>@​gowridurgad</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1332\">actions/setup-node#1332</a></li>\n<li>Upgrade actions/checkout from 4 to 5 by <a href=\"https://github.com/dependabot\"><code>@​dependabot</code></a>[bot] in <a href=\"https://redirect.github.com/actions/setup-node/pull/1345\">actions/setup-node#1345</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/priya-kinthali\"><code>@​priya-kinthali</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-node/pull/1348\">actions/setup-node#1348</a></li>\n<li><a href=\"https://github.com/salmanmkc\"><code>@​salmanmkc</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-node/pull/1325\">actions/setup-node#1325</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-node/compare/v4...v5.0.0\">https://github.com/actions/setup-node/compare/v4...v5.0.0</a></p>\n<h2>v4.4.0</h2>\n<h2>What's Changed</h2>\n<h3>Bug fixes:</h3>\n<ul>\n<li>Make eslint-compact matcher compatible with Stylelint by <a href=\"https://github.com/FloEdelmann\"><code>@​FloEdelmann</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/98\">actions/setup-node#98</a></li>\n<li>Add support for indented eslint output by <a href=\"https://github.com/fregante\"><code>@​fregante</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1245\">actions/setup-node#1245</a></li>\n</ul>\n<h3>Enhancement:</h3>\n<ul>\n<li>Support private mirrors by <a href=\"https://github.com/marco-ippolito\"><code>@​marco-ippolito</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1240\">actions/setup-node#1240</a></li>\n</ul>\n<h3>Dependency update:</h3>\n<ul>\n<li>Upgrade <code>@​action/cache</code> from 4.0.2 to 4.0.3 by <a href=\"https://github.com/aparnajyothi-y\"><code>@​aparnajyothi-y</code></a> in <a href=\"https://redirect.github.com/actions/setup-node/pull/1262\">actions/setup-node#1262</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/FloEdelmann\"><code>@​FloEdelmann</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-node/pull/98\">actions/setup-node#98</a></li>\n<li><a href=\"https://github.com/fregante\"><code>@​fregante</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-node/pull/1245\">actions/setup-node#1245</a></li>\n<li><a href=\"https://github.com/marco-ippolito\"><code>@​marco-ippolito</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/setup-node/pull/1240\">actions/setup-node#1240</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/setup-node/compare/v4...v4.4.0\">https://github.com/actions/setup-node/compare/v4...v4.4.0</a></p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/setup-node/commit/a0853c24544627f65ddf259abe73b1d18a591444\"><code>a0853c2</code></a> Bump actions/checkout from 4 to 5 (<a href=\"https://redirect.github.com/actions/setup-node/issues/1345\">#1345</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/b7234cc9fe124f0f4932554b4e5284543083ae7b\"><code>b7234cc</code></a> Upgrade action to use node24 (<a href=\"https://redirect.github.com/actions/setup-node/issues/1325\">#1325</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/d7a11313b581b306c961b506cfc8971208bb03f6\"><code>d7a1131</code></a> Enhance caching in setup-node with automatic package manager detection (<a href=\"https://redirect.github.com/actions/setup-node/issues/1348\">#1348</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/5e2628c959b9ade56971c0afcebbe5332d44b398\"><code>5e2628c</code></a> Bumps form-data (<a href=\"https://redirect.github.com/actions/setup-node/issues/1332\">#1332</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/65beceff8e91358525397bdce9103d999507ab03\"><code>65becef</code></a> Bump undici from 5.28.5 to 5.29.0 (<a href=\"https://redirect.github.com/actions/setup-node/issues/1295\">#1295</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/7e24a656e1c7a0d6f3eaef8d8e84ae379a5b035b\"><code>7e24a65</code></a> Bump uuid from 9.0.1 to 11.1.0 (<a href=\"https://redirect.github.com/actions/setup-node/issues/1273\">#1273</a>)</li>\n<li><a href=\"https://github.com/actions/setup-node/commit/08f58d1471bff7f3a07d167b4ad7df25d5fcfcb6\"><code>08f58d1</code></a> Bump <code>@​octokit/request-error</code> and <code>@​actions/github</code> (<a href=\"https://redirect.github.com/actions/setup-node/issues/1227\">#1227</a>)</li>\n<li>See full diff in <a href=\"https://github.com/actions/setup-node/compare/v4...v5\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\n[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/setup-node&package-manager=github_actions&previous-version=4&new-version=5)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot merge` will merge this PR after your CI passes on it\n- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it\n- `@dependabot cancel merge` will cancel a previously requested merge and block automerging\n- `@dependabot reopen` will reopen this PR if it is closed\n- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "base_sha": "d6d408a3d9c7292f7dfef090bcde422a9c374e8c",
+      "merged_at": "2025-10-01T15:22:07Z",
+      "changed_files": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/coverage-nix.yml",
+        ".github/workflows/coverage-win.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/md-lint.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ],
+      "changed_files_all": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/citgm-package.yml",
+        ".github/workflows/coverage-nix.yml",
+        ".github/workflows/coverage-win.yml",
+        ".github/workflows/integration.yml",
+        ".github/workflows/md-lint.yml",
+        ".github/workflows/package-manager-ci.yml"
+      ]
+    },
+    {
+      "pr_number": 6333,
+      "repo": "fastify/fastify",
+      "title": "refactor: delegate options processing to a dedicated function",
+      "body": "Read #6329 \r\n\r\nA new `processOptions` function is now responsible for validating and normalizing options.  \r\nThis reduces noise in the `fastify()` factory and clarifies responsibilities.\r\n\r\n### Next steps\r\n\r\nWe can continue splitting complexity into focused modules.\r\n\r\nSuggestions:\r\n\r\n- **Plugins**: merge `plugin-override` and `plugin-utils` into a single module with a new `initAvvio` function  \r\n- **Inject**: move into its own file  \r\n- **Hooks**: move `addHook` into `hooks.js`  \r\n- etc.\r\n\r\nChanges can be incremental.\r\n",
+      "base_sha": "1ab11bbcd087c4adbdd3258621f350276d0464ed",
+      "merged_at": "2025-09-27T08:08:27Z",
+      "changed_files": [
+        "fastify.js",
+        "lib/route.js",
+        "lib/server.js"
+      ],
+      "changed_files_all": [
+        "fastify.js",
+        "lib/route.js",
+        "lib/server.js"
+      ]
+    },
+    {
+      "pr_number": 6694,
+      "repo": "fastify/fastify",
+      "title": "perf: cache parsed ContentType objects in ContentTypeParser",
+      "body": "## Motivation\r\n\r\nThe `ContentType` constructor is expensive: it runs two compiled regexes,\r\n`indexOf`, `toLowerCase`, and allocates a `new Map()` on every call. In\r\npractice, the same handful of `Content-Type` header values (e.g.\r\n`application/json`, `application/json; charset=utf-8`) appear on every\r\nincoming request with a body. Previously, a new `ContentType` instance was\r\nconstructed on each request in both `handleRequest` and the `request.mediaType`\r\ngetter with no caching.\r\n\r\n## Changes\r\n\r\n**`lib/content-type-parser.js`**\r\n- Added `this.ctCache = new Fifo(100)` to the constructor and `removeAll()`\r\n- Added `ContentTypeParser.prototype.getContentType(raw)`: returns a cached\r\n  `ContentType` for the given raw header string, or parses and caches it on\r\n  first encounter. `Fifo(100)` is intentionally generous — real-world traffic\r\n  typically sees 10–20 distinct `Content-Type` values, so eviction is\r\n  effectively never.\r\n\r\n**`lib/handle-request.js`**\r\n- `new ContentType(ctHeader)` → `contentTypeParser.getContentType(ctHeader)`\r\n- Removed now-unused `ContentType` import\r\n\r\n**`lib/request.js`**\r\n- Same change in the `mediaType` getter\r\n- Removed now-unused `ContentType` import\r\n\r\n## Benchmark\r\n\r\n7 runs, 300,000 iterations each, bias-controlled:\r\n\r\n| Scenario | Old avg (ms) | New avg (ms) | Diff |\r\n|---|---|---|---|\r\n| single (`application/json`) | 89.73 | 6.63 | **+92.61%** |\r\n| mixed (5 distinct types) | 145.63 | 7.19 | **+95.06%** |\r\n\r\n## Tests\r\n\r\n1622/1622 passing, 2 skipped (platform-specific).\r\n\r\n#### Checklist\r\n\r\n- [x] run `npm run test && npm run benchmark --if-present`\r\n- [x] tests and/or benchmarks are included\r\n- [ ] documentation is changed or added\r\n- [x] commit message and code follows the [Developer's Certification of Origin](https://github.com/fastify/.github/blob/main/CONTRIBUTING.md#developers-certificate-of-origin-11)\r\n      and the [Code of conduct](https://github.com/fastify/.github/blob/main/CODE_OF_CONDUCT.md)\r\n",
+      "base_sha": "6c69050523defc982e231e616a66be8b291ee73f",
+      "merged_at": "2026-04-28T06:56:08Z",
+      "changed_files": [
+        "lib/content-type-parser.js",
+        "lib/handle-request.js",
+        "lib/request.js"
+      ],
+      "changed_files_all": [
+        "lib/content-type-parser.js",
+        "lib/handle-request.js",
+        "lib/request.js"
+      ]
+    }
+  ]
+}

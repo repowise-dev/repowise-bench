@@ -78,6 +78,14 @@ __pycache__/
 /results/health_defect_*/hunk_dataset.json
 /results/health_defect_*/hunk_tokens.json
 
+# MCP server arm configs — may embed live API keys or absolute local paths;
+# regenerate per machine, never commit.
+/mcp_configs/
+
+# Repomix packed-repo artifacts — multi-MB, reproducible from the pinned
+# repomix version + the staged repo (commands recorded in the repro docs).
+/data/context_bench/repomix_packs/
+
 # Local experiment scratch — Ollama modelfiles, smoke logs, ad-hoc dumps
 Modelfile.*
 logs_smoke*.txt
@@ -86,3 +94,8 @@ tool_health_dump.json
 
 # opencode source clone (inspection only, local)
 opencode-src/
+
+# Context-tool benchmark results: raw JSONL + aggregates are the published
+# artifact (repo precedent); per-run transcripts under logs/ stay local.
+!/results/context_bench/
+!/results/context_bench/**

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "why-q01",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why does Flask's redirect() function default to a 303 status code instead of the historical 302?",
+    "answer": "Because 303 tells the client to always switch the request method to GET on redirect, rather than only switching POST to GET (which is what 302 does per RFC semantics with most clients). This preserves the existing behavior for GET and POST redirects while also being correct for frontend libraries such as HTMX that issue other methods (PUT, PATCH, DELETE). Changed in commit eca5fd1 (flask.helpers.redirect and sansio/app.py App.redirect), tracked as issue #5895.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q02",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why was Flask's should_ignore_error method deprecated?",
+    "answer": "It was deprecated in favor of handling errors directly in teardown handlers instead of via a dedicated override hook; the method's job (deciding whether an error is passed to teardown handlers) is considered better handled inline in the teardown callbacks themselves. Deprecated in commit c77a520 (Flask.app.py / sansio/app.py), tracked as issue #5816, scheduled for removal in Flask 3.3.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q03",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why did Flask merge RequestContext into AppContext (making RequestContext a deprecated alias)?",
+    "answer": "To greatly simplify the internal code for tracking the active context. Previously Flask tracked a separate app context and request context stack; after the merge, RequestContext is just a deprecated alias, and pushing a request no longer reuses an already-pushed app context when dispatching. Done in commit c2705ff, tracked as issue #5639.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q04",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why does Flask's SecureCookieSessionInterface append the active secret_key to the end of the signing-keys list instead of putting it first, even though SECRET_KEY_FALLBACKS is documented most-recent-first?",
+    "answer": "Because the underlying itsdangerous Serializer interface expects the oldest key at index 0 and the currently active signing key at the end of the list, so Flask has to reverse its own most-recent-first documented ordering of SECRET_KEY_FALLBACKS (and append the current secret_key last) to match what itsdangerous actually consumes. Fixed in commit fb54159, referenced by GHSA-4grg-w6v8-c28g.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q05",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why was the SECRET_KEY_FALLBACKS config option added to Flask?",
+    "answer": "To support secret-key rotation: a list of old secret keys that can still be used for unsigning lets a project rotate its active SECRET_KEY without invalidating already-active sessions or other recently-signed values (e.g. secure cookies). Added in commit e13373f, tracked as issue #5621.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q06",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why did Flask drop support for Python 3.9?",
+    "answer": "Per Pallets project policy, Flask supports Python versions that are not within six months of their end-of-life (EOL); once Python 3.9 fell within that EOL window, support was dropped accordingly. Done in commit 52df9ee, PR #5730, which also updated the contributor docs to describe this rolling EOL-based policy instead of a fixed minimum version.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q07",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why was the Flask test client's handling of preserved contexts changed from popping them in a loop to iterating and clearing?",
+    "answer": "The old code popped preserved context managers off `_new_contexts` and re-entered them one at a time, which re-pushed them in reverse order relative to how they were originally pushed during a chain of `follow_redirects` requests; that reversed order corrupted the final session state seen after following redirects. The fix iterates `_new_contexts` in original order (entering each) and then clears the list, so `session` reflects the correct final state. Fixed in commit 53b8f08, tracked as issue #5786.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q08",
+    "repo": "pallets/flask",
+    "split_name": "why14",
+    "question": "Why does `flask --help` (run with only the --help flag) now load the app and plugins first, the same as running `flask` with no arguments?",
+    "answer": "Previously, app/plugin loading before showing the help callback only happened when `flask` was invoked with zero arguments; if a user passed `--help` explicitly, that same early-load step was skipped, so any custom commands registered by the app's CLI group were missing from the help output. The fix treats a lone `--help` the same as no args so custom commands are always shown. Commit da60039, tracked as issue #5673.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q09",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why did Fastify replace its use of Node's `Readable.fromWeb()` wrapper with the native WebStream reader API when sending a Response/ReadableStream from a route handler?",
+    "answer": "To cut Node.js stream-wrapping overhead: rewriting `sendWebStream()` in lib/reply.js to call `reader.getReader()` / `reader.read()` directly instead of wrapping through `Readable.fromWeb()` measured roughly a 20% throughput improvement (26,931 to 32,335 req/sec) and about 17% lower average latency in benchmarks. Done in commit c89945df, PR #6444.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q10",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why does Fastify now throw an FST_ERR_DUPLICATED_ROUTE FastifyError instead of the raw error when a duplicate route is registered?",
+    "answer": "Fastify's duplicate-route detection compared the raw error message thrown by find-my-way (which contains the route's compiled *pattern*, e.g. '/:') against a string built from `opts.url` (the literal path as passed by the user, e.g. '/:param1'); since those two strings never matched, the FST_ERR_DUPLICATED_ROUTE wrapping check failed and Fastify let the raw, less-informative find-my-way Error propagate instead of its own typed error. The fix stopped relying on `opts.url` in the comparison so the FastifyError is thrown correctly. Fixed in commit 309d9daf, PR #5621.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q11",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why did Fastify change the requestIdHeader option's default behavior to be opt-in (false) instead of opt-out (trusting the incoming header by default)?",
+    "answer": "Security: by default Fastify used the value of the request-id header (if present) over its own genReqId, but a client doesn't need to know the server is Fastify (or which header name it uses) to spoof that header — a malicious actor could send the same request-id on every request, degrading log correlation and making incident investigation harder since multiple requests would appear to share one id. Making requestIdHeader opt-in removes this reliance on header-name obfuscation as the only defense. Changed in commit 7381195d, PR #4194, addressing issue #4192.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q12",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why did Fastify remove its manual HTTP version check?",
+    "answer": "Because the underlying Node.js bug that necessitated the check (Node.js issue nodejs/node#43115) had since been resolved, making Fastify's own workaround unnecessary. Removed in commit dbac4e0a, PR #4962.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q13",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why did Fastify wrap the custom validator function call in a try-catch inside validateParam?",
+    "answer": "Because sync and async validation contexts handled thrown errors inconsistently: in a synchronous validation context, if a custom validator threw instead of returning an {error} object, the error handler caught it properly, but in an async preValidation context the same thrown error became an unhandled promise rejection that could crash the application. Wrapping the validatorFunction call in try-catch in lib/validation.js makes both paths behave the same way. Fixed in commit d338dca5, PR #6247, closing issue #6214.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q14",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why does Fastify's per-request writePayload call res.end(payload) instead of res.write(payload) followed by res.end(null) when there are no trailers?",
+    "answer": "Performance: Node corks the socket internally inside `end(chunk)`, so calling `res.end(payload)` directly flushes headers, the payload, and the finishing chunk through the stream machinery in a single pass, whereas the previous write+end(null) pattern didn't get that same corking benefit. This was one of several hot-path changes (guided by CPU profiling) landed together in the same commit for a ~4% mean throughput improvement. Changed in commit 5f4871f9, PR #6831.",
+    "category": "history-why"
+  },
+  {
+    "id": "why-q15",
+    "repo": "fastify/fastify",
+    "split_name": "why14",
+    "question": "Why did Fastify's per-request-overhead optimization switch the request-id/timer path from process.hrtime() to performance.now() in logger-factory.js?",
+    "answer": "process.hrtime() allocates a new tuple (array) on every call, which adds per-request GC pressure in the hot path; performance.now() uses the same monotonic clock origin and the value returned is only ever used for diffs, so switching avoided the allocation with no behavior change. Part of commit 5f4871f9, PR #6831.",
+    "category": "history-why"
+  }
+]

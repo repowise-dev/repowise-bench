@@ -1,0 +1,107 @@
+[
+  {
+    "id": "flask_002",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously flagged 'fix' for stale N_old line citations in gold_post (Flask.get_send_file_max_age at app.py:281/308, duplicate-comment at 314-315). Corrections file (authoring/questions_flask.corrections.json) confirms these were fixed; re-verified directly against N (258d68b6): Flask.get_send_file_max_age now correctly cited at app.py:365-390, duplicate-method comment confirmed at app.py:398-399 ('Note this is a duplicate of the same method in the Flask class.'), Blueprint side (blueprints.py:55/82, 88-89, 97-99) unchanged and still correct. gold_pre remains accurate at N_old (2c1b30d0503c, the correct commit the tag object 80be49be dereferences to -- same underlying tree as originally verified). drift_kind 'moved' confirmed correct and now clearly distinguishable: gold_pre cites 281/308, gold_post cites 365/392/398-399."
+    ]
+  },
+  {
+    "id": "flask_004",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'reject' because gold_post described an obsolete standalone RequestContext class instead of the merged AppContext. gold_post was rewritten and is now fully verified accurate against N: explicitly states 'Flask no longer has a standalone RequestContext class -- it was merged into AppContext in Flask 3.2', cites AppContext class at ctx.py:260 (confirmed), its versionchanged docstring note (confirmed at ctx.py:287), the deprecated RequestContext __getattr__ alias (confirmed at ctx.py:528-533), AppContext.__init__ lines 300-334 with create_url_adapter(self._request) at line 326 (confirmed), and test_testing.py citations (subdomain_matching=True at 117, Blueprint(subdomain=...) at 122, register_blueprint at 128, test_request_context call at 130, blueprint assertion at 134) all confirmed exact via grep. Also confirmed app.py:509 (create_url_adapter), app.py:1517 (test_request_context), sansio/blueprints.py:64/70/87/103 (BlueprintSetupState/add_url_rule), helpers.py:200 (url_for, and confirmed no url_for method exists on sansio/app.py's App class as gold_post claims), wrappers.py:181 (blueprints property). gold_pre (describing the real RequestContext class at N_old with _cv_request) and gold_post (describing its removal/merger into AppContext) are now sharply and correctly distinguishable for a judge."
+    ]
+  },
+  {
+    "id": "flask_006",
+    "verdict": "pass",
+    "issues": [
+      "DELTA SPOT-CHECK (control, drift_kind 'none'): corrections file flagged one line-number fix here (test usage of FakePath moved from claimed line 71 to correct line 66). Re-verified: `app.send_static_file(FakePath(\"index.html\"))` is confirmed at tests/test_helpers.py:66 via grep -n at N. FakePath class (11-22), __fspath__ (21-22), and scaffold.py static_folder setter (line 236) citations unchanged and still correct. gold_pre and gold_post remain consistent with each other -- the underlying code is genuinely identical between N_old and N, only a citation typo in the original gold_post was corrected. drift_kind 'none' still valid."
+    ]
+  },
+  {
+    "id": "flask_008",
+    "verdict": "pass",
+    "issues": [
+      "DELTA SPOT-CHECK (control, drift_kind 'none'): corrections file reports no change needed -- 'All citations verified exact'. Re-confirmed FlaskCliRunner class/invoke/ScriptInfo citations (testing.py:265/275/296) identical at N_old and N. gold_pre/gold_post remain consistent. drift_kind 'none' still valid."
+    ]
+  },
+  {
+    "id": "flask_010",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'reject' because gold_post quoted N_old's stream_with_context implementation (`_cv_request`, RequestContext re-entry) as if current. gold_post was rewritten and is now fully verified accurate against N: quoted code block now correctly shows `if (ctx := _cv_app.get(None)) is None:` with a single `with ctx:` (confirmed matches N's actual helpers.py generator() body at lines 126-141), explicitly states 'there is no separate RequestContext class' and 'that name does not exist at this commit' regarding _cv_request. Confirmed stream_with_context implementation at helpers.py:63, generator() at 126, next(wrapped_g) at 147 (gold_post's lines 63-148/126-141/147 all match). Confirmed AppContext ctx.py:260-526 range, versionchanged note at 286-288, __enter__/__exit__ at 506/510, push()/pop() at 416/446, globals.py _cv_app at line 40 with request/session LocalProxy at ~57/60 (gold_post says 55-60, matches), TestStreaming class at test_helpers.py:228 with test_streaming_with_context at 229 (both confirmed exact). gold_pre (N_old, dual _cv_request/_cv_app re-entry) and gold_post (N, single _cv_app re-entry, explicit note that RequestContext was removed) are now sharply distinguishable."
+    ]
+  },
+  {
+    "id": "flask_012",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for stale N_old line numbers (290/307/317). Re-verified against N: `_lazy_sha1` now correctly cited at sessions.py:276-281 (confirmed), `digest_method = staticmethod(_lazy_sha1)` at line 293 (confirmed), `get_signing_serializer()` at lines 303-321 (confirmed), and the CHANGES.rst citation updated to lines 103-105, confirmed to contain the FIPS/SHA-1/#5448 bullet text exactly. gold_pre remains accurate at N_old (290/307/333). Pre and post line numbers are now correctly distinguished by the genuine -14 line offset caused by commit c17f379390."
+    ]
+  },
+  {
+    "id": "flask_014",
+    "verdict": "pass",
+    "issues": [
+      "No change flagged by the correction pass to this question's substantive content (only a 1-line off-by-one fix: --cert option string now correctly cited at cli.py:886 instead of 887). Previously verified pass, still holds: CertParamType.convert at cli.py:791-825 matches N exactly."
+    ]
+  },
+  {
+    "id": "flask_020",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for describing an obsolete list-based `_cv_tokens` push/pop mechanism and stale line numbers. gold_post was rewritten and is now fully verified accurate against N: self.g assignment at ctx.py:312 (confirmed), _cv_app definition at globals.py:40 (confirmed), g LocalProxy at globals.py:47-49 (confirmed), AppContext.push() at ctx.py:416 setting `self._cv_token = _cv_app.set(self)` at line 433 (confirmed exact), self._cv_token initialized to None at line 331 and self._push_count at line 334 (confirmed, within __init__ 300-334), AppContext.pop() at ctx.py:446 with `_cv_app.reset(self._cv_token)` at line 498 and `self._cv_token = None` at line 499 (confirmed exact) -- correctly describing the single-Token-plus-reentrancy-counter mechanism that replaced the old list-based `_cv_tokens`. Also confirmed docs/reqcontext.rst is now genuinely a 6-line `:orphan:` stub reading 'Obsolete, see :doc:`/appcontext` instead.' (verified verbatim against N) and docs/appcontext.rst exists with the relocated content. gold_pre (N_old, two ContextVars, list-based tokens) and gold_post (N, single _cv_app, single Token) are now sharply and correctly distinguishable."
+    ]
+  },
+  {
+    "id": "flask_022",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for stale N_old line number (1230). Re-verified against N: make_response def at app.py:1224, isinstance(rv, (dict, list)) check and self.json.response(rv) now correctly cited at lines 1325-1326 (confirmed exact), tuple-unpacking branches at 1285-1303 (plausible, not line-by-line re-verified beyond the anchor points), typing.py ResponseValue comment confirmed at lines 17-18, and the CHANGES.rst citation corrected to say the TypedDict feature was introduced in the unreleased/2.2.0 section (line 379) preceding 'Version 2.1.3' (line 389) rather than in 2.1.3 itself -- confirmed exact via grep against N's CHANGES.rst. This is a more careful and accurate historical claim than the original."
+    ]
+  },
+  {
+    "id": "flask_030",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for quoting the pre-refactor direct dict-mutation snippet as if still in blueprints.py. gold_post was rewritten and is now fully verified accurate against N: correctly identifies register_template_filter as an inline callback within add_app_template_filter (sansio/blueprints.py:492-493, confirmed exact) that calls `state.app.add_template_filter(f, name=name)` (confirmed exact at line 493), and correctly traces that the actual `self.jinja_env.filters[name or f.__name__] = f` assignment now lives one file away in Flask.add_template_filter (sansio/app.py:708, confirmed exact). Also confirmed add_app_template_filter at sansio/blueprints.py:476 (gold_post says 475, off by one, immaterial) and app_template_filter decorator at 443-472ish. Test citations corrected and verified: test_add_template_filter at tests/test_blueprints.py:390 (confirmed), test_add_template_filter_with_name at 416 (confirmed), test_add_template_filter_with_template at 462 (confirmed), and gold_post now correctly notes that test_blueprint_url_defaults (131-148, confirmed) does NOT test template filters, correcting the original mis-citation. Root-cause argument (distinct blueprint instances repeatedly overwrite the same dict key) remains accurate and is now precisely traced through the current indirection."
+    ]
+  },
+  {
+    "id": "flask_032",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for stale N_old line numbers (317/351/387). Re-verified against N: get_signing_serializer at sessions.py:303-321 (confirmed), key-list construction at 307-312 (confirmed), URLSafeTimedSerializer instantiation at 313-321 (confirmed), save_session at line 337 (confirmed), and the `.dumps(dict(session))` call confirmed exactly at line 373. gold_pre remains accurate at N_old (317/351/387). Pre/post line numbers are now correctly distinguished by the genuine -14 offset from commit c17f379390 (same root cause as flask_012)."
+    ]
+  },
+  {
+    "id": "flask_036",
+    "verdict": "pass",
+    "issues": [
+      "No change flagged by the correction pass to this question's substantive content (only a 1-line fix: self.cli = cli.AppGroup() now correctly cited at app.py:340 instead of 256). Previously verified pass, still holds: FlaskGroup.get_command three-stage lookup at cli.py:609-634 (decision point 615-616) matches N exactly."
+    ]
+  },
+  {
+    "id": "flask_038",
+    "verdict": "pass",
+    "issues": [
+      "DELTA SPOT-CHECK (control, drift_kind 'none'): corrections file reports no change needed -- 'all verified exact'. Re-confirmed json/tag.py is byte-identical between N_old and N (zero-line diff). gold_pre/gold_post remain consistent. drift_kind 'none' still valid."
+    ]
+  },
+  {
+    "id": "flask_040",
+    "verdict": "pass",
+    "issues": [
+      "DELTA RE-VERIFICATION: previously 'fix' for stale N_old line numbers (823-846 range). Re-verified against N: _find_error_handler now correctly cited at sansio/app.py:865-888 (confirmed exact def through return None), _get_exc_class_and_code call at line 873 (confirmed), names tuple at line 874 (confirmed), outer code loop at line 876 (confirmed), handler_map access at lines 877-878 (confirmed), MRO traversal at line 883 (confirmed), handler return at lines 884-887 (confirmed). scaffold.py error_handler_spec structure citation at lines 123-126 confirmed exact. All internal citations shifted by the correct, consistent +42 offset caused by the c2705ffd9c/c77a5203438/e82db2ca3a2 commit stack. gold_pre (N_old, 823-846) and gold_post (N, 865-888) are now correctly distinguished."
+    ]
+  },
+  {
+    "id": "flask_044",
+    "verdict": "pass",
+    "issues": [
+      "DELTA SPOT-CHECK (control, drift_kind 'none'): corrections file reports no change needed -- 'verified exact'. Re-confirmed config.py and tests/test_config.py are byte-identical between N_old and N (zero-line diff for both files). gold_pre/gold_post remain consistent. drift_kind 'none' still valid."
+    ]
+  }
+]

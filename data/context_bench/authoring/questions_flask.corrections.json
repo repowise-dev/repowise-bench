@@ -1,0 +1,252 @@
+[
+  {
+    "id": "flask_000",
+    "changed": false,
+    "what_changed": "No change. Every claim verified exact: DefaultJSONProvider.ensure_ascii and its docstring at src/flask/json/provider.py:144-148, dumps() at 166-179 with kwargs.setdefault(\"ensure_ascii\", self.ensure_ascii) at line 177, and the parametrized test at tests/test_json.py:48-54.",
+    "evidence": [
+      "src/flask/json/provider.py:144-148",
+      "src/flask/json/provider.py:166-179",
+      "tests/test_json.py:48-54"
+    ]
+  },
+  {
+    "id": "flask_002",
+    "changed": true,
+    "what_changed": "Fixed two stale app.py line numbers: Flask.get_send_file_max_age() is at app.py:365-390 (was cited as 281-306, which is unrelated deprecation-warning code); the send_static_file duplicate-method comment is at app.py:398-399 (was cited as 314-315, which is inside Flask.__init__'s static_folder/static_host parameter list). All src/flask/blueprints.py citations (88-89, 55-80, 97-99) and the docs/blueprints.rst and tests/test_blueprints.py ranges were already accurate and left unchanged.",
+    "evidence": [
+      "src/flask/app.py:365-390 (get_send_file_max_age)",
+      "src/flask/app.py:398-399 (send_static_file duplicate-method docstring)",
+      "src/flask/blueprints.py:55-80,88-89,97-99"
+    ]
+  },
+  {
+    "id": "flask_004",
+    "changed": true,
+    "what_changed": "Major rewrite. The question presupposes a standalone RequestContext class; at this commit RequestContext was merged into AppContext (Flask 3.2) and survives only as a deprecated alias. Rewrote step 3/4 to describe AppContext construction instead of RequestContext initialization, and fixed 8 stale line numbers: test_testing.py lines are each off by one (subdomain_matching=True at 117 not 118; Blueprint(...) at 122 not 123; register_blueprint at 128 not 129; test_request_context call at 130 not 131; assert at 134 not 135); create_url_adapter is app.py:509 not 425; test_request_context is app.py:1517 not 1423; sansio/blueprints.py add_url_rule method starts at line 85 with the subdomain option set at line 98 (not line 103); AppContext.__init__ (ctx.py:300-334) calls create_url_adapter at line 326 (not ctx.py:323 as claimed for the now-nonexistent RequestContext init); url_for is helpers.py:200 not 188. Also removed an incorrect claim that sansio/app.py's App class has its own url_for method -- it does not; flask.helpers.url_for is the only implementation.",
+    "evidence": [
+      "src/flask/ctx.py:260-288 (AppContext class + versionchanged note on RequestContext merge)",
+      "src/flask/ctx.py:528-540 (RequestContext deprecated alias via __getattr__)",
+      "src/flask/ctx.py:300-334 (AppContext.__init__), line 326 (create_url_adapter call)",
+      "tests/test_testing.py:117,122,128,130,134",
+      "src/flask/app.py:509 (create_url_adapter), 1517 (test_request_context)",
+      "src/flask/sansio/blueprints.py:64-69,85,98",
+      "src/flask/helpers.py:200 (url_for)",
+      "src/flask/wrappers.py:180-195 (Request.blueprints)"
+    ]
+  },
+  {
+    "id": "flask_006",
+    "changed": true,
+    "what_changed": "Fixed one stale line number: the demonstration test app.send_static_file(FakePath(\"index.html\")) is at tests/test_helpers.py:66, not line 71 (line 71 is unrelated code in a different test class). FakePath class (11-22), self.path assignment (19), and __fspath__ (21-22) were already accurate.",
+    "evidence": [
+      "tests/test_helpers.py:11-22 (FakePath)",
+      "tests/test_helpers.py:66 (send_static_file(FakePath(...)) usage)",
+      "src/flask/sansio/scaffold.py:236 (os.fspath in static_folder setter)"
+    ]
+  },
+  {
+    "id": "flask_008",
+    "changed": false,
+    "what_changed": "No change. All citations verified exact: FlaskCliRunner.__init__ self.app assignment at testing.py:271-273 (272), ScriptInfo(create_app=lambda: self.app) at testing.py:295-296 (296), super().invoke(...) at testing.py:298, and ScriptInfo.load_app() spanning exactly cli.py:333-372.",
+    "evidence": [
+      "src/flask/testing.py:271-273",
+      "src/flask/testing.py:295-298",
+      "src/flask/cli.py:333-372"
+    ]
+  },
+  {
+    "id": "flask_010",
+    "changed": true,
+    "what_changed": "Major rewrite. The answer described lifecycle management via a standalone RequestContext class and a _cv_request ContextVar, neither of which exist at this commit (RequestContext was merged into AppContext in Flask 3.2; the ContextVar is _cv_app). Rewrote the 'Separation of concerns' and 'Abstraction Layer' sections to reference AppContext/_cv_app, and fixed stale line numbers: stream_with_context spans helpers.py:63-148 (not 62-136); the inner generator() def is at 126-141; the priming next(wrapped_g) call is at line 147 (not 135); AppContext class spans ctx.py:260-526 (not 'RequestContext' 287-449), with push() at 416-444, pop() at 446-504, and __enter__/__exit__ at 506-516 (not 433-443); _cv_app is defined at globals.py:40 (not '_cv_request' at 42-50); TestStreaming spans tests/test_helpers.py:228-320 (not 236-307).",
+    "evidence": [
+      "src/flask/helpers.py:63-148 (stream_with_context), 126-141 (generator()), 147 (next(wrapped_g))",
+      "src/flask/ctx.py:260-526 (AppContext), 416-444 (push), 446-504 (pop), 506-516 (__enter__/__exit__)",
+      "src/flask/globals.py:40 (_cv_app ContextVar)",
+      "tests/test_helpers.py:228-320 (TestStreaming), 229 (test_streaming_with_context)"
+    ]
+  },
+  {
+    "id": "flask_012",
+    "changed": true,
+    "what_changed": "Fixed stale line numbers throughout (mechanism description was already accurate): _lazy_sha1 def/docstring at sessions.py:276-281/277-280 (not 290-295/291-293); digest_method = staticmethod(_lazy_sha1) at line 293 (not 307); get_signing_serializer() at lines 303-321 (not 317-335); CHANGES.rst FIPS/#5448 entry at lines 103-105 (not 62-64).",
+    "evidence": [
+      "src/flask/sessions.py:276-281 (_lazy_sha1)",
+      "src/flask/sessions.py:293 (digest_method assignment)",
+      "src/flask/sessions.py:303-321 (get_signing_serializer)",
+      "CHANGES.rst:103-105 (FIPS / issue 5448 entry)"
+    ]
+  },
+  {
+    "id": "flask_014",
+    "changed": true,
+    "what_changed": "Fixed one off-by-one citation: the --cert option string is declared at cli.py:886, not 887 (887 is the type=CertParamType() argument on the following line). The CertParamType.convert fallback chain (791-825) and its three-stage breakdown (803-804, 805-818, 820-825) were already exact.",
+    "evidence": [
+      "src/flask/cli.py:791-825 (CertParamType.convert)",
+      "src/flask/cli.py:886 (--cert option declaration)"
+    ]
+  },
+  {
+    "id": "flask_016",
+    "changed": true,
+    "what_changed": "Minor fixes: docs/patterns/javascript.rst citation corrected from line 235 to line 236 (\"JSON cannot represent binary data directly, so it must be base64...\"); clarified that the round-trip assertion in tests/test_json_tag.py is the parametrized test_dump_load_unchanged (assert at line 29: s.loads(s.dumps(data)) == data), with b\"\\xff\" supplied as one of the parametrize values at line 21, rather than a literal inline call at line 29 as the original phrasing implied. TagBytes (159-170) and TaggedJSONSerializer.untag (297-307) line numbers were already accurate.",
+    "evidence": [
+      "src/flask/json/tag.py:159-170 (TagBytes)",
+      "src/flask/json/tag.py:297-307 (untag)",
+      "tests/test_json_tag.py:12-29 (test_dump_load_unchanged, parametrize incl. b\"\\xff\" at line 21, assert at line 29)",
+      "docs/patterns/javascript.rst:236"
+    ]
+  },
+  {
+    "id": "flask_018",
+    "changed": false,
+    "what_changed": "No change. All citations verified exact against src/flask/sansio/blueprints.py: add_url_rule (413-441), lambda deferral via self.record() (433-440), record() (224-230), make_setup_state() call site (line 321), register() (line 273), deferred-function execution loop (334-335), and BlueprintSetupState.add_url_rule calling self.app.add_url_rule() (line 110).",
+    "evidence": [
+      "src/flask/sansio/blueprints.py:413-441 (Blueprint.add_url_rule)",
+      "src/flask/sansio/blueprints.py:224-230 (record)",
+      "src/flask/sansio/blueprints.py:321 (make_setup_state call), 273 (register), 334-335 (deferred loop)",
+      "src/flask/sansio/blueprints.py:87-113 (BlueprintSetupState.add_url_rule), 110"
+    ]
+  },
+  {
+    "id": "flask_020",
+    "changed": true,
+    "what_changed": "Major rewrite reflecting the AppContext restructure. Fixed: _AppCtxGlobals body at ctx.py:30-114 (not 29-115); AppContext.__init__ at ctx.py:300-334 with self.g assignment at line 312 (not 'line 248'); _cv_app defined at globals.py:40 (not line 24); the g LocalProxy at globals.py:47-49 (not 31-33); push()/pop() defined at ctx.py:416/446, using a single self._cv_token Token (set line 433, reset line 498, cleared line 499) plus a self._push_count reentrancy counter -- not a list called _cv_tokens as originally claimed. Also corrected the docs reference: docs/reqcontext.rst is now a 6-line orphan stub pointing to docs/appcontext.rst; the quoted content at 'lines 44-47' no longer exists there.",
+    "evidence": [
+      "src/flask/ctx.py:30-114 (_AppCtxGlobals)",
+      "src/flask/ctx.py:300-334 (AppContext.__init__), 312 (self.g assignment)",
+      "src/flask/ctx.py:416-444 (push, self._cv_token set at 433), 446-504 (pop, reset at 498, cleared at 499), 331/334 (_cv_token/_push_count init)",
+      "src/flask/globals.py:40 (_cv_app), 47-49 (g LocalProxy)",
+      "docs/reqcontext.rst (6-line stub pointing to docs/appcontext.rst)"
+    ]
+  },
+  {
+    "id": "flask_022",
+    "changed": true,
+    "what_changed": "Fixed stale app.py line numbers for make_response: def at line 1224; the isinstance(rv, (dict, list)) check and self.json.response(rv) conversion at 1325-1326 (not 1230-1231); the tuple-unpacking (status code / headers) branches at 1285-1303 (not 1155-1162); the status-code assignment onto the Response object at 1353-1358 (not 1259-1263). Also corrected the changelog attribution: TypedDict-return support was documented for the Flask 2.2 line at CHANGES.rst:379 (in the unreleased section preceding the Version 2.1.3 heading at line 389), not released as part of 2.1.3 as originally claimed. typing.py lines 17-18 (Mapping/TypedDict comment) were already accurate.",
+    "evidence": [
+      "src/flask/app.py:1224 (make_response def), 1285-1303 (tuple unpacking), 1325-1326 (dict/list -> JSON), 1353-1358 (status assignment)",
+      "src/flask/typing.py:17-18",
+      "CHANGES.rst:379 (TypedDict entry, pre-2.1.3 section), 389 (Version 2.1.3 heading)"
+    ]
+  },
+  {
+    "id": "flask_024",
+    "changed": false,
+    "what_changed": "No change. TagUUID (191-202), check/to_json/to_python (195-202), tag key \" u\" (193), TaggedJSONSerializer.tag/dumps/loads/_untag_scan line ranges, and sessions.py:14 import were all verified accurate. The test citation is a light paraphrase of a parametrized assertion but points to the correct lines and is not commit-drift-related, so left as-is.",
+    "evidence": [
+      "src/flask/json/tag.py:191-202 (TagUUID)",
+      "src/flask/json/tag.py:289-293 (tag dispatch), 309 (_untag_scan), 321-323 (dumps), 325-327 (loads)",
+      "tests/test_json_tag.py:23,27-29",
+      "src/flask/sessions.py:14"
+    ]
+  },
+  {
+    "id": "flask_026",
+    "changed": false,
+    "what_changed": "No change. All ScriptInfo/cli.py citations verified: create_app param/assignment (566, 589), passthrough in make_context (671), app_import_path via --app option (440-446, 453-465), load_app() priority order (333-372, checks at 341/344/351-356), and docs/patterns/appfactories.rst existence confirmed.",
+    "evidence": [
+      "src/flask/cli.py:566,589,671 (create_app)",
+      "src/flask/cli.py:440-446,453-465 (--app / app_import_path)",
+      "src/flask/cli.py:333-372 (load_app priority chain)",
+      "tests/test_cli.py:268"
+    ]
+  },
+  {
+    "id": "flask_028",
+    "changed": false,
+    "what_changed": "No change. FlaskGroup.get_command() (609-634) and list_commands() (636-655) graceful-degradation behavior confirmed; ScriptInfo.load_app() cached-return check (338-339) and _loaded_app init/set (331/371) confirmed; ScriptInfo instantiation in make_context() (670) and eager --env-file/--app options (517-528, 453-465) confirmed.",
+    "evidence": [
+      "src/flask/cli.py:609-634 (get_command), 636-655 (list_commands)",
+      "src/flask/cli.py:331,338-339,371 (_loaded_app cache)",
+      "src/flask/cli.py:453-465,517-528 (eager options), 670 (ScriptInfo in make_context)"
+    ]
+  },
+  {
+    "id": "flask_030",
+    "changed": true,
+    "what_changed": "Fixed the decorator/method line ranges in sansio/blueprints.py (app_template_filter is 443-472, add_app_template_filter is 475-494 -- two separate methods, not a single 461-475 block). Corrected the filter-assignment mechanism: the dict write jinja_env.filters[name or f.__name__] = f actually happens inside Flask.add_template_filter at src/flask/sansio/app.py:708, not inline in blueprints.py as the original answer implied; blueprints.py's register_template_filter (490-491) only calls state.app.add_template_filter(f, name=name). Replaced the wrong test citation (test_blueprint_url_defaults, tests/test_blueprints.py:131-148, which tests url_defaults/url_prefix and is unrelated to filters) with the correct one, test_add_template_filter at tests/test_blueprints.py:390 (plus variants at 416 and 462). record_once() (233-244) and first_bp_registration identity check (line 316) were already accurate.",
+    "evidence": [
+      "src/flask/sansio/blueprints.py:443-472 (app_template_filter), 475-494 (add_app_template_filter), 490-491 (register_template_filter)",
+      "src/flask/sansio/blueprints.py:233-244 (record_once), 316 (first_bp_registration)",
+      "src/flask/sansio/app.py:696-708 (add_template_filter, dict assignment at 708)",
+      "tests/test_blueprints.py:390 (test_add_template_filter), 416, 462",
+      "tests/test_blueprints.py:131-148 (test_blueprint_url_defaults, confirmed unrelated to filters)"
+    ]
+  },
+  {
+    "id": "flask_032",
+    "changed": true,
+    "what_changed": "Fixed a consistent +14-line offset across every sessions.py citation: get_signing_serializer() is at lines 303-321 (not 317-335); key-list construction at 307-312 (not 321-326); URLSafeTimedSerializer instantiation at 313-321 (not 327-335); save_session starts at line 337 (not 351); the get_signing_serializer(app).dumps(...) call site is at line 373 (not 387). The mechanism description (no caching/memoization of the serializer; fresh URLSafeTimedSerializer per call) was already accurate and confirmed against the pinned tree.",
+    "evidence": [
+      "src/flask/sessions.py:303-321 (get_signing_serializer)",
+      "src/flask/sessions.py:307-312 (key list), 313-321 (serializer instantiation)",
+      "src/flask/sessions.py:337-384 (save_session), 373 (dumps call site)"
+    ]
+  },
+  {
+    "id": "flask_034",
+    "changed": false,
+    "what_changed": "No change. has_level_handler (logging.py:31-47), create_logger (58-79) with the addHandler guard at 76-77, and tests/test_logging.py:48-51 (test_existing_handler, asserting not app.logger.handlers after adding a StreamHandler to logging.root) all verified exact.",
+    "evidence": [
+      "src/flask/logging.py:31-47 (has_level_handler), 58-79 (create_logger), 76-77 (guarded addHandler)",
+      "tests/test_logging.py:48-51 (test_existing_handler)"
+    ]
+  },
+  {
+    "id": "flask_036",
+    "changed": true,
+    "what_changed": "Fixed one stale citation: self.cli = cli.AppGroup() is assigned in Flask.__init__ at app.py:340, not line 256 as originally claimed. All FlaskGroup.get_command() three-stage lookup line numbers in cli.py (609-634, decision point 615-616, _load_plugin_commands at 610, super().get_command() at 613, built-in commands 594-596, plugin loading 604-605/600-607, ScriptInfo/load_app/NoAppException handling 618-626, context push 631-632, final app.cli.get_command() at 634) were already accurate.",
+    "evidence": [
+      "src/flask/cli.py:609-634 (FlaskGroup.get_command three-stage lookup)",
+      "src/flask/app.py:340 (self.cli = cli.AppGroup())"
+    ]
+  },
+  {
+    "id": "flask_038",
+    "changed": false,
+    "what_changed": "No change. PassList.to_json (line 154, list comprehension calling self.serializer.tag(item)), PassList.tag = to_json alias (line 156), and TaggedJSONSerializer.tag() dispatcher (loop at 291, check at 292, dispatch at 293) all verified exact.",
+    "evidence": [
+      "src/flask/json/tag.py:154 (PassList.to_json), 156 (tag alias)",
+      "src/flask/json/tag.py:291-293 (TaggedJSONSerializer.tag dispatch loop)"
+    ]
+  },
+  {
+    "id": "flask_040",
+    "changed": true,
+    "what_changed": "Corrected _find_error_handler's location and every internal line number, which were off by a consistent 42 lines: the method is at sansio/app.py:865-888 (not 823-846); _get_exc_class_and_code / names construction is at lines 873-874 (not 832); the outer HTTP-code loop is at line 876 (not 834); the handler_map lookup is at lines 877-878 (not 836); the MRO traversal is at line 883 (not 841); and the match/return is at lines 884-887 (not 842-845). The three-level nesting order (code -> blueprint scope -> exception MRO) and the error_handler_spec structure citation (sansio/scaffold.py:123-126) were already accurate and are unchanged.",
+    "evidence": [
+      "src/flask/sansio/app.py:865-888 (_find_error_handler)",
+      "src/flask/sansio/app.py:873-874,876,877-878,883,884-887",
+      "src/flask/sansio/scaffold.py:123-126 (error_handler_spec type)"
+    ]
+  },
+  {
+    "id": "flask_042",
+    "changed": true,
+    "what_changed": "Corrected all line numbers: test_open_resource_with_encoding is defined at tests/test_helpers.py:372 with the app.open_resource(\"test\", mode=\"rt\", encoding=encoding) call at line 376 (original cited a single stale 'line 359', which is unrelated code -- the end of a different test). Flask.open_resource itself is defined at src/flask/app.py:414-445 (not 330-361), with the mode-validation raise at line 437, the binary-mode early return at 442-443, and the text-mode open(path, mode, encoding=encoding) call at line 445 (not 361). The described mechanism (Flask validates only mode, delegates encoding validation to Python's open()) was already accurate.",
+    "evidence": [
+      "tests/test_helpers.py:372 (test def), 376 (open_resource call with encoding)",
+      "src/flask/app.py:414-445 (open_resource), 437 (mode check), 442-443 (rb branch), 445 (text-mode open call)"
+    ]
+  },
+  {
+    "id": "flask_044",
+    "changed": false,
+    "what_changed": "No change. Config.from_object spans config.py:218-254 exactly as claimed, with isinstance(obj, str)/import_string at 250, the for key in dir(obj): loop at 252-254. tests/test_config.py common_object_test (13-16) and test_config_from_class (132-141) line ranges verified exact.",
+    "evidence": [
+      "src/flask/config.py:218-254 (from_object), 250-254 (dir(obj) loop)",
+      "tests/test_config.py:13-16 (common_object_test), 132-141 (test_config_from_class)"
+    ]
+  },
+  {
+    "id": "flask_046",
+    "changed": true,
+    "what_changed": "Fixed one stale line citation: the isinstance(rv, (dict, list)) check and self.json.response(rv) conversion inside make_response are at app.py:1325-1326 (not 1230-1231); make_response itself is defined at line 1224. All other citations (typing.py ResponseValue/list[t.Any] at line 16, ResponseReturnValue at 36-42, RouteCallable at 84-87; scaffold.py route() at 336-365, view_functions at line 108; pyproject.toml mypy files at 127-141 and pyright include at 143-146) were already accurate.",
+    "evidence": [
+      "src/flask/app.py:1224 (make_response def), 1325-1326 (dict/list check + json.response)",
+      "src/flask/typing.py:16 (list[t.Any]), 36-42 (ResponseReturnValue), 84-87 (RouteCallable)",
+      "src/flask/sansio/scaffold.py:108 (view_functions), 336-365 (route)",
+      "pyproject.toml:127-141 (tool.mypy), 143-147 (tool.pyright)"
+    ]
+  }
+]
