@@ -32,9 +32,17 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import httpx
+
 logger = logging.getLogger(__name__)
 
 REQUIRED_PAGE_FIELDS = ("page_id", "page_type", "title", "content")
+
+SNAPSHOT_API_BASE = "https://api.repowise.dev"
+
+#: The full corpus is ~31 MB of markdown in one response. The default httpx
+#: timeout of 5s cuts that off on any ordinary connection.
+SNAPSHOT_FETCH_TIMEOUT_SECONDS = 300.0
 
 
 class SnapshotError(ValueError):
@@ -153,3 +161,59 @@ def read_snapshot_file(path: str | Path) -> list[SnapshotPage]:
     except json.JSONDecodeError as exc:
         raise SnapshotError(f"{path} is not valid JSON ({exc.msg})") from exc
     return parse_snapshot(payload)
+
+
+def cache_path_for(short_id: str, cache_dir: str | Path) -> Path:
+    """Where a fetched snapshot is kept. Named by short id, which pins the corpus."""
+    return Path(cache_dir) / f"{short_id}.json"
+
+
+def fetch_snapshot(
+    short_id: str,
+    cache_dir: str | Path,
+    *,
+    base_url: str = SNAPSHOT_API_BASE,
+    timeout: float = SNAPSHOT_FETCH_TIMEOUT_SECONDS,
+    refresh: bool = False,
+) -> list[SnapshotPage]:
+    """Return the pages of a hosted snapshot, downloading it once and caching it.
+
+    The payload is ~31 MB, so a run reuses the cached copy. The cache is keyed
+    by short id and a snapshot is immutable under its id, so a stale-cache read
+    is not a risk; ``refresh`` exists for the case where a download was
+    truncated by something other than an error.
+
+    The download is written to a temporary file and moved into place only after
+    it parses. A half-written cache file would otherwise be indistinguishable
+    from a small corpus on the next run.
+    """
+    if not short_id or not short_id.strip():
+        raise SnapshotError("a snapshot short id is required")
+    short_id = short_id.strip()
+
+    cache_dir = Path(cache_dir)
+    cached = cache_path_for(short_id, cache_dir)
+    if cached.is_file() and not refresh:
+        logger.info("using cached snapshot %s (%s)", short_id, cached)
+        return read_snapshot_file(cached)
+
+    url = f"{base_url.rstrip('/')}/snapshots/{short_id}/docs"
+    logger.info("downloading snapshot %s from %s", short_id, url)
+    try:
+        response = httpx.get(url, timeout=timeout, follow_redirects=True)
+        response.raise_for_status()
+        payload = response.json()
+    except httpx.HTTPError as exc:
+        raise SnapshotError(f"could not fetch snapshot {short_id} from {url}: {exc}") from exc
+    except json.JSONDecodeError as exc:
+        raise SnapshotError(f"snapshot {short_id} did not return JSON ({exc.msg})") from exc
+
+    pages = parse_snapshot(payload)
+
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    partial = cached.with_suffix(".json.partial")
+    partial.write_text(json.dumps(payload), encoding="utf-8")
+    partial.replace(cached)
+    logger.info("cached %d pages for snapshot %s at %s", len(pages), short_id, cached)
+
+    return pages

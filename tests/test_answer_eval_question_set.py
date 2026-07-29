@@ -14,7 +14,7 @@ from answer_eval.question_set import (
 )
 
 GOOD_LINE = '{"id": "q001", "question": "Where is the cache invalidated?", '
-GOOD_LINE += '"expected_page_ids": ["file:a.py"]}'
+GOOD_LINE += '"expected_paths": ["src/repowise/cache.py::invalidate"]}'
 
 
 def write_set(tmp_path, text):
@@ -30,14 +30,14 @@ class TestLoadsAValidSet:
             RetrievalQuestion(
                 id="q001",
                 question="Where is the cache invalidated?",
-                expected_page_ids=frozenset({"file:a.py"}),
+                expected_paths=frozenset({"src/repowise/cache.py::invalidate"}),
                 tags=frozenset(),
             )
         ]
 
     def test_keeps_file_order(self, tmp_path):
         lines = "\n".join(
-            f'{{"id": "q00{i}", "question": "q{i}?", "expected_page_ids": ["p{i}"]}}'
+            f'{{"id": "q00{i}", "question": "q{i}?", "expected_paths": ["p{i}"]}}'
             for i in (1, 2, 3)
         )
         assert [q.id for q in load_retrieval_questions(write_set(tmp_path, lines))] == [
@@ -52,7 +52,7 @@ class TestLoadsAValidSet:
 
     def test_tags_are_optional_and_read_when_present(self, tmp_path):
         line = (
-            '{"id": "q001", "question": "Where?", "expected_page_ids": ["p1"], '
+            '{"id": "q001", "question": "Where?", "expected_paths": ["p1"], '
             '"tags": ["where", "hard"]}'
         )
         (question,) = load_retrieval_questions(write_set(tmp_path, line))
@@ -77,27 +77,27 @@ class TestMalformedSetRaises:
         with pytest.raises(QuestionSetError, match="line 1"):
             load_retrieval_questions(write_set(tmp_path, '["q001"]'))
 
-    @pytest.mark.parametrize("field", ["id", "question", "expected_page_ids"])
+    @pytest.mark.parametrize("field", ["id", "question", "expected_paths"])
     def test_missing_required_field(self, tmp_path, field):
-        line = '{"id": "q001", "question": "Where?", "expected_page_ids": ["p1"]}'.replace(
+        line = '{"id": "q001", "question": "Where?", "expected_paths": ["p1"]}'.replace(
             f'"{field}"', '"unused"'
         )
         with pytest.raises(QuestionSetError):
             load_retrieval_questions(write_set(tmp_path, line))
 
-    def test_empty_expected_page_ids_is_not_a_valid_expectation(self, tmp_path):
-        line = '{"id": "q001", "question": "Where?", "expected_page_ids": []}'
-        with pytest.raises(QuestionSetError, match="expected_page_ids"):
+    def test_empty_expected_paths_is_not_a_valid_expectation(self, tmp_path):
+        line = '{"id": "q001", "question": "Where?", "expected_paths": []}'
+        with pytest.raises(QuestionSetError, match="expected_paths"):
             load_retrieval_questions(write_set(tmp_path, line))
 
     def test_blank_question_text(self, tmp_path):
-        line = '{"id": "q001", "question": "   ", "expected_page_ids": ["p1"]}'
+        line = '{"id": "q001", "question": "   ", "expected_paths": ["p1"]}'
         with pytest.raises(QuestionSetError, match="question"):
             load_retrieval_questions(write_set(tmp_path, line))
 
-    def test_expected_page_ids_must_be_a_list_of_strings(self, tmp_path):
-        line = '{"id": "q001", "question": "Where?", "expected_page_ids": [3]}'
-        with pytest.raises(QuestionSetError, match="expected_page_ids"):
+    def test_expected_paths_must_be_a_list_of_strings(self, tmp_path):
+        line = '{"id": "q001", "question": "Where?", "expected_paths": [3]}'
+        with pytest.raises(QuestionSetError, match="expected_paths"):
             load_retrieval_questions(write_set(tmp_path, line))
 
     def test_duplicate_id_raises(self, tmp_path):
@@ -105,10 +105,21 @@ class TestMalformedSetRaises:
             load_retrieval_questions(write_set(tmp_path, f"{GOOD_LINE}\n{GOOD_LINE}"))
 
     def test_unknown_key_raises_so_a_typo_cannot_be_read_as_no_expectation(self, tmp_path):
-        """`expected_page_id` (singular) must not parse as a question with no expectations."""
+        """`expected_path` (singular) must not parse as a question with no expectations."""
         line = (
-            '{"id": "q001", "question": "Where?", "expected_page_ids": ["p1"], '
-            '"expected_page_id": "p2"}'
+            '{"id": "q001", "question": "Where?", "expected_paths": ["p1"], '
+            '"expected_path": "p2"}'
         )
         with pytest.raises(QuestionSetError, match="unknown"):
+            load_retrieval_questions(write_set(tmp_path, line))
+
+    def test_page_id_key_is_not_accepted_as_an_expectation(self, tmp_path):
+        """The tool reports target paths, so a set written in page-id keys must not load.
+
+        Expectations keyed on `expected_page_ids` would be silently compared
+        against values the answer tool never returns, and every question would
+        score zero for a reason that looks like a retrieval failure.
+        """
+        line = '{"id": "q001", "question": "Where?", "expected_page_ids": ["p1"]}'
+        with pytest.raises(QuestionSetError, match="expected_paths"):
             load_retrieval_questions(write_set(tmp_path, line))
