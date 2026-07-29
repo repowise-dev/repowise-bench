@@ -63,6 +63,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--embedding-model", default=DEFAULT_EMBEDDER.model)
     parser.add_argument("--embedding-dims", type=int, default=DEFAULT_EMBEDDER.dims)
+    parser.add_argument(
+        "--checkout",
+        type=Path,
+        default=None,
+        help=(
+            "source tree at the snapshot's commit. Without it the index holds pages "
+            "alone and every answer is capped at medium confidence, because the "
+            "citation-source gate demotes any high answer that cannot cite symbol "
+            "bodies. The index is written inside the checkout, as a real repo's is."
+        ),
+    )
+    parser.add_argument(
+        "--commit",
+        default=None,
+        help="commit the snapshot was generated from; the checkout is refused if it differs",
+    )
     parser.add_argument("-v", "--verbose", action="store_true")
     return parser
 
@@ -79,11 +95,19 @@ async def run(args: argparse.Namespace) -> Path:
     pages = fetch_snapshot(args.index, work_dir / "snapshots")
     logger.info("snapshot %s has %d pages", args.index, len(pages))
 
-    repo_dir = work_dir / "indexes" / f"{args.index}-{embedder.name}"
-    if args.rebuild_index and repo_dir.exists():
+    # With a checkout, the index goes inside it. The answer tool reads symbol
+    # source live from the repo root it is pointed at, so the database and the
+    # source it cites have to be the same tree - exactly as in a real repo.
+    repo_dir = (
+        Path(args.checkout)
+        if args.checkout
+        else work_dir / "indexes" / f"{args.index}-{embedder.name}"
+    )
+    if args.rebuild_index and (repo_dir / ".repowise").exists():
         import shutil
 
-        shutil.rmtree(repo_dir)
+        # Only the index, never the checkout around it.
+        shutil.rmtree(repo_dir / ".repowise")
 
     if (repo_dir / ".repowise" / "wiki.db").is_file():
         # Reused, not rebuilt. Safe only because the build report is on disk
@@ -108,7 +132,13 @@ async def run(args: argparse.Namespace) -> Path:
             )
     else:
         logger.info("building index at %s - this embeds every page", repo_dir)
-        index_report = await build_index(pages, repo_dir=repo_dir, embedder_name=embedder.name)
+        index_report = await build_index(
+            pages,
+            repo_dir=repo_dir,
+            embedder_name=embedder.name,
+            checkout=args.checkout,
+            expected_commit=args.commit,
+        )
         write_build_report(index_report, repo_dir)
         logger.info(
             "index built: %d pages, %d vectors, recipe=%s",
