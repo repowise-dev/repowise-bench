@@ -12,9 +12,10 @@ import pytest
 from answer_eval.index import IndexBuildReport
 from answer_eval.question_set import RetrievalQuestion
 from answer_eval.runner import RunnerError, retrieved_paths, run_question_set
-from answer_eval.server_session import EmbedderConfig
+from answer_eval.server_session import EmbedderConfig, SynthesisModel
 
 EMBEDDER = EmbedderConfig(name="gemini", model="gemini-embedding-001", dims=768)
+SYNTHESIS = SynthesisModel(provider="gemini", model="gemini-3.1-flash-lite-preview")
 INDEX = IndexBuildReport(
     pages_written=3,
     vectors_written=3,
@@ -58,6 +59,7 @@ async def run(questions, payloads, k=5):
         snapshot_short_id="45ce57f52457",
         index=INDEX,
         embedder=EMBEDDER,
+        synthesis=SYNTHESIS,
         k=k,
     )
 
@@ -188,3 +190,47 @@ class TestBlob:
         blob = report.as_blob()
         assert [q["id"] for q in blob["questions"]] == ["q1", "q2"]
         assert blob["questions"][0]["retrieved_paths"] == ["a.py"]
+
+
+class TestFileGranularity:
+    """A file has a page, and so does each of its symbols.
+
+    Retrieval returning the right file at the wrong granularity is a different
+    failure from returning the wrong file, and only the gap between the two
+    recall figures separates them.
+    """
+
+    async def test_a_symbol_page_of_the_expected_file_misses_strictly(self):
+        report = await run(
+            [question(expected=("a.py",))], [payload(paths=("a.py::parse",))]
+        )
+        assert report.scores.recall_at_k == 0.0
+        assert report.recall_at_k_by_file == 1.0
+
+    async def test_a_genuinely_wrong_file_misses_on_both(self):
+        """The looser metric must not launder a real miss into a hit."""
+        report = await run(
+            [question(expected=("a.py",))], [payload(paths=("z.py::parse",))]
+        )
+        assert report.scores.recall_at_k == 0.0
+        assert report.recall_at_k_by_file == 0.0
+
+    async def test_an_exact_hit_scores_the_same_on_both(self):
+        report = await run([question(expected=("a.py",))], [payload(paths=("a.py",))])
+        assert report.scores.recall_at_k == 1.0
+        assert report.recall_at_k_by_file == 1.0
+
+
+class TestSynthesisModelIsRecorded:
+    async def test_the_blob_names_the_model_that_wrote_the_answers(self):
+        """Confidence is a property of the model as much as of the corpus.
+
+        The answer tool picks its provider from whichever API key is in the
+        environment, so without this a confidence distribution records nothing
+        about what produced it and two runs are not comparable.
+        """
+        report = await run([question()], [payload()])
+        assert report.as_blob()["synthesis"] == {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite-preview",
+        }

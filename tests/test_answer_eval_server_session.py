@@ -16,6 +16,7 @@ from answer_eval.server_session import (
     _await_vector_store,
     _require_real_embedder,
     answer_server,
+    resolve_synthesis_model,
 )
 
 EMBEDDER = EmbedderConfig(name="gemini", model="gemini-embedding-001", dims=768)
@@ -100,3 +101,34 @@ class TestCacheFlag:
         gets broken, so the name lives here and the session sets it.
         """
         assert ANSWER_CACHE_DISABLE_ENV == "REPOWISE_ANSWER_DISABLE_CACHE"
+
+
+class TestSynthesisModel:
+    def test_no_provider_stops_the_run(self, monkeypatch, tmp_path):
+        """Missing synthesis does not fail loudly at answer time.
+
+        The tool degrades to a retrieval-only response, which reads as a tool
+        that got more cautious rather than one that had no model at all - so a
+        whole run of low-confidence answers would look like a finding.
+        """
+        import repowise.server.mcp_server.tool_answer.synthesis as synthesis
+
+        monkeypatch.setattr(
+            synthesis, "_resolve_provider_for_answer", lambda repo_path=None: None
+        )
+        with pytest.raises(ServerSessionError, match="no synthesis provider"):
+            resolve_synthesis_model(tmp_path)
+
+    def test_the_resolved_provider_and_model_are_reported(self, monkeypatch, tmp_path):
+        import repowise.server.mcp_server.tool_answer.synthesis as synthesis
+
+        class FakeProvider:
+            provider_name = "gemini"
+            model_name = "gemini-3.1-flash-lite-preview"
+
+        monkeypatch.setattr(
+            synthesis, "_resolve_provider_for_answer", lambda repo_path=None: FakeProvider()
+        )
+        resolved = resolve_synthesis_model(tmp_path)
+        assert resolved.provider == "gemini"
+        assert resolved.model == "gemini-3.1-flash-lite-preview"

@@ -32,7 +32,7 @@ from typing import Any
 from answer_eval.index import IndexBuildReport
 from answer_eval.question_set import RetrievalQuestion
 from answer_eval.scoring import RetrievalScores, score_retrieval
-from answer_eval.server_session import EmbedderConfig
+from answer_eval.server_session import EmbedderConfig, SynthesisModel
 
 logger = logging.getLogger(__name__)
 
@@ -85,8 +85,19 @@ class RunReport:
     non_retrieval_grounding_counts: dict[str, int]
     """Answers that came back with no retrieval hits, by grounding. These score
     zero on recall while often being correct - counted, never folded in."""
+    recall_at_k_by_file: float
+    """Recall with the ``::symbol`` suffix stripped from both sides.
+
+    A file has a page and its symbols have their own pages, so retrieval can
+    return the right file at the wrong granularity. That is a different failure
+    from returning the wrong file, and only the gap between this and
+    ``recall_at_k`` separates them. Reported, never substituted for the strict
+    score - collapsing granularity is how a retrieval eval flatters itself."""
     index: IndexBuildReport
     embedder: EmbedderConfig
+    synthesis: SynthesisModel
+    """Which model wrote the answers. Confidence is as much a property of the
+    model as of the corpus, so two runs are only comparable if this matches."""
     questions: list[QuestionResult]
     elapsed_seconds: float
 
@@ -95,6 +106,7 @@ class RunReport:
             "snapshot_short_id": self.snapshot_short_id,
             "k": self.k,
             "recall_at_k": self.scores.recall_at_k,
+            "recall_at_k_by_file": self.recall_at_k_by_file,
             "mrr": self.scores.mrr,
             "n_questions": self.scores.n_questions,
             "n_empty_results": self.scores.n_empty_results,
@@ -103,10 +115,23 @@ class RunReport:
             "recall_at_k_when_high": self.recall_at_k_when_high,
             "non_retrieval_grounding_counts": self.non_retrieval_grounding_counts,
             "embedder": asdict(self.embedder),
+            "synthesis": asdict(self.synthesis),
             "index": asdict(self.index),
             "elapsed_seconds": self.elapsed_seconds,
             "questions": [asdict(q) for q in self.questions],
         }
+
+
+def file_of(path: str) -> str:
+    """Strip a ``::symbol`` suffix, leaving the file the page belongs to."""
+    return path.split("::", 1)[0]
+
+
+def _file_recall(result: "QuestionResult", k: int) -> float:
+    """Recall for one question with symbol granularity collapsed away."""
+    expected = {file_of(p) for p in result.expected_paths}
+    window = {file_of(p) for p in result.retrieved_paths[:k]}
+    return len(window & expected) / len(expected)
 
 
 def retrieved_paths(payload: dict) -> list[str]:
@@ -177,6 +202,7 @@ async def run_question_set(
     snapshot_short_id: str,
     index: IndexBuildReport,
     embedder: EmbedderConfig,
+    synthesis: SynthesisModel,
     k: int = DEFAULT_K,
 ) -> RunReport:
     """Ask every question in order and aggregate into one report."""
@@ -215,8 +241,10 @@ async def run_question_set(
             sum(r.recall_at_k for r in high) / len(high) if high else None
         ),
         non_retrieval_grounding_counts=dict(Counter(r.grounding for r in no_hits)),
+        recall_at_k_by_file=sum(_file_recall(r, k) for r in results) / len(results),
         index=index,
         embedder=embedder,
+        synthesis=synthesis,
         questions=results,
         elapsed_seconds=time.perf_counter() - started,
     )

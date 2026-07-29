@@ -67,6 +67,39 @@ class EmbedderConfig:
         }
 
 
+@dataclass(frozen=True)
+class SynthesisModel:
+    """The provider and model that actually wrote the answers in a run."""
+
+    provider: str
+    model: str
+
+
+def resolve_synthesis_model(repo_dir: str | Path) -> SynthesisModel:
+    """Ask the answer tool which provider it will synthesise with, and record it.
+
+    The tool auto-detects a provider from whichever API key happens to be in
+    the environment. For a developer that is a convenience; for a benchmark it
+    means the model behind a confidence distribution is whatever the shell
+    was carrying that day. Resolving it up front and putting it in the blob is
+    what makes two runs comparable - confidence gates are a property of the
+    model as much as of the corpus.
+
+    Synthesis being unavailable is fatal. It does not fail loudly at answer
+    time; it degrades to a retrieval-only response, which reads as a tool that
+    got more cautious rather than one that had no model at all.
+    """
+    from repowise.server.mcp_server.tool_answer.synthesis import _resolve_provider_for_answer
+
+    provider = _resolve_provider_for_answer(Path(repo_dir))
+    if provider is None:
+        raise ServerSessionError(
+            "no synthesis provider resolved - the run would measure retrieval-only "
+            "responses and report them as low-confidence answers. Set an API key."
+        )
+    return SynthesisModel(provider=provider.provider_name, model=provider.model_name)
+
+
 @asynccontextmanager
 async def answer_server(repo_dir: str | Path, embedder: EmbedderConfig):
     """Run the real server lifespan over ``repo_dir``, yielding ``get_answer``.

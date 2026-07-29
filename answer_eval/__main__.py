@@ -18,7 +18,7 @@ from pathlib import Path
 from answer_eval.index import build_index, read_build_report, write_build_report
 from answer_eval.question_set import load_retrieval_questions
 from answer_eval.runner import DEFAULT_K, run_question_set, write_blob
-from answer_eval.server_session import EmbedderConfig, answer_server
+from answer_eval.server_session import EmbedderConfig, answer_server, resolve_synthesis_model
 from answer_eval.snapshot import fetch_snapshot
 
 logger = logging.getLogger("answer_eval")
@@ -117,6 +117,9 @@ async def run(args: argparse.Namespace) -> Path:
             index_report.embed_recipe,
         )
 
+    synthesis = resolve_synthesis_model(repo_dir)
+    logger.info("synthesising with %s / %s", synthesis.provider, synthesis.model)
+
     async with answer_server(repo_dir, embedder) as answer_tool:
         report = await run_question_set(
             answer_tool,
@@ -124,6 +127,7 @@ async def run(args: argparse.Namespace) -> Path:
             snapshot_short_id=args.index,
             index=index_report,
             embedder=embedder,
+            synthesis=synthesis,
             k=args.k,
         )
 
@@ -132,6 +136,7 @@ async def run(args: argparse.Namespace) -> Path:
 
     print(
         f"recall@{report.k}={report.scores.recall_at_k:.3f} "
+        f"(by file {report.recall_at_k_by_file:.3f}) "
         f"mrr={report.scores.mrr:.3f} "
         f"abstain={report.abstention_rate:.1%} "
         f"confidence={report.confidence_counts} "
