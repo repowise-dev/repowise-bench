@@ -5,3 +5,10 @@ anthropic>=0.30
 pyyaml
 scipy>=1.11
 matplotlib>=3.8
+
+# Answer eval harness. repowise is pinned exactly: the eval boots its real
+# server and builds a real index, so an unpinned upgrade would silently move
+# the baseline it measures against.
+repowise==0.36.0
+pytest>=8
+pytest-asyncio>=0.23

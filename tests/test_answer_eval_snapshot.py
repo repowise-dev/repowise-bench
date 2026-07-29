@@ -9,12 +9,32 @@ import json
 
 import pytest
 
+import answer_eval.snapshot as snapshot_module
 from answer_eval.snapshot import (
     SnapshotError,
     SnapshotPage,
+    cache_path_for,
+    fetch_snapshot,
     parse_snapshot,
     read_snapshot_file,
 )
+
+
+def _fake_get(body, calls):
+    """Stand in for httpx.get, recording each call so caching is observable."""
+
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return body
+
+    def get(url, **kwargs):
+        calls.append(url)
+        return FakeResponse()
+
+    return get
 
 
 def payload(pages=None, **overrides):
@@ -200,3 +220,72 @@ class TestReadSnapshotFile:
         path.write_text("{not json", encoding="utf-8")
         with pytest.raises(SnapshotError, match="valid JSON"):
             read_snapshot_file(path)
+
+
+class TestFetchSnapshot:
+    """Downloading a snapshot once and reusing it.
+
+    The payload is ~31 MB, so caching is the difference between a run that
+    costs seconds and one that costs minutes. What matters is that a cache
+    entry is only ever a snapshot that already parsed.
+    """
+
+    def test_downloads_parses_and_caches(self, tmp_path, monkeypatch):
+        calls = []
+        monkeypatch.setattr(
+            snapshot_module.httpx, "get", _fake_get(payload(), calls), raising=True
+        )
+
+        pages = fetch_snapshot("abc123", tmp_path)
+
+        assert len(pages) == 1
+        assert cache_path_for("abc123", tmp_path).is_file()
+        assert len(calls) == 1
+
+    def test_a_second_run_reads_the_cache_instead_of_the_network(self, tmp_path, monkeypatch):
+        calls = []
+        monkeypatch.setattr(
+            snapshot_module.httpx, "get", _fake_get(payload(), calls), raising=True
+        )
+
+        fetch_snapshot("abc123", tmp_path)
+        fetch_snapshot("abc123", tmp_path)
+
+        assert len(calls) == 1
+
+    def test_refresh_downloads_again(self, tmp_path, monkeypatch):
+        calls = []
+        monkeypatch.setattr(
+            snapshot_module.httpx, "get", _fake_get(payload(), calls), raising=True
+        )
+
+        fetch_snapshot("abc123", tmp_path)
+        fetch_snapshot("abc123", tmp_path, refresh=True)
+
+        assert len(calls) == 2
+
+    def test_a_snapshot_that_does_not_parse_is_not_cached(self, tmp_path, monkeypatch):
+        """A cache file the next run would read as a small corpus.
+
+        Recall against a truncated corpus looks exactly like a retrieval
+        regression, so the write happens only after the payload parses.
+        """
+        broken = payload(pages=[{"page_id": "p1"}])
+        monkeypatch.setattr(snapshot_module.httpx, "get", _fake_get(broken, []), raising=True)
+
+        with pytest.raises(SnapshotError):
+            fetch_snapshot("abc123", tmp_path)
+        assert not cache_path_for("abc123", tmp_path).exists()
+
+    def test_a_failed_download_raises_with_the_url(self, tmp_path, monkeypatch):
+        def boom(url, **kwargs):
+            raise snapshot_module.httpx.ConnectError("no route to host")
+
+        monkeypatch.setattr(snapshot_module.httpx, "get", boom, raising=True)
+
+        with pytest.raises(SnapshotError, match="snapshots/abc123/docs"):
+            fetch_snapshot("abc123", tmp_path)
+
+    def test_a_blank_short_id_raises_rather_than_fetching_something(self, tmp_path):
+        with pytest.raises(SnapshotError, match="short id is required"):
+            fetch_snapshot("   ", tmp_path)
