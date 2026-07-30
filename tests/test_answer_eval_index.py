@@ -118,6 +118,101 @@ class TestBuildIndex:
             await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
 
 
+class TestFullTextRows:
+    """The full-text arm has to be *in* the index, not merely created.
+
+    A build created the FTS5 table and never wrote a row to it, so
+    ``get_answer``'s full-text search matched nothing for every question. The
+    vector arm carried retrieval and the fused ranking looked healthy, so the
+    run reported a hybrid system while measuring half of one. Nothing raised,
+    nothing warned, and the recall figures read as normal results.
+    """
+
+    async def _fts_count(self, repo_dir) -> int:
+        import sqlite3
+
+        con = sqlite3.connect(repo_dir / ".repowise" / "wiki.db")
+        try:
+            return con.execute("select count(*) from page_fts").fetchone()[0]
+        finally:
+            con.close()
+
+    async def test_a_build_indexes_every_page_for_full_text_search(self, tmp_path):
+        report = await build_index(
+            [page("p1"), page("p2", target_path="b.py")],
+            repo_dir=tmp_path,
+            embedder_name="mock",
+        )
+        assert report.fts_rows == 2
+        assert await self._fts_count(tmp_path) == 2
+
+    async def test_a_question_matches_a_page_by_its_content(self, tmp_path):
+        """The end the eval actually depends on: text in a page is findable."""
+        from repowise.core.persistence.database import create_engine
+        from repowise.core.persistence.search import FullTextSearch
+
+        await build_index(
+            [page("p1", content="# a.py\n\nThe walker skips nested git checkouts.")],
+            repo_dir=tmp_path,
+            embedder_name="mock",
+        )
+        engine = create_engine(f"sqlite+aiosqlite:///{tmp_path / '.repowise' / 'wiki.db'}")
+        try:
+            hits = await FullTextSearch(engine).search("nested git checkouts", limit=5)
+        finally:
+            await engine.dispose()
+        assert [h.page_id for h in hits] == ["p1"]
+
+    async def test_a_short_full_text_index_fails_the_build(self, tmp_path, monkeypatch):
+        """Same rule the vectors get: a half-written arm is not scoreable."""
+        import answer_eval.index as index_module
+
+        async def write_nothing(_engine):
+            return 0
+
+        monkeypatch.setattr(index_module, "write_page_fts", write_nothing)
+        with pytest.raises(IndexBuildError, match="full-text"):
+            await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
+
+    async def test_repair_backfills_an_index_that_has_none(self, tmp_path):
+        """An index built before the write existed repairs itself rather than
+        being re-embedded -- full-text rows need no embedder and cost nothing."""
+        import sqlite3
+
+        await build_index([page("p1"), page("p2")], repo_dir=tmp_path, embedder_name="mock")
+        con = sqlite3.connect(tmp_path / ".repowise" / "wiki.db")
+        con.execute("delete from page_fts")
+        con.commit()
+        con.close()
+        assert await self._fts_count(tmp_path) == 0
+
+        from answer_eval.index import repair_page_fts
+
+        assert await repair_page_fts(tmp_path) == 2
+        assert await self._fts_count(tmp_path) == 2
+
+    async def test_repair_is_idempotent(self, tmp_path):
+        from answer_eval.index import repair_page_fts
+
+        await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
+        assert await repair_page_fts(tmp_path) == 1
+        assert await repair_page_fts(tmp_path) == 1
+        assert await self._fts_count(tmp_path) == 1
+
+    async def test_a_report_without_the_field_still_loads(self, tmp_path):
+        """Old reports describe an index that is repairable, not one to discard."""
+        import json
+
+        report = await build_index([page("p1")], repo_dir=tmp_path, embedder_name="mock")
+        write_build_report(report, tmp_path)
+        path = build_report_path(tmp_path)
+        fields = json.loads(path.read_text())
+        del fields["fts_rows"]
+        path.write_text(json.dumps(fields))
+
+        assert read_build_report(tmp_path).fts_rows == 0
+
+
 class TestBuildReportRoundTrip:
     """An index is only safe to reuse if the report that describes it survives.
 

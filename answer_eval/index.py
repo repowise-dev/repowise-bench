@@ -74,6 +74,11 @@ class IndexBuildReport:
     """The symbol index, when one was built. ``None`` means an index of pages
     alone, which cannot produce a high-confidence answer - see
     :mod:`answer_eval.symbols`."""
+    fts_rows: int = 0
+    """Rows in ``page_fts``. Recorded because a build once created that table
+    and never wrote to it: the full-text arm of retrieval returned nothing for
+    every question and the run still reported a fused result. ``0`` on a report
+    written before this was measured."""
 
 
 def embed_item(page: SnapshotPage) -> tuple[str, str, dict]:
@@ -94,6 +99,62 @@ def embed_item(page: SnapshotPage) -> tuple[str, str, dict]:
             "summary": page.summary or "",
         },
     )
+
+
+async def write_page_fts(engine) -> int:
+    """Index every ``wiki_pages`` row for full-text search. Returns the row count.
+
+    A build used to create the FTS5 table and never write to it, so ``page_fts``
+    sat empty while ``get_answer``'s full-text arm returned nothing for every
+    question. Retrieval still worked -- the vector arm carried it and the fused
+    ranking looked healthy -- so the run reported a hybrid system while
+    measuring half of one.
+
+    Written through ``FullTextSearch.index``, the same call the product's
+    generation and job paths use, rather than raw SQL: when the FTS schema
+    changes, an index built here has to change with it or the eval measures a
+    corpus shape no user has.
+
+    Idempotent, and cheap enough to run on an index that already exists -- it
+    reads the pages already in the database and needs no embedder, no network
+    and no spend. That is what lets an index built before this existed repair
+    itself instead of being re-embedded.
+    """
+    from sqlalchemy import select
+
+    from repowise.core.persistence.models import Page
+
+    fts = FullTextSearch(engine)
+    await fts.ensure_index()
+
+    already = await fts.list_indexed_ids()
+    async with engine.connect() as conn:
+        rows = (await conn.execute(select(Page.id, Page.title, Page.content))).all()
+
+    written = 0
+    for page_id, title, content in rows:
+        if page_id in already:
+            continue
+        await fts.index(page_id, title or "", content or "")
+        written += 1
+    if written:
+        logger.info("indexed %d page(s) for full-text search", written)
+    return len(await fts.list_indexed_ids())
+
+
+async def repair_page_fts(repo_dir: str | Path) -> int:
+    """Backfill ``page_fts`` in an index on disk. Returns its final row count.
+
+    The reuse path calls this because an index built before the full-text write
+    existed is otherwise indistinguishable from a healthy one, and reusing it
+    silently measures the vector arm alone.
+    """
+    repowise_dir = Path(repo_dir) / ".repowise"
+    engine = create_engine(f"sqlite+aiosqlite:///{repowise_dir / 'wiki.db'}")
+    try:
+        return await write_page_fts(engine)
+    finally:
+        await engine.dispose()
 
 
 async def build_index(
@@ -147,8 +208,14 @@ async def build_index(
                 "gate demotes any high answer that cannot cite symbol bodies."
             )
 
-        fts = FullTextSearch(engine)
-        await fts.ensure_index()
+        fts_rows = await write_page_fts(engine)
+        if fts_rows != pages_written:
+            raise IndexBuildError(
+                f"full-text index holds {fts_rows} rows for {pages_written} pages. "
+                "The answer tool fuses full-text and vector retrieval, so a short "
+                "index measures a system that is half missing while every number "
+                "still looks like a retrieval result."
+            )
 
         vectors_written, failures = await _embed_pages(
             repowise_dir, pages, embedder_name, batch_size
@@ -164,6 +231,7 @@ async def build_index(
         embed_recipe=EMBED_RECIPE,
         repo_dir=str(repo_dir),
         symbols=asdict(symbol_report) if symbol_report else None,
+        fts_rows=fts_rows,
     )
 
 
@@ -207,7 +275,10 @@ def read_build_report(repo_dir: str | Path) -> IndexBuildReport:
         raise IndexBuildError(f"{path} is not valid JSON ({exc.msg})") from exc
 
     expected = {field.name for field in dataclass_fields(IndexBuildReport)}
-    optional = {"symbols"}
+    # ``fts_rows`` is optional so a report written before the full-text write
+    # existed still loads: the index it describes is repaired on reuse rather
+    # than re-embedded.
+    optional = {"symbols", "fts_rows"}
     if not (expected - optional) <= set(fields) <= expected:
         raise IndexBuildError(
             f"{path} does not describe an index build: expected fields "

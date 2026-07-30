@@ -13,11 +13,17 @@ import argparse
 import asyncio
 import logging
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 from answer_eval.gold_runner import run_gold_set, write_gold_blob
 from answer_eval.gold_set import load_gold_questions
-from answer_eval.index import build_index, read_build_report, write_build_report
+from answer_eval.index import (
+    build_index,
+    read_build_report,
+    repair_page_fts,
+    write_build_report,
+)
 from answer_eval.judge import JudgeModel
 from answer_eval.question_set import load_retrieval_questions
 from answer_eval.runner import DEFAULT_K, run_question_set, write_blob
@@ -163,6 +169,27 @@ async def run(args: argparse.Namespace) -> Path:
                 f"{embedder.name!r}. Querying it would compare vectors from two "
                 "different models. Pass --rebuild-index."
             )
+        # Full-text rows are backfilled rather than rebuilt: they cost nothing to
+        # write, and an index missing them answers every question from the vector
+        # arm alone, which reads as a fused result and is not one.
+        fts_rows = await repair_page_fts(repo_dir)
+        if fts_rows != index_report.pages_written:
+            raise SystemExit(
+                f"index at {repo_dir} holds {fts_rows} full-text rows for "
+                f"{index_report.pages_written} pages. Retrieval fuses full-text with "
+                "vectors, so this run would measure a system that is half missing. "
+                "Pass --rebuild-index."
+            )
+        if fts_rows != index_report.fts_rows:
+            logger.warning(
+                "backfilled the full-text index to %d rows (the build report recorded "
+                "%d). Retrieval numbers from this run are NOT comparable with runs "
+                "made before the backfill: those measured the vector arm alone.",
+                fts_rows,
+                index_report.fts_rows,
+            )
+            index_report = replace(index_report, fts_rows=fts_rows)
+            write_build_report(index_report, repo_dir)
     else:
         logger.info("building index at %s - this embeds every page", repo_dir)
         index_report = await build_index(
