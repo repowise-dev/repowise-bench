@@ -1,5 +1,5 @@
 {"id": "q001", "question": "Why does every repo-wide file scan have to go through one walking module?", "expected_paths": ["packages/core/src/repowise/core/fs_walk.py"], "tags": ["why", "file_page"]}
-{"id": "q002", "question": "Where does the repo scan stop itself from descending into nested git repositories?", "expected_paths": ["packages/core/src/repowise/core/fs_walk.py"], "tags": ["where", "file_page"]}
+{"id": "q002", "question": "Where is the walk option that skips any non-root directory containing its own .git entry?", "expected_paths": ["packages/core/src/repowise/core/fs_walk.py"], "tags": ["where", "file_page"]}
 {"id": "q003", "question": "Why are excluded files filtered again when reading, if they were already skipped at ingest?", "expected_paths": ["packages/core/src/repowise/core/exclusion.py"], "tags": ["why", "file_page"]}
 {"id": "q004", "question": "How do I compile a repository's exclude rules into something I can test a path against?", "expected_paths": ["packages/core/src/repowise/core/exclusion.py"], "tags": ["how", "file_page"]}
 {"id": "q005", "question": "How does repowise stop an invented rationale from becoming a decision record?", "expected_paths": ["packages/core/src/repowise/core/analysis/decisions/gate.py"], "tags": ["how", "file_page"]}
@@ -12,7 +12,7 @@
 {"id": "q012", "question": "What stops an exception escaping a tool and reaching the agent as an error result?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/_failure_shield.py"], "tags": ["what", "file_page"]}
 {"id": "q013", "question": "How does the stdio MCP server notice that its parent process died?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/_watchdog.py"], "tags": ["how", "file_page"]}
 {"id": "q014", "question": "How does the answer tool decide its confidence level?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/tool_answer/confidence.py"], "tags": ["how", "file_page", "tool_answer"]}
-{"id": "q015", "question": "Where does get_answer run its retrieval?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py"], "tags": ["where", "file_page", "tool_answer"]}
+{"id": "q015", "question": "Where does get_answer apply its domain penalty and intersection boost to the candidate hits?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py"], "tags": ["where", "file_page", "tool_answer"]}
 {"id": "q016", "question": "How is the answer text synthesised once retrieval has run?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py"], "tags": ["how", "file_page", "tool_answer"]}
 {"id": "q017", "question": "How is the output of get_context kept within a size budget?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/tool_context/truncation.py"], "tags": ["how", "file_page"]}
 {"id": "q018", "question": "How can content dropped from an MCP tool response be recovered afterwards?", "expected_paths": ["packages/server/src/repowise/server/mcp_server/_budget/collector.py"], "tags": ["how", "file_page"]}
