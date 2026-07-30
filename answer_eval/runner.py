@@ -23,7 +23,9 @@ answer, however good, and the harder the tool tries the worse it looks.
 supplements it at medium and low where it is populated.
 
 Both raw lists are kept per question, so the split between "cited it" and "had
-it in the candidate set" stays visible instead of being averaged away.
+it in the candidate set" stays visible instead of being averaged away. So is
+the answer text: a score can only be argued with by someone who can read what
+the tool said, and re-asking the question is not the same as reading it.
 
 Cost is deliberately absent. Retrieval scoring needs no judge, so a run is
 near-free; the cost figure belongs with the judged gold set, where it is a real
@@ -74,8 +76,22 @@ class QuestionResult:
     by design, which is why it is not what gets scored."""
     confidence: str
     grounding: str
+    answer_text: str
+    """What the tool actually said, whole.
+
+    Kept because a path list alone cannot be audited. Deciding whether a
+    confident answer was wrong, or the expectation too narrow, means reading
+    the answer - and without this the only way to read it is to ask the
+    question again against the same index and hope the model repeats itself.
+    """
     answered: bool
     """False when the tool returned no answer text - the abstention signal."""
+    expected_paths_named_only_in_prose: list[str]
+    """Expected paths the answer names in its text but did not put in its path
+    lists.
+
+    A different failure from retrieval missing the page, scoring identically.
+    See :func:`named_only_in_prose`."""
     recall_at_k: float
     reciprocal_rank: float
     elapsed_seconds: float
@@ -100,6 +116,11 @@ class RunReport:
     """
     non_retrieval_grounding_counts: dict[str, int]
     """Answers that put no path in front of the caller at all, by grounding."""
+    n_answers_naming_an_uncited_expected_path: int
+    """How many answers named an expected page in prose without citing it.
+
+    A rise here is a citation problem wearing a retrieval problem's clothes:
+    recall falls, but the page was in the model's context the whole time."""
     n_citations_only: int
     """Answers carrying citations but an empty retrieval block. Expected to be
     every high-confidence answer; a jump at medium or low would mean the tool
@@ -141,6 +162,9 @@ class RunReport:
             "recall_at_k_when_high": self.recall_at_k_when_high,
             "non_retrieval_grounding_counts": self.non_retrieval_grounding_counts,
             "n_citations_only": self.n_citations_only,
+            "n_answers_naming_an_uncited_expected_path": (
+                self.n_answers_naming_an_uncited_expected_path
+            ),
             "embedder": asdict(self.embedder),
             "synthesis": asdict(self.synthesis),
             "index": asdict(self.index),
@@ -175,6 +199,33 @@ def answered_paths(payload: dict) -> list[str]:
             seen.add(path)
             result.append(path)
     return result
+
+
+def named_only_in_prose(
+    answer_text: str, expected: set[str], returned: Sequence[str]
+) -> list[str]:
+    """Expected paths the answer text mentions but the path lists do not carry.
+
+    The check is a plain substring match on the file part of each expected
+    path, and is deliberately loose: it is a diagnostic that says "go and read
+    this one", never a score. A path is only reported when it is absent from
+    everything the tool put in front of the caller, so a cited page can never
+    appear here.
+
+    Why it is worth counting at all: an answer that names the right file and
+    cites a different one scores exactly as badly as an answer that never
+    found the file. The two need opposite fixes - one is retrieval, one is
+    citation - and averaging them into a single recall figure hides which is
+    happening.
+    """
+    if not answer_text.strip():
+        return []
+    returned_files = {file_of(path) for path in returned}
+    return sorted(
+        path
+        for path in expected
+        if file_of(path) not in returned_files and file_of(path) in answer_text
+    )
 
 
 def file_of(path: str) -> str:
@@ -236,6 +287,16 @@ async def run_question(answer_tool, question: RetrievalQuestion, k: int) -> Ques
     retrieval = retrieved_paths(payload)
     paths = answered_paths(payload)
     expected = set(question.expected_paths)
+    answer_text = payload.get("answer") or ""
+
+    prose_only = named_only_in_prose(answer_text, expected, paths)
+    if prose_only:
+        logger.warning(
+            "question %s: %s named in the answer but absent from its citations "
+            "and retrieval - retrieval found it, the caller was not shown it",
+            question.id,
+            ", ".join(prose_only),
+        )
 
     return QuestionResult(
         id=question.id,
@@ -246,7 +307,9 @@ async def run_question(answer_tool, question: RetrievalQuestion, k: int) -> Ques
         retrieval_paths=retrieval,
         confidence=confidence,
         grounding=payload.get("grounding") or "retrieval",
-        answered=bool((payload.get("answer") or "").strip()),
+        answer_text=answer_text.strip(),
+        answered=bool(answer_text.strip()),
+        expected_paths_named_only_in_prose=prose_only,
         recall_at_k=recall_at_k(paths, expected, k=k),
         reciprocal_rank=reciprocal_rank(paths, expected),
         elapsed_seconds=elapsed,
@@ -311,6 +374,9 @@ async def run_question_set(
             sum(r.recall_at_k for r in high) / len(high) if high else None
         ),
         non_retrieval_grounding_counts=dict(Counter(r.grounding for r in no_hits)),
+        n_answers_naming_an_uncited_expected_path=sum(
+            1 for r in results if r.expected_paths_named_only_in_prose
+        ),
         n_citations_only=cite_only,
         recall_at_k_by_file=sum(_file_recall(r, k) for r in results) / len(results),
         index=index,

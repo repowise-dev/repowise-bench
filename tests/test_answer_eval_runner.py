@@ -298,6 +298,74 @@ class TestScoresWhatTheToolPutInFrontOfTheCaller:
         assert q["retrieved_paths"] == ["a.py", "b.py"]
 
 
+class TestTheAnswerTextIsKept:
+    """A blob without the answer text cannot be audited, only re-run.
+
+    Reading a handful of confident-but-wrong answers by hand meant re-asking
+    every one of them, because the only thing kept was the path list. The
+    answer is the cheapest field in the blob and the one a reviewer needs.
+    """
+
+    async def test_the_blob_carries_what_the_tool_actually_said(self):
+        report = await run([question()], [payload(answer="Because of X.")])
+        assert report.as_blob()["questions"][0]["answer_text"] == "Because of X."
+
+    async def test_an_abstention_is_kept_as_empty_text_not_dropped(self):
+        report = await run([question()], [payload(answer="   ")])
+        q = report.as_blob()["questions"][0]
+        assert q["answer_text"] == ""
+        assert q["answered"] is False
+
+
+class TestAPageNamedInProseButNotCited:
+    """Naming the right file in the answer while citing something else.
+
+    This is a different failure from retrieval missing the page, and it scores
+    identically — zero. One is "the tool never saw it", the other is "the tool
+    saw it, said so, and did not put it in front of the caller". Only a
+    diagnostic that reads the prose separates them, and the fix is not the
+    same for the two.
+    """
+
+    async def test_an_expected_path_named_only_in_prose_is_recorded(self, caplog):
+        with caplog.at_level("WARNING"):
+            report = await run(
+                [question(expected=("core/registry.py",))],
+                [payload(paths=("core/langs.py",), answer="It lives in core/registry.py.")],
+            )
+        q = report.as_blob()["questions"][0]
+        assert q["expected_paths_named_only_in_prose"] == ["core/registry.py"]
+        assert report.n_answers_naming_an_uncited_expected_path == 1
+        assert "named in the answer" in caplog.text
+
+    async def test_a_cited_path_is_not_also_reported_as_prose_only(self):
+        report = await run(
+            [question(expected=("core/registry.py",))],
+            [payload(paths=("core/registry.py",), answer="It lives in core/registry.py.")],
+        )
+        q = report.as_blob()["questions"][0]
+        assert q["expected_paths_named_only_in_prose"] == []
+        assert report.n_answers_naming_an_uncited_expected_path == 0
+
+    async def test_a_symbol_expectation_counts_when_its_file_is_named(self):
+        """`a.py::parse` is named by an answer that says `a.py` and the symbol."""
+        report = await run(
+            [question(expected=("a.py::parse",))],
+            [payload(paths=("z.py",), answer="See `parse` in a.py.")],
+        )
+        assert report.as_blob()["questions"][0][
+            "expected_paths_named_only_in_prose"
+        ] == ["a.py::parse"]
+
+    async def test_a_plain_miss_names_nothing(self):
+        report = await run(
+            [question(expected=("a.py",))],
+            [payload(paths=("z.py",), answer="It is handled in z.py.")],
+        )
+        assert report.as_blob()["questions"][0]["expected_paths_named_only_in_prose"] == []
+        assert report.n_answers_naming_an_uncited_expected_path == 0
+
+
 class TestSymbolLessIndexIsFlagged:
     """An index with no symbols caps every answer at medium, silently.
 
