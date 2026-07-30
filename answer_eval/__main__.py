@@ -15,16 +15,21 @@ import logging
 import sys
 from pathlib import Path
 
+from answer_eval.gold_runner import run_gold_set, write_gold_blob
+from answer_eval.gold_set import load_gold_questions
 from answer_eval.index import build_index, read_build_report, write_build_report
+from answer_eval.judge import JudgeModel
 from answer_eval.question_set import load_retrieval_questions
 from answer_eval.runner import DEFAULT_K, run_question_set, write_blob
 from answer_eval.server_session import EmbedderConfig, answer_server, resolve_synthesis_model
 from answer_eval.snapshot import fetch_snapshot
+from answer_eval.token_meter import meter_synthesis
 
 logger = logging.getLogger("answer_eval")
 
 DEFAULT_WORK_DIR = Path("results/answer-eval")
 DEFAULT_QUESTIONS = Path("answer_eval/questions/retrieval.jsonl")
+DEFAULT_GOLD_QUESTIONS = Path("answer_eval/questions/gold.jsonl")
 
 #: Pinned, not discovered. 768 dims is what the hosted index's vector column
 #: holds, so a run here is at least dimensionally comparable to what users get.
@@ -79,6 +84,26 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="commit the snapshot was generated from; the checkout is refused if it differs",
     )
+    parser.add_argument(
+        "--gold",
+        action="store_true",
+        help=(
+            "run the judged gold set instead of the retrieval set. Costs two model "
+            "calls per question and reports correctness; the retrieval run is free "
+            "and reports recall."
+        ),
+    )
+    parser.add_argument(
+        "--gold-questions",
+        type=Path,
+        default=DEFAULT_GOLD_QUESTIONS,
+        help=f"JSONL gold set (default: {DEFAULT_GOLD_QUESTIONS})",
+    )
+    parser.add_argument(
+        "--judge-model",
+        default=None,
+        help="model to judge with (default: the synthesis model's provider default)",
+    )
     parser.add_argument("-v", "--verbose", action="store_true")
     return parser
 
@@ -88,8 +113,16 @@ async def run(args: argparse.Namespace) -> Path:
         name=args.embedder, model=args.embedding_model, dims=args.embedding_dims
     )
 
-    questions = load_retrieval_questions(args.questions)
-    logger.info("loaded %d questions from %s", len(questions), args.questions)
+    # Loaded before anything is fetched or built: a malformed question set
+    # should cost nothing to discover.
+    if args.gold:
+        gold_questions = load_gold_questions(args.gold_questions)
+        logger.info("loaded %d gold questions from %s", len(gold_questions), args.gold_questions)
+        questions = []
+    else:
+        gold_questions = []
+        questions = load_retrieval_questions(args.questions)
+        logger.info("loaded %d questions from %s", len(questions), args.questions)
 
     work_dir = Path(args.work_dir)
     pages = fetch_snapshot(args.index, work_dir / "snapshots")
@@ -150,6 +183,11 @@ async def run(args: argparse.Namespace) -> Path:
     synthesis = resolve_synthesis_model(repo_dir)
     logger.info("synthesising with %s / %s", synthesis.provider, synthesis.model)
 
+    if args.gold:
+        return await _run_gold(
+            args, work_dir, repo_dir, embedder, index_report, synthesis, gold_questions
+        )
+
     async with answer_server(repo_dir, embedder) as answer_tool:
         report = await run_question_set(
             answer_tool,
@@ -172,6 +210,55 @@ async def run(args: argparse.Namespace) -> Path:
         f"confidence={report.confidence_counts} "
         f"named-not-cited={report.n_answers_naming_an_uncited_expected_path} "
         f"n={report.scores.n_questions}"
+    )
+    return out
+
+
+async def _run_gold(
+    args, work_dir, repo_dir, embedder, index_report, synthesis, gold_questions
+) -> Path:
+    """The judged half: same index and the same server, plus a judge and a meter."""
+    from repowise.core.providers.llm.registry import get_provider
+
+    judge_provider = get_provider(
+        synthesis.provider, **({"model": args.judge_model} if args.judge_model else {})
+    )
+    judge = JudgeModel(
+        provider=judge_provider.provider_name,
+        model=judge_provider.model_name,
+        same_family_as_synthesis=judge_provider.provider_name == synthesis.provider,
+    )
+    logger.info("judging with %s / %s", judge.provider, judge.model)
+
+    async with answer_server(repo_dir, embedder) as answer_tool:
+        # The judge provider is resolved before the meter opens, so the eval's
+        # own spend is never counted as the tool's.
+        with meter_synthesis() as meter:
+            report = await run_gold_set(
+                answer_tool,
+                judge_provider,
+                gold_questions,
+                snapshot_short_id=args.index,
+                index=index_report,
+                embedder=embedder,
+                synthesis=synthesis,
+                judge=judge,
+                meter=meter,
+            )
+
+    out = args.out or work_dir / "blobs" / f"{args.index}-{embedder.name}-gold.json"
+    write_gold_blob(report, out)
+
+    cost = report.tool_side_usd_per_question
+    by_confidence = {k: round(v, 3) for k, v in report.correctness_by_confidence.items()}
+    print(
+        f"correctness={report.scores.correctness:.3f} "
+        f"(claim coverage {report.scores.claim_coverage:.3f}) "
+        f"fully-correct={report.scores.n_fully_correct}/{report.scores.n_questions} "
+        f"contradicted={report.scores.n_contradicted} "
+        f"(at high {report.n_contradicted_at_high}) "
+        f"by-confidence={by_confidence} "
+        + (f"tool-side ${cost:.4f}/q" if cost is not None else "tool-side cost unmetered")
     )
     return out
 
