@@ -44,8 +44,10 @@ from typing import Any
 
 from answer_eval.index import IndexBuildReport
 from answer_eval.question_set import RetrievalQuestion
+from answer_eval.question_shape import QuestionShape
 from answer_eval.scoring import RetrievalScores, score_retrieval
 from answer_eval.server_session import EmbedderConfig, SynthesisModel
+from answer_eval.shape_scores import ShapeSubsetScores, score_by_shape
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +127,14 @@ class RunReport:
     """Answers carrying citations but an empty retrieval block. Expected to be
     every high-confidence answer; a jump at medium or low would mean the tool
     stopped returning candidates somewhere it used to."""
+    scores_by_shape: dict[QuestionShape, ShapeSubsetScores]
+    """Recall and MRR for path-shaped and concept-shaped questions, apart.
+
+    An index change that adds a field to match against lifts the questions
+    whose wording reaches that field and leaves the rest alone. Averaged
+    together the two look like a small rise everywhere, and a regression in
+    the untouched half can hide inside it. Each subset carries its own ``n``,
+    which is what says whether its number can resolve the change at all."""
     recall_at_k_by_file: float
     """Recall with the ``::symbol`` suffix stripped from both sides.
 
@@ -154,6 +164,9 @@ class RunReport:
             "k": self.k,
             "recall_at_k": self.scores.recall_at_k,
             "recall_at_k_by_file": self.recall_at_k_by_file,
+            "scores_by_shape": {
+                shape.value: subset.as_blob() for shape, subset in self.scores_by_shape.items()
+            },
             "mrr": self.scores.mrr,
             "n_questions": self.scores.n_questions,
             "n_empty_results": self.scores.n_empty_results,
@@ -378,6 +391,7 @@ async def run_question_set(
             1 for r in results if r.expected_paths_named_only_in_prose
         ),
         n_citations_only=cite_only,
+        scores_by_shape=score_by_shape(results, {r.id: r.question for r in results}, k=k),
         recall_at_k_by_file=sum(_file_recall(r, k) for r in results) / len(results),
         index=index,
         embedder=embedder,
