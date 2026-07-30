@@ -163,6 +163,57 @@ class TestFullTextRows:
             await engine.dispose()
         assert [h.page_id for h in hits] == ["p1"]
 
+    async def test_a_page_is_findable_by_its_summary(self, tmp_path):
+        """The summary is an indexed field, so the eval index has to carry it.
+
+        A page's summary is a fresh paraphrase — none of its wording is
+        guaranteed to appear in the content. Writing the row without it builds
+        a corpus searchable on strictly less text than a real index, and any
+        measurement of the summary column would come back flat with nothing to
+        say it had never been tested.
+        """
+        from repowise.core.persistence.database import create_engine
+        from repowise.core.persistence.search import FullTextSearch
+
+        await build_index(
+            [page("p1", summary="Reconciles the changelog against the release manifest.")],
+            repo_dir=tmp_path,
+            embedder_name="mock",
+        )
+        engine = create_engine(f"sqlite+aiosqlite:///{tmp_path / '.repowise' / 'wiki.db'}")
+        try:
+            hits = await FullTextSearch(engine).search("release manifest", limit=5)
+        finally:
+            await engine.dispose()
+        assert [h.page_id for h in hits] == ["p1"]
+
+    async def test_a_page_is_findable_by_its_target_path(self, tmp_path):
+        """Same for the path column: a question naming a directory must hit."""
+        from repowise.core.persistence.database import create_engine
+        from repowise.core.persistence.search import FullTextSearch
+
+        await build_index(
+            [
+                # Neither the title, the content nor the summary carries
+                # "telemetry" or "collector" — only the path does.
+                page(
+                    "p1",
+                    title="Counter flushing",
+                    target_path="packages/telemetry/collector.py",
+                    content="# Overview\n\nGathers counters and flushes them on a timer.",
+                    summary="Gathers counters.",
+                )
+            ],
+            repo_dir=tmp_path,
+            embedder_name="mock",
+        )
+        engine = create_engine(f"sqlite+aiosqlite:///{tmp_path / '.repowise' / 'wiki.db'}")
+        try:
+            hits = await FullTextSearch(engine).search("telemetry collector", limit=5)
+        finally:
+            await engine.dispose()
+        assert [h.page_id for h in hits] == ["p1"]
+
     async def test_a_short_full_text_index_fails_the_build(self, tmp_path, monkeypatch):
         """Same rule the vectors get: a half-written arm is not scoreable."""
         import answer_eval.index as index_module

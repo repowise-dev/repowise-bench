@@ -115,6 +115,13 @@ async def write_page_fts(engine) -> int:
     changes, an index built here has to change with it or the eval measures a
     corpus shape no user has.
 
+    Every indexed field is passed, not only the ones the eval happens to think
+    of. A page's summary is a fresh paraphrase whose wording need not appear in
+    its content, and its target path is not in the content at all — omitting
+    either builds a corpus searchable on strictly less text than a real index,
+    and a measurement of those fields would come back flat with nothing to say
+    they had never been written.
+
     Idempotent, and cheap enough to run on an index that already exists -- it
     reads the pages already in the database and needs no embedder, no network
     and no spend. That is what lets an index built before this existed repair
@@ -129,13 +136,23 @@ async def write_page_fts(engine) -> int:
 
     already = await fts.list_indexed_ids()
     async with engine.connect() as conn:
-        rows = (await conn.execute(select(Page.id, Page.title, Page.content))).all()
+        rows = (
+            await conn.execute(
+                select(Page.id, Page.title, Page.content, Page.summary, Page.target_path)
+            )
+        ).all()
 
     written = 0
-    for page_id, title, content in rows:
+    for page_id, title, content, summary, target_path in rows:
         if page_id in already:
             continue
-        await fts.index(page_id, title or "", content or "")
+        await fts.index(
+            page_id,
+            title or "",
+            content or "",
+            summary=summary or "",
+            target_path=target_path or "",
+        )
         written += 1
     if written:
         logger.info("indexed %d page(s) for full-text search", written)
