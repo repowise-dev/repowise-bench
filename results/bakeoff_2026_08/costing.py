@@ -1,4 +1,4 @@
-"""Price rungs 6, 7 and 9 against the $200 ceiling, from measured data only.
+"""Price rungs 6, 7 and 9 against the spend ceiling, from measured data only.
 
 Raghav asked for this explicitly (PLAN.md, scheduling note 2026-08-01): a written
 cost estimate before anyone commits to rung 9, which is the one rung that can
@@ -16,7 +16,7 @@ quoted:
    estimated separately.
 
 2. **It is API-list pricing.** If runs are executed against a subscription
-   rather than metered API billing, out-of-pocket differs from this. The $200
+   rather than metered API billing, out-of-pocket differs from this. The
    ceiling is read here as metered API spend, which is the conservative reading.
 
 Run: .venv/Scripts/python.exe results/bakeoff_2026_08/costing.py
@@ -29,7 +29,10 @@ import json
 import statistics as st
 from collections import defaultdict
 
-CEILING = 200.00
+# Raised from $200 to $250 by Raghav on 2026-08-01, after this script showed
+# the recommended ladder landing at $192-197 against $200: $3 of headroom is
+# not a plan, since one re-run breaches it. The extra is margin, not scope.
+CEILING = 250.00
 
 # Judge prompt sized from the real transcripts on disk: rubric ~700 chars plus
 # question plus reference answer plus agent answer, median 5,639 chars, so

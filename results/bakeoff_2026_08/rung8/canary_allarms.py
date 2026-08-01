@@ -60,10 +60,21 @@ from mcp.client.stdio import stdio_client
 
 OUT = Path(__file__).resolve().parent
 BENCH_ROOT = OUT.parents[2]
-REPOWISE_ROOT = Path(r"C:\Users\ragha\Desktop\repowise")
-TREES = Path(r"C:\Users\ragha\Desktop\bakeoff")
-REPOWISE_EXE = REPOWISE_ROOT / ".venv" / "Scripts" / "repowise.exe"
-NPM_BIN = Path(os.environ["APPDATA"]) / "npm"
+
+# Overridable, because this repo is public and a path with someone's username in
+# it is both unrunnable for everyone else and a small privacy leak. Defaults are
+# the layout this was developed against: repowise-bench sits inside the repowise
+# checkout, and the staged bench trees sit OUTSIDE it (deliberately — a
+# `.repowise-workspace.yaml` above a repo changes the served MCP tool surface,
+# 11 tools single-repo vs 13 in workspace mode, and `repowise mcp` has no
+# `--no-workspace` to opt out; finding D1b).
+REPOWISE_ROOT = Path(os.environ.get("REPOWISE_ROOT") or BENCH_ROOT.parent)
+TREES = Path(os.environ.get("BAKEOFF_TREES") or (Path.home() / "Desktop" / "bakeoff"))
+REPOWISE_EXE = Path(
+    os.environ.get("REPOWISE_EXE")
+    or REPOWISE_ROOT / ".venv" / "Scripts" / "repowise.exe"
+)
+NPM_BIN = Path(os.environ.get("APPDATA", str(Path.home()))) / "npm"
 UV_BIN = Path.home() / ".local" / "bin"
 
 PARQUET = BENCH_ROOT / "data" / "contextbench" / "contextbench_verified.parquet"
@@ -140,9 +151,14 @@ BUILDS = {
     # -graph returned 0 ranked paths in 1,194 chars, which is the exact 0.028
     # state rung 5 spent three passes escaping (finding E4). "Installed the
     # package" is not setup.
+    # `--embedding-provider` and `--embedding-model` "must be supplied
+    # together"; passing the provider alone exits 2 with a usage error. Caught
+    # by the canary re-run, which is the third time this arm has needed a setup
+    # step nobody would guess from its README.
     "crg": lambda t: [
         str(UV_BIN / "code-review-graph.exe"), "build", "--repo", str(t),
         "--embedding-provider", "local",
+        "--embedding-model", "sentence-transformers/all-MiniLM-L6-v2",
     ],
     "graphify": lambda t: [str(UV_BIN / "graphify.exe"), "update", str(t)],
     # Serena is an LSP wrapper and builds no persistent index. It still needs a
