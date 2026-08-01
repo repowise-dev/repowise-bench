@@ -20,8 +20,8 @@
 
 | Benchmark | Status | Headline | Report |
 |-----------|--------|----------|--------|
-| [**SWE-QA**](#swe-qa-coding-agent-efficiency) | Complete | -36-70% tool calls, -29-36% cost, quality at parity | [flask48](BENCHMARK_REPORT_FLASK48.md) · [sklearn48](BENCHMARK_REPORT_SKLEARN48.md) |
-| [**health-defect**](#health-defect-code-health-vs-defect-prediction) | Complete | 10-75x defect ratio, ROC AUC 0.70-0.74 | [README](health-defect/README.md) · [full report](health-defect/BENCHMARK_REPORT.md) |
+| [**SWE-QA**](#swe-qa-coding-agent-efficiency) | v1 superseded by v2/v3 | -32-70% tool calls, -54-89% file reads, quality at parity. Cost is configuration-dependent and the v1 flask cost figure did **not** reproduce | [flask48 v1](BENCHMARK_REPORT_FLASK48.md) · [flask48 **v2 rerun**](BENCHMARK_REPORT_FLASK48_V2.md) · [flask **v3**](BENCHMARK_REPORT_FLASK_V3.md) · [sklearn48](BENCHMARK_REPORT_SKLEARN48.md) |
+| [**health-defect**](#health-defect-code-health-vs-defect-prediction) | Complete | ROC AUC 0.737 [0.683, 0.787] cross-project, 21 repos / 9 languages, leakage-free T0 | [README](health-defect/README.md) · [full report](health-defect/BENCHMARK_REPORT.md) |
 
 ---
 
@@ -43,7 +43,32 @@ Both configurations use the same model (`claude-sonnet-4-6`), the same SWE-QA
 prompt scaffolding, the same per-task budget cap, and the same LLM judge. The
 only variable is the tool surface presented to the agent.
 
-### flask48 — `pallets/flask` (48 paired tasks)
+> **Read this before quoting any number below.**
+>
+> Every SWE-QA row on this page was measured on **`claude-sonnet-4-6`**, on the
+> Claude Code runtime as it stood in **April 2026** (flask48 v1, sklearn48) or
+> **June 2026** (flask48 v2, flask v3). A number without that stamp has no shelf
+> life, because the agent runtime is part of the measurement.
+>
+> The **v1 flask48 cost figure below (-36.2 %) did not reproduce.** The
+> [v2 rerun](BENCHMARK_REPORT_FLASK48_V2.md) against current `main` reproduces the
+> navigation wins with smaller magnitudes (tool calls -32 %, files read -54 %) but
+> the cost result **inverts to +29 %**. The mechanism is a runtime change, not a
+> repository property: v1's savings were largely driven by the baseline arm
+> dispatching subagents that the current runtime no longer dispatches, and the MCP
+> schema tax (~14.6k extra cache-write tokens per task) is no longer amortized
+> against savings that no longer exist. [flask v3](BENCHMARK_REPORT_FLASK_V3.md)
+> shows a cost win can return with a lean tool profile, at n=5-6, directional only.
+>
+> **sklearn48 has never been rerun.** The mechanism that flipped flask48's cost
+> sign is a property of the runtime, so treat its -29.3 % cost figure as carrying
+> the same risk flask48's did before v2 was run.
+
+### flask48 v1 — `pallets/flask` (48 paired tasks, 2026-04-09, `claude-sonnet-4-6`)
+
+**Superseded on cost by [the v2 rerun](BENCHMARK_REPORT_FLASK48_V2.md).** Kept
+here because the navigation results reproduce directionally and because publishing
+the row that did not hold up is the point.
 
 | Metric | C0 (baseline) | C2 (doc-augmented) | Δ |
 |---|---:|---:|---:|
@@ -57,7 +82,7 @@ only variable is the tool surface presented to the agent.
 
 Full report: [**BENCHMARK_REPORT_FLASK48.md**](BENCHMARK_REPORT_FLASK48.md)
 
-### sklearn48 — `scikit-learn/scikit-learn` (48 paired tasks)
+### sklearn48 — `scikit-learn/scikit-learn` (48 paired tasks, 2026-04-28, `claude-sonnet-4-6`, never rerun)
 
 | Metric | C0 (baseline) | C2 (doc-augmented) | Δ |
 |---|---:|---:|---:|
@@ -73,55 +98,89 @@ Full report: [**BENCHMARK_REPORT_SKLEARN48.md**](BENCHMARK_REPORT_SKLEARN48.md)
 
 ### Bonus: token-efficiency benchmark
 
-How many tokens does each strategy require for a model to understand a commit,
-measured on the 30 most recent non-merge commits of `pallets/flask`?
+How many tokens does each strategy require for a model to understand a commit?
+Measured on the 30 most recent non-merge commits of `pallets/flask` pinned at
+`7ee9ceb7` (2023-01-20 to 2023-03-11), no LLM in the loop: all three counts are
+deterministic `tiktoken` (`cl100k_base`), and `get_context` is served from the
+prebuilt index.
+
+**Re-measured 2026-08-01** on repowise `8cb7fba3` (v0.37.0), with the harness's own
+`--min-repowise-tokens 200` guard **active**. 30 of 30 commits passed the guard.
 
 | Strategy | Tokens / commit |
 |---|---:|
-| naive (full contents of changed files) | 64,039 |
-| `git diff` only | 14,888 |
-| **`get_context`** | **2,391** |
+| naive (full contents of changed files) | 13,984 |
+| `git diff` only | 1,408 |
+| **`get_context`** | **393** |
 
-Reduction vs **naive**: **209x mean**, 26.8x pooled, 12.6x median, 1,214x best case.
-Reduction vs **`git diff`**: 41.7x mean, 6.2x pooled.
+Reduction vs **naive**: **35.6x pooled**, 29.3x mean, 7.9x median, 133.8x best case.
+Reduction vs **`git diff`**: 3.6x pooled, 2.8x mean.
+
+**Lead with the pooled figure (35.6x).** Pooled is sum-of-tokens over
+sum-of-tokens, so it weights each commit by the tokens actually at stake. A mean
+of per-commit ratios does not: a trivial commit where `get_context` correctly
+returns 40 tokens contributes a huge ratio that counts equally against a commit
+saving a hundred thousand. `--min-repowise-tokens` (default 200) exists to drop
+those, and it should stay on.
+
+> **Correction, 2026-08-01.** An earlier version of this section published
+> "**209x mean**, 26.8x pooled, 12.6x median, 1,214x best case" over
+> naive 64,039 / diff 14,888 / `get_context` 2,391 tokens per commit, and told
+> readers to reproduce it with `--min-repowise-tokens 0`, which switches the guard
+> off. No raw CSV for that run was ever committed, so it cannot be verified or
+> re-derived, and the numbers above do not reproduce it on the pinned checkout.
+> The figures in this section replace it. Note that with the guard active the mean
+> (29.3x) now lands *below* the pooled figure (35.6x) rather than 7.8x above it,
+> which is the signature of the small-denominator inflation the guard prevents.
 
 Reproduce:
 
 ```bash
-.venv/bin/python harness/token_efficiency_bench.py \
-    --repo repos/pallets/flask --last 30 --min-repowise-tokens 0
+.venv/Scripts/python.exe harness/token_efficiency_bench.py \
+    --repo repos/pallets/flask --last 30
 ```
 
-Raw data: `results/token_efficiency/results.csv`.
+(The default `--min-repowise-tokens 200` is the correct setting. Do not pass `0`.)
+
+Raw data: [`results/token_efficiency/results.csv`](results/token_efficiency/results.csv),
+committed so the numbers above are checkable per commit.
 
 ---
 
 ## health-defect — Code Health vs. Defect Prediction
 
-A reproducible benchmark proving that deterministic code health scores predict
-real-world defects in open-source Python projects. Health scores are collected
-at a historical snapshot (T0); bug-fixing commits are counted over the following
-6 months (T0 -> T1); the two are correlated.
+A reproducible benchmark measuring whether deterministic code health scores
+predict real-world defects. Health scores are collected at a historical snapshot
+(T0) from a worktree truncated at that commit; bug-fixing commits are counted
+over the following 6 months (T0 -> T1); the two are correlated. The truncation is
+what makes it leakage-free: scoring at HEAD would let the score see the fixes it
+is supposed to predict.
 
-### Headline numbers
+### Headline numbers (canonical 21-repo corpus)
 
-Across three public repositories (862 source files, 6-month defect window):
+21 open-source repositories, 9 languages, 2,826 source files, T0 = 2025-11-23,
+6-month forward defect window.
 
-| Repo | Files | Spearman ρ | p-value | Defect ratio | ROC AUC | Precision@20 |
-|------|------:|----------:|---------:|-------------:|--------:|-------------:|
-| Django | 542 | **-0.337** | <0.0001 | **12x** | 0.698 | **70 %** |
-| Pydantic | 216 | -0.229 | 0.0007 | 10x | **0.742** | 30 % |
-| FastAPI | 104 | -0.272 | 0.0053 | 75x | 0.715 | 35 % |
+| Metric | Value | Note |
+|---|---|---|
+| ROC AUC, cross-project mean | **0.737 [0.683, 0.787]** | the headline; repo-cluster bootstrap |
+| ROC AUC, file-pooled | **0.732** | file-level counterpart |
+| Partial Spearman vs NLOC | **-0.156 [-0.233, -0.080]** | discrimination beyond file size |
+| Popt vs LOC | **+0.134 [+0.080, +0.198]** | effort-aware, not a size proxy |
 
-**Files scoring below 4.0 have 10-75x more bug-fixing commits than files
-scoring above 8.0.** The correlation is statistically significant (p < 0.01)
-across all three codebases.
+**The disclosed limit, stated up front:** within a fixed NLOC quartile,
+discrimination collapses on small and medium files (Q1 AUC 0.525, Q2 0.572,
+Q3 0.593, Q4 0.718). A pooled 0.73 is largely the between-band size contrast.
+Signal survives where files are large; Q1 and Q2 straddle coin-flip. Full table
+with CIs in `health-defect/README.md`.
 
-Top biomarker predictors (by Cliff's delta effect size):
-
-1. `developer_congestion` — δ = +0.78 (Django)
-2. `untested_hotspot` — δ = +0.69 (Django), +0.67 (FastAPI)
-3. `brain_method` — δ = +0.62 (Pydantic), +0.43 (Django)
+> **Correction, 2026-08-01.** This section previously headlined
+> "**10-75x defect ratio**, ROC AUC 0.70-0.74" from a 3-repo
+> Django/Pydantic/FastAPI pilot of 862 files scored **at HEAD**, i.e. not
+> leakage-free. `health-defect/README.md` had already superseded that pilot on
+> 2026-06-24 and says in its own words not to quote those numbers as the headline.
+> This page contradicted its own subfolder for five weeks. The 21-repo T0-anchored
+> figures above are canonical. Do not quote 0.699, 0.746 or 0.87 either.
 
 Full report: [**health-defect/BENCHMARK_REPORT.md**](health-defect/BENCHMARK_REPORT.md)
 Reproduction steps: [**health-defect/README.md**](health-defect/README.md)

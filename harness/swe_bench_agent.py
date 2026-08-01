@@ -35,6 +35,7 @@ from typing import Optional
 from harness.swe_qa_runner import (
     _UTF8_ENV, _REPOWISE_CMD, resolve_repo_path, ensure_repo_cloned,
     generate_mcp_config, write_repo_claude_md, run_claude_code,
+    SERVED_TOOLS_INDEX_ONLY,
 )
 from harness.swe_bench_runner import (
     load_swe_bench_tasks, make_instance_worktree, reset_worktree,
@@ -131,12 +132,13 @@ def run_one(task: dict, condition: dict, model: str, timeout: int,
             rec["error"] = "index_failed"
             rec["model_patch"] = ""
             return rec
-        # NOTE: do NOT pass profile="core" — the repowise CLI on `main` has no
-        # --profile option, so the MCP server would crash on launch ("No such
-        # option: --profile") and the agent would silently fall back to bare
-        # Read/Grep (zero repowise calls). The index-only arm restricts the tool
-        # surface client-side via TOOLS_INDEX_ONLY in run_claude_code anyway.
-        mcp_cfg = generate_mcp_config(wt, _BENCH_ROOT, profile=None)
+        # The old `profile="core"` crashed the server on launch (the CLI has no
+        # --profile option), so this arm was forced to fall back to a server-side
+        # default surface and restrict client-side via TOOLS_INDEX_ONLY. Now that
+        # generate_mcp_config emits `--tools`, the index-only arm can advertise
+        # exactly the four tools that return real data without a wiki, so the
+        # unused schemas never reach the agent's context at all.
+        mcp_cfg = generate_mcp_config(wt, _BENCH_ROOT, tools=SERVED_TOOLS_INDEX_ONLY)
         mcp_config_path = str(mcp_cfg)
         write_repo_claude_md(wt, condition.get("repowise_mode", "index-only"))
 

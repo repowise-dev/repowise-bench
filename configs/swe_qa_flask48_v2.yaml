@@ -43,7 +43,7 @@ conditions:
     plugin_skills: false
 
 agent:
-  model: "sonnet"
+  model: "claude-sonnet-5"
   max_turns: 15
   timeout_seconds: 300
 
@@ -65,7 +65,7 @@ budget:
   abort_on_exceed: true
 
 evaluation:
-  judge_model: "sonnet"
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
   dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
 
 parallelism:

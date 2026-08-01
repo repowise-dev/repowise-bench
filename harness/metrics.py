@@ -90,6 +90,55 @@ class RunMetrics:
 # Claude Code output parsing
 # ---------------------------------------------------------------------------
 
+def _token_counts(result_data: dict) -> dict:
+    """Token counts for one agent run, read from ``modelUsage``.
+
+    **Never read the top-level ``usage``.** It reports only the main-loop model,
+    so when the agent dispatches a subagent on a different model those tokens are
+    absent and totals under-report by roughly 90% on subagent-heavy runs. Dollar
+    cost is unaffected (``total_cost_usd`` already aggregates every model), which
+    is exactly why this survived unnoticed: cost looked right while tokens did
+    not.
+
+    ``modelUsage`` is a ``{model_id: usage}`` map covering every model billed in
+    the session. Sum across models, and keep the model list so an arm that
+    quietly ran on a different model is visible instead of averaged away.
+
+    Verified against real transcripts 2026-08-01: the per-model keys are
+    camelCase (``inputTokens``, ``cacheReadInputTokens``, ...) while the
+    top-level ``usage`` keys are snake_case, so both spellings are accepted.
+    """
+    model_usage = result_data.get("modelUsage") or {}
+    fallback = result_data.get("usage") or {}
+
+    def total(*keys: str) -> int:
+        if not model_usage:
+            for k in keys:
+                if k in fallback:
+                    return int(fallback.get(k) or 0)
+            return 0
+        out = 0
+        for per_model in model_usage.values():
+            if not isinstance(per_model, dict):
+                continue
+            for k in keys:
+                if k in per_model:
+                    out += int(per_model.get(k) or 0)
+                    break
+        return out
+
+    return {
+        "input_tokens": total("inputTokens", "input_tokens"),
+        "output_tokens": total("outputTokens", "output_tokens"),
+        "cache_read_tokens": total("cacheReadInputTokens", "cache_read_input_tokens"),
+        "cache_write_tokens": total(
+            "cacheCreationInputTokens", "cache_creation_input_tokens"
+        ),
+        "models_used": sorted(model_usage.keys()),
+        "token_source": "modelUsage" if model_usage else "usage(fallback)",
+    }
+
+
 def parse_claude_code_output(json_output: dict) -> dict:
     """
     Parse Claude Code --output-format json response.
@@ -98,12 +147,9 @@ def parse_claude_code_output(json_output: dict) -> dict:
     num_turns, result, stop_reason, session_id, total_cost_usd, usage,
     modelUsage, permission_denials, terminal_reason, uuid
     """
-    usage = json_output.get("usage", {})
+    tokens = _token_counts(json_output)
     return {
-        "input_tokens": usage.get("input_tokens", 0),
-        "output_tokens": usage.get("output_tokens", 0),
-        "cache_read_tokens": usage.get("cache_read_input_tokens", 0),
-        "cache_write_tokens": usage.get("cache_creation_input_tokens", 0),
+        **tokens,
         "num_turns": json_output.get("num_turns", 0),
         "total_cost_usd": json_output.get("total_cost_usd", 0.0),
         "num_tool_calls": 0,  # not in json mode
@@ -172,12 +218,8 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
         elif msg_type == "result":
             result_data = d
 
-    usage = result_data.get("usage", {})
     return {
-        "input_tokens": usage.get("input_tokens", 0),
-        "output_tokens": usage.get("output_tokens", 0),
-        "cache_read_tokens": usage.get("cache_read_input_tokens", 0),
-        "cache_write_tokens": usage.get("cache_creation_input_tokens", 0),
+        **_token_counts(result_data),
         "num_turns": result_data.get("num_turns", 0),
         "task_subagent_calls": task_subagent_calls,
         "total_cost_usd": result_data.get("total_cost_usd", 0.0),

@@ -43,10 +43,18 @@ _REPOWISE_PKG_SRCS = [
     _REPOWISE_ROOT / "packages" / "core" / "src",
     _REPOWISE_ROOT / "packages" / "server" / "src",
 ]
-_REQUIRED_REPOWISE_BRANCH = "feat/pipeline-overhaul"
+# Provenance of the repowise checkout under test. Recorded, not gated.
+#
+# This used to warn when the checkout was not on `feat/pipeline-overhaul`, a
+# branch that has not existed for a long time, so every run printed a warning
+# nobody could act on and no run recorded what was actually measured. A branch
+# name is not provenance anyway: branches move. The commit is what a result has
+# to be stamped with, per standing rule 1.
+REPOWISE_PROVENANCE: dict = {}
 
-def _verify_local_repowise() -> None:
-    """Fail loudly if the local checkout is missing or on the wrong branch."""
+
+def _verify_local_repowise() -> dict:
+    """Check the checkout exists and capture its exact commit for stamping."""
     if not _REPOWISE_ROOT.exists():
         raise RuntimeError(
             f"Local repowise checkout not found at {_REPOWISE_ROOT}. "
@@ -55,20 +63,36 @@ def _verify_local_repowise() -> None:
     for src in _REPOWISE_PKG_SRCS:
         if not src.exists():
             raise RuntimeError(f"Expected repowise source dir missing: {src}")
-    try:
-        branch = subprocess.check_output(
-            ["git", "-C", str(_REPOWISE_ROOT), "rev-parse", "--abbrev-ref", "HEAD"],
-            text=True,
-        ).strip()
-    except Exception as e:
-        raise RuntimeError(f"Could not read repowise branch: {e}")
-    if branch != _REQUIRED_REPOWISE_BRANCH:
-        print(
-            f"  [warn] local repowise is on branch '{branch}', "
-            f"expected '{_REQUIRED_REPOWISE_BRANCH}'"
-        )
 
-_verify_local_repowise()
+    def _git(*args: str) -> str:
+        try:
+            return subprocess.check_output(
+                ["git", "-C", str(_REPOWISE_ROOT), *args], text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except Exception:
+            return ""
+
+    dirty = bool(_git("status", "--porcelain"))
+    prov = {
+        "repowise_root": str(_REPOWISE_ROOT),
+        "repowise_commit": _git("rev-parse", "HEAD"),
+        "repowise_branch": _git("rev-parse", "--abbrev-ref", "HEAD"),
+        "repowise_describe": _git("describe", "--tags", "--always", "--dirty"),
+        "repowise_dirty": dirty,
+    }
+    if dirty:
+        # A dirty tree means the measured code is not any published commit, so
+        # the result cannot be reproduced from the SHA alone. Say so once.
+        print(
+            f"  [warn] repowise checkout at {_REPOWISE_ROOT} has uncommitted "
+            f"changes; results will not be reproducible from "
+            f"{prov['repowise_commit'][:12]} alone"
+        )
+    return prov
+
+
+REPOWISE_PROVENANCE = _verify_local_repowise()
 
 # Force UTF-8 for all subprocesses (Windows cp1252 breaks on emoji/unicode)
 # Also pin PYTHONPATH so repowise's three package src dirs resolve without pip.
@@ -344,27 +368,34 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
 # ---------------------------------------------------------------------------
 
 def generate_mcp_config(
-    repo_path: Path, bench_root: Path, profile: Optional[str] = None
+    repo_path: Path, bench_root: Path, tools: Optional[str] = None
 ) -> Path:
     """Write per-repo MCP config JSON. Returns absolute path.
 
-    ``profile`` (e.g. "core") makes the server advertise only a curated tool
-    surface via ``repowise mcp --profile``, so unused tool schemas never enter
-    the agent's context. ``None`` advertises the full nine-tool surface. The
-    profile is baked into the config filename so full and lean arms get
+    ``tools`` is passed straight through to ``repowise mcp --tools``: a
+    comma-separated allowlist, or the literal ``"lean"`` for the shipped
+    six-tool profile. ``None`` advertises the default full surface. The tool
+    surface is baked into the config filename so full and lean arms get
     distinct server launches against the same restored index.
+
+    **This used to emit ``--profile``, which the CLI does not accept**
+    (`packages/cli/src/repowise/cli/commands/mcp_cmd.py:86` defines `--tools`
+    and nothing else). Click rejected the unknown option, the server exited
+    before the handshake, and the lean arm silently degraded to a bare agent
+    that scored as if the MCP surface were free. Every lean result predating
+    this fix, including `BENCHMARK_REPORT_FLASK_V3.md`, is void.
     """
     config_dir = bench_root / "mcp_configs"
     config_dir.mkdir(parents=True, exist_ok=True)
 
     repo_abs = str(repo_path.resolve()).replace("\\", "/")
-    suffix = f"_{profile}" if profile else ""
+    suffix = ("_" + re.sub(r"[^A-Za-z0-9]+", "-", tools)[:40]) if tools else ""
     config_name = f"{repo_path.parent.name}_{repo_path.name}{suffix}.json"
     config_path = config_dir / config_name
 
     server_args = _REPOWISE_CMD[1:] + ["mcp", repo_abs, "--transport", "stdio"]
-    if profile:
-        server_args += ["--profile", profile]
+    if tools:
+        server_args += ["--tools", tools]
 
     # The server's own env: PYTHONPATH for the local checkout, UTF-8, plus any
     # provider credentials present so embeddings + get_answer synthesis work
@@ -724,11 +755,44 @@ TOOLS_FULL = (
     ",mcp__repowise__get_overview"
 )
 
-# C2 lean: the four tools the agent actually reached for on flask48 v2
-# (get_symbol, get_answer, get_context, search_codebase). The MCP server is
-# launched with `--profile core`, so ONLY these four schemas are advertised —
-# the per-task schema "tax" the other five would otherwise add never enters the
-# agent's context. Same index as full; only the served surface differs.
+# -- Server-side allowlists (passed verbatim to `repowise mcp --tools`) --
+#
+# BOTH arms pin their served surface explicitly. Relying on the server default
+# was not deterministic:
+#   1. **Workspace contamination.** `find_workspace_root` walks up from the repo
+#      path (`workspace/config.py:360-373`), so a `.repowise-workspace.yaml`
+#      anywhere above the bench checkout flips every server into workspace mode
+#      and adds tools. Measured 2026-08-01: the flask arm served **13** tools,
+#      including `list_repos`, because the developer's own workspace file sits at
+#      the repowise checkout root. That is environment-dependent, so it would not
+#      reproduce on a clean clone, which is the worst property a benchmark arm
+#      can have.
+#   2. **Version drift.** The default set has changed across releases. A pinned
+#      allowlist means an arm measured today is the same arm a year from now.
+#   3. **Client/server disagreement.** TOOLS_FULL below allowlists
+#      `get_dependency_path`, which is opt-in and is NOT in the server's default
+#      set, so the full arm was allowlisting a tool the server never advertised.
+SERVED_TOOLS_FULL = (
+    "get_answer,get_symbol,search_codebase,get_context,"
+    "get_risk,get_why,get_dependency_path,get_overview"
+)
+
+# C1 index-only: graph + git layer only, no wiki and no semantic search. These
+# four are the only tools that return real data in that mode.
+SERVED_TOOLS_INDEX_ONLY = "get_context,get_risk,get_why,get_dependency_path"
+
+# The server-side allowlist for the lean arm, passed verbatim to
+# `repowise mcp --tools`. These are the four tools the agent actually reached
+# for on flask48 v2, so ONLY these four schemas are advertised and the per-task
+# schema "tax" the other five would add never enters the agent's context. Same
+# index as full; only the served surface differs.
+#
+# Deliberately an explicit allowlist rather than the CLI's `lean` keyword: that
+# keyword selects the shipped SIX-tool profile, which is a different arm. If you
+# want the shipped profile, pass the string "lean" and rename the arm.
+SERVED_TOOLS_LEAN = "get_answer,get_symbol,search_codebase,get_context"
+
+# Client-side allowlist for the same four (Claude Code `--allowedTools` form).
 TOOLS_LEAN = (
     ",mcp__repowise__get_answer"
     ",mcp__repowise__get_symbol"
@@ -971,11 +1035,11 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 ",mcp__repowise__update_decision_records"
             )
         elif mode == "lean":
-            # The server (launched with --profile core) advertises only the four
-            # core tools, so there is nothing else to block — the unused schemas
-            # never reach the client in the first place. This is the whole point
-            # of the lean arm: cut the schema tax at the source, not via the
-            # client allow-list.
+            # The server (launched with --tools SERVED_TOOLS_LEAN) advertises
+            # only the four core tools, so there is nothing else to block — the
+            # unused schemas never reach the client in the first place. This is
+            # the whole point of the lean arm: cut the schema tax at the source,
+            # not via the client allow-list.
             pass
         else:
             # C2 full — block only the genuinely useless ones
@@ -1160,6 +1224,44 @@ def _extract_json_scores(text: str) -> dict:
     return {"error": f"parse_failed: {text[:200]}"}
 
 
+# The judge must never be the model it is grading. Self-preference bias in LLM
+# judges is well documented, and a judge from the same family as every arm
+# quietly advantages nothing in particular but invalidates the quality column.
+DEFAULT_JUDGE_MODEL = "gpt-5.6-luna"
+
+
+def _resolve_judge_model(config: dict) -> str:
+    """Judge model for this run, refusing to grade a model with itself.
+
+    Two bugs are guarded here, both found 2026-08-01:
+
+    1. **The default was the agent model.** `judge_model` fell back to
+       `config["agent"]["model"]`, so an unconfigured run graded the agent with
+       itself.
+    2. **The configs made it explicit anyway.** Every shipped config sets
+       `judge_model: "sonnet"` under a comment reading "neutral judge across all
+       cells, never the agent model", while `model:` is also `"sonnet"`. Not
+       merely same-family: byte-identical. Every published SWE-QA quality score
+       was self-graded.
+
+    A configured judge that collides with the agent now raises rather than
+    silently producing an unusable quality column.
+    """
+    agent_model = str(config.get("agent", {}).get("model", "")).strip()
+    configured = config.get("evaluation", {}).get("judge_model")
+    judge = str(configured).strip() if configured else DEFAULT_JUDGE_MODEL
+
+    if agent_model and judge == agent_model:
+        raise ValueError(
+            f"judge_model ({judge!r}) is the same model as the agent "
+            f"({agent_model!r}). A model may not grade itself: self-preference "
+            f"bias makes the quality column meaningless. Set "
+            f"evaluation.judge_model to a cross-family model "
+            f"(default: {DEFAULT_JUDGE_MODEL!r})."
+        )
+    return judge
+
+
 def judge_answer(question: str, gold_answer: str, agent_answer: str,
                  judge_model: str) -> dict:
     """Score agent answer via LLM judge. Retries on rate limits."""
@@ -1279,7 +1381,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         # differs only in which tool schemas the MCP server advertises, so it
         # must NOT trigger a separate (re-)index.
         index_mode = "index-only" if mode == "index-only" else "full"
-        served_profile = "core" if mode == "lean" else None
+        served_tools = SERVED_TOOLS_LEAN if mode == "lean" else SERVED_TOOLS_FULL
         try:
             ok, idx_time = index_repo(
                 repo_name, repos_dir,
@@ -1299,7 +1401,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             return metrics
 
         bench_root = Path(__file__).resolve().parent.parent
-        mcp_cfg = generate_mcp_config(repo_path, bench_root, profile=served_profile)
+        mcp_cfg = generate_mcp_config(repo_path, bench_root, tools=served_tools)
         mcp_config_path = str(mcp_cfg)
 
         # Write CLAUDE.md into the repo so Claude Code loads it as project
@@ -1382,9 +1484,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     # Judge
     if metrics.answer and not metrics.error:
         gold_answer = task.get("answer", task.get("gold_answer", ""))
-        judge_model = config.get("evaluation", {}).get(
-            "judge_model", config["agent"]["model"]
-        )
+        judge_model = _resolve_judge_model(config)
         judge_start = time.time()
         metrics.judge_scores = judge_answer(
             question=question,
