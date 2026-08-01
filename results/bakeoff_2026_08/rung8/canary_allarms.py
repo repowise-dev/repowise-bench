@@ -235,7 +235,8 @@ def arm_spec(arm: str, tree: Path) -> dict:
     return spec
 
 
-async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0) -> dict:
+async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
+                    warm_timeout=30.0) -> dict:
     """One call, with enough recorded that a zero is separable from a failure.
 
     `isError`, `status`, the served tool list and the response length are all
@@ -303,26 +304,34 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0) -> dict
                 except Exception as e:  # noqa: BLE001
                     row["embedded"] = f"failed: {e}"
 
-            # Warm-up. repowise's first call on a cold index exceeded the 300s
-            # timeout on django in the canary's first pass, while the server was
-            # demonstrably alive (11 tools served). Rung 5 hit the same thing:
-            # question E01 timed out on "repowise's cold first call" and our arm
-            # went to n=83 against everyone else's 84. A cold-start cost charged
-            # to the first graded question is both a false zero and, at rung 8
-            # scale, a false zero for whichever instance happens to go first.
-            # So the index is warmed with a throwaway call that is never scored.
+            # Warm-up, and the timeout here is the point rather than a safety
+            # net. repowise's first call after a server start does NOT complete:
+            # measured across four separate limits (240s, 300s, 400s, 600s) it
+            # consumed exactly the limit every time and never returned on its
+            # own. What unblocks the server is the client giving up — the very
+            # next call answers in 1.3s. So a 15s abandoned call warms the
+            # server just as well as a 400s one (measured: 18.8s total per
+            # server on cli, 33.9s on django), which turns a ~50 hour warm-up
+            # bill across 448 cells into under an hour.
+            #
+            # Rung 5 hit the same hang and read it as a slow question: E01
+            # "timed out on repowise's cold first call" and our arm went to
+            # n=83 against everyone else's 84. It was never the question.
             warm = spec.get("warm")
             if warm:
                 wtool, wargs = warm
                 if wtool in served:
                     t0 = time.time()
                     try:
-                        async with asyncio.timeout(timeout):
+                        async with asyncio.timeout(warm_timeout):
                             await s.call_tool(wtool, wargs)
                         row["warm_seconds"] = round(time.time() - t0, 1)
                     except Exception as e:  # noqa: BLE001
+                        # Expected, and it is the mechanism rather than a
+                        # failure. The first call does not complete; the
+                        # client abandoning it is what unblocks the server.
                         row["warm_seconds"] = round(time.time() - t0, 1)
-                        row["warm_error"] = f"{type(e).__name__}: {e}"
+                        row["warm_abandoned"] = type(e).__name__
 
             tool, args = spec["call"](question, "get_answer")
             row["tool"] = tool
