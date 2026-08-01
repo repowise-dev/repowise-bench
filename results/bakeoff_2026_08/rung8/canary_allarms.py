@@ -164,7 +164,13 @@ BUILDS = {
     # Serena is an LSP wrapper and builds no persistent index. It still needs a
     # worktree to point at, so it is staged and skipped here rather than absent.
     "serena": None,
+    # Second repowise row, sharing the `repowise` arm's index and building
+    # nothing of its own. See `SHARED_TREE` and the arm-definition note below.
+    "repowise-search": None,
 }
+
+# Arms that query another arm's tree instead of staging their own.
+SHARED_TREE = {"repowise-search": "repowise"}
 
 
 def stage(arm: str, repo_key: str, source_tree: Path, base_commit: str) -> Path:
@@ -175,7 +181,7 @@ def stage(arm: str, repo_key: str, source_tree: Path, base_commit: str) -> Path:
     (11 tools single-repo, 13 in workspace mode) and `repowise mcp` has no
     `--no-workspace` to opt out of it (finding D1b).
     """
-    dest = TREES / f"c8-{arm}-{repo_key}"
+    dest = TREES / f"c8-{SHARED_TREE.get(arm, arm)}-{repo_key}"
     if dest.exists():
         head = subprocess.run(
             ["git", "rev-parse", "HEAD"], cwd=str(dest),
@@ -226,14 +232,40 @@ def arm_spec(arm: str, tree: Path) -> dict:
     given tool name or argument is what it is applies here unchanged.
     """
     specs = r5.arm_specs(str(TREES / "repowise-self"))
-    key = {"crg": "code-review-graph"}.get(arm, arm)
+    key = {"crg": "code-review-graph", "repowise-search": "repowise"}.get(arm, arm)
     spec = dict(specs[key])
     spec["tree"] = str(tree)
-    if arm == "repowise":
+    if arm in ("repowise", "repowise-search"):
         spec["args"] = ["mcp", str(tree), "--transport", "stdio"]
         # Cheapest tool that forces the index open, so the cold-start cost is
         # paid by a call nobody scores.
         spec["warm"] = ("search_codebase", {"query": "test", "limit": 1})
+    if arm == "repowise-search":
+        # THE ZERO-LLM REPOWISE ROW, and the reason it exists is fairness.
+        #
+        # Fixing A9 means putting OPENAI_API_KEY in the server's environment so
+        # the embedder matches the index it is querying. But
+        # `_resolve_provider_for_answer` autodetects an LLM provider from that
+        # same key (`synthesis.py:150-205`), and an explicitly-unusable
+        # REPOWISE_PROVIDER falls through to that autodetect rather than
+        # disabling it. There is no separate embedder key. So `get_answer`
+        # cannot be given live embeddings and denied synthesis by configuration
+        # alone: measured live at `cost_usd=0.001656` for one query.
+        #
+        # That matters because every other Layer A arm is zero-LLM at query
+        # time, and rung 5 measured synthesis at +13.6pp recall@10 on multi-hop.
+        # Letting our arm quietly buy that while CodeGraph, Graphify and
+        # code-review-graph get nothing would inflate the flagship by a
+        # mechanism no competitor was offered, in a run advertised as zero LLM.
+        #
+        # Resolution (Raghav, 2026-08-01): report BOTH, never pooled.
+        #   `repowise`        get_answer, synthesis on  — what a user runs
+        #   `repowise-search` search_codebase, no LLM   — like-for-like control
+        # search_codebase does no synthesis, so this row is genuinely zero-LLM
+        # and answers "you only win because you pay an LLM" on the competitors'
+        # own terms. It shares the `repowise` index, so it costs one extra call
+        # per instance and no extra build.
+        spec["call"] = lambda q, kind: ("search_codebase", {"query": q, "limit": 10})
     elif arm == "codegraph":
         spec["args"] = ["serve", "--mcp", "--path", str(tree), "--no-watch"]
     elif arm == "crg":
@@ -522,12 +554,12 @@ async def amain(args) -> int:
                 b.update({"instance_id": inst["instance_id"], "tree": str(tree)})
                 builds.append(b)
                 print(f"[build] {tag} rc={b.get('rc')} {b.get('seconds')}s", flush=True)
-                (OUT / "canary_builds.json").write_text(json.dumps(builds, indent=2))
+                (OUT / f"canary_builds__{args.tag}.json").write_text(json.dumps(builds, indent=2))
 
     for inst in instances:
         repo_key, _ = REPO_TREE[inst["repo"]]
         for arm in arms:
-            tree = TREES / f"c8-{arm}-{repo_key}"
+            tree = TREES / f"c8-{SHARED_TREE.get(arm, arm)}-{repo_key}"
             row = await query_arm(arm, arm_spec(arm, tree), inst)
             row["gold_files"] = inst["gold_files"]
             # Local sanity signal only. The graded number is ContextBench's.
@@ -543,7 +575,7 @@ async def amain(args) -> int:
                 f"n_ranked={row.get('n_ranked')} gold_rank={row.get('gold_hit_rank')}",
                 flush=True,
             )
-            (OUT / "canary_queries.json").write_text(json.dumps(rows, indent=2))
+            (OUT / f"canary_queries__{args.tag}.json").write_text(json.dumps(rows, indent=2))
 
     # One prediction file per arm, graded separately: ContextBench aggregates
     # across a file, so mixing arms into one would average them together.
@@ -553,15 +585,15 @@ async def amain(args) -> int:
         if not arm_rows:
             graded[arm] = {"skipped": "no successful calls to grade"}
             continue
-        pred = OUT / f"pred__{arm}.jsonl"
+        pred = OUT / f"pred__{args.tag}__{arm}.jsonl"
         pred.write_text(
             "\n".join(json.dumps(to_pred(r)) for r in arm_rows) + "\n",
             encoding="utf-8",
         )
-        graded[arm] = grade(pred, OUT / f"graded__{arm}.jsonl", TREES / "_cbcache")
+        graded[arm] = grade(pred, OUT / f"graded__{args.tag}__{arm}.jsonl", TREES / "_cbcache")
         print(f"[grade] {arm} rc={graded[arm]['rc']}", flush=True)
 
-    (OUT / "canary_report.json").write_text(json.dumps({
+    (OUT / f"canary_report__{args.tag}.json").write_text(json.dumps({
         "preflight": pre,
         "instances": [{k: v for k, v in i.items() if k != "problem_statement"}
                       for i in instances],
@@ -581,6 +613,11 @@ def main() -> int:
         default=["repowise", "codegraph", "crg", "graphify", "serena"],
     )
     ap.add_argument("--skip-build", action="store_true")
+    # Output files are tagged so a later run cannot clobber an earlier one's raw
+    # data. Standing rule 10 keeps raw JSONL forever, and the first version of
+    # this script wrote fixed filenames, so a two-arm verification run silently
+    # overwrote the five-arm report that preceded it.
+    ap.add_argument("--tag", default="latest")
     ap.add_argument("--allow-contended", action="store_true")
     args = ap.parse_args()
     return asyncio.run(amain(args))
