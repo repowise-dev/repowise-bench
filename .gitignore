@@ -103,3 +103,10 @@ opencode-src/
 /mcp_configs/scratch_swebench_*.json
 # ad-hoc gold-gate dumps
 results_swebench_goldgate_*.json
+
+# Third-party graders and datasets, cloned not vendored. `external/ContextBench`
+# is a nested git checkout (EuniAI/ContextBench, Apache-2.0) plus its own
+# `.venv-grader`; it is recreated by the command recorded in the rung 8 RESULT.md
+# rather than committed here. `data/contextbench` holds the HF parquets.
+/external/
+/data/contextbench/

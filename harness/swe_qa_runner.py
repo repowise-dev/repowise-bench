@@ -1262,6 +1262,46 @@ def _resolve_judge_model(config: dict) -> str:
     return judge
 
 
+def _openai_api_key() -> Optional[str]:
+    """The OpenAI key, from the environment or the repo's provider config.
+
+    `provider_config.json` at the repowise checkout root is where this machine
+    actually keeps the key; the environment is usually empty. Checked in that
+    order so CI can override without editing a file.
+    """
+    env = os.environ.get("OPENAI_API_KEY")
+    if env:
+        return env
+    cfg = _REPOWISE_ROOT / "provider_config.json"
+    if cfg.exists():
+        try:
+            key = json.loads(cfg.read_text(encoding="utf-8")).get("keys", {}).get("openai")
+            if key:
+                return str(key)
+        except (json.JSONDecodeError, OSError):
+            return None
+    return None
+
+
+def _judge_family(judge_model: str) -> str:
+    """Which client can actually reach this model.
+
+    Existed because it did not. `DEFAULT_JUDGE_MODEL` was switched to a GPT
+    model for cross-family grading (D3/D8), but `judge_answer` only ever had an
+    Anthropic SDK path and a `claude` CLI path, and the SDK failure was
+    swallowed by a bare `except Exception: pass`. So every judge call fell
+    through to `claude --model gpt-5.6-luna`, failed, and returned an error
+    dict. The quality column came back empty for every arm, after the agent
+    spend was already gone. Route explicitly, and refuse what cannot be routed.
+    """
+    m = judge_model.lower()
+    if m.startswith(("gpt-", "o1", "o3", "o4")):
+        return "openai"
+    if m.startswith("claude") or m == "sonnet" or m == "opus" or m == "haiku":
+        return "anthropic"
+    return "unknown"
+
+
 def judge_answer(question: str, gold_answer: str, agent_answer: str,
                  judge_model: str) -> dict:
     """Score agent answer via LLM judge. Retries on rate limits."""
@@ -1287,7 +1327,56 @@ Respond with ONLY a JSON object like:
 {{"correctness": 7, "completeness": 6, "relevance": 8, "clarity": 9, "reasoning": 7}}
 """
 
-    # Try Anthropic SDK first (if API key available)
+    family = _judge_family(judge_model)
+
+    if family == "unknown":
+        raise ValueError(
+            f"judge_model {judge_model!r} matches no client this harness has. "
+            f"Supported prefixes: gpt-/o1/o3/o4 (OpenAI), claude-/sonnet/opus/"
+            f"haiku (Anthropic). Refusing to run: an unroutable judge returns "
+            f"an error dict per task and silently empties the quality column "
+            f"after the agent spend is gone."
+        )
+
+    if family == "openai":
+        key = _openai_api_key()
+        if not key:
+            raise ValueError(
+                f"judge_model {judge_model!r} needs an OpenAI key and none was "
+                f"found in OPENAI_API_KEY or {_REPOWISE_ROOT / 'provider_config.json'}."
+            )
+        # `max_completion_tokens`, not `max_tokens`: the current GPT models
+        # reject the older parameter outright with a 400. The budget is well
+        # above the ~30 tokens the rubric JSON needs because a reasoning model
+        # spends this allowance on reasoning first and returns empty content if
+        # it runs out, which parses as a judge failure rather than as a score.
+        # `temperature` is dropped for the same reason it was set: some models
+        # accept only the default and 400 on any explicit value, so it is sent
+        # once and retried without it rather than assumed either way.
+        kwargs: dict = {
+            "model": judge_model,
+            "max_completion_tokens": 2000,
+            "temperature": 0.0,
+            "messages": [{"role": "user", "content": judge_prompt}],
+        }
+        for attempt in range(3):
+            try:
+                from openai import OpenAI
+                client = OpenAI(api_key=key)
+                response = client.chat.completions.create(**kwargs)
+                return _extract_json_scores((response.choices[0].message.content or "").strip())
+            except Exception as e:
+                msg = str(e)
+                if "temperature" in msg and "temperature" in kwargs:
+                    kwargs.pop("temperature")
+                    continue
+                if is_rate_limit_error(msg):
+                    backoff_sleep(attempt, base=20.0)
+                    continue
+                return {"error": f"judge_failed: {msg[:200]}"}
+        return {"error": "judge_max_retries"}
+
+    # Anthropic SDK first (if API key available)
     if os.environ.get("ANTHROPIC_API_KEY"):
         try:
             import anthropic
