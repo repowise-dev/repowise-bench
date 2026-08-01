@@ -84,6 +84,20 @@ _spec.loader.exec_module(r5)
 # --------------------------------------------------------------------------
 # E1: no timed or measured build while another process pool is alive
 # --------------------------------------------------------------------------
+def _openai_key() -> str | None:
+    """The embedder key, from the environment or the repo's provider config."""
+    env = os.environ.get("OPENAI_API_KEY")
+    if env:
+        return env
+    cfg = REPOWISE_ROOT / "provider_config.json"
+    if cfg.exists():
+        try:
+            return json.loads(cfg.read_text(encoding="utf-8")).get("keys", {}).get("openai")
+        except (json.JSONDecodeError, OSError):
+            return None
+    return None
+
+
 def preflight() -> dict:
     """Refuse to start under a live python multiprocessing pool (finding E1).
 
@@ -236,6 +250,16 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0) -> dict
         "DO_NOT_TRACK": "1",
         "REPOWISE_SKIP_EDITOR_SETUP": "1",
     })
+    # The index is built with `--embedder openai`, which reads the key from
+    # `provider_config.json`. The MCP server reads `OPENAI_API_KEY` from its
+    # environment and nothing bridges the two, so a server launched the obvious
+    # way queries an openai-embedded index with a mock embedder. Bridge it here
+    # for every arm's environment (harmless to the arms that do not use it) so
+    # our own arm is measured with the retrieval stack it was built with.
+    if not env.get("OPENAI_API_KEY"):
+        key = _openai_key()
+        if key:
+            env["OPENAI_API_KEY"] = key
     question = instance["problem_statement"]
     row = {
         "arm": arm,
@@ -321,6 +345,30 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0) -> dict
                     "ranked": ranked[:50],
                     "n_ranked": len(ranked),
                 })
+                # "The arm was alive" is not enough. An arm can start, serve
+                # its tools, answer with bytes, and still have half its
+                # retrieval stack dead. repowise's MCP server reads
+                # OPENAI_API_KEY from its own environment and does NOT pick up
+                # the provider_config.json key that `init --embedder openai`
+                # used, so it silently falls back to mock vectors that cannot
+                # match the real index. It says so in every response's `_meta`
+                # (`embedder_degraded`), and rung 5 recorded no such field, so
+                # whether OUR OWN arm's 0.643 was measured on real embeddings
+                # or on full-text search alone cannot now be established from
+                # the data. Record it per call so that question is never
+                # unanswerable again. This is finding E4 one level deeper:
+                # prove the arm was FULLY alive, not merely alive.
+                meta = payload.get("_meta") if isinstance(payload, dict) else None
+                if isinstance(meta, dict):
+                    row["embedder"] = meta.get("embedder")
+                    row["embedder_degraded"] = meta.get("embedder_degraded")
+                    if meta.get("embedder_degraded"):
+                        print(
+                            f"  !! {arm}: EMBEDDER DEGRADED — semantic search is "
+                            f"on mock vectors and cannot match the real index. "
+                            f"This row is not a measurement.",
+                            flush=True,
+                        )
             except Exception as e:  # noqa: BLE001
                 row.update({"status": "call-failed", "error": f"{type(e).__name__}: {e}"})
     finally:
