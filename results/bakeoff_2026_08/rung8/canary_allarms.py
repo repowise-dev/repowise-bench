@@ -47,11 +47,13 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import contextlib
 import importlib.util
 import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -82,6 +84,13 @@ GRADER = BENCH_ROOT / "external" / "ContextBench"
 GRADER_PY = GRADER / ".venv-grader" / "Scripts" / "python.exe"
 
 LOGS = OUT / "logs"
+# Per-cell server stderr (finding D14). `stdio_client` defaults `errlog` to the
+# runner's own stderr, where three workers interleave it and nothing ties a line
+# to a cell, so every D14 diagnosis so far has had `McpError: Connection closed`
+# and nothing else. A server that dies mid-call writes its traceback there and
+# only there. One file per cell, kept on disk when the cell fails and deleted
+# when it does not, so a clean run does not leave 210 log files behind.
+STDERR_LOGS = LOGS / "server-stderr"
 
 # Reuse rung 5's extractors rather than re-deriving them. Every one of them
 # encodes a specific bug that cost an arm a false zero, so a fresh
@@ -207,6 +216,27 @@ def build_index(arm: str, tree: Path, tag: str) -> dict:
         "REPOWISE_SKIP_EDITOR_SETUP": "1",
         "PYTHONIOENCODING": "utf-8",
     })
+    # FINDING D13, and it silently invalidated every repowise row rungs 5 and 8
+    # and dev-fix1 published.
+    #
+    # `init --embedder openai` needs the key HERE, in the build. Without it the
+    # generator falls back to MockEmbedder, writes 8-dimensional vectors, and
+    # says so only in a decorative closing card nobody parsed ("semantic search
+    # needs an embedder"). rc is 0. The index looks complete. Then `query_arm`
+    # bridges the key into the QUERY environment, so the server resolves a real
+    # embedder, builds a 1536-dimension question vector, and every vector search
+    # raises `No vector column found to match with the query vector dimension`.
+    # `_safe_vector_search` catches it and returns [], so the arm answers on
+    # full-text plus symbols and reports `embedder_live: true`, which is
+    # correct and is about the wrong process.
+    #
+    # Verified on all nine repowise trees in bakeoff/: every one is
+    # 8-dimensional, r5-repowise included. Measured cost of the missing leg on
+    # the 20 Go dev instances: served containment 6/20 -> 11/20.
+    if arm == "repowise" and not env.get("OPENAI_API_KEY"):
+        key = _openai_key()
+        if key:
+            env["OPENAI_API_KEY"] = key
     LOGS.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     p = subprocess.run(
@@ -218,7 +248,48 @@ def build_index(arm: str, tree: Path, tag: str) -> dict:
         f"$ {' '.join(argv)}\n\n--- stdout ---\n{p.stdout}\n--- stderr ---\n{p.stderr}\n",
         encoding="utf-8",
     )
-    return {"arm": arm, "rc": p.returncode, "seconds": el, "argv": argv}
+    row = {"arm": arm, "rc": p.returncode, "seconds": el, "argv": argv}
+    row.update(index_embedding_proof(arm, tree))
+    return row
+
+
+def index_embedding_proof(arm: str, tree: Path) -> dict:
+    """What embedder actually wrote this index, read off the index itself.
+
+    `embedder_live` answers "can this process resolve an embedder now". That is
+    a claim about the query side and it was green through every run described in
+    D13. The claim that was never checked is about the *index*, it is answerable
+    in one line, and the answer is a number: MockEmbedder writes 8 dimensions
+    and every real embedder writes hundreds. A run whose repowise index reads 8
+    is not a measurement of repowise and must not be graded as one.
+    """
+    if arm != "repowise":
+        return {}
+    lance = tree / ".repowise" / "lancedb"
+    if not lance.exists():
+        return {"index_vector_dim": None, "index_embedder_mock": None}
+    try:
+        import lancedb
+
+        db = lancedb.connect(str(lance))
+        names = list(db.table_names())
+        if not names:
+            return {"index_vector_dim": None, "index_embedder_mock": None}
+        table = db.open_table(names[0])
+        field = next(f for f in table.schema if f.name == "vector")
+        dim = int(field.type.list_size)
+    except Exception as exc:  # noqa: BLE001
+        return {"index_vector_dim": None, "index_embedder_probe_error": repr(exc)}
+    mock = dim <= 16
+    if mock:
+        print(
+            f"  !! {arm}: INDEX IS MOCK-EMBEDDED (vector dim {dim}). The vector "
+            f"retrieval leg cannot run against it and every query will be "
+            f"answered on full-text plus symbols alone. This row is not a "
+            f"measurement (finding D13).",
+            flush=True,
+        )
+    return {"index_vector_dim": dim, "index_embedder_mock": mock}
 
 
 # --------------------------------------------------------------------------
@@ -236,6 +307,13 @@ def arm_spec(arm: str, tree: Path) -> dict:
     spec = dict(specs[key])
     spec["tree"] = str(tree)
     if arm in ("repowise", "repowise-search"):
+        # `arm_specs` hardcodes the MAIN checkout's console script, and that
+        # checkout is pinned to the version rung 8 measured. Re-running our arm
+        # to score a fix living in a worktree therefore ran the OLD build and
+        # would have published it as the new one. `REPOWISE_EXE` decides now,
+        # and the resolved path is stamped on every cell so no row can be
+        # published without saying which binary produced it.
+        spec["command"] = str(REPOWISE_EXE)
         spec["args"] = ["mcp", str(tree), "--transport", "stdio"]
         # Cheapest tool that forces the index open, so the cold-start cost is
         # paid by a call nobody scores.
@@ -315,14 +393,49 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
         "instance_id": instance["instance_id"],
         "repo": instance["repo"],
         "tree": spec["tree"],
+        # WHICH BINARY ANSWERED. Two repowise checkouts exist on this machine
+        # (the pinned "before" and a worktree carrying a fix) and the launch
+        # command used to be hardcoded to the first, so a cell could measure a
+        # version other than the one its row claimed. Recorded per cell so the
+        # question is answerable from the data rather than from memory.
+        "command": spec["command"],
     }
     sp = StdioServerParameters(command=spec["command"], args=spec["args"], env=env)
+
+    # D14. Give this cell's server its own stderr sink before it is launched, so
+    # a process that dies mid-call leaves its traceback attached to the cell that
+    # lost it rather than interleaved into the runner's console with two other
+    # workers'. Opened unconditionally: the crash is not predictable, so there is
+    # no "failing cell" to switch this on for.
+    STDERR_LOGS.mkdir(parents=True, exist_ok=True)
+    errf = tempfile.NamedTemporaryFile(  # noqa: SIM115
+        mode="w+", encoding="utf-8", errors="replace", newline="",
+        prefix=f"{arm}__{instance['instance_id'].rsplit('__', 1)[-1]}__",
+        suffix=".log", dir=str(STDERR_LOGS), delete=False,
+    )
+    errpath = Path(errf.name)
+    row["server_stderr_log"] = str(errpath)
+
+    def _drain(keep: int) -> str:
+        """Read back what the server wrote. Never raises; this is evidence, not flow."""
+        try:
+            errf.flush()
+            errf.seek(0)
+            text = errf.read()
+        except (OSError, ValueError):
+            return ""
+        row["server_stderr_chars"] = len(text)
+        return text[-keep:]
+
     try:
         async with asyncio.timeout(120):
-            cm = stdio_client(sp)
+            cm = stdio_client(sp, errlog=errf)
             r, w = await cm.__aenter__()
     except Exception as e:  # noqa: BLE001
-        row.update({"status": "server-failed", "error": f"{type(e).__name__}: {e}"})
+        row.update({"status": "server-failed", "error": f"{type(e).__name__}: {e}",
+                    "server_stderr": _drain(8000)})
+        with contextlib.suppress(OSError, ValueError):
+            errf.close()
         return row
 
     try:
@@ -419,6 +532,21 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
                 if isinstance(meta, dict):
                     row["embedder"] = meta.get("embedder")
                     row["embedder_degraded"] = meta.get("embedder_degraded")
+                    # Which retrieval legs actually ran, per query, straight from
+                    # the product. Shipped in `6c1ad3da` and unread by the harness
+                    # until now, which is why D13 needed an archaeology session:
+                    # the vector leg was raising and being swallowed on every
+                    # query of every published run, and the only place that was
+                    # visible was a field nobody stored. Recorded per cell so a
+                    # dead leg is a column rather than a discovery.
+                    row["retrieval_degraded"] = meta.get("retrieval_degraded")
+                    if meta.get("retrieval_degraded"):
+                        print(
+                            f"  !! {arm}: RETRIEVAL DEGRADED "
+                            f"{meta.get('retrieval_degraded')} — at least one leg "
+                            f"did not run on this query.",
+                            flush=True,
+                        )
                     if meta.get("embedder_degraded"):
                         print(
                             f"  !! {arm}: EMBEDDER DEGRADED — semantic search is "
@@ -433,6 +561,19 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
             await cm.__aexit__(None, None, None)
         except Exception:  # noqa: BLE001,S110
             pass
+        # Read AFTER teardown: a server killed mid-call flushes its traceback on
+        # the way down, so draining before __aexit__ would capture everything
+        # except the part that matters.
+        ok = row.get("status") == "ok"
+        row["server_stderr"] = _drain(1200 if ok else 20000)
+        with contextlib.suppress(OSError, ValueError):
+            errf.close()
+        if ok:
+            # A clean cell's stderr is startup noise. Keep the tail on the row,
+            # drop the file, and do not leave 210 of them on disk.
+            row.pop("server_stderr_log", None)
+            with contextlib.suppress(OSError):
+                errpath.unlink()
     return row
 
 
