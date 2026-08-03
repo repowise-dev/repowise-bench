@@ -1122,6 +1122,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     arm: Optional[Arm] = None,
                     settings_path: Optional[str] = None,
                     prompt_style: str = "arm",
+                    tool_descriptions: Optional[dict] = None,
                     claude_home: Optional[str] = None) -> tuple:
     """
     Run Claude Code with retry on rate limits.
@@ -1222,7 +1223,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
             # (Figma/Notion/Apollo/Gmail/... from ~/.claude.json) and mount only
             # this arm's server from our config.
             cmd.extend(["--strict-mcp-config", "--mcp-config", mcp_config_path])
-        coaching = arm.resolved_coaching(prompt_style)
+        coaching = arm.resolved_coaching(prompt_style, tool_descriptions)
         if coaching:
             cmd.extend(["--append-system-prompt", coaching])
     else:
@@ -1914,9 +1915,19 @@ def probe_arm_server(arm: Arm, mcp_config_path: str, timeout: float = 120.0) -> 
         try:
             async with ClientSession(r, w) as s:
                 await s.initialize()
-                served = sorted(t.name for t in (await s.list_tools()).tools)
+                tools = (await s.list_tools()).tools
+                served = sorted(t.name for t in tools)
+                # The server's OWN words for each tool, captured here rather
+                # than written by us. `prompt_style: neutral-described` puts one
+                # sentence of this in front of the agent, because under plain
+                # `neutral` the agent decides whether a deferred tool is worth
+                # a ToolSearch round trip from its NAME alone — which makes a
+                # cross-tool table partly a ranking of how self-describing each
+                # vendor's tool names happen to be.
                 row.update({"status": "ok", "served_tools": served,
-                            "served_count": len(served)})
+                            "served_count": len(served),
+                            "served_tool_descriptions": {
+                                t.name: (t.description or "") for t in tools}})
                 for step in arm.activate:
                     if step["tool"] not in served:
                         row.setdefault("activate", {})[step["tool"]] = "tool-absent"
@@ -2005,6 +2016,9 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
 
     bench_root = Path(__file__).resolve().parent.parent
     mcp_config_path = None
+    # Filled from the live server below for MCP arms; stays empty for C0,
+    # which has no server to describe.
+    served_descriptions: dict = {}
     settings_path = str(arm_registry.generate_settings(
         arm, bench_root / "mcp_configs"))
     claude_home = str(arm_registry.prepare_claude_home())
@@ -2032,6 +2046,9 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         # its absence produced a clean, plausible zero rather than an error.
         probe = probe_arm_server(arm, mcp_config_path)
         metrics.served_tools = probe.get("served_tools", [])
+        # Captured off the live server so `prompt_style: neutral-described`
+        # shows the agent each vendor's own words rather than ours.
+        served_descriptions = probe.get("served_tool_descriptions") or {}
         metrics.served_count = probe.get("served_count")
         if probe.get("status") != "ok":
             metrics.error = f"arm_not_alive: {probe.get('status')}: {probe.get('error', '')[:300]}"
@@ -2110,7 +2127,8 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             arm=arm,
             mcp_config_path=mcp_config_path,
             system_prompt=build_codex_system_prompt(
-                base_system_prompt, arm.resolved_coaching(metrics.prompt_style)),
+                base_system_prompt,
+                arm.resolved_coaching(metrics.prompt_style, served_descriptions)),
             stream_log_path=str(
                 Path(config["paths"]["logs_dir"]) / "streams"
                 / f"{task_id}__{condition['name']}.jsonl"
@@ -2146,6 +2164,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             arm=arm,
             settings_path=settings_path,
             prompt_style=metrics.prompt_style,
+            tool_descriptions=served_descriptions,
             claude_home=claude_home,
             # The tree is already this arm's own and already scrubbed; a second
             # worktree under it would be a worktree of a worktree.

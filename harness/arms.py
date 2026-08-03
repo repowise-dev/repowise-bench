@@ -158,10 +158,82 @@ using it, not a reason to retry it.
 """
 
 
-def neutral_coaching(arm: "Arm") -> str:
+# `neutral-described` is `neutral` plus one line per tool, taken from the
+# SERVER'S OWN schema description rather than written by us.
+#
+# It exists because `neutral` may be measuring the wrong thing. MCP tool
+# schemas are DEFERRED: the agent cannot see what a tool does until it spends
+# a ToolSearch round trip, so under `neutral` it decides whether a tool is
+# worth that round trip from the tool's NAME alone. Measured across the arms so
+# far, the ones it reaches for are named `get_answer` and `codegraph_explore`,
+# which promise an answer to a question; the ones it ignores are named
+# `search_for_pattern`, `find_symbol` and `semantic_search_nodes_tool`, which
+# promise capabilities the agent already holds as Grep, Glob and Read.
+#
+# So a `neutral` cross-tool table risks being partly a ranking of how
+# self-describing each vendor happened to make its tool names. That is a real
+# product property and it is not retrieval quality, and the two should not be
+# summed silently into one column.
+#
+# The descriptions come off the live server at cell time, so this is each
+# arm's author describing their own tool, applied identically to every arm
+# including ours. It is not extra coaching for anyone: nothing here is written
+# by this harness.
+#
+# Both styles ship. `neutral` stays byte-identical to what the rung 6 tables
+# were produced under. Any published row must say which style it used.
+NEUTRAL_DESCRIBED_COACHING = """\
+You have the {server} MCP server available alongside your standard tools. It
+provides codebase intelligence for the repository in your current directory.
+
+Available tools, described by the server itself:
+{tool_lines}
+
+These tools are loaded on demand and are NOT in your initial tool list: call
+ToolSearch with the tool name first (e.g. ToolSearch "{first_tool}") to load the
+schema, then call the tool. Do this silently.
+
+Start with the {server} tools before reading source files. If what they return
+already answers the question, answer from it and stop — do not re-verify it with
+Grep or Read. If it does not answer the question, fall back to Read, Grep and
+Glob without hesitation; an unhelpful answer from the server is a reason to stop
+using it, not a reason to retry it.
+"""
+
+# One sentence per tool. A server that writes a 40-line description would
+# otherwise hand itself a prompt several times the size of everyone else's,
+# which would be a new asymmetry replacing the one this fixes.
+_DESC_MAX_CHARS = 200
+
+
+def _first_sentence(text: str, limit: int = _DESC_MAX_CHARS) -> str:
+    flat = " ".join((text or "").split())
+    if not flat:
+        return ""
+    cut = flat.split(". ")[0].rstrip(".")
+    if len(cut) > limit:
+        cut = cut[:limit].rsplit(" ", 1)[0] + "..."
+    return cut
+
+
+def neutral_coaching(arm: "Arm", descriptions: Optional[dict] = None,
+                     described: bool = False) -> str:
     if not arm.mcp:
         return ""
     tools = arm.client_tools or []
+    if described:
+        desc = descriptions or {}
+        rendered = []
+        for t in tools:
+            short = t.split("__")[-1]
+            one = _first_sentence(desc.get(short, ""))
+            rendered.append(f"- {t}" + (f" — {one}" if one else ""))
+        lines = "\n".join(rendered) or "- (the server's advertised tools)"
+        return NEUTRAL_DESCRIBED_COACHING.format(
+            server=arm.mcp.get("server_name", arm.name),
+            tool_lines=lines,
+            first_tool=tools[0] if tools else "",
+        )
     lines = "\n".join(f"- {t}" for t in tools) or "- (the server's advertised tools)"
     return NEUTRAL_COACHING.format(
         server=arm.mcp.get("server_name", arm.name),
@@ -255,9 +327,12 @@ class Arm:
         bias favours whoever ran first."""
         return self.shares_index_with or self.name
 
-    def resolved_coaching(self, style: str = "arm") -> str:
+    def resolved_coaching(self, style: str = "arm",
+                          descriptions: Optional[dict] = None) -> str:
         if not self.uses_mcp:
             return ""
+        if style == "neutral-described":
+            return neutral_coaching(self, descriptions, described=True)
         if style == "neutral":
             return neutral_coaching(self)
         text = self.coaching or ""
