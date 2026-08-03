@@ -1,0 +1,69 @@
+# Canary for configs/swe_qa_flask48_d16.yaml. Two tasks, four cells.
+#
+# Identical to the full config except `max_tasks` and the output paths. Its job
+# is to prove the thing the full run is FOR before the full run spends: that
+# `hook_injections` is empty on a C0 cell under the bench-owned
+# CLAUDE_CONFIG_DIR. If hooks still fire, the 96-cell run behind this measures
+# nothing and must not start.
+#
+# It also pays the flask index build once, so the run behind it does not.
+#
+# Gated by `python -m harness.canary_gate`, which exits non-zero on: any cell
+# error or timeout, ANY hook injection, a C2_full cell whose server advertised
+# nothing or that the agent never successfully called, a token source that is
+# not modelUsage, or a missing judge score.
+
+experiment_name: "swe_qa_flask48_d16_canary"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 2
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/swe_qa_flask48_d16_canary"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48_d16_canary"
+
+budget:
+  max_total_usd: 5.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

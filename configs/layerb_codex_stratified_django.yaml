@@ -1,0 +1,117 @@
+# Codex on the stratified draw: the second harness, at the same n as the first.
+#
+# Every Layer B number before session 9 was a statement about Claude Code — one
+# harness, one model family, one tool-loading mechanism. Codex CLI 0.145.0 runs
+# behind `config["agent"]["harness"]` and has been at n=1 and n=3.
+#
+# This is the same 15 questions, same draw, same two arms, so the Codex and
+# Claude rows differ in the harness and in nothing else that the harness
+# controls.
+#
+# ---------------------------------------------------------------------------
+# WHAT THIS RUN MAY AND MAY NOT BE COMPARED TO — read before quoting a number
+# ---------------------------------------------------------------------------
+# Session 10's judge-agreement check measured `claude-sonnet-5` (which grades
+# the Codex arms) against `gpt-5.6-luna` (which grades the Claude arms) on 59
+# cells of the stratified run: **mean absolute difference 0.74, bias +0.48,
+# Spearman 0.51.** The Claude judge scores half a point higher on the same
+# answers and orders the cells differently.
+#
+# **+0.48 is the size of every per-slice effect in the Claude run** (
+# architecture-why -0.67, performance-why +0.80, pooled +0.13). Therefore:
+#
+#   * The QUALITY column from this run may NOT be placed beside the Claude
+#     run's quality column. Not "with a caveat" — it is uninterpretable, because
+#     the grader difference is as large as the arm difference and runs in a
+#     fixed direction.
+#   * The COST column may not be either, for an older and separate reason:
+#     Codex emits token counts and no dollar figure, so cost here is COMPUTED
+#     at list rates while Claude Code reports its own. Never one column.
+#
+# What this run CAN say, and it is worth the $5:
+#
+#   * **Adoption**, which needs no judge and no cost model. Session 10 measured
+#     repowise at 15/15 under Claude Code. Whether a different agent, in a
+#     different harness, with a shell instead of Read/Grep/Glob, also reaches
+#     for the server is a robustness check on the strongest finding of the run.
+#   * **Direction WITHIN this harness.** repowise against c0-bare, both graded
+#     by the same judge, both priced by the same model. That is a self-
+#     contained comparison and it is legitimate.
+#
+# A cross-harness quality table needs ONE COMMON JUDGE across both harnesses,
+# which means re-grading one side and accepting that whichever judge is chosen
+# is same-family with one of the two agents. There may be no configuration that
+# is cross-family for both. Not solved here; stated.
+#
+# ---------------------------------------------------------------------------
+# Preconditions
+# ---------------------------------------------------------------------------
+#   * `python -m harness.codex_isolation_probe` MUST pass first. Codex emits no
+#     hook events and no init event, so a Codex cell cannot report "zero hooks
+#     fired" about itself and the probe carries its own positive control.
+#     Codex rows carry `hook_events: None`, never `[]`.
+#   * `--ignore-user-config` is NOT used and does not do what its name says: it
+#     ignores config.toml and leaves $CODEX_HOME/hooks.json firing (measured at
+#     7 firings with the flag set). Isolation is a bench-owned CODEX_HOME.
+#   * Codex's non-interactive approval policy is DENY, so a refused MCP call
+#     looks like a clean cell. `arm_exercised` requires a call the server
+#     ANSWERED, which is what catches it.
+#
+# `judge_model` is DELIBERATELY UNSET: `_resolve_judge_model` picks from the
+# agent's family, and pinning a GPT judge for a GPT agent would (correctly)
+# raise rather than self-grade.
+
+experiment_name: "layerb_codex_stratified_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_codex_stratified_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_codex_stratified_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 12.0
+  max_per_task_usd: 2.0
+  abort_on_exceed: true
+
+evaluation:
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
