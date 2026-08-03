@@ -22,6 +22,56 @@
 # not being measured, it is being defamed.
 #
 # ---------------------------------------------------------------------------
+# THE ALLOWLIST RULE
+# ---------------------------------------------------------------------------
+# Stated once here, applied to every arm, rather than decided per arm by
+# whoever added it. It exists because we got this wrong against a competitor,
+# in our own favour, and shipped it into a table.
+#
+#   An arm's `client_tools` is its server's FULL ADVERTISED SURFACE, minus
+#   tools irrelevant to the task shape. Every exclusion is named in the arm's
+#   block with a reason. `served_tools` stays at the server's default: the cut
+#   is made on the client allowlist, uniformly, and not by pinning one arm's
+#   server smaller than another's.
+#
+# What the surfaces actually are, measured 2026-08-03 by
+# `python -m harness.served_surface` against django (raw:
+# results/bakeoff_2026_08/rung6/served_surface.json):
+#
+#   | arm               | served | allowlisted BEFORE | allowlisted AFTER |
+#   |-------------------|-------:|-------------------:|------------------:|
+#   | repowise          |     11 |    8 / 4 (pinned)  |                 7 |
+#   | codegraph         |      1 |                  1 |                 1 |
+#   | graphify          |     10 |                  1 |                 7 |
+#   | serena            |     29 |                  3 |                10 |
+#   | code-review-graph |     30 |                  1 |                20 |
+#
+# The rung 6 four-arm run gave graphify 1 of 10, and graphify was then
+# exercised on 4 of 10 cells and its row excluded. Serena and crg had never
+# had a cell run at all, and would have gone in at 3 of 29 and 1 of 30. That
+# does not prove the asymmetry caused the non-use — finding A30 says an agent
+# ignores a tool it was not told to reach for, whatever the tool is — but an
+# arm we handicapped is not an arm we measured.
+#
+# Two things make "irrelevant to the task shape" a checkable claim rather than
+# a licence:
+#
+#   1. It is a claim about the CELL, not about the tool's quality. A SWE-QA
+#      cell is one read-only question about a repository at one commit. There
+#      is no pull request in it, so a PR-triage tool has nothing to read; there
+#      is no diff, so a diff-impact tool has no input; the harness allows no
+#      Edit, Write or Bash to any arm, so a refactor tool cannot be exercised
+#      and a shell tool would break the read-only parity every arm is held to.
+#   2. The exclusions are listed per arm below. Disagree with one and it is a
+#      one-line change to put it back.
+#
+# Deferred MCP schemas make this cheap to get right: Claude Code does not put
+# an allowlisted tool's schema in context until ToolSearch loads it, so a
+# larger allowlist costs an arm names in a deferred list rather than tokens of
+# schema. There is no version of this where the fair allowlist was too
+# expensive to give.
+#
+# ---------------------------------------------------------------------------
 # Template variables usable in any string
 # ---------------------------------------------------------------------------
 #   {tree}          the arm's OWN worktree for this repo (never shared: finding E3)
@@ -107,11 +157,74 @@ arms:
     coaching: null
 
   # -------------------------------------------------------------------------
-  # repowise. Two tool tiers over ONE index: the tiers differ only in the
-  # server's --tools flag, so `repowise-lean` shares the full arm's tree.
+  # repowise. Three tool tiers over ONE index: they differ only in the server's
+  # --tools flag and the client allowlist, so all three share one tree.
+  #
+  # `repowise` is the rule-conformant arm and the one a cross-tool table must
+  # use. `repowise-full` and `repowise-lean` pin the server smaller than its
+  # default and are ABLATIONS of the schema tax, not competitors' peers: no
+  # competitor was given a pinned-down surface, so a table putting a 4-tool
+  # repowise against a 20-tool crg is the graphify defect pointing the other
+  # way. They are kept because the published flask48 rows were produced on
+  # them and must stay reproducible.
   # -------------------------------------------------------------------------
+  repowise:
+    description: >
+      repowise MCP as installed: the server's own default surface, no --tools
+      pin, allowlisted per the rule at the top of this file.
+
+      Served (11): get_answer, get_change_risk, get_context, get_dead_code,
+      get_health, get_overview, get_risk, get_symbol, get_why, list_repos,
+      search_codebase.
+
+      Excluded (4), each for the task shape and not for the tool:
+        list_repos      workspace enumeration; one repo is under test and the
+                        server is launched single-repo, so it answers a
+                        question the cell cannot ask.
+        get_change_risk scores a COMMIT or a diff range. A SWE-QA cell is one
+                        question at one commit with no diff in it — the same
+                        reason graphify's get_pr_impact is excluded.
+        get_health      code-health scoring is a different product surface and
+                        a different question shape (how good is this file, not
+                        how does this code work).
+        get_dead_code   a reachability report over the whole repo, likewise.
+    shares_index_with: repowise-full
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      # No --tools pin, deliberately: the rule cuts on the client allowlist so
+      # that every arm's server advertises what its author made it advertise.
+      served_tools: null
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_context
+      - mcp__repowise__get_overview
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_symbol
+      - mcp__repowise__get_why
+      - mcp__repowise__search_codebase
+    index: null
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+
   repowise-full:
-    description: repowise MCP, full advertised tool surface, doc + graph index.
+    description: >
+      ABLATION, not the headline arm. repowise MCP with the server pinned to
+      eight tools via --tools. Kept byte-identical to what the published
+      flask48 rows were produced on; see `repowise` above for the arm that
+      obeys the allowlist rule.
     mcp:
       server_name: repowise
       command: "{repowise_exe}"
@@ -160,9 +273,13 @@ arms:
 
   repowise-lean:
     description: >
-      Same index and same four tools the agent actually reaches for, but the
-      server advertises only those four, so the other schemas never enter the
-      agent's context. This is the schema-tax arm.
+      ABLATION, not the headline arm. Same index and same four tools the agent
+      actually reaches for, but the server advertises only those four, so the
+      other schemas never enter the agent's context. This is the schema-tax
+      arm, and it is the SMALLEST surface any arm in this bake-off runs with.
+      Reporting it against a competitor serving 10-30 tools measures our pin
+      as much as our tool; use `repowise` for that and cite this one as the
+      ablation it is.
       Deliberately an explicit allowlist rather than the CLI's `lean` keyword:
       that keyword selects the shipped SIX-tool profile, which is a different
       arm. If you want the shipped profile, pass "lean" and rename this.
@@ -261,8 +378,18 @@ arms:
       command: "{uv_bin}/graphify-mcp.exe"
       args: ["--transport", "stdio", "--graph", "{tree}/graphify-out/graph.json"]
       served_tools: null
+    # Served (10). Excluded (3), all PR-review tools with nothing to read in a
+    # SWE-QA cell: `list_prs`, `triage_prs`, `get_pr_impact`. There is no pull
+    # request and no diff in a cell, so they are the same exclusion as
+    # repowise's get_change_risk.
     client_tools:
       - mcp__graphify__query_graph
+      - mcp__graphify__get_node
+      - mcp__graphify__get_neighbors
+      - mcp__graphify__shortest_path
+      - mcp__graphify__get_community
+      - mcp__graphify__god_nodes
+      - mcp__graphify__graph_stats
     index:
       command: ["{uv_bin}/graphify.exe", "update", "{tree}"]
       timeout_seconds: 10800
@@ -272,6 +399,11 @@ arms:
       - mcp__graphify__query_graph(question="...") — asks Graphify's code graph
         a natural-language question and returns matching nodes with their
         source locations.
+      - mcp__graphify__get_node / get_neighbors / shortest_path — walk the
+        graph from a node, list what it connects to, or find a path between
+        two of them.
+      - mcp__graphify__get_community / god_nodes / graph_stats — cluster,
+        hub and whole-graph summaries.
 
       These tools are loaded on demand: if the tool is not immediately
       available, call ToolSearch with the tool name first, then call it.
@@ -296,8 +428,52 @@ arms:
       command: "{uv_bin}/code-review-graph.exe"
       args: ["serve", "--repo", "{tree}"]
       served_tools: null
+    # Served (30). Excluded (10):
+    #   apply_refactor_tool, refactor_tool       mutate source; no arm is given
+    #                                            Edit or Write, so a refactor
+    #                                            cannot be exercised and
+    #                                            allowing it would break the
+    #                                            read-only parity.
+    #   generate_wiki_tool                       writes artifacts into the tree.
+    #   build_or_update_graph_tool,              setup. The harness runs the
+    #   embed_graph_tool, run_postprocess_tool   equivalents in `index` and
+    #                                            `activate`; letting the agent
+    #                                            rebuild mid-cell would make
+    #                                            the index an uncontrolled
+    #                                            variable and bill the rebuild
+    #                                            to one cell.
+    #   detect_changes_tool,                     diff- and PR-shaped: no diff
+    #   get_review_context_tool                  and no pull request in a cell.
+    #   cross_repo_search_tool, list_repos_tool  multi-repo; one repo is under
+    #                                            test, same as repowise's
+    #                                            list_repos.
+    #
+    # get_wiki_page_tool and get_docs_section_tool ARE allowlisted even though
+    # `build` may not have generated a wiki. If they come back isError that is
+    # a missing setup step in this arm's definition, which is exactly the class
+    # of defect the per-server isError count exists to surface — and it is a
+    # defect to fix rather than a tool to quietly drop.
     client_tools:
       - mcp__crg__semantic_search_nodes_tool
+      - mcp__crg__query_graph_tool
+      - mcp__crg__traverse_graph_tool
+      - mcp__crg__get_flow_tool
+      - mcp__crg__list_flows_tool
+      - mcp__crg__get_affected_flows_tool
+      - mcp__crg__get_architecture_overview_tool
+      - mcp__crg__get_bridge_nodes_tool
+      - mcp__crg__get_community_tool
+      - mcp__crg__list_communities_tool
+      - mcp__crg__get_hub_nodes_tool
+      - mcp__crg__get_impact_radius_tool
+      - mcp__crg__get_knowledge_gaps_tool
+      - mcp__crg__get_minimal_context_tool
+      - mcp__crg__get_docs_section_tool
+      - mcp__crg__get_wiki_page_tool
+      - mcp__crg__get_suggested_questions_tool
+      - mcp__crg__get_surprising_connections_tool
+      - mcp__crg__find_large_functions_tool
+      - mcp__crg__list_graph_stats_tool
     index:
       # --embedding-provider and --embedding-model "must be supplied together";
       # passing the provider alone exits 2 with a usage error.
@@ -324,6 +500,20 @@ arms:
         — searches code entities by name, keyword or semantic similarity.
         The provider and model arguments are required on every call or the
         server falls back to no semantic search.
+      - mcp__crg__query_graph_tool(pattern=..., target=...) — a structured
+        graph query. It does NOT take a natural-language question.
+      - mcp__crg__traverse_graph_tool, get_impact_radius_tool,
+        get_bridge_nodes_tool, get_hub_nodes_tool — walk the graph, or find
+        what a node reaches and what reaches it.
+      - mcp__crg__get_flow_tool, list_flows_tool, get_affected_flows_tool —
+        named execution flows through the codebase.
+      - mcp__crg__get_architecture_overview_tool, get_community_tool,
+        list_communities_tool, list_graph_stats_tool,
+        get_surprising_connections_tool, find_large_functions_tool —
+        structural summaries.
+      - mcp__crg__get_wiki_page_tool, get_docs_section_tool,
+        get_minimal_context_tool, get_knowledge_gaps_tool,
+        get_suggested_questions_tool — generated documentation over the graph.
 
       These tools are loaded on demand: if the tool is not immediately
       available, call ToolSearch with the tool name first, then call it.
@@ -350,10 +540,48 @@ arms:
         - --enable-gui-log-window
         - "false"
       served_tools: null
+    # Served (29). Excluded (19):
+    #   create_text_file, insert_after_symbol,   mutate source. No arm is given
+    #   insert_before_symbol, replace_content,   Edit or Write, so these cannot
+    #   replace_in_files, replace_symbol_body,   be exercised and allowing them
+    #   rename_symbol, safe_delete_symbol        would break read-only parity.
+    #   write_memory, delete_memory,             mutate Serena's own memory
+    #   edit_memory, rename_memory               store, which persists ACROSS
+    #                                            cells — a cell that writes a
+    #                                            memory changes the next cell's
+    #                                            starting state. That is
+    #                                            finding E3 in a different
+    #                                            substrate and it is why they
+    #                                            go, not because they are bad.
+    #   read_memory, list_memories               read that same cross-cell
+    #                                            store; nothing legitimately
+    #                                            put anything in it.
+    #   execute_shell_command                    a shell. Bash is denied to
+    #                                            every arm (repo escape, and it
+    #                                            can read the benchmark's own
+    #                                            answer key); one arm reaching
+    #                                            a shell through its server is
+    #                                            not the same experiment.
+    #   activate_project                         the harness runs it in
+    #                                            `activate`, before the cell.
+    #   onboarding, initial_instructions,        session setup and self-
+    #   get_current_config                       description, not retrieval.
+    #
+    # read_file, list_dir and find_file ARE allowlisted although Read, Glob and
+    # Grep already cover them. They are what Serena ships and duplicating a
+    # capability the agent already has is not an advantage; dropping them
+    # would be us deciding which of a competitor's tools count.
     client_tools:
       - mcp__serena__search_for_pattern
       - mcp__serena__find_symbol
       - mcp__serena__get_symbols_overview
+      - mcp__serena__find_declaration
+      - mcp__serena__find_implementations
+      - mcp__serena__find_referencing_symbols
+      - mcp__serena__get_diagnostics_for_file
+      - mcp__serena__find_file
+      - mcp__serena__list_dir
+      - mcp__serena__read_file
     index: null
     activate:
       - tool: activate_project
@@ -367,6 +595,13 @@ arms:
       - mcp__serena__find_symbol(name_path="...") — locates a symbol.
       - mcp__serena__get_symbols_overview(relative_path="...") — lists the
         symbols defined in a file.
+      - mcp__serena__find_declaration / find_implementations /
+        find_referencing_symbols — go to definition, find implementations,
+        find callers, via the language server.
+      - mcp__serena__get_diagnostics_for_file(relative_path="...") — language
+        server diagnostics for a file.
+      - mcp__serena__find_file / list_dir / read_file — locate and read files
+        through Serena rather than through your own tools.
 
       These tools are loaded on demand: if a tool is not immediately
       available, call ToolSearch with the tool name first, then call it.

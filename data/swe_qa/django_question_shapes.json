@@ -1,0 +1,209 @@
+{
+  "_readme": "Question SHAPE for the 48 django SWE-QA questions. Written 2026-08-03 from the question text alone, BEFORE any arm's per-question performance was looked at, because a classification made after seeing which questions an arm won is selection on the outcome and is unfalsifiable afterwards. See harness/question_shapes.py for the taxonomy, the two findings that fall out of the distribution, and the committed stratified draw.",
+  "_source": "data/swe_qa/tasks.json, the 48 rows with repo django/django",
+  "_classified_on": "2026-08-03",
+  "_classified_by": "session 9, from question text only, no arm results consulted",
+  "_taxonomy": "PLAN.md Phase 3, plus performance-why which PLAN.md's list does not contain",
+  "_distribution": {
+    "architecture-why": 16,
+    "cross-file-impact": 5,
+    "history-why": 0,
+    "multi-hop-flow": 14,
+    "performance-why": 4,
+    "symbol-lookup": 9
+  },
+  "questions": {
+    "django_000": {
+      "shape": "cross-file-impact",
+      "why": "asks for the dependency surface of one model across Meta options, fields, routers and backend feature flags"
+    },
+    "django_001": {
+      "shape": "architecture-why",
+      "why": "asks what design pattern the base class establishes and what it enables in subclasses"
+    },
+    "django_002": {
+      "shape": "architecture-why",
+      "why": "asks for the semantic contract between init parameters and downstream caching behaviour"
+    },
+    "django_003": {
+      "shape": "architecture-why",
+      "why": "asks what layered design the test structure reveals about mixin composition"
+    },
+    "django_004": {
+      "shape": "architecture-why",
+      "why": "asks what architectural pattern keeps naming and template resolution independent of lookup"
+    },
+    "django_005": {
+      "shape": "symbol-lookup",
+      "why": "asks what a named stealth option is; finding inhibit_post_migrate is the task"
+    },
+    "django_006": {
+      "shape": "architecture-why",
+      "why": "asks for the pattern behind a self-referential FK and the implications of SET_NULL"
+    },
+    "django_007": {
+      "shape": "multi-hop-flow",
+      "why": "traces how excluding a field from Meta.fields changes the form's field resolution path"
+    },
+    "django_008": {
+      "shape": "cross-file-impact",
+      "why": "asks what implicit dependencies one helper has on inherited session and CSRF machinery"
+    },
+    "django_009": {
+      "shape": "architecture-why",
+      "why": "asks what architecture decouples response construction from content materialisation"
+    },
+    "django_010": {
+      "shape": "architecture-why",
+      "why": "asks why a design returns an empty dict rather than null and what that implies"
+    },
+    "django_011": {
+      "shape": "cross-file-impact",
+      "why": "asks which couplings between a test and django.urls.reverse must hold for it to pass"
+    },
+    "django_012": {
+      "shape": "multi-hop-flow",
+      "why": "follows dependency resolution and topological ordering through the migration executor"
+    },
+    "django_013": {
+      "shape": "multi-hop-flow",
+      "why": "follows branching between two data sources to an authoritative count and its consequences"
+    },
+    "django_014": {
+      "shape": "symbol-lookup",
+      "why": "asks how two named members of one class coordinate; the answer is in that class"
+    },
+    "django_015": {
+      "shape": "multi-hop-flow",
+      "why": "follows abstract Meta through inheritance resolution into generic view routing"
+    },
+    "django_016": {
+      "shape": "multi-hop-flow",
+      "why": "follows an empty __in argument through lookup handling into SQL generation"
+    },
+    "django_017": {
+      "shape": "multi-hop-flow",
+      "why": "follows an exception from a method up through the template engine's execution stack"
+    },
+    "django_018": {
+      "shape": "cross-file-impact",
+      "why": "asks explicitly what would break if the inner Prefetch queryset's only() were removed"
+    },
+    "django_019": {
+      "shape": "architecture-why",
+      "why": "asks how the ORM should be designed to combine select_related and defer correctly"
+    },
+    "django_020": {
+      "shape": "architecture-why",
+      "why": "asks how a property keeps two error representations consistent without redundant traversal"
+    },
+    "django_021": {
+      "shape": "architecture-why",
+      "why": "asks what exception hierarchy and delegation pattern makes rollback decisions safe"
+    },
+    "django_022": {
+      "shape": "multi-hop-flow",
+      "why": "follows the admin check that decides whether a decorated method is safe in readonly_fields"
+    },
+    "django_023": {
+      "shape": "architecture-why",
+      "why": "asks why the design requires None to reset state rather than be ignored or rejected"
+    },
+    "django_024": {
+      "shape": "architecture-why",
+      "why": "asks why the model leans on ORM abstraction and what constraints that imposes"
+    },
+    "django_025": {
+      "shape": "architecture-why",
+      "why": "asks how the design should trade eager against lazy validation across backends"
+    },
+    "django_026": {
+      "shape": "architecture-why",
+      "why": "asks what design principle justifies lenient coercion instead of rejection"
+    },
+    "django_027": {
+      "shape": "performance-why",
+      "why": "asks why a validation path is slow under load and what refactoring improves throughput"
+    },
+    "django_028": {
+      "shape": "performance-why",
+      "why": "asks about a performance regression from sequential calls and how to optimise it"
+    },
+    "django_029": {
+      "shape": "architecture-why",
+      "why": "asks why a dual inheritance choice was made and how it shapes processing"
+    },
+    "django_030": {
+      "shape": "architecture-why",
+      "why": "asks why the test class validates cursor lifecycle across version-specific behaviours"
+    },
+    "django_031": {
+      "shape": "performance-why",
+      "why": "asks about cumulative cost of property accessors at scale and how to optimise"
+    },
+    "django_032": {
+      "shape": "cross-file-impact",
+      "why": "asks what cascading effects removing a unique constraint would have on existing operations"
+    },
+    "django_033": {
+      "shape": "performance-why",
+      "why": "asks how one method's iteration and string work affects migration generation performance"
+    },
+    "django_034": {
+      "shape": "symbol-lookup",
+      "why": "asks what one named test function validates"
+    },
+    "django_035": {
+      "shape": "multi-hop-flow",
+      "why": "follows permission branching through URL reversal and filter preservation to a redirect"
+    },
+    "django_036": {
+      "shape": "symbol-lookup",
+      "why": "asks where the logic lives that distinguishes manual from generated sequences"
+    },
+    "django_037": {
+      "shape": "multi-hop-flow",
+      "why": "asks which intermediate validation layers a value traverses before an assertion"
+    },
+    "django_038": {
+      "shape": "multi-hop-flow",
+      "why": "follows a quoted primary key through reverse URL resolution and HTML escaping"
+    },
+    "django_039": {
+      "shape": "symbol-lookup",
+      "why": "asks where one class is instantiated inside another's hierarchy"
+    },
+    "django_040": {
+      "shape": "multi-hop-flow",
+      "why": "follows cascade deletion propagation through the data control flow"
+    },
+    "django_041": {
+      "shape": "multi-hop-flow",
+      "why": "follows a unique constraint through the validation pipeline into FK reference handling"
+    },
+    "django_042": {
+      "shape": "symbol-lookup",
+      "why": "asks where the validator execution logic is implemented"
+    },
+    "django_043": {
+      "shape": "symbol-lookup",
+      "why": "asks where the routing rules that pick a database for fixtures are evaluated"
+    },
+    "django_044": {
+      "shape": "multi-hop-flow",
+      "why": "follows backend feature flags into per-backend duration storage resolution"
+    },
+    "django_045": {
+      "shape": "symbol-lookup",
+      "why": "asks where one named method sits in a class hierarchy"
+    },
+    "django_046": {
+      "shape": "multi-hop-flow",
+      "why": "follows the check framework from a database alias to a column-name-length check"
+    },
+    "django_047": {
+      "shape": "symbol-lookup",
+      "why": "asks where a conditional in one named method occurs and what follows from it"
+    }
+  }
+}

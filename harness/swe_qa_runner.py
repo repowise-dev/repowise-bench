@@ -357,11 +357,21 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
                        repos: Optional[list] = None,
                        skip_tasks: int = 0,
                        exclude_indices: Optional[list] = None,
-                       include_indices: Optional[list] = None) -> list:
+                       include_indices: Optional[list] = None,
+                       task_ids: Optional[list] = None) -> list:
     """
     Load SWE-QA tasks from HuggingFace-downloaded JSON or directly from HF.
 
     Each task gets: id, repo (GitHub org/name), question, answer, split_name.
+
+    `task_ids` selects by NAME rather than by position, and it exists because
+    every Layer B run so far selected by position and that turned out not to be
+    a sample. The django rows are laid out by interrogative — What, then How,
+    then Why, then Where — so `max_tasks: 10` in file order is the `What` block
+    and nothing else. A stratified draw has to name its questions; see
+    `harness/question_shapes.py`, which commits the classification and the
+    seed. Applied before skip/max so a named draw is never silently truncated
+    by a stale `max_tasks` left in a config.
     """
     data_path = Path(data_dir) / "swe_qa"
 
@@ -387,6 +397,22 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
     # Filter by repo
     if repos:
         tasks = [t for t in tasks if t.get("repo", "") in repos]
+
+    # Select by task id. Wins over every positional selector below it, and
+    # raises on an id that does not exist rather than quietly running a
+    # smaller set than the draw specified — a stratified draw missing a slice
+    # is not a stratified draw, and n going from 15 to 14 is not visible in any
+    # summary line.
+    if task_ids:
+        wanted = list(dict.fromkeys(task_ids))
+        found = {t.get("id"): t for t in tasks}
+        missing = [tid for tid in wanted if tid not in found]
+        if missing:
+            raise KeyError(
+                f"task_ids not present in the loaded set: {missing}. "
+                f"Check the repo filter: {repos}."
+            )
+        return [found[tid] for tid in wanted]
 
     # Include specific per-repo indices (computed AFTER repo filter). Used by
     # targeted re-runs (e.g., re-running only the failing tasks after a fix).
@@ -1355,62 +1381,140 @@ def _extract_json_scores(text: str) -> dict:
     return {"error": f"parse_failed: {text[:200]}"}
 
 
-# The judge must never be the model it is grading. Self-preference bias in LLM
-# judges is well documented, and a judge from the same family as every arm
-# quietly advantages nothing in particular but invalidates the quality column.
+# The judge must never be the model it is grading, and "the model" means the
+# FAMILY, not the string. Self-preference bias is a property of a model lineage
+# and its training data, not of a version number: `gpt-5.6-luna` grading
+# `gpt-5.6-sol` is the same bug as `sonnet` grading `sonnet`, arrived at one
+# character later.
 DEFAULT_JUDGE_MODEL = "gpt-5.6-luna"
+
+# Which judge to reach for given the family the AGENT belongs to. This became
+# load-bearing the moment a second harness existed: `DEFAULT_JUDGE_MODEL` was
+# chosen when every arm was Claude-family, and a Codex run on a GPT model
+# inherits it and self-grades. There is no single right default here because
+# the right default depends on the arm.
+DEFAULT_JUDGE_BY_AGENT_FAMILY = {
+    "anthropic": "gpt-5.6-luna",
+    "openai": "claude-sonnet-5",
+}
 
 
 def _resolve_judge_model(config: dict) -> str:
-    """Judge model for this run, refusing to grade a model with itself.
+    """Judge model for this run, refusing to grade a family with itself.
 
-    Two bugs are guarded here, both found 2026-08-01:
+    Three bugs are guarded here.
 
-    1. **The default was the agent model.** `judge_model` fell back to
-       `config["agent"]["model"]`, so an unconfigured run graded the agent with
-       itself.
-    2. **The configs made it explicit anyway.** Every shipped config sets
-       `judge_model: "sonnet"` under a comment reading "neutral judge across all
-       cells, never the agent model", while `model:` is also `"sonnet"`. Not
-       merely same-family: byte-identical. Every published SWE-QA quality score
-       was self-graded.
+    1. **The default was the agent model** (2026-08-01). `judge_model` fell
+       back to `config["agent"]["model"]`, so an unconfigured run graded the
+       agent with itself.
+    2. **The configs made it explicit anyway** (2026-08-01). Every shipped
+       config set `judge_model: "sonnet"` under a comment reading "neutral
+       judge across all cells, never the agent model", while `model:` was also
+       `"sonnet"`. Not merely same-family: byte-identical. Every published
+       SWE-QA quality score before that date was self-graded.
+    3. **The check was byte equality** (2026-08-03, this session). Which is to
+       say it caught case 2 and would not have caught the thing it exists to
+       prevent. `DEFAULT_JUDGE_MODEL` is a GPT model, chosen because every arm
+       was Claude-family; a Codex arm runs a GPT agent and would have been
+       graded by a GPT judge, silently, with the config unchanged and every
+       cell reporting a `judge_model` that looks cross-family until you know
+       what the agent was. D3/D8 arriving from the other side.
 
-    A configured judge that collides with the agent now raises rather than
-    silently producing an unusable quality column.
+    So the comparison is on `_judge_family`, and the default is chosen from
+    the agent's family rather than fixed.
+
+    The cost of getting this right is a real confound and it is not hidden: a
+    cross-HARNESS table then has two different judges. PLAN.md already
+    specifies the mitigation for luna-vs-terra and the same one applies here —
+    grade a stratified subset with both judges and publish the agreement.
     """
     agent_model = str(config.get("agent", {}).get("model", "")).strip()
+    agent_family = _judge_family(agent_model) if agent_model else "unknown"
     configured = config.get("evaluation", {}).get("judge_model")
-    judge = str(configured).strip() if configured else DEFAULT_JUDGE_MODEL
+
+    if configured:
+        judge = str(configured).strip()
+    else:
+        judge = DEFAULT_JUDGE_BY_AGENT_FAMILY.get(agent_family, DEFAULT_JUDGE_MODEL)
+
+    judge_family = _judge_family(judge)
 
     if agent_model and judge == agent_model:
         raise ValueError(
             f"judge_model ({judge!r}) is the same model as the agent "
             f"({agent_model!r}). A model may not grade itself: self-preference "
-            f"bias makes the quality column meaningless. Set "
-            f"evaluation.judge_model to a cross-family model "
-            f"(default: {DEFAULT_JUDGE_MODEL!r})."
+            f"bias makes the quality column meaningless."
+        )
+    if agent_family != "unknown" and judge_family == agent_family:
+        raise ValueError(
+            f"judge_model ({judge!r}) is in the same family as the agent "
+            f"({agent_model!r}): both resolve to {judge_family!r}. "
+            f"Self-preference bias is a property of the lineage, not of the "
+            f"version string, so a same-family judge invalidates the quality "
+            f"column exactly as a self-grading one does. For a "
+            f"{agent_family!r} agent use "
+            f"{DEFAULT_JUDGE_BY_AGENT_FAMILY.get('openai' if agent_family == 'anthropic' else 'anthropic')!r}."
+        )
+    if agent_family == "unknown" and agent_model:
+        # An agent this harness cannot place cannot be proven cross-family
+        # against anything. Refuse rather than record a `judge_model` field
+        # that reads as a guarantee it is not.
+        raise ValueError(
+            f"agent model {agent_model!r} matches no family this harness "
+            f"knows, so the judge cannot be proven cross-family. Add its "
+            f"prefix to _judge_family before running it."
         )
     return judge
 
 
-def _openai_api_key() -> Optional[str]:
-    """The OpenAI key, from the environment or the repo's provider config.
+def _openai_key_candidates() -> list[Path]:
+    """Where `provider_config.json` might be, most specific first.
 
-    `provider_config.json` at the repowise checkout root is where this machine
-    actually keeps the key; the environment is usually empty. Checked in that
-    order so CI can override without editing a file.
+    More than one location, because pinning `REPOWISE_ROOT` broke this and the
+    failure was split across two symptoms that do not look related.
+
+    The environment pin the whole of Layer B runs under points `REPOWISE_ROOT`
+    at a DETACHED WORKTREE (`repowise-layerb`), so that nothing can switch the
+    binary under a run in flight. `provider_config.json` is untracked and lives
+    in the main checkout, so it is not in the worktree — and this function only
+    looked in `REPOWISE_ROOT`. Two consequences, neither of which announced
+    itself as the same bug:
+
+      * the judge raised `needs an OpenAI key and none was found`, mid-run,
+        after the agent spend for that cell was already gone;
+      * before that, and silently, `_index_extra_env` returned `{}`, so the
+        repowise MCP server was launched WITHOUT `OPENAI_API_KEY` in its
+        environment. That is finding A9's exact precondition. It happened to
+        survive only because the server now recovers the key from
+        `~/.repowise/config.yaml` and says so in a log line nobody parses.
+
+    So: search the pinned root, then the bench's own parent checkout, then the
+    conventional user location.
+    """
+    return [
+        _REPOWISE_ROOT / "provider_config.json",
+        _BENCH_ROOT.parent / "provider_config.json",
+        Path.home() / ".repowise" / "provider_config.json",
+    ]
+
+
+def _openai_api_key() -> Optional[str]:
+    """The OpenAI key, from the environment or a provider config.
+
+    The environment wins so CI can override without editing a file.
     """
     env = os.environ.get("OPENAI_API_KEY")
     if env:
         return env
-    cfg = _REPOWISE_ROOT / "provider_config.json"
-    if cfg.exists():
+    for cfg in _openai_key_candidates():
+        if not cfg.exists():
+            continue
         try:
             key = json.loads(cfg.read_text(encoding="utf-8")).get("keys", {}).get("openai")
-            if key:
-                return str(key)
         except (json.JSONDecodeError, OSError):
-            return None
+            continue
+        if key:
+            return str(key)
     return None
 
 
@@ -1474,7 +1578,8 @@ Respond with ONLY a JSON object like:
         if not key:
             raise ValueError(
                 f"judge_model {judge_model!r} needs an OpenAI key and none was "
-                f"found in OPENAI_API_KEY or {_REPOWISE_ROOT / 'provider_config.json'}."
+                f"found in OPENAI_API_KEY or any of: "
+                + ", ".join(str(p) for p in _openai_key_candidates())
             )
         # `max_completion_tokens`, not `max_tokens`: the current GPT models
         # reject the older parameter outright with a 400. The budget is well
@@ -1526,27 +1631,56 @@ Respond with ONLY a JSON object like:
                 return {"error": f"judge_failed: {msg[:200]}"}
         return {"error": "judge_max_retries"}
 
-    # Anthropic SDK first (if API key available)
+    # Anthropic SDK first (if API key available). max_tokens is 2,000 rather
+    # than the 200 this used to carry: the rubric JSON is ~30 tokens, but a
+    # model that thinks before emitting it spends the allowance on thinking and
+    # returns EMPTY CONTENT, which parses as a judge failure rather than as a
+    # score. That failure is not random — it lands on whichever arm writes the
+    # longest answers, which is the bare control — and it cost the rung 6 pilot
+    # two of the control's ten cells. Same reasoning as the OpenAI branch above.
     if os.environ.get("ANTHROPIC_API_KEY"):
         try:
             import anthropic
             client = anthropic.Anthropic()
             response = client.messages.create(
-                model=judge_model, max_tokens=200, temperature=0.0,
+                model=judge_model, max_tokens=2000, temperature=0.0,
                 messages=[{"role": "user", "content": judge_prompt}]
             )
-            return _extract_json_scores(response.content[0].text.strip())
+            text = "".join(getattr(b, "text", "") for b in response.content).strip()
+            if text:
+                return _extract_json_scores(text)
         except Exception:
             pass
 
-    # Fall back to Claude CLI with retry
+    # Fall back to Claude CLI with retry.
+    #
+    # Pinned exactly as an agent cell is, and for the same reason (finding
+    # D16). The operator's own ~/.claude/settings.json fires 8 hooks in any
+    # unpinned `claude -p`, two of which inject context, and one of those is
+    # repowise's own. A judge is a `claude -p` like any other: unpinned, the
+    # grader for every arm's quality column runs with repowise's hook output
+    # prepended to the rubric. That was never measured because the judge was
+    # assumed not to be part of the experiment, which is precisely the
+    # assumption D16 punished on the C0 arm.
+    judge_home = str(arm_registry.prepare_claude_home())
+    judge_env = dict(_UTF8_ENV)
+    judge_env["CLAUDE_CONFIG_DIR"] = judge_home
+    empty_cfg = _BENCH_ROOT / "configs" / "_empty_mcp.json"
+    if not empty_cfg.exists():
+        empty_cfg.parent.mkdir(parents=True, exist_ok=True)
+        empty_cfg.write_text('{"mcpServers": {}}')
+
     for attempt in range(3):
         try:
             result = subprocess.run(
                 ["claude", "-p", judge_prompt, "--output-format", "json",
-                 "--model", judge_model, "--max-budget-usd", "0.15"],
+                 "--model", judge_model, "--max-budget-usd", "0.15",
+                 "--strict-mcp-config", "--mcp-config", str(empty_cfg),
+                 "--disallowed-tools",
+                 "Bash,Read,Grep,Glob,Edit,Write,WebFetch,WebSearch,Task,"
+                 "ToolSearch,ListMcpResourcesTool,ReadMcpResourceTool,mcp__*"],
                 capture_output=True, text=True, timeout=90,
-                env=_UTF8_ENV, encoding="utf-8", errors="replace"
+                env=judge_env, encoding="utf-8", errors="replace"
             )
             if result.returncode == 0 and result.stdout.strip():
                 output = json.loads(result.stdout)
@@ -1556,7 +1690,14 @@ Respond with ONLY a JSON object like:
                         backoff_sleep(attempt, base=20.0)
                         continue
                     return {"error": err[:200]}
-                return _extract_json_scores(output.get("result", ""))
+                text = output.get("result", "")
+                # An unauthenticated CLI exits 0 and answers "Not logged in".
+                # As a judge that becomes a parse failure on every cell, i.e.
+                # an empty quality column after the agent spend is gone
+                # (finding D17, on the grader rather than on the agent).
+                if _looks_unauthenticated(text):
+                    return {"error": "judge_not_authenticated"}
+                return _extract_json_scores(text)
             err = result.stderr[:300]
             if is_rate_limit_error(err):
                 backoff_sleep(attempt, base=20.0)
@@ -1630,6 +1771,18 @@ def _index_extra_env(arm: Arm) -> dict:
         key = _openai_api_key()
         if key:
             env["OPENAI_API_KEY"] = key
+        else:
+            # Returning {} here is how D13 happened, and it returns {} without
+            # saying so. Say so.
+            print(
+                f"  !! {arm.name}: no OpenAI key found in OPENAI_API_KEY or "
+                + ", ".join(str(p) for p in _openai_key_candidates())
+                + ". The index build will fall back to MockEmbedder (8-dim "
+                  "vectors, exit 0, looks complete) and the server will be "
+                  "launched without the key (finding A9). Fix before trusting "
+                  "any row from this run.",
+                flush=True,
+            )
     return env
 
 
@@ -1894,7 +2047,38 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     per_task_budget = config.get("budget", {}).get("max_per_task_usd", 2.0)
     harness = config["agent"].get("harness", "claude_code")
     start = time.time()
-    if harness == "opencode":
+    if harness == "codex":
+        # A second agent harness, so a Layer B row is a claim about repowise
+        # rather than about Claude Code. See harness/codex_runner.py for the
+        # three ways a Codex number is NOT the same kind of number as a Claude
+        # one (computed cost, a shell instead of Read/Grep, a flipped judge).
+        from harness.codex_runner import (
+            run_codex, build_codex_system_prompt, prepare_codex_home,
+        )
+        base_system_prompt = (
+            "You are answering a question about the code repository in your "
+            "current directory. Only read files within the current repository. "
+            "Do NOT access files outside the current directory. "
+            "Do NOT read any benchmark, test-harness, or evaluation data. "
+            "Answer based solely on what you find in the source code."
+        )
+        output, retries = run_codex(
+            prompt=prompt,
+            repo_path=str(tree),
+            condition=condition,
+            model=config["agent"]["model"],
+            timeout=config["agent"]["timeout_seconds"],
+            arm=arm,
+            mcp_config_path=mcp_config_path,
+            system_prompt=build_codex_system_prompt(
+                base_system_prompt, arm.resolved_coaching(metrics.prompt_style)),
+            stream_log_path=str(
+                Path(config["paths"]["logs_dir"]) / "streams"
+                / f"{task_id}__{condition['name']}.jsonl"
+            ),
+            codex_home=str(prepare_codex_home()),
+        )
+    elif harness == "opencode":
         from harness.opencode_runner import (
             run_opencode, get_shared_server, build_opencode_system_prompt,
         )
@@ -1975,8 +2159,25 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         # calling its own server produced a bare-agent run under the arm's name,
         # and every other field on this row reads as a healthy cell.
         if arm.uses_mcp:
-            metrics.arm_exercised = bool(metrics.mcp_tools_issued)
-            if not metrics.arm_exercised:
+            # ISSUED is not USED. A call the server never answered leaves the
+            # agent with exactly what a bare agent has, and every other field
+            # on the row still reads as a healthy exercised cell — measured on
+            # the first Codex repowise cell, where the one `get_answer` came
+            # back `user cancelled MCP tool call` in a run with no user in it,
+            # the agent fell back to its shell, and the judge scored it 9.0.
+            # So the bar is at least one call the server actually answered.
+            answered = sum(v.get("ok", 0) for v in (metrics.mcp_per_server or {}).values())
+            metrics.arm_exercised = bool(metrics.mcp_tools_issued) and answered > 0
+            if metrics.mcp_tools_issued and not answered:
+                print(
+                    f"  !! {metrics.condition}/{task_id}: arm ISSUED "
+                    f"{len(metrics.mcp_tools_issued)} call(s) and the server "
+                    f"answered NONE of them ({metrics.mcp_isError_count} "
+                    f"errored). This cell measures a bare agent that paid for "
+                    f"a round trip.",
+                    flush=True,
+                )
+            if not metrics.arm_exercised and not metrics.mcp_tools_issued:
                 print(
                     f"  !! {metrics.condition}/{task_id}: arm NOT EXERCISED — "
                     f"the server advertised {metrics.served_count} tools and the "
