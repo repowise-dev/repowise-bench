@@ -190,7 +190,10 @@ def main() -> int:
               for r in records
               if isinstance(r["scores"].get(j), dict)
               and r["scores"][j].get("mean") is not None]
-        for d, r in sorted(rs, reverse=True)[:5]:
+        # Sort on the magnitude ALONE. `sorted` on (float, dict) tuples falls
+        # through to comparing the dicts whenever two disagreements tie, which
+        # raises TypeError after every judge call is already paid for.
+        for d, r in sorted(rs, key=lambda pair: pair[0], reverse=True)[:5]:
             print(f"  {j:18s} {r['task_id']:12s} {r['arm']:18s} {r['shape']:18s} "
                   f"{r['original_score']:.2f} vs {r['scores'][j]['mean']:.2f}  (d={d:.2f})")
 
