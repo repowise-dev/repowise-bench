@@ -1,0 +1,120 @@
+# Codex at n=3, after the n=1 wiring check passed on every point.
+#
+# Still NOT a comparison: n=3 has no power and no pairing worth the name. It
+# exists so session 10 inherits a Codex runner that has survived more than one
+# question, and so the three-way spread of per-cell cost and judge score is
+# visible before anyone commits to a full run.
+#
+# Every Layer B number so far is a statement about CLAUDE CODE, not about
+# repowise: one agent harness, one model family, one tool-loading mechanism.
+# Claude Code defers MCP schemas behind ToolSearch, and finding A30 is that a
+# sonnet agent under a neutral prompt never issued ToolSearch at all and
+# answered with nine Greps. If our lift or our loss is an artifact of that, no
+# amount of n fixes it, and it is the first objection a reviewer makes. A
+# second harness is the cheapest robustness check available and nobody in this
+# field publishes one.
+#
+# This config is NOT a comparison. It is one question, two arms, run so the
+# cells can be read by hand — because session 8's first Claude cell scored
+# 7.8/10, cost $0.42, reported `error: null`, and never called the arm's server
+# at all. Assume the same class of failure here and look for it explicitly.
+#
+# BEFORE running this, run the isolation probe and require it to pass:
+#   python harness/codex_isolation_probe.py \
+#     --repo ~/Desktop/bakeoff/lb-c0-bare-django-django
+# It carries its own positive control. `--ignore-user-config` does NOT suppress
+# $CODEX_HOME/hooks.json (measured: 7 firings with the flag set), so a bench-
+# owned CODEX_HOME is the isolation mechanism and the flag is not.
+#
+# THREE WAYS A NUMBER FROM HERE IS NOT THE SAME KIND OF NUMBER AS A CLAUDE ONE,
+# and all three must travel with any row:
+#
+#   1. Cost is COMPUTED, not reported. Codex emits token counts and no dollar
+#      figure; harness/codex_runner.py prices them at list rates. Claude Code
+#      reports its own cost. Never put the two in one column.
+#   2. The tool surfaces differ in shape. Claude cells run Read,Grep,Glob with
+#      no Bash. Codex's core tool IS a sandboxed shell and there is no way to
+#      remove it; `--sandbox read-only` with the working root pinned to the
+#      arm's worktree is the nearest equivalent, not the same restriction.
+#   3. The judge flips family. gpt-5.6-luna grading a GPT agent is same-family
+#      self-grading, D3/D8 from the other side. `judge_model` is left UNSET
+#      here on purpose: `_resolve_judge_model` now compares families and picks
+#      the default from the agent's family, and setting a GPT judge here would
+#      (correctly) raise. A cross-harness table therefore has two judges, which
+#      is a real confound; the mitigation is the one PLAN.md already specifies
+#      for luna-vs-terra, a stratified subset graded by both.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_codex_smoke_django.yaml
+
+experiment_name: "layerb_codex_n3_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # Three questions, one from each of three different SHAPES, named rather
+    # than taken in file order. The django rows are laid out by interrogative,
+    # so `max_tasks: 3` would have been three `What` questions and no more of a
+    # sample at n=3 than it was at n=10. All three are members of the committed
+    # stratified draw (harness/question_shapes.py), so these cells carry
+    # straight into the stratified run rather than being thrown away.
+    #   django_045  symbol-lookup
+    #   django_040  multi-hop-flow
+    #   django_020  architecture-why
+    task_ids: ["django_045", "django_040", "django_020"]
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  # `repowise`, not `repowise-lean`. The lean arm pins the server to four tools
+  # and is the SMALLEST surface in the bake-off; the allowlist rule at the top
+  # of configs/arms.yaml gives every arm its full served surface minus what the
+  # task shape cannot use, and `repowise` is the arm that obeys it. It shares
+  # repowise-full's tree, so this costs no index build.
+  - name: "repowise"
+    arm: "repowise"
+
+agent:
+  harness: "codex"          # <- the whole point of this config
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900      # Codex is slower per turn than Claude Code here
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_codex_n3_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_codex_n3_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 5.0
+  max_per_task_usd: 2.0
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET. See note 3 above: the default is now chosen from the
+  # agent's family, so a Codex run grades with Claude and a Claude run grades
+  # with GPT, and pinning a GPT judge here would raise rather than self-grade.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

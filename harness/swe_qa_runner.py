@@ -1673,8 +1673,16 @@ Respond with ONLY a JSON object like:
     for attempt in range(3):
         try:
             result = subprocess.run(
+                # 0.15 was not enough and it failed ASYMMETRICALLY, which is
+                # the third time this exact shape has cost this workstream a
+                # cell. A longer agent answer means a longer rubric prompt, the
+                # bare control writes the longest answers because it has no
+                # tool summary to lean on, so a budget that fails on long
+                # answers removes cells from one arm only. Measured on the
+                # Codex n=3 run: `judge_failed` on one cell of six, and it was
+                # `c0-bare` on the longest answer in the set.
                 ["claude", "-p", judge_prompt, "--output-format", "json",
-                 "--model", judge_model, "--max-budget-usd", "0.15",
+                 "--model", judge_model, "--max-budget-usd", "0.60",
                  "--strict-mcp-config", "--mcp-config", str(empty_cfg),
                  "--disallowed-tools",
                  "Bash,Read,Grep,Glob,Edit,Write,WebFetch,WebSearch,Task,"
@@ -1698,7 +1706,17 @@ Respond with ONLY a JSON object like:
                 if _looks_unauthenticated(text):
                     return {"error": "judge_not_authenticated"}
                 return _extract_json_scores(text)
-            err = result.stderr[:300]
+            # A non-zero exit with EMPTY stderr is the normal case here, not
+            # the odd one: the CLI exits cleanly after exhausting its own
+            # retries and the diagnostic lives in the JSON on stdout. Reporting
+            # `judge_failed: ` with nothing after the colon is how one cell
+            # went unexplained for a whole session.
+            err = (result.stderr or "").strip()[:300]
+            if not err:
+                err = _extract_failure_reason(result.stdout, result.stderr)
+            if not err:
+                err = (f"exit {result.returncode}, no stderr and no parseable "
+                       f"stdout; stdout[:200]={(result.stdout or '')[:200]!r}")
             if is_rate_limit_error(err):
                 backoff_sleep(attempt, base=20.0)
                 continue
