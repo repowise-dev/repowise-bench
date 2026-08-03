@@ -1,0 +1,45 @@
+# The repo registry. Adding a repo to the bake-off is a block here.
+#
+# `split_name` is the key SWE-QA's own task file uses; `repo` is the GitHub
+# org/name the harness clones and indexes. They differ often enough
+# (scikit_learn vs scikit-learn/scikit-learn) that keeping the mapping in one
+# declared place is worth a file.
+#
+# The harness falls back to the built-in map in swe_qa_runner.py when this file
+# is absent, so nothing breaks if it is deleted; it is here so a new repo needs
+# no Python.
+#
+# Two things to check before adding one, both of which have cost this workstream
+# a run:
+#
+#   * **Does repowise have a parser for its dominant language?** svelte was
+#     dropped 2026-08-01 because `.svelte` is 49% of that tree and repowise
+#     excluded 3,883 of 7,181 files as "unknown type" (finding A6). An arm that
+#     cannot read half the repo is not being compared, it is being embarrassed
+#     by a missing feature, and that is a different claim.
+#   * **Does it appear in the layer you want to cross-validate against?** flask
+#     has ONE instance in ContextBench's verified subset and zod and cockroach
+#     have zero, which is why the Layer A / Layer B cross-validation moved onto
+#     django (80) and cli/cli (32).
+
+repos:
+  astropy:      {repo: "astropy/astropy",              language: python}
+  conan:        {repo: "conan-io/conan",               language: python}
+  django:       {repo: "django/django",                language: python, contextbench_instances: 80}
+  flask:        {repo: "pallets/flask",                language: python, contextbench_instances: 1}
+  matplotlib:   {repo: "matplotlib/matplotlib",        language: python}
+  pylint:       {repo: "pylint-dev/pylint",            language: python}
+  pytest:       {repo: "pytest-dev/pytest",            language: python}
+  reflex:       {repo: "reflex-dev/reflex",            language: python}
+  requests:     {repo: "psf/requests",                 language: python}
+  scikit_learn: {repo: "scikit-learn/scikit-learn",    language: python}
+  sphinx:       {repo: "sphinx-doc/sphinx",            language: python}
+  sqlfluff:     {repo: "sqlfluff/sqlfluff",            language: python}
+  streamlink:   {repo: "streamlink/streamlink",        language: python}
+  sympy:        {repo: "sympy/sympy",                  language: python}
+  xarray:       {repo: "pydata/xarray",                language: python}
+
+  # Go. Not in SWE-QA (which is Python-only), so it carries no questions of its
+  # own here; it is in the registry because Layer A runs on it and the
+  # cross-validation needs both layers to name the same repo the same way.
+  cli:          {repo: "cli/cli",                      language: go, contextbench_instances: 32}

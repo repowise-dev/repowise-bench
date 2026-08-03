@@ -110,3 +110,10 @@ results_swebench_goldgate_*.json
 # rather than committed here. `data/contextbench` holds the HF parquets.
 /external/
 /data/contextbench/
+
+# Isolated CLAUDE_CONFIG_DIR for benchmark subprocesses. Holds a hard link to
+# the operator's OAuth credentials; never commit it.
+.claude_bench_home/
+
+# Generated per (arm, run): MCP configs and pinned per-arm settings.
+mcp_configs/

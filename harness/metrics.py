@@ -48,6 +48,32 @@ class RunMetrics:
     files_edited: list = field(default_factory=list)
     repowise_tools_called: list = field(default_factory=list)
 
+    # -- proof of life, per cell ----------------------------------------
+    # A zero is only publishable once the arm can be shown to have been alive
+    # (finding E4). "The run finished" is not that: a dead server, a wrong tool
+    # name and a deferred-schema client that never issued ToolSearch all produce
+    # a clean run of a bare agent wearing the arm's name.
+    arm: str = ""                       # which arm this cell measured
+    arm_provenance: dict = field(default_factory=dict)  # launch cmd, tools, index
+    served_tools: list = field(default_factory=list)    # what the server advertised
+    served_count: Optional[int] = None
+    mcp_tools_issued: list = field(default_factory=list)
+    mcp_isError_count: int = 0
+    # False when an MCP arm completed without ever calling its own server. The
+    # cell is a clean, well-scored, fully-billed run of a BARE agent wearing the
+    # arm's name, and nothing else on the row says so: no error, no timeout, a
+    # normal turn count and a normal judge score. Measured on the first Layer B
+    # cell ever run. Such a cell must never enter an arm's mean.
+    arm_exercised: Optional[bool] = None
+    mcp_per_server: dict = field(default_factory=dict)
+    hook_events: list = field(default_factory=list)
+    hook_injections: list = field(default_factory=list)
+    index_evidence: dict = field(default_factory=dict)
+    models_used: list = field(default_factory=list)
+    token_source: str = ""
+    prompt_style: str = ""
+    judge_model: str = ""
+
     # Timing
     wall_clock_seconds: float = 0.0
     index_time_seconds: float = 0.0
@@ -164,15 +190,47 @@ def parse_claude_code_output(json_output: dict) -> dict:
 
 
 def parse_claude_stream_output(stream_lines: list) -> dict:
-    """Parse --output-format stream-json --verbose for tool-level detail."""
+    """Parse --output-format stream-json --verbose for tool-level detail.
+
+    Three things changed here when the harness stopped being repowise-only, and
+    each of them was previously a way for an arm to be scored on something other
+    than its own behaviour.
+
+    1. **Any `mcp__*` tool counts, not `mcp__repowise*`.** The old filter meant a
+       CodeGraph or Serena cell recorded zero tool calls no matter what it did,
+       which reads as "the arm was never used" and is indistinguishable from an
+       arm the agent chose to ignore. Per-server counts are kept separately so
+       "did this arm's server actually get called" is answerable per cell.
+
+    2. **Results are matched by `tool_use_id`, not by queue order.** The old code
+       popped the pending-MCP queue on EVERY tool_result, including Read and
+       Grep results, so a single interleaved file read shifted every subsequent
+       success/failure attribution by one. With one MCP call per cell it was
+       usually harmless; with an agent making four it was not.
+
+    3. **`isError` is counted per server.** Nobody in this field reports it, and
+       CodeGraph's own research says one or two error responses make an agent
+       abandon a server for the rest of a session. If a competitor's server
+       errors under load that is a real result about that server, and if ours
+       does, that is a real result about ours.
+
+    Hook events are recorded too, because `--include-hook-events` is the only
+    way to see that something outside the harness injected context into a cell.
+    A cell whose `hook_injections` is non-empty was not run in the environment
+    the experiment describes.
+    """
     tool_calls = []
     files_read = set()
     files_edited = set()
-    repowise_tools = []
     task_subagent_calls = 0
-    # Track pending repowise calls to verify they succeeded
-    _pending_repowise = []
     result_data = {}
+
+    # tool_use_id -> tool name, for every MCP call issued
+    mcp_issued: dict[str, str] = {}
+    mcp_ok: list = []
+    mcp_errors: list = []
+    hook_events: list = []
+    hook_injections: list = []
 
     for line in stream_lines:
         line = line.strip()
@@ -198,8 +256,8 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         p = inp.get("file_path", "")
                         if p:
                             files_edited.add(p)
-                    elif tool_name.startswith("mcp__repowise"):
-                        _pending_repowise.append(tool_name)
+                    elif tool_name.startswith("mcp__"):
+                        mcp_issued[block.get("id", "")] = tool_name
                     elif tool_name == "Task":
                         # Sub-agent invocation. Parent stream collapses
                         # the entire sub-agent run into a single turn,
@@ -207,16 +265,38 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         # hidden work.
                         task_subagent_calls += 1
         elif msg_type == "user":
-            # Match tool results to pending repowise calls.
-            # Only count repowise calls that succeeded (not permission-denied).
             for block in d.get("message", {}).get("content", []):
-                if isinstance(block, dict) and block.get("type") == "tool_result":
-                    if _pending_repowise:
-                        tool_name = _pending_repowise.pop(0)
-                        if not block.get("is_error", False):
-                            repowise_tools.append(tool_name)
+                if not isinstance(block, dict) or block.get("type") != "tool_result":
+                    continue
+                name = mcp_issued.get(block.get("tool_use_id", ""))
+                if not name:
+                    continue
+                if block.get("is_error", False):
+                    mcp_errors.append(name)
+                else:
+                    mcp_ok.append(name)
+        elif msg_type == "system" and d.get("subtype") in (
+            "hook_started", "hook_response"
+        ):
+            if d.get("subtype") == "hook_response":
+                hook_events.append(d.get("hook_name"))
+                out = d.get("output") or ""
+                if out.strip():
+                    hook_injections.append(
+                        {"hook": d.get("hook_name"), "output": out[:2000]}
+                    )
         elif msg_type == "result":
             result_data = d
+
+    def _server(tool: str) -> str:
+        parts = tool.split("__")
+        return parts[1] if len(parts) > 2 else ""
+
+    per_server: dict = {}
+    for name in mcp_ok:
+        per_server.setdefault(_server(name), {"ok": 0, "error": 0})["ok"] += 1
+    for name in mcp_errors:
+        per_server.setdefault(_server(name), {"ok": 0, "error": 0})["error"] += 1
 
     return {
         **_token_counts(result_data),
@@ -224,9 +304,20 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
         "task_subagent_calls": task_subagent_calls,
         "total_cost_usd": result_data.get("total_cost_usd", 0.0),
         "num_tool_calls": len(tool_calls),
+        "tool_calls": tool_calls,
         "files_explored": sorted(files_read),
         "files_edited": sorted(files_edited),
-        "repowise_tools_called": repowise_tools,
+        # Kept under the old name so existing analysis scripts and the 310
+        # result rows on disk still parse. It now means "MCP tools that
+        # returned successfully", for whichever server the arm mounted.
+        "repowise_tools_called": mcp_ok,
+        "mcp_tools_called": mcp_ok,
+        "mcp_tools_issued": sorted(mcp_issued.values()),
+        "mcp_tool_errors": mcp_errors,
+        "mcp_isError_count": len(mcp_errors),
+        "mcp_per_server": per_server,
+        "hook_events": hook_events,
+        "hook_injections": hook_injections,
         "answer": result_data.get("result", ""),
         "session_id": result_data.get("session_id", ""),
         "stop_reason": result_data.get("stop_reason", ""),
