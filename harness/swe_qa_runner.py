@@ -2018,6 +2018,27 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         if probe.get("status") != "ok":
             metrics.error = f"arm_not_alive: {probe.get('status')}: {probe.get('error', '')[:300]}"
             return metrics
+        # An activation step that did not succeed is a MISCONFIGURED arm, and
+        # the whole reason `activate` is a field is that a missing setup step
+        # scores as a bad arm rather than as an error. Serena without
+        # `activate_project` answers "No active project" to everything;
+        # code-review-graph without `embed_graph_tool` answers with
+        # `search_mode: "none"` and retrieves nothing. Both produce a clean
+        # 0.000 that looks exactly like a tool that cannot retrieve.
+        #
+        # This used to be recorded on the probe row and not acted on, so a
+        # 1,800-second embed timeout would have let the cell run anyway and
+        # billed a full agent turn to measure an unembedded graph.
+        bad_activation = {k: v for k, v in (probe.get("activate") or {}).items()
+                          if v != "ok"}
+        if bad_activation:
+            metrics.error = (
+                f"arm_activation_failed: {bad_activation}. This arm's setup "
+                f"did not complete, so anything it retrieves is not a "
+                f"measurement of it."
+            )
+            return metrics
+
         missing = [t for t in arm.client_tools
                    if t.split("__")[-1] not in set(metrics.served_tools)]
         if missing:
