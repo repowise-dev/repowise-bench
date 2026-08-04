@@ -82,7 +82,12 @@ Say "B: report exit=$LASTEXITCODE"
 
 # ------------------------------------------------------------------ C: Codex
 Say "C1: Codex isolation probe. REQUIRED before any Codex cell."
-& $py -u harness/codex_isolation_probe.py *> "$logs\C1_probe.log"
+# --repo is REQUIRED. Omitting it exits 2 on an argparse usage error, which the
+# gate below correctly reads as "isolation not proven" and skips 30 Codex cells
+# for. That happened on 2026-08-04 and cost the run: a skip caused by a missing
+# argument is indistinguishable in CHAIN.log from a skip caused by a real
+# isolation failure, and only the second one is a finding.
+& $py -u harness/codex_isolation_probe.py --repo repos/django/django *> "$logs\C1_probe.log"
 $probe = $LASTEXITCODE
 Say "C1: probe exit=$probe (0 means isolation holds)"
 
