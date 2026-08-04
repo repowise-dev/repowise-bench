@@ -1,0 +1,82 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "7e8348a68f96c5983251f89871167797545dbbe0",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 10.6,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0f79e39c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 57,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0f79e39c",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6456,
+    "ranked": [
+      "gist/view/view.go",
+      "pkg/cmd/gist/shared/shared.go",
+      "pkg/cmd/gist/view/view.go",
+      "pkg/cmd/repo/view/view_test.go",
+      "pkg/cmd/pr/shared/comments.go",
+      "pkg/cmd/secret/remove/remove.go",
+      "pkg/cmd/repo/view/view.go",
+      "pkg/httpmock/stub.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/factory/default.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "internal/ghinstance/host.go",
+      "api/queries_user.go",
+      "api/queries_repo.go",
+      "utils/utils.go",
+      "pr/view/view.go",
+      "api/queries_comments.go",
+      "pkg/markdown/markdown.go",
+      "api/queries_pr_review.go",
+      "pkg/cmd/repo/view/http.go",
+      "pkg/browser/browser.go",
+      "pkg/cmdutil/factory.go",
+      "pkg/cmdutil/args.go",
+      "git/url.go",
+      "pkg/cmd/pr/shared/params.go"
+    ],
+    "n_ranked": 26,
+    "gold_files": [
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

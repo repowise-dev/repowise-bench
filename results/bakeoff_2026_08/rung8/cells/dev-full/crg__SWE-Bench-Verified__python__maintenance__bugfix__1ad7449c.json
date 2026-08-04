@@ -1,0 +1,81 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+  "arm": "crg",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+  "build": {
+    "arm": "crg",
+    "rc": 0,
+    "seconds": 175.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+      "build",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-1ad7449c",
+      "--embedding-provider",
+      "local",
+      "--embedding-model",
+      "sentence-transformers/all-MiniLM-L6-v2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 16,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "crg",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-1ad7449c",
+    "served_tools": [
+      "apply_refactor_tool",
+      "build_or_update_graph_tool",
+      "cross_repo_search_tool",
+      "detect_changes_tool",
+      "embed_graph_tool",
+      "find_large_functions_tool",
+      "generate_wiki_tool",
+      "get_affected_flows_tool",
+      "get_architecture_overview_tool",
+      "get_bridge_nodes_tool",
+      "get_community_tool",
+      "get_docs_section_tool",
+      "get_flow_tool",
+      "get_hub_nodes_tool",
+      "get_impact_radius_tool",
+      "get_knowledge_gaps_tool",
+      "get_minimal_context_tool",
+      "get_review_context_tool",
+      "get_suggested_questions_tool",
+      "get_surprising_connections_tool",
+      "get_wiki_page_tool",
+      "list_communities_tool",
+      "list_flows_tool",
+      "list_graph_stats_tool",
+      "list_repos_tool",
+      "query_graph_tool",
+      "refactor_tool",
+      "run_postprocess_tool",
+      "semantic_search_nodes_tool",
+      "traverse_graph_tool"
+    ],
+    "served_count": 30,
+    "embedded": "failed: ",
+    "tool": "semantic_search_nodes_tool",
+    "status": "ok",
+    "isError": false,
+    "chars": 1259,
+    "ranked": [],
+    "n_ranked": 0,
+    "gold_files": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

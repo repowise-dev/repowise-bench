@@ -1,0 +1,84 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "954689ea9f26e3131ca816285eee8930cd8aa835",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 15.8,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2fea5f6b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2fea5f6b",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6482,
+    "ranked": [
+      "context/remote.go",
+      "pkg/cmd/repo/clone/clone_test.go",
+      "pkg/cmd/repo/clone/clone.go",
+      "git/url.go",
+      "pkg/cmd/repo/sync/http.go",
+      "pkg/cmd/gpg-key/list/http.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "pkg/httpmock/stub.go",
+      "internal/config/config.go",
+      "pkg/set/string_set.go",
+      "internal/ghinstance/host.go",
+      "api/queries_user.go",
+      "api/queries_repo.go",
+      "git/git.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmdutil/factory.go",
+      "internal/config/stub.go",
+      "pkg/cmdutil/errors.go",
+      "test/helpers.go",
+      "pkg/cmd/workflow/shared/shared.go",
+      "pkg/cmd/pr/shared/params.go",
+      "pkg/cmdutil/args.go",
+      "git/remote.go",
+      "api/queries_issue.go"
+    ],
+    "n_ranked": 25,
+    "gold_files": [
+      "git/git.go",
+      "internal/config/config.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/repo/clone/clone.go"
+    ],
+    "gold_hit_rank": 3
+  }
+}

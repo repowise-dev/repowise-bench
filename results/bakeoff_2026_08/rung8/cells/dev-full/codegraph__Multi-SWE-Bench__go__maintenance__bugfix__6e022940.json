@@ -1,0 +1,54 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "157bab18e4c9f9f6f6306c39aa1964d04ec94a71",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 3.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-6e022940"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-6e022940",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 20542,
+    "ranked": [
+      "context/remote.go",
+      "pkg/cmd/secret/list/list.go",
+      "pkg/cmd/secret/list/list_test.go",
+      "pkg/cmd/secret/secret.go",
+      "pkg/cmd/alias/list/list.go",
+      "pkg/cmd/issue/list/list.go",
+      "pkg/cmd/gist/list/list.go"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "pkg/cmd/secret/list/list.go",
+      "pkg/cmd/secret/secret.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

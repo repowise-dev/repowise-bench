@@ -1,0 +1,46 @@
+$ C:\Users\ragha\.local\bin\code-review-graph.exe build --repo C:\Users\ragha\Desktop\bakeoff\django
+(cwd=C:\Users\ragha\Desktop\bakeoff\django)
+
+--- stdout ---
+Full build: 2572 files, 34535 nodes, 274253 edges (postprocess=full)
+
+--- stderr ---
+INFO: Schema version 1 -> 9: running migrations
+INFO: Running migration v2
+INFO: Migration v2: added 'signature' column to nodes
+INFO: Running migration v3
+INFO: Migration v3: created flows and flow_memberships tables
+INFO: Running migration v4
+INFO: Migration v4: added 'community_id' column to nodes
+INFO: Migration v4: created communities table
+INFO: Running migration v5
+INFO: Migration v5: created nodes_fts FTS5 virtual table
+INFO: Running migration v6
+INFO: Migration v6: created summary tables (community_summaries, flow_snapshots, risk_index)
+INFO: Running migration v7
+INFO: Migration v7: added compound edge indexes
+INFO: Running migration v8
+INFO: Migration v8: created composite edge index
+INFO: Running migration v9
+INFO: Migration v9: added edge confidence columns
+INFO: Migrations complete, now at schema version 9
+INFO: Progress: 200/2572 files parsed
+INFO: Progress: 400/2572 files parsed
+INFO: Progress: 600/2572 files parsed
+INFO: Progress: 800/2572 files parsed
+INFO: Progress: 1000/2572 files parsed
+INFO: Progress: 1200/2572 files parsed
+INFO: Progress: 1400/2572 files parsed
+INFO: Progress: 1600/2572 files parsed
+INFO: Progress: 1800/2572 files parsed
+INFO: Progress: 2000/2572 files parsed
+INFO: Progress: 2200/2572 files parsed
+INFO: Progress: 2400/2572 files parsed
+INFO: Progress: 2572/2572 files parsed
+INFO: Spring event resolver: indexed 0 events and emitted 0 CALLS edges
+INFO: Resolved 7129 evidence-backed bare CALLS targets
+INFO: Resolved 4695 evidence-backed bare TESTED_BY sources
+INFO: FTS index rebuilt: 33531 rows indexed
+INFO: Loaded 30959 unique nodes, 271581 edges
+INFO: igraph not available, using file-based community detection
+

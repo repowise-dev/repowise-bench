@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6a5ef557f80a8eb6a758ebe99c8bb477ca47459e",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 29.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-31d4fe9d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-31d4fe9d",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 14322,
+    "ranked": [
+      "django/contrib/contenttypes/management/commands/remove_stale_contenttypes.py",
+      "django/contrib/sessions/management/commands/clearsessions.py",
+      "django/contrib/staticfiles/management/commands/collectstatic.py",
+      "django/core/management/commands/compilemessages.py",
+      "django/contrib/postgres/search.py",
+      "django/utils/html.py",
+      "django/db/backends/mysql/compiler.py",
+      "django/db/models/sql/compiler.py",
+      "django/db/models/expressions.py",
+      "django/db/models/query.py",
+      "tests/expressions/tests.py",
+      "django/core/exceptions.py",
+      "django/contrib/gis/geos/mutable_list.py",
+      "django/db/backends/mysql/operations.py",
+      "django/db/backends/base/base.py"
+    ],
+    "n_ranked": 15,
+    "gold_files": [
+      "django/utils/html.py"
+    ],
+    "gold_hit_rank": 6
+  }
+}

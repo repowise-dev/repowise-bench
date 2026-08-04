@@ -1,0 +1,148 @@
+{
+  "tag": "smoke",
+  "split": "dev",
+  "arms": [
+    "repowise",
+    "repowise-search",
+    "codegraph",
+    "crg",
+    "graphify"
+  ],
+  "workers": 8,
+  "n_instances": 2,
+  "instance_ids": [
+    "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9"
+  ],
+  "preflight": {
+    "mp_workers": 0
+  },
+  "timings_publishable": false,
+  "run_seconds": 0.0,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 2,
+      "ok": 2,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 0,
+      "embedder_degraded": 0
+    },
+    "repowise-search": {
+      "cells": 2,
+      "ok": 2,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 0,
+      "embedder_degraded": 0
+    },
+    "codegraph": {
+      "cells": 2,
+      "ok": 2,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "crg": {
+      "cells": 2,
+      "ok": 2,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "graphify": {
+      "cells": 2,
+      "ok": 2,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    }
+  },
+  "prewarm": {
+    "rc": 0,
+    "n": 2,
+    "failed": []
+  },
+  "selftest": {
+    "perfect": {
+      "rc": 0,
+      "file_coverage": 1.0,
+      "evaluation": "1/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": 0.0,
+      "evaluation": "1/1 instances"
+    },
+    "discriminates": true
+  },
+  "graded": {
+    "codegraph": {
+      "n": 2,
+      "rc": 0,
+      "evaluation": "2/2 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__smoke__codegraph.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__smoke__codegraph.jsonl",
+      "graded_rows": 2,
+      "valid": 2,
+      "file_coverage": 0.6667,
+      "file_precision": 0.1714
+    },
+    "graphify": {
+      "n": 2,
+      "rc": 0,
+      "evaluation": "2/2 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__smoke__graphify.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__smoke__graphify.jsonl",
+      "graded_rows": 2,
+      "valid": 2,
+      "file_coverage": 0.5833,
+      "file_precision": 0.0833
+    },
+    "repowise": {
+      "n": 2,
+      "rc": 0,
+      "evaluation": "2/2 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__smoke__repowise.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__smoke__repowise.jsonl",
+      "graded_rows": 2,
+      "valid": 2,
+      "file_coverage": 0.0,
+      "file_precision": 0.0
+    },
+    "repowise-search": {
+      "n": 2,
+      "rc": 0,
+      "evaluation": "2/2 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__smoke__repowise-search.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__smoke__repowise-search.jsonl",
+      "graded_rows": 2,
+      "valid": 2,
+      "file_coverage": 0.0,
+      "file_precision": 0.0
+    },
+    "crg": {
+      "n": 2,
+      "rc": 0,
+      "evaluation": "2/2 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__smoke__crg.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__smoke__crg.jsonl",
+      "graded_rows": 2,
+      "valid": 2,
+      "file_coverage": 0.5833,
+      "file_precision": 0.3214
+    }
+  }
+}

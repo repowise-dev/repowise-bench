@@ -1,0 +1,90 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__eb5704a5",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "cc96ddd5514c04ee90fff11c840aad68af9fada3",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 27.7,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__eb5704a5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-eb5704a5",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.5,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 7076,
+    "ranked": [
+      "api/queries_pr.go",
+      "command/testing.go",
+      "api",
+      "api/queries_pr.go::PullRequestList",
+      "command/root.go",
+      "r8-repowise-eb5704a5",
+      "onboarding/key_concepts",
+      "onboarding/codebase_map",
+      "onboarding/getting_started",
+      "onboarding/how_it_works",
+      "api/queries_repo.go",
+      "context",
+      "internal/cobrafish",
+      "git/url.go",
+      "onboarding/guided_tour",
+      "context/config_file_test.go",
+      "command/pr_create_test.go",
+      "command/issue_test.go"
+    ],
+    "n_ranked": 18,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/command/pr.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,148 @@
+[
+  {
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "repo": "cli/cli",
+    "gold": [
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/http.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/list.go"
+    ],
+    "wiki": {
+      "page_present": true,
+      "pages": [
+        {
+          "id": "file_page:pkg/cmd/release/list/http.go",
+          "type": "file_page",
+          "content_chars": 1598,
+          "summary_chars": 68
+        }
+      ],
+      "symbols_indexed": 4
+    },
+    "gold_symbols": [],
+    "H1_rank_in_50": null,
+    "H1_returned": 45,
+    "H2b_basename_rank": null,
+    "H0_own_path_rank": 1,
+    "answer_paths": [
+      "pkg/cmd/label/http.go",
+      "pkg/cmd/extension/ext_tmpls/script.sh",
+      "script/release",
+      "api/queries_issue.go::IssueStatus",
+      "Makefile"
+    ],
+    "answer_rank": null,
+    "answer_chars": 10050
+  },
+  {
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+    "repo": "django/django",
+    "gold": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "wiki": {
+      "page_present": true,
+      "pages": [
+        {
+          "id": "file_page:django/core/management/commands/makemigrations.py",
+          "type": "file_page",
+          "content_chars": 1535,
+          "summary_chars": 93
+        }
+      ],
+      "symbols_indexed": 5
+    },
+    "gold_symbols": [],
+    "H1_rank_in_50": null,
+    "H1_returned": 36,
+    "H2b_basename_rank": 1,
+    "H0_own_path_rank": 1,
+    "answer_paths": [
+      "django/db/utils.py::ConnectionRouter",
+      "django/db/migrations/operations/special.py::RunPython",
+      "django/db/utils.py",
+      "django/db/migrations/operations/special.py",
+      "django/db/utils.py::allow_migrate"
+    ],
+    "answer_rank": null,
+    "answer_chars": 12747
+  },
+  {
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+    "repo": "cli/cli",
+    "gold": [
+      "api/queries_repo.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/repo/fork/fork.go"
+    ],
+    "wiki": {
+      "page_present": true,
+      "pages": [
+        {
+          "id": "file_page:api/queries_repo.go",
+          "type": "file_page",
+          "content_chars": 5664,
+          "summary_chars": 59
+        }
+      ],
+      "symbols_indexed": 43
+    },
+    "gold_symbols": [
+      "ForkRepo"
+    ],
+    "H1_rank_in_50": 31,
+    "H1_returned": 50,
+    "H2_identifier_rank": 1,
+    "H2_query": "ForkRepo",
+    "H2b_basename_rank": 1,
+    "H0_own_path_rank": 1,
+    "answer_paths": [
+      "api/queries_org.go",
+      "api/queries_pr.go",
+      "pkg/cmd/run/shared/shared.go",
+      "git/git.go",
+      "onboarding/getting_started"
+    ],
+    "answer_rank": null,
+    "answer_chars": 22845
+  },
+  {
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+    "repo": "django/django",
+    "gold": [
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/options.py"
+    ],
+    "wiki": {
+      "page_present": true,
+      "pages": [
+        {
+          "id": "file_page:django/db/models/base.py",
+          "type": "file_page",
+          "content_chars": 4266,
+          "summary_chars": 69
+        }
+      ],
+      "symbols_indexed": 73
+    },
+    "gold_symbols": [
+      "_base_manager",
+      "_default_manager",
+      "validate",
+      "is_cached",
+      "get_queryset"
+    ],
+    "H1_rank_in_50": 3,
+    "H1_returned": 47,
+    "H2_identifier_rank": 6,
+    "H2_query": "_base_manager _default_manager validate",
+    "H2b_basename_rank": 3,
+    "H0_own_path_rank": 1,
+    "answer_paths": [
+      "django/contrib/admindocs/views.py"
+    ],
+    "answer_rank": null,
+    "answer_chars": 966
+  }
+]

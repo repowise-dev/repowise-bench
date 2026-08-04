@@ -1,0 +1,60 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fb07ed8b",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "770d3e6a4ce8e0a91a9e27156036c1985e74d4a3",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 22.1,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-fb07ed8b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fb07ed8b",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-fb07ed8b",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25157,
+    "ranked": [
+      "django/db/models/base.py",
+      "django/db/models/__init__.py",
+      "django/core/serializers/base.py",
+      "tests/expressions/tests.py",
+      "tests/modeladmin/test_checks.py",
+      "tests/schema/tests.py",
+      "tests/check_framework/test_model_field_deprecation.py",
+      "django/db/models/fields/__init__.py",
+      "django/db/models/sql/query.py",
+      "tests/empty/tests.py",
+      "django/db/models/query.py",
+      "django/utils/autoreload.py",
+      "django/utils/log.py"
+    ],
+    "n_ranked": 13,
+    "gold_files": [
+      "django/db/models/expressions.py",
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 9
+  }
+}

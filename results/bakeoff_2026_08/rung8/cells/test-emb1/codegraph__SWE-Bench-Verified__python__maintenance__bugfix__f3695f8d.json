@@ -1,0 +1,56 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "9ffd4eae2ce7a7100c98f681e2b6ab818df384a4",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-f3695f8d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-f3695f8d",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22312,
+    "ranked": [
+      "django/forms/fields.py",
+      "tests/forms_tests/field_tests/test_multivaluefield.py",
+      "tests/forms_tests/field_tests/test_splitdatetimefield.py",
+      "tests/forms_tests/tests/test_error_messages.py",
+      "tests/forms_tests/tests/test_forms.py",
+      "tests/forms_tests/field_tests/test_typedmultiplechoicefield.py",
+      "django/db/models/query.py",
+      "django/contrib/contenttypes/fields.py"
+    ],
+    "n_ranked": 8,
+    "gold_files": [
+      "django/db/models/sql/compiler.py",
+      "django/db/models/sql/subqueries.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

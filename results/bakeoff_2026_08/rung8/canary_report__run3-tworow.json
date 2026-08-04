@@ -1,0 +1,215 @@
+{
+  "preflight": {
+    "mp_workers": 0
+  },
+  "instances": [
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "repo": "django/django",
+      "language": "python",
+      "source": "Verified",
+      "base_commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+      "gold_files": [
+        "django/db/models/aggregates.py"
+      ]
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+      "repo": "cli/cli",
+      "language": "go",
+      "source": "Multi",
+      "base_commit": "8288011149e71d5658b80ebef393522ba2d0e7cc",
+      "gold_files": [
+        "pkg/cmd/gist/edit/edit.go",
+        "pkg/cmd/gist/view/view.go"
+      ]
+    }
+  ],
+  "builds": [],
+  "queries": [
+    {
+      "arm": "repowise",
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "repo": "django/django",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-django",
+      "served_tools": [
+        "get_answer",
+        "get_change_risk",
+        "get_context",
+        "get_dead_code",
+        "get_health",
+        "get_overview",
+        "get_risk",
+        "get_symbol",
+        "get_why",
+        "list_repos",
+        "search_codebase"
+      ],
+      "served_count": 11,
+      "warm_seconds": 30.0,
+      "warm_abandoned": "TimeoutError",
+      "tool": "get_answer",
+      "status": "ok",
+      "isError": false,
+      "chars": 17106,
+      "ranked": [
+        "django/db/models/expressions.py",
+        "django/db/models/aggregates.py",
+        "django/db/models/sql/query.py",
+        "django/db/models/query.py",
+        "django/db/models/sql/query.py::combine"
+      ],
+      "n_ranked": 5,
+      "embedder": null,
+      "embedder_degraded": null,
+      "gold_files": [
+        "django/db/models/aggregates.py"
+      ],
+      "gold_hit_rank": 2
+    },
+    {
+      "arm": "repowise-search",
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "repo": "django/django",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-django",
+      "served_tools": [
+        "get_answer",
+        "get_change_risk",
+        "get_context",
+        "get_dead_code",
+        "get_health",
+        "get_overview",
+        "get_risk",
+        "get_symbol",
+        "get_why",
+        "list_repos",
+        "search_codebase"
+      ],
+      "served_count": 11,
+      "warm_seconds": 30.0,
+      "warm_abandoned": "TimeoutError",
+      "tool": "search_codebase",
+      "status": "ok",
+      "isError": false,
+      "chars": 6003,
+      "ranked": [
+        "django/db/models/fields/__init__.py::Field",
+        "django/db/models/aggregates.py::Aggregate",
+        "django/db/models/sql/query.py::combine",
+        "django/db/models/sql/query.py::get_aggregation",
+        "django/db/models/sql/query.py",
+        "django/db/models/aggregates.py::as_sql",
+        "django/db/models/sql/query.py::Query",
+        "django/db/models/sql/query.py::JoinPromoter",
+        "django/db/models/expressions.py::When",
+        "django/forms/formsets.py::BaseFormSet"
+      ],
+      "n_ranked": 10,
+      "embedder": null,
+      "embedder_degraded": null,
+      "gold_files": [
+        "django/db/models/aggregates.py"
+      ],
+      "gold_hit_rank": null
+    },
+    {
+      "arm": "repowise",
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+      "repo": "cli/cli",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-cli",
+      "served_tools": [
+        "get_answer",
+        "get_change_risk",
+        "get_context",
+        "get_dead_code",
+        "get_health",
+        "get_overview",
+        "get_risk",
+        "get_symbol",
+        "get_why",
+        "list_repos",
+        "search_codebase"
+      ],
+      "served_count": 11,
+      "warm_seconds": 30.0,
+      "warm_abandoned": "TimeoutError",
+      "tool": "get_answer",
+      "status": "ok",
+      "isError": false,
+      "chars": 19934,
+      "ranked": [
+        "internal/gh/gh.go",
+        "internal/config/config.go",
+        "Makefile",
+        "cmd/gh/main.go",
+        "git/errors.go"
+      ],
+      "n_ranked": 5,
+      "embedder": null,
+      "embedder_degraded": null,
+      "gold_files": [
+        "pkg/cmd/gist/edit/edit.go",
+        "pkg/cmd/gist/view/view.go"
+      ],
+      "gold_hit_rank": null
+    },
+    {
+      "arm": "repowise-search",
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+      "repo": "cli/cli",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-cli",
+      "served_tools": [
+        "get_answer",
+        "get_change_risk",
+        "get_context",
+        "get_dead_code",
+        "get_health",
+        "get_overview",
+        "get_risk",
+        "get_symbol",
+        "get_why",
+        "list_repos",
+        "search_codebase"
+      ],
+      "served_count": 11,
+      "warm_seconds": 30.0,
+      "warm_abandoned": "TimeoutError",
+      "tool": "search_codebase",
+      "status": "ok",
+      "isError": false,
+      "chars": 5356,
+      "ranked": [
+        "Makefile",
+        "internal/gh/gh.go",
+        "internal/config/config.go",
+        "internal/featuredetection",
+        "cmd/gh/main.go",
+        "internal",
+        "internal/gh/gh.go::ConfigEntry",
+        "script/build.go",
+        "internal/gh/gh.go::Migration",
+        "internal/gh/gh.go::AliasConfig"
+      ],
+      "n_ranked": 10,
+      "embedder": null,
+      "embedder_degraded": null,
+      "gold_files": [
+        "pkg/cmd/gist/edit/edit.go",
+        "pkg/cmd/gist/view/view.go"
+      ],
+      "gold_hit_rank": null
+    }
+  ],
+  "graded": {
+    "repowise": {
+      "rc": 0,
+      "stdout": "",
+      "stderr": "Indexing gold contexts\n  1000 instance IDs indexed\nLoading predictions\n  2 trajectories loaded\n\n[1/2] Evaluating SWE-Bench-Verified__python__maintenance__bugfix__93721db4\n  Setting up repository\n  Repo: https://github.com/django/django.git\n  Commit: 838e432e3e55...\n  Checkout ready: C:\\Users\\ragha\\AppData\\Local\\Temp\\contextbench_worktrees\\github.com__django__django\\838e432e3e5519c5383d12018e6c78f8ec7833c1\n  Parsing trajectory\n  Extracted: 1 steps, final has 4 files\nDETAILS:\ninstance_id=SWE-Bench-Verified__python__maintenance__bugfix__93721db4\n  gold_files: n=1\n    - django/db/models/aggregates.py\n  pred_files: n=4\n    - django/db/models/aggregates.py\n    - django/db/models/expressions.py\n    - django/db/models/query.py\n    - django/db/models/sql/query.py\n  hit_files: n=1\n    - django/db/models/aggregates.py\n  gold_symbols: n=7\n    - django/db/models/aggregates.py:class_definition@438-4345\n    - django/db/models/aggregates.py:class_definition@4466-5046\n    - django/db/models/aggregates.py:function_definition@2909-2956\n    - django/db/models/aggregates.py:function_definition@2964-4092\n    - django/db/models/aggregates.py:function_definition@4603-4937\n    - django/db/models/aggregates.py:function_definition@4945-5046\n    - django/db/models/aggregates.py:function_definition@689-1009\n  pred_symbols: n=0\n  hit_symbols: n=0\n\n[2/2] Evaluating Multi-SWE-Bench__go__maintenance__bugfix__3da242a2\n  Setting up repository\n  Repo: https://github.com/cli/cli.git\n  Commit: 8288011149e7...\n  Checkout ready: C:\\Users\\ragha\\AppData\\Local\\Temp\\contextbench_worktrees\\github.com__cli__cli\\8288011149e71d5658b80ebef393522ba2d0e7cc\n  Parsing trajectory\n  Extracted: 1 steps, final has 5 files\nDETAILS:\ninstance_id=Multi-SWE-Bench__go__maintenance__bugfix__3da242a2\n  gold_files: n=2\n    - pkg/cmd/gist/edit/edit.go\n    - pkg/cmd/gist/view/view.go\n  pred_files: n=5\n    - Makefile\n    - cmd/gh/main.go\n    - git/errors.go\n    - internal/config/config.go\n    - internal/gh/gh.go\n  hit_files: n=0\n  gold_symbols: n=2\n    - pkg/cmd/gist/edit/edit.go:function_declaration@2400-7433\n    - pkg/cmd/gist/view/view.go:function_declaration@1861-4953\n  pred_symbols: n=0\n  hit_symbols: n=0\n\n\n======================================================================\nEVALUATION: 2/2 instances\n======================================================================\nfile     Coverage=0.333 Precision=0.111\n         AUC=0.500 Redundancy=0.000\nsymbol   Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\nspan     Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\nline     Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\n\nEditLoc: Recall=0.016 Precision=1.000\n======================================================================\n\nResults written to C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__repowise.jsonl\n"
+    },
+    "repowise-search": {
+      "rc": 0,
+      "stdout": "",
+      "stderr": "Indexing gold contexts\n  1000 instance IDs indexed\nLoading predictions\n  2 trajectories loaded\n\n[1/2] Evaluating SWE-Bench-Verified__python__maintenance__bugfix__93721db4\n  Setting up repository\n  Repo: https://github.com/django/django.git\n  Commit: 838e432e3e55...\n  Checkout ready: C:\\Users\\ragha\\AppData\\Local\\Temp\\contextbench_worktrees\\github.com__django__django\\838e432e3e5519c5383d12018e6c78f8ec7833c1\n  Parsing trajectory\n  Extracted: 1 steps, final has 1 files\nDETAILS:\ninstance_id=SWE-Bench-Verified__python__maintenance__bugfix__93721db4\n  gold_files: n=1\n    - django/db/models/aggregates.py\n  pred_files: n=1\n    - django/db/models/sql/query.py\n  hit_files: n=0\n  gold_symbols: n=7\n    - django/db/models/aggregates.py:class_definition@438-4345\n    - django/db/models/aggregates.py:class_definition@4466-5046\n    - django/db/models/aggregates.py:function_definition@2909-2956\n    - django/db/models/aggregates.py:function_definition@2964-4092\n    - django/db/models/aggregates.py:function_definition@4603-4937\n    - django/db/models/aggregates.py:function_definition@4945-5046\n    - django/db/models/aggregates.py:function_definition@689-1009\n  pred_symbols: n=0\n  hit_symbols: n=0\n\n[2/2] Evaluating Multi-SWE-Bench__go__maintenance__bugfix__3da242a2\n  Setting up repository\n  Repo: https://github.com/cli/cli.git\n  Commit: 8288011149e7...\n  Checkout ready: C:\\Users\\ragha\\AppData\\Local\\Temp\\contextbench_worktrees\\github.com__cli__cli\\8288011149e71d5658b80ebef393522ba2d0e7cc\n  Parsing trajectory\n  Extracted: 1 steps, final has 5 files\nDETAILS:\ninstance_id=Multi-SWE-Bench__go__maintenance__bugfix__3da242a2\n  gold_files: n=2\n    - pkg/cmd/gist/edit/edit.go\n    - pkg/cmd/gist/view/view.go\n  pred_files: n=5\n    - Makefile\n    - cmd/gh/main.go\n    - internal/config/config.go\n    - internal/gh/gh.go\n    - script/build.go\n  hit_files: n=0\n  gold_symbols: n=2\n    - pkg/cmd/gist/edit/edit.go:function_declaration@2400-7433\n    - pkg/cmd/gist/view/view.go:function_declaration@1861-4953\n  pred_symbols: n=0\n  hit_symbols: n=0\n\n\n======================================================================\nEVALUATION: 2/2 instances\n======================================================================\nfile     Coverage=0.000 Precision=0.000\n         AUC=0.000 Redundancy=0.000\nsymbol   Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\nspan     Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\nline     Coverage=0.000 Precision=1.000\n         AUC=0.000 Redundancy=0.000\n\nEditLoc: Recall=0.016 Precision=1.000\n======================================================================\n\nResults written to C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__repowise-search.jsonl\n"
+    }
+  }
+}

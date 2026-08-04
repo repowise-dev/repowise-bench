@@ -1,0 +1,626 @@
+{
+  "note": "recovered from the run log; the formatter crashed on a tie after every judge call had completed and printed",
+  "original_judge": "gpt-5.6-luna",
+  "summary_printed_by_the_run": {
+    "gpt-5.6-terra": {
+      "n": 59,
+      "mean_abs_diff": 0.46,
+      "bias_vs_original": -0.14,
+      "pearson": 0.892,
+      "spearman": 0.847,
+      "within_1_point": 0.92,
+      "judge_failures": 1
+    },
+    "claude-sonnet-5": {
+      "n": 59,
+      "mean_abs_diff": 0.74,
+      "bias_vs_original": 0.48,
+      "pearson": 0.647,
+      "spearman": 0.51,
+      "within_1_point": 0.83,
+      "judge_failures": 1
+    }
+  },
+  "records": [
+    {
+      "i": 1,
+      "task_id": "django_000",
+      "arm": "c0-bare",
+      "original_score": 8.2,
+      "scores": {
+        "gpt-5.6-terra": 8.4,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 2,
+      "task_id": "django_000",
+      "arm": "code-review-graph",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 9.4,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 3,
+      "task_id": "django_000",
+      "arm": "codegraph",
+      "original_score": 7.2,
+      "scores": {
+        "gpt-5.6-terra": 7.6,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 4,
+      "task_id": "django_000",
+      "arm": "graphify",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 8.4,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 5,
+      "task_id": "django_000",
+      "arm": "repowise",
+      "original_score": 8.0,
+      "scores": {
+        "gpt-5.6-terra": 7.6,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 6,
+      "task_id": "django_000",
+      "arm": "serena",
+      "original_score": 7.8,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 7,
+      "task_id": "django_004",
+      "arm": "c0-bare",
+      "original_score": 8.2,
+      "scores": {
+        "gpt-5.6-terra": 7,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 8,
+      "task_id": "django_004",
+      "arm": "code-review-graph",
+      "original_score": 8.2,
+      "scores": {
+        "gpt-5.6-terra": 7.6,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 9,
+      "task_id": "django_004",
+      "arm": "codegraph",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 8.4
+      }
+    },
+    {
+      "i": 10,
+      "task_id": "django_004",
+      "arm": "graphify",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 11,
+      "task_id": "django_004",
+      "arm": "repowise",
+      "original_score": 7.6,
+      "scores": {
+        "gpt-5.6-terra": 7.2,
+        "claude-sonnet-5": 8.6
+      }
+    },
+    {
+      "i": 12,
+      "task_id": "django_004",
+      "arm": "serena",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 8.8
+      }
+    },
+    {
+      "i": 13,
+      "task_id": "django_006",
+      "arm": "c0-bare",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 14,
+      "task_id": "django_006",
+      "arm": "code-review-graph",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 9,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 15,
+      "task_id": "django_006",
+      "arm": "codegraph",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 16,
+      "task_id": "django_006",
+      "arm": "graphify",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 8.6,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 17,
+      "task_id": "django_006",
+      "arm": "repowise",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 8.8,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 18,
+      "task_id": "django_006",
+      "arm": "serena",
+      "original_score": 8.4,
+      "scores": {
+        "gpt-5.6-terra": 8.4,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 19,
+      "task_id": "django_008",
+      "arm": "c0-bare",
+      "original_score": 8.2,
+      "scores": {
+        "gpt-5.6-terra": 8.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 20,
+      "task_id": "django_008",
+      "arm": "code-review-graph",
+      "original_score": 7.2,
+      "scores": {
+        "gpt-5.6-terra": 8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 21,
+      "task_id": "django_008",
+      "arm": "codegraph",
+      "original_score": 8.2,
+      "scores": {
+        "gpt-5.6-terra": 8.4,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 22,
+      "task_id": "django_008",
+      "arm": "graphify",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 8.6,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 23,
+      "task_id": "django_008",
+      "arm": "repowise",
+      "original_score": 8.4,
+      "scores": {
+        "gpt-5.6-terra": 8.4,
+        "claude-sonnet-5": 8.6
+      }
+    },
+    {
+      "i": 24,
+      "task_id": "django_008",
+      "arm": "serena",
+      "original_score": 7.6,
+      "scores": {
+        "gpt-5.6-terra": 8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 25,
+      "task_id": "django_014",
+      "arm": "c0-bare",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 8.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 26,
+      "task_id": "django_014",
+      "arm": "code-review-graph",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 9.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 27,
+      "task_id": "django_014",
+      "arm": "codegraph",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 9.2,
+        "claude-sonnet-5": 9.4
+      }
+    },
+    {
+      "i": 28,
+      "task_id": "django_014",
+      "arm": "graphify",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 9.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 29,
+      "task_id": "django_014",
+      "arm": "repowise",
+      "original_score": 9.6,
+      "scores": {
+        "gpt-5.6-terra": 9.6,
+        "claude-sonnet-5": 9.4
+      }
+    },
+    {
+      "i": 30,
+      "task_id": "django_014",
+      "arm": "serena",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 9.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 31,
+      "task_id": "django_017",
+      "arm": "c0-bare",
+      "original_score": 9.8,
+      "scores": {
+        "gpt-5.6-terra": 9.6,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 32,
+      "task_id": "django_017",
+      "arm": "code-review-graph",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 9.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 33,
+      "task_id": "django_017",
+      "arm": "codegraph",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 8,
+        "claude-sonnet-5": 8.4
+      }
+    },
+    {
+      "i": 34,
+      "task_id": "django_017",
+      "arm": "graphify",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 10,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 35,
+      "task_id": "django_017",
+      "arm": "repowise",
+      "original_score": 9.8,
+      "scores": {
+        "gpt-5.6-terra": 9.8,
+        "claude-sonnet-5": 9.6
+      }
+    },
+    {
+      "i": 36,
+      "task_id": "django_017",
+      "arm": "serena",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 8.8,
+        "claude-sonnet-5": 9
+      }
+    },
+    {
+      "i": 37,
+      "task_id": "django_028",
+      "arm": "c0-bare",
+      "original_score": 8.0,
+      "scores": {
+        "gpt-5.6-terra": 8,
+        "claude-sonnet-5": 8.4
+      }
+    },
+    {
+      "i": 38,
+      "task_id": "django_028",
+      "arm": "code-review-graph",
+      "original_score": 8.4,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 7.6
+      }
+    },
+    {
+      "i": 39,
+      "task_id": "django_028",
+      "arm": "codegraph",
+      "original_score": 7.6,
+      "scores": {
+        "gpt-5.6-terra": 6.8,
+        "claude-sonnet-5": 7.2
+      }
+    },
+    {
+      "i": 40,
+      "task_id": "django_028",
+      "arm": "graphify",
+      "original_score": 5.6,
+      "scores": {
+        "gpt-5.6-terra": 6,
+        "claude-sonnet-5": 6.8
+      }
+    },
+    {
+      "i": 41,
+      "task_id": "django_028",
+      "arm": "repowise",
+      "original_score": 7.0,
+      "scores": {
+        "gpt-5.6-terra": 4.6,
+        "claude-sonnet-5": 7.2
+      }
+    },
+    {
+      "i": 42,
+      "task_id": "django_028",
+      "arm": "serena",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": null,
+        "claude-sonnet-5": null
+      }
+    },
+    {
+      "i": 43,
+      "task_id": "django_031",
+      "arm": "c0-bare",
+      "original_score": 6.0,
+      "scores": {
+        "gpt-5.6-terra": 6.4,
+        "claude-sonnet-5": 8.2
+      }
+    },
+    {
+      "i": 44,
+      "task_id": "django_031",
+      "arm": "code-review-graph",
+      "original_score": 8.0,
+      "scores": {
+        "gpt-5.6-terra": 6.6,
+        "claude-sonnet-5": 8.8
+      }
+    },
+    {
+      "i": 45,
+      "task_id": "django_031",
+      "arm": "codegraph",
+      "original_score": 5.2,
+      "scores": {
+        "gpt-5.6-terra": 4.2,
+        "claude-sonnet-5": 7.4
+      }
+    },
+    {
+      "i": 46,
+      "task_id": "django_031",
+      "arm": "graphify",
+      "original_score": 7.6,
+      "scores": {
+        "gpt-5.6-terra": 6,
+        "claude-sonnet-5": 8.2
+      }
+    },
+    {
+      "i": 47,
+      "task_id": "django_031",
+      "arm": "repowise",
+      "original_score": 8.4,
+      "scores": {
+        "gpt-5.6-terra": 7.2,
+        "claude-sonnet-5": 8.8
+      }
+    },
+    {
+      "i": 48,
+      "task_id": "django_031",
+      "arm": "serena",
+      "original_score": 6.0,
+      "scores": {
+        "gpt-5.6-terra": 5.8,
+        "claude-sonnet-5": 8.4
+      }
+    },
+    {
+      "i": 49,
+      "task_id": "django_034",
+      "arm": "c0-bare",
+      "original_score": 10.0,
+      "scores": {
+        "gpt-5.6-terra": 9.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 50,
+      "task_id": "django_034",
+      "arm": "code-review-graph",
+      "original_score": 10.0,
+      "scores": {
+        "gpt-5.6-terra": 10,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 51,
+      "task_id": "django_034",
+      "arm": "codegraph",
+      "original_score": 10.0,
+      "scores": {
+        "gpt-5.6-terra": 9.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 52,
+      "task_id": "django_034",
+      "arm": "graphify",
+      "original_score": 8.6,
+      "scores": {
+        "gpt-5.6-terra": 9,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 53,
+      "task_id": "django_034",
+      "arm": "repowise",
+      "original_score": 10.0,
+      "scores": {
+        "gpt-5.6-terra": 10,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 54,
+      "task_id": "django_034",
+      "arm": "serena",
+      "original_score": 9.6,
+      "scores": {
+        "gpt-5.6-terra": 9.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 55,
+      "task_id": "django_040",
+      "arm": "c0-bare",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 8.2,
+        "claude-sonnet-5": 8
+      }
+    },
+    {
+      "i": 56,
+      "task_id": "django_040",
+      "arm": "code-review-graph",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 9,
+        "claude-sonnet-5": 8.6
+      }
+    },
+    {
+      "i": 57,
+      "task_id": "django_040",
+      "arm": "codegraph",
+      "original_score": 8.8,
+      "scores": {
+        "gpt-5.6-terra": 9,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 58,
+      "task_id": "django_040",
+      "arm": "graphify",
+      "original_score": 9.2,
+      "scores": {
+        "gpt-5.6-terra": 9.2,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 59,
+      "task_id": "django_040",
+      "arm": "repowise",
+      "original_score": 9.0,
+      "scores": {
+        "gpt-5.6-terra": 8.8,
+        "claude-sonnet-5": 9.2
+      }
+    },
+    {
+      "i": 60,
+      "task_id": "django_040",
+      "arm": "serena",
+      "original_score": 3.8,
+      "scores": {
+        "gpt-5.6-terra": 3.8,
+        "claude-sonnet-5": 7.8
+      }
+    }
+  ]
+}

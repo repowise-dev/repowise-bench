@@ -1,0 +1,63 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "1f488f4d5496e176300614b7bd9ded02c8572ec3",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 3.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-52c152ba"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-52c152ba",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19376,
+    "ranked": [
+      "internal/config/config.go",
+      "pkg/cmd/run/view/view.go",
+      "github.com/cli/cli/blob/1f488f4d5496e176300614b7bd9ded02c8572ec3/pkg/cmd/config/list/list.go",
+      ".config/gh/config.yml",
+      ".config/gh/hosts.yml",
+      "pkg/cmd/config/config.go",
+      "pkg/cmd/root/root.go",
+      "pkg/cmd/config/list/list.go",
+      "pkg/cmd/config/list/list_test.go",
+      "pkg/cmd/config/get/get.go",
+      "pkg/cmd/config/get/get_test.go",
+      "internal/config/config_mock.go",
+      "api/queries_repo.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/auth/gitcredential/helper.go"
+    ],
+    "n_ranked": 16,
+    "gold_files": [
+      "pkg/cmd/config/get/get.go"
+    ],
+    "gold_hit_rank": 10
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "config_path": "configs\\layerb_described_django.yaml",
+  "started_at": "2026-08-03T14:06:47.044161+00:00",
+  "conditions": [
+    "serena",
+    "code-review-graph"
+  ],
+  "config": {
+    "experiment_name": "layerb_described_django",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral-described",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "max_tasks": 1,
+        "repos": [
+          "django/django"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "serena",
+        "arm": "serena"
+      },
+      {
+        "name": "code-review-graph",
+        "arm": "code-review-graph"
+      }
+    ],
+    "agent": {
+      "harness": "claude_code",
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_described_django",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/layerb_described_django",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 8.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

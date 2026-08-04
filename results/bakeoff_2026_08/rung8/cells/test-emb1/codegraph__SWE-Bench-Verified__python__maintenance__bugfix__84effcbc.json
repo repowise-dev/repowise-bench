@@ -1,0 +1,71 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 14.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-84effcbc"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-84effcbc",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 20211,
+    "ranked": [
+      "django/forms/models.py",
+      "django/contrib/admin/checks.py",
+      "django/contrib/contenttypes/forms.py",
+      "tests/admin_views/admin.py",
+      "tests/model_formsets/tests.py",
+      "tests/model_formsets_regress/tests.py",
+      "tests/modeladmin/test_checks.py",
+      "django/forms/formsets.py",
+      "tests/forms_tests/tests/test_formsets.py",
+      "tests/test_client/views.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/__init__.py",
+      "tests/admin_widgets/tests.py",
+      "tests/model_meta/tests.py",
+      "tests/schema/tests.py",
+      "django/contrib/admin/options.py",
+      "tests/forms_tests/tests/tests.py",
+      "tests/generic_inline_admin/tests.py",
+      "tests/inline_formsets/tests.py",
+      "tests/model_forms/tests.py",
+      "django/db/models/query.py"
+    ],
+    "n_ranked": 21,
+    "gold_files": [
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/where.py",
+      "tests/queries/tests.py"
+    ],
+    "gold_hit_rank": 21
+  }
+}

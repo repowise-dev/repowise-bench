@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__497deb6f",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "335c9c94acf263901fb023404408880245b0c4b4",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 47.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-497deb6f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__497deb6f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-497deb6f",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24246,
+    "ranked": [
+      "tests/queries/models.py",
+      "tests/queries/tests.py",
+      "tests/model_forms/test_modelchoicefield.py",
+      "django/forms/models.py",
+      "django/contrib/postgres/fields/array.py",
+      "tests/serializers/models/data.py",
+      "tests/model_fields/models.py",
+      "django/contrib/contenttypes/fields.py",
+      "tests/admin_views/models.py",
+      "django/core/handlers/wsgi.py",
+      "django/test/client.py",
+      "tests/csrf_tests/tests.py",
+      "django/core/cache/__init__.py",
+      "tests/admin_widgets/tests.py",
+      "django/forms/widgets.py",
+      "django/db/models/fields/mixins.py",
+      "tests/admin_checks/models.py",
+      "tests/admin_filters/models.py"
+    ],
+    "n_ranked": 18,
+    "gold_files": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/fields/related.py",
+      "django/forms/models.py",
+      "django/forms/widgets.py",
+      "tests/model_forms/test_modelchoicefield.py",
+      "tests/model_forms/tests.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

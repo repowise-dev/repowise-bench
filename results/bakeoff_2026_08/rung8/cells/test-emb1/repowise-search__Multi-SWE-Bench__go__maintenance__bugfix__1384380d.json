@@ -1,0 +1,73 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+  "arm": "repowise-search",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "537dcb27398bd193a094d5fcd3aa9bc67a546328",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 57,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1384380d",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.5,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5877,
+    "ranked": [
+      "pkg/cmd/pr/checks/checks.go",
+      "pkg/liveshare/client.go",
+      ".devcontainer/Dockerfile",
+      "pkg/cmd/pr/checks/output.go",
+      "pkg/cmd/pr/comment/comment.go",
+      "api/queries_repo.go",
+      "api/queries_repo_test.go",
+      "git/git.go",
+      "git/url.go"
+    ],
+    "n_ranked": 9,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/Makefile",
+      "/workspace/cli__cli__0.1/api/queries_pr.go",
+      "/workspace/cli__cli__0.1/api/query_builder.go",
+      "/workspace/cli__cli__0.1/api/query_builder_test.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/aggregate.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/checks.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

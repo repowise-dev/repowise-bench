@@ -1,0 +1,88 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+  "arm": "crg",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "a708f39ce67af174df90c5b5e50ad1976cec7cb8",
+  "build": {
+    "arm": "crg",
+    "rc": 0,
+    "seconds": 81.2,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+      "build",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed",
+      "--embedding-provider",
+      "local",
+      "--embedding-model",
+      "sentence-transformers/all-MiniLM-L6-v2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "crg",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed",
+    "command": "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+    "served_tools": [
+      "apply_refactor_tool",
+      "build_or_update_graph_tool",
+      "cross_repo_search_tool",
+      "detect_changes_tool",
+      "embed_graph_tool",
+      "find_large_functions_tool",
+      "generate_wiki_tool",
+      "get_affected_flows_tool",
+      "get_architecture_overview_tool",
+      "get_bridge_nodes_tool",
+      "get_community_tool",
+      "get_docs_section_tool",
+      "get_flow_tool",
+      "get_hub_nodes_tool",
+      "get_impact_radius_tool",
+      "get_knowledge_gaps_tool",
+      "get_minimal_context_tool",
+      "get_review_context_tool",
+      "get_suggested_questions_tool",
+      "get_surprising_connections_tool",
+      "get_wiki_page_tool",
+      "list_communities_tool",
+      "list_flows_tool",
+      "list_graph_stats_tool",
+      "list_repos_tool",
+      "query_graph_tool",
+      "refactor_tool",
+      "run_postprocess_tool",
+      "semantic_search_nodes_tool",
+      "traverse_graph_tool"
+    ],
+    "served_count": 30,
+    "embedded": true,
+    "tool": "semantic_search_nodes_tool",
+    "status": "ok",
+    "isError": false,
+    "chars": 9989,
+    "ranked": [
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed\\tests\\urlpatterns_reverse\\tests.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed\\tests\\test_exceptions\\test_validation_error.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed\\tests\\urlpatterns\\tests.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed\\tests\\template_tests\\filter_tests\\test_urlize.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-a7a5e8ed\\tests\\template_tests\\syntax_tests\\test_url.py"
+    ],
+    "n_ranked": 5,
+    "gold_files": [
+      "django/core/validators.py",
+      "tests/validators/tests.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

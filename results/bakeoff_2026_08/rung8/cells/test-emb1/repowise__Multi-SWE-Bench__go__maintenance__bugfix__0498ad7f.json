@@ -1,0 +1,95 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "bdce08a793abe4744c02d537e37c9ba63601a849",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 133.5,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-0498ad7f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 16702,
+    "ranked": [
+      "internal/config/alias_config.go",
+      "internal/ghinstance/host.go",
+      "pkg/cmd/root/help.go",
+      "pkg/cmd/auth/status/status.go",
+      "pkg/cmdutil/errors.go",
+      "internal/config/testing.go",
+      "pkg/cmd/api/http.go",
+      "internal/run/run.go",
+      "api/client.go",
+      "internal/config/config_type.go",
+      "pkg/cmd/repo/fork/fork.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/auth/login/login.go",
+      "pkg/cmd/auth/shared/git_credential.go",
+      "internal/ghinstance/host_test.go",
+      "internal/docs/docs_test.go",
+      "pkg/cmd/api/api_test.go",
+      "pkg/cmd/auth/login/login_test.go",
+      "pkg/cmd/ssh-key/list/list_test.go",
+      "pkg/cmd/issue/list/list_test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "pkg/cmd/auth/status/status.go"
+    ],
+    "gold_hit_rank": 4
+  }
+}

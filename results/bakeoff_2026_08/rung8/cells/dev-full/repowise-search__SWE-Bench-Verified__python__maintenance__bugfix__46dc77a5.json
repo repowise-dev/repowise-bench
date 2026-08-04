@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__46dc77a5",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "69331bb851c34f05bc77e9fc24020fe6908b9cd5",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__46dc77a5",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-46dc77a5",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5483,
+    "ranked": [
+      "django/template/library.py::parse_bits",
+      "django/template/library.py::simple_tag",
+      "django/template/library.py::Library",
+      "django/template/library.py::TagHelperNode",
+      "django/views/generic/base.py::ContextMixin",
+      "django/template/base.py",
+      "django/template/library.py",
+      "django/core/checks/messages.py",
+      "django/db/utils.py",
+      "django/core/management/base.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/template/library.py"
+    ],
+    "gold_hit_rank": 7
+  }
+}

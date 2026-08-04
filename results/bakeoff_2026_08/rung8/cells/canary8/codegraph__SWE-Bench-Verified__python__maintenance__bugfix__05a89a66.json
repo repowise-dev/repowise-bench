@@ -1,0 +1,59 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 22.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-05a89a66"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-05a89a66",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24678,
+    "ranked": [
+      "github.com/django/django/blob/94f63b926fd32d7a7b6e2591ef72aa8f040f25cc/django/db/models/fields/related.py",
+      "django/db/models/manager.py",
+      "tests/basic/tests.py",
+      "tests/generic_views/models.py",
+      "django/contrib/auth/models.py",
+      "tests/custom_managers/models.py",
+      "tests/custom_managers/tests.py",
+      "django/db/models/fields/related.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/admin/views/main.py"
+    ],
+    "n_ranked": 10,
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/options.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

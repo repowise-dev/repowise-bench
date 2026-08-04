@@ -1,0 +1,62 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 26.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-96afaad2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-96afaad2",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24583,
+    "ranked": [
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/models/functions/__init__.py",
+      "tests/db_functions/text/test_reverse.py",
+      "tests/gis_tests/geoapp/test_functions.py",
+      "django/contrib/gis/geos/mutable_list.py",
+      "django/contrib/admin/helpers.py",
+      "django/contrib/admin/models.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/sites.py",
+      "tests/admin_changelist/tests.py",
+      "tests/admin_custom_urls/models.py",
+      "tests/admin_custom_urls/tests.py",
+      "tests/admin_docs/test_views.py",
+      "django/db/models/query.py",
+      "django/utils/datastructures.py",
+      "django/urls/resolvers.py"
+    ],
+    "n_ranked": 16,
+    "gold_files": [
+      "django/utils/datastructures.py"
+    ],
+    "gold_hit_rank": 15
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e2d031f",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "23913ac371bacc6af51309d85ca4e289d88af132",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 25.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3e2d031f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e2d031f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3e2d031f",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6673,
+    "ranked": [
+      "docs/project-layout.md",
+      "api/queries_branch_issue_reference.go",
+      "pkg/set/string_set.go",
+      "pkg/cmd/pr/merge/merge.go",
+      "api/queries_pr.go",
+      "git/client.go",
+      "git/command.go",
+      ".github/CONTRIBUTING.md",
+      "pkg/cmd/extension/browse/browse.go",
+      "pkg/surveyext/editor_manual.go",
+      "pkg/githubtemplate/github_template.go",
+      "api/queries_issue.go",
+      "pkg/cmd/pr/shared/finder.go",
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/root/help_reference.go",
+      "pkg/cmd/run/shared/shared.go",
+      "run/shared/shared.go",
+      "internal/update/update.go",
+      "pkg/jsoncolor/jsoncolor.go",
+      "internal/ghrepo/repo.go",
+      "pkg/iostreams/iostreams.go",
+      "api/client.go",
+      "pkg/cmdutil/file_input.go",
+      "api/query_builder.go",
+      "pkg/markdown/markdown.go",
+      "api/reaction_groups.go",
+      "git/client_test.go",
+      "api/queries_comments.go",
+      "pkg/cmd/root/help.go"
+    ],
+    "n_ranked": 29,
+    "gold_files": [
+      "pkg/cmd/repo/edit/edit.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

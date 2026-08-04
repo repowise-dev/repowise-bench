@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "b7da588e883e12b8ac3bb8a486e654e30fc1c6c8",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 15.1,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-d2a786e2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-d2a786e2",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 20133,
+    "ranked": [
+      "django/core/management/commands/runserver.py",
+      "django/core/management/utils.py",
+      "scripts/manage_translations.py",
+      "django/db/migrations/operations/base.py",
+      "django/contrib/postgres/operations.py",
+      "django/db/migrations/operations/fields.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/special.py",
+      "tests/custom_migration_operations/more_operations.py",
+      "tests/custom_migration_operations/operations.py",
+      "tests/migrations/test_optimizer.py",
+      "django/db/migrations/migration.py",
+      "django/db/migrations/executor.py",
+      "django/db/migrations/loader.py",
+      "tests/gis_tests/gis_migrations/test_operations.py",
+      "tests/migrations/test_base.py",
+      "tests/migrations/test_operations.py",
+      "django/db/migrations/recorder.py",
+      "django/core/management/base.py",
+      "django/db/migrations/serializer.py",
+      "db/migrations/state.py"
+    ],
+    "n_ranked": 21,
+    "gold_files": [
+      "django/core/management/base.py",
+      "django/core/management/commands/migrate.py"
+    ],
+    "gold_hit_rank": 19
+  }
+}

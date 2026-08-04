@@ -1,0 +1,69 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__cedbb0cb",
+  "arm": "repowise-search",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "02b4ab5be3d3c0002876a8be65186c0cc8f2a024",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__cedbb0cb",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-cedbb0cb",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5251,
+    "ranked": [
+      "utils/table_printer.go",
+      "api/queries_repo.go::RepoNetwork",
+      "onboarding/getting_started",
+      "Makefile",
+      "onboarding/key_concepts",
+      "onboarding/codebase_map",
+      "api",
+      "onboarding/how_it_works",
+      "context",
+      "internal/cobrafish"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/go.mod",
+      "/workspace/cli__cli__0.1/utils/table_printer.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

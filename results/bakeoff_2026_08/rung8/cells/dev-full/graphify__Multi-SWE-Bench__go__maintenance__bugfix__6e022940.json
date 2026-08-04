@@ -1,0 +1,88 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "157bab18e4c9f9f6f6306c39aa1964d04ec94a71",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 18.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-6e022940"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-6e022940",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6790,
+    "ranked": [
+      "pkg/cmd/secret/list/list.go",
+      "secret/list/list.go",
+      ".github/ISSUE_TEMPLATE/feedback.md",
+      "api/queries_comments.go",
+      ".github/CODE-OF-CONDUCT.md",
+      "pkg/cmd/release/shared/fetch.go",
+      "internal/config/from_env.go",
+      "git/git.go",
+      "pkg/cmdutil/errors.go",
+      ".github/CONTRIBUTING.md",
+      "docs/gh-vs-hub.md",
+      "pkg/cmd/run/download/http.go",
+      "pkg/cmd/pr/checkout/checkout.go",
+      "pkg/cmd/pr/shared/templates.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/githubsearch/query.go",
+      "internal/run/run.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/ssh-key/list/http.go",
+      "internal/config/config_type.go",
+      "api/client.go",
+      "internal/ghinstance/host.go",
+      "pkg/cmd/factory/http.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/githubtemplate/github_template.go",
+      "internal/config/config_file.go",
+      "pkg/cmd/run/shared/artifacts.go",
+      "pkg/cmdutil/web_browser.go",
+      "pkg/set/string_set.go",
+      "pkg/cmd/workflow/shared/shared.go",
+      "pkg/cmdutil/file_input.go",
+      "pkg/iostreams/color.go"
+    ],
+    "n_ranked": 32,
+    "gold_files": [
+      "pkg/cmd/secret/list/list.go",
+      "pkg/cmd/secret/secret.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "d21c11d774df552b9c36d3d35aa8eb12e5aebd55",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 40.0,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-ff0cfab5"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-ff0cfab5",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6701,
+    "ranked": [
+      "pkg/cmd/codespace/create.go",
+      "api/queries_branch_issue_reference.go",
+      "docs/project-layout.md",
+      "git/client.go",
+      ".github/CONTRIBUTING.md",
+      "api/queries_comments.go",
+      "pkg/cmd/extension/browse/browse.go",
+      "pkg/cmd/extension/manager_test.go",
+      "pkg/cmd/gist/shared/shared.go",
+      "pkg/githubtemplate/github_template.go",
+      "api/queries_issue.go",
+      "pkg/cmd/project/shared/queries/queries.go",
+      "pkg/cmd/run/view/view.go",
+      "pkg/surveyext/editor_test.go",
+      "pkg/liveshare/session_test.go",
+      "pkg/surveyext/editor_manual.go",
+      "pkg/cmd/run/shared/shared.go",
+      "run/shared/shared.go",
+      "pkg/jsoncolor/jsoncolor.go",
+      "pkg/ssh/ssh_keys.go",
+      "internal/ghrepo/repo.go",
+      "internal/codespaces/api/api.go",
+      "internal/codespaces/states.go",
+      "pkg/liveshare/test/server.go",
+      "api/reaction_groups.go",
+      "pkg/cmd/codespace/common.go"
+    ],
+    "n_ranked": 26,
+    "gold_files": [
+      "pkg/cmd/gist/create/create.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

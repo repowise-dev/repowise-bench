@@ -1,0 +1,93 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3f745086",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7e6b537f5b92be152779fc492bb908d27fe7c52a",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 518.2,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3f745086"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 40,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3f745086",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3f745086",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6954,
+    "ranked": [
+      "fixtures_regress/tests.py",
+      "tests/fixtures_regress/tests.py",
+      "tests/admin_checks/tests.py",
+      "django/db/models/lookups.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "tests/auth_tests/test_views.py",
+      "tests/prefetch_related/tests.py",
+      "prefetch_related/tests.py",
+      "django/template/utils.py",
+      "tests/check_framework/test_model_checks.py",
+      "django/contrib/admin/utils.py",
+      "django/core/management/commands/loaddata.py",
+      "django/db/models/query.py",
+      "tests/defer/tests.py",
+      "django/core/files/storage.py",
+      "django/test/utils.py",
+      "django/test/testcases.py",
+      "django/utils/deprecation.py",
+      "django/utils/functional.py",
+      "django/db/models/query_utils.py",
+      "core/exceptions.py",
+      "django/core/exceptions.py",
+      "django/utils/_os.py",
+      "db/transaction.py",
+      "django/db/transaction.py",
+      "fixtures_regress/models.py",
+      "tests/fixtures_regress/models.py",
+      "django/db/models/deletion.py",
+      "django/db/utils.py",
+      "django/utils/encoding.py",
+      "core/serializers/__init__.py",
+      "django/core/serializers/__init__.py",
+      "core/management/__init__.py",
+      "django/core/management/__init__.py",
+      "serializers/base.py",
+      "django/core/serializers/base.py",
+      "tests/prefetch_related/models.py",
+      "django/db/models/manager.py"
+    ],
+    "n_ranked": 38,
+    "gold_files": [
+      "django/core/management/commands/loaddata.py"
+    ],
+    "gold_hit_rank": 12
+  }
+}

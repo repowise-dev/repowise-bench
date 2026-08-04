@@ -1,0 +1,57 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "aecfc01e6911e0ed58e91f5072305f5441cc76fe",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 2.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-250649eb"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 57,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-250649eb",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24133,
+    "ranked": [
+      "context/remote.go",
+      "utils/table_printer.go",
+      "pkg/cmd/auth/shared/ssh_keys.go",
+      "pkg/cmd/auth/shared/login_flow.go",
+      "pkg/cmd/secret/set/http.go",
+      "pkg/cmd/secret/list/list.go",
+      "pkg/cmd/ssh-key/ssh-key.go",
+      "pkg/cmd/root/root.go",
+      "pkg/cmd/secret/set/set.go"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "pkg/cmd/secret/set/http.go",
+      "pkg/cmd/secret/set/set.go"
+    ],
+    "gold_hit_rank": 5
+  }
+}

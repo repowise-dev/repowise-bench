@@ -1,0 +1,463 @@
+{
+  "adoption": {
+    "c0-bare": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 0,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 0,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 0,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 0,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 0,
+          "run": 3
+        }
+      },
+      "used": 0,
+      "run": 15
+    },
+    "repowise": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 1,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 1,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 3,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 3,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 1,
+          "run": 3
+        }
+      },
+      "used": 9,
+      "run": 15
+    },
+    "repowise-full": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 1,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 1,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 3,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 2,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 1,
+          "run": 3
+        }
+      },
+      "used": 8,
+      "run": 15
+    },
+    "repowise-lean": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 1,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 1,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 3,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 3,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 1,
+          "run": 3
+        }
+      },
+      "used": 9,
+      "run": 15
+    }
+  },
+  "proof_of_life": {
+    "c0-bare": {
+      "cells": 15,
+      "ok": 9,
+      "served": [],
+      "mcp_calls": 0,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "repowise": {
+      "cells": 15,
+      "ok": 9,
+      "served": [
+        11
+      ],
+      "mcp_calls": 21,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "repowise-full": {
+      "cells": 15,
+      "ok": 9,
+      "served": [
+        8
+      ],
+      "mcp_calls": 14,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "repowise-lean": {
+      "cells": 15,
+      "ok": 9,
+      "served": [
+        4
+      ],
+      "mcp_calls": 22,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    }
+  },
+  "slices": {
+    "symbol-lookup": {
+      "c0-bare": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9.2,
+        "d_judge": 0.0,
+        "cost": 0.10888529999999999,
+        "control_cost": 0.10888529999999999,
+        "d_cost_pct": 0.0,
+        "files_read": 1,
+        "tool_calls": 4,
+        "judge_wtl": "0-1-0"
+      },
+      "repowise": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9.2,
+        "d_judge": 0.0,
+        "cost": 0.1165821,
+        "control_cost": 0.10888529999999999,
+        "d_cost_pct": 7.068722775250658,
+        "files_read": 0,
+        "tool_calls": 3,
+        "judge_wtl": "0-1-0"
+      },
+      "repowise-full": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9,
+        "d_judge": -0.1999999999999993,
+        "cost": 0.1133027,
+        "control_cost": 0.10888529999999999,
+        "d_cost_pct": 4.056929631456235,
+        "files_read": 0,
+        "tool_calls": 3,
+        "judge_wtl": "0-0-1"
+      },
+      "repowise-lean": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9.8,
+        "d_judge": 0.6000000000000014,
+        "cost": 0.0939449,
+        "control_cost": 0.10888529999999999,
+        "d_cost_pct": -13.721227750669737,
+        "files_read": 0,
+        "tool_calls": 2,
+        "judge_wtl": "1-0-0"
+      }
+    },
+    "multi-hop-flow": {
+      "c0-bare": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9.2,
+        "d_judge": 0.0,
+        "cost": 0.18052200000000002,
+        "control_cost": 0.18052200000000002,
+        "d_cost_pct": 0.0,
+        "files_read": 2,
+        "tool_calls": 10,
+        "judge_wtl": "0-1-0"
+      },
+      "repowise": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 8.8,
+        "d_judge": -0.3999999999999986,
+        "cost": 0.2907267,
+        "control_cost": 0.18052200000000002,
+        "d_cost_pct": 61.04779472862032,
+        "files_read": 2,
+        "tool_calls": 15,
+        "judge_wtl": "0-0-1"
+      },
+      "repowise-full": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 8.4,
+        "d_judge": -0.7999999999999989,
+        "cost": 0.20679075000000002,
+        "control_cost": 0.18052200000000002,
+        "d_cost_pct": 14.551550503539737,
+        "files_read": 2,
+        "tool_calls": 8,
+        "judge_wtl": "0-0-1"
+      },
+      "repowise-lean": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9,
+        "d_judge": -0.1999999999999993,
+        "cost": 0.21897570000000002,
+        "control_cost": 0.18052200000000002,
+        "d_cost_pct": 21.30139262804534,
+        "files_read": 3,
+        "tool_calls": 9,
+        "judge_wtl": "0-0-1"
+      }
+    },
+    "architecture-why": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.8,
+        "d_judge": 0.0,
+        "cost": 0.17018268333333333,
+        "control_cost": 0.17018268333333333,
+        "d_cost_pct": 0.0,
+        "files_read": 2.6666666666666665,
+        "tool_calls": 6.666666666666667,
+        "judge_wtl": "0-3-0"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.933333333333334,
+        "d_judge": 0.13333333333333344,
+        "cost": 0.17411348333333332,
+        "control_cost": 0.17018268333333333,
+        "d_cost_pct": 2.3097532151968756,
+        "files_read": 2.3333333333333335,
+        "tool_calls": 7,
+        "judge_wtl": "1-2-0"
+      },
+      "repowise-full": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.066666666666666,
+        "d_judge": -0.7333333333333337,
+        "cost": 0.18500823333333333,
+        "control_cost": 0.17018268333333333,
+        "d_cost_pct": 8.7115502644658,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 6,
+        "judge_wtl": "1-0-2"
+      },
+      "repowise-lean": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.266666666666666,
+        "d_judge": -0.5333333333333338,
+        "cost": 0.188709,
+        "control_cost": 0.17018268333333333,
+        "d_cost_pct": 10.88613500727306,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 7,
+        "judge_wtl": "1-0-2"
+      }
+    },
+    "cross-file-impact": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.733333333333334,
+        "d_judge": 0.0,
+        "cost": 0.27909164999999997,
+        "control_cost": 0.27909164999999997,
+        "d_cost_pct": 0.0,
+        "files_read": 3,
+        "tool_calls": 12.666666666666666,
+        "judge_wtl": "0-3-0"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.4,
+        "d_judge": -0.3333333333333339,
+        "cost": 0.22934441666666666,
+        "control_cost": 0.27909164999999997,
+        "d_cost_pct": -17.824694265605334,
+        "files_read": 2,
+        "tool_calls": 10.333333333333334,
+        "judge_wtl": "0-0-3"
+      },
+      "repowise-full": {
+        "pairs": 2,
+        "gradeable_pairs": 2,
+        "judge": 8.1,
+        "d_judge": -0.6000000000000005,
+        "cost": 0.29139507499999995,
+        "control_cost": 0.294700925,
+        "d_cost_pct": -1.1217643785814566,
+        "files_read": 4,
+        "tool_calls": 13.5,
+        "judge_wtl": "1-0-1"
+      },
+      "repowise-lean": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.333333333333334,
+        "d_judge": -0.40000000000000036,
+        "cost": 0.26483789999999996,
+        "control_cost": 0.27909164999999997,
+        "d_cost_pct": -5.107193282206763,
+        "files_read": 1.6666666666666667,
+        "tool_calls": 10.666666666666666,
+        "judge_wtl": "0-0-3"
+      }
+    },
+    "performance-why": {
+      "c0-bare": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 7.8,
+        "d_judge": 0.0,
+        "cost": 0.19018294999999996,
+        "control_cost": 0.19018294999999996,
+        "d_cost_pct": 0.0,
+        "files_read": 4,
+        "tool_calls": 10,
+        "judge_wtl": "0-1-0"
+      },
+      "repowise": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 7.8,
+        "d_judge": 0.0,
+        "cost": 0.16625345,
+        "control_cost": 0.19018294999999996,
+        "d_cost_pct": -12.582358197724858,
+        "files_read": 0,
+        "tool_calls": 6,
+        "judge_wtl": "0-1-0"
+      },
+      "repowise-full": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 7.6,
+        "d_judge": -0.20000000000000018,
+        "cost": 0.17874155000000003,
+        "control_cost": 0.19018294999999996,
+        "d_cost_pct": -6.015996702122844,
+        "files_read": 2,
+        "tool_calls": 5,
+        "judge_wtl": "0-0-1"
+      },
+      "repowise-lean": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 7.8,
+        "d_judge": 0.0,
+        "cost": 0.1346801,
+        "control_cost": 0.19018294999999996,
+        "d_cost_pct": -29.18392526774875,
+        "files_read": 0,
+        "tool_calls": 4,
+        "judge_wtl": "0-1-0"
+      }
+    },
+    "POOLED": {
+      "c0-bare": {
+        "pairs": 9,
+        "gradeable_pairs": 9,
+        "judge": 8.755555555555556,
+        "d_judge": 0.0,
+        "cost": 0.20304591666666666,
+        "control_cost": 0.20304591666666666,
+        "d_cost_pct": 0.0,
+        "files_read": 2.6666666666666665,
+        "tool_calls": 9.11111111111111,
+        "judge_wtl": "0-9-0"
+      },
+      "repowise": {
+        "pairs": 9,
+        "gradeable_pairs": 9,
+        "judge": 8.644444444444444,
+        "d_judge": -0.1111111111111111,
+        "cost": 0.19821510555555555,
+        "control_cost": 0.20304591666666666,
+        "d_cost_pct": -2.3791717609577363,
+        "files_read": 1.6666666666666667,
+        "tool_calls": 8.444444444444445,
+        "judge_wtl": "1-4-4"
+      },
+      "repowise-full": {
+        "pairs": 8,
+        "gradeable_pairs": 8,
+        "judge": 8.175,
+        "d_judge": -0.5750000000000001,
+        "cost": 0.20458123125,
+        "control_cost": 0.19744251875,
+        "d_cost_pct": 3.6155902716369726,
+        "files_read": 2,
+        "tool_calls": 7.625,
+        "judge_wtl": "2-0-6"
+      },
+      "repowise-lean": {
+        "pairs": 9,
+        "gradeable_pairs": 9,
+        "judge": 8.488888888888889,
+        "d_judge": -0.2666666666666667,
+        "cost": 0.2009157111111111,
+        "control_cost": 0.20304591666666666,
+        "d_cost_pct": -1.0491250405457075,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 7.555555555555555,
+        "judge_wtl": "2-1-6"
+      }
+    }
+  },
+  "reportable_arms": [
+    "c0-bare",
+    "repowise",
+    "repowise-full",
+    "repowise-lean"
+  ],
+  "adoption_only_arms": [],
+  "total_cost_usd": 7.20418235,
+  "cells": 60
+}

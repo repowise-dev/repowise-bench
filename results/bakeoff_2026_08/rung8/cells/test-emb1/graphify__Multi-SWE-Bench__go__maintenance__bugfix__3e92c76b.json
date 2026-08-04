@@ -1,0 +1,83 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "d79eb494d998132f060808e15521cd6a29f1b5fa",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 7.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3e92c76b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3e92c76b",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6489,
+    "ranked": [
+      "pkg/cmd/release/list/http.go",
+      "pkg/browser/browser.go",
+      "docs/releasing.md",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmdutil/errors.go",
+      "pkg/cmd/pr/shared/display.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/factory/default.go",
+      "internal/config/config_type.go",
+      "api/client.go",
+      "context/remote.go",
+      "api/queries_repo.go",
+      "api/queries_user.go",
+      "pkg/cmd/pr/shared/title_body_survey.go",
+      "pkg/iostreams/color.go",
+      "utils/utils.go",
+      "api/queries_pr.go",
+      "git/url.go",
+      "context/context.go",
+      "pkg/cmd/pr/shared/params.go",
+      "pkg/cmdutil/legacy.go",
+      "git/git.go",
+      "git/remote.go",
+      "pkg/cmd/pr/create/regexp_writer.go",
+      "pkg/githubtemplate/github_template.go",
+      "pkg/iostreams/iostreams.go",
+      "internal/ghinstance/host.go"
+    ],
+    "n_ranked": 27,
+    "gold_files": [
+      "pkg/cmd/release/create/create.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

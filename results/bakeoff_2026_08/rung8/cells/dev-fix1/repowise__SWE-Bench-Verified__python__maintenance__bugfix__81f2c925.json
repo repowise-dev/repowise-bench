@@ -1,0 +1,90 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5573a54d409bb98b5c5acdb308310bed02d392c2",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 1111.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-81f2c925",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 5.5,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 25749,
+    "ranked": [
+      "django/utils/regex_helper.py",
+      "django/utils/cache.py",
+      "django/core/validators.py",
+      "django/utils/html.py",
+      "django/utils/regex_helper.py::normalize",
+      "django/core/validators.py::URLValidator",
+      "django/core/validators.py::EmailValidator",
+      "django/utils/http.py",
+      "django/utils/translation/trans_real.py",
+      "django/utils/encoding.py",
+      "django/contrib/gis/geos/collections.py",
+      "django/urls/resolvers.py",
+      "django/test/testcases.py",
+      "django/utils/text.py",
+      "django/templatetags",
+      "django/forms/models.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/gis/gdal/raster/band.py"
+    ],
+    "n_ranked": 18,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/contrib/admin/options.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

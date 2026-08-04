@@ -1,0 +1,50 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "004b4620f6f4ad87261e149898940f2dcd5757ef",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 14.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c20c3c4f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c20c3c4f",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 14475,
+    "ranked": [
+      "django/utils/functional.py",
+      "django/utils/decorators.py",
+      "django/test/testcases.py"
+    ],
+    "n_ranked": 3,
+    "gold_files": [
+      "django/utils/decorators.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

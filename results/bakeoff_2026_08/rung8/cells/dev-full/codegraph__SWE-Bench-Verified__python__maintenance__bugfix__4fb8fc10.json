@@ -1,0 +1,62 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4fb8fc10",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6c86495bcee22eac19d7fb040b2988b830707cbd",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 45.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4fb8fc10"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4fb8fc10",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4fb8fc10",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23329,
+    "ranked": [
+      "github.com/django/django/blob/d2310f6473593d28c14b63a72253408b568e100a/django/utils/timesince.py",
+      "django/utils/datetime_safe.py",
+      "django/contrib/admin/views/main.py",
+      "django/contrib/auth/tokens.py",
+      "django/contrib/gis/gdal/field.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "tests/admin_changelist/test_date_hierarchy.py",
+      "tests/admin_utils/test_logentry.py",
+      "tests/admin_utils/tests.py",
+      "tests/admin_widgets/tests.py",
+      "django/utils/timesince.py",
+      "django/template/defaultfilters.py",
+      "tests/utils_tests/test_timesince.py",
+      "django/test/testcases.py",
+      "tests/utils_tests/test_lazyobject.py",
+      "django/utils/connection.py"
+    ],
+    "n_ranked": 16,
+    "gold_files": [
+      "django/utils/timesince.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

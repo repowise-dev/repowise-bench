@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5573a54d409bb98b5c5acdb308310bed02d392c2",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 24.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-81f2c925"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-81f2c925",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22582,
+    "ranked": [
+      "django/views/generic/base.py",
+      "admin/options.py",
+      "github.com/django/django/blob/ef93fd4683645635d3597e17c23f9ed862dd716b/django/contrib/admin/options.py",
+      "django/forms/forms.py",
+      "django/forms/formsets.py",
+      "tests/forms_tests/field_tests/test_base.py",
+      "tests/forms_tests/field_tests/test_choicefield.py",
+      "tests/forms_tests/field_tests/test_datefield.py",
+      "tests/forms_tests/field_tests/test_multivaluefield.py",
+      "django/contrib/admin/templatetags/admin_list.py",
+      "django/utils/dateformat.py",
+      "django/contrib/admin/models.py",
+      "django/contrib/auth/forms.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "django/core/checks/templates.py",
+      "tests/admin_changelist/tests.py",
+      "tests/check_framework/test_templates.py",
+      "tests/file_uploads/tests.py",
+      "tests/gis_tests/geos_tests/test_geos.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/models/query.py",
+      "tests/admin_views/admin.py"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "django/contrib/admin/options.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

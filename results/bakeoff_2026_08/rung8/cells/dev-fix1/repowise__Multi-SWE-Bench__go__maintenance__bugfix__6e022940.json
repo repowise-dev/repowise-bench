@@ -1,0 +1,91 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "157bab18e4c9f9f6f6306c39aa1964d04ec94a71",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 93.7,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6e022940",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-6e022940",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 20025,
+    "ranked": [
+      "script/build.go",
+      "internal/config/config_type.go",
+      "onboarding/getting_started",
+      "onboarding/guided_tour",
+      "cmd/gen-docs",
+      "internal/config/config_type.go::NewBlankRoot",
+      "cmd/gh/main.go",
+      "pkg/cmd/secret/secret.go",
+      "pkg/cmd/ssh-key/add/add.go",
+      "internal/run/stub.go",
+      "Makefile",
+      "internal/authflow",
+      "internal/ghrepo/repo_test.go",
+      "api/client.go",
+      "internal",
+      "pkg/cmd/actions",
+      "pkg/cmd/auth",
+      "test/helpers.go"
+    ],
+    "n_ranked": 18,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/secret/list/list.go",
+      "pkg/cmd/secret/secret.go"
+    ],
+    "gold_hit_rank": 8
+  }
+}

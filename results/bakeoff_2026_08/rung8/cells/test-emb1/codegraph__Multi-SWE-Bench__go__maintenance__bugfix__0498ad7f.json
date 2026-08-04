@@ -1,0 +1,67 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "bdce08a793abe4744c02d537e37c9ba63601a849",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 11.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0498ad7f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0498ad7f",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19267,
+    "ranked": [
+      "internal/config/alias_config.go",
+      "pkg/cmd/alias/set/set.go",
+      "pkg/cmd/api/http.go",
+      "pkg/cmd/pr/view/view.go",
+      "pkg/cmd/gist/list/list_test.go",
+      "pkg/cmd/release/list/list_test.go",
+      "pkg/cmd/release/view/view_test.go",
+      "pkg/cmd/ssh-key/list/list_test.go",
+      "pkg/iostreams/color.go",
+      "pkg/cmd/pr/shared/preserve.go",
+      "internal/ghinstance/host.go",
+      "pkg/cmd/api/api.go",
+      "pkg/cmd/auth/login/login.go",
+      "internal/ghinstance/host_test.go",
+      "pkg/cmd/root/help.go",
+      "cmd/gh/main.go",
+      "pkg/cmd/pr/shared/display.go",
+      "pkg/cmd/issue/status/status.go",
+      "pkg/cmd/pr/status/status.go",
+      "utils/table_printer.go"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "pkg/cmd/auth/status/status.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

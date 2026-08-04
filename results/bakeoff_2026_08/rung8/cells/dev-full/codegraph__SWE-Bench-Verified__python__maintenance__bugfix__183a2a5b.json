@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__183a2a5b",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "2480554dc4ada4ecf3f6a08e318735a2e50783f3",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 24.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-183a2a5b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__183a2a5b",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-183a2a5b",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 14611,
+    "ranked": [
+      "core/fonte/models.py",
+      "core/variavel/models.py",
+      "core/fonte_variavel/models.py",
+      "home/elysium/tutes/django-test-stuff/django-bugfix/manage.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/core/management/__init__.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/core/management/base.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/core/management/commands/migrate.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/db/migrations/executor.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/db/migrations/migration.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/db/migrations/operations/models.py",
+      "home/elysium/.local/share/virtualenvs/django-bugfix-O9qARFZW/lib/python3.9/site-packages/django/db/backends/base/schema.py",
+      "tests/model_fields/models.py",
+      "tests/model_fields/test_field_flags.py",
+      "tests/migrations/models.py",
+      "tests/migrations/test_state.py",
+      "tests/model_forms/models.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/contrib/gis/db/models/__init__.py",
+      "django/contrib/gis/db/models/aggregates.py",
+      "django/contrib/postgres/fields/array.py",
+      "tests/schema/models.py",
+      "tests/reserved_names/models.py"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

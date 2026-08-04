@@ -1,0 +1,80 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "f015020bcd61caf00d41d4c2dae014be2fb2fc29",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 38.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-03f04397"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 4,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-03f04397",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6689,
+    "ranked": [
+      "pkg/cmd/release/list/http.go",
+      "pkg/cmd/release/list/list_test.go",
+      ".github/ISSUE_TEMPLATE/feedback.md",
+      "internal/config/auth_config_test.go",
+      "internal/config/config.go",
+      "pkg/cmd/extension/manager.go",
+      "git/command.go",
+      ".github/ISSUE_TEMPLATE/bug_report.md",
+      "internal/featuredetection/feature_detection.go",
+      "git/client.go",
+      "api/queries_issue.go",
+      "pkg/cmd/release/create/http.go",
+      "pkg/cmd/label/http.go",
+      "pkg/cmd/release/shared/fetch.go",
+      "pkg/iostreams/iostreams.go",
+      "internal/ghrepo/repo.go",
+      "api/client.go",
+      "pkg/set/string_set.go",
+      "internal/ghinstance/host.go",
+      "pkg/cmdutil/json_flags.go",
+      "api/reaction_groups.go",
+      "api/queries_comments.go",
+      "git/client_test.go",
+      "api/queries_repo.go"
+    ],
+    "n_ranked": 24,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/http.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/list.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

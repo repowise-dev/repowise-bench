@@ -1,0 +1,92 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "d21c11d774df552b9c36d3d35aa8eb12e5aebd55",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 244.2,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 64,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-ff0cfab5",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 4.7,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 17113,
+    "ranked": [
+      "git/client.go",
+      "onboarding/how_it_works",
+      "script/release",
+      "api/queries_repo.go::ForkRepo",
+      "onboarding/getting_started",
+      "api/queries_repo.go",
+      "onboarding/codebase_map",
+      "script/nolint-insert",
+      "pkg/httpmock/stub.go",
+      "internal/config/stub.go",
+      "git/errors.go",
+      "git/url.go",
+      "context/context.go",
+      "pkg/cmd/gist/gist.go",
+      "pkg/cmd/search/issues/issues.go",
+      "pkg/cmd/issue/issue.go",
+      "api/queries_comments.go",
+      "api/queries_pr_review.go",
+      "pkg/cmd/extension/browse/browse.go",
+      "pkg/cmd/pr/status/status_test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/gist/create/create.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

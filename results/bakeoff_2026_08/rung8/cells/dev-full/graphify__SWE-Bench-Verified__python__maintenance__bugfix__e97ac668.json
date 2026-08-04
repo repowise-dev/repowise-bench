@@ -1,0 +1,93 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e97ac668",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 270.0,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-e97ac668"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e97ac668",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-e97ac668",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 3651,
+    "ranked": [
+      "django/contrib/auth/migrations/0008_alter_user_username_max_length.py",
+      "core/validators.py",
+      "tests/admin_views/models.py",
+      "admin_views/admin.py",
+      "django/contrib/auth/migrations/0003_alter_user_email_max_length.py",
+      "db/migrations/__init__.py",
+      "django/utils/dateformat.py",
+      "tests/migrations/test_executor.py",
+      "tests/admin_views/admin.py",
+      "django/contrib/auth/forms.py",
+      "django/middleware/common.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/backends/utils.py",
+      "db/utils.py",
+      "django/contrib/gis/gdal/geomtype.py",
+      "tests/gis_tests/layermap/models.py",
+      "tests/delete_regress/models.py",
+      "delete_regress/tests.py",
+      "django/db/models/fields/__init__.py",
+      "tests/null_fk/models.py",
+      "null_fk/models.py",
+      "django/contrib/sitemaps/management/commands/ping_google.py",
+      "django/contrib/auth/models.py",
+      "django/test/html.py",
+      "test_utils/tests.py",
+      "tests/sitemaps_tests/test_https.py",
+      "tests/deprecation/tests.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/models/aggregates.py",
+      "django/core/validators.py",
+      "django/core/exceptions.py",
+      "tests/view_tests/regression_21530_urls.py",
+      "view_tests/models.py",
+      "django/shortcuts.py",
+      "tests/model_enums/tests.py",
+      "tests/auth_tests/test_validators.py",
+      "auth_tests/test_validators.py"
+    ],
+    "n_ranked": 37,
+    "gold_files": [
+      "django/contrib/auth/forms.py",
+      "django/forms/fields.py"
+    ],
+    "gold_hit_rank": 10
+  }
+}

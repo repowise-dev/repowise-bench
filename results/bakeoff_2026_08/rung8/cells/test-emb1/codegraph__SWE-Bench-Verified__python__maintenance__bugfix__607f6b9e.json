@@ -1,0 +1,65 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f618e033acd37d59b536d6e6126e6c5be18037f6",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 14.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-607f6b9e"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-607f6b9e",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22915,
+    "ranked": [
+      "django/core/management/utils.py",
+      "django/db/utils.py",
+      "django/contrib/gis/db/backends/base/operations.py",
+      "django/contrib/gis/db/backends/postgis/operations.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/contrib/postgres/indexes.py",
+      "tests/backends/base/test_operations.py",
+      "tests/backends/sqlite/tests.py",
+      "tests/backends/test_utils.py",
+      "tests/bulk_create/tests.py",
+      "django/db/backends/dummy/base.py",
+      "django/db/migrations/migration.py",
+      "django/db/migrations/executor.py",
+      "js_tests/qunit/qunit.js",
+      "tests/gis_tests/gis_migrations/test_operations.py",
+      "tests/migrations/test_operations.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/db/models/query.py"
+    ],
+    "n_ranked": 18,
+    "gold_files": [
+      "django/db/models/aggregates.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

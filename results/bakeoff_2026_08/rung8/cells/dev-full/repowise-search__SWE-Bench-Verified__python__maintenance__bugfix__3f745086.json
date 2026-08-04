@@ -1,0 +1,66 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3f745086",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7e6b537f5b92be152779fc492bb908d27fe7c52a",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3f745086",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3f745086",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5749,
+    "ranked": [
+      "django/conf/global_settings.py",
+      "django/core/management/commands/loaddata.py",
+      "tests/fixtures_regress/tests.py",
+      "django/contrib/admin/options.py::get_search_results",
+      "django/template/utils.py::templates",
+      "django/template/utils.py::EngineHandler",
+      "django/conf/global_settings.py::FIXTURE_DIRS",
+      "django/apps/registry.py::populate"
+    ],
+    "n_ranked": 8,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/core/management/commands/loaddata.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

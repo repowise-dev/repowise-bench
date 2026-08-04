@@ -1,0 +1,55 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c923cfa8",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "bef6f7584280f1cc80e5e2d80b7ad073a93d26ec",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 29.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c923cfa8"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c923cfa8",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c923cfa8",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22496,
+    "ranked": [
+      "django/core/checks/messages.py",
+      "django/core/checks/__init__.py",
+      "django/contrib/auth/management/commands/changepassword.py",
+      "tests/admin_scripts/tests.py",
+      "tests/user_commands/tests.py",
+      "django/core/management/base.py",
+      "django/contrib/gis/management/commands/inspectdb.py"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "django/core/management/base.py",
+      "django/core/management/commands/migrate.py",
+      "django/core/management/commands/runserver.py"
+    ],
+    "gold_hit_rank": 6
+  }
+}

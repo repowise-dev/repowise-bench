@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 41.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-cecff61c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-cecff61c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21626,
+    "ranked": [
+      "django/db/migrations/operations/fields.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/optimizer.py",
+      "django/core/management/commands/makemigrations.py",
+      "django/core/management/commands/optimizemigration.py",
+      "django/core/management/commands/squashmigrations.py",
+      "django/db/migrations/autodetector.py",
+      "tests/migrations/test_optimizer.py",
+      "django/contrib/postgres/operations.py",
+      "django/db/migrations/operations/__init__.py",
+      "tests/postgres_tests/test_operations.py"
+    ],
+    "n_ranked": 11,
+    "gold_files": [
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/optimizer.py",
+      "django/db/migrations/state.py",
+      "django/db/models/indexes.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

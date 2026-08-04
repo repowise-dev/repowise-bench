@@ -1,0 +1,55 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "a708f39ce67af174df90c5b5e50ad1976cec7cb8",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 18.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-a7a5e8ed"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-a7a5e8ed",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23846,
+    "ranked": [
+      "usr/lib/python3.7/unittest/case.py",
+      "tmp/portage/dev-python/django-3.2.1/work/Django-3.2.1/tests/validators/tests.py",
+      "django/test/testcases.py",
+      "tests/cache/tests.py",
+      "tests/test_runner/test_parallel.py",
+      "tests/httpwrappers/tests.py",
+      "tests/validation/test_validators.py"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "django/core/validators.py",
+      "tests/validators/tests.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

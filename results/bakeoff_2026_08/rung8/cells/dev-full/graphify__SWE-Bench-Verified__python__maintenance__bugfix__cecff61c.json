@@ -1,0 +1,78 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 303.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-cecff61c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-cecff61c",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6477,
+    "ranked": [
+      "operations/models.py",
+      "django/db/migrations/operations/models.py",
+      "django/template/defaultfilters.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/migrations/migration.py",
+      "django/db/migrations/operations/fields.py",
+      "django/utils/functional.py",
+      "django/db/models/__init__.py",
+      "django/db/migrations/state.py",
+      "django/utils/encoding.py",
+      "django/db/migrations/operations/base.py",
+      "models/options.py",
+      "django/db/models/options.py",
+      "core/exceptions.py",
+      "migrations/utils.py",
+      "django/db/migrations/utils.py",
+      "operations/fields.py",
+      "operations/base.py",
+      "django/db/migrations/exceptions.py"
+    ],
+    "n_ranked": 19,
+    "gold_files": [
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/optimizer.py",
+      "django/db/migrations/state.py",
+      "django/db/models/indexes.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

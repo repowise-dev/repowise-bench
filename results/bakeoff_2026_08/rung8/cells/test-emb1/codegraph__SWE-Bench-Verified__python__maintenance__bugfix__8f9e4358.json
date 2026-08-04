@@ -1,0 +1,65 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "1250483ebf73f7a82ff820b94092c63ce4238264",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-8f9e4358"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-8f9e4358",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24414,
+    "ranked": [
+      "./manage.py",
+      "Users/chainz/tmp/subparserstest/./manage.py",
+      "Users/chainz/.pyenv/versions/3.11.0/lib/python3.11/argparse.py",
+      "Users/chainz/Documents/Projects/django/django/core/management/base.py",
+      "django/core/management/base.py",
+      "django/core/management/commands/compilemessages.py",
+      "django/core/management/commands/check.py",
+      "django/core/management/utils.py",
+      "django/db/models/manager.py",
+      "django/db/models/query.py",
+      "tests/admin_changelist/tests.py",
+      "django/forms/models.py",
+      "tests/admin_inlines/tests.py",
+      "django/core/checks/registry.py",
+      "tests/auth_tests/models/custom_user.py",
+      "tests/cache/closeable_cache.py",
+      "django/core/management/__init__.py",
+      "django/contrib/auth/base_user.py"
+    ],
+    "n_ranked": 18,
+    "gold_files": [
+      "django/core/management/base.py"
+    ],
+    "gold_hit_rank": 4
+  }
+}

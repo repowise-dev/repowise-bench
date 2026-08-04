@@ -48,6 +48,16 @@ __pycache__/
 !/results/swe_qa_flask48_v2/swe_qa.jsonl
 !/results/swe_qa_flask48_v2/experiment_meta.json
 !/results/health_defect_*/
+
+# Bakeoff 2026-08: the raw runs behind every number in the OSS docs/BENCHMARKS.md.
+# Published tables cite these paths, so the evidence has to be in the repo a
+# skeptic clones. Predictions, graded cells and reports are tracked; agent stdout
+# logs are not, because they are 49 MB of transcript that no rerun is graded on.
+!/results/bakeoff_2026_08/
+!/results/bakeoff_2026_08/**
+/results/bakeoff_2026_08/**/logs/
+/results/bakeoff_2026_08/**/__pycache__/
+/results/bakeoff_2026_08/**/_backup_*/
 !/results/health_defect_*/correlation.json
 !/results/health_defect_*/joined_data.json
 !/results/health_defect_*/defect_counts.json

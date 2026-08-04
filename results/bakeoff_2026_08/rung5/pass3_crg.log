@@ -1,0 +1,143 @@
+[08/01/26 17:16:21] INFO     Starting MCP server               transport.py:241
+                             'code-review-graph' with                          
+                             transport 'stdio'                                 
+84 questions scored (99 in suite, 14 gold_pages-only excluded, 1 dropped as stale gold: ['E37_compute_budget_def'])
+
+  code-review-graph  E01_verify_and_heal_symbol       ok hit@None
+  code-review-graph  E02_get_symbol_bounds_verify     ok hit@None
+  code-review-graph  E03_check_symbol_bounds_drift    ok hit@None
+  code-review-graph  E04_savings_wrapper_signatures   ok hit@None
+  code-review-graph  E05_complexity_walker            ok hit@None
+  code-review-graph  E06_dead_code_detection          ok hit@None
+  code-review-graph  E07_search_mode_routing          ok hit@None
+  code-review-graph  E08_resolve_mode                 ok hit@None
+  code-review-graph  E09_homonym_union                ok hit@None
+  code-review-graph  E10_batch_upsert_symbols         ok hit@None
+  code-review-graph  E11_data_shape_mining            ok hit@None
+  code-review-graph  E12_filter_dicts_by_key_def      ok hit@None
+  code-review-graph  E13_skeleton_build               ok hit@None
+  code-review-graph  E14_hydrator_signatures          ok hit@None
+  code-review-graph  E15_exact_match_honesty          ok hit@None
+  code-review-graph  E16_incremental_symbol_persist   ok hit@None
+  code-review-graph  E17_blast_radius                 ok hit@None
+  code-review-graph  E18_omission_store_get           ok hit@None
+  code-review-graph  E19_decision_downweight          ok hit@None
+  code-review-graph  E20_bounds_to_skeleton_flow      ok hit@None
+  code-review-graph  E21_parse_to_body_flow           ok hit@None
+  code-review-graph  E22_retrieval_to_enriched_body   ok hit@None
+  code-review-graph  E23_changed_file_repersist_flow  ok hit@None
+  code-review-graph  E24_retrieval_feeds_synthesis_flow ok hit@None
+  code-review-graph  E25_hybrid_repro_get_answer      ok hit@None
+  code-review-graph  E26_pipeline_calls_upsert        ok hit@None
+  code-review-graph  E27_walker_cyclomatic            ok hit@None
+  code-review-graph  E28_filter_dicts_missing_key     ok hit@None
+  code-review-graph  E29_get_symbol_heal_row          ok hit@None
+  code-review-graph  E30_answer_confidence            ok hit@None
+  code-review-graph  E31_co_change_count              ok hit@None
+  code-review-graph  E32_reconcile_symbols            ok hit@None
+  code-review-graph  E33_get_why_rationale            ok hit@None
+  code-review-graph  E34_best_guesses_fallback        ok hit@None
+  code-review-graph  E35_has_exact_symbol             ok hit@None
+  code-review-graph  E36_union_pointer_route          ok hit@None
+  code-review-graph  E38_parallel_ingestion_parse     ok hit@None
+  code-review-graph  E39_import_edge_view             ok hit@None
+  code-review-graph  E40_agent_provenance_classifier  ok hit@None
+  code-review-graph  E41_co_change_entropy_def        ok hit@None
+  code-review-graph  E42_build_fix_events_def         ok hit@None
+  code-review-graph  E43_call_resolver_def            ok hit@None
+  code-review-graph  E44_change_detector_adaptive_budget ok hit@None
+  code-review-graph  E45_pipeline_checkpoint_resume   ok hit@None
+  code-review-graph  E46_scan_missed_savings          ok hit@None
+  code-review-graph  E47_get_symbol_omission_ref      ok hit@None
+  code-review-graph  E48_get_symbol_live_grep_fallback ok hit@None
+  code-review-graph  E49_dead_code_analyzer_class     ok hit@None
+  code-review-graph  E50_dead_code_rollup             ok hit@None
+  code-review-graph  E51_import_name_maps             ok hit@None
+  code-review-graph  E52_coupling_graph_class         ok hit@None
+  code-review-graph  E53_detect_worktree_base         ok hit@None
+  code-review-graph  E54_match_contracts_def          ok hit@None
+  code-review-graph  E55_build_lineage_chain          ok hit@None
+  code-review-graph  E56_get_execution_flows_impl     ok hit@None
+  code-review-graph  E57_select_pages_budget          ok hit@None
+  code-review-graph  E58_http_contract_to_match       ok hit@None
+  code-review-graph  E59_failure_shield               ok hit@None
+  code-review-graph  E60_health_import_edge_adapts_builder ok hit@None
+  code-review-graph  E61_seed_worktree_index          ok hit@None
+  code-review-graph  E62_demand_attributes_citations  ok hit@None
+  code-review-graph  E63_cost_tracker_unknown_model   ok hit@None
+  code-review-graph  E64_fix_attribution_decayed_mass ok hit@None
+  code-review-graph  E65_resolve_wiki_links_backlinks ok hit@None
+  code-review-graph  E66_build_tour_stops             ok hit@None
+  code-review-graph  E67_flow_scoring_served          ok hit@None
+  code-review-graph  E68_blame_to_health              ok hit@None
+  code-review-graph  E69_cochange_hidden_coupling     ok hit@None
+  code-review-graph  E70_cochange_dry_violation       ok hit@None
+  code-review-graph  E71_dead_code_served             ok hit@None
+  code-review-graph  E72_agent_pct_ownership          ok hit@None
+  code-review-graph  E73_fix_events_bug_magnet        ok hit@None
+  code-review-graph  E74_decision_to_why              ok hit@None
+  code-review-graph  E75_supersession_why             ok hit@None
+  code-review-graph  E76_security_finding_served      ok hit@None
+  code-review-graph  E77_community_to_refactoring     ok hit@None
+  code-review-graph  E78_omission_ref_expand          ok hit@None
+  code-review-graph  E79_identity_reviewer            ok hit@None
+  code-review-graph  E80_authors_reviewer_suggestions ok hit@None
+  code-review-graph  E81_prior_defect_accuracy        ok hit@None
+  code-review-graph  E82_function_blame_hotspot       ok hit@None
+  code-review-graph  E83_dataflow_perf_promotion      ok hit@None
+  code-review-graph  E84_contract_cross_repo_blast    ok hit@None
+  code-review-graph  E85_cascade_scopes_generate      ok hit@None
+
+=== summary ===
+{
+  "repowise": {
+    "n": 83,
+    "errors": 0,
+    "tool_absent": 0,
+    "MRR": 0.6434,
+    "recall@1": 0.5663,
+    "recall@3": 0.7108,
+    "recall@5": 0.759,
+    "recall@10": 0.7711
+  },
+  "codegraph": {
+    "n": 84,
+    "errors": 0,
+    "tool_absent": 0,
+    "MRR": 0.4299,
+    "recall@1": 0.369,
+    "recall@3": 0.4524,
+    "recall@5": 0.5119,
+    "recall@10": 0.5952
+  },
+  "graphify": {
+    "n": 84,
+    "errors": 0,
+    "tool_absent": 0,
+    "MRR": 0.539,
+    "recall@1": 0.4167,
+    "recall@3": 0.619,
+    "recall@5": 0.6905,
+    "recall@10": 0.7619
+  },
+  "serena": {
+    "n": 84,
+    "errors": 0,
+    "tool_absent": 0,
+    "MRR": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0
+  },
+  "code-review-graph": {
+    "n": 84,
+    "errors": 0,
+    "tool_absent": 0,
+    "MRR": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0
+  }
+}

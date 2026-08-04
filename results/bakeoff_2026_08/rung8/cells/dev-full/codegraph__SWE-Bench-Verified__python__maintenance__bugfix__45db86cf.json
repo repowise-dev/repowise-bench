@@ -1,0 +1,70 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__45db86cf",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "45814af6197cfd8f4dc72ee43b90ecde305a1d5a",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 32.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-45db86cf"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__45db86cf",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-45db86cf",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25196,
+    "ranked": [
+      "django/db/models/sql/query.py",
+      "django/db/models/fields/__init__.py",
+      "django/db/models/query.py",
+      "django/forms/fields.py",
+      "django/views/generic/dates.py",
+      "tests/expressions/tests.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/models/functions/__init__.py",
+      "django/db/models/functions/text.py",
+      "tests/annotations/tests.py",
+      "tests/db_functions/tests.py",
+      "tests/db_functions/text/test_length.py",
+      "tests/db_functions/text/test_pad.py",
+      "django/db/models/expressions.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/search.py",
+      "django/db/models/__init__.py",
+      "tests/auth_tests/models/invalid_models.py",
+      "tests/auth_tests/models/__init__.py",
+      "tests/auth_tests/test_checks.py",
+      "tests/auth_tests/test_management.py",
+      "django/utils/datetime_safe.py",
+      "django/utils/feedgenerator.py",
+      "django/db/models/base.py"
+    ],
+    "n_ranked": 24,
+    "gold_files": [
+      "django/db/models/query_utils.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

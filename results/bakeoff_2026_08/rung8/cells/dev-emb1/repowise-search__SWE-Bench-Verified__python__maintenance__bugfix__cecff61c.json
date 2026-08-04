@@ -1,0 +1,71 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "0b0998dc151feb77068e2387c34cc50ef6b356ae",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__cecff61c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-cecff61c",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.8,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6716,
+    "ranked": [
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/operations/fields.py",
+      "django/db/models/indexes.py",
+      "django/contrib/gis/geos/mutable_list.py",
+      "django/template/defaultfilters.py",
+      "django/utils/datastructures.py",
+      "django/contrib/gis/gdal/feature.py"
+    ],
+    "n_ranked": 8,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/optimizer.py",
+      "django/db/migrations/state.py",
+      "django/db/models/indexes.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

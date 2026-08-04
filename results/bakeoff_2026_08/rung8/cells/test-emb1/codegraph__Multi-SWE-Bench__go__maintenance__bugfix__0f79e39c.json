@@ -1,0 +1,60 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "7e8348a68f96c5983251f89871167797545dbbe0",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 2.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0f79e39c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 57,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0f79e39c",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19742,
+    "ranked": [
+      "pkg/cmd/gist/view/view.go",
+      "pkg/cmd/issue/view/view.go",
+      "pkg/cmd/pr/view/view.go",
+      "pkg/cmd/release/view/view.go",
+      "pkg/cmd/gist/view/view_test.go",
+      "pkg/cmd/issue/view/view_test.go",
+      "pkg/cmd/pr/view/view_test.go",
+      "pkg/cmd/release/view/view_test.go",
+      "pkg/cmd/gist/gist.go",
+      "pkg/cmd/secret/remove/remove.go",
+      "pkg/cmd/secret/secret.go",
+      "pkg/cmd/secret/remove/remove_test.go",
+      "pkg/cmd/root/root.go"
+    ],
+    "n_ranked": 13,
+    "gold_files": [
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

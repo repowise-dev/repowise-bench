@@ -1,0 +1,52 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__46dc77a5",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "69331bb851c34f05bc77e9fc24020fe6908b9cd5",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 61.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-46dc77a5"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__46dc77a5",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-46dc77a5",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24417,
+    "ranked": [
+      "django/template/defaulttags.py",
+      "django/contrib/sessions/backends/base.py",
+      "django/contrib/sessions/backends/cache.py",
+      "django/templatetags/tz.py",
+      "django/template/defaultfilters.py",
+      "django/contrib/humanize/templatetags/humanize.py"
+    ],
+    "n_ranked": 6,
+    "gold_files": [
+      "django/template/library.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 742.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-ac705f35",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 1429,
+    "ranked": [
+      "django/db/backends/ddl_references.py"
+    ],
+    "n_ranked": 1,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/backends/ddl_references.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5c82134f",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "ece18207cbb64dd89014e279ac636a6c9829828e",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5c82134f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-5c82134f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6276,
+    "ranked": [
+      "django/db/models/fields/files.py",
+      "django/forms/fields.py",
+      "django/db/models/fields/__init__.py",
+      "django/core/files/base.py",
+      "django/contrib/gis/gdal/field.py",
+      "django/db/models/expressions.py"
+    ],
+    "n_ranked": 6,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "django/db/models/fields/files.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

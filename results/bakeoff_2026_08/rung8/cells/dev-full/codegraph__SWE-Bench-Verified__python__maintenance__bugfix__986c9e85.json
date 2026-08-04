@@ -1,0 +1,79 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__986c9e85",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "3fb7c12158a2402f0f80824f6778112071235803",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 30.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-986c9e85"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__986c9e85",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-986c9e85",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22098,
+    "ranked": [
+      "github.com/django/django/blob/master/django/forms/widgets.py",
+      "django/contrib/gis/forms/widgets.py",
+      "tests/gis_tests/test_geoforms.py",
+      "django/forms/widgets.py",
+      "django/template/defaultfilters.py",
+      "django/db/models/query.py",
+      "django/forms/widgets/input.h",
+      "django/forms/widgets/text.h",
+      "django/forms/widgets/number.h",
+      "django/forms/widgets/email.h",
+      "django/forms/widgets/url.h",
+      "django/forms/widgets/password.h",
+      "django/forms/widgets/hidden.h",
+      "django/forms/widgets/multiple_hidden.h",
+      "django/forms/widgets/file.h",
+      "django/forms/widgets/clearable_file_input.h",
+      "django/forms/widgets/textarea.h",
+      "gis/openlayers.h",
+      "cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.cs",
+      "gis/css/ol3.cs",
+      "cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.js",
+      "gis/js/OLMapWidget.js",
+      "gis/openlayers-osm.h",
+      "django/contrib/admin/widgets.py",
+      "tests/gis_tests/distapp/tests.py",
+      "tests/gis_tests/gdal_tests/test_geom.py",
+      "tests/forms_tests/field_tests/test_charfield.py",
+      "tests/forms_tests/widget_tests/test_multiplehiddeninput.py",
+      "django/contrib/admin/filters.py",
+      "tests/forms_tests/widget_tests/test_clearablefileinput.py",
+      "tests/admin_views/models.py",
+      "tests/forms_tests/widget_tests/test_input.py",
+      "django/contrib/gis/forms/fields.py"
+    ],
+    "n_ranked": 33,
+    "gold_files": [
+      "django/forms/widgets.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

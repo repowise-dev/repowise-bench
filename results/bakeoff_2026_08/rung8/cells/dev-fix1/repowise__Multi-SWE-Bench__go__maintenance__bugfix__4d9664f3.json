@@ -1,0 +1,93 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "583af3e54c506fa1c0e6bc673c2c62a7e6303660",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 129.7,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-4d9664f3",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.6,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 16971,
+    "ranked": [
+      "context/context.go",
+      "pkg/iostreams/color.go",
+      "pkg/liveshare/client.go",
+      "script/createrepo.sh",
+      "internal/httpunix/transport.go",
+      "Makefile",
+      "r8-repowise-4d9664f3",
+      "internal/config/config_type.go",
+      "internal/docs",
+      "git/url.go",
+      "internal/ghrepo/repo.go",
+      "internal/codespaces/states.go",
+      "pkg/cmd/workflow/workflow.go",
+      "pkg/cmd/workflow/enable/enable.go",
+      "pkg/liveshare",
+      "cmd/gen-docs",
+      "pkg/cmdutil",
+      "pkg/cmd/workflow/shared/shared.go",
+      "internal/ghrepo/repo_test.go",
+      "pkg/cmd/workflow/shared/test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/enable/enable.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/shared/shared.go"
+    ],
+    "gold_hit_rank": 14
+  }
+}

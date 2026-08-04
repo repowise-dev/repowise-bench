@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f8fab6f90233c7114d642dfe01a4e6d4cb14ee7d",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 21.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-02b5862c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-02b5862c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25212,
+    "ranked": [
+      "django/db/models/base.py",
+      "django/db/models/__init__.py",
+      "django/core/serializers/base.py",
+      "tests/schema/tests.py",
+      "tests/check_framework/test_model_field_deprecation.py",
+      "tests/check_framework/test_multi_db.py",
+      "tests/postgres_tests/test_trigram.py",
+      "django/db/models/query_utils.py",
+      "django/db/utils.py",
+      "django/core/management/commands/makemigrations.py",
+      "django/db/migrations/executor.py",
+      "django/db/migrations/operations/special.py",
+      "django/db/models/fields/__init__.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/admin/checks.py"
+    ],
+    "n_ranked": 15,
+    "gold_files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "gold_hit_rank": 10
+  }
+}

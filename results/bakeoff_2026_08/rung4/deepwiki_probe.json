@@ -1,0 +1,38 @@
+{
+  "endpoint": "https://mcp.deepwiki.com/mcp",
+  "status": "ok",
+  "server_name": "DeepWiki",
+  "server_version": "2.14.3",
+  "instructions": "DeepWiki MCP provides AI-powered documentation for GitHub repositories.\n\nAvailable tools:\n- read_wiki_structure: Get a list of documentation topics for a repository\n- read_wiki_contents: View full documentation about a repository\n- ask_question: Ask any question about a repository and get an AI-powered answer\n- list_available_repos: List your available repositories (private mode only)\n- generate_wiki: Generate a codebase wiki for a repository \u2014 only use when explicitly requested by the user (private mode only)\n- devin_automation_manage: Manage Devin automations \u2014 list, get, create, update, delete, or fetch the trigger event schemas (private mode only)\n- devin_code_scan_manage: Manage Devin code scans, sometimes referred to as 'security scans' or 'Devin Security Swarm' \u2014 list scans, list findings, list profiles, get a profile, create a scan, remediate a finding (private mode only)\n- devin_knowledge_manage: Manage Devin knowledge notes and suggestions \u2014 list, search, get, create, update, delete notes, view folder structure, list/view/dismiss knowledge suggestions (private mode only)\n- devin_playbook_manage: Manage Devin playbooks \u2014 list, get, create, update, delete (private mode only)\n- devin_schedule_manage: Manage scheduled Devin sessions \u2014 list, get, create, update, delete (private mode only)\n- devin_session_create: Create one or more child Devin sessions (private mode only)\n- devin_session_interact: Manage a Devin session \u2014 get status, send messages, sleep/terminate/archive/unarchive, read messages & attachments, manage tags (private mode only)\n- devin_session_events: Inspect session events \u2014 list summaries, fetch full details, or search event contents (private mode only)\n- devin_session_search: Search and filter Devin sessions (private mode only)\n- devin_session_gather: Wait for multiple Devin sessions to reach a settled state (private mode only)\n- list_integrations: List all native integrations and MCP servers with their status and settings URLs (private mode only)\n- find_setting: Find Devin webapp settings pages and deep-link URLs for them (private mode only)\n",
+  "tools": [
+    {
+      "name": "ask_question",
+      "description": "Ask any question about a GitHub repository and get an AI-powered, context-grounded response."
+    },
+    {
+      "name": "read_wiki_contents",
+      "description": "View documentation about a GitHub repository."
+    },
+    {
+      "name": "read_wiki_structure",
+      "description": "Get a list of documentation topics for a GitHub repository."
+    }
+  ],
+  "repos": {
+    "django/django": {
+      "isError": false,
+      "chars": 1470,
+      "excerpt": "Available pages for django/django:\n\n- 1 Django Framework Overview\n- 2 Core Django ORM\n  - 2.1 QuerySets and SQL Generation\n  - 2.2 Models, Fields, and Constraints\n  - 2.3 Database Backends\n  - 2.4 Schema Migrations and DDL Operations\n  - 2.5 Related Fields and Relationship Descriptors\n- 3 Admin Interface\n  - 3.1 ModelAdmin and ChangeList System\n- 4 Forms and Validation\n  - 4.1 Form Fields and Validators\n- 5 Testing Framework\n  - 5.1 Test Cases and Client\n  - 5.2 Test Discovery and Execution\n- 6 Management Commands\n  - 6.1 Migration Commands\n  - 6.2 Data Management Commands\n- 7 Configuration System\n  - 7.1 Settings and Internationalization\n- 8 Security and Release Management\n  - 8.1 Security Releases and CVE Tracking\n- 9 HTTP Layer and Request Handling\n  - 9.1 URL Routing and Views\n  - 9.2 Middleware and Request/Response Objects\n- 10 Template System\n  - 10.1 Template Language and Built-in Tags\n  - 10.2 Template Backends and Rendering\n- 11 Background Tasks\n  - 11.1 Task Definition and Backends\n  - 11.2 Task Signals and Result Handling\n- 12 Authentication and Authorization\n  - 12.1 User Model and Permissions\n  - 12.2 Authentication Views and Forms\n- 13 Contrib Applications\n  - 13.1 Static Files and Storage\n  - 13.2 PostgreSQL-Specific Features\n  - 13.3 Caching, Sessions, and Email\n- 14 GeoDjango\n  - 14.1 Spatial Models and Queries\n- 15 Infrastructure and Tooling\n  - 15.1 CI/CD and Release Process\n  - 15.2 JavaScript and Frontend Assets\n- 16 Glossary"
+    },
+    "sveltejs/svelte": {
+      "isError": false,
+      "chars": 949,
+      "excerpt": "Available pages for sveltejs/svelte:\n\n- 1 Overview\n  - 1.1 Monorepo Structure\n  - 1.2 Getting Started\n- 2 Core Package Architecture\n  - 2.1 Package Exports and Entrypoints\n  - 2.2 Runes System\n  - 2.3 Client vs Server Architecture\n- 3 Compiler Architecture\n  - 3.1 Parsing Phase\n  - 3.2 Analysis Phase\n  - 3.3 Transformation Phase\n  - 3.4 Migration Tool\n  - 3.5 CSS Processing\n- 4 Runtime System\n  - 4.1 Reactivity System\n  - 4.2 Batch System and Async Handling\n  - 4.3 Component Lifecycle\n  - 4.4 Control Flow Blocks\n- 5 DOM Integration\n  - 5.1 Attributes and Properties\n  - 5.2 Event Handling and Bindings\n  - 5.3 Element Type System\n  - 5.4 Transitions, Animations, and Motion\n- 6 Server-Side Rendering\n  - 6.1 SSR Architecture\n  - 6.2 Hydration Process\n- 7 Developer Experience\n  - 7.1 Error and Warning System\n  - 7.2 Type Definitions\n  - 7.3 Development Environment\n  - 7.4 Testing Infrastructure\n  - 7.5 CI/CD and Release Process\n- 8 Glossary"
+    },
+    "cli/cli": {
+      "isError": false,
+      "chars": 1026,
+      "excerpt": "Available pages for cli/cli:\n\n- 1 Overview\n- 2 Architecture\n  - 2.1 Module Structure and Dependencies\n  - 2.2 Command Structure Framework\n  - 2.3 Factory Pattern and Dependency Injection\n  - 2.4 Prompter and User Interaction\n  - 2.5 Testing Infrastructure\n- 3 Core Subsystems\n  - 3.1 GitHub API Client\n  - 3.2 Authentication and OAuth Flow\n  - 3.3 Git Integration\n  - 3.4 API Data Models and Query Builders\n- 4 Feature Systems\n  - 4.1 Pull Request Management\n  - 4.2 Issue Management\n  - 4.3 Repository Management\n  - 4.4 Codespaces System\n  - 4.5 Browse Command\n  - 4.6 Extension Management\n  - 4.7 GitHub Actions Run Management\n  - 4.8 Gist Management\n  - 4.9 Release Management\n  - 4.10 Attestation System\n  - 4.11 Direct API Command\n  - 4.12 Agent Task System\n  - 4.13 Skills System\n  - 4.14 Additional Commands\n  - 4.15 Discussion Management\n- 5 Build, Release and Installation\n  - 5.1 Build System and Pipeline\n  - 5.2 Release Process\n  - 5.3 Installation Methods\n  - 5.4 Binary Verification and Attestation\n- 6 Glossary"
+    }
+  }
+}

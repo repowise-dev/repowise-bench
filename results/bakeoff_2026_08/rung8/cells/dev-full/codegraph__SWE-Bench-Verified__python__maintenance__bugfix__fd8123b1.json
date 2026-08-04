@@ -1,0 +1,74 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fd8123b1",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "694cf458f16b8d340a3195244196980b2dec34fd",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 25.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-fd8123b1"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fd8123b1",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-fd8123b1",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23408,
+    "ranked": [
+      "django/forms/models.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/contrib/contenttypes/admin.py",
+      "tests/admin_checks/models.py",
+      "tests/admin_filters/models.py",
+      "tests/admin_inlines/models.py",
+      "tests/admin_views/models.py",
+      "django/db/models/sql/query.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/constraints.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/constraints.py",
+      "tests/backends/test_ddl_references.py",
+      "tests/prefetch_related/tests.py",
+      "tests/queries/test_query.py",
+      "tests/queries/test_sqlcompiler.py",
+      "django/db/models/fields/__init__.py",
+      "tests/schema/tests.py",
+      "django/db/models/functions/comparison.py",
+      "django/contrib/postgres/apps.py",
+      "django/db/models/functions/__init__.py",
+      "django/db/models/indexes.py",
+      "tests/db_functions/comparison/test_collate.py",
+      "tests/postgres_tests/test_indexes.py",
+      "django/db/models/query.py"
+    ],
+    "n_ranked": 25,
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/backends/oracle/features.py",
+      "django/db/backends/sqlite3/schema.py",
+      "django/db/models/fields/related.py"
+    ],
+    "gold_hit_rank": 11
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 64,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-05a89a66",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.8,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5749,
+    "ranked": [
+      "django/db/models/fields/related.py::validate",
+      "django/db/models/fields/related.py::ForeignKey",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/query.py::QuerySet",
+      "django/contrib/contenttypes/fields.py::GenericForeignKey",
+      "django/db/models/manager.py",
+      "django/views/generic/base.py",
+      "django/core/cache/backends/base.py",
+      "django/contrib/sessions/backends/base.py",
+      "django/http/response.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/models/options.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

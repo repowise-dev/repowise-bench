@@ -1,0 +1,53 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7fa1a93c6c8109010a6ff3f604fda83b604e0e97",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 43.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-16c72e4c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-16c72e4c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23779,
+    "ranked": [
+      "django/template/defaultfilters.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/conf/global_settings.py",
+      "django/http/request.py",
+      "django/utils/datetime_safe.py",
+      "django/template/base.py",
+      "django/template/backends/jinja2.py"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "django/conf/global_settings.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

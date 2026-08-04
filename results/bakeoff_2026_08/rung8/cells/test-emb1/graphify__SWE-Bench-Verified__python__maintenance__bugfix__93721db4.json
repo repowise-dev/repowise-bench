@@ -1,0 +1,85 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "838e432e3e5519c5383d12018e6c78f8ec7833c1",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 161.3,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-93721db4"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-93721db4",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 3210,
+    "ranked": [
+      "backends/tests.py",
+      "syntax_tests/test_extends.py",
+      "django/db/backends/base/introspection.py",
+      "tests/queryset_pickle/models.py",
+      "tests/serializers/test_yaml.py",
+      "core/serializers/__init__.py",
+      "tests/migrations/test_executor.py",
+      "tests/queries/models.py",
+      "tests/backends/tests.py",
+      "tests/utils_tests/test_timesince.py",
+      "django/db/models/expressions.py",
+      "tests/postgres_tests/test_search.py",
+      "django/views/decorators/http.py",
+      "utils/cache.py",
+      "django/apps/registry.py",
+      "django/db/models/aggregates.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/models/query.py",
+      "django/contrib/gis/gdal/geomtype.py",
+      "django/core/checks/messages.py",
+      "checks/__init__.py",
+      "django/db/models/functions/comparison.py",
+      "django/contrib/gis/utils/layermapping.py",
+      "django/db/models/sql/query.py",
+      "tests/template_tests/syntax_tests/test_spaceless.py",
+      "tests/template_tests/syntax_tests/test_extends.py",
+      "tests/auth_tests/test_mixins.py",
+      "django/contrib/gis/admin/options.py",
+      "gis/admin/__init__.py"
+    ],
+    "n_ranked": 29,
+    "gold_files": [
+      "django/db/models/aggregates.py"
+    ],
+    "gold_hit_rank": 16
+  }
+}

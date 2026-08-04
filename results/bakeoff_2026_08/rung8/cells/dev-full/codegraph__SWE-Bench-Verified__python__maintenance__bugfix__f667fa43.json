@@ -1,0 +1,59 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 24.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-f667fa43"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-f667fa43",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25211,
+    "ranked": [
+      "django/db/migrations/optimizer.py",
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/__init__.py",
+      "tests/migrations/test_state.py",
+      "django/forms/models.py",
+      "django/contrib/admin/checks.py",
+      "django/db/migrations/autodetector.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/gis/admin/options.py",
+      "gis/admin/openlayers.h",
+      "cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js",
+      "gis/admin/osm.h"
+    ],
+    "n_ranked": 13,
+    "gold_files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

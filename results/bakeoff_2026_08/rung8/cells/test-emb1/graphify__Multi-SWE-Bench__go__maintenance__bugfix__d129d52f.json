@@ -1,0 +1,73 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "2df3dd4f7dd98e7969e6d9b760f0725aac8a2158",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 17.4,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-d129d52f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-d129d52f",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6492,
+    "ranked": [
+      "pkg/text/convert.go",
+      "search/query.go",
+      "api/queries_issue.go",
+      "pkg/set/string_set.go",
+      "pkg/cmd/codespace/delete.go",
+      "pkg/cmd/repo/edit/edit.go",
+      "internal/docs/markdown.go",
+      "utils/terminal.go",
+      "pkg/cmd/factory/default.go",
+      "api/reaction_groups.go",
+      "pkg/cmd/codespace/common.go",
+      "api/queries_comments.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "internal/codespaces/api/api.go",
+      "pkg/cmd/pr/shared/params.go",
+      "api/queries_repo.go"
+    ],
+    "n_ranked": 17,
+    "gold_files": [
+      "pkg/cmd/issue/delete/delete.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

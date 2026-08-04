@@ -1,0 +1,64 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "350123f38c2b6217c38d70bfbd924a9ba3df1289",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 14.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-6f3e4cd9"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-6f3e4cd9",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25119,
+    "ranked": [
+      "django/http/multipartparser.py",
+      "django/core/handlers/exception.py",
+      "django/http/request.py",
+      "tests/file_uploads/tests.py",
+      "tests/logging_tests/tests.py",
+      "tests/logging_tests/views.py",
+      "tests/requests/tests.py",
+      "django/core/management/base.py",
+      "django/contrib/admin/bin/compress.py",
+      "django/core/management/__init__.py",
+      "tests/test_runner/test_discover_runner.py",
+      "django/template/base.py",
+      "tests/template_tests/test_parser.py",
+      "django/test/html.py",
+      "django/core/management/commands/runserver.py",
+      "django/core/management/utils.py",
+      "scripts/manage_translations.py"
+    ],
+    "n_ranked": 17,
+    "gold_files": [
+      "django/core/management/__init__.py"
+    ],
+    "gold_hit_rank": 10
+  }
+}

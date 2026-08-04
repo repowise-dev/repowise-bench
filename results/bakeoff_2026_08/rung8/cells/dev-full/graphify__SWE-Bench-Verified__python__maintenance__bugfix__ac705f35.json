@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 306.8,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-ac705f35"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-ac705f35",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 2300,
+    "ranked": [
+      "django/db/backends/ddl_references.py",
+      "django/db/backends/base/schema.py",
+      "tests/auth_tests/test_mixins.py",
+      "tests/admin_scripts/tests.py",
+      "tests/sites_tests/tests.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "tests/template_tests/syntax_tests/test_autoescape.py",
+      "tests/sessions_tests/tests.py",
+      "django/db/models/query.py",
+      "tests/asgi/tests.py",
+      "tests/middleware_exceptions/tests.py",
+      "tests/backends/test_ddl_references.py",
+      "tests/string_lookup/tests.py"
+    ],
+    "n_ranked": 13,
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/backends/ddl_references.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

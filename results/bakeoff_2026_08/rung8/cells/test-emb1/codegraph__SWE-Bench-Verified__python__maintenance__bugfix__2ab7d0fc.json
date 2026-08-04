@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5eb6a2b33d70b9889e1cafa12594ad6f80773d3a",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2ab7d0fc"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2ab7d0fc",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23116,
+    "ranked": [
+      "study\\django_college\\manage.py",
+      "Anaconda3\\envs\\django\\lib\\site-packages\\django\\core\\management\\__init__.py",
+      "Anaconda3\\envs\\django\\lib\\site-packages\\django\\core\\management\\base.py",
+      "study\\django_college\\project\\users\\management\\commands\\test_proxy.py",
+      "Anaconda3\\envs\\django\\lib\\site-packages\\django\\db\\models\\query.py",
+      "django/db/models/sql/query.py",
+      "tests/proxy_model_inheritance/models.py",
+      "tests/proxy_model_inheritance/tests.py",
+      "django/db/models/query.py",
+      "django/contrib/postgres/fields/array.py",
+      "tests/custom_managers/models.py",
+      "tests/queryset_pickle/models.py",
+      "tests/get_earliest_or_latest/models.py",
+      "tests/prefetch_related/models.py"
+    ],
+    "n_ranked": 14,
+    "gold_files": [
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 6
+  }
+}

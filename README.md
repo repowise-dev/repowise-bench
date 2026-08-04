@@ -187,6 +187,16 @@ Full prerequisites, cost, and step-by-step are in the
 | [Code health vs defects](#code-health-does-the-score-find-the-bugs) | Does the score predict real bugs? | Cross-project ROC AUC **0.737** (21 repos, 9 languages); external PROMISE/jEdit 0.76 to 0.78 | [README](health-defect/README.md) · [full report](health-defect/BENCHMARK_REPORT.md) · [vs CodeScene](health-defect/COMPARISON_REPORT.md) |
 | [Performance detection](#performance-bugs-a-file-local-linter-cannot-see) | Can it find cross-function N+1 / I/O-in-loop? | **0** linter hits vs **557** findings; 96 to 100% precision; NDCG 0.755 | [README](perf-detection/README.md) · [methodology](perf-detection/METHODOLOGY.md) |
 | [SWE-QA agent efficiency](#agent-efficiency-the-exploration-is-done-once-offline) | Does it cut agent work at parity quality? | -49 to -70% tool calls, -69 to -89% files read, quality at parity | [flask48](BENCHMARK_REPORT_FLASK48.md) · [sklearn48](BENCHMARK_REPORT_SKLEARN48.md) · [flask v3](BENCHMARK_REPORT_FLASK_V3.md) |
+| Bakeoff: retrieval | Does it find the files the fix touches, against other agent-context tools? | **0.746** file coverage vs CodeGraph 0.610 on a sealed 42-instance split evaluated once. Deterministic grading, no LLM judge. n=42, p=0.021 | [raw](results/bakeoff_2026_08/rung8/) · [re-run](repro/README.md) |
+| Bakeoff: agent cost | Does it cost less per question in a real agent loop? | **-33.5%** per question, cheaper on 13 of 15, n=15, p=0.007, pre-registered. Quality is **not** claimed: the judge's graders disagree by more than any per-arm effect | [raw](results/bakeoff_2026_08/rung6/) · [pre-registration](configs/layerb_stratified_django.PREREGISTRATION.md) |
+| Bakeoff: adoption | Does the agent call the server at all? | Called in **15/15** cells vs CodeGraph 13, Serena 4, Graphify 3, code-review-graph 0 over 30 advertised tools. Surface design, not retrieval quality | [raw](results/bakeoff_2026_08/rung6/) |
+| Bakeoff: indexing time | How long does the index take against the field? | **We lose this one.** django 366.8s with prose off vs CodeGraph 16.4s, 1,058s with prose on. Published with the work-done split | [raw](results/bakeoff_2026_08/rung4/) |
+
+The four bakeoff rows are the 2026-08 head-to-head against the open-source
+agent-context field (CodeGraph, Graphify, Serena, code-review-graph). Raw runs
+are under [`results/bakeoff_2026_08/`](results/bakeoff_2026_08/), and
+**[repro/README.md](repro/README.md)** says per claim what it costs to reproduce,
+how long it takes, and which ones need credentials we cannot hand you.
 
 Two earlier SWE-QA runs are kept for transparency and labeled as interim:
 [flask48 v2](BENCHMARK_REPORT_FLASK48_V2.md) (a 24/48 interim run that first

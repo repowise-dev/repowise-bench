@@ -1,0 +1,43 @@
+$ C:\Users\ragha\.local\bin\graphify.exe update C:\Users\ragha\Desktop\bakeoff\django
+(cwd=C:\Users\ragha\Desktop\bakeoff\django)
+
+--- stdout ---
+Re-extracting code files in C:\Users\ragha\Desktop\bakeoff\django (no LLM needed)...
+  AST extraction: 100/2688 uncached files (3%) [32 workers]
+  AST extraction: 200/2688 uncached files (7%) [32 workers]
+  AST extraction: 300/2688 uncached files (11%) [32 workers]
+  AST extraction: 400/2688 uncached files (14%) [32 workers]
+  AST extraction: 500/2688 uncached files (18%) [32 workers]
+  AST extraction: 600/2688 uncached files (22%) [32 workers]
+  AST extraction: 700/2688 uncached files (26%) [32 workers]
+  AST extraction: 800/2688 uncached files (29%) [32 workers]
+  AST extraction: 900/2688 uncached files (33%) [32 workers]
+  AST extraction: 1000/2688 uncached files (37%) [32 workers]
+  AST extraction: 1100/2688 uncached files (40%) [32 workers]
+  AST extraction: 1200/2688 uncached files (44%) [32 workers]
+  AST extraction: 1300/2688 uncached files (48%) [32 workers]
+  AST extraction: 1400/2688 uncached files (52%) [32 workers]
+  AST extraction: 1500/2688 uncached files (55%) [32 workers]
+  AST extraction: 1600/2688 uncached files (59%) [32 workers]
+  AST extraction: 1700/2688 uncached files (63%) [32 workers]
+  AST extraction: 1800/2688 uncached files (66%) [32 workers]
+  AST extraction: 1900/2688 uncached files (70%) [32 workers]
+  AST extraction: 2000/2688 uncached files (74%) [32 workers]
+  AST extraction: 2100/2688 uncached files (78%) [32 workers]
+  AST extraction: 2200/2688 uncached files (81%) [32 workers]
+  AST extraction: 2300/2688 uncached files (85%) [32 workers]
+  AST extraction: 2400/2688 uncached files (89%) [32 workers]
+  AST extraction: 2500/2688 uncached files (93%) [32 workers]
+  AST extraction: 2600/2688 uncached files (96%) [32 workers]
+  AST extraction: 2688/2688 uncached files (100%) [32 workers]
+Graph has 40367 nodes (above 5000 limit). Building aggregated community view...
+graph.html written (aggregated: 1680 community nodes, 5945 cross-community edges)
+Tip: run with --obsidian for full node-level detail.
+[graphify watch] Rebuilt: 40367 nodes, 118764 edges, 1680 communities
+[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in C:\Users\ragha\Desktop\bakeoff\django\graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.
+
+--- stderr ---
+  warning: 49 source file(s) produced zero nodes and are absent from the graph: bedc18c2-5f0b-4e10-8650-02b1690a268d.json, state.json, extensions.json, natural.json, regular.json (+44 more). A re-run will retry them (empties are no longer cached); if it persists, please report the file(s) (#1666).
+

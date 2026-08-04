@@ -1,0 +1,81 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3deeea9c",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "b5366c6ebf22589f62089ea79c349538335a3e99",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 19.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3deeea9c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3deeea9c",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-3deeea9c",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6709,
+    "ranked": [
+      "api/client.go",
+      "internal/config/alias_config.go",
+      ".github/ISSUE_TEMPLATE/submit-a-request.md",
+      ".github/ISSUE_TEMPLATE/bug_report.md",
+      "pkg/surveyext/editor_manual.go",
+      "pkg/cmdutil/errors.go",
+      "git/git.go",
+      "pkg/cmd/pr/checkout/checkout_test.go",
+      "api/queries_repo.go",
+      "pkg/cmd/repo/garden/garden.go",
+      "pkg/cmd/alias/set/set_test.go",
+      ".github/ISSUE_TEMPLATE/feedback.md",
+      "pkg/httpmock/registry.go",
+      "pkg/cmd/pr/create/create_test.go",
+      "pkg/httpmock/stub.go",
+      "pkg/browser/browser.go",
+      "internal/run/run.go",
+      "test/helpers.go",
+      "pkg/prompt/stubber.go",
+      "internal/config/testing.go",
+      "internal/config/config_type.go",
+      "pkg/httpmock/legacy.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/pr/checkout/checkout.go",
+      "internal/ghinstance/host.go"
+    ],
+    "n_ranked": 25,
+    "gold_files": [
+      "api/queries_pr.go",
+      "pkg/cmd/pr/create/create.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "504cfbc654b39b994895d69f792859e69fa2589c",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 2.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0b78ed50"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0b78ed50",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25112,
+    "ranked": [
+      "context/remote.go",
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmd/pr/merge/merge_test.go",
+      "pkg/cmd/alias/delete/delete.go",
+      "pkg/cmd/gist/delete/delete.go",
+      "pkg/cmd/release/delete/delete.go",
+      "pkg/cmd/gist/delete/delete_test.go",
+      "pkg/cmd/release/delete/delete_test.go",
+      "../view/fixtures/prViewPreviewWithMetadataByBranch.js"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmd/pr/merge/merge_test.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

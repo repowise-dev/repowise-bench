@@ -1,0 +1,78 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__8d23605c",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "727b72666713909d318f24f03065ce2e488566d5",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 9.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-8d23605c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__8d23605c",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-8d23605c",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6788,
+    "ranked": [
+      "command/root.go",
+      ".github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      "api/client.go",
+      "docs/triage.md",
+      "pkg/githubtemplate/github_template.go",
+      "api/queries_repo.go",
+      "pkg/cmd/pr/merge/merge_test.go",
+      "utils/utils.go",
+      "pkg/cmd/pr/checkout/checkout_test.go",
+      "test/helpers.go",
+      "api/pull_request_test.go",
+      "pkg/cmd/pr/view/view.go",
+      "pr/view/view.go",
+      "pkg/cmd/pr/shared/display.go",
+      "pkg/cmd/pr/shared/title_body_survey.go",
+      "utils/table_printer.go",
+      "pkg/httpmock/registry.go",
+      "internal/ghrepo/repo.go",
+      "pkg/httpmock/stub.go",
+      "pkg/browser/browser.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/iostreams/iostreams.go",
+      "api/queries_pr.go"
+    ],
+    "n_ranked": 23,
+    "gold_files": [
+      "pkg/cmd/pr/view/view.go"
+    ],
+    "gold_hit_rank": 12
+  }
+}

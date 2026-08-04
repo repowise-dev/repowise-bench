@@ -1,0 +1,275 @@
+[
+  {
+    "arm": "repowise",
+    "command": "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe",
+    "args": [
+      "mcp",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-django-django",
+      "--transport",
+      "stdio"
+    ],
+    "status": "ok",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "allowlisted": [
+      "get_answer",
+      "get_context",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "search_codebase"
+    ],
+    "served_not_allowlisted": [
+      "get_change_risk",
+      "get_dead_code",
+      "get_health",
+      "list_repos"
+    ],
+    "allowlisted_not_served": [],
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-django-django"
+  },
+  {
+    "arm": "graphify",
+    "command": "C:\\Users\\ragha\\.local\\bin/graphify-mcp.exe",
+    "args": [
+      "--transport",
+      "stdio",
+      "--graph",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-graphify-django-django/graphify-out/graph.json"
+    ],
+    "status": "ok",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "allowlisted": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "god_nodes",
+      "graph_stats",
+      "query_graph",
+      "shortest_path"
+    ],
+    "served_not_allowlisted": [
+      "get_pr_impact",
+      "list_prs",
+      "triage_prs"
+    ],
+    "allowlisted_not_served": [],
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-graphify-django-django"
+  },
+  {
+    "arm": "serena",
+    "command": "C:\\Users\\ragha\\.local\\bin/serena.exe",
+    "args": [
+      "start-mcp-server",
+      "--project",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-serena-django-django",
+      "--transport",
+      "stdio",
+      "--enable-web-dashboard",
+      "false",
+      "--enable-gui-log-window",
+      "false"
+    ],
+    "status": "ok",
+    "served_tools": [
+      "activate_project",
+      "create_text_file",
+      "delete_memory",
+      "edit_memory",
+      "execute_shell_command",
+      "find_declaration",
+      "find_file",
+      "find_implementations",
+      "find_referencing_symbols",
+      "find_symbol",
+      "get_current_config",
+      "get_diagnostics_for_file",
+      "get_symbols_overview",
+      "initial_instructions",
+      "insert_after_symbol",
+      "insert_before_symbol",
+      "list_dir",
+      "list_memories",
+      "onboarding",
+      "read_file",
+      "read_memory",
+      "rename_memory",
+      "rename_symbol",
+      "replace_content",
+      "replace_in_files",
+      "replace_symbol_body",
+      "safe_delete_symbol",
+      "search_for_pattern",
+      "write_memory"
+    ],
+    "served_count": 29,
+    "activate": {
+      "activate_project": "ok"
+    },
+    "allowlisted": [
+      "find_declaration",
+      "find_file",
+      "find_implementations",
+      "find_referencing_symbols",
+      "find_symbol",
+      "get_diagnostics_for_file",
+      "get_symbols_overview",
+      "list_dir",
+      "read_file",
+      "search_for_pattern"
+    ],
+    "served_not_allowlisted": [
+      "activate_project",
+      "create_text_file",
+      "delete_memory",
+      "edit_memory",
+      "execute_shell_command",
+      "get_current_config",
+      "initial_instructions",
+      "insert_after_symbol",
+      "insert_before_symbol",
+      "list_memories",
+      "onboarding",
+      "read_memory",
+      "rename_memory",
+      "rename_symbol",
+      "replace_content",
+      "replace_in_files",
+      "replace_symbol_body",
+      "safe_delete_symbol",
+      "write_memory"
+    ],
+    "allowlisted_not_served": [],
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-serena-django-django"
+  },
+  {
+    "arm": "code-review-graph",
+    "command": "C:\\Users\\ragha\\.local\\bin/code-review-graph.exe",
+    "args": [
+      "serve",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-code-review-graph-django-django"
+    ],
+    "status": "ok",
+    "served_tools": [
+      "apply_refactor_tool",
+      "build_or_update_graph_tool",
+      "cross_repo_search_tool",
+      "detect_changes_tool",
+      "embed_graph_tool",
+      "find_large_functions_tool",
+      "generate_wiki_tool",
+      "get_affected_flows_tool",
+      "get_architecture_overview_tool",
+      "get_bridge_nodes_tool",
+      "get_community_tool",
+      "get_docs_section_tool",
+      "get_flow_tool",
+      "get_hub_nodes_tool",
+      "get_impact_radius_tool",
+      "get_knowledge_gaps_tool",
+      "get_minimal_context_tool",
+      "get_review_context_tool",
+      "get_suggested_questions_tool",
+      "get_surprising_connections_tool",
+      "get_wiki_page_tool",
+      "list_communities_tool",
+      "list_flows_tool",
+      "list_graph_stats_tool",
+      "list_repos_tool",
+      "query_graph_tool",
+      "refactor_tool",
+      "run_postprocess_tool",
+      "semantic_search_nodes_tool",
+      "traverse_graph_tool"
+    ],
+    "served_count": 30,
+    "activate": {
+      "embed_graph_tool": "ok"
+    },
+    "allowlisted": [
+      "find_large_functions_tool",
+      "get_affected_flows_tool",
+      "get_architecture_overview_tool",
+      "get_bridge_nodes_tool",
+      "get_community_tool",
+      "get_docs_section_tool",
+      "get_flow_tool",
+      "get_hub_nodes_tool",
+      "get_impact_radius_tool",
+      "get_knowledge_gaps_tool",
+      "get_minimal_context_tool",
+      "get_suggested_questions_tool",
+      "get_surprising_connections_tool",
+      "get_wiki_page_tool",
+      "list_communities_tool",
+      "list_flows_tool",
+      "list_graph_stats_tool",
+      "query_graph_tool",
+      "semantic_search_nodes_tool",
+      "traverse_graph_tool"
+    ],
+    "served_not_allowlisted": [
+      "apply_refactor_tool",
+      "build_or_update_graph_tool",
+      "cross_repo_search_tool",
+      "detect_changes_tool",
+      "embed_graph_tool",
+      "generate_wiki_tool",
+      "get_review_context_tool",
+      "list_repos_tool",
+      "refactor_tool",
+      "run_postprocess_tool"
+    ],
+    "allowlisted_not_served": [],
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-code-review-graph-django-django"
+  },
+  {
+    "arm": "codegraph",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm/codegraph.cmd",
+    "args": [
+      "serve",
+      "--mcp",
+      "--path",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-codegraph-django-django",
+      "--no-watch"
+    ],
+    "status": "ok",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "allowlisted": [
+      "codegraph_explore"
+    ],
+    "served_not_allowlisted": [],
+    "allowlisted_not_served": [],
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-codegraph-django-django"
+  }
+]

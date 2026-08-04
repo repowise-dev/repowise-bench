@@ -1,0 +1,87 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+  "arm": "crg",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7fa1a93c6c8109010a6ff3f604fda83b604e0e97",
+  "build": {
+    "arm": "crg",
+    "rc": 0,
+    "seconds": 116.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+      "build",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c",
+      "--embedding-provider",
+      "local",
+      "--embedding-model",
+      "sentence-transformers/all-MiniLM-L6-v2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "crg",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c",
+    "served_tools": [
+      "apply_refactor_tool",
+      "build_or_update_graph_tool",
+      "cross_repo_search_tool",
+      "detect_changes_tool",
+      "embed_graph_tool",
+      "find_large_functions_tool",
+      "generate_wiki_tool",
+      "get_affected_flows_tool",
+      "get_architecture_overview_tool",
+      "get_bridge_nodes_tool",
+      "get_community_tool",
+      "get_docs_section_tool",
+      "get_flow_tool",
+      "get_hub_nodes_tool",
+      "get_impact_radius_tool",
+      "get_knowledge_gaps_tool",
+      "get_minimal_context_tool",
+      "get_review_context_tool",
+      "get_suggested_questions_tool",
+      "get_surprising_connections_tool",
+      "get_wiki_page_tool",
+      "list_communities_tool",
+      "list_flows_tool",
+      "list_graph_stats_tool",
+      "list_repos_tool",
+      "query_graph_tool",
+      "refactor_tool",
+      "run_postprocess_tool",
+      "semantic_search_nodes_tool",
+      "traverse_graph_tool"
+    ],
+    "served_count": 30,
+    "embedded": true,
+    "tool": "semantic_search_nodes_tool",
+    "status": "ok",
+    "isError": false,
+    "chars": 6717,
+    "ranked": [
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\django\\core\\checks\\security\\base.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\tests\\check_framework\\test_security.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\tests\\delete\\models.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\tests\\csrf_tests\\tests.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\django\\utils\\http.py",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c\\tests\\middleware\\test_security.py"
+    ],
+    "n_ranked": 6,
+    "gold_files": [
+      "django/conf/global_settings.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

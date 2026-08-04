@@ -1,0 +1,70 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e97ac668",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 18.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-e97ac668"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e97ac668",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-e97ac668",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 15079,
+    "ranked": [
+      "django/template/base.py",
+      "django/template/defaulttags.py",
+      "django/contrib/auth/models.py",
+      "django/contrib/auth/admin.py",
+      "django/utils/regex_helper.py",
+      "tests/admin_changelist/tests.py",
+      "tests/admin_views/admin.py",
+      "tests/admin_views/tests.py",
+      "tests/auth_tests/models/custom_user.py",
+      "django/db/models/aggregates.py",
+      "tests/aggregation/tests.py",
+      "tests/aggregation_regress/tests.py",
+      "tests/db_functions/datetime/test_extract_trunc.py",
+      "tests/distinct_on_fields/tests.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/models/functions/__init__.py",
+      "django/db/models/functions/text.py",
+      "tests/annotations/tests.py",
+      "tests/db_functions/tests.py",
+      "tests/db_functions/text/test_length.py",
+      "tests/db_functions/text/test_pad.py",
+      "django/contrib/auth/forms.py",
+      "django/forms/renderers.py"
+    ],
+    "n_ranked": 23,
+    "gold_files": [
+      "django/contrib/auth/forms.py",
+      "django/forms/fields.py"
+    ],
+    "gold_hit_rank": 22
+  }
+}

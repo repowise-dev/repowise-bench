@@ -1,0 +1,55 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "026b07d1cfbf23a3ccb4d4703a2496d65e177fcc",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 6.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1b8cfbf9"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 5,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1b8cfbf9",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21199,
+    "ranked": [
+      "pkg/cmd/repo/fork/fork.go",
+      "pkg/cmd/repo/fork/fork_test.go",
+      "pkg/cmd/repo/repo.go",
+      "pkg/cmd/repo/create/http.go",
+      "pkg/cmd/repo/garden/garden.go",
+      "pkg/githubsearch/query.go",
+      "internal/ghrepo/repo.go"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "api/queries_repo.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/repo/fork/fork.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

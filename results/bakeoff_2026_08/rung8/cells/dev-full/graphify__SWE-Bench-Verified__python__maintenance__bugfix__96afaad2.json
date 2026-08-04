@@ -1,0 +1,80 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 329.8,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-96afaad2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-96afaad2",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 3254,
+    "ranked": [
+      "django/utils/datastructures.py",
+      "tests/migrations/test_autodetector.py",
+      "django/middleware/csrf.py",
+      "django/template/defaultfilters.py",
+      "django/db/migrations/questioner.py",
+      "tests/auth_tests/test_auth_backends.py",
+      "tests/test_utils/tests.py",
+      "test_utils/tests.py",
+      "tests/admin_scripts/tests.py",
+      "tests/handlers/tests.py",
+      "django/contrib/postgres/operations.py",
+      "postgres/operations.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/contrib/admin/options.py",
+      "tests/queries/tests.py",
+      "queries/tests.py",
+      "tests/view_tests/views.py",
+      "tests/serializers/models/natural.py",
+      "django/db/models/query.py",
+      "tests/middleware_exceptions/tests.py",
+      "django/core/management/commands/shell.py",
+      "tests/template_tests/filter_tests/test_dictsortreversed.py",
+      "django/db/migrations/operations/special.py",
+      "tests/serializers/test_xml.py",
+      "django/core/management/color.py"
+    ],
+    "n_ranked": 25,
+    "gold_files": [
+      "django/utils/datastructures.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

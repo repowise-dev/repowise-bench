@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__90f381a2",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f2051eb8a7febdaaa43bd33bf5a6108c5f428e59",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 27.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-90f381a2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__90f381a2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-90f381a2",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 22503,
+    "ranked": [
+      "django/contrib/postgres/fields/array.py",
+      "django/db/models/fields/__init__.py",
+      "./manage.py",
+      "django/db/models/lookups.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/search.py",
+      "django/db/models/__init__.py",
+      "django/db/models/sql/query.py",
+      "django/forms/models.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/contrib/gis/sitemaps/views.py",
+      "tests/gis_tests/distapp/tests.py",
+      "tests/gis_tests/geoapp/test_functions.py",
+      "tests/gis_tests/geoapp/tests.py",
+      "django/contrib/admin/views/main.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/contrib/gis/gdal/feature.py",
+      "tests/admin_changelist/tests.py",
+      "tests/auth_tests/test_forms.py",
+      "tests/forms_tests/field_tests/test_base.py",
+      "tests/model_meta/tests.py"
+    ],
+    "n_ranked": 21,
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/query_utils.py",
+      "tests/invalid_models_tests/test_models.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

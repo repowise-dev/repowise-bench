@@ -1,0 +1,58 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 29.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1ad7449c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1ad7449c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21916,
+    "ranked": [
+      "django/contrib/gis/gdal/datasource.py",
+      "django/contrib/gis/gdal/driver.py",
+      "django/contrib/gis/gdal/field.py",
+      "django/contrib/gis/gdal/layer.py",
+      "django/contrib/redirects/models.py",
+      "django/contrib/redirects/admin.py",
+      "django/contrib/redirects/middleware.py",
+      "tests/redirects_tests/tests.py",
+      "django/contrib/admin/sites.py",
+      "admin/login.h",
+      "django/template/defaultfilters.py"
+    ],
+    "n_ranked": 11,
+    "gold_files": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py"
+    ],
+    "gold_hit_rank": 9
+  }
+}

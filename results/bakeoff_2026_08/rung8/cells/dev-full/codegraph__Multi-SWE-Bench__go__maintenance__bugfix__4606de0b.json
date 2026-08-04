@@ -1,0 +1,54 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4606de0b",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "a6710ec5064995aadd18da5808c8c4ff41a8199c",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 4.1,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4606de0b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4606de0b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4606de0b",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 20361,
+    "ranked": [
+      "context/remote.go",
+      "pkg/cmd/run/shared/shared.go",
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/run/shared/test.go",
+      "pkg/cmd/run/watch/watch.go",
+      "pkg/cmd/run/watch/watch_test.go",
+      "pkg/cmd/issue/status/status.go",
+      "api/queries_issue.go"
+    ],
+    "n_ranked": 8,
+    "gold_files": [
+      "pkg/cmd/run/watch/watch.go"
+    ],
+    "gold_hit_rank": 5
+  }
+}

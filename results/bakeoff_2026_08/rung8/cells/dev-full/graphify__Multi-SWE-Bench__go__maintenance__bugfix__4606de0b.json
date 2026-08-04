@@ -1,0 +1,73 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4606de0b",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "a6710ec5064995aadd18da5808c8c4ff41a8199c",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 18.4,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4606de0b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4606de0b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4606de0b",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 2587,
+    "ranked": [
+      "repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "pkg/cmd/issue/create/fixtures/repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "docs/project-layout.md",
+      ".github/CONTRIBUTING.md",
+      "api/client.go",
+      ".github/CODE-OF-CONDUCT.md",
+      "pkg/cmd/repo/view/view_test.go",
+      "cmd/gh/main.go",
+      "pkg/cmd/root/help.go",
+      "pkg/githubtemplate/github_template.go",
+      "api/queries_issue.go",
+      "pkg/cmd/run/shared/shared.go",
+      "api/queries_repo.go",
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/root/help_reference.go",
+      "run/shared/shared.go",
+      "pkg/cmd/run/watch/watch.go",
+      "pkg/jsoncolor/jsoncolor.go"
+    ],
+    "n_ranked": 18,
+    "gold_files": [
+      "pkg/cmd/run/watch/watch.go"
+    ],
+    "gold_hit_rank": 17
+  }
+}

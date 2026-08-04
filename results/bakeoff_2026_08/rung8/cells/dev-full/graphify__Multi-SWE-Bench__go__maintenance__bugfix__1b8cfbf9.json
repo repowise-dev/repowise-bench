@@ -1,0 +1,73 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "026b07d1cfbf23a3ccb4d4703a2496d65e177fcc",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 27.0,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1b8cfbf9"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1b8cfbf9",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6473,
+    "ranked": [
+      "api/queries_repo.go",
+      "pkg/cmd/repo/garden/garden.go",
+      "api/queries_org.go",
+      "api/queries_pr.go",
+      "pkg/cmd/repo/fork/fork_test.go",
+      "pkg/cmd/run/shared/shared.go",
+      "internal/ghrepo/repo.go",
+      "api/client.go",
+      "internal/ghinstance/host.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/cmdutil/factory.go",
+      "internal/config/config_type.go",
+      "test/helpers.go",
+      "pkg/cmd/repo/fork/fork.go",
+      "pkg/prompt/prompt.go"
+    ],
+    "n_ranked": 16,
+    "gold_files": [
+      "api/queries_repo.go",
+      "pkg/cmd/pr/create/create.go",
+      "pkg/cmd/repo/fork/fork.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

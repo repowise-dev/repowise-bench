@@ -1,0 +1,58 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__681ea2b6",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "884b4c27f506b3c29d58509fc83a35c30ea10d94",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 29.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-681ea2b6"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__681ea2b6",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-681ea2b6",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25210,
+    "ranked": [
+      "github.com/django/django/blame/main/django/db/models/query_utils.py",
+      "django/db/migrations/serializer.py",
+      "django/db/migrations/writer.py",
+      "django/contrib/admin/sites.py",
+      "tests/admin_changelist/tests.py",
+      "tests/admin_checks/tests.py",
+      "tests/admin_filters/tests.py",
+      "tests/admin_ordering/tests.py",
+      "django/db/models/query.py",
+      "django/utils/autoreload.py",
+      "django/db/models/query_utils.py",
+      "django/db/models/lookups.py"
+    ],
+    "n_ranked": 12,
+    "gold_files": [
+      "django/db/models/query_utils.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

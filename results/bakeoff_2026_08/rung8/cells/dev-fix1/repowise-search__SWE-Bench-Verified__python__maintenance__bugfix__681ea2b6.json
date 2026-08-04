@@ -1,0 +1,67 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__681ea2b6",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "884b4c27f506b3c29d58509fc83a35c30ea10d94",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 2,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__681ea2b6",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-681ea2b6",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.5,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5589,
+    "ranked": [
+      "django/utils/autoreload.py::common_roots",
+      "django/db/models/query_utils.py::RegisterLookupMixin",
+      "onboarding/codebase_map",
+      "django/contrib/gis/measure.py",
+      "django/utils/translation/trans_real.py::check_for_language",
+      "django/utils/functional.py",
+      "django/db/models/expressions.py",
+      "django/contrib/gis/geos/libgeos.py",
+      "django/test/testcases.py"
+    ],
+    "n_ranked": 9,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/query_utils.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

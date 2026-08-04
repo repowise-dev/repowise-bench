@@ -1,0 +1,114 @@
+$ C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe init --no-prose --embedder openai --max-file-pages 0 --no-workspace --no-editor-setup --yes
+(cwd=C:\Users\ragha\Desktop\bakeoff\cli)
+
+--- stdout ---
+repowise index-only â€” C:\Users\ragha\Desktop\bakeoff\cli
+Building the wiki from structure â€” no model, no spend.
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 1 of 4 Â· Ingestion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Walking the tree, parsing files, building the dependency graph
+
+  Scanned 867 files, 763 included
+    Excluded: 1 by filename pattern, 1 oversized, 3 binary, 17 generated, 82 
+unknown type
+    â†³ betweenness centrality âœ“ (0.4s)
+    â†³ PageRank âœ“ (0.9s)
+    â†³ symbol PageRank âœ“ (0.9s)
+    â†³ symbol betweenness âœ“ (3.1s)
+    â†³ symbol communities âœ“ (0.4s)
+    â†³ community detection âœ“ (0.4s)
+  â†’ External systems: 159 declared deps across manifests
+  â†’ 763 files parsed Â· 5,184 symbols extracted
+  â†’ Graph: 6,773 nodes Â· 35,399 edges
+  â†’ Git: 727 files indexed
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 2 of 4 Â· Analysis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Dead code, code health, architectural decisions
+
+  â†’ 5 unreachable files Â· 20 unused exports Â· ~263 deletable lines
+  â†’ 0 architectural decisions found
+  â†’ 3276 health findings Â· avg 7.16/10 Â· worst 2.0/10
+    â†³ KG skeleton: 1931 nodes, 23218 edges, 41 layers
+
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Analysis Complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   763 files Â· 5,184 symbols                                                 â”‚
+â”‚   go 92%, markdown 3%, shell 2%, yaml 2% +3 more                            â”‚
+â”‚                                                                             â”‚
+â”‚   Graph          6,773 nodes Â· 35,399 edges                                 â”‚
+â”‚   Git            727 files indexed                                          â”‚
+â”‚   Dead code      5 unreachable Â· 20 unused exports Â· ~263 lines             â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 3 of 4 Â· Generation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Building wiki pages from the code's structure (no model, no cost)
+
+  Onboarding: 6/8 slots â€” codebase_map, getting_started, guided_tour, 
+how_it_works, key_concepts, project_overview
+  Generated 1096 pages
+
+  âœ“ Generated 1096 pages
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 4 of 4 Â· Persistence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Saving to database and building search index
+
+  âœ“ Database updated
+  âœ“ .claude/CLAUDE.md updated
+  âœ“ VS Code MCP configured 
+(C:\Users\ragha\Desktop\bakeoff\cli\.vscode\mcp.json)
+  âœ“ VS Code extension recommended 
+(C:\Users\ragha\Desktop\bakeoff\cli\.vscode\extensions.json)
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ {^ ^}  repowise index complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   Files indexed           763                                               â”‚
+â”‚   Symbols                 5,184                                             â”‚
+â”‚   Languages               go 92%, markdown 3%, shell 2%, yaml 2% +3 more    â”‚
+â”‚   Wiki pages              1,096 rendered from structure                     â”‚
+â”‚   Elapsed                 1m 38s                                            â”‚
+â”‚                                                                             â”‚
+â”‚   Graph                   6,773 nodes Â· 35,399 edges                        â”‚
+â”‚   Dead code               5 unreachable Â· 20 unused exports                 â”‚
+â”‚   Decisions               0                                                 â”‚
+â”‚   Git history             727 files Â· 0 hotspots                            â”‚
+â”‚                                                                             â”‚
+â”‚   What's next:                                                              â”‚
+â”‚   repowise serve               open the dashboard at http://localhost:3000  â”‚
+â”‚   repowise generate            upgrade the wiki to model-written prose      â”‚
+â”‚ (needs a key)                                                               â”‚
+â”‚   repowise mcp .               connect an MCP client (Cursor, Codex, Claude â”‚
+â”‚ Code)                                                                       â”‚
+â”‚   repowise dead-code           explore 25 dead code findings                â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+  Every page is derived from structure and says so in its footer. Full-text
+  search works now; semantic search needs an embedder (Ollama is the keyless 
+one).
+
+                               Generation Checks                               
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚ Check                â”‚                                               Result â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Orientation overlap  â”‚                                4 of 15 pairs overlap â”‚
+â”‚ Layer grouping       â”‚                           all 47 pages carry a layer â”‚
+â”‚ Artifact checks      â”‚                        not run (0 responses checked) â”‚
+â”‚ Overview length      â”‚                                      133 / 450 words â”‚
+â”‚ Question-shaped text â”‚                                   1025 of 1025 pages â”‚
+â”‚ Module page openings â”‚  34 of 38 pages (89%) â€” "covers the 13 source files" â”‚
+â”‚                      â”‚                                                   Ã—7 â”‚
+â”‚ Module concept index â”‚                                       38 of 38 pages â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  overlap 'Repository Overview: cli' and 'Guided Tour' share 29% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: cli' and 'Codebase Map' share 29% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: cli' and 'How It Works' share 25% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: cli' and 'Key Concepts' share 24% of their 
+vocabulary (threshold 22%)
+
+--- stderr ---
+

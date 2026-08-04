@@ -1,0 +1,92 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6a5ef557f80a8eb6a758ebe99c8bb477ca47459e",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 440.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-31d4fe9d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-31d4fe9d",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 7085,
+    "ranked": [
+      "tests/template_tests/filter_tests/test_urlize.py",
+      "django/utils/dateformat.py",
+      "tests/queries/models.py",
+      "queries/tests.py",
+      "tests/runtests.py",
+      "django/core/management/commands/loaddata.py",
+      "admin_scripts/tests.py",
+      "tests/cache/tests.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "tests/template_tests/syntax_tests/test_filter_syntax.py",
+      "tests/servers/views.py",
+      "django/contrib/sitemaps/management/commands/ping_google.py",
+      "django/core/handlers/asgi.py",
+      "tests/m2m_through/tests.py",
+      "django/test/html.py",
+      "test_utils/tests.py",
+      "django/http/response.py",
+      "tests/user_commands/management/commands/outputwrapper.py",
+      "django/contrib/admin/static/admin/js/vendor/select2/select2.full.js",
+      "django/utils/module_loading.py",
+      "tests/string_lookup/tests.py",
+      "tests/model_fields/test_decimalfield.py",
+      "django/template/defaultfilters.py",
+      "django/test/testcases.py",
+      "django/utils/functional.py",
+      "django/utils/safestring.py",
+      "django/core/management/base.py",
+      "django/core/serializers/json.py",
+      "management/base.py",
+      "django/utils/encoding.py",
+      "django/middleware/cache.py",
+      "django/urls/base.py",
+      "test/client.py",
+      "django/contrib/sitemaps/__init__.py",
+      "tests/m2m_through/models.py",
+      "m2m_through/tests.py",
+      "django/test/runner.py"
+    ],
+    "n_ranked": 37,
+    "gold_files": [
+      "django/utils/html.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

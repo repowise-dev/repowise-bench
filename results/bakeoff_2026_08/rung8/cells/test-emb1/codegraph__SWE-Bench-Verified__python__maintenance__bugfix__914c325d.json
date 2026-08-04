@@ -1,0 +1,75 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "9b224579875e30203d079cc2fee83b116d98eb78",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-914c325d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-914c325d",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21783,
+    "ranked": [
+      "django/contrib/sessions/backends/base.py",
+      "tests/admin_utils/admin.py",
+      "tests/gis_tests/geoapp/tests.py",
+      "tests/migrations/test_loader.py",
+      "tests/sessions_tests/tests.py",
+      "django/contrib/sessions/models.py",
+      "tests/timezones/tests.py",
+      "django/contrib/auth/base_user.py",
+      "django/contrib/auth/models.py",
+      "tests/auth_tests/models/custom_permissions.py",
+      "tests/auth_tests/models/custom_user.py",
+      "tests/auth_tests/models/invalid_models.py",
+      "tests/auth_tests/models/is_active.py",
+      "django/apps/config.py",
+      "django/apps/registry.py",
+      "django/contrib/admin/helpers.py",
+      "django/contrib/admin/options.py",
+      "django/test/client.py",
+      "django/test/testcases.py",
+      "tests/admin_scripts/tests.py",
+      "django/utils/translation/trans_real.py",
+      "django/utils/autoreload.py",
+      "django/contrib/sites/models.py",
+      "django/utils/crypto.py"
+    ],
+    "n_ranked": 24,
+    "gold_files": [
+      "django/conf/global_settings.py",
+      "django/contrib/auth/__init__.py",
+      "django/contrib/auth/base_user.py",
+      "django/core/signing.py",
+      "django/utils/crypto.py"
+    ],
+    "gold_hit_rank": 8
+  }
+}

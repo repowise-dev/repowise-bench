@@ -1,0 +1,87 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 885.0,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 64,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1ad7449c",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 6.1,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 5059,
+    "ranked": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py",
+      "django/utils/http.py",
+      "django/middleware/http.py",
+      "django/core/handlers/wsgi.py::get_script_name",
+      "django/core/handlers/wsgi.py",
+      "django/test/client.py",
+      "django/middleware/csrf.py",
+      "django/utils/cache.py",
+      "django/test/testcases.py",
+      "django/utils/translation/trans_real.py",
+      "django/utils/autoreload.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/contrib/postgres/fields/array.py"
+    ],
+    "n_ranked": 14,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

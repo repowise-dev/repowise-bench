@@ -1,0 +1,57 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 13.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-9a05fe0c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-9a05fe0c",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21990,
+    "ranked": [
+      "django/db/models/base.py",
+      "django/db/models/deletion.py",
+      "django/db/models/query.py",
+      "django/db/models/fields/files.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/backends/oracle/base.py",
+      "django/db/migrations/autodetector.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/sessions/backends/db.py"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/deletion.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

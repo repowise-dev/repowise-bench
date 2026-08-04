@@ -1,0 +1,66 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "71ae1ab0123582cc5bfe0f7d5f4cc19a9412f396",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 14.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1ae3c3bd"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1ae3c3bd",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19412,
+    "ranked": [
+      "django/db/models/sql/query.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/constraints.py",
+      "django/db/models/constraints.py",
+      "django/db/models/indexes.py",
+      "tests/prefetch_related/tests.py",
+      "tests/queries/test_query.py",
+      "django/db/models/query.py",
+      "tests/raw_query/tests.py",
+      "tests/basic/tests.py",
+      "tests/model_forms/tests.py",
+      "django/db/models/aggregates.py",
+      "tests/admin_utils/tests.py",
+      "tests/aggregation/test_filter_argument.py",
+      "tests/aggregation/tests.py",
+      "tests/aggregation_regress/tests.py",
+      "django/db/models/functions/text.py"
+    ],
+    "n_ranked": 17,
+    "gold_files": [
+      "django/db/models/query.py",
+      "django/db/models/sql/compiler.py",
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}
