@@ -1,0 +1,78 @@
+# Noise floor, django, repeat 5 of 5.
+#
+# IDENTICAL to configs/layerb_payload_rerun_django.yaml except experiment_name,
+# results_dir and logs_dir. Nothing else varies between the five repeats: same
+# draw, same arms, same binary, same reused index, same agent, same judge, same
+# prompt style, same max_workers.
+#
+# Separate results dirs are NOT cosmetic. The runner resumes on
+# (task_id, condition), so five repeats pointed at one directory would skip
+# every cell as already complete: the run would cost nothing and measure
+# nothing, and would look like it had worked.
+#
+# Pre-registration: configs/layerb_repeats_django.PREREGISTRATION.md
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_repeats_django_rep5.yaml
+#
+# NEVER launch this with Start-Process. See 00_START_HERE.md. The runner resumes
+# on (task_id, condition), so a killed run costs nothing: just relaunch.
+
+experiment_name: "layerb_repeats_django_rep5"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_repeats_django/rep5"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_repeats_django/rep5"
+  trees_dir: null
+
+budget:
+  max_total_usd: 9.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
