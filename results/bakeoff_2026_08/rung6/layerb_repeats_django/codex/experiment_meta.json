@@ -1,0 +1,73 @@
+{
+  "config_path": "configs\\layerb_repeats_django_codex.yaml",
+  "started_at": "2026-08-05T11:34:51.680522+00:00",
+  "conditions": [
+    "repowise"
+  ],
+  "config": {
+    "experiment_name": "layerb_repeats_django_codex",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "repos": [
+          "django/django"
+        ],
+        "stratified_shapes": {
+          "per_shape": 3,
+          "seed": 20260803
+        }
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "repowise",
+        "arm": "repowise"
+      }
+    ],
+    "agent": {
+      "harness": "codex",
+      "model": "gpt-5.6-sol",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_repeats_django/codex",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/layerb_repeats_django/codex",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 4.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

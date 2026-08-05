@@ -1,0 +1,98 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5e04e84d67da8163f365e9f5fcd169e2630e2873",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 661.6,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ac705f35",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-ac705f35",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.5,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 3008,
+    "ranked": [
+      "django/db/backends/ddl_references.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/sql/query.py",
+      "django/db/backends/postgresql/schema.py",
+      "django/contrib/postgres/constraints.py",
+      "django/contrib/gis/db/backends/postgis/introspection.py",
+      "django/db/backends/postgresql/introspection.py",
+      "django/contrib/gis/db/backends/spatialite/introspection.py",
+      "django/db/backends/oracle/introspection.py",
+      "django/core/management/commands/inspectdb.py",
+      "django/db/backends/base/introspection.py",
+      "django/db/backends/base/creation.py",
+      "django/db/backends/mysql/introspection.py",
+      "django/db/backends/sqlite3/introspection.py",
+      "django/db/models/constraints.py",
+      "django/db/models/indexes.py",
+      "django/db/backends/mysql/creation.py",
+      "django/db/backends/postgresql/creation.py",
+      "django/db/backends/oracle/creation.py",
+      "django/db/backends/sqlite3/schema.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1701,
+    "server_stderr": "              powershell.exe(23988),                            \r\n                             claude.exe(61092)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 22:09:25] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 22:09:29] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/backends/ddl_references.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

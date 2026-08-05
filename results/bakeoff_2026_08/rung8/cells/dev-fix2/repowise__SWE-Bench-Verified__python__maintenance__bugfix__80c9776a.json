@@ -1,0 +1,97 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__80c9776a",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "8dd5877f58f84f2b11126afbd0813e24545919ed",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 630.0,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__80c9776a",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-80c9776a",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 31428,
+    "ranked": [
+      "django/db/models/query.py",
+      "django/db/models/expressions.py",
+      "django/db/models/sql/query.py",
+      "django/contrib/admin/models.py",
+      "django/contrib/contenttypes/models.py",
+      "django/contrib/auth/base_user.py",
+      "django/contrib/auth/models.py",
+      "django/db/models/sql/compiler.py",
+      "django/template/exceptions.py",
+      "django/views/static.py",
+      "django/middleware/cache.py",
+      "django/core/files/temp.py",
+      "django/contrib/staticfiles/views.py",
+      "django/core/serializers/base.py",
+      "django/template/base.py",
+      "django/db/models/base.py",
+      "django/contrib/postgres/aggregates/mixins.py",
+      "django/db/models/sql/datastructures.py",
+      "django/db/models/fields/__init__.py",
+      "django/db/models/fields/proxy.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2922,
+    "server_stderr": "debug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/04/26 21:43:53] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-04 21:43:53 [debug    ] openai.generate.done           input_tokens=4232 output_tokens=624 request_id=None\r\n2026-08-04 21:43:53 [debug    ] cost_tracker.record            cost_usd=0.0016264 file_path=None input_tokens=4232 model=gpt-5.4-nano operation=answer_synthesis output_tokens=624\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=4232                                 \r\n                             output_tokens=624 cached_tokens=0                 \r\n                             cost_usd=0.001626                                 \r\n",
+    "gold_files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "gold_hit_rank": 8
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5573a54d409bb98b5c5acdb308310bed02d392c2",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 627.8,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 0,
+    "workers": 2
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-81f2c925",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "server_stderr_log": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\logs\\server-stderr\\repowise__81f2c925__s13pwg0g.log",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.2,
+    "tool": "get_answer",
+    "status": "call-failed",
+    "error": "McpError: Connection closed",
+    "server_stderr_chars": 1701,
+    "server_stderr": "[08/05/26 01:27:39] INFO     MCP watchdog: watching            _watchdog.py:111\r\n                             python.exe(50960),                                \r\n                             repowise.exe(32500),                              \r\n                             python.exe(39660),                                \r\n                             python.exe(31156),                                \r\n                             powershell.exe(69660), ?(15604)                   \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n[08/05/26 01:27:40] INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/05/26 01:27:41] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/05/26 01:27:42] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n[08/05/26 01:27:45] INFO     MCP watchdog: ancestor ?(15604)   _watchdog.py:125\r\n                             is gone \u2014 exiting                                 \r\n",
+    "gold_files": [
+      "django/contrib/admin/options.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

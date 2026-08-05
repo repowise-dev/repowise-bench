@@ -1,0 +1,85 @@
+{
+  "config_path": "configs\\layerb_go_contextbench.yaml",
+  "started_at": "2026-08-05T06:33:46.876070+00:00",
+  "conditions": [
+    "c0-bare",
+    "repowise-go"
+  ],
+  "config": {
+    "experiment_name": "layerb_go_contextbench",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "data_dir": "./data/cb_go",
+        "task_ids": [
+          "cbgo_1b8cfbf9",
+          "cbgo_2a889a1d",
+          "cbgo_2c512ec3",
+          "cbgo_3c9b757f",
+          "cbgo_3d1b3145",
+          "cbgo_3da242a2",
+          "cbgo_3deeea9c",
+          "cbgo_4d9664f3",
+          "cbgo_6d48775e",
+          "cbgo_8d23605c"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "c0-bare",
+        "arm": "c0-bare"
+      },
+      {
+        "name": "repowise-go",
+        "arm": "repowise-go"
+      }
+    ],
+    "agent": {
+      "harness": "claude_code",
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_go_contextbench",
+      "repos_dir": "C:/Users/ragha/Desktop/bakeoff/_cbgo_src",
+      "logs_dir": "./logs/layerb_go_contextbench",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 15.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

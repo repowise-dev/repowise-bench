@@ -1,0 +1,123 @@
+{
+  "tag": "rc3",
+  "split": "dev",
+  "arms": [
+    "repowise"
+  ],
+  "workers": 2,
+  "n_instances": 2,
+  "instance_ids": [
+    "SWE-Bench-Verified__python__maintenance__bugfix__1a760e52",
+    "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925"
+  ],
+  "preflight": {
+    "mp_workers": 0
+  },
+  "timings_publishable": false,
+  "units": [
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1a760e52",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 1,
+        "mp_workers": 0,
+        "workers": 2
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1a760e52",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 588.7,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__81f2c925",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 2,
+        "mp_workers": 0,
+        "workers": 2
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-81f2c925",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 633.9,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    }
+  ],
+  "run_seconds": 648.0,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 2,
+      "ok": 0,
+      "statuses": [
+        "call-failed"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 0,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0
+    }
+  },
+  "mock_embedded_cells": [],
+  "prewarm": {
+    "rc": 0,
+    "n": 2,
+    "failed": []
+  },
+  "selftest": {
+    "perfect": {
+      "rc": 0,
+      "file_coverage": 1.0,
+      "evaluation": "1/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": 0.0,
+      "evaluation": "1/1 instances"
+    },
+    "discriminates": true
+  },
+  "graded": {
+    "repowise": {
+      "skipped": "no successful calls to grade",
+      "n": 0
+    }
+  }
+}

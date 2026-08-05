@@ -1,0 +1,97 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "bdce08a793abe4744c02d537e37c9ba63601a849",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 76.8,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-0498ad7f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.2,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 16333,
+    "ranked": [
+      "internal/config/alias_config.go",
+      "internal/ghinstance/host.go",
+      "pkg/cmd/root/help.go",
+      "pkg/cmd/auth/status/status.go",
+      "pkg/cmdutil/errors.go",
+      "internal/config/testing.go",
+      "pkg/cmd/api/http.go",
+      "internal/run/run.go",
+      "api/client.go",
+      "internal/config/config_type.go",
+      "pkg/cmd/repo/fork/fork.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/auth/login/login.go",
+      "pkg/cmd/auth/shared/git_credential.go",
+      "internal/ghinstance/host_test.go",
+      "internal/docs/docs_test.go",
+      "pkg/cmd/api/api_test.go",
+      "pkg/cmd/ssh-key/list/list_test.go",
+      "pkg/cmd/auth/login/login_test.go",
+      "pkg/cmd/issue/list/list_test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2923,
+    "server_stderr": "ebug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/04/26 23:06:27] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-04 23:06:27 [debug    ] openai.generate.done           input_tokens=3082 output_tokens=365 request_id=None\r\n2026-08-04 23:06:27 [debug    ] cost_tracker.record            cost_usd=0.00107265 file_path=None input_tokens=3082 model=gpt-5.4-nano operation=answer_synthesis output_tokens=365\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=3082                                 \r\n                             output_tokens=365 cached_tokens=0                 \r\n                             cost_usd=0.001073                                 \r\n",
+    "gold_files": [
+      "pkg/cmd/auth/status/status.go"
+    ],
+    "gold_hit_rank": 4
+  }
+}

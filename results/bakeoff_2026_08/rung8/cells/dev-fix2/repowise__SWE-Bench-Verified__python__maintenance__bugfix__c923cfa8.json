@@ -1,0 +1,101 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c923cfa8",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "bef6f7584280f1cc80e5e2d80b7ad073a93d26ec",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 646.0,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c923cfa8",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-c923cfa8",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 2699,
+    "ranked": [
+      "tests/generic_relations_regress/models.py",
+      "tests/queries/models.py",
+      "django/core/management/base.py",
+      "django/core/management/commands/runserver.py",
+      "django/core/exceptions.py",
+      "django/utils/regex_helper.py",
+      "django/contrib/gis/geos/io.py",
+      "django/db/models/fields/related.py",
+      "django/contrib/sites/management.py",
+      "django/views/debug.py",
+      "django/views/decorators/debug.py",
+      "django/core/management/commands/testserver.py",
+      "django/contrib/staticfiles/management/commands/runserver.py",
+      "django/contrib/admin/sites.py",
+      "django/core/files/locks.py",
+      "django/core/management/commands/migrate.py",
+      "django/core/checks/model_checks.py",
+      "django/test/testcases.py",
+      "django/contrib/staticfiles/management/commands/collectstatic.py",
+      "django/core/management/templates.py",
+      "django/contrib/admin/checks.py",
+      "django/db/models/base.py"
+    ],
+    "n_ranked": 22,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1701,
+    "server_stderr": "              powershell.exe(23988),                            \r\n                             claude.exe(61092)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n[08/04/26 22:20:39] INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 22:20:40] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 22:20:42] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "gold_files": [
+      "django/core/management/base.py",
+      "django/core/management/commands/migrate.py",
+      "django/core/management/commands/runserver.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

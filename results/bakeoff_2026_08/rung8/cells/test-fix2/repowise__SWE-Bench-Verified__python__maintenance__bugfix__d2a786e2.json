@@ -1,0 +1,99 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "b7da588e883e12b8ac3bb8a486e654e30fc1c6c8",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 627.6,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-d2a786e2",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.7,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 21850,
+    "ranked": [
+      "django/core/management/base.py",
+      "django/core/management/base.py::BaseCommand",
+      "django/core/exceptions.py",
+      "django/utils/deprecation.py",
+      "django/contrib/gis/geos/io.py",
+      "django/db/migrations/migration.py",
+      "django/core/management/commands/migrate.py",
+      "django/contrib/sites/management.py",
+      "django/core/management/commands/squashmigrations.py",
+      "django/db/models/fields/files.py",
+      "django/core/management/commands/makemigrations.py",
+      "django/core/management/commands/sqlmigrate.py",
+      "django/test/testcases.py",
+      "django/core/management/sql.py",
+      "django/template/base.py",
+      "django/http/response.py",
+      "django/core/management/commands/showmigrations.py",
+      "django/core/management/__init__.py",
+      "setup.py",
+      "django/core/management/commands/shell.py",
+      "django/db/migrations/writer.py"
+    ],
+    "n_ranked": 21,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2853,
+    "server_stderr": "penai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/05/26 08:44:07] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-05 08:44:07 [debug    ] openai.generate.done           input_tokens=3043 output_tokens=628 request_id=None\r\n2026-08-05 08:44:07 [debug    ] cost_tracker.record            cost_usd=0.0013935999999999998 file_path=None input_tokens=3043 model=gpt-5.4-nano operation=answer_synthesis output_tokens=628\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=3043                                 \r\n                             output_tokens=628 cached_tokens=0                 \r\n                             cost_usd=0.001394                                 \r\n",
+    "gold_files": [
+      "django/core/management/base.py",
+      "django/core/management/commands/migrate.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

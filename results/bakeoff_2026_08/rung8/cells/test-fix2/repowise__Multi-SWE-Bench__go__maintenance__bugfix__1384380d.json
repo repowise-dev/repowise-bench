@@ -1,0 +1,102 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "537dcb27398bd193a094d5fcd3aa9bc67a546328",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 116.8,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1384380d",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.1,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 18620,
+    "ranked": [
+      "internal/ghinstance/host.go",
+      "pkg/liveshare/client.go",
+      "pkg/cmd/pr/checks/checks.go",
+      "pkg/cmd/pr/checks/output.go",
+      ".devcontainer/Dockerfile",
+      "pkg/cmd/pr/checks/aggregate.go",
+      "pkg/cmd/pr/comment/comment.go",
+      "pkg/cmd/workflow/run/run.go",
+      "pkg/cmd/issue/list/http.go",
+      "pkg/cmd/auth/refresh/refresh.go",
+      "pkg/cmd/pr/checkout/checkout.go",
+      "pkg/cmd/gist/clone/clone.go",
+      "cmd/gh/main.go",
+      "pkg/cmd/pr/close/close.go",
+      "pkg/cmd/pr/ready/ready.go",
+      "pkg/cmd/pr/pr.go",
+      "pkg/cmd/pr/shared/editable_http.go",
+      "pkg/cmd/pr/shared/finder.go",
+      "pkg/cmdutil/errors.go",
+      "git/url.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2923,
+    "server_stderr": "ebug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/04/26 23:08:42] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-04 23:08:42 [debug    ] openai.generate.done           input_tokens=3013 output_tokens=453 request_id=None\r\n2026-08-04 23:08:42 [debug    ] cost_tracker.record            cost_usd=0.00116885 file_path=None input_tokens=3013 model=gpt-5.4-nano operation=answer_synthesis output_tokens=453\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=3013                                 \r\n                             output_tokens=453 cached_tokens=0                 \r\n                             cost_usd=0.001169                                 \r\n",
+    "gold_files": [
+      "/workspace/cli__cli__0.1/Makefile",
+      "/workspace/cli__cli__0.1/api/queries_pr.go",
+      "/workspace/cli__cli__0.1/api/query_builder.go",
+      "/workspace/cli__cli__0.1/api/query_builder_test.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/aggregate.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/checks.go"
+    ],
+    "gold_hit_rank": 3
+  }
+}

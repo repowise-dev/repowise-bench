@@ -1,0 +1,99 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5c1509d5",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "647480166bfe7532e8c471fef0146e3a17e6c0c9",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 659.2,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5c1509d5",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-5c1509d5",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 11867,
+    "ranked": [
+      "tests/migrations/test_base.py",
+      "django/test/testcases.py",
+      "django/db/utils.py",
+      "django/db/models/functions/datetime.py",
+      "django/db/migrations/loader.py",
+      "django/db/backends/base/base.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/fields.py",
+      "django/contrib/postgres/operations.py",
+      "django/db/migrations/operations/base.py",
+      "django/utils/functional.py",
+      "django/db/migrations/utils.py",
+      "django/db/models/options.py",
+      "django/db/migrations/migration.py",
+      "django/db/migrations/operations/special.py",
+      "django/db/models/indexes.py",
+      "django/utils/deprecation.py",
+      "django/contrib/postgres/indexes.py",
+      "django/db/backends/ddl_references.py"
+    ],
+    "n_ranked": 19,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 3246,
+    "server_stderr": "debug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/04/26 19:56:08] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-04 19:56:08 [debug    ] openai.generate.done           input_tokens=4758 output_tokens=524 request_id=None\r\n2026-08-04 19:56:08 [debug    ] cost_tracker.record            cost_usd=0.0016066 file_path=None input_tokens=4758 model=gpt-5.4-nano operation=answer_synthesis output_tokens=524\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=4758                                 \r\n                             output_tokens=524 cached_tokens=0                 \r\n                             cost_usd=0.001607                                 \r\n",
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/state.py",
+      "tests/migrations/test_operations.py"
+    ],
+    "gold_hit_rank": 7
+  }
+}

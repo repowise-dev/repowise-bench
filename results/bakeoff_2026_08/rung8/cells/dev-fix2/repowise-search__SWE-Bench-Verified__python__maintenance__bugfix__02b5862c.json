@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f8fab6f90233c7114d642dfe01a4e6d4cb14ee7d",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 8,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-02b5862c",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6585,
+    "ranked": [
+      "django/db/utils.py",
+      "django/core/management/commands/makemigrations.py",
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/executor.py",
+      "django/db/models/options.py",
+      "tests/migrate_signals/tests.py",
+      "django/apps/config.py",
+      "django/core/management/base.py"
+    ],
+    "n_ranked": 8,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1701,
+    "server_stderr": "              powershell.exe(64956),                            \r\n                             claude.exe(61092)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 18:22:01] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 18:22:02] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "gold_files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

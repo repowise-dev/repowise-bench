@@ -1,0 +1,99 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "004b4620f6f4ad87261e149898940f2dcd5757ef",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 676.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-c20c3c4f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.8,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 2650,
+    "ranked": [
+      "tests/test_runner_apps/sample/pattern_tests.py",
+      "tests/test_runner_apps/sample/tests/tests.py",
+      "django/utils/decorators.py",
+      "django/core/handlers/exception.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/backends/oracle/functions.py",
+      "django/views/decorators/debug.py",
+      "django/views/generic/base.py",
+      "django/views/decorators/cache.py",
+      "django/utils/functional.py",
+      "django/utils/autoreload.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/auth/views.py",
+      "django/contrib/admin/sites.py",
+      "django/test/utils.py",
+      "django/test/testcases.py",
+      "django/template/library.py",
+      "django/utils/log.py",
+      "django/db/models/sql/subqueries.py",
+      "django/db/utils.py",
+      "django/template/base.py",
+      "django/contrib/auth/decorators.py"
+    ],
+    "n_ranked": 22,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(12324),                            \r\n                             claude.exe(61092)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/05/26 08:23:47] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/05/26 08:23:49] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "gold_files": [
+      "django/utils/decorators.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

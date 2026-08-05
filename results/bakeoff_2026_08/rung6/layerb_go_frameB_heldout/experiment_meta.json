@@ -1,0 +1,80 @@
+{
+  "config_path": "configs\\layerb_go_frameB_heldout.yaml",
+  "started_at": "2026-08-05T08:54:47.351537+00:00",
+  "conditions": [
+    "repowise-go"
+  ],
+  "config": {
+    "\u00ef\u00bb\u00bf# Layer B, second language": "cli/cli Go, from ContextBench.",
+    "experiment_name": "layerb_go_frameB_heldout",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "data_dir": "./data/cb_go_frameB",
+        "task_ids": [
+          "cbgo_03f04397",
+          "cbgo_3d85271b",
+          "cbgo_3e2d031f",
+          "cbgo_4606de0b",
+          "cbgo_6e022940",
+          "cbgo_85c030cf",
+          "cbgo_cedbb0cb",
+          "cbgo_eb5704a5",
+          "cbgo_ff0cfab5"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "repowise-go",
+        "arm": "repowise-go"
+      }
+    ],
+    "agent": {
+      "harness": "claude_code",
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_go_frameB_heldout",
+      "repos_dir": "C:/Users/ragha/Desktop/bakeoff/_cbgo_src",
+      "logs_dir": "./logs/layerb_go_frameB_heldout",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 15.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

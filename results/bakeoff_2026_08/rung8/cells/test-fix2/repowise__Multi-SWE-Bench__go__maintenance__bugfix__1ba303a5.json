@@ -1,0 +1,101 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "beba0e1d78996f0033c77e462e6bf9db0fecc2af",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 117.0,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1ba303a5",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.1,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 2804,
+    "ranked": [
+      "internal/config/alias_config.go",
+      "pkg/set/string_set.go",
+      "git/git.go",
+      "api/queries_repo.go",
+      "pkg/cmd/pr/shared/templates.go",
+      "pkg/cmd/repo/create/http.go",
+      "pkg/cmd/search/repos/repos.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/search/issues/issues.go",
+      "pkg/cmd/repo/create/create.go",
+      "pkg/cmd/repo/edit/edit.go",
+      "api/queries_pr_review.go",
+      "api/queries_comments.go",
+      "pkg/cmd/pr/create/create.go",
+      "internal/codespaces/api/api.go",
+      "pkg/githubtemplate/github_template.go",
+      "pkg/cmd/repo/clone/clone.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/liveshare/port_forwarder.go",
+      "pkg/cmd/repo/sync/git.go",
+      "internal/codespaces/codespaces.go",
+      "pkg/search/result.go"
+    ],
+    "n_ranked": 22,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1701,
+    "server_stderr": "              powershell.exe(23988),                            \r\n                             claude.exe(61092)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 23:09:12] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 23:09:13] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "gold_files": [
+      "/workspace/cli__cli__0.1/Makefile",
+      "/workspace/cli__cli__0.1/pkg/cmd/repo/create/create.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/repo/create/http.go"
+    ],
+    "gold_hit_rank": 6
+  }
+}

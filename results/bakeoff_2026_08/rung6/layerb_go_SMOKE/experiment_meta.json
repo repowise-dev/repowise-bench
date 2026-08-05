@@ -1,0 +1,77 @@
+{
+  "config_path": "configs\\layerb_go_smoke.yaml",
+  "started_at": "2026-08-05T05:39:10.427341+00:00",
+  "conditions": [
+    "c0-bare",
+    "repowise-go"
+  ],
+  "config": {
+    "\u00ef\u00bb\u00bf# Layer B, second language": "cli/cli Go, from ContextBench.",
+    "experiment_name": "layerb_go_smoke",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "data_dir": "./data/cb_go",
+        "task_ids": [
+          "cbgo_03f04397"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "c0-bare",
+        "arm": "c0-bare"
+      },
+      {
+        "name": "repowise-go",
+        "arm": "repowise-go"
+      }
+    ],
+    "agent": {
+      "harness": "claude_code",
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_go_SMOKE",
+      "repos_dir": "C:/Users/ragha/Desktop/bakeoff/_cbgo_src",
+      "logs_dir": "./logs/layerb_go_SMOKE",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 15.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

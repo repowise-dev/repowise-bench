@@ -1,0 +1,97 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "a7e7043c8746933dafce652507d3b821801cdc7d",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 754.9,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-0b74a2c7",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.9,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 2273,
+    "ranked": [
+      "django/test/testcases.py",
+      "tests/aggregation_regress/tests.py",
+      "django/core/management/__init__.py",
+      "django/db/migrations/autodetector.py",
+      "django/db/backends/base/creation.py",
+      "django/db/migrations/state.py",
+      "django/core/management/base.py",
+      "django/db/migrations/migration.py",
+      "django/db/models/base.py",
+      "django/core/management/commands/migrate.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/models/fields/related.py",
+      "django/db/migrations/loader.py",
+      "django/db/migrations/utils.py",
+      "django/db/models/options.py",
+      "django/contrib/contenttypes/fields.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/deletion.py",
+      "django/db/migrations/exceptions.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2025,
+    "server_stderr": "     INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 18:27:25] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/04/26 18:27:28] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n[08/04/26 18:27:55] WARNING  get_answer: 2 of 5 top hits have no answer.py:1103\r\n                             page content; those hits reach                    \r\n                             synthesis as a one-line summary                   \r\n                             only                                              \r\n",
+    "gold_files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "gold_hit_rank": 4
+  }
+}

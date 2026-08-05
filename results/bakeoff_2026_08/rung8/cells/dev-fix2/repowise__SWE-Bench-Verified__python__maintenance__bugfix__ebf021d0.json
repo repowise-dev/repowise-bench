@@ -1,0 +1,101 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ebf021d0",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "321ecb40f4da842926e1bc07e11df4aabe53ca4b",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 698.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ebf021d0",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-ebf021d0",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-devfix2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.1,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 16321,
+    "ranked": [
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/query.py::get_count",
+      "django/db/models/aggregates.py",
+      "django/db/models/query.py::count",
+      "django/db/models/sql/compiler.py",
+      "django/db/models/sql/subqueries.py",
+      "django/db/models/deletion.py",
+      "django/contrib/gis/geos/collections.py",
+      "django/db/backends/ddl_references.py",
+      "django/utils/functional.py",
+      "django/core/exceptions.py",
+      "django/contrib/admin/views/main.py",
+      "django/contrib/admin/options.py",
+      "django/core/management/base.py",
+      "django/contrib/gis/geoip2/base.py",
+      "django/contrib/admin/actions.py",
+      "django/utils/regex_helper.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/gis/gdal/raster/band.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2923,
+    "server_stderr": "ebug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/04/26 22:44:26] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-04 22:44:26 [debug    ] openai.generate.done           input_tokens=5335 output_tokens=499 request_id=None\r\n2026-08-04 22:44:26 [debug    ] cost_tracker.record            cost_usd=0.00169075 file_path=None input_tokens=5335 model=gpt-5.4-nano operation=answer_synthesis output_tokens=499\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=5335                                 \r\n                             output_tokens=499 cached_tokens=0                 \r\n                             cost_usd=0.001691                                 \r\n",
+    "gold_files": [
+      "django/db/models/expressions.py",
+      "django/db/models/lookups.py",
+      "django/db/models/query_utils.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/where.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}
