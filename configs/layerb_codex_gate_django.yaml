@@ -1,0 +1,134 @@
+# THE GATE. 6 arms x 2 questions under Codex, before the flagship spends a cent.
+#
+# This is NOT a comparison and its judge scores are NOT a row. It is a
+# proof-of-life run, and it exists because of one measured asymmetry:
+#
+#   repowise                                          19/19 Codex cells ok
+#   c0-bare                                            4/4  Codex cells ok
+#   codegraph, graphify, serena, code-review-graph     0. Never run.
+#
+# `codex_runner.py::mcp_overrides` mounts ANY arm generically by translating the
+# same `.mcp.json` the Claude runner reads into `-c mcp_servers.<name>.…`. That
+# is why the flagship needs no new code, and it is also exactly the kind of
+# generic path that works for the one server it was tested on and silently fails
+# for another. The arm that gets zeroed is never ours, because ours is the only
+# output format we already know: graphify scored 0.012 MRR from a path regex and
+# code-review-graph returned 84/84 isError from a tool-name suffix.
+#
+# ---------------------------------------------------------------------------
+# The two questions are NAMED, not positional
+# ---------------------------------------------------------------------------
+# `django_014` (symbol-lookup) and `django_017` (multi-hop-flow), both members of
+# the flagship's own stratified draw. Two shapes rather than two of one, because
+# a server can be alive for a lookup and dead for a traversal. `max_tasks: 2`
+# would have taken the first two in file order, and the django rows are laid out
+# by interrogative, so that is the `What` block and nothing else.
+#
+# ---------------------------------------------------------------------------
+# What is asserted afterwards, per arm
+# ---------------------------------------------------------------------------
+#   scripts/assert_codex_proof_of_life.py --self-test
+#   scripts/assert_codex_proof_of_life.py \
+#       --results results/bakeoff_2026_08/rung6/layerb_codex_gate_django
+#
+# The four competitors: served_count > 0, mcp_isError_count == 0, and at least
+# one ANSWERED call in mcp_per_server. Issued is not used: the first Codex
+# repowise cell ever run reported arm_exercised true, one get_answer, error null
+# and judge 9.0/10, and the call had returned `user cancelled MCP tool call` in a
+# run with no user in it.
+#
+# c0-bare: the INVERSE assertion, and it is not symmetry. Finding D16 was that
+# the C0 control was never actually bare, and D16 was found on Claude's
+# --strict-mcp-config path. Codex isolates through a bench-owned CODEX_HOME plus
+# per-invocation -c overrides, with --ignore-user-config explicitly NOT the
+# mechanism, and that has never been verified on a bare arm here.
+#
+# The detector itself is proved on four sides including two mutations before it
+# is allowed to read a real row. See --self-test.
+#
+# Pre-registration: configs/layerb_codex_bakeoff.PREREGISTRATION.md
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_codex_gate_django.yaml
+
+experiment_name: "layerb_codex_gate_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_014"   # symbol-lookup
+      - "django_017"   # multi-hop-flow
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  # c0-bare FIRST, so the inverse assertion is measured on a run in which no
+  # other arm has yet mounted anything, and a leaked server would be this run's
+  # own rather than a residue of an earlier condition.
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+  - name: "serena"
+    arm: "serena"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_codex_gate_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_codex_gate_django"
+  trees_dir: null
+
+budget:
+  # 12 cells at the measured Codex rate of ~$0.065 is ~$0.80. The ceiling is set
+  # at 3.0 so a single runaway cell aborts the run rather than the run's own
+  # normal spend tripping it.
+  max_total_usd: 3.0
+  max_per_task_usd: 1.0
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET. _resolve_judge_model refuses a same-family judge, so a
+  # gpt-5.6-sol agent resolves to claude-sonnet-5. Pinning gpt-5.6-luna here,
+  # copied across from a Claude config, is what cost a launch last session
+  # (0 cells, no spend, da136ed). The refusal message recommends the wrong model
+  # for an openai agent because it looks up the `anthropic` key; that is a string
+  # bug and its suggestion is ignored.
+  #
+  # Judge scores from this run are recorded and NOT interpreted: n=2 per arm.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E1: a timed build under a live process pool inflates by 65%. Every
+  # arm's index already exists on disk here, but the gate's whole job is to be
+  # readable by hand, and serialised cells are what makes a stream log readable.
+  max_workers: 1

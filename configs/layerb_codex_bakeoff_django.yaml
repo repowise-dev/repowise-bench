@@ -1,0 +1,147 @@
+# THE FLAGSHIP. 6 arms x 15 stratified django questions, under Codex.
+#
+# This is the publishable artifact of the Codex arc and it is NOT a "full run"
+# in the expensive sense: 90 cells, roughly $6-11, roughly 2 hours. The
+# expensive runs are rung 9 (n=48, ~$135) and cli/cli with competitors (an index
+# build per arm per instance); neither is needed for a publishable Codex table.
+#
+# ---------------------------------------------------------------------------
+# Why Codex and not Claude, and why Claude is still published
+# ---------------------------------------------------------------------------
+# Finding E13. The Claude harness defers MCP schemas behind ToolSearch and 17 of
+# 30 Claude cells never issued one: the tool was never a candidate rather than a
+# rejected one. The identical repowise server, index and questions under Codex
+# were called 15 of 15. So Codex exercises the treatment and Claude mostly does
+# not, which makes Codex the instrument for quality and cost.
+#
+# Claude is NOT dropped and is NOT re-run. Its cells stand as measured and its
+# collapse is published as its own finding, because it is a real defect on the
+# most popular agent harness. Adding a harness is a second source; replacing
+# Claude with the one that flatters us is the exact failure this workstream
+# exists to criticise.
+#
+# ---------------------------------------------------------------------------
+# THE GATE RUNS FIRST. This config does not launch until it passes.
+# ---------------------------------------------------------------------------
+# Four of these six arms have never had a single Codex cell. See
+# configs/layerb_codex_gate_django.yaml. Any arm the gate declares UNRUNNABLE
+# UNDER CODEX is removed from `conditions` below with a comment naming the
+# failure, and is reported as unrunnable in RESULT.md rather than as a zero.
+#
+# ---------------------------------------------------------------------------
+# The draw, and what a pooled number from it is not
+# ---------------------------------------------------------------------------
+# `stratified_shapes`, 3 per non-empty shape, seed 20260803, n=15. EQUAL
+# allocation, not proportional, so a pooled mean over these 15 is NOT an
+# estimate of the arms' mean over all 48 django questions. The per-slice
+# comparison is the output; the pooled row is a convenience and is labelled as
+# one wherever it appears.
+#
+# ---------------------------------------------------------------------------
+# Three ways a number from here is not the same kind of number as a Claude one
+# ---------------------------------------------------------------------------
+#   1. Cost is COMPUTED, not reported. Codex emits token counts and no dollar
+#      figure; codex_runner.py::compute_cost_usd prices them at list rates.
+#      Claude Code reports its own. Never one column.
+#   2. The tool surfaces differ in shape. Claude cells run Read,Grep,Glob with
+#      no Bash; Codex's core tool IS a sandboxed shell and cannot be removed.
+#      `--sandbox read-only` with the root pinned to the arm's worktree is the
+#      nearest equivalent, not the same restriction.
+#   3. The judge flips family. Claude cells were graded by gpt-5.6-luna, these
+#      resolve to claude-sonnet-5. A table carrying both has two judges in it,
+#      and harness/judge_agreement.py is run before any such table is published.
+#
+# Harness and model are also confounded and this design cannot separate them:
+# claude-sonnet-5 against gpt-5.6-sol. Every cross-harness statement means "the
+# Claude harness or the Claude model", never one of the two.
+#
+# Pre-registration: configs/layerb_codex_bakeoff.PREREGISTRATION.md
+# Predicted, before the numbers exist: repowise adoption >= 13/15 (F1); every
+# gated competitor >= 9/15 (F2); NO arm separates from c0-bare after Bonferroni
+# over five comparisons (F4, a pre-registered null).
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_codex_bakeoff_django.yaml
+
+experiment_name: "layerb_codex_bakeoff_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # NOT max_tasks. Selecting by position is what produced a
+    # one-interrogative sample three runs in a row.
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  # `repowise`, not `repowise-lean`. The lean arm pins its server to four tools
+  # and is the smallest surface in the bake-off; putting it against a serena
+  # serving 29 and a crg serving 30 measures our pin as much as our tool. See
+  # the allowlist rule at the top of configs/arms.yaml.
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+  - name: "serena"
+    arm: "serena"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_codex_bakeoff_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_codex_bakeoff_django"
+  trees_dir: null
+
+budget:
+  # 90 cells at the measured $0.065 is ~$5.90; the ceiling allows the $6-11
+  # band plus headroom, and aborts rather than silently overspending.
+  max_total_usd: 18.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET. THE ONE TRAP IN THIS CONFIG. _resolve_judge_model
+  # refuses a same-family judge, so a gpt-5.6-sol agent resolves to
+  # claude-sonnet-5. Copying gpt-5.6-luna across from a Claude config is what
+  # cost a launch last session (0 cells, no spend, da136ed), and the refusal
+  # message recommends the wrong model for an openai agent because it looks up
+  # the `anthropic` key. That is a string bug; ignore its suggestion.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E10: how long an arm waits between its OWN consecutive cells sets
+  # prompt-cache warmth, and cache warmth was worth 39 percentage points on the
+  # dollar delta in the payload re-run. 6 interleaved arms means a cold cache
+  # for every arm equally, which is the shape this run reports and says so.
+  max_workers: 1
