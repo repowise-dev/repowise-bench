@@ -556,12 +556,44 @@ arms:
     #   read_memory, list_memories               read that same cross-cell
     #                                            store; nothing legitimately
     #                                            put anything in it.
-    #   execute_shell_command                    a shell. Bash is denied to
-    #                                            every arm (repo escape, and it
-    #                                            can read the benchmark's own
-    #                                            answer key); one arm reaching
-    #                                            a shell through its server is
-    #                                            not the same experiment.
+    #   execute_shell_command                    EXCLUDED ON A FALSE PREMISE.
+    #                                            CORRECTED 2026-08-05, and the
+    #                                            correction runs AGAINST us. The
+    #                                            original reason is kept below
+    #                                            verbatim because a competitor
+    #                                            handicap that is quietly edited
+    #                                            out is worse than one that is
+    #                                            recorded.
+    #
+    #     ORIGINAL REASON, WRONG: "a shell. Bash is denied to every arm (repo
+    #     escape, and it can read the benchmark's own answer key); one arm
+    #     reaching a shell through its server is not the same experiment."
+    #
+    #     Bash is NOT denied. Measured in the streams: c0-bare issued 11 Bash
+    #     calls in the 2026-08-03 run and 8 in the 2026-08-05 payload re-run;
+    #     repowise issued 0 and 1. The Go ContextBench run leans on it far
+    #     harder still -- `git log --grep` is the natural first move on a
+    #     "which files does this change touch" question, and Bash is the FIRST
+    #     tool called on most cells in both arms.
+    #
+    #     Nor was the answer key reachable: `scripts/answer_leak_audit.py`
+    #     walked all 943 tool calls across both runs, all six arms, and found
+    #     0 naming the benchmark data, results or logs;
+    #     `scripts/bash_audit.py` printed all 41 Bash calls in full and every
+    #     one is a grep, find or git inside the arm's own tree.
+    #
+    #     So serena was denied a tool on the grounds that every arm lacked
+    #     something every arm in fact had. This is the allowlist rule failing
+    #     in the direction this workstream keeps warning about -- against a
+    #     competitor, in our favour -- and it is the same defect as giving
+    #     graphify 1 tool of the 10 it serves.
+    #
+    #     STILL EXCLUDED, pending a re-run, and the reason is now honest: no
+    #     serena number has been produced since the correction, so flipping the
+    #     flag today would put a re-run serena row beside 2026-08-03 rows for
+    #     every other competitor. Any published serena row must carry this
+    #     note, and a serena re-run must enable it. Recorded as the fairness
+    #     defect in `50-results/layerb-payload-rerun/RESULT.md` section 4.
     #   activate_project                         the harness runs it in
     #                                            `activate`, before the cell.
     #   onboarding, initial_instructions,        session setup and self-
