@@ -1,0 +1,144 @@
+# RUNG 9 under Codex: all 48 django questions, 6 arms. The quality answer.
+#
+# ---------------------------------------------------------------------------
+# Why this is now the obvious buy, having been the forbidden one
+# ---------------------------------------------------------------------------
+# The standing instruction was: do NOT launch rung 9, because at Claude's
+# adoption rate its quality column would spend most of a $135 budget on cells
+# where the tool under test is never called. 22 of 28 pairs had no tool on
+# either side.
+#
+# That constraint is gone. Under Codex the flagship returned adoption 15/15 for
+# every one of the five MCP arms and 0/15 for the control, 239 calls issued and
+# 239 answered. Every pair here is a real pair, so n=48 buys 48 pairs that
+# touch the tool under test rather than roughly 14.
+#
+# It is also no longer expensive. $135 was the Claude estimate; at the measured
+# Codex rate of ~$0.065/cell, 288 cells is ~$19.
+#
+# ---------------------------------------------------------------------------
+# What it answers, including the answer we may not like
+# ---------------------------------------------------------------------------
+# Quality is currently INCONCLUSIVE at n=15 on both harnesses, and the Codex
+# point estimate has repowise LAST of five arms at -0.35 against the bare
+# control. At the measured django noise floor S = 0.6896, n=48 detects an effect
+# of 0.279 at 80% power, paired. That is enough to separate "no real difference"
+# from "a real difference we cannot see at n=15".
+#
+# The unflattering outcome is live and is pre-registered as such: if repowise is
+# significantly WORSE than the bare control after Bonferroni, that is the
+# headline, it goes at the top of RESULT.md, and docs/BENCHMARKS.md section 2
+# gets revised before anything else ships.
+#
+# ---------------------------------------------------------------------------
+# The free second result: a repeat of the 15 cells we just published
+# ---------------------------------------------------------------------------
+# The 48 CONTAIN the 15 stratified questions the flagship ran, so this run is
+# also an exact repeat of those cells on the same arms. That matters because we
+# corrected the public page today for presenting a one-day adoption draw as a
+# stable property, and the Codex 15/15 now on that page is also a one-day draw.
+# Adoption has already been shown to flip between identical repeats under
+# Claude. Applying the same test to our own new number is the whole point.
+#
+# NOTE the asymmetry that makes this a repeat and not a re-run: same questions,
+# same arms, same trees, same indexes, same prompt, same model. What differs is
+# the run SHAPE (48 questions interleaved rather than 15), and per finding E10
+# shape moves the dollar column and not the token column. So the repeat is read
+# on adoption and tokens, and its dollar delta against the flagship is not.
+#
+# ---------------------------------------------------------------------------
+# NOT a stratified draw, and the consequence is the opposite of the usual one
+# ---------------------------------------------------------------------------
+# Every other django run here used `stratified_shapes` with equal allocation per
+# shape, which made the pooled mean unrepresentative of the 48 by construction.
+# This run IS the 48, so its pooled mean is the population mean over this
+# question set and needs no such caveat. The per-shape cells become unequal
+# instead (architecture-why 16, history-why 0), which is a property of SWE-QA
+# and is reported as the real distribution rather than corrected away.
+#
+# `history-why` is EMPTY, 0 of 48. It is the slice PLAN.md predicted would
+# separate us most, because it is the one no graph-only competitor can reach.
+# This question source does not contain it and no relabelling will conjure it.
+#
+# Pre-registration: configs/layerb_codex_bakeoff.PREREGISTRATION.md section 9
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_codex_rung9_django.yaml
+
+experiment_name: "layerb_codex_rung9_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # No max_tasks, no stratified_shapes, no task_ids: the whole set. Any
+    # selector here would silently shrink n, which is the failure this run
+    # exists to escape.
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+  - name: "serena"
+    arm: "serena"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung9/layerb_codex_rung9_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_codex_rung9_django"
+  trees_dir: null
+
+budget:
+  # 288 cells at the measured $0.065 is ~$18.7. The ceiling aborts a runaway
+  # rather than the run's own normal spend.
+  max_total_usd: 32.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET, as in every Codex config here. _resolve_judge_model
+  # refuses a same-family judge, so a gpt-5.6-sol agent resolves to
+  # claude-sonnet-5. Pinning gpt-5.6-luna is what cost a launch at da136ed, and
+  # the refusal message recommends the wrong model for an openai agent because
+  # it looks up the `anthropic` key. That is a string bug; ignore its suggestion.
+  #
+  # Same judge as the flagship, so THIS run's quality is comparable with the
+  # flagship's. It remains NOT comparable with any Claude-graded number.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E1: a timed build under a live process pool inflates by 65%. Every
+  # index already exists on disk, but serialised cells keep the stream logs
+  # readable and keep the run shape comparable with the flagship's.
+  max_workers: 1

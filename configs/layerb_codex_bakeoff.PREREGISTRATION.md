@@ -317,3 +317,82 @@ written as the work proceeds, carrying:
 - a mandatory provenance block: commits, trees and their HEADs, build, indexes,
   models, judges, exact configs, wall clock, dollars with their source
 - no em dashes
+
+---
+
+# ADDENDUM, committed 2026-08-05 after runs 0, 1 and 2 and BEFORE run 4 spent anything
+
+## 9. RUN 4 — RUNG 9 UNDER CODEX. All 48 django questions, 6 arms, ~288 cells, ~$19.
+
+**This addendum does not change anything above it.** Not the harness primacy,
+not the failure-handling rules, not the adoption counting rule, and not a single
+prediction already scored in section 6 of RESULT.md. It adds one run.
+
+### Why the standing prohibition no longer applies
+
+Section 7 above says rung 9 is not launched, because at the Claude adoption rate
+its quality column would spend most of its budget on cells where the tool under
+test is never called. **That was a statement about adoption, and adoption
+changed.** Run 1 returned 15/15 for all five MCP arms and 0/15 for the control,
+239 calls issued and 239 answered. Every pair at n=48 is now a real pair.
+
+The cost premise changed too: $135 was the Claude estimate; at the measured
+Codex rate 288 cells is roughly $19.
+
+### What it buys
+
+1. **The quality answer.** Quality is inconclusive at n=15 on both harnesses. At
+   the measured django noise floor `S` = 0.6896, **n=48 detects 0.279** at 80%
+   power, paired. That separates "no real difference" from "a real difference
+   too small to see at n=15".
+2. **A repeat of the 15 cells already published.** The 48 contain the flagship's
+   15, so this is an exact repeat on the same arms, trees, indexes, prompt and
+   model. `docs/BENCHMARKS.md` was corrected today for presenting a one-day
+   adoption draw as stable; the Codex 15/15 now on that page is also a one-day
+   draw, and this applies the same test to our own new number.
+
+### Predictions, fixed before any cell runs
+
+| # | prediction |
+|---|---|
+| **R1** | repowise adoption **>= 44/48**, consistent with 15/15 and 19/19 |
+| **R2** | **no arm separates from `c0-bare`** after Bonferroni over 5 comparisons at n=48 |
+| **R3** | on the 15 repeated questions, repowise adoption **>= 13/15**, i.e. the Codex adoption figure **does** repeat where the Claude one did not |
+| **R4** | repowise output-token reduction stays **>= 25%** and significant after Bonferroni |
+| **R5** | cost per cell in **$0.05 to $0.12** |
+| **R6** | the token saving is **larger on `multi-hop-flow` and `cross-file-impact`** than on `symbol-lookup`, because pre-computed structure replaces exploration and those shapes contain more of it |
+
+### THE UNFLATTERING OUTCOME IS LIVE, AND HERE IS WHAT HAPPENS IF IT LANDS
+
+At n=15 repowise's quality point estimate was **-0.35 against the bare control,
+lowest of the five arms.** If that is real rather than noise, n=48 has the power
+to show it.
+
+| observed | what we do, decided now |
+|---|---|
+| **repowise significantly WORSE than `c0-bare`** after Bonferroni | **It is the headline.** Top of RESULT.md, and `docs/BENCHMARKS.md` section 2 is revised before anything else ships. A tool that makes answers worse while saving tokens is a finding we publish, not one we bury in a limits bullet. |
+| no arm separates (R2 holds) | quality is reported as **inconclusive at n=48**, with the detectable-effect arithmetic beside it. The token result stands on its own. |
+| repowise significantly BETTER | reported, with a note that it was **not predicted** and that R2 predicted a null |
+| a competitor separates and repowise does not | **reported at the top.** Named here because it is the outcome most likely to be quietly de-emphasised. |
+
+**No reclassification after seeing the number.** No dropping of the negative
+result into a footnote. No re-running until it improves.
+
+### Two rules that carry over unchanged and are restated because this run is long
+
+- **Turn-limit exhaustions are agent outcomes**: excluded and named, never
+  retried. **Judge failures** mean the grade never happened: re-graded, and
+  every re-grade stamped, as three cells in run 1 were.
+- **Adoption is counted per arm over that arm's own non-error cells.** Never
+  over the paired set.
+
+### What this run may still NOT be used for
+
+- **No cross-harness quality or cost comparison.** It is graded by
+  `claude-sonnet-5`, like the flagship, and not by the `gpt-5.6-luna` that
+  graded every Claude cell. Section 5's constraints are permanent.
+- **No cross-harness dollar column.** Codex dollars remain computed from list
+  rates.
+- Its **dollar delta against the flagship is not read**, because the run shape
+  differs (48 interleaved rather than 15) and per E10 shape moves dollars and
+  not tokens. The repeat is read on **adoption and tokens**.
