@@ -1,0 +1,163 @@
+# Layer B, second language: cli/cli Go, from ContextBench.
+#
+# ---------------------------------------------------------------------------
+# What this is, and what it is NOT
+# ---------------------------------------------------------------------------
+# Every Layer B number this workstream owns is django, Python, one commit, and
+# in every model's training data. This is the second language, and the questions
+# and the ground truth are both ContextBench's: each instance carries a real
+# upstream `problem_statement` (the change description as its author wrote it)
+# and the real `patch`. Nothing is authored by us.
+#
+# **These numbers do NOT pool with the django 15.** Different task shape
+# (localise a described change, not answer a typed question), different gold
+# (an upstream diff, not a written reference answer), and -- see below -- a
+# different index mode. Two benchmarks side by side, never one column.
+#
+# ---------------------------------------------------------------------------
+# The instance set: 19, the whole dev pool bar one, and the sealed 12 untouched
+# ---------------------------------------------------------------------------
+# ContextBench has 40 Go instances, 32 of them cli/cli, and Layer A's pinned
+# split already holds all 32 as 20 dev / 12 test. **The 12 test instances are
+# not touched by this run and are not loaded by any script in it.**
+#
+# n = 10 of a 19-instance pool, per the brief. n=19 was costed and offered; the
+# decision after the smoke cell (Raghav, 2026-08-05) was to see the result at
+# n=10 first and then decide whether the payload needs changing and whether to
+# spend the rest. The 9 undrawn instances become the held-out validation set,
+# which is what makes a payload change from these results reportable at all.
+#
+# One dev instance is excluded BY NAME and the reason is structural, decided
+# before the draw and with no outcome visible: `9e8a151e` ("Add headers to all
+# tables") is a 41-character problem statement against a 55,149-character patch
+# over 37 gold files, where the pool's median is a ~1.5k patch over 2 files.
+# That is a repo-wide sweep rather than a localisation, and its patch cannot be
+# placed in a judge prompt intact.
+#
+# Writing it up straight, per the brief: `get_answer` scored 0.810 on Layer A's
+# dev half and 0.876 on the SEALED half, so the held-out half scored higher and
+# there is no overfitting signal to hedge against. The instance ids are named in
+# provenance for reproducibility, not as a hedge.
+#
+# ---------------------------------------------------------------------------
+# The arm is `repowise-go`, and the only thing that differs is the index build
+# ---------------------------------------------------------------------------
+# `configs/arms.d/repowise_go.yaml` is the `repowise` arm with an index command
+# carrying standing rule 5's flags (`--no-prose --embedder openai
+# --max-file-pages 0 --no-workspace --no-editor-setup --yes`), which the
+# built-in `repowise_legacy` path does not pass. Every Layer A number this
+# workstream has published was measured on an index built with them.
+# `scripts/assert_arm_parity.py` asserts the two arms differ in nothing else.
+#
+# The condition is NAMED `repowise-go` rather than `repowise` so a raw row can
+# never be read as a django-comparable repowise cell by accident.
+#
+# ---------------------------------------------------------------------------
+# The adapter, and why it needed no harness change
+# ---------------------------------------------------------------------------
+# `scripts/prep_go_tasks.py` stages one detached cli/cli checkout per instance
+# at that instance's `base_commit` under `<TREES>/_cbgo_src/cbgo-<id>/cli`, and
+# writes `data/cb_go/swe_qa/tasks.json` in the shape `load_swe_qa_tasks` reads.
+# `resolve_repo_path` maps `repo: "cbgo-<id>/cli"` onto that path and
+# `arms.arm_tree` names the arm worktree from its parent and name, so every
+# instance gets its own tree, its own index and its own resume key with the
+# agent, judging, isolation and proof-of-life code paths untouched.
+#
+# Run (NEVER with Start-Process; the runner resumes on (task, condition)):
+#   python harness/run_experiment.py --config configs/layerb_go_contextbench.yaml
+#
+# Indexes are built FIRST, by scripts/prebuild_indexes.py, so no index build
+# sits between two of an arm's cells. That is finding E10: how long an arm waits
+# between its OWN consecutive cells sets prompt-cache warmth, and cache warmth
+# was worth 39 percentage points on the dollar delta in the payload re-run.
+
+experiment_name: "layerb_go_contextbench"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_go"
+    # The 10 DRAWN instances, STRATIFIED BY DIFFICULTY. Computed by
+    # `scripts/draw.py` and listed here verbatim, so a missing id raises instead
+    # of silently shrinking n: `load_swe_qa_tasks` raises KeyError on any id it
+    # cannot find.
+    #
+    # Two difficulty axes, both fixed before any cell ran and neither derived
+    # from an outcome. PRIMARY, the stratum: gold-file count (1 / 2 / 3+), which
+    # is how many hops the localisation needs. Rung 5 measured multi-hop
+    # retrieval at recall@10 0.44 against 0.94 single-file, so stratum C is
+    # where the retrieval claim lives and stratum A is where a bare agent is
+    # already strong. SECONDARY, within each stratum: the length of the author's
+    # own PR description, 72 to 1,063 characters across this draw. A terse
+    # description is less to go on regardless of file count, and each stratum
+    # takes an even spread across its own length ordering, so the shortest and
+    # longest in every stratum are both drawn.
+    #
+    # Stratum C is deliberately OVER-SAMPLED (2 of 3, against 4 of 9 in A), so
+    # the drawn 10 is NOT representative of the pool. RESULT.md reports per
+    # stratum and gives a pool-weighted mean beside the raw one;
+    # `draw.json::stratum_weights` carries the weights.
+    #
+    # `data/cb_go/swe_qa/tasks.json` holds all 19 and every one of them is
+    # staged. The 9 not listed here are the HELD-OUT VALIDATION SET, recorded in
+    # `draw.json`, and they are the reason the draw exists: Layer B has never
+    # had a dev/test split, and the smoke cell surfaced three candidate payload
+    # changes. Any change adopted on the strength of these 10 gets validated on
+    # those 9 -- same repo, same language, same adapter, never seen by the
+    # tuning. Running the held-out 9 is a config edit and no new machinery.
+    task_ids:
+      - "cbgo_1b8cfbf9"    # C multi-hop  gold=3  problem=115c
+      - "cbgo_2a889a1d"    # A single     gold=1  problem=192c
+      - "cbgo_2c512ec3"    # C multi-hop  gold=3  problem=650c   patch=6203c
+      - "cbgo_3c9b757f"    # B two-file   gold=2  problem=1063c  (most described)
+      - "cbgo_3d1b3145"    # A single     gold=1  problem=336c
+      - "cbgo_3da242a2"    # B two-file   gold=2  problem=72c    (least described)
+      - "cbgo_3deeea9c"    # B two-file   gold=2  problem=399c
+      - "cbgo_4d9664f3"    # B two-file   gold=2  problem=211c
+      - "cbgo_6d48775e"    # A single     gold=1  problem=292c
+      - "cbgo_8d23605c"    # A single     gold=1  problem=521c
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise-go"
+    arm: "repowise-go"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_go_contextbench"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbgo_src"
+  logs_dir: "./logs/layerb_go_contextbench"
+  trees_dir: null
+
+budget:
+  max_total_usd: 15.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

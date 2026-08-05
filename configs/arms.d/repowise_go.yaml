@@ -1,0 +1,105 @@
+# `repowise-go`: the `repowise` arm, with an index built to standing rule 5.
+#
+# ---------------------------------------------------------------------------
+# Why this file exists, and it is about the INDEX and nothing else
+# ---------------------------------------------------------------------------
+# The `repowise` arm declares `index: builtin: repowise_legacy`, which routes to
+# `swe_qa_runner.index_repo_at(..., mode="full")`. That command is:
+#
+#   repowise init -y --resume --commit-limit 200 --concurrency 3
+#                  --provider openai --model gpt-5.4-nano --embedder openai
+#
+# It does NOT pass `--no-prose`, `--max-file-pages 0`, `--no-workspace` or
+# `--no-editor-setup`. Those four are standing rule 5 in
+# `00_START_HERE.md` ("Benchmark index flags, all of them, every time"), and
+# every Layer A number this workstream has published -- including the 0.810 dev
+# and 0.876 sealed `get_answer` rows -- was measured on an index built with
+# them. The django Layer B tree was not, and that is a pre-existing divergence
+# this file does not attempt to repair retroactively.
+#
+# It is also the difference between a run that fits in this session and one that
+# does not. The legacy full path generates LLM prose for every page: the django
+# Layer B index carries 4,284 pages. cli/cli is a fresh index PER INSTANCE
+# because each ContextBench instance pins its own `base_commit`, so ten
+# instances is ten builds. Measured, `--no-prose` on cli/cli is 107.7s; the
+# prose path is hours and a live LLM bill for an index nobody is grading.
+#
+# CONSEQUENCE, and it is stated in the RESULT.md rather than buried here: the Go
+# cells query a `--no-prose` index and the django Layer B cells query a prose
+# one. That is one more reason the two sets do not pool, on top of the different
+# task shape and gold the brief already names.
+#
+# ---------------------------------------------------------------------------
+# Everything except `index` is a byte copy of the `repowise` arm
+# ---------------------------------------------------------------------------
+# Copied rather than inherited because YAML overlays in `arms.d/` deep-merge
+# onto the arm of the SAME NAME, so there is no way to say "repowise, but with
+# this index" without editing `repowise` itself and changing the django arm
+# under every future run.
+#
+# A copy can drift. `scripts/assert_arm_parity.py` asserts field-by-field that
+# `repowise-go` and `repowise` differ in `index` and `description` and in
+# nothing else, and it runs before the cells do. Without that assertion this
+# file is one careless edit away from being a different arm wearing the same
+# tool surface, which is the failure mode the allowlist rule exists for.
+
+arms:
+  repowise-go:
+    description: |
+      The `repowise` arm with its own index build, for ContextBench instances
+      that pin a base_commit and therefore need one index per instance. Served
+      surface, client allowlist, coaching and warm-up are identical to
+      `repowise`; only the index command differs, and it differs by carrying
+      standing rule 5's flags. See the header of configs/arms.d/repowise_go.yaml.
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args:
+        - mcp
+        - "{tree}"
+        - --transport
+        - stdio
+      served_tools: null
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_context
+      - mcp__repowise__get_overview
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_symbol
+      - mcp__repowise__get_why
+      - mcp__repowise__search_codebase
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args:
+        query: test
+        limit: 1
+      timeout_seconds: 15
+    index:
+      # Rung 8's Layer A build, verbatim from
+      # results/bakeoff_2026_08/rung8/canary_allarms.py::BUILDS["repowise"].
+      # `arms.build_index` supplies DO_NOT_TRACK=1 and
+      # REPOWISE_SKIP_EDITOR_SETUP=1 in the build environment, and
+      # `_index_extra_env` supplies OPENAI_API_KEY (finding D13: without the key
+      # in the BUILD environment the generator falls back to MockEmbedder,
+      # writes 8-dimensional vectors and exits 0).
+      command:
+        - "{repowise_exe}"
+        - init
+        - --no-prose
+        - --embedder
+        - openai
+        - --max-file-pages
+        - "0"
+        - --no-workspace
+        - --no-editor-setup
+        - --yes
+      timeout_seconds: 3600

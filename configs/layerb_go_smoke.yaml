@@ -1,0 +1,128 @@
+﻿# Layer B, second language: cli/cli Go, from ContextBench.
+#
+# ---------------------------------------------------------------------------
+# What this is, and what it is NOT
+# ---------------------------------------------------------------------------
+# Every Layer B number this workstream owns is django, Python, one commit, and
+# in every model's training data. This is the second language, and the questions
+# and the ground truth are both ContextBench's: each instance carries a real
+# upstream `problem_statement` (the change description as its author wrote it)
+# and the real `patch`. Nothing is authored by us.
+#
+# **These numbers do NOT pool with the django 15.** Different task shape
+# (localise a described change, not answer a typed question), different gold
+# (an upstream diff, not a written reference answer), and -- see below -- a
+# different index mode. Two benchmarks side by side, never one column.
+#
+# ---------------------------------------------------------------------------
+# The instance set: 19, the whole dev pool bar one, and the sealed 12 untouched
+# ---------------------------------------------------------------------------
+# ContextBench has 40 Go instances, 32 of them cli/cli, and Layer A's pinned
+# split already holds all 32 as 20 dev / 12 test. **The 12 test instances are
+# not touched by this run and are not loaded by any script in it.**
+#
+# n = 19 rather than the brief's "draw 10": agreed with Raghav 2026-08-05
+# because all 19 fit inside Half 1's ~$10 estimate at roughly $7.2, and taking
+# the whole pool removes the draw as something a reader has to trust.
+#
+# One dev instance is excluded BY NAME and the reason is structural, decided
+# before the draw and with no outcome visible: `9e8a151e` ("Add headers to all
+# tables") is a 41-character problem statement against a 55,149-character patch
+# over 37 gold files, where the pool's median is a ~1.5k patch over 2 files.
+# That is a repo-wide sweep rather than a localisation, and its patch cannot be
+# placed in a judge prompt intact.
+#
+# Writing it up straight, per the brief: `get_answer` scored 0.810 on Layer A's
+# dev half and 0.876 on the SEALED half, so the held-out half scored higher and
+# there is no overfitting signal to hedge against. The instance ids are named in
+# provenance for reproducibility, not as a hedge.
+#
+# ---------------------------------------------------------------------------
+# The arm is `repowise-go`, and the only thing that differs is the index build
+# ---------------------------------------------------------------------------
+# `configs/arms.d/repowise_go.yaml` is the `repowise` arm with an index command
+# carrying standing rule 5's flags (`--no-prose --embedder openai
+# --max-file-pages 0 --no-workspace --no-editor-setup --yes`), which the
+# built-in `repowise_legacy` path does not pass. Every Layer A number this
+# workstream has published was measured on an index built with them.
+# `scripts/assert_arm_parity.py` asserts the two arms differ in nothing else.
+#
+# The condition is NAMED `repowise-go` rather than `repowise` so a raw row can
+# never be read as a django-comparable repowise cell by accident.
+#
+# ---------------------------------------------------------------------------
+# The adapter, and why it needed no harness change
+# ---------------------------------------------------------------------------
+# `scripts/prep_go_tasks.py` stages one detached cli/cli checkout per instance
+# at that instance's `base_commit` under `<TREES>/_cbgo_src/cbgo-<id>/cli`, and
+# writes `data/cb_go/swe_qa/tasks.json` in the shape `load_swe_qa_tasks` reads.
+# `resolve_repo_path` maps `repo: "cbgo-<id>/cli"` onto that path and
+# `arms.arm_tree` names the arm worktree from its parent and name, so every
+# instance gets its own tree, its own index and its own resume key with the
+# agent, judging, isolation and proof-of-life code paths untouched.
+#
+# Run (NEVER with Start-Process; the runner resumes on (task, condition)):
+#   python harness/run_experiment.py --config configs/layerb_go_contextbench.yaml
+#
+# Indexes are built FIRST, by scripts/prebuild_indexes.py, so no index build
+# sits between two of an arm's cells. That is finding E10: how long an arm waits
+# between its OWN consecutive cells sets prompt-cache warmth, and cache warmth
+# was worth 39 percentage points on the dollar delta in the payload re-run.
+
+experiment_name: "layerb_go_smoke"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_go"
+    # Named in full rather than derived, so a missing id raises instead of
+    # silently shrinking n. `load_swe_qa_tasks` raises KeyError on any id it
+    # cannot find.
+    task_ids:
+      - "cbgo_03f04397"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise-go"
+    arm: "repowise-go"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_go_SMOKE"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbgo_src"
+  logs_dir: "./logs/layerb_go_SMOKE"
+  trees_dir: null
+
+budget:
+  max_total_usd: 15.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
+
