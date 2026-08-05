@@ -1,0 +1,108 @@
+# Layer B stratified, re-run ONCE with the payload fix (#1306) in.
+#
+# This is the single conditional re-run SESSION10 section 5 licensed. Its
+# precondition was that the payload work be validated on sets Layer B never saw
+# -- the 25 flow questions and held-out mui -- before Layer B is touched again.
+# That happened: substance per served path 0.130 -> 0.864 on the flow questions
+# and 0.911 on mui, with the served path list asserted byte-identical.
+#
+# ---------------------------------------------------------------------------
+# TWO ARMS, and the competitors are deliberately NOT re-run
+# ---------------------------------------------------------------------------
+# codegraph, graphify, serena and code-review-graph keep their 2026-08-03 cells.
+# Their code has not changed, so re-running them re-bills for an identical
+# answer. Nothing in this file may be placed in a table with their rows without
+# saying that ours were measured on a later build than theirs.
+#
+# `c0-bare` IS re-run, and that is the whole reason this config has two arms
+# rather than one. It is not a competitor; it is the baseline every delta in
+# the run is measured against, and the agent model can drift server-side
+# between 2026-08-03 and now. Re-running it for ~$4 keeps every paired number
+# within-session. Dropping it would make every delta cross-session, which is
+# the confound this workstream has been bitten by before.
+#
+# ---------------------------------------------------------------------------
+# The index is REUSED, not rebuilt, and that is the point
+# ---------------------------------------------------------------------------
+# The arm tree `bakeoff/lb-repowise-full-django-django` is at django
+# 3b161e60964a with the index the 2026-08-03 run queried. #1306 is a query-time
+# change, so holding the index byte-constant is what makes a payload difference
+# attributable to the payload rather than to a re-index. `arm_tree` reuses a
+# tree whose HEAD matches, so no rebuild is triggered. Verified before the run:
+# tree HEAD == repos/django/django HEAD == 3b161e60964a.
+#
+# ---------------------------------------------------------------------------
+# Everything else is held at SESSION10's settings, on purpose
+# ---------------------------------------------------------------------------
+# Same draw (stratified_shapes, per_shape 3, seed 20260803 -> the identical 15
+# task ids), same prompt_style `neutral`, same agent, same judge, same
+# max_workers 1. The binary under test is the only intended difference.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_payload_rerun_django.yaml
+#
+# NEVER launch this with Start-Process. Eleven sealed cells returned
+# `McpError: Connection closed` under it on healthy builds, twice, and the
+# failure was misdiagnosed as a crash in get_answer. The runner resumes on
+# (instance_id, arm), so a killed run costs nothing: just relaunch.
+
+experiment_name: "layerb_payload_rerun_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # Computed, never listed. Same seed and per_shape as SESSION10, so the draw
+    # is the identical 15 ids rather than a set that merely looks similar.
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_payload_rerun_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_payload_rerun_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 20.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # SESSION10's judge, cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
