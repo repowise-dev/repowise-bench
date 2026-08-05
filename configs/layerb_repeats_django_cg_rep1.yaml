@@ -1,0 +1,86 @@
+# Adoption stability, codegraph, repeat 1 of 2.
+#
+# Answers ONE question: is the adoption collapse ours, or the category's?
+# Repeat 1 of the noise-floor run returned repowise adoption 4/15 against 12/15
+# two days earlier and 15/15 two days before that, on the same build, the same
+# reused index and the same 15 questions. Every cell served 11 tools with zero
+# MCP errors and four cells called get_answer, so it is a DECISION, not
+# plumbing.
+#
+# codegraph ONLY, no control arm. Adoption is a single-arm property: whether the
+# agent calls the mounted server is decided inside one cell with one server. A
+# control would double the cost and answer a different question.
+#
+# A SEPARATE experiment, never a third arm on the repeats. Adding an arm changes
+# the spacing between an arm's own consecutive cells (E11) and would contaminate
+# the cost column the repeats exist to measure, and it would make repeats 3-5
+# non-identical to repeats 1-2.
+#
+# Index REUSED, not rebuilt: bakeoff/lb-codegraph-django-django at django
+# 3b161e6096, asserted equal to repos/django/django HEAD. codegraph 1.5.0.
+# The tool is codegraph_explore, chosen from codegraph's own README, unchanged
+# from the 2026-08-03 run so the surface is not a variable.
+#
+# NO quality claim and NO cost claim may be made from these cells: there is no
+# control arm, and a one-arm run's dollars are not comparable (E11).
+#
+# Pre-registration: configs/layerb_repeats_django_codegraph.PREREGISTRATION.md
+#
+# NEVER launch this with Start-Process. The runner resumes on
+# (task_id, condition), so a killed run costs nothing: just relaunch.
+
+experiment_name: "layerb_repeats_django_cg_rep1"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "codegraph"
+    arm: "codegraph"
+
+
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_repeats_django/cg_rep1"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_repeats_django/cg_rep1"
+  trees_dir: null
+
+budget:
+  max_total_usd: 5.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
