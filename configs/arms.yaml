@@ -1,0 +1,607 @@
+# The arm registry. One entry per thing being benchmarked.
+#
+# This file is the whole answer to "how do I add a competitor". Adding an arm is
+# a YAML block; it needs no Python and no change to the runner. Same for a repo:
+# see `configs/repos.yaml`. Drop extra files into `configs/arms.d/*.yaml` and
+# they are merged over this one, so a third party can add arms without editing a
+# tracked file at all.
+#
+# Every field below exists because its absence produced a plausible WRONG NUMBER
+# rather than an error, in a run this workstream already paid for. The
+# measurement-traps list in `local-stash/competitive-proof/00_START_HERE.md` is
+# the long form. The short form:
+#
+#   * a dead server scores as a bad arm      (`--profile core`, finding D1)
+#   * a wrong tool name scores as a bad arm  (crg's `_tool` suffix, 84/84 isError)
+#   * a missing setup step scores as a bad arm (Serena's activate_project,
+#     crg's embed_graph_tool, crg's per-call provider/model)
+#   * an extractor bug scores as a bad arm   (Graphify at 0.012 against a true 0.539)
+#
+# So: `launch`, `served_tools`, `index`, `activate` and `warm` are all part of an
+# arm's definition, not incidental plumbing, and an arm missing one of them is
+# not being measured, it is being defamed.
+#
+# ---------------------------------------------------------------------------
+# THE ALLOWLIST RULE
+# ---------------------------------------------------------------------------
+# Stated once here, applied to every arm, rather than decided per arm by
+# whoever added it. It exists because we got this wrong against a competitor,
+# in our own favour, and shipped it into a table.
+#
+#   An arm's `client_tools` is its server's FULL ADVERTISED SURFACE, minus
+#   tools irrelevant to the task shape. Every exclusion is named in the arm's
+#   block with a reason. `served_tools` stays at the server's default: the cut
+#   is made on the client allowlist, uniformly, and not by pinning one arm's
+#   server smaller than another's.
+#
+# What the surfaces actually are, measured 2026-08-03 by
+# `python -m harness.served_surface` against django (raw:
+# results/bakeoff_2026_08/rung6/served_surface.json):
+#
+#   | arm               | served | allowlisted BEFORE | allowlisted AFTER |
+#   |-------------------|-------:|-------------------:|------------------:|
+#   | repowise          |     11 |    8 / 4 (pinned)  |                 7 |
+#   | codegraph         |      1 |                  1 |                 1 |
+#   | graphify          |     10 |                  1 |                 7 |
+#   | serena            |     29 |                  3 |                10 |
+#   | code-review-graph |     30 |                  1 |                20 |
+#
+# The rung 6 four-arm run gave graphify 1 of 10, and graphify was then
+# exercised on 4 of 10 cells and its row excluded. Serena and crg had never
+# had a cell run at all, and would have gone in at 3 of 29 and 1 of 30. That
+# does not prove the asymmetry caused the non-use — finding A30 says an agent
+# ignores a tool it was not told to reach for, whatever the tool is — but an
+# arm we handicapped is not an arm we measured.
+#
+# Two things make "irrelevant to the task shape" a checkable claim rather than
+# a licence:
+#
+#   1. It is a claim about the CELL, not about the tool's quality. A SWE-QA
+#      cell is one read-only question about a repository at one commit. There
+#      is no pull request in it, so a PR-triage tool has nothing to read; there
+#      is no diff, so a diff-impact tool has no input; the harness allows no
+#      Edit, Write or Bash to any arm, so a refactor tool cannot be exercised
+#      and a shell tool would break the read-only parity every arm is held to.
+#   2. The exclusions are listed per arm below. Disagree with one and it is a
+#      one-line change to put it back.
+#
+# Deferred MCP schemas make this cheap to get right: Claude Code does not put
+# an allowlisted tool's schema in context until ToolSearch loads it, so a
+# larger allowlist costs an arm names in a deferred list rather than tokens of
+# schema. There is no version of this where the fair allowlist was too
+# expensive to give.
+#
+# ---------------------------------------------------------------------------
+# Template variables usable in any string
+# ---------------------------------------------------------------------------
+#   {tree}          the arm's OWN worktree for this repo (never shared: finding E3)
+#   {repo}          the source checkout the worktree was cut from
+#   {repo_name}     "org/name"
+#   {repowise_exe}  $REPOWISE_EXE, else <REPOWISE_ROOT>/.venv/Scripts/repowise.exe
+#   {bench_root}    repowise-bench/
+#   {npm_bin}       %APPDATA%/npm      (Windows npm installs .cmd shims)
+#   {uv_bin}        ~/.local/bin       (uv installs real .exe)
+#
+# ---------------------------------------------------------------------------
+# Field reference
+# ---------------------------------------------------------------------------
+#   description      free text, printed in the run header
+#   isolation        worktree | inplace. `worktree` gives the arm its own
+#                    checkout so it cannot index another arm's output (E3) and
+#                    cannot read another arm's dotdir. Default worktree.
+#   index            {command: [...], timeout_seconds: N, env: {...}} or null.
+#                    Run once per (arm, repo). null means the arm builds no
+#                    persistent index (Serena) or shares another arm's
+#                    (`shares_index_with`).
+#   shares_index_with  name of the arm whose tree and index this arm queries.
+#   mcp              null for a no-server arm (C0), else:
+#                      server_name   the key in the generated .mcp.json, and so
+#                                    the `mcp__<server_name>__*` tool prefix
+#                      command/args  launch. args are templated.
+#                      served_tools  passed to a server that supports an
+#                                    allowlist. Pinning it is not optional: the
+#                                    default surface is environment-dependent
+#                                    (a .repowise-workspace.yaml above the repo
+#                                    took the flask arm from 11 tools to 13) and
+#                                    version-dependent.
+#                      env_passthrough  host env vars forwarded into the server
+#                                    process. Claude Code launches the server
+#                                    with exactly the config's `env` block, so
+#                                    nothing is inherited implicitly.
+#   client_tools     the `--allowedTools` entries. Must match what the server
+#                    actually serves; the harness asserts this per cell.
+#   coaching         system prompt appended for this arm. `builtin:<NAME>` keeps
+#                    a legacy prompt byte-identical (see harness/arms.py
+#                    BUILTIN_COACHING); inline text is the normal case for a new
+#                    arm. When the experiment config sets `prompt_style: neutral`
+#                    this is IGNORED and every arm gets the same neutral template
+#                    with only the server and tool names substituted, which is
+#                    the only fair setting for a cross-tool comparison
+#                    (PLAN.md Phase 1 item 6).
+#   hooks            Claude Code hooks this arm declares. DEFAULT EMPTY, AND
+#                    THAT IS A FINDING, not a default. The operator's own
+#                    ~/.claude/settings.json carries hooks that fire inside every
+#                    cell, and two of them are repowise's own — so the C0 bare
+#                    control was receiving injected repowise context. See
+#                    finding D16 and harness/env_isolation_probe.py. Hooks are a
+#                    real part of the repowise product surface, so an arm may
+#                    OPT IN to them here; what it may not do is inherit them by
+#                    accident into arms defined by not having them.
+#   activate         tool calls made after the server starts, before anything
+#                    scored. {tool, args, timeout_seconds}.
+#   warm             one cheap call whose result is discarded, {tool, args,
+#                    timeout_seconds}. repowise's first call after a server start
+#                    never returns; the client giving up is what unblocks it, and
+#                    the next call answers in ~1.3s (finding A8). 15s abandoned
+#                    costs the same as 600s abandoned.
+#   teardown         command run after the arm's cells finish. Optional.
+
+defaults:
+  isolation: worktree
+  index: null
+  mcp: null
+  hooks: {}
+  client_tools: []
+
+arms:
+
+  # -------------------------------------------------------------------------
+  c0-bare:
+    description: >
+      No MCP server, no index, no codebase-intelligence tool of any kind. The
+      control. Runs in its own worktree so a prior arm's .repowise/ .codegraph/
+      dotdir is physically absent rather than merely disallowed.
+    mcp: null
+    index: null
+    client_tools: []
+    coaching: null
+
+  # -------------------------------------------------------------------------
+  # repowise. Three tool tiers over ONE index: they differ only in the server's
+  # --tools flag and the client allowlist, so all three share one tree.
+  #
+  # `repowise` is the rule-conformant arm and the one a cross-tool table must
+  # use. `repowise-full` and `repowise-lean` pin the server smaller than its
+  # default and are ABLATIONS of the schema tax, not competitors' peers: no
+  # competitor was given a pinned-down surface, so a table putting a 4-tool
+  # repowise against a 20-tool crg is the graphify defect pointing the other
+  # way. They are kept because the published flask48 rows were produced on
+  # them and must stay reproducible.
+  # -------------------------------------------------------------------------
+  repowise:
+    description: >
+      repowise MCP as installed: the server's own default surface, no --tools
+      pin, allowlisted per the rule at the top of this file.
+
+      Served (11): get_answer, get_change_risk, get_context, get_dead_code,
+      get_health, get_overview, get_risk, get_symbol, get_why, list_repos,
+      search_codebase.
+
+      Excluded (4), each for the task shape and not for the tool:
+        list_repos      workspace enumeration; one repo is under test and the
+                        server is launched single-repo, so it answers a
+                        question the cell cannot ask.
+        get_change_risk scores a COMMIT or a diff range. A SWE-QA cell is one
+                        question at one commit with no diff in it — the same
+                        reason graphify's get_pr_impact is excluded.
+        get_health      code-health scoring is a different product surface and
+                        a different question shape (how good is this file, not
+                        how does this code work).
+        get_dead_code   a reachability report over the whole repo, likewise.
+    shares_index_with: repowise-full
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      # No --tools pin, deliberately: the rule cuts on the client allowlist so
+      # that every arm's server advertises what its author made it advertise.
+      served_tools: null
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_context
+      - mcp__repowise__get_overview
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_symbol
+      - mcp__repowise__get_why
+      - mcp__repowise__search_codebase
+    index: null
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+
+  repowise-full:
+    description: >
+      ABLATION, not the headline arm. repowise MCP with the server pinned to
+      eight tools via --tools. Kept byte-identical to what the published
+      flask48 rows were produced on; see `repowise` above for the arm that
+      obeys the allowlist rule.
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      served_tools: "get_answer,get_symbol,search_codebase,get_context,get_risk,get_why,get_dependency_path,get_overview"
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_symbol
+      - mcp__repowise__search_codebase
+      - mcp__repowise__get_context
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_why
+      - mcp__repowise__get_dependency_path
+      - mcp__repowise__get_overview
+    index:
+      # `builtin:repowise_legacy` is `index_repo()` in swe_qa_runner.py, called
+      # with the experiment config's provider / doc_model / embedder and its
+      # cache in `indexes/`. Kept verbatim rather than restated as a command
+      # list so the repowise arms index EXACTLY as they did for flask48 and
+      # those numbers stay comparable. It is a full-prose index (Layer B is
+      # about what a user actually runs); Layer A's `--no-prose` build is a
+      # different arm and lives in rung8/canary_allarms.py.
+      #
+      # A command list works here too, and is what a new arm should use:
+      #   command: ["{repowise_exe}", init, --no-prose, --embedder, openai,
+      #             --max-file-pages, "0", --no-workspace, --no-editor-setup, --yes]
+      # Standing rule 5 wants all of those flags every time, plus
+      # REPOWISE_SKIP_EDITOR_SETUP=1 and DO_NOT_TRACK=1 which the harness adds:
+      # there is ONE global repowise MCP key and an unguarded init repoints the
+      # operator's editor.
+      builtin: repowise_legacy
+      timeout_seconds: 10800
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+
+  repowise-lean:
+    description: >
+      ABLATION, not the headline arm. Same index and same four tools the agent
+      actually reaches for, but the server advertises only those four, so the
+      other schemas never enter the agent's context. This is the schema-tax
+      arm, and it is the SMALLEST surface any arm in this bake-off runs with.
+      Reporting it against a competitor serving 10-30 tools measures our pin
+      as much as our tool; use `repowise` for that and cite this one as the
+      ablation it is.
+      Deliberately an explicit allowlist rather than the CLI's `lean` keyword:
+      that keyword selects the shipped SIX-tool profile, which is a different
+      arm. If you want the shipped profile, pass "lean" and rename this.
+    shares_index_with: repowise-full
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      served_tools: "get_answer,get_symbol,search_codebase,get_context"
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_symbol
+      - mcp__repowise__search_codebase
+      - mcp__repowise__get_context
+    index: null
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+
+  repowise-index-only:
+    description: >
+      repowise's graph + git layer with no wiki docs and no semantic search.
+      The C1 arm from the flask48 runs. Kept so `repowise_mode: index-only`
+      configs still resolve; not part of the Layer B pilot.
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      served_tools: "get_context,get_risk,get_why,get_dependency_path"
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_context
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_why
+      - mcp__repowise__get_dependency_path
+    index:
+      builtin: repowise_legacy_index_only
+      timeout_seconds: 3600
+    coaching: "builtin:SWEQA_PROMPT_INDEX_ONLY"
+
+  # -------------------------------------------------------------------------
+  # Competitors. Launch commands, tool names and setup steps are ported
+  # verbatim from rung5/retrieval_probe_multiarm.py::arm_specs and
+  # rung8/canary_allarms.py, where each of them was earned the hard way.
+  # -------------------------------------------------------------------------
+  codegraph:
+    description: >
+      CodeGraph. Its own README says codegraph_explore "answers almost any
+      question in one call", so that is the tool it is given, chosen from its
+      own documentation rather than picked by us.
+    mcp:
+      server_name: codegraph
+      command: "{npm_bin}/codegraph.cmd"
+      args: ["serve", "--mcp", "--path", "{tree}", "--no-watch"]
+      served_tools: null
+    client_tools:
+      - mcp__codegraph__codegraph_explore
+    index:
+      command: ["{npm_bin}/codegraph.cmd", "init", "{tree}"]
+      timeout_seconds: 10800
+    coaching: |
+      You have the CodeGraph MCP server. Use it to navigate this repository.
+
+      - mcp__codegraph__codegraph_explore(query="...") — CodeGraph's own
+        documented entry point: it answers almost any question about the
+        codebase in one call.
+
+      These tools are loaded on demand: if the tool is not immediately
+      available, call ToolSearch with the tool name first, then call it.
+
+  graphify:
+    description: >
+      Graphify. Queries a graph.json the build step writes into the tree.
+      NOTE the extractor: Graphify writes node lines as `NODE foo() [src=path
+      loc=L149]`, and a path regex requiring whitespace before the path scored
+      it 0.012 MRR against a true 0.539. Handled in harness/path_extract.py.
+    mcp:
+      server_name: graphify
+      command: "{uv_bin}/graphify-mcp.exe"
+      args: ["--transport", "stdio", "--graph", "{tree}/graphify-out/graph.json"]
+      served_tools: null
+    # Served (10). Excluded (3), all PR-review tools with nothing to read in a
+    # SWE-QA cell: `list_prs`, `triage_prs`, `get_pr_impact`. There is no pull
+    # request and no diff in a cell, so they are the same exclusion as
+    # repowise's get_change_risk.
+    client_tools:
+      - mcp__graphify__query_graph
+      - mcp__graphify__get_node
+      - mcp__graphify__get_neighbors
+      - mcp__graphify__shortest_path
+      - mcp__graphify__get_community
+      - mcp__graphify__god_nodes
+      - mcp__graphify__graph_stats
+    index:
+      command: ["{uv_bin}/graphify.exe", "update", "{tree}"]
+      timeout_seconds: 10800
+    coaching: |
+      You have the Graphify MCP server. Use it to navigate this repository.
+
+      - mcp__graphify__query_graph(question="...") — asks Graphify's code graph
+        a natural-language question and returns matching nodes with their
+        source locations.
+      - mcp__graphify__get_node / get_neighbors / shortest_path — walk the
+        graph from a node, list what it connects to, or find a path between
+        two of them.
+      - mcp__graphify__get_community / god_nodes / graph_stats — cluster,
+        hub and whole-graph summaries.
+
+      These tools are loaded on demand: if the tool is not immediately
+      available, call ToolSearch with the tool name first, then call it.
+
+  code-review-graph:
+    description: >
+      code-review-graph. Three separate setup steps, none of them guessable from
+      its README, each of which produced a clean zero when missing:
+        1. every tool name carries a `_tool` suffix. Calling the unsuffixed name
+           returned tool-absent for 84 of 84 queries, which scores as 0.000 and
+           looks exactly like a retrieval failure.
+        2. `query_graph_tool` is NOT the search entry point. It wants
+           pattern + target and rejects a natural-language query outright.
+           `semantic_search_nodes_tool` is the one whose own description is
+           "Search for code entities by name, keyword, or semantic similarity".
+        3. provider and model must be passed on the search call AND the graph
+           must be embedded first. `build --embedding-provider local` reports
+           "Semantic search is now active" and the search tool still answers
+           search_mode "none" without them.
+    mcp:
+      server_name: crg
+      command: "{uv_bin}/code-review-graph.exe"
+      args: ["serve", "--repo", "{tree}"]
+      served_tools: null
+    # Served (30). Excluded (10):
+    #   apply_refactor_tool, refactor_tool       mutate source; no arm is given
+    #                                            Edit or Write, so a refactor
+    #                                            cannot be exercised and
+    #                                            allowing it would break the
+    #                                            read-only parity.
+    #   generate_wiki_tool                       writes artifacts into the tree.
+    #   build_or_update_graph_tool,              setup. The harness runs the
+    #   embed_graph_tool, run_postprocess_tool   equivalents in `index` and
+    #                                            `activate`; letting the agent
+    #                                            rebuild mid-cell would make
+    #                                            the index an uncontrolled
+    #                                            variable and bill the rebuild
+    #                                            to one cell.
+    #   detect_changes_tool,                     diff- and PR-shaped: no diff
+    #   get_review_context_tool                  and no pull request in a cell.
+    #   cross_repo_search_tool, list_repos_tool  multi-repo; one repo is under
+    #                                            test, same as repowise's
+    #                                            list_repos.
+    #
+    # get_wiki_page_tool and get_docs_section_tool ARE allowlisted even though
+    # `build` may not have generated a wiki. If they come back isError that is
+    # a missing setup step in this arm's definition, which is exactly the class
+    # of defect the per-server isError count exists to surface — and it is a
+    # defect to fix rather than a tool to quietly drop.
+    client_tools:
+      - mcp__crg__semantic_search_nodes_tool
+      - mcp__crg__query_graph_tool
+      - mcp__crg__traverse_graph_tool
+      - mcp__crg__get_flow_tool
+      - mcp__crg__list_flows_tool
+      - mcp__crg__get_affected_flows_tool
+      - mcp__crg__get_architecture_overview_tool
+      - mcp__crg__get_bridge_nodes_tool
+      - mcp__crg__get_community_tool
+      - mcp__crg__list_communities_tool
+      - mcp__crg__get_hub_nodes_tool
+      - mcp__crg__get_impact_radius_tool
+      - mcp__crg__get_knowledge_gaps_tool
+      - mcp__crg__get_minimal_context_tool
+      - mcp__crg__get_docs_section_tool
+      - mcp__crg__get_wiki_page_tool
+      - mcp__crg__get_suggested_questions_tool
+      - mcp__crg__get_surprising_connections_tool
+      - mcp__crg__find_large_functions_tool
+      - mcp__crg__list_graph_stats_tool
+    index:
+      # --embedding-provider and --embedding-model "must be supplied together";
+      # passing the provider alone exits 2 with a usage error.
+      command:
+        - "{uv_bin}/code-review-graph.exe"
+        - build
+        - --repo
+        - "{tree}"
+        - --embedding-provider
+        - local
+        - --embedding-model
+        - sentence-transformers/all-MiniLM-L6-v2
+      timeout_seconds: 10800
+    activate:
+      - tool: embed_graph_tool
+        args: {provider: local, model: sentence-transformers/all-MiniLM-L6-v2}
+        timeout_seconds: 1800
+    coaching: |
+      You have the code-review-graph MCP server. Use it to navigate this
+      repository.
+
+      - mcp__crg__semantic_search_nodes_tool(query="...", limit=10,
+        provider="local", model="sentence-transformers/all-MiniLM-L6-v2")
+        — searches code entities by name, keyword or semantic similarity.
+        The provider and model arguments are required on every call or the
+        server falls back to no semantic search.
+      - mcp__crg__query_graph_tool(pattern=..., target=...) — a structured
+        graph query. It does NOT take a natural-language question.
+      - mcp__crg__traverse_graph_tool, get_impact_radius_tool,
+        get_bridge_nodes_tool, get_hub_nodes_tool — walk the graph, or find
+        what a node reaches and what reaches it.
+      - mcp__crg__get_flow_tool, list_flows_tool, get_affected_flows_tool —
+        named execution flows through the codebase.
+      - mcp__crg__get_architecture_overview_tool, get_community_tool,
+        list_communities_tool, list_graph_stats_tool,
+        get_surprising_connections_tool, find_large_functions_tool —
+        structural summaries.
+      - mcp__crg__get_wiki_page_tool, get_docs_section_tool,
+        get_minimal_context_tool, get_knowledge_gaps_tool,
+        get_suggested_questions_tool — generated documentation over the graph.
+
+      These tools are loaded on demand: if the tool is not immediately
+      available, call ToolSearch with the tool name first, then call it.
+
+  serena:
+    description: >
+      Serena. An LSP wrapper with no retrieval-by-question tool at all;
+      search_for_pattern is the closest thing it offers and that asymmetry is
+      the finding rather than a rigging. Builds no persistent index, but still
+      needs a worktree to point at and an explicit activate_project even when
+      --project is on the command line: without it every tool answers
+      "No active project" and the arm scores a clean 0.000.
+    mcp:
+      server_name: serena
+      command: "{uv_bin}/serena.exe"
+      args:
+        - start-mcp-server
+        - --project
+        - "{tree}"
+        - --transport
+        - stdio
+        - --enable-web-dashboard
+        - "false"
+        - --enable-gui-log-window
+        - "false"
+      served_tools: null
+    # Served (29). Excluded (19):
+    #   create_text_file, insert_after_symbol,   mutate source. No arm is given
+    #   insert_before_symbol, replace_content,   Edit or Write, so these cannot
+    #   replace_in_files, replace_symbol_body,   be exercised and allowing them
+    #   rename_symbol, safe_delete_symbol        would break read-only parity.
+    #   write_memory, delete_memory,             mutate Serena's own memory
+    #   edit_memory, rename_memory               store, which persists ACROSS
+    #                                            cells — a cell that writes a
+    #                                            memory changes the next cell's
+    #                                            starting state. That is
+    #                                            finding E3 in a different
+    #                                            substrate and it is why they
+    #                                            go, not because they are bad.
+    #   read_memory, list_memories               read that same cross-cell
+    #                                            store; nothing legitimately
+    #                                            put anything in it.
+    #   execute_shell_command                    a shell. Bash is denied to
+    #                                            every arm (repo escape, and it
+    #                                            can read the benchmark's own
+    #                                            answer key); one arm reaching
+    #                                            a shell through its server is
+    #                                            not the same experiment.
+    #   activate_project                         the harness runs it in
+    #                                            `activate`, before the cell.
+    #   onboarding, initial_instructions,        session setup and self-
+    #   get_current_config                       description, not retrieval.
+    #
+    # read_file, list_dir and find_file ARE allowlisted although Read, Glob and
+    # Grep already cover them. They are what Serena ships and duplicating a
+    # capability the agent already has is not an advantage; dropping them
+    # would be us deciding which of a competitor's tools count.
+    client_tools:
+      - mcp__serena__search_for_pattern
+      - mcp__serena__find_symbol
+      - mcp__serena__get_symbols_overview
+      - mcp__serena__find_declaration
+      - mcp__serena__find_implementations
+      - mcp__serena__find_referencing_symbols
+      - mcp__serena__get_diagnostics_for_file
+      - mcp__serena__find_file
+      - mcp__serena__list_dir
+      - mcp__serena__read_file
+    index: null
+    activate:
+      - tool: activate_project
+        args: {project: "{tree}"}
+        timeout_seconds: 600
+    coaching: |
+      You have the Serena MCP server. Use it to navigate this repository.
+
+      - mcp__serena__search_for_pattern(substring_pattern="...",
+        relative_path=".") — searches the project for a pattern.
+      - mcp__serena__find_symbol(name_path="...") — locates a symbol.
+      - mcp__serena__get_symbols_overview(relative_path="...") — lists the
+        symbols defined in a file.
+      - mcp__serena__find_declaration / find_implementations /
+        find_referencing_symbols — go to definition, find implementations,
+        find callers, via the language server.
+      - mcp__serena__get_diagnostics_for_file(relative_path="...") — language
+        server diagnostics for a file.
+      - mcp__serena__find_file / list_dir / read_file — locate and read files
+        through Serena rather than through your own tools.
+
+      These tools are loaded on demand: if a tool is not immediately
+      available, call ToolSearch with the tool name first, then call it.

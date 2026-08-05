@@ -1,0 +1,135 @@
+# The stratified run. PLAN.md Phase 3's chart, which no run has ever produced.
+#
+# PLAN.md has said since it was written that slicing by question type is
+# "likely the single most differentiating chart" in this bake-off, and every
+# Layer B run so far used `django_000`-`django_009` in file order instead.
+# That is worse than unstratified: the django SWE-QA rows are laid out by
+# interrogative (What ~000-011, How ~012-022, Why ~023-035, Where ~036-047),
+# so the first ten in file order are the `What` block and nothing else. Every
+# Layer B number published so far is a number about one interrogative class.
+#
+# The classification is committed at `data/swe_qa/django_question_shapes.json`
+# and was made from the question text alone BEFORE any arm's per-question
+# performance was looked at. `harness/question_shapes.py` holds the taxonomy,
+# the seed, and the two findings that fall out of the distribution itself:
+#
+#   * `history-why` is EMPTY, 0 of 48. That is the slice PLAN.md predicted
+#     would separate us most, because it is the one no graph-only competitor
+#     can reach. SWE-QA does not contain it. The hypothesis is not testable on
+#     this question source and pretending otherwise by relabelling something
+#     adjacent would be the whole problem.
+#   * `performance-why` exists and PLAN.md's taxonomy does not have it. Four
+#     questions ask why a path is slow and what would fix it.
+#
+# `stratified_shapes` computes the draw rather than listing it, so a later
+# reader who disagrees with a label edits the classification and the draw
+# follows. 3 per non-empty shape, n=15.
+#
+# EQUAL allocation, not proportional, and the consequence must travel with any
+# number from this run: a pooled mean over these 15 is NOT an estimate of the
+# arms' mean over all 48, because the slices are deliberately not weighted by
+# their real frequency. The per-slice comparison is the output. The pooled row
+# is a convenience and should be labelled as one.
+#
+# ---------------------------------------------------------------------------
+# Six arms, all under the allowlist rule for the first time
+# ---------------------------------------------------------------------------
+# `repowise`, not `repowise-lean`. The lean arm pins its server to four tools
+# and is the smallest surface in the bake-off; putting it against a serena
+# serving 29 and a crg serving 30 measures our pin as much as our tool, which
+# is the graphify defect pointing the other way. See the allowlist rule at the
+# top of configs/arms.yaml.
+#
+# ---------------------------------------------------------------------------
+# What must be checked BEFORE trusting a single row of this
+# ---------------------------------------------------------------------------
+# 6 arms x 15 questions = 90 cells, roughly $18-20 at the per-cell costs
+# session 9 measured. Cost is not the constraint; the constraint is that two
+# of these arms have had exactly one cell each ever run.
+#
+#   * serena's first cell was NOT EXERCISED: 29 tools served, the agent issued
+#     no ToolSearch and answered with nine Greps (finding A30). If that repeats
+#     across the draw, serena's row is a measurement of whether an agent
+#     reaches for it, not of what it retrieves, and it must be reported as
+#     that rather than as a quality number.
+#   * code-review-graph allowlists get_wiki_page_tool and get_docs_section_tool
+#     although `build` may not generate a wiki. Watch `mcp_per_server` for
+#     isError; a tool erroring because its artifact was never built is a
+#     missing setup step in the arm definition, not a bad arm.
+#   * `arm_exercised` now requires a call the server ANSWERED, not merely one
+#     the agent issued. Read the exclusions line, not the means.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_stratified_django.yaml
+
+experiment_name: "layerb_stratified_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # NOT max_tasks. Selecting by position is what produced a one-interrogative
+    # sample three runs in a row.
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "serena"
+    arm: "serena"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_stratified_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_stratified_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 40.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E1: a timed build under a live process pool inflates by 65%, and
+  # every arm's index build happens inside its first cell. Raise only once
+  # every arm's index exists on disk.
+  max_workers: 1

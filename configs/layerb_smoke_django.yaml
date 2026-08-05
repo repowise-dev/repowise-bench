@@ -1,0 +1,99 @@
+# ONE CELL. Step 2 of the Layer B session: one arm, one question, one repo,
+# read by hand before anything is swept. Every rung in this workstream that
+# skipped this step paid for it, and every entry on the measurement-traps list
+# produced a plausible WRONG NUMBER rather than an error.
+# Layer B pilot — django, SWE-QA questions, one arm per tool.
+#
+# Rung 6. The pilot the whole bake-off's agent-efficiency layer is blocked on.
+# n is deliberately small: this is the run that proves the apparatus, and the
+# 3-arm / 7-arm split is nine dollars apart, so scale is not the constraint.
+#
+# What is NOT default here, and why each one is a decision rather than a
+# preference:
+#
+#   prompt_style: neutral
+#     Every arm gets the same system prompt with only the server name and its
+#     tool list substituted. The legacy repowise prompt (kept, and used by the
+#     flask48-comparable configs) names which tool to call first, tells the
+#     agent to trust a confidence signal, and instructs it not to verify. No
+#     competitor was ever offered coaching of that quality. Running a
+#     cross-tool comparison on it would measure our prompt engineering
+#     alongside our tool, which is the thing this workstream criticises other
+#     people for. See PLAN.md Phase 1 item 6.
+#
+#   arms named explicitly
+#     `repowise_enabled: true` still works and still resolves to the same arm,
+#     but a run comparing seven tools should say which seven.
+#
+#   judge_model: gpt-5.6-luna
+#     Cross-family. `_resolve_judge_model` RAISES if the judge equals the agent
+#     model, because every published SWE-QA quality score before 2026-08-01 was
+#     graded by a judge byte-identical to the arm it was scoring.
+#
+#   max_workers: 1
+#     Finding E1: a timed build under a live process pool inflates by 65%.
+#     Index builds happen inside the first cell of each arm, so parallel
+#     workers would contend on exactly the measurement that matters. Raise it
+#     only after every arm's index exists.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_pilot_django.yaml
+
+experiment_name: "layerb_smoke_django"
+
+# Where arms come from. Point these elsewhere to run someone else's arm set
+# without touching this file's arm names.
+arms_file: null          # default: configs/arms.yaml
+arms_dir: null           # default: configs/arms.d/*.yaml, merged over it
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 1
+    repos:
+      - "django/django"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise-lean"
+    arm: "repowise-lean"
+  - name: "repowise-full"
+    arm: "repowise-full"
+
+agent:
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 600
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_smoke_django"
+  trees_dir: null          # default: ~/Desktop/bakeoff, outside the repowise tree
+
+budget:
+  max_total_usd: 6.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

@@ -1,0 +1,118 @@
+# flask48, re-run under the pinned environment. This settles D16.
+#
+# D16, found in session 8: the C0 bare control was never bare. A C0 cell run
+# with the harness's own isolation flag set fired EIGHT hooks from the
+# operator's global ~/.claude/settings.json, two of which inject context, and
+# one of those two is repowise's own `repowise-augment` — registered as a
+# PostToolUse hook on Bash|PowerShell|Grep|Glob|Read|Edit|Write, so it fires
+# again on every file the bare agent reads. Every SWE-QA row produced on this
+# machine after those hooks were installed has a C0 arm that received injected
+# repowise context. That covers the whole flask48 family.
+#
+# **The sign of the effect is NOT known and it is genuinely ambiguous.** The
+# convenient reading — the control got some of the treatment, so the measured
+# lift understates the real one — does not survive looking at what was actually
+# injected: text advertising get_answer/get_context/get_symbol/search_codebase/
+# get_risk to an agent launched with `--disallowed-tools mcp__*,ToolSearch`
+# that physically cannot call any of them, plus the staleness of a DIFFERENT
+# repository's index. A control that spends a turn reaching for a denied tool
+# is a control made WORSE, which would inflate repowise's measured lift.
+# Claiming it runs against us would be the convenient claim and it is not
+# supported. This run is the measurement that settles it.
+#
+# ---------------------------------------------------------------------------
+# What is held constant, and why each one matters
+# ---------------------------------------------------------------------------
+# This config is `swe_qa_flask48_v2.yaml` with THREE fields changed: the
+# results dir, the logs dir, and the budget ceiling. Everything else is
+# byte-equivalent, deliberately:
+#
+#   * **No `prompt_style` key.** The default is "arm" (swe_qa_runner.py:2015),
+#     which is the LEGACY per-arm prompt the published rows were produced
+#     under. Setting `neutral` here would change the prompt and the hook
+#     isolation at once, and the run would measure neither. The published
+#     flask48 numbers are legacy-prompt numbers and the comparison has to be
+#     legacy-prompt too.
+#   * **Same two conditions**, `C0_bare` and `C2_full`, by their original
+#     `repowise_enabled`/`repowise_mode` spelling rather than the new `arm:`
+#     spelling, because those keys still resolve to the same arms and using the
+#     new ones would risk a different tool surface.
+#   * **Same model, same judge, same 48 tasks, same repo pin, same max_turns,
+#     same timeout, same single worker.**
+#
+# The ONE thing that differs is the environment: this runs under the
+# bench-owned `CLAUDE_CONFIG_DIR`, so `hook_events` and `hook_injections`
+# should be `[]` on every cell. That is the independent variable and it is the
+# only one.
+#
+# ---------------------------------------------------------------------------
+# What to read off the result
+# ---------------------------------------------------------------------------
+# Compare against `results/swe_qa_flask48_v2/` cell by cell. The question is
+# what happens to **C0_bare**, because that is the arm that was contaminated.
+# If C0 gets BETTER without the injections, the published lift was overstated.
+# If C0 gets WORSE, the published lift was understated. Either answer is
+# publishable and the workstream has committed to publishing whichever lands.
+#
+# Budget raised 25 -> 40 because the published run's own spend sat close to its
+# ceiling and an abort halfway through measures nothing.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/swe_qa_flask48_d16.yaml
+
+experiment_name: "swe_qa_flask48_d16"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 48
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_full"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+agent:
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/swe_qa_flask48_d16"
+  repos_dir: "./repos"
+  logs_dir: "./logs/swe_qa_flask48_d16"
+
+budget:
+  max_total_usd: 40.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

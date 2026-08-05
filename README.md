@@ -146,7 +146,7 @@ so the agent skips it on every query. Paired SWE-QA runs on real repositories
 (same model, same harness, with and without repowise's MCP tools):
 
 - Up to **-96% of the tokens** to load a commit's context: `get_context` returns
-  **2,391 tokens vs 64,039** raw, about **27x** fewer.
+  **393 tokens vs 13,984** raw, **35.6x** fewer pooled.
 - **-69% to -89% fewer files read** and **-49% to -70% fewer tool calls** at
   answer quality on par with raw exploration.
 - `repowise distill` compresses noisy command output (test runs, `git log`,
@@ -240,21 +240,33 @@ surface.
 
 ### Token efficiency: tokens to understand a commit
 
-Measured on the 30 most recent non-merge commits of `pallets/flask`:
+Measured on the 30 most recent non-merge commits of `pallets/flask`, counted
+with deterministic `tiktoken` (`cl100k_base`), with the
+`--min-repowise-tokens 200` guard **active**. 30 of 30 commits passed the guard.
 
 | Strategy | Tokens / commit |
 |---|---:|
-| naive (full contents of changed files) | 64,039 |
-| `git diff` only | 14,888 |
-| **`get_context`** | **2,391** |
+| naive (full contents of changed files) | 13,984 |
+| `git diff` only | 1,408 |
+| **`get_context`** | **393** |
 
-Reduction vs naive: 209x mean, 26.8x pooled, 12.6x median, 1,214x best case.
-Reduction vs `git diff`: 41.7x mean, 6.2x pooled. Reproduce:
+Reduction vs **naive**: **35.6x pooled**, 29.3x mean, 7.9x median, 133.8x best
+case. Reduction vs `git diff`: 3.6x pooled.
+
+**Lead with the pooled figure (35.6x).** Pooled is sum-of-tokens over
+sum-of-tokens, so it weights each commit by the tokens actually at stake. A mean
+of per-commit ratios does not: a one-line commit where `get_context` returns 40
+tokens contributes a huge ratio that counts equally against a commit saving a
+hundred thousand. The `--min-repowise-tokens` guard (default 200) exists to drop
+those degenerate rows, so leave it at its default.
 
 ```bash
-.venv/bin/python harness/token_efficiency_bench.py \
-    --repo repos/pallets/flask --last 30 --min-repowise-tokens 0
+.venv/Scripts/python.exe harness/token_efficiency_bench.py \
+    --repo repos/pallets/flask --last 30
 ```
+
+Raw data:
+[`results/bakeoff_2026_08/rung1/token_efficiency_flask30_2026-08-01.csv`](results/bakeoff_2026_08/rung1/token_efficiency_flask30_2026-08-01.csv).
 
 ---
 

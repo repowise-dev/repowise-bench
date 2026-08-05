@@ -1,7 +1,7 @@
 # flask48 SWE-QA — lean-MCP smoke (3 arms, 2 tasks).
 #
 # Isolates the MCP schema-tax lever: C2_lean launches the server with
-# `--profile core` so only the four tools the agent actually uses are
+# `--tools <explicit allowlist>` so only the four tools the agent actually uses are
 # advertised (get_answer, get_context, get_symbol, search_codebase) — the
 # other five schemas never enter the agent's context. Same index as C2_full.
 #
@@ -48,7 +48,7 @@ conditions:
     plugin_skills: false
 
 agent:
-  model: "sonnet"
+  model: "claude-sonnet-5"
   max_turns: 15
   timeout_seconds: 300
 
@@ -70,7 +70,7 @@ budget:
   abort_on_exceed: true
 
 evaluation:
-  judge_model: "sonnet"
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
   dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
 
 parallelism:

@@ -1,0 +1,121 @@
+# Is it us, or is it the category?
+#
+# The 3-arm pilot said repowise cost 41-48% more than a bare agent and bought no
+# measurable quality. That number is uninterpretable on its own: it cannot
+# distinguish "repowise is bad at this" from "no codebase-intelligence MCP
+# server pays for itself on grep-shaped django questions". This run is the
+# discriminator, and it is the cheapest informative thing available.
+#
+# Four arms, same 10 questions, one prompt template for all of them:
+#   c0-bare        the control
+#   repowise-lean  ours, smallest tool surface
+#   codegraph      the arm that beat us on Layer A retrieval (0.610 vs our 0.746
+#                  on the sealed half, so it is a real competitor and not a
+#                  strawman)
+#   graphify       a second, differently-shaped graph tool
+#
+# Two harness changes since the 3-arm pilot, so its numbers are NOT directly
+# comparable to these and both runs must be reported separately:
+#   1. the neutral prompt now tells every arm to answer from the server's output
+#      and stop, rather than re-verifying it with Grep. The 3-arm pilot measured
+#      repowise arms making 4.6 Grep/Read calls AFTER their last MCP call, i.e.
+#      paying for the tool and then doing the untooled work anyway.
+#   2. FORCE_PROMPT_CACHING_5M=1. Cache writes were 86-115% of the cost gap and
+#      the 1-hour TTL premium is paid on every cell for a TTL no cell can use.
+# Layer B pilot — django, SWE-QA questions, one arm per tool.
+#
+# Rung 6. The pilot the whole bake-off's agent-efficiency layer is blocked on.
+# n is deliberately small: this is the run that proves the apparatus, and the
+# 3-arm / 7-arm split is nine dollars apart, so scale is not the constraint.
+#
+# What is NOT default here, and why each one is a decision rather than a
+# preference:
+#
+#   prompt_style: neutral
+#     Every arm gets the same system prompt with only the server name and its
+#     tool list substituted. The legacy repowise prompt (kept, and used by the
+#     flask48-comparable configs) names which tool to call first, tells the
+#     agent to trust a confidence signal, and instructs it not to verify. No
+#     competitor was ever offered coaching of that quality. Running a
+#     cross-tool comparison on it would measure our prompt engineering
+#     alongside our tool, which is the thing this workstream criticises other
+#     people for. See PLAN.md Phase 1 item 6.
+#
+#   arms named explicitly
+#     `repowise_enabled: true` still works and still resolves to the same arm,
+#     but a run comparing seven tools should say which seven.
+#
+#   judge_model: gpt-5.6-luna
+#     Cross-family. `_resolve_judge_model` RAISES if the judge equals the agent
+#     model, because every published SWE-QA quality score before 2026-08-01 was
+#     graded by a judge byte-identical to the arm it was scoring.
+#
+#   max_workers: 1
+#     Finding E1: a timed build under a live process pool inflates by 65%.
+#     Index builds happen inside the first cell of each arm, so parallel
+#     workers would contend on exactly the measurement that matters. Raise it
+#     only after every arm's index exists.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_pilot_django.yaml
+
+experiment_name: "layerb_cat_django"
+
+# Where arms come from. Point these elsewhere to run someone else's arm set
+# without touching this file's arm names.
+arms_file: null          # default: configs/arms.yaml
+arms_dir: null           # default: configs/arms.d/*.yaml, merged over it
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 10
+    repos:
+      - "django/django"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise-lean"
+    arm: "repowise-lean"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+
+agent:
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 600
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_cat_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_cat_django"
+  trees_dir: null          # default: ~/Desktop/bakeoff, outside the repowise tree
+
+budget:
+  max_total_usd: 30.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

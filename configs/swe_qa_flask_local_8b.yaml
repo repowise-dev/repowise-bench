@@ -4,7 +4,7 @@
 #   * C0_bare        — qwen3.5:4b via opencode, read/grep/glob only
 #   * C2_repowise    — same model + repowise MCP (index-only; that's what's cached)
 #
-# Judge is pinned to a NEUTRAL model (sonnet) so the local model never grades
+# Judge is pinned to a CROSS-FAMILY model (gpt-5.6-luna) so no model grades
 # itself. Start with a 5-task flask smoke; scale max_tasks after the numbers
 # look sane.
 
@@ -57,7 +57,7 @@ budget:
   abort_on_exceed: true
 
 evaluation:
-  judge_model: "sonnet"        # neutral judge across all cells — never the agent model
+  judge_model: "gpt-5.6-luna"   # cross-family: never the agent model (D3/D8)
   dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
 
 parallelism:

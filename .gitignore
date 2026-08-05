@@ -105,6 +105,46 @@ tool_health_dump.json
 # opencode source clone (inspection only, local)
 opencode-src/
 
+# SWE-bench validation: generated artifacts (regenerable, heavy, or local-only).
+# (gitignore has no inline comments — keep each comment on its own line.)
+# sparse clone of swe-bench/experiments (leaderboard dumps)
+/experiments/
+# per-instance native test venvs
+/swebench_venvs/
+# official swebench package venv (Windows orchestration)
+/swebench_harness_venv/
+# per-instance repowise index-only caches
+/indexes_swebench/
+# per-instance base_commit worktrees
+/scratch_swebench/
+# generated per-instance MCP configs for the swe_bench arm
+/mcp_configs/scratch_swebench_*.json
+# ad-hoc gold-gate dumps
+results_swebench_goldgate_*.json
+
+# Third-party graders and datasets, cloned not vendored. `external/ContextBench`
+# is a nested git checkout (EuniAI/ContextBench, Apache-2.0) plus its own
+# `.venv-grader`; it is recreated by the command recorded in the rung 8 RESULT.md
+# rather than committed here. `data/contextbench` holds the HF parquets.
+/external/
+/data/contextbench/
+
+# Isolated CLAUDE_CONFIG_DIR for benchmark subprocesses. Holds a hard link to
+# the operator's OAuth credentials; never commit it.
+.claude_bench_home/
+
+# Generated per (arm, run): MCP configs and pinned per-arm settings.
+mcp_configs/
+
+# Bench-owned CODEX_HOME. Holds a HARD LINK to ~/.codex/auth.json, which is
+# the operator's OAuth credential; never commit it. `--ignore-user-config`
+# does NOT suppress $CODEX_HOME/hooks.json, so this directory being clean is
+# the isolation mechanism rather than a convenience — see
+# harness/codex_isolation_probe.py.
+.codex_bench_home/
+
+# Throwaway CODEX_HOMEs the isolation probe plants a sentinel hook into.
+.codex_probe_scratch/
 # Context-tool benchmark results: raw JSONL + aggregates are the published
 # artifact (repo precedent); per-run transcripts under logs/ stay local.
 !/results/context_bench/

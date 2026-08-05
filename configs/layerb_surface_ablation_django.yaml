@@ -1,0 +1,114 @@
+# The repowise surface ablation: does OUR OWN tool-surface size change anything?
+#
+# Three arms differing only in how many of repowise's tools the agent can see:
+#
+#   repowise        server default, 11 served, 7 allowlisted under the rule
+#   repowise-full   8 served (pinned)
+#   repowise-lean   4 served (pinned) — the smallest surface in the bake-off
+#
+# Same binary, same index, same questions, same prompt. `shares_index_with`
+# means this costs no index build.
+#
+# ---------------------------------------------------------------------------
+# Why this is worth running, and it is not the reason it looks like
+# ---------------------------------------------------------------------------
+# The rung 6 four-arm table reported `repowise-lean` at -13% cost against the
+# bare control, and session 9 established that it got there partly by carrying
+# the smallest surface in the field while competitors carried 1 to 30. That
+# reads as "fewer tools is cheaper". **Two things since say the effect may be
+# near zero and may even point the other way.**
+#
+#   * **Deferred schemas.** Claude Code does not put an allowlisted tool's
+#     schema in context until `ToolSearch` loads it, so a larger allowlist
+#     costs an arm NAMES IN A DEFERRED LIST rather than tokens of schema. On
+#     that mechanism the lean arm's cost advantage should be small, and the
+#     rung 6 gap was mostly something else.
+#   * **A31 cuts the other way.** The agent decides whether a deferred tool is
+#     worth a round trip from its NAME. A four-tool surface led by `get_answer`
+#     might be reached for MORE often than an eleven-tool one, in which case
+#     the ablation is an ADOPTION experiment as much as a cost one — and
+#     session 10 measured adoption varying from 0/15 to 15/15 across arms.
+#
+# So the pre-registered question is: **holding the tool, the index and the
+# questions fixed, does surface size move adoption, cost, or quality?**
+#
+# ---------------------------------------------------------------------------
+# What this run may NOT be used for, fixed before it runs
+# ---------------------------------------------------------------------------
+# **A lean win is NOT a reason to ship a smaller default surface.** Layer B has
+# no dev/test split, so choosing the shipped tool surface because it won on
+# these 15 questions is precisely the tuning the overfitting protocol forbids
+# (00_START_HERE.md, "The overfitting protocol"). The legitimate output is an
+# EXPLANATION of the rung 6 lean row, plus a hypothesis about naming and
+# surface design to validate on sets Layer B never saw: the 25 flow questions
+# at local-stash/agent-context/bench/eval/repowise_retrieval_v2.yaml, and mui.
+#
+# `c0-bare` is included because the report pairs every arm against the control
+# per question; without it there are no pairs and the ablation has no baseline.
+# Its 15 cells also serve as a same-night reproducibility check against the
+# stratified run, which used the identical arm, prompt, draw and environment.
+#
+# Same draw and same prompt style as configs/layerb_stratified_django.yaml, so
+# the `repowise` and `c0-bare` columns here are directly comparable to that
+# run's. That is the point: it makes the ablation an extension rather than a
+# separate experiment.
+
+experiment_name: "layerb_surface_ablation_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "repowise-full"
+    arm: "repowise-full"
+  - name: "repowise-lean"
+    arm: "repowise-lean"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_surface_ablation_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_surface_ablation_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 25.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

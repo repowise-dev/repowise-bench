@@ -1,0 +1,8 @@
+{
+  "$comment": "Settings pinned for every benchmark agent run. Passed as `claude --settings`. Exists because the developer's own ~/.claude/settings.json carries 14 hook events, 8 enabled plugins and a global effort level, and ALL of them fire inside a benchmark cell. Two of those hooks are repowise's own (`repowise-augment` on SessionStart and on PostToolUse for Bash|PowerShell|Grep|Glob|Read|Edit|Write, `repowise-rewrite` on PreToolUse Bash), so the C0 BARE control arm was being handed repowise context it is defined by not having. Measured 2026-08-03: a trivial C0 cell fired 7 hooks and received an injected `[repowise] ... The MCP tools (get_answer, get_context, get_symbol, search_codebase, get_risk) stay reliable` block before its first turn. See RESULT.md finding D16.",
+  "hooks": {},
+  "enabledPlugins": {},
+  "mcpServers": {},
+  "alwaysThinkingEnabled": false,
+  "includeCoAuthoredBy": false
+}

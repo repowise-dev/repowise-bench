@@ -61,9 +61,41 @@ def run_swe_qa_experiment(config: dict, conditions: list,
                            budget: BudgetTracker, completed: set,
                            writer: ResultWriter, raw_saver: RawOutputSaver):
     """Run SWE-QA benchmark across conditions with parallel workers."""
+    def _resolve_task_ids(bench_cfg: dict):
+        """`task_ids:` verbatim, or `stratified_shapes:` computed from the
+        committed classification.
+
+        A config naming fifteen ids by hand and a config asking for a
+        stratified draw are the same run, but only the second one stays correct
+        when someone disagrees with a label and edits
+        `data/swe_qa/django_question_shapes.json`. The seed and the
+        per-slice size are the reproducible part; the ids are derived. See
+        `harness/question_shapes.py`.
+        """
+        explicit = bench_cfg.get("task_ids")
+        strat = bench_cfg.get("stratified_shapes")
+        if explicit and strat:
+            raise ValueError(
+                "set task_ids OR stratified_shapes, not both: a hand-written "
+                "list silently overriding a computed draw is how a stratified "
+                "run stops being one."
+            )
+        if explicit:
+            return list(explicit)
+        if not strat:
+            return None
+        from harness.question_shapes import stratified, STRATIFIED_SEED
+        per_shape = int(strat.get("per_shape", 3))
+        seed = int(strat.get("seed", STRATIFIED_SEED))
+        ids = stratified(per_shape=per_shape, seed=seed)
+        print(f"  Stratified draw: {len(ids)} questions, {per_shape} per "
+              f"non-empty shape, seed {seed}")
+        return ids
+
     from harness.swe_qa_runner import load_swe_qa_tasks, run_swe_qa_task, ensure_repo_cloned
 
     bench_cfg = config["benchmarks"]["swe_qa"]
+
     tasks = load_swe_qa_tasks(
         data_dir=bench_cfg.get("data_dir", "./data"),
         max_tasks=bench_cfg.get("max_tasks"),
@@ -71,6 +103,7 @@ def run_swe_qa_experiment(config: dict, conditions: list,
         skip_tasks=bench_cfg.get("skip_tasks", 0),
         exclude_indices=bench_cfg.get("exclude_indices"),
         include_indices=bench_cfg.get("include_indices"),
+        task_ids=_resolve_task_ids(bench_cfg),
         tasks_file=bench_cfg.get("tasks_file"),
     )
 

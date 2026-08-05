@@ -1,0 +1,88 @@
+# The two arms that have never had a cell, one cell each, read by hand.
+#
+# `serena` and `code-review-graph` have had registry entries and verified
+# binaries since session 8 and have never been run through the agent harness.
+# Both also went into this session allowlisted a fraction of what they serve
+# (3 of 29 and 1 of 30); the allowlist rule at the top of configs/arms.yaml is
+# applied here for the first time, so this is also that rule's first cell.
+#
+# THIS IS NOT A COMPARISON AND ITS NUMBERS ARE NOT A ROW. It is the by-hand
+# step every rung in this workstream that skipped it has paid for:
+#
+#   * session 8's first Claude cell scored 7.8/10, cost $0.42, reported
+#     `error: null` and never called the arm's server at all.
+#   * this session's first Codex cell reported `arm_exercised: true`, one
+#     `get_answer` issued, judge 9.0/10 — and the call had come back
+#     `user cancelled MCP tool call`.
+#
+# `arm_exercised` now catches both, but it does not catch a wrong tool name or
+# an unusable index, and both of those have cost an arm a false zero here
+# before. code-review-graph in particular has three setup steps none of which
+# is guessable from its README, each of which produced a clean 0.000 when
+# missing. Read the cell, do not read the summary line.
+#
+# c0-bare is included as a same-run reference point, NOT as a control to
+# subtract: n=1 supports no comparison.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_newarms_django.yaml
+#
+# code-review-graph builds its graph AND embeds it inside its first cell, with
+# a local sentence-transformers model over ~3,000 django files. Budget wall
+# clock for that, not dollars.
+
+experiment_name: "layerb_newarms_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    max_tasks: 1
+    repos:
+      - "django/django"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "serena"
+    arm: "serena"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+
+agent:
+  harness: "claude_code"
+  model: "claude-sonnet-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_newarms_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_newarms_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 8.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"   # cross-family against a Claude agent
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

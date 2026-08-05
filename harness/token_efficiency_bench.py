@@ -11,9 +11,13 @@ need to load under three strategies:
 so the ratios are directly comparable.
 
 Fairness rules baked into the runner:
-  * Generated/lockfile/vendored paths are excluded from ALL three strategies
-    so the comparison is on real source code, not on `package-lock.json`.
-  * Commits whose surviving file set is empty after exclusion are dropped.
+  * NO path exclusions. Generated files, lockfiles and vendored paths all count,
+    for all three strategies alike (`is_excluded` returns False unconditionally,
+    by design). An earlier version of this docstring claimed exclusions were
+    enforced; they never were. Since the identical file list feeds naive and
+    repowise, including everything is the conservative choice: it can only help
+    the naive arm, whose token count grows with every lockfile kept in.
+  * Commits whose changed-file set is empty are dropped.
   * Commits where repowise returns trivially few tokens (< --min-repowise-tokens)
     are dropped — those are wiki-misses, not real wins, and would otherwise
     inflate the ratio dishonestly.
@@ -107,15 +111,36 @@ class CommitResult:
     skipped_reason: str = ""
 
 
+def _resolve_repowise_cmd() -> list[str]:
+    """Argv prefix for invoking the local repowise CLI.
+
+    `python -m repowise.cli.main` is a NO-OP: main.py builds the click group but
+    has no __main__ guard, so the process exits 0 having done nothing and the MCP
+    handshake fails with "Connection closed". Prefer the console-script exe.
+    Override with REPOWISE_EXE. Same resolution as `swe_qa_runner.py`.
+    """
+    env_exe = os.environ.get("REPOWISE_EXE")
+    if env_exe and Path(env_exe).exists():
+        return [env_exe]
+    candidate = REPO_ROOT.parent / ".venv" / "Scripts" / "repowise.exe"
+    if candidate.exists():
+        return [str(candidate)]
+    return [sys.executable, "-m", "repowise.cli.main"]
+
+
+_REPOWISE_CMD = _resolve_repowise_cmd()
+
+
 def server_params(repo: Path) -> StdioServerParameters:
     env = os.environ.copy()
     env["PYTHONPATH"] = os.pathsep.join(str(p) for p in REPOWISE_SRC)
     env["PYTHONIOENCODING"] = "utf-8"
     env["PYTHONUTF8"] = "1"
+    env.setdefault("DO_NOT_TRACK", "1")
     return StdioServerParameters(
-        command=sys.executable,
+        command=_REPOWISE_CMD[0],
         args=[
-            "-m", "repowise.cli.main", "mcp", str(repo.resolve()),
+            *_REPOWISE_CMD[1:], "mcp", str(repo.resolve()),
             "--transport", "stdio",
         ],
         env=env,
