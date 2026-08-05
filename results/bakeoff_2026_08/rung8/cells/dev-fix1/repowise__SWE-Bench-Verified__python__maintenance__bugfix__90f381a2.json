@@ -1,0 +1,75 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__90f381a2",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f2051eb8a7febdaaa43bd33bf5a6108c5f428e59",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 466.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__90f381a2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-90f381a2",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 951,
+    "ranked": [
+      "django/contrib/admindocs/views.py"
+    ],
+    "n_ranked": 1,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/query_utils.py",
+      "tests/invalid_models_tests/test_models.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

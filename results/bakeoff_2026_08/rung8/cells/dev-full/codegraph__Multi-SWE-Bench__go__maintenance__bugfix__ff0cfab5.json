@@ -1,0 +1,66 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "d21c11d774df552b9c36d3d35aa8eb12e5aebd55",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 9.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ff0cfab5"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__ff0cfab5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ff0cfab5",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19880,
+    "ranked": [
+      "api/queries_comments.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/pr/create/regexp_writer.go",
+      "pkg/cmd/project/close/close.go",
+      "pkg/cmd/project/copy/copy.go",
+      "pkg/cmd/project/create/create.go",
+      "pkg/cmd/project/delete/delete.go",
+      "pkg/cmd/pr/create/regexp_writer_test.go",
+      "pkg/cmd/issue/lock/lock.go",
+      "git/client.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/cmd/pr/shared/templates.go",
+      "pkg/cmd/auth/login/login_test.go",
+      "pkg/cmd/auth/shared/git_credential_test.go",
+      "pkg/cmd/extension/manager_test.go",
+      "pkg/cmd/gist/clone/clone_test.go",
+      "api/queries_branch_issue_reference.go",
+      "pkg/cmd/issue/develop/develop.go",
+      "pkg/cmd/issue/status/status.go",
+      "pkg/cmd/status/status.go"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "pkg/cmd/gist/create/create.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

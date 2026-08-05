@@ -1,0 +1,69 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+  "arm": "repowise-search",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "f015020bcd61caf00d41d4c2dae014be2fb2fc29",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-03f04397",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5298,
+    "ranked": [
+      "api/queries_issue.go::IssueStatus",
+      "onboarding/guided_tour",
+      "pkg/cmd/label",
+      "pkg/cmd/extension/ext_tmpls/script.sh",
+      "cmd/gen-docs",
+      "api/queries_comments.go",
+      "api/queries_pr_review.go",
+      "api/http_client_test.go",
+      "internal/text/text.go",
+      "api/queries_repo.go"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/http.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/list.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

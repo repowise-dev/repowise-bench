@@ -1,0 +1,54 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "953f29f700a60fc09b08b2c2270c12c447490c6a",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-e2250ebc"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-e2250ebc",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25141,
+    "ranked": [
+      "django/contrib/contenttypes/fields.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/contrib/admin/options.py",
+      "django/apps/registry.py",
+      "django/utils/functional.py",
+      "django/core/cache/backends/memcached.py",
+      "django/utils/autoreload.py"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "django/apps/registry.py"
+    ],
+    "gold_hit_rank": 4
+  }
+}

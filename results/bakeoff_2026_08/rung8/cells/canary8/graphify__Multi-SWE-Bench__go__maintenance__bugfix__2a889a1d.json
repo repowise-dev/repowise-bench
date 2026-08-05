@@ -1,0 +1,58 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "eb1b9122d8d7984fc33656e5ef90bb5b2b29e9df",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 5.6,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2a889a1d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2a889a1d",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 2636,
+    "ranked": [
+      "update/update.go",
+      "utils/table_printer.go",
+      "pkg/text/truncate.go"
+    ],
+    "n_ranked": 3,
+    "gold_files": [
+      "command/alias.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

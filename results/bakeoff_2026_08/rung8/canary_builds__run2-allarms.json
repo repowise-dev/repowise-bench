@@ -1,0 +1,132 @@
+[
+  {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 406.6,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-django"
+  },
+  {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 3.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-codegraph-django"
+    ],
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-codegraph-django"
+  },
+  {
+    "arm": "crg",
+    "rc": 2,
+    "seconds": 0.2,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+      "build",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-crg-django",
+      "--embedding-provider",
+      "local"
+    ],
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-crg-django"
+  },
+  {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 144.5,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-graphify-django"
+    ],
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-graphify-django"
+  },
+  {
+    "arm": "serena",
+    "skipped": "no-index-by-design",
+    "seconds": 0.0,
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-serena-django"
+  },
+  {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 119.1,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-cli"
+  },
+  {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 0.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-codegraph-cli"
+    ],
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-codegraph-cli"
+  },
+  {
+    "arm": "crg",
+    "rc": 2,
+    "seconds": 0.2,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+      "build",
+      "--repo",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-crg-cli",
+      "--embedding-provider",
+      "local"
+    ],
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-crg-cli"
+  },
+  {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 27.4,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-graphify-cli"
+    ],
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-graphify-cli"
+  },
+  {
+    "arm": "serena",
+    "skipped": "no-index-by-design",
+    "seconds": 0.0,
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-serena-cli"
+  }
+]

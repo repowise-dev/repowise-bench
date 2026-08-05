@@ -1,0 +1,78 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 497.8,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1ad7449c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1ad7449c",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 2759,
+    "ranked": [
+      "tests/requests/tests.py",
+      "django/contrib/admin/sites.py",
+      "middleware/views.py",
+      "django/core/management/commands/loaddata.py",
+      "django/template/defaultfilters.py",
+      "utils/html.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/contrib/gis/gdal/geomtype.py",
+      ".github/SECURITY.md",
+      "tests/sitemaps_tests/test_https.py",
+      "urls/http.py",
+      "django/contrib/sessions/backends/signed_cookies.py",
+      "sessions_tests/tests.py",
+      "django/http/response.py",
+      "utils/http.py",
+      "django/core/files/storage.py",
+      "django/core/handlers/wsgi.py",
+      "django/contrib/redirects/models.py",
+      "tests/defer_regress/models.py",
+      "tests/admin_scripts/tests.py",
+      "tests/handlers/tests.py",
+      "django/core/management/color.py"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

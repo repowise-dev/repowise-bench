@@ -1,0 +1,64 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e065b293878b1e3ea56655aa9d33e87576cd77ff",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 15.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-7489fdd8"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-7489fdd8",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24618,
+    "ranked": [
+      "tests/auth_tests/models/with_integer_username.py",
+      "tests/auth_tests/models/__init__.py",
+      "tests/auth_tests/test_forms.py",
+      "tests/auth_tests/test_models.py",
+      "django/contrib/auth/backends.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/query.py",
+      "tests/auth_tests/test_auth_backends.py",
+      "django/contrib/auth/base_user.py",
+      "tests/auth_tests/models/custom_user.py",
+      "django/contrib/auth/models.py",
+      "tests/test_client_regress/auth_backends.py",
+      "tests/admin_changelist/tests.py",
+      "tests/messages_tests/base.py",
+      "tests/auth_tests/models/custom_permissions.py",
+      "tests/auth_tests/models/invalid_models.py",
+      "tests/auth_tests/models/is_active.py"
+    ],
+    "n_ranked": 17,
+    "gold_files": [
+      "django/contrib/auth/backends.py"
+    ],
+    "gold_hit_rank": 5
+  }
+}

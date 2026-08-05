@@ -1,0 +1,126 @@
+﻿[worktree] Linked worktree of 
+C:\Users\ragha\Desktop\repowise\repowise-bench\repos\django\django detected; 
+seeding its index.
+Seed source C:\Users\ragha\Desktop\repowise\repowise-bench\repos\django\django 
+last_sync_commit 3b161e60 is not an ancestor of worktree HEAD. Falling back to 
+full init.
+repowise index-only — C:\Users\ragha\Desktop\bench-worktrees\django-838e432e
+Building the wiki from structure — no model, no spend.
+Decision extraction provider: openai
+
+────────────────────────── Phase 1 of 4 · Ingestion ───────────────────────────
+  Walking the tree, parsing files, building the dependency graph
+
+  Scanned 5,929 files, 2,577 included
+    Excluded: 5 by filename pattern, 1 oversized, 1,250 binary, 1 generated, 
+2,095 unknown type
+  Graph build can take several minutes on a first run. Safe to Ctrl-C — re-run 
+'repowise init --resume' to continue where it stopped.
+    ↳ betweenness centrality ✓ (17.1s)
+    ↳ symbol betweenness ✓ (28.3s)
+    ↳ PageRank ✓ (29.5s)
+    ↳ symbol PageRank ✓ (29.5s)
+    ↳ community detection ✓ (0.8s)
+    ↳ symbol communities ✓ (3.2s)
+  → External systems: 4 declared deps across manifests
+  → 2,577 files parsed · 31,384 symbols extracted
+  → Graph: 36,481 nodes · 90,475 edges
+  → Git: 2,630 files indexed
+
+─────────────────────────── Phase 2 of 4 · Analysis ───────────────────────────
+  Dead code, code health, architectural decisions
+
+  → 155 unreachable files · 98 unused exports · ~12,036 deletable lines
+  → 28 architectural decisions found: 25 from pull requests, 6 from git 
+history, 3 from comments
+  → 5317 health findings · avg 7.68/10 · worst 2.0/10
+    ↳ KG skeleton: 10351 nodes, 22273 edges, 35 layers
+
+
+┌───────────────────────────── Analysis Complete ─────────────────────────────┐
+│                                                                             │
+│   2,577 files · 31,384 symbols                                              │
+│   python 98%, javascript 2%, json 0%, makefile 0% +2 more                   │
+│                                                                             │
+│   Graph          36,481 nodes · 90,475 edges                                │
+│   Git            2,630 files indexed                                        │
+│   Dead code      155 unreachable · 98 unused exports · ~12,036 lines        │
+│   Decisions      34 extracted                                               │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+────────────────────────── Phase 3 of 4 · Generation ──────────────────────────
+  Building wiki pages from the code's structure (no model, no cost)
+
+repowise.exe : embed_text_truncated page_id=symbol_spotlight:django/db/__init__.py::DefaultConnectionProxy chars=30274 chars_dropped=274 cap=30000
+At line:11 char:1
++ & C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe init --n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (embed_text_trun...d=274 cap=30000:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Onboarding: 6/8 slots — codebase_map, development_guide, guided_tour, 
+how_it_works, key_concepts, project_overview
+  Generated 3392 pages
+
+  ✓ Generated 3392 pages
+
+───────────────────────── Phase 4 of 4 · Persistence ──────────────────────────
+  Saving to database and building search index
+
+  ✓ Database updated
+  ✓ .claude/CLAUDE.md updated
+  ✓ VS Code MCP configured 
+(C:\Users\ragha\Desktop\bench-worktrees\django-838e432e\.vscode\mcp.json)
+  ✓ VS Code extension recommended 
+(C:\Users\ragha\Desktop\bench-worktrees\django-838e432e\.vscode\extensions.json
+)
+
+┌────────────────────── {^ ^}  repowise index complete ───────────────────────┐
+│                                                                             │
+│   Files indexed           2,577                                             │
+│   Symbols                 31,384                                            │
+│   Languages               python 98%, javascript 2%, json 0%, makefile 0%   │
+│                           +2 more                                           │
+│   Wiki pages              3,392 rendered from structure                     │
+│   Elapsed                 8m 57s                                            │
+│                                                                             │
+│   Graph                   36,481 nodes · 90,475 edges                       │
+│   Dead code               155 unreachable · 98 unused exports               │
+│   Decisions               34                                                │
+│   Git history             2,630 files · 0 hotspots                          │
+│                                                                             │
+│   What's next:                                                              │
+│   repowise serve               open the dashboard at http://localhost:3000  │
+│   repowise generate            upgrade the wiki to model-written prose      │
+│ (needs a key)                                                               │
+│   repowise mcp .               connect an MCP client (Cursor, Codex, Claude │
+│ Code)                                                                       │
+│   repowise dead-code           explore 253 dead code findings               │
+│   repowise decisions           browse 34 architectural decisions            │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Every page is derived from structure and says so in its footer. Full-text
+  search works now; semantic search needs an embedder (Ollama is the keyless 
+one).
+
+                               Generation Checks                               
+┌──────────────────────┬──────────────────────────────────────────────────────┐
+│ Check                │                                               Result │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│ Orientation overlap  │                                3 of 15 pairs overlap │
+│ Layer grouping       │                           all 55 pages carry a layer │
+│ Artifact checks      │                        not run (0 responses checked) │
+│ Overview length      │                                      141 / 450 words │
+│ Question-shaped text │                                   3321 of 3328 pages │
+│ Module page openings │  41 of 48 pages (85%) — "covers the 22 source files" │
+│                      │                                                   ×8 │
+│ Module concept index │                                       47 of 48 pages │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+  overlap 'Repository Overview: django-838e432e' and 'Codebase Map' share 33% 
+of their vocabulary (threshold 22%)
+  overlap 'Repository Overview: django-838e432e' and 'Guided Tour' share 29% of
+their vocabulary (threshold 22%)
+  overlap 'Repository Overview: django-838e432e' and 'How It Works' share 26% 
+of their vocabulary (threshold 22%)

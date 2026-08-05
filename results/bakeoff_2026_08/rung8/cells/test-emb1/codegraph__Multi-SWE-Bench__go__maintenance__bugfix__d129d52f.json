@@ -1,0 +1,55 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "2df3dd4f7dd98e7969e6d9b760f0725aac8a2158",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 3.1,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-d129d52f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-d129d52f",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 12766,
+    "ranked": [
+      "pkg/cmd/issue/delete/delete.go",
+      "pkg/cmd/issue/issue.go",
+      "pkg/cmd/issue/delete/delete_test.go",
+      "pkg/cmd/root/root.go",
+      "internal/config/alias_config.go",
+      "pkg/set/string_set.go",
+      "pkg/cmd/alias/delete/delete.go",
+      "pkg/cmd/release/delete/delete.go"
+    ],
+    "n_ranked": 8,
+    "gold_files": [
+      "pkg/cmd/issue/delete/delete.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

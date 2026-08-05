@@ -1,0 +1,56 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "3a4d947603603f5dea742442d32bc131e9786d25",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 3.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0e3febd0"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0e3febd0",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 13195,
+    "ranked": [
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/issue/list/list.go",
+      "pkg/cmd/issue/view/view.go",
+      "api/queries_repo.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "git/git.go",
+      "pkg/cmdutil/web_browser.go"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "pkg/cmd/browse/browse.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

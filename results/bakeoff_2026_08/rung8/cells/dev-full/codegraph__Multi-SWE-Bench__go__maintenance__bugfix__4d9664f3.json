@@ -1,0 +1,61 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "583af3e54c506fa1c0e6bc673c2c62a7e6303660",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 6.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4d9664f3"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4d9664f3",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 17592,
+    "ranked": [
+      "internal/codespaces/api/api.go",
+      "pkg/cmd/workflow/shared/shared.go",
+      "pkg/cmd/workflow/list/list.go",
+      "pkg/cmd/workflow/view/http.go",
+      "pkg/cmd/workflow/view/view.go",
+      "pkg/cmd/workflow/list/list_test.go",
+      "pkg/cmd/workflow/run/run_test.go",
+      "pkg/cmd/workflow/shared/test.go",
+      "pkg/cmd/workflow/view/view_test.go",
+      "pkg/cmd/workflow/enable/enable.go",
+      "pkg/cmd/workflow/enable/enable_test.go",
+      "pkg/cmd/workflow/disable/disable_test.go",
+      "pkg/cmd/workflow/disable/disable.go",
+      "pkg/iostreams/iostreams.go"
+    ],
+    "n_ranked": 14,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/enable/enable.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/shared/shared.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

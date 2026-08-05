@@ -1,0 +1,77 @@
+{
+  "config_path": "configs/swe_qa_flask48_d16_canary.yaml",
+  "started_at": "2026-08-03T18:26:09.101024+00:00",
+  "conditions": [
+    "C0_bare",
+    "C2_full"
+  ],
+  "config": {
+    "experiment_name": "swe_qa_flask48_d16_canary",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "max_tasks": 2,
+        "repos": [
+          "pallets/flask"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "C0_bare",
+        "repowise_enabled": false,
+        "repowise_mode": null,
+        "claude_md": false,
+        "plugin_skills": false
+      },
+      {
+        "name": "C2_full",
+        "repowise_enabled": true,
+        "repowise_mode": "full",
+        "claude_md": false,
+        "plugin_skills": false
+      }
+    ],
+    "agent": {
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 300
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/swe_qa_flask48_d16_canary",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/swe_qa_flask48_d16_canary"
+    },
+    "budget": {
+      "max_total_usd": 5.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

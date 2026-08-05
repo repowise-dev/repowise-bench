@@ -1,0 +1,96 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3c9b757f",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "6e14426dfb076350796b6f081b27399a5f4be904",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 165.7,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3c9b757f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3c9b757f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.2,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 12708,
+    "ranked": [
+      "pkg/cmd/release/create/create.go",
+      "pkg/cmd/release/shared/fetch.go",
+      "pkg/cmd/release/shared/upload.go",
+      "internal/config/testing.go",
+      "pkg/cmdutil/errors.go",
+      "git/url.go",
+      "pkg/cmd/release/release.go",
+      "pkg/cmd/issue/issue.go",
+      "pkg/cmd/release/list/http.go",
+      "pkg/cmd/release/delete-asset/delete_asset.go",
+      "pkg/cmd/gist/create/create.go",
+      "pkg/cmd/issue/create/create.go",
+      "pkg/cmd/extension/http.go",
+      "pkg/cmd/issue/edit/edit.go",
+      "pkg/cmd/issue/comment/comment.go",
+      "pkg/cmd/release/create/http.go",
+      "pkg/cmd/release/list/list.go",
+      "pkg/cmd/release/create/create_test.go",
+      "api/client_test.go",
+      "pkg/cmd/pr/list/list_test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "pkg/cmd/release/create/create.go",
+      "pkg/cmd/release/create/http.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

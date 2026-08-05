@@ -1,0 +1,78 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__85c030cf",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "b9292f582f5553ef860245bb14cac49a308df3af",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 7.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-85c030cf"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__85c030cf",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-85c030cf",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6591,
+    "ranked": [
+      "api/queries_repo.go",
+      "pkg/cmd/repo/clone/clone_test.go",
+      "internal/ghinstance/host.go",
+      "api/client.go",
+      "docs/gh-vs-hub.md",
+      "internal/run/run.go",
+      "api/queries_user.go",
+      "pkg/cmd/repo/view/view.go",
+      "test/helpers.go",
+      "internal/ghrepo/repo.go",
+      "pkg/httpmock/stub.go",
+      "pkg/cmd/factory/default.go",
+      "utils/utils.go",
+      "pkg/cmd/repo/view/http.go",
+      "pkg/browser/browser.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmdutil/factory.go",
+      "internal/config/config_type.go",
+      "pkg/cmd/repo/clone/clone.go",
+      "git/url.go"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "api/queries_user.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/repo/clone/clone.go",
+      "pkg/cmd/repo/view/view.go"
+    ],
+    "gold_hit_rank": 7
+  }
+}

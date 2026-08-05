@@ -1,0 +1,88 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "aecfc01e6911e0ed58e91f5072305f5441cc76fe",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 12.8,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-250649eb"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-250649eb",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6583,
+    "ranked": [
+      "docs/markdown.go",
+      "pkg/cmd/secret/set/http.go",
+      "pkg/httpmock/stub.go",
+      "pkg/cmd/auth/shared/ssh_keys.go",
+      "pkg/cmd/actions/actions.go",
+      "api/queries_comments.go",
+      "internal/docs/markdown.go",
+      "pkg/cmd/pr/create/fixtures/repoWithNonLegacyPRTemplates/.github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      "internal/config/stub.go",
+      "pkg/githubtemplate/github_template.go",
+      "pkg/cmd/ssh-key/add/http.go",
+      "pkg/cmd/root/help_reference.go",
+      "pkg/cmd/secret/list/list.go",
+      "secret/list/list.go",
+      "pkg/iostreams/color.go",
+      "api/client.go",
+      "internal/ghinstance/host.go",
+      "pkg/markdown/markdown.go",
+      "api/reaction_groups.go",
+      "httpmock/stub.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/root/help.go",
+      "api/queries_issue.go",
+      "markdown/markdown.go",
+      "pkg/cmd/workflow/shared/shared.go",
+      "pkg/cmdutil/file_input.go",
+      "pkg/cmd/pr/shared/params.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/run/view/view.go",
+      "internal/config/config_file.go",
+      "cmd/gen-docs/main.go"
+    ],
+    "n_ranked": 31,
+    "gold_files": [
+      "pkg/cmd/secret/set/http.go",
+      "pkg/cmd/secret/set/set.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

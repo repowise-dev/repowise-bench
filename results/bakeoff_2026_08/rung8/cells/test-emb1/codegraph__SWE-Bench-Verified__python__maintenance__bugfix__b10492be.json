@@ -1,0 +1,78 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e1d673c373a7d032060872b690a92fc95496612e",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 15.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-b10492be"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-b10492be",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 14516,
+    "ranked": [
+      "django/contrib/gis/gdal/datasource.py",
+      "django/contrib/gis/gdal/driver.py",
+      "django/contrib/gis/gdal/field.py",
+      "django/contrib/gis/gdal/layer.py",
+      "django/db/models/sql/query.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/constraints.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/constraints.py",
+      "tests/backends/test_ddl_references.py",
+      "tests/prefetch_related/tests.py",
+      "tests/queries/test_query.py",
+      "tests/queries/test_sqlcompiler.py",
+      "django/db/models/sql/datastructures.py",
+      "tests/expressions/tests.py",
+      "tests/queries/tests.py",
+      "django/db/models/options.py",
+      "django/db/models/base.py",
+      "django/core/cache/backends/db.py",
+      "django/test/utils.py",
+      "django/db/models/functions/window.py",
+      "django/db/models/functions/__init__.py",
+      "tests/db_functions/window/test_validation.py",
+      "tests/expressions_window/tests.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/__init__.py",
+      "tests/migrations/test_writer.py",
+      "django/db/models/query.py",
+      "django/contrib/gis/gdal/geomtype.py"
+    ],
+    "n_ranked": 29,
+    "gold_files": [
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/utils.py",
+      "django/utils/text.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

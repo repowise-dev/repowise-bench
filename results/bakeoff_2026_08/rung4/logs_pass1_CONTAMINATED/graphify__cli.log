@@ -1,0 +1,25 @@
+$ graphify update C:\Users\ragha\Desktop\bakeoff\cli
+(cwd=C:\Users\ragha\Desktop\bakeoff\cli)
+
+--- stdout ---
+Re-extracting code files in C:\Users\ragha\Desktop\bakeoff\cli (no LLM needed)...
+  AST extraction: 100/831 uncached files (12%) [32 workers]
+  AST extraction: 200/831 uncached files (24%) [32 workers]
+  AST extraction: 300/831 uncached files (36%) [32 workers]
+  AST extraction: 400/831 uncached files (48%) [32 workers]
+  AST extraction: 500/831 uncached files (60%) [32 workers]
+  AST extraction: 600/831 uncached files (72%) [32 workers]
+  AST extraction: 700/831 uncached files (84%) [32 workers]
+  AST extraction: 800/831 uncached files (96%) [32 workers]
+  AST extraction: 831/831 uncached files (100%) [32 workers]
+Graph has 6887 nodes (above 5000 limit). Building aggregated community view...
+graph.html written (aggregated: 363 community nodes, 2157 cross-community edges)
+Tip: run with --obsidian for full node-level detail.
+[graphify watch] Rebuilt: 6887 nodes, 19191 edges, 363 communities
+[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in C:\Users\ragha\Desktop\bakeoff\cli\graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.
+
+--- stderr ---
+  warning: 69 source file(s) produced zero nodes and are absent from the graph: devcontainer.json, e0f97eb9-5b17-427f-87f2-1d85b33a146e.json, state.json, custom-issuer.sigstore.json, reusable-workflow-attestation.sigstore.json (+64 more). A re-run will retry them (empties are no longer cached); if it persists, please report the file(s) (#1666).
+

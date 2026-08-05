@@ -1,0 +1,98 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fd8123b1",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "694cf458f16b8d340a3195244196980b2dec34fd",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 780.7,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__fd8123b1",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-fd8123b1",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 26818,
+    "ranked": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/deletion.py",
+      "django/db/backends/mysql/schema.py",
+      "django/db/models/base.py",
+      "django/db/models/fields/related.py",
+      "django/db/backends/mysql/base.py",
+      "django/db/backends/sqlite3/schema.py",
+      "django/db/models/fields/related_descriptors.py",
+      "django/db/backends/mysql/validation.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/backends/base/schema.py",
+      "django/db/backends/sqlite3/base.py",
+      "django/db/backends/postgresql/schema.py",
+      "django/db/backends/oracle/schema.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/constraints.py",
+      "django/core/exceptions.py",
+      "django/utils/functional.py",
+      "django/utils/inspect.py",
+      "django/db/backends/sqlite3/introspection.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/backends/oracle/features.py",
+      "django/db/backends/sqlite3/schema.py",
+      "django/db/models/fields/related.py"
+    ],
+    "gold_hit_rank": 5
+  }
+}

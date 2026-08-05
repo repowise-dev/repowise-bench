@@ -1,0 +1,56 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__bdde6d9c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 23.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-bdde6d9c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__bdde6d9c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-bdde6d9c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 18764,
+    "ranked": [
+      "tests/model_fields/models.py",
+      "tests/model_fields/test_field_flags.py",
+      "tests/proxy_model_inheritance/models.py",
+      "tests/proxy_model_inheritance/tests.py",
+      "tests/model_forms/models.py",
+      "tests/model_forms/tests.py",
+      "tests/schema/models.py",
+      "tests/reserved_names/models.py",
+      "tests/validation/models.py"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "django/db/migrations/serializer.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6a5ef557f80a8eb6a758ebe99c8bb477ca47459e",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 959.0,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-31d4fe9d",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 7.5,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 24089,
+    "ranked": [
+      "django/contrib/gis/geos/mutable_list.py",
+      "django/utils/html.py",
+      "django/contrib/gis/measure.py",
+      "django/utils/http.py",
+      "django/utils/feedgenerator.py",
+      "django/utils/html.py::urlize",
+      "django/utils/http.py::is_same_domain",
+      "django/http/request.py",
+      "django/utils/translation/trans_real.py",
+      "django/contrib/sitemaps/management/commands/ping_google.py",
+      "django/http/response.py",
+      "django/contrib/gis/geos/geometry.py",
+      "django/middleware/http.py",
+      "django/views/decorators/http.py",
+      "django/db/models/fields/__init__.py",
+      "django/conf/locale/kn",
+      "django/utils/deconstruct.py",
+      "django/core/management/color.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/gis/gdal/raster/band.py"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/utils/html.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

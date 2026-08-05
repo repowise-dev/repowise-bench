@@ -1,0 +1,93 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "8288011149e71d5658b80ebef393522ba2d0e7cc",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 252.1,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3da242a2",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.9,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 16838,
+    "ranked": [
+      "internal/gh/gh.go",
+      "internal/config/config.go",
+      "cmd/gh/main.go",
+      "git/errors.go",
+      "Makefile",
+      "pkg/cmdutil/auth_check.go",
+      "pkg/cmdutil/legacy.go",
+      "pkg/cmd/auth/shared/prompt.go",
+      "pkg/cmd/gist/gist.go",
+      "internal/featuredetection",
+      "pkg/cmd/gist/shared/shared.go",
+      "pkg/cmd/issue/view/view_test.go",
+      "pkg/cmd/auth/logout/logout_test.go",
+      "pkg/cmd/repo/list/list_test.go",
+      "pkg/cmd/issue/list/list_test.go",
+      "pkg/cmd/pr/view/view_test.go",
+      "pkg/cmd/project/item-list/item_list_test.go",
+      "pkg/cmd/project/view/view_test.go",
+      "pkg/cmd/project/field-list/field_list_test.go",
+      "pkg/cmd/project/list/list_test.go"
+    ],
+    "n_ranked": 20,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/gist/edit/edit.go",
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

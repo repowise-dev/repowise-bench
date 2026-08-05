@@ -47,6 +47,19 @@ class RunMetrics:
     files_explored: list = field(default_factory=list)
     files_edited: list = field(default_factory=list)
     repowise_tools_called: list = field(default_factory=list)
+    # Successful MCP tool calls per server prefix ({"serena": ["find_symbol", ...]}).
+    # Superset of repowise_tools_called, which is kept for older aggregations.
+    server_tools_called: dict = field(default_factory=dict)
+    # True when this condition mounted an MCP server that the agent never
+    # successfully called: the run silently degraded to a bare-agent run and
+    # is not evidence about the server. None for conditions with no server.
+    attach_guard_fired: Optional[bool] = None
+    # Which stream field the token counts came from ("modelUsage" is
+    # authoritative; "result_usage" is the legacy top-level field, which
+    # under-reports on current Claude Code versions).
+    token_source: str = ""
+    # Question category (context-bench taxonomy), for sliced aggregation.
+    category: str = ""
 
     # -- proof of life, per cell ----------------------------------------
     # A zero is only publishable once the arm can be shown to have been alive
@@ -189,6 +202,37 @@ def parse_claude_code_output(json_output: dict) -> dict:
     }
 
 
+def _mcp_server_prefix(tool_name: str) -> Optional[str]:
+    """'mcp__serena__find_symbol' -> 'serena'; None for non-MCP tools."""
+    if not tool_name.startswith("mcp__"):
+        return None
+    rest = tool_name[len("mcp__"):]
+    return rest.split("__", 1)[0] if rest else None
+
+
+def _sum_model_usage(result_data: dict) -> dict:
+    """Aggregate result.modelUsage (per-model breakdown, camelCase fields).
+
+    Returns {} when absent. When present, this is the authoritative token
+    source: the top-level result.usage under-reports on current Claude Code
+    (observed cache_creation 46340 vs a true 98485 on a real transcript).
+    """
+    mu = result_data.get("modelUsage") or {}
+    if not isinstance(mu, dict) or not mu:
+        return {}
+    acc = {"input_tokens": 0, "output_tokens": 0,
+           "cache_read_tokens": 0, "cache_write_tokens": 0, "cost_usd": 0.0}
+    for u in mu.values():
+        if not isinstance(u, dict):
+            continue
+        acc["input_tokens"] += int(u.get("inputTokens", 0) or 0)
+        acc["output_tokens"] += int(u.get("outputTokens", 0) or 0)
+        acc["cache_read_tokens"] += int(u.get("cacheReadInputTokens", 0) or 0)
+        acc["cache_write_tokens"] += int(u.get("cacheCreationInputTokens", 0) or 0)
+        acc["cost_usd"] += float(u.get("costUSD", 0.0) or 0.0)
+    return acc
+
+
 def parse_claude_stream_output(stream_lines: list) -> dict:
     """Parse --output-format stream-json --verbose for tool-level detail.
 
@@ -222,7 +266,11 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
     tool_calls = []
     files_read = set()
     files_edited = set()
+    server_tools = {}
     task_subagent_calls = 0
+    # tool_use_id -> MCP tool name, so results are matched to their calls
+    # exactly (order-based matching breaks under parallel tool use).
+    _pending_mcp = {}
     result_data = {}
 
     # tool_use_id -> tool name, for every MCP call issued
@@ -256,8 +304,13 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
                         p = inp.get("file_path", "")
                         if p:
                             files_edited.add(p)
-                    elif tool_name.startswith("mcp__"):
+                    elif _mcp_server_prefix(tool_name):
+                        # Two records on purpose. `mcp_issued` keeps EVERY
+                        # issued call so a failure stays distinguishable from
+                        # a zero (arm integrity); `_pending_mcp` is popped on
+                        # result to build the successful-tool surface.
                         mcp_issued[block.get("id", "")] = tool_name
+                        _pending_mcp[block.get("id", "")] = tool_name
                     elif tool_name == "Task":
                         # Sub-agent invocation. Parent stream collapses
                         # the entire sub-agent run into a single turn,
@@ -268,6 +321,15 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
             for block in d.get("message", {}).get("content", []):
                 if not isinstance(block, dict) or block.get("type") != "tool_result":
                     continue
+                # Successful-only surface: which tools each server actually
+                # served. A permission-denied or crashed call is not an
+                # attach signal, so it is deliberately excluded here.
+                served = _pending_mcp.pop(block.get("tool_use_id", ""), None)
+                if served and not block.get("is_error", False):
+                    server_tools.setdefault(
+                        _mcp_server_prefix(served), []
+                    ).append(served)
+
                 name = mcp_issued.get(block.get("tool_use_id", ""))
                 if not name:
                     continue
@@ -298,11 +360,19 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
     for name in mcp_errors:
         per_server.setdefault(_server(name), {"ok": 0, "error": 0})["error"] += 1
 
+    # `_token_counts` already reads modelUsage as the PRIMARY source (with a
+    # top-level `usage` fallback) and reports `token_source` plus
+    # `models_used`, so it strictly supersedes the usage-first block master
+    # grew for the same bug. `model_usage` is still bound here because the
+    # cost fallback below reads its `cost_usd`.
+    model_usage = _sum_model_usage(result_data)
+
     return {
         **_token_counts(result_data),
         "num_turns": result_data.get("num_turns", 0),
         "task_subagent_calls": task_subagent_calls,
-        "total_cost_usd": result_data.get("total_cost_usd", 0.0),
+        "total_cost_usd": result_data.get("total_cost_usd", 0.0)
+                          or model_usage.get("cost_usd", 0.0),
         "num_tool_calls": len(tool_calls),
         "tool_calls": tool_calls,
         "files_explored": sorted(files_read),
@@ -310,7 +380,14 @@ def parse_claude_stream_output(stream_lines: list) -> dict:
         # Kept under the old name so existing analysis scripts and the 310
         # result rows on disk still parse. It now means "MCP tools that
         # returned successfully", for whichever server the arm mounted.
+        #
+        # Deliberately NOT narrowed to server_tools["repowise"]: in a bake-off
+        # each arm mounts a different server, so a repowise-only read reports
+        # an empty tool list for every competitor and an arm that worked
+        # scores as an arm that never called anything. The per-server
+        # breakdown is available beside it as `server_tools_called`.
         "repowise_tools_called": mcp_ok,
+        "server_tools_called": server_tools,
         "mcp_tools_called": mcp_ok,
         "mcp_tools_issued": sorted(mcp_issued.values()),
         "mcp_tool_errors": mcp_errors,

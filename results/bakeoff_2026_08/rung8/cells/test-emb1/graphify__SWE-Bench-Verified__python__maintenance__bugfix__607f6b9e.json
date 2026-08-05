@@ -1,0 +1,91 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f618e033acd37d59b536d6e6126e6c5be18037f6",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 166.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-607f6b9e"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-607f6b9e",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 4396,
+    "ranked": [
+      "aggregates/mixins.py",
+      "test_migrations_run_before/0003_third.py",
+      "other/__init__.py",
+      "settings_tests/tests.py",
+      "tests/migrations/test_autodetector.py",
+      "tests/postgres_tests/test_aggregates.py",
+      "tests/migrations/test_executor.py",
+      "django/template/defaultfilters.py",
+      "django/contrib/postgres/aggregates/mixins.py",
+      "tests/aggregation/tests.py",
+      "django/db/models/fields/__init__.py",
+      "tests/utils_tests/test_topological_sort.py",
+      "django/db/migrations/recorder.py",
+      "django/db/models/aggregates.py",
+      "tests/migrations/test_migrations_run_before/0003_third.py",
+      "django/db/models/__init__.py",
+      "tests/admin_changelist/tests.py",
+      "django/contrib/admin/static/admin/js/vendor/jquery/jquery.js",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/models/query.py",
+      "core/exceptions.py",
+      "tests/auth_tests/test_auth_backends.py",
+      "django/contrib/postgres/aggregates/general.py",
+      "tests/i18n/test_compilation.py",
+      "tests/multiple_database/routers.py",
+      "multiple_database/tests.py",
+      "tests/sites_tests/tests.py",
+      "django/utils/timezone.py",
+      "tests/i18n/other/__init__.py",
+      "tests/backends/tests.py",
+      "backends/tests.py",
+      "tests/settings_tests/tests.py",
+      "tests/apps/apps.py",
+      "django/core/management/color.py",
+      "django/db/utils.py"
+    ],
+    "n_ranked": 35,
+    "gold_files": [
+      "django/db/models/aggregates.py"
+    ],
+    "gold_hit_rank": 14
+  }
+}

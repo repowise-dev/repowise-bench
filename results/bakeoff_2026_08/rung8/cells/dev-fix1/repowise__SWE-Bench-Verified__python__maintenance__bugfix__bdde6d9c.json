@@ -1,0 +1,88 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__bdde6d9c",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 414.1,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__bdde6d9c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-bdde6d9c",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 28556,
+    "ranked": [
+      "django/db/models/fields/__init__.py",
+      "django/db/models/base.py",
+      "django/contrib/gis/gdal/field.py",
+      "django/forms/models.py",
+      "django/dispatch/dispatcher.py",
+      "django/forms/widgets.py",
+      "django/forms/fields.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/db/migrations/operations/models.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/models/sql/query.py",
+      "django/contrib/admin/sites.py",
+      "django/db/models/expressions.py",
+      "django/contrib/gis/geos/polygon.py",
+      "tests/postgres_tests/fields.py"
+    ],
+    "n_ranked": 15,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/migrations/serializer.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

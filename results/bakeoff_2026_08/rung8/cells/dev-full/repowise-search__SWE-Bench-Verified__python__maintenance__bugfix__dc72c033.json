@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__dc72c033",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e8fcdaad5c428878d0a5d6ba820d957013f75595",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__dc72c033",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-dc72c033",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5329,
+    "ranked": [
+      "django/contrib/admindocs/utils.py",
+      "django/db/models/functions/text.py",
+      "django/contrib/gis/geos/prototypes/io.py",
+      "tests/admin_docs/test_utils.py",
+      "tests/template_tests/templatetags/custom.py",
+      "django/template/base.py::get_exception_info",
+      "django/template/base.py::Template",
+      "django/contrib/gis/geos/linestring.py",
+      "django/contrib/gis/geos/linestring.py::__len__",
+      "django/utils/text.py::wrap"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/contrib/admindocs/utils.py",
+      "django/contrib/admindocs/views.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

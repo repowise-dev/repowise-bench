@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "de32fe83a2e4a20887972c69a0693b94eb25a88b",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 64,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ad7449c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1ad7449c",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 7.9,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5580,
+    "ranked": [
+      "django/contrib/admin/sites.py::catch_all_view",
+      "django/core/handlers/wsgi.py::get_script_name",
+      "django/test/client.py::RequestFactory",
+      "django/test/client.py::Client",
+      "django/core/handlers/wsgi.py::WSGIRequest",
+      "django/urls/conf.py",
+      "django/views/generic/base.py",
+      "django/core/files/storage.py",
+      "django/contrib/messages/api.py",
+      "django/contrib/contenttypes/models.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/contrib/admin/sites.py",
+      "django/http/request.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

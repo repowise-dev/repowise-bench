@@ -1,0 +1,53 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "eb1b9122d8d7984fc33656e5ef90bb5b2b29e9df",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 2.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2a889a1d"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 8,
+    "mp_workers": 0,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2a889a1d",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 17139,
+    "ranked": [
+      "context/remote.go",
+      "utils/table_printer.go",
+      "utils/table_printer_test.go",
+      "cmd/gh/main.go",
+      "cmd/gh/main_test.go",
+      "command/pr.go",
+      "command/issue.go"
+    ],
+    "n_ranked": 7,
+    "gold_files": [
+      "command/alias.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

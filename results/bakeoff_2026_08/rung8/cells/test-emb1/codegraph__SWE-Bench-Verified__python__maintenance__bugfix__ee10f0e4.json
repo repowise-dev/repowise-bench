@@ -1,0 +1,74 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6599608c4d0befdcb820ddccce55f183f247ae4f",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 19.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ee10f0e4"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ee10f0e4",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21623,
+    "ranked": [
+      "django/views/generic/base.py",
+      "github.com/django/django/blob/38a21f2d9ed4f556af934498ec6a242f6a20418a/django/views/debug.py",
+      "django/contrib/gis/gdal/error.py",
+      "django/contrib/gis/gdal/__init__.py",
+      "django/contrib/gis/gdal/geometries.py",
+      "django/contrib/gis/gdal/layer.py",
+      "django/contrib/gis/gdal/prototypes/errcheck.py",
+      "tests/gis_tests/gdal_tests/test_srs.py",
+      "django/contrib/gis/admin/widgets.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/contrib/gis/forms/fields.py",
+      "tests/gis_tests/gdal_tests/test_driver.py",
+      "tests/gis_tests/gdal_tests/test_ds.py",
+      "tests/gis_tests/gdal_tests/test_envelope.py",
+      "tests/gis_tests/gdal_tests/test_geom.py",
+      "django/contrib/gis/geos/error.py",
+      "django/contrib/gis/forms/widgets.py",
+      "tests/gis_tests/geos_tests/test_geos.py",
+      "django/contrib/messages/api.py",
+      "tests/middleware_exceptions/middleware.py",
+      "tests/middleware_exceptions/tests.py",
+      "django/template/context.py",
+      "www.gdal.org/cpl__error_8h.h",
+      "tests/view_tests/views.py"
+    ],
+    "n_ranked": 24,
+    "gold_files": [
+      "django/views/debug.py",
+      "django/views/templates/technical_500.html",
+      "django/views/templates/technical_500.txt",
+      "tests/view_tests/tests/test_debug.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

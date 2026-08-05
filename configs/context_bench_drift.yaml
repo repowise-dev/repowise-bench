@@ -1,0 +1,90 @@
+# Staleness benchmark (drift) runs, flask only.
+#
+# Every indexed arm serves an index built at flask 3.1.2 (2c1b30d0) while the
+# worktree the agent sees sits at 258d68b6 — the indexes are deliberately
+# NEVER rebuilt. Two arms are controls by construction: C0 has no index at
+# all, and C3 (Serena) is a live language server with no index to go stale.
+# C5 (DeepWiki) serves whatever upstream indexed, an uncontrolled version —
+# kept as best-effort with that caveat. Post-run classification:
+# harness/drift_bench.py against data/context_bench/questions_drift.json.
+
+experiment_name: "context_bench_drift"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    tasks_file:
+      - data/context_bench/questions_drift_run.json
+    repos:
+      - "pallets/flask"
+  swe_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+
+  - name: "C1_repowise"
+    repowise_enabled: true
+    repowise_mode: "lean"
+    neutral_prompt: true
+    claude_md: false
+    clean_worktree: true
+
+  - name: "C2_codegraph"
+    mcp_server:
+      prefix: "codegraph"
+      config: "mcp_configs/codegraph_flask_drift.json"
+    clean_worktree: true
+
+  - name: "C3_serena"
+    mcp_server:
+      prefix: "serena"
+      config: "mcp_configs/serena_flask_drift.json"
+    clean_worktree: true
+
+  - name: "C4_repomix"
+    repowise_enabled: false
+    worktree_variant: "repomix"
+    worktree_files:
+      "repomix-output.xml": "data/context_bench/repomix_packs/pallets_flask_312/default.xml"
+    system_note: "The file repomix-output.xml in the repository root contains a packed XML representation of the whole repository."
+
+  - name: "C5_deepwiki"
+    mcp_server:
+      prefix: "deepwiki"
+      config: "mcp_configs/deepwiki_flask.json"
+    clean_worktree: true
+    system_note: "The deepwiki MCP tools serve the public repository pallets/flask."
+
+agent:
+  model: "sonnet"
+  max_turns: 15
+  timeout_seconds: 300
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  doc_model: "gpt-5.4-nano"
+  provider: "openai"
+  embedder: "openai"
+  assume_indexed: true
+
+paths:
+  results_dir: "./results/context_bench/track2_drift"
+  repos_dir: "./repos"
+  logs_dir: "./logs/context_bench_drift"
+  repo_overrides:
+    "pallets/flask": "~/bench-staging/pallets_flask_drift"
+
+budget:
+  max_total_usd: 18.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "sonnet"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 3

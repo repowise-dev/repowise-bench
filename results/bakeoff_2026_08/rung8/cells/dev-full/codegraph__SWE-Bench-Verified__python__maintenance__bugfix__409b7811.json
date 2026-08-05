@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__409b7811",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "c2678e49759e5c4c329bff0eeca2886267005d21",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 73.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-409b7811"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__409b7811",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-409b7811",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 17473,
+    "ranked": [
+      "django/db/models/fields/__init__.py",
+      "django/contrib/gis/db/models/fields.py",
+      "django/contrib/gis/gdal/feature.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/postgres/fields/hstore.py",
+      "tests/admin_changelist/tests.py",
+      "tests/auth_tests/test_forms.py",
+      "tests/forms_tests/field_tests/test_base.py",
+      "tests/model_meta/tests.py",
+      "django/db/models/base.py",
+      "django/db/models/__init__.py",
+      "django/core/serializers/base.py",
+      "tests/modeladmin/test_checks.py",
+      "tests/schema/tests.py",
+      "tests/check_framework/test_model_field_deprecation.py",
+      "tests/check_framework/test_multi_db.py",
+      "django/db/models/lookups.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/lookups.py",
+      "django/contrib/postgres/search.py",
+      "django/db/models/expressions.py",
+      "django/contrib/admin/static/admin/js/admin/RelatedObjectLookups.js"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "django/db/models/base.py"
+    ],
+    "gold_hit_rank": 10
+  }
+}

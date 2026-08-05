@@ -1,0 +1,66 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d85271b",
+  "arm": "repowise-search",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "c6a693c459c22b66a2914ba2794e24d22faa8015",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 7,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d85271b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3d85271b",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.8,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5702,
+    "ranked": [
+      "onboarding/getting_started",
+      "internal/codespaces/rpc/codespace/codespace_host_service.v1.proto",
+      "internal/prompter/prompter.go",
+      "internal/codespaces/rpc/jupyter/jupyter_server_host_service.v1.proto",
+      "internal/codespaces/rpc/ssh/ssh_server_host_service.v1.proto",
+      "api/queries_repo.go",
+      "api/queries_repo_test.go",
+      "git/url.go"
+    ],
+    "n_ranked": 8,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/repo/sync/sync.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

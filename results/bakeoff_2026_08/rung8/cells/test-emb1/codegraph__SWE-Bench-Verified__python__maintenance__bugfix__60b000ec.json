@@ -1,0 +1,59 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f64fd47a7627ed6ffe2df2a32ded6ee528a784eb",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 19.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-60b000ec"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-60b000ec",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25188,
+    "ranked": [
+      "django/contrib/gis/gdal/field.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/__init__.py",
+      "tests/migrations/test_writer.py",
+      "tests/migrations/test_state.py",
+      "django/forms/models.py",
+      "django/contrib/admin/checks.py",
+      "django/contrib/auth/models.py",
+      "tests/auth_tests/models/custom_user.py",
+      "tests/auth_tests/models/uuid_pk.py",
+      "django/db/models/query.py",
+      "django/template/defaultfilters.py"
+    ],
+    "n_ranked": 12,
+    "gold_files": [
+      "django/forms/models.py"
+    ],
+    "gold_hit_rank": 6
+  }
+}

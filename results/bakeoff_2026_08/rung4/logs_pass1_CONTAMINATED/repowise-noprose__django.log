@@ -1,0 +1,116 @@
+$ C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe init --no-prose --embedder openai --max-file-pages 0 --no-workspace --no-editor-setup --yes
+(cwd=C:\Users\ragha\Desktop\bakeoff\django)
+
+--- stdout ---
+repowise index-only â€” C:\Users\ragha\Desktop\bakeoff\django
+Building the wiki from structure â€” no model, no spend.
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 1 of 4 Â· Ingestion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Walking the tree, parsing files, building the dependency graph
+
+  Scanned 5,929 files, 2,577 included
+    Excluded: 5 by filename pattern, 1 oversized, 1,250 binary, 1 generated, 
+2,095 unknown type
+  Graph build can take several minutes on a first run. Safe to Ctrl-C â€” re-run 
+'repowise init --resume' to continue where it stopped.
+    â†³ betweenness centrality âœ“ (16.4s)
+    â†³ symbol betweenness âœ“ (25.1s)
+    â†³ PageRank âœ“ (25.9s)
+    â†³ symbol PageRank âœ“ (25.9s)
+    â†³ community detection âœ“ (0.5s)
+    â†³ symbol communities âœ“ (3.1s)
+  â†’ External systems: 4 declared deps across manifests
+  â†’ 2,577 files parsed Â· 31,384 symbols extracted
+  â†’ Graph: 36,481 nodes Â· 90,475 edges
+  â†’ Git: 2,630 files indexed
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 2 of 4 Â· Analysis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Dead code, code health, architectural decisions
+
+  â†’ 155 unreachable files Â· 98 unused exports Â· ~12,036 deletable lines
+  â†’ 0 architectural decisions found
+  â†’ 5317 health findings Â· avg 7.68/10 Â· worst 2.0/10
+    â†³ KG skeleton: 10351 nodes, 22273 edges, 35 layers
+
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Analysis Complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   2,577 files Â· 31,384 symbols                                              â”‚
+â”‚   python 98%, javascript 2%, json 0%, makefile 0% +2 more                   â”‚
+â”‚                                                                             â”‚
+â”‚   Graph          36,481 nodes Â· 90,475 edges                                â”‚
+â”‚   Git            2,630 files indexed                                        â”‚
+â”‚   Dead code      155 unreachable Â· 98 unused exports Â· ~12,036 lines        â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 3 of 4 Â· Generation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Building wiki pages from the code's structure (no model, no cost)
+
+  Onboarding: 6/8 slots â€” codebase_map, development_guide, guided_tour, 
+how_it_works, key_concepts, project_overview
+  Generated 3392 pages
+
+  âœ“ Generated 3392 pages
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 4 of 4 Â· Persistence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Saving to database and building search index
+
+  âœ“ Database updated
+  âœ“ .claude/CLAUDE.md updated
+  âœ“ VS Code MCP configured 
+(C:\Users\ragha\Desktop\bakeoff\django\.vscode\mcp.json)
+  âœ“ VS Code extension recommended 
+(C:\Users\ragha\Desktop\bakeoff\django\.vscode\extensions.json)
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ {^ ^}  repowise index complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   Files indexed           2,577                                             â”‚
+â”‚   Symbols                 31,384                                            â”‚
+â”‚   Languages               python 98%, javascript 2%, json 0%, makefile 0%   â”‚
+â”‚                           +2 more                                           â”‚
+â”‚   Wiki pages              3,392 rendered from structure                     â”‚
+â”‚   Elapsed                 5m 18s                                            â”‚
+â”‚                                                                             â”‚
+â”‚   Graph                   36,481 nodes Â· 90,475 edges                       â”‚
+â”‚   Dead code               155 unreachable Â· 98 unused exports               â”‚
+â”‚   Decisions               0                                                 â”‚
+â”‚   Git history             2,630 files Â· 0 hotspots                          â”‚
+â”‚                                                                             â”‚
+â”‚   What's next:                                                              â”‚
+â”‚   repowise serve               open the dashboard at http://localhost:3000  â”‚
+â”‚   repowise generate            upgrade the wiki to model-written prose      â”‚
+â”‚ (needs a key)                                                               â”‚
+â”‚   repowise mcp .               connect an MCP client (Cursor, Codex, Claude â”‚
+â”‚ Code)                                                                       â”‚
+â”‚   repowise dead-code           explore 253 dead code findings               â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+  Every page is derived from structure and says so in its footer. Full-text
+  search works now; semantic search needs an embedder (Ollama is the keyless 
+one).
+
+                               Generation Checks                               
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚ Check                â”‚                                               Result â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Orientation overlap  â”‚                                3 of 15 pairs overlap â”‚
+â”‚ Layer grouping       â”‚                           all 55 pages carry a layer â”‚
+â”‚ Artifact checks      â”‚                        not run (0 responses checked) â”‚
+â”‚ Overview length      â”‚                                      141 / 450 words â”‚
+â”‚ Question-shaped text â”‚                                   3321 of 3328 pages â”‚
+â”‚ Module page openings â”‚  41 of 48 pages (85%) â€” "covers the 22 source files" â”‚
+â”‚                      â”‚                                                   Ã—8 â”‚
+â”‚ Module concept index â”‚                                       47 of 48 pages â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  overlap 'Repository Overview: django' and 'Codebase Map' share 33% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: django' and 'Guided Tour' share 29% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: django' and 'How It Works' share 26% of their 
+vocabulary (threshold 22%)
+
+--- stderr ---
+embed_text_truncated page_id=symbol_spotlight:django/db/__init__.py::DefaultConnectionProxy chars=30274 chars_dropped=274 cap=30000
+

@@ -1,0 +1,67 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "8288011149e71d5658b80ebef393522ba2d0e7cc",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 6.2,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3da242a2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3da242a2",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23855,
+    "ranked": [
+      "pkg/cmd/gist/view/view.go",
+      "pkg/cmd/issue/view/view.go",
+      "pkg/cmd/pr/view/view.go",
+      "pkg/cmd/release/view/view.go",
+      "pkg/cmd/gist/view/view_test.go",
+      "pkg/cmd/issue/view/view_test.go",
+      "pkg/cmd/pr/view/view_test.go",
+      "pkg/cmd/release/view/view_test.go",
+      "pkg/cmd/gist/edit/edit.go",
+      "pkg/cmd/issue/edit/edit.go",
+      "pkg/cmd/pr/edit/edit.go",
+      "pkg/cmd/release/edit/edit.go",
+      "pkg/cmd/gist/edit/edit_test.go",
+      "pkg/cmd/issue/edit/edit_test.go",
+      "pkg/cmd/pr/edit/edit_test.go",
+      "pkg/cmd/release/edit/edit_test.go",
+      "pkg/cmd/gist/gist.go",
+      "pkg/cmd/root/root.go",
+      "pkg/surveyext/editor_manual.go",
+      "pkg/cmd/codespace/edit.go"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "pkg/cmd/gist/edit/edit.go",
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

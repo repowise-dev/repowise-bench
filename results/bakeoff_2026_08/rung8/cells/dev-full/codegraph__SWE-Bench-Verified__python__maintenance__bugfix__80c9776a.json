@@ -1,0 +1,73 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__80c9776a",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "8dd5877f58f84f2b11126afbd0813e24545919ed",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 24.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-80c9776a"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__80c9776a",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-80c9776a",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23301,
+    "ranked": [
+      "django/db/models/sql/query.py",
+      "django/contrib/flatpages/sitemaps.py",
+      "django/db/models/query.py",
+      "django/db/models/expressions.py",
+      "django/contrib/admin/checks.py",
+      "django/contrib/admin/views/main.py",
+      "django/contrib/postgres/aggregates/mixins.py",
+      "django/db/models/sql/compiler.py",
+      "tests/expressions/tests.py",
+      "tests/ordering/models.py",
+      "django/contrib/admin/filters.py",
+      "django/contrib/admin/options.py",
+      "django/contrib/auth/backends.py",
+      "tests/admin_changelist/models.py",
+      "tests/admin_filters/tests.py",
+      "tests/admin_views/admin.py",
+      "tests/admin_views/tests.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/test/testcases.py",
+      "tests/gis_tests/geoapp/test_expressions.py",
+      "tests/expressions/test_queryset_values.py",
+      "tests/proxy_model_inheritance/tests.py",
+      "django/db/models/base.py",
+      "django/db/models/fields/__init__.py",
+      "django/db/models/fields/reverse_related.py",
+      "django/db/models/aggregates.py",
+      "tests/postgres_tests/test_hstore.py"
+    ],
+    "n_ranked": 27,
+    "gold_files": [
+      "django/db/models/sql/compiler.py"
+    ],
+    "gold_hit_rank": 8
+  }
+}

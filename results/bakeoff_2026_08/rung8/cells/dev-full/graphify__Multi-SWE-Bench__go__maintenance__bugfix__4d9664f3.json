@@ -1,0 +1,72 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "583af3e54c506fa1c0e6bc673c2c62a7e6303660",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 26.5,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4d9664f3"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__4d9664f3",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4d9664f3",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 5410,
+    "ranked": [
+      "workflow/shared/test.go",
+      "shared/upload.go",
+      "pkg/cmd/workflow/shared/shared.go",
+      "pkg/githubsearch/query.go",
+      "pkg/cmd/workflow/shared/test.go",
+      ".github/ISSUE_TEMPLATE/feedback.md",
+      "pkg/cmd/workflow/enable/enable.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmd/pr/create/fixtures/repoWithNonLegacyPRTemplates/.github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      "pkg/cmd/release/shared/upload.go",
+      "api/client.go",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/cmd/run/view/view.go",
+      "run/shared/shared.go",
+      "pkg/cmd/release/shared/fetch.go"
+    ],
+    "n_ranked": 16,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/enable/enable.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/workflow/shared/shared.go"
+    ],
+    "gold_hit_rank": 3
+  }
+}

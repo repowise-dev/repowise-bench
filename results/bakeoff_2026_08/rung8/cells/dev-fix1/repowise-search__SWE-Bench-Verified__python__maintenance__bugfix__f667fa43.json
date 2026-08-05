@@ -1,0 +1,67 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-f667fa43",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.3,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5919,
+    "ranked": [
+      "django/db/migrations/operations/__init__.py::__all__",
+      "django/db/migrations/operations/models.py::CreateModel",
+      "django/db/migrations/operations/models.py::describe",
+      "django/db/migrations/operations/models.py::migration_name_fragment",
+      "django/db/migrations/operations/models.py::state_forwards",
+      "django/contrib/admin/options.py",
+      "django/forms/models.py",
+      "django/db/models/base.py",
+      "django/views/generic/edit.py"
+    ],
+    "n_ranked": 9,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

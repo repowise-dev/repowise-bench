@@ -1,0 +1,86 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "504cfbc654b39b994895d69f792859e69fa2589c",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 9.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0b78ed50"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0b78ed50",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6794,
+    "ranked": [
+      "repoWithNonLegacyPRTemplates/.github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      ".github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      "repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "pkg/cmd/pr/merge/merge_test.go",
+      "pkg/cmd/pr/create/fixtures/repoWithNonLegacyPRTemplates/.github/PULL_REQUEST_TEMPLATE/bug_fix.md",
+      "api/queries_pr.go",
+      "internal/docs/docs_test.go",
+      "internal/ghinstance/host.go",
+      "internal/config/alias_config.go",
+      "pkg/cmd/repo/create/create.go",
+      "pkg/cmd/issue/create/fixtures/repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "docs/command-line-syntax.md",
+      "pkg/cmd/alias/set/set_test.go",
+      "update/update.go",
+      "pkg/httpmock/registry.go",
+      "internal/ghrepo/repo.go",
+      "pkg/httpmock/stub.go",
+      "pkg/cmd/factory/default.go",
+      "test/helpers.go",
+      "internal/config/testing.go",
+      "internal/config/config_type.go",
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/iostreams/iostreams.go",
+      "pkg/cmdutil/factory.go",
+      "internal/run/run.go",
+      "pkg/prompt/stubber.go",
+      "httpmock/stub.go",
+      "api/queries_repo.go",
+      "pkg/cmd/alias/set/set.go"
+    ],
+    "n_ranked": 29,
+    "gold_files": [
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmd/pr/merge/merge_test.go"
+    ],
+    "gold_hit_rank": 4
+  }
+}

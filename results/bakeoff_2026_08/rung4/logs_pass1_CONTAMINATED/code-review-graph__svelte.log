@@ -1,0 +1,65 @@
+$ C:\Users\ragha\.local\bin\code-review-graph.exe build --repo C:\Users\ragha\Desktop\bakeoff\svelte
+(cwd=C:\Users\ragha\Desktop\bakeoff\svelte)
+
+--- stdout ---
+Full build: 6284 files, 11625 nodes, 39548 edges (postprocess=full)
+
+--- stderr ---
+INFO: Schema version 1 -> 9: running migrations
+INFO: Running migration v2
+INFO: Migration v2: added 'signature' column to nodes
+INFO: Running migration v3
+INFO: Migration v3: created flows and flow_memberships tables
+INFO: Running migration v4
+INFO: Migration v4: added 'community_id' column to nodes
+INFO: Migration v4: created communities table
+INFO: Running migration v5
+INFO: Migration v5: created nodes_fts FTS5 virtual table
+INFO: Running migration v6
+INFO: Migration v6: created summary tables (community_summaries, flow_snapshots, risk_index)
+INFO: Running migration v7
+INFO: Migration v7: added compound edge indexes
+INFO: Running migration v8
+INFO: Migration v8: created composite edge index
+INFO: Running migration v9
+INFO: Migration v9: added edge confidence columns
+INFO: Migrations complete, now at schema version 9
+INFO: Progress: 200/6284 files parsed
+INFO: Progress: 400/6284 files parsed
+INFO: Progress: 600/6284 files parsed
+INFO: Progress: 800/6284 files parsed
+INFO: Progress: 1000/6284 files parsed
+INFO: Progress: 1200/6284 files parsed
+INFO: Progress: 1400/6284 files parsed
+INFO: Progress: 1600/6284 files parsed
+INFO: Progress: 1800/6284 files parsed
+INFO: Progress: 2000/6284 files parsed
+INFO: Progress: 2200/6284 files parsed
+INFO: Progress: 2400/6284 files parsed
+INFO: Progress: 2600/6284 files parsed
+INFO: Progress: 2800/6284 files parsed
+INFO: Progress: 3000/6284 files parsed
+INFO: Progress: 3200/6284 files parsed
+INFO: Progress: 3400/6284 files parsed
+INFO: Progress: 3600/6284 files parsed
+INFO: Progress: 3800/6284 files parsed
+INFO: Progress: 4000/6284 files parsed
+INFO: Progress: 4200/6284 files parsed
+INFO: Progress: 4400/6284 files parsed
+INFO: Progress: 4600/6284 files parsed
+INFO: Progress: 4800/6284 files parsed
+INFO: Progress: 5000/6284 files parsed
+INFO: Progress: 5200/6284 files parsed
+INFO: Progress: 5400/6284 files parsed
+INFO: Progress: 5600/6284 files parsed
+INFO: Progress: 5800/6284 files parsed
+INFO: Progress: 6000/6284 files parsed
+INFO: Progress: 6200/6284 files parsed
+INFO: Progress: 6284/6284 files parsed
+INFO: Spring event resolver: indexed 0 events and emitted 0 CALLS edges
+INFO: Resolved 2683 evidence-backed bare CALLS targets
+INFO: Resolved 89 evidence-backed bare TESTED_BY sources
+INFO: FTS index rebuilt: 11522 rows indexed
+INFO: Loaded 5252 unique nodes, 39306 edges
+INFO: igraph not available, using file-based community detection
+

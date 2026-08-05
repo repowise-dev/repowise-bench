@@ -1,0 +1,87 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6d48775e",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "e6ff77ce73c201b0ee36d2b802ea45e9e1ad1822",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 19.6,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-6d48775e"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__6d48775e",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-6d48775e",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6894,
+    "ranked": [
+      ".github/ISSUE_TEMPLATE/feedback.md",
+      ".github/CONTRIBUTING.md",
+      "pkg/set/string_set.go",
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmdutil/web_browser.go",
+      "api/client.go",
+      "pkg/cmd/repo/view/view_test.go",
+      "docs/triage.md",
+      "api/queries_pr.go",
+      "api/cache.go",
+      "pkg/githubtemplate/github_template.go",
+      "api/queries_issue.go",
+      "docs/command-line-syntax.md",
+      "test/helpers.go",
+      "api/queries_repo.go",
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/release/create/create.go",
+      "pkg/cmd/root/help_reference.go",
+      "docs/install_linux.md",
+      "pkg/iostreams/iostreams.go",
+      "pkg/jsoncolor/jsoncolor.go",
+      "docs/project-layout.md",
+      "internal/ghrepo/repo.go",
+      "pkg/cmd/factory/default.go",
+      "pkg/httpmock/stub.go",
+      "git/git.go",
+      "pkg/cmd/repo/view/view.go",
+      "internal/ghinstance/host.go",
+      "pkg/markdown/markdown.go",
+      "api/reaction_groups.go",
+      "api/queries_comments.go",
+      "pkg/cmd/root/help.go"
+    ],
+    "n_ranked": 32,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/browse/browse.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

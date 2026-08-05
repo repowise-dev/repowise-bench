@@ -1,0 +1,59 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "0c3981eb5094419fe200eb46c71b5376a2266166",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-afcc47be"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-afcc47be",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19205,
+    "ranked": [
+      "tests/annotations/tests.py",
+      "django/utils/datastructures.py",
+      "django/utils/inspect.py",
+      "tests/httpwrappers/tests.py",
+      "tests/utils_tests/test_datastructures.py",
+      "django/utils/log.py",
+      "tests/logging_tests/tests.py",
+      "django/db/models/query.py",
+      "django/test/testcases.py",
+      "django/contrib/postgres/fields/array.py"
+    ],
+    "n_ranked": 10,
+    "gold_files": [
+      "django/db/models/fields/related_lookups.py",
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 8
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "config_path": "configs/layerb_pilot_django.yaml",
+  "started_at": "2026-08-03T10:02:43.487329+00:00",
+  "conditions": [
+    "c0-bare",
+    "repowise-lean",
+    "repowise-full"
+  ],
+  "config": {
+    "experiment_name": "layerb_pilot_django",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "max_tasks": 10,
+        "repos": [
+          "django/django"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "c0-bare",
+        "arm": "c0-bare"
+      },
+      {
+        "name": "repowise-lean",
+        "arm": "repowise-lean"
+      },
+      {
+        "name": "repowise-full",
+        "arm": "repowise-full"
+      }
+    ],
+    "agent": {
+      "model": "claude-sonnet-5",
+      "max_turns": 15,
+      "timeout_seconds": 600
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_pilot_django",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/layerb_pilot_django",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 40.0,
+      "max_per_task_usd": 3.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna",
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}

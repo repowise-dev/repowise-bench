@@ -1,0 +1,77 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d1b3145",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "41a457136e3134e5b5e6c17cba2704309ac609bb",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 178.2,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d1b3145",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3d1b3145",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 15188,
+    "ranked": [
+      "pkg/liveshare/client.go",
+      "Makefile",
+      "script/scoop-gen",
+      "onboarding/getting_started",
+      "internal/ghrepo/repo_test.go::Test_repoFromURL"
+    ],
+    "n_ranked": 5,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/pr/status/status.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

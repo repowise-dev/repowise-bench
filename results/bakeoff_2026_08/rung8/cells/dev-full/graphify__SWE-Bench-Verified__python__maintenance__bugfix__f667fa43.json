@@ -1,0 +1,83 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d90e34c61b27fba2527834806639eebbcfab9631",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 296.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-f667fa43"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f667fa43",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-f667fa43",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6746,
+    "ranked": [
+      "django/db/migrations/operations/models.py",
+      "tests/utils_tests/test_autoreload.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "tests/schema/tests.py",
+      "tests/sites_tests/tests.py",
+      "django/db/migrations/migration.py",
+      "django/db/models/base.py",
+      "tests/admin_changelist/tests.py",
+      "tests/migrations/test_optimizer.py",
+      "django/db/models/options.py",
+      "tests/admin_views/tests.py",
+      "django/utils/functional.py",
+      "django/db/models/expressions.py",
+      "django/test/utils.py",
+      "django/contrib/admin/options.py",
+      "django/apps/registry.py",
+      "django/db/migrations/state.py",
+      "django/db/models/fields/related.py",
+      "django/utils/encoding.py",
+      "django/db/models/deletion.py",
+      "django/db/migrations/operations/fields.py",
+      "django/contrib/sites/requests.py",
+      "django/db/models/manager.py",
+      "django/db/migrations/optimizer.py",
+      "django/db/models/fields/__init__.py",
+      "models/fields/__init__.py",
+      "django/db/migrations/exceptions.py",
+      "core/exceptions.py"
+    ],
+    "n_ranked": 28,
+    "gold_files": [
+      "django/db/migrations/operations/models.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

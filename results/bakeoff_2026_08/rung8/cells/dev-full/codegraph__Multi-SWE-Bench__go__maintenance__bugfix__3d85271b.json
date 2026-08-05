@@ -1,0 +1,54 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d85271b",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "c6a693c459c22b66a2914ba2794e24d22faa8015",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 10.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3d85271b"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3d85271b",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3d85271b",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24176,
+    "ranked": [
+      "pkg/cmd/run/view/view.go",
+      "pkg/cmd/repo/sync/sync.go",
+      "pkg/cmd/repo/credits/credits.go",
+      "pkg/cmd/repo/garden/garden.go",
+      "api/queries_repo.go",
+      "git/errors.go",
+      "git/client.go",
+      "internal/ghrepo/repo.go"
+    ],
+    "n_ranked": 8,
+    "gold_files": [
+      "pkg/cmd/repo/sync/sync.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

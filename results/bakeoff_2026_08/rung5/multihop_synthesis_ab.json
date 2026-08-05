@@ -1,0 +1,1074 @@
+{
+  "provider_off": {
+    "n": 22,
+    "MRR": 0.3538,
+    "recall@1": 0.2727,
+    "recall@3": 0.4091,
+    "recall@5": 0.5,
+    "recall@10": 0.5
+  },
+  "provider_on": {
+    "n": 22,
+    "MRR": 0.3841,
+    "recall@1": 0.2273,
+    "recall@3": 0.5455,
+    "recall@5": 0.6364,
+    "recall@10": 0.6364
+  },
+  "paired": {
+    "better": 4,
+    "worse": 1,
+    "same": 18,
+    "n": 23
+  },
+  "rows": {
+    "off": [
+      {
+        "id": "E21_parse_to_body_flow",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/ingestion/parser.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py"
+        ],
+        "status": "failed",
+        "error": "TimeoutError: "
+      },
+      {
+        "id": "E23_changed_file_repersist_flow",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/persistence/crud/external_systems.py",
+          "packages/core/src/repowise/core/pipeline/orchestrator.py"
+        ],
+        "status": "ok",
+        "chars": 13741,
+        "ranked": [
+          "packages/core/src/repowise/core/pipeline/persist.py::persist_incremental_symbols",
+          "packages/core/src/repowise/core/ingestion/change_detector.py",
+          "packages/core/src/repowise/core/analysis/health/duplication/pair_index.py",
+          "packages/core/src/repowise/core/persistence/crud/git.py::get_commit_experience_inputs",
+          "packages/core/src/repowise/core/ingestion/parse_cache.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E24_retrieval_feeds_synthesis_flow",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py"
+        ],
+        "status": "ok",
+        "chars": 23140,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py",
+          "packages/server/src/repowise/server/mcp_server/_answer_pipeline.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E36_union_pointer_route",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py"
+        ],
+        "status": "ok",
+        "chars": 15697,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/types/src/decisions.ts",
+          "packages/types/src/chat.ts",
+          "packages/types/src/dead-code.ts",
+          "packages/server/src/repowise/server/mcp_server/_meta.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E67_flow_scoring_served",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/persistence/crud/graph.py",
+          "packages/server/src/repowise/server/mcp_server/tool_flows.py"
+        ],
+        "status": "ok",
+        "chars": 13797,
+        "ranked": [
+          "packages/types/src/external-systems.ts",
+          "packages/core/src/repowise/core/analysis/execution_flows.py",
+          "packages/server/src/repowise/server/mcp_server/tool_flows.py",
+          "packages/server/src/repowise/server/routers/graph/intelligence.py",
+          "packages/server/src/repowise/server/services/zoom_builder/scoring.py"
+        ],
+        "hit_rank": 3,
+        "rr": 0.3333333333333333,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E68_blame_to_health",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/engine.py"
+        ],
+        "status": "ok",
+        "chars": 17962,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/analysis/health/complexity/walker.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/enrich.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::distinct_commits_in_range",
+          "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E69_cochange_hidden_coupling",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/hidden_coupling.py"
+        ],
+        "status": "ok",
+        "chars": 15433,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/coupling/graph.py",
+          "packages/core/src/repowise/core/ingestion/languages/specs/json.py",
+          "packages/core/src/repowise/core/analysis/health/models.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+          "packages/core/src/repowise/core/analysis/pr_blast.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E70_cochange_dry_violation",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/dry_violation.py"
+        ],
+        "status": "ok",
+        "chars": 13875,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/dry_violation.py",
+          "packages/core/src/repowise/core/analysis/health/models.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+          "packages/server/src/repowise/server/schemas/decisions.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/registry.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E71_dead_code_served",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/pipeline/persist.py",
+          "packages/server/src/repowise/server/mcp_server/tool_dead_code.py"
+        ],
+        "status": "ok",
+        "chars": 24558,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_dead_code.py",
+          "packages/core/src/repowise/core/analysis/dead_code/analyzer.py",
+          "packages/core/src/repowise/core/generation/kg_reviewer/findings.py",
+          "packages/core/src/repowise/core/persistence/crud/analysis/dead_code.py",
+          "packages/core/src/repowise/core/analysis/dead_code/jvm_reachability.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E72_agent_pct_ownership",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_context/targets.py"
+        ],
+        "status": "ok",
+        "chars": 15620,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/agent_provenance.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/analysis/health/models.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::owner_in_range",
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E73_fix_events_bug_magnet",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/assessment.py"
+        ],
+        "status": "ok",
+        "chars": 19424,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/get_risk.py",
+          "packages/server/src/repowise/server/routers/files.py",
+          "packages/core/src/repowise/core/sessions/events.py",
+          "packages/cli/src/repowise/cli/platform/telemetry/events.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/records.py::GitIndexSummary"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E74_decision_to_why",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py"
+        ],
+        "status": "ok",
+        "chars": 18461,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py",
+          "packages/core/src/repowise/core/analysis/decisions/extractor.py",
+          "packages/core/src/repowise/core/sessions/miners/decisions.py",
+          "packages/core/src/repowise/core/ingestion/languages/specs/json.py",
+          "packages/core/src/repowise/core/analysis/decisions/gate.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E75_supersession_why",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py"
+        ],
+        "status": "ok",
+        "chars": 18020,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/core/src/repowise/core/analysis/decisions/evolution.py",
+          "packages/core/src/repowise/core/persistence/decision_graph.py",
+          "packages/core/src/repowise/core/analysis/decisions/rationale_comments.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E76_security_finding_served",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/security.py"
+        ],
+        "status": "ok",
+        "chars": 12842,
+        "ranked": [
+          "packages/server/src/repowise/server/routers/security.py",
+          "packages/types/src/security.ts",
+          "packages/core/src/repowise/core/pipeline/persist.py::persist_security_findings",
+          "packages/core/src/repowise/core/persistence/crud/analysis/health.py",
+          "packages/cli/src/repowise/cli/commands/security_cmd.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E77_community_to_refactoring",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_refactoring.py"
+        ],
+        "status": "ok",
+        "chars": 13879,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/health/refactoring/models.py",
+          "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py",
+          "packages/ui/src/ui/dialog.tsx",
+          "packages/server/src/repowise/server/routers/refactoring.py",
+          "packages/core/src/repowise/core/analysis/health/dataflow/slice.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E78_omission_ref_expand",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/cli/src/repowise/cli/commands/expand_cmd.py"
+        ],
+        "status": "ok",
+        "chars": 14338,
+        "ranked": [
+          "packages/core/src/repowise/core/distill/markers.py",
+          "tests/unit/distill/test_cli.py::test_distill_expand_roundtrip_from_codex_surface",
+          "packages/core/src/repowise/core/distill/store.py::put",
+          "packages/core/src/repowise/core/distill/store.py",
+          "packages/cli/src/repowise/cli/helpers.py::consume_update_pending"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E79_identity_reviewer",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/owners.py"
+        ],
+        "status": "ok",
+        "chars": 13154,
+        "ranked": [
+          "packages/ui/src/ui/button.tsx",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/identity.py",
+          "packages/ui/src/git/reviewer-suggestions.tsx",
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E80_authors_reviewer_suggestions",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "status": "ok",
+        "chars": 17374,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::owner_in_range",
+          "packages/core/src/repowise/core/ingestion/git_indexer/agent_provenance.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/commit_rows.py",
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "hit_rank": 5,
+        "rr": 0.2,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E81_prior_defect_accuracy",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/defect_accuracy.py"
+        ],
+        "status": "ok",
+        "chars": 18960,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/prior_defects.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/fix_events.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/_constants.py",
+          "packages/core/src/repowise/core/analysis/health/defect_accuracy.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/fix_shape.py"
+        ],
+        "hit_rank": 4,
+        "rr": 0.25,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E82_function_blame_hotspot",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/function_hotspot.py"
+        ],
+        "status": "ok",
+        "chars": 25050,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_health.py",
+          "packages/core/src/repowise/core/generation/kg_reviewer/findings.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::distinct_commits_in_range",
+          "packages/core/src/repowise/core/ingestion/git_indexer/file_history.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E83_dataflow_perf_promotion",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_health.py"
+        ],
+        "status": "ok",
+        "chars": 27239,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_health.py",
+          "packages/core/src/repowise/core/analysis/health/dataflow/cfg.py",
+          "packages/core/src/repowise/core/analysis/health/dataflow/reaching.py",
+          "packages/core/src/repowise/core/generation/layers.py",
+          "packages/core/src/repowise/core/analysis/health/dataflow/dialects/java.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E84_contract_cross_repo_blast",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/directives.py"
+        ],
+        "status": "ok",
+        "chars": 19297,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/get_risk.py",
+          "packages/server/src/repowise/server/mcp_server/tool_risk/directives.py",
+          "packages/core/src/repowise/core/workspace/contracts.py",
+          "packages/server/src/repowise/server/routers/repos.py",
+          "packages/core/src/repowise/core/workspace/blast_radius.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E85_cascade_scopes_generate",
+        "with_provider": false,
+        "tool": "get_answer",
+        "gold": [
+          "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+          "packages/cli/src/repowise/cli/commands/generate_cmd/engine.py"
+        ],
+        "status": "ok",
+        "chars": 14109,
+        "ranked": [
+          "tests/integration/test_cli.py::test_regenerates_pages",
+          "packages/core/src/repowise/core/generation/cascade.py",
+          "packages/cli/src/repowise/cli/commands/init_cmd/_generation_persist.py",
+          "packages/core/src/repowise/core/generation/scope.py",
+          "packages/core/src/repowise/core/generation/related_pages.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      }
+    ],
+    "on": [
+      {
+        "id": "E21_parse_to_body_flow",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/ingestion/parser.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py"
+        ],
+        "status": "failed",
+        "error": "TimeoutError: "
+      },
+      {
+        "id": "E23_changed_file_repersist_flow",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/persistence/crud/external_systems.py",
+          "packages/core/src/repowise/core/pipeline/orchestrator.py"
+        ],
+        "status": "ok",
+        "chars": 13064,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/change_detector.py",
+          "packages/core/src/repowise/core/pipeline/persist.py::persist_incremental_symbols",
+          "packages/core/src/repowise/core/analysis/health/duplication/pair_index.py",
+          "packages/core/src/repowise/core/persistence/crud/git.py::get_commit_experience_inputs",
+          "packages/core/src/repowise/core/ingestion/parse_cache.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E24_retrieval_feeds_synthesis_flow",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py"
+        ],
+        "status": "ok",
+        "chars": 12256,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/retrieval.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/config.py",
+          "packages/server/src/repowise/server/mcp_server/_flow_path.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E36_union_pointer_route",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py"
+        ],
+        "status": "ok",
+        "chars": 29818,
+        "ranked": [
+          "packages/types/src/decisions.ts",
+          "packages/types/src/chat.ts",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/server/src/repowise/server/mcp_server/tool_context/context.py",
+          "packages/server/src/repowise/server/mcp_server/tool_symbol.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E67_flow_scoring_served",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/persistence/crud/graph.py",
+          "packages/server/src/repowise/server/mcp_server/tool_flows.py"
+        ],
+        "status": "ok",
+        "chars": 9933,
+        "ranked": [
+          "packages/types/src/external-systems.ts",
+          "packages/core/src/repowise/core/analysis/execution_flows.py",
+          "packages/server/src/repowise/server/mcp_server/tool_flows.py",
+          "packages/server/src/repowise/server/services/zoom_builder/scoring.py",
+          "packages/server/src/repowise/server/routers/graph/intelligence.py"
+        ],
+        "hit_rank": 3,
+        "rr": 0.3333333333333333,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E68_blame_to_health",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/engine.py"
+        ],
+        "status": "ok",
+        "chars": 4809,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/file_history.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/enrich.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::distinct_commits_in_range",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::owner_in_range"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E69_cochange_hidden_coupling",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/hidden_coupling.py"
+        ],
+        "status": "ok",
+        "chars": 13947,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/coupling/graph.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/hidden_coupling.py",
+          "packages/server/src/repowise/server/routers/coupling.py",
+          "packages/types/src/coupling.ts",
+          "packages/core/src/repowise/core/analysis/pr_blast.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E70_cochange_dry_violation",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/dry_violation.py"
+        ],
+        "status": "ok",
+        "chars": 20924,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/dry_violation.py",
+          "packages/core/src/repowise/core/analysis/health/models.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+          "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/duplicated_assertion_block.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E71_dead_code_served",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/pipeline/persist.py",
+          "packages/server/src/repowise/server/mcp_server/tool_dead_code.py"
+        ],
+        "status": "ok",
+        "chars": 13499,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_dead_code.py",
+          "packages/core/src/repowise/core/analysis/dead_code/analyzer.py",
+          "packages/core/src/repowise/core/persistence/crud/analysis/dead_code.py",
+          "packages/core/src/repowise/core/generation/kg_reviewer/findings.py",
+          "packages/core/src/repowise/core/analysis/dead_code/risk_factors.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E72_agent_pct_ownership",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_context/targets.py"
+        ],
+        "status": "ok",
+        "chars": 15253,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/agent_provenance.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::owner_in_range",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::distinct_commits_in_range",
+          "packages/core/src/repowise/core/persistence/models.py::GitMetadata"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E73_fix_events_bug_magnet",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/assessment.py"
+        ],
+        "status": "ok",
+        "chars": 9991,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/get_risk.py",
+          "packages/core/src/repowise/core/analysis/health/fix_attribution.py",
+          "packages/server/src/repowise/server/routers/files.py",
+          "packages/core/src/repowise/core/sessions/events.py",
+          "packages/cli/src/repowise/cli/platform/telemetry/events.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E74_decision_to_why",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py"
+        ],
+        "status": "ok",
+        "chars": 5904,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py",
+          "packages/core/src/repowise/core/analysis/decisions/extractor.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/types/src/chat.ts",
+          "packages/core/src/repowise/core/sessions/miners/decisions.py"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E75_supersession_why",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py"
+        ],
+        "status": "ok",
+        "chars": 6012,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_why.py",
+          "packages/core/src/repowise/core/analysis/decisions/evolution.py",
+          "packages/core/src/repowise/core/persistence/decision_graph.py",
+          "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+          "packages/core/src/repowise/core/pipeline/persist.py::persist_analysis"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E76_security_finding_served",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/security.py"
+        ],
+        "status": "ok",
+        "chars": 18498,
+        "ranked": [
+          "packages/server/src/repowise/server/routers/security.py",
+          "packages/types/src/security.ts",
+          "packages/core/src/repowise/core/analysis/security_scan.py",
+          "packages/core/src/repowise/core/analysis/history_scan.py",
+          "packages/core/src/repowise/core/pipeline/persist.py::persist_security_findings"
+        ],
+        "hit_rank": 1,
+        "rr": 1.0,
+        "recall@1": 1,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E77_community_to_refactoring",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_refactoring.py"
+        ],
+        "status": "ok",
+        "chars": 21924,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/health/refactoring/models.py",
+          "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py",
+          "packages/server/src/repowise/server/routers/refactoring.py",
+          "packages/core/src/repowise/core/persistence/crud/analysis/refactoring.py",
+          "packages/core/src/repowise/core/analysis/health/refactoring/extract_class.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E78_omission_ref_expand",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/cli/src/repowise/cli/commands/expand_cmd.py"
+        ],
+        "status": "ok",
+        "chars": 18603,
+        "ranked": [
+          "packages/core/src/repowise/core/distill/markers.py",
+          "tests/unit/distill/test_cli.py::test_distill_expand_roundtrip_from_codex_surface",
+          "packages/core/src/repowise/core/distill/store.py",
+          "tests/unit/distill/test_cli.py::test_distill_and_expand_roundtrip",
+          "packages/core/src/repowise/core/distill/store.py::put"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E79_identity_reviewer",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/owners.py"
+        ],
+        "status": "ok",
+        "chars": 14628,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/identity.py",
+          "packages/ui/src/git/reviewer-suggestions.tsx",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/persistence/crud/git.py::get_author_commit_counts",
+          "packages/core/src/repowise/core/ingestion/git_indexer/agent_provenance.py"
+        ],
+        "hit_rank": null,
+        "rr": 0.0,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 0,
+        "recall@10": 0
+      },
+      {
+        "id": "E80_authors_reviewer_suggestions",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "status": "ok",
+        "chars": 4866,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/commit_rows.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::owner_in_range",
+          "packages/core/src/repowise/core/ingestion/git_indexer/agent_provenance.py",
+          "packages/server/src/repowise/server/routers/git.py"
+        ],
+        "hit_rank": 5,
+        "rr": 0.2,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E81_prior_defect_accuracy",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/defect_accuracy.py"
+        ],
+        "status": "ok",
+        "chars": 15140,
+        "ranked": [
+          "packages/core/src/repowise/core/ingestion/git_indexer/prior_defects.py",
+          "packages/core/src/repowise/core/analysis/health/defect_accuracy.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/fix_shape.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/fix_events.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/_constants.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E82_function_blame_hotspot",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/core/src/repowise/core/analysis/health/biomarkers/function_hotspot.py"
+        ],
+        "status": "ok",
+        "chars": 10962,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_health.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py",
+          "packages/core/src/repowise/core/analysis/health/biomarkers/function_hotspot.py",
+          "packages/core/src/repowise/core/generation/kg_reviewer/findings.py",
+          "packages/core/src/repowise/core/ingestion/git_indexer/function_blame.py::distinct_commits_in_range"
+        ],
+        "hit_rank": 3,
+        "rr": 0.3333333333333333,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E83_dataflow_perf_promotion",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_health.py"
+        ],
+        "status": "ok",
+        "chars": 23260,
+        "ranked": [
+          "packages/core/src/repowise/core/analysis/health/dataflow/cfg.py",
+          "packages/core/src/repowise/core/analysis/health/dataflow/reaching.py",
+          "packages/core/src/repowise/core/analysis/health/perf/promotion.py",
+          "packages/server/src/repowise/server/mcp_server/tool_health.py",
+          "packages/core/src/repowise/core/generation/layers.py"
+        ],
+        "hit_rank": 4,
+        "rr": 0.25,
+        "recall@1": 0,
+        "recall@3": 0,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E84_contract_cross_repo_blast",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/directives.py"
+        ],
+        "status": "ok",
+        "chars": 10606,
+        "ranked": [
+          "packages/server/src/repowise/server/mcp_server/tool_risk/get_risk.py",
+          "packages/server/src/repowise/server/mcp_server/tool_risk/directives.py",
+          "packages/core/src/repowise/core/workspace/contracts.py",
+          "packages/server/src/repowise/server/routers/repos.py",
+          "packages/server/src/repowise/server/mcp_server/tool_blast_radius.py"
+        ],
+        "hit_rank": 2,
+        "rr": 0.5,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      },
+      {
+        "id": "E85_cascade_scopes_generate",
+        "with_provider": true,
+        "tool": "get_answer",
+        "gold": [
+          "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+          "packages/cli/src/repowise/cli/commands/generate_cmd/engine.py"
+        ],
+        "status": "ok",
+        "chars": 24498,
+        "ranked": [
+          "packages/core/src/repowise/core/generation/cascade.py",
+          "packages/core/src/repowise/core/generation/scope.py",
+          "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+          "tests/integration/test_cli.py::test_regenerates_pages",
+          "packages/cli/src/repowise/cli/commands/init_cmd/_generation_persist.py"
+        ],
+        "hit_rank": 3,
+        "rr": 0.3333333333333333,
+        "recall@1": 0,
+        "recall@3": 1,
+        "recall@5": 1,
+        "recall@10": 1
+      }
+    ]
+  }
+}

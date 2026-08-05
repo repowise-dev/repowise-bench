@@ -1,0 +1,91 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3c9b757f",
+  "arm": "repowise",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "6e14426dfb076350796b6f081b27399a5f4be904",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 172.6,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 5,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3c9b757f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3c9b757f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 3.3,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 23559,
+    "ranked": [
+      "pkg/cmd/release/shared/upload.go",
+      "pkg/cmd/release",
+      "pkg/cmdutil/errors.go",
+      "git/url.go",
+      "pkg/cmd/api/http.go",
+      "pkg/cmd/release/release.go",
+      "pkg/cmd/issue/issue.go",
+      "pkg/githubsearch/query.go",
+      "api/queries_comments.go",
+      "api/queries_pr_review.go",
+      "api/queries_repo.go",
+      "onboarding/getting_started",
+      "pkg/findsh",
+      "script/sign-windows-executable.sh",
+      "api/queries_pr.go",
+      "onboarding/codebase_map",
+      "internal",
+      "pkg/cmd/issue/delete/delete_test.go"
+    ],
+    "n_ranked": 18,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/release/create/create.go",
+      "pkg/cmd/release/create/http.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

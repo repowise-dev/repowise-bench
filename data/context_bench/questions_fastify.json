@@ -1,0 +1,194 @@
+[
+  {
+    "id": "fastify-q01",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "In `lib/decorate.js`, what does `assertNotStarted` check, and which two public decoration APIs call it before doing any work?",
+    "answer": "`assertNotStarted(instance, name)` throws `FST_ERR_DEC_AFTER_START(name)` if `instance[kState].started` is true, preventing decorators from being added once the Fastify instance has begun booting/listening. It is called as the first step of `decorateReply` and `decorateRequest` (and of `decorateFastify` via `add`), so `reply.decorate`/`request.decorate`-style calls fail fast if invoked after `fastify.listen()`/`ready()` has started the instance.",
+    "category": "symbol-lookup"
+  },
+  {
+    "id": "fastify-q02",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "What does `buildRoutePrefix` in `lib/plugin-override.js` do, and what edge case does its second `if` branch guard against?",
+    "answer": "`buildRoutePrefix(instancePrefix, pluginPrefix)` concatenates a parent instance's route prefix with a child plugin's prefix option, inserting or stripping a `/` so segments join cleanly. The first branch strips a duplicate leading slash when the parent prefix already ends with `/` and the plugin prefix starts with `/` (avoiding `//`); the second branch only prepends a missing `/` when the plugin prefix lacks one AND the instance prefix does not already end in `/` — this second guard (added to avoid a double slash) prevents inserting an extra `/` when the instance prefix already supplies the separator.",
+    "category": "symbol-lookup"
+  },
+  {
+    "id": "fastify-q03",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "What data structure backs `ContentTypeParser`'s parser cache in `lib/content-type-parser.js`, and how large is it?",
+    "answer": "`ContentTypeParser` uses `FifoMap` from the `toad-cache` package (imported as `Fifo`), instantiated as `new Fifo(100)` and assigned to `this.cache`. It caches resolved parsers keyed by the normalized content-type string so that repeated lookups for the same content-type (e.g. via `getParser`) skip re-parsing the header and re-scanning `parserRegExpList`; the cache is rebuilt fresh (`new Fifo(100)`) whenever `removeAll()` is called.",
+    "category": "symbol-lookup"
+  },
+  {
+    "id": "fastify-q04",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "What does `setErrorStatusCode` in `lib/error-status.js` do, and under what condition does it refuse to change the reply's status code?",
+    "answer": "`setErrorStatusCode(reply, err)` sets `reply.code(...)` to the error's `statusCode`/`status` field if it is `>= 400`, otherwise it falls back to `500`. It only performs this assignment when `!reply[kReplyHasStatusCode] || reply.statusCode === 200` — i.e. it will not override a status code the user has already explicitly set to something other than the default 200.",
+    "category": "symbol-lookup"
+  },
+  {
+    "id": "fastify-q05",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "In `lib/log-controller.js`, what constructor option controls whether Fastify emits the 'incoming request' / 'completed' log lines, and what two shapes can that option take?",
+    "answer": "The `disableRequestLogging` option (read in the `LogController` constructor, defaulting to `defaultInitOptions.disableRequestLogging` from `lib/initial-config-validation.js`) controls this. It can be either a plain boolean or a function `(req) => boolean`; `LogController` records `isDisableRequestLoggingFunction` and its `isLogDisabled(req)` method calls the function with the request when it's a function, or returns the boolean directly otherwise. `incomingRequest()` checks `isLogDisabled(request)` and returns early (skipping the `info` log) when logging is disabled.",
+    "category": "symbol-lookup"
+  },
+  {
+    "id": "fastify-q06",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Walk through what happens, file by file, when a plugin registered with a `prefix` option is loaded via `fastify.register(plugin, { prefix: '/v1' })` — from `override` being invoked to the child instance being able to set its own 404 handler.",
+    "answer": "Avvio calls `override(old, fn, opts)` in `lib/plugin-override.js`, which (unless `shouldSkipOverride` is true for a non-encapsulated plugin) creates `const instance = Object.create(old)`, pushes it onto `old[kChildren]`, and rebuilds per-instance state (`kReply`, `kRequest`, `kContentTypeParser`, `kHooks`, `kSchemaController`) scoped to the child. It computes the merged prefix via `buildRoutePrefix(instance[kRoutePrefix], opts.prefix)` and stores it in `instance[kRoutePrefix]`. Because `opts.prefix` (`/v1`) is truthy, it then calls `instance[kFourOhFour].arrange404(instance)` (`lib/four-oh-four.js`), which sets `instance[kFourOhFourLevelInstance] = instance` and `instance[kCanSetNotFoundHandler] = true`, giving this encapsulated child its own slot for `setNotFoundHandler` to register a 404 route (`router.all(prefix + '/*', ...)`) distinct from the parent's.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q07",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Trace the request lifecycle hook order for a POST request with a JSON body, from the raw HTTP request landing in `lib/route.js` through to `preHandler`.",
+    "answer": "`buildRouting`'s request handler in `lib/route.js` first runs `context.onRequest` hooks via `onRequestHookRunner`, whose completion callback is `runPreParsing`; if there are no `onRequest` hooks it calls `runPreParsing` directly. `runPreParsing` invokes `preParsingHookRunner(context.preParsing, ...)` which, on completion, calls `handleRequest` in `lib/handle-request.js` (`lib/route.js:654-655`). `handleRequest` detects the method is body-bearing, resolves the content-type, and calls `request[kRouteContext].contentTypeParser.run(...)` to parse the JSON body, whose callback is `handler`. `handler` then runs `context.preValidation` hooks via `preValidationHookRunner`, whose callback `preValidationCallback` calls `validateSchema` and, if it passes, proceeds to run `preHandler` hooks before invoking the route handler.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q08",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "How does Fastify resolve which not-found handler and error handler apply to a 404 for a request that hits an encapsulated child instance's route prefix?",
+    "answer": "`lib/four-oh-four.js`'s `_setNotFoundHandler` builds a `Context` (from `lib/context.js`) and stores it on `this[kFourOhFourLevelInstance][kFourOhFourContext]`, then registers it in the shared `find-my-way` `router` under the child's prefix (`router.all(prefix + '/*', routeHandler, context)`). On an `avvio` `'preReady'` event it populates the context's lifecycle hook arrays by concatenating `this[kHooks][hook]` with any hook the caller passed in `opts[hook]`, and sets `context.errorHandler` to `buildErrorHandler(this[kErrorHandler], opts.errorHandler)` if a custom error handler was supplied, otherwise to `this[kErrorHandler]` — i.e. the encapsulated instance's own accumulated hooks/error handler, not necessarily the root's.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q09",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "How does `SchemaController` in `lib/schema-controller.js` allow a nested (encapsulated) Fastify instance to inherit its parent's validator/serializer compiler while still being able to add its own schemas?",
+    "answer": "When `buildSchemaController(parentSchemaCtrl, opts)` is called with a `parentSchemaCtrl` (as `plugin-override.js` does via `SchemaController.buildSchemaController(old[kSchemaController])` on every encapsulation boundary), it constructs `new SchemaController(parentSchemaCtrl, opts)`. The constructor, when given a `parent`, sets `this.schemaBucket = this.opts.bucket(parent.getSchemas())` (seeding the child's schema bucket with the parent's schemas), and copies `this.validatorCompiler`/`this.serializerCompiler` directly from `parent.getValidatorCompiler()`/`parent.getSerializerCompiler()`. `getValidatorCompiler`/`getSerializerCompiler` also fall back to `this.parent && this.parent.getValidatorCompiler()` if the child's own compiler is unset, so a chain of nested contexts walks up to whichever ancestor actually set one, while `add(schema)` on the child only mutates the child's own `schemaBucket`.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q10",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "After PR #6810, what mechanism prevents `socket._meta` from keeping a `request`/`reply` pair alive for the whole lifetime of a keep-alive socket when `reply.hijack()` is called and an `onTimeout` hook is registered?",
+    "answer": "`lib/route.js`'s request handler, when `context.onTimeout !== null`, attaches `request.raw.socket._meta = { context, request, reply, onTimeout: handleTimeout }` and a `'timeout'` listener the first time a socket is used. Normally `setupResponseListeners` clears `socket._meta` (and removes the `'timeout'` listener) once the response finishes (`lib/reply.js` around the `onResFinished`-style cleanup at lines 973-979). But `reply.hijack()` (lib/reply.js:128-148) opts the reply out of that normal finish path, so as of the fix it explicitly does the same cleanup itself: if `socket._meta.request === this.request`, it calls `socket.removeListener('timeout', socket._meta.onTimeout)` and sets `socket._meta = null`, so the hijacked reply doesn't pin the request/reply objects in memory for the rest of the keep-alive connection.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q11",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "When `reply.send()` is called with a plain object payload and a custom `content-type` header that has no `charset` parameter, what determines the exact string Fastify writes back to the `content-type` header, and which module supplies the parsing logic?",
+    "answer": "`Reply.prototype.send` (lib/reply.js) parses the current header via `const contentType = ContentType.from(this.getHeader('content-type'))`, using the `ContentType` class in `lib/content-type.js`. If `contentType.mediaType` contains `'json'` and `contentType.parameters.has('charset') === false`, it rebuilds the header as `` `${contentType.toString()}; charset=utf-8` `` — relying on `ContentType.toString()` to already handle any trailing `;` — and assigns that to `this[kReplyHeaders]['content-type']`. This replaced an earlier string-manipulation approach (trimming and checking for a trailing `;`) with structured `ContentType` parsing so that case-insensitive parameter matching (e.g. `Charset` vs `charset`) is handled correctly.",
+    "category": "multi-hop-flow"
+  },
+  {
+    "id": "fastify-q12",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Commit 75d74e1a ('feat: introduce log controller layer', PR #6580) deleted the `kDisableRequestLogging` symbol and centralized per-request log gating behind a new `LogController` reached via `server[kLogController]`. Which existing modules had their inline logging calls rewritten to delegate to this single controller, and what did the change look like concretely in `lib/error-handler.js`'s `defaultErrorHandler`?",
+    "answer": "`lib/symbols.js` dropped `kDisableRequestLogging` and gained `kLogController`. `lib/context.js` lost its own `requestIdLogLabel` field (previously read from `server[kOptions].requestIdLogLabel`) since that now lives on `LogController`. Call sites were rewritten in `lib/error-handler.js` (three sites: the `writeHead` failure path, `defaultErrorHandler`, and `fallbackErrorHandler`'s serializer-failure path), `lib/route.js` (the 503-on-closing path and the 'incoming request' log), `lib/four-oh-four.js` (`routeNotFound` and `incomingRequest`), `lib/reply.js` (`streamError` and `requestCompleted`), and `fastify.js` (three `incomingRequest` call sites for internal route events). Concretely, `defaultErrorHandler` previously branched on `reply.statusCode < 500` and guarded each branch with `if (!reply.log[kDisableRequestLogging])` before calling `reply.log.info(...)` or `reply.log.error(...)` directly; after the commit it is a single line, `request.server[kLogController].defaultErrorLog(error, request, reply)`, pushing both the disable-check and the level-selection logic into `LogController`.",
+    "category": "cross-file-impact"
+  },
+  {
+    "id": "fastify-q13",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "The `ContentType` class in `lib/content-type.js` is used by both `lib/content-type-parser.js` and `lib/reply.js`. If `ContentType.prototype.toString()` changed to normalize parameter ordering differently, what two independent behaviors would be affected?",
+    "answer": "In `lib/content-type-parser.js`, `hasParser`/`existingParser`/`getParser` all call `new ContentType(contentType).toString()` (or `contentType.toString()`) to build the cache/`customParsers` Map key, so a change to `toString()`'s output would change which cache/parser-map entries a given header string hits, potentially causing lookup misses for previously-cached parsers. In `lib/reply.js`'s `send()`, `ContentType.toString()` is used to reconstruct the outgoing `content-type` header before appending `; charset=utf-8` (added in PR #6830 / commit 6f63ce93), so the same change would alter the exact `content-type` header bytes sent to clients for responses that lack an explicit charset.",
+    "category": "cross-file-impact"
+  },
+  {
+    "id": "fastify-q14",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "PR #6753 added `hasInstanceProperty` to `lib/decorate.js` and used it from both `checkRequestExistence` and `checkReplyExistence`. Which two public-facing decorator checks does this change, and which two constructor-side files register the `instanceProperties` that `hasInstanceProperty` walks?",
+    "answer": "`checkRequestExistence` and `checkReplyExistence` back the `fastify.hasRequestDecorator(name)` / `fastify.hasReplyDecorator(name)` public API (via `decorators.existRequest`/`decorators.existReply`). Before the fix, `Object.hasOwn(instance, name) || hasKey(konstructor, name)` in `decorateConstructor` missed properties assigned directly in a constructor (e.g. via `this.foo = ...` rather than `decorateRequest`) as well as `hasRequestDecorator`/`hasReplyDecorator` failing to see them; `hasInstanceProperty` walks `konstructor.parent` chains checking `k.instanceProperties.has(name)`. `lib/request.js` and `lib/reply.js` are the two constructor files that register such built-in `instanceProperties`, each gaining one line in the PR to populate this set so their own constructor-assigned properties are recognized by the decorator-existence checks.",
+    "category": "cross-file-impact"
+  },
+  {
+    "id": "fastify-q15",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "The `port` getter on `Request.prototype` (lib/request.js) now derives from `this.host` rather than reading `this.headers.host`/`this.headers[':authority']` directly. What downstream behavior does this affect when `trustProxy` is enabled and an `x-forwarded-host` header is present?",
+    "answer": "`host` is itself a getter that, under trust-proxy mode, prefers `x-forwarded-host` over the raw `Host`/`:authority` header (per `lib/request.js`'s trust-proxy handling). Since `port` now runs its `/(?<port>:\\d+)$/` regex against `this.host` instead of independently re-deriving the header, `request.port` automatically reflects the forwarded host's port (e.g. `x-forwarded-host: fastify.test:1234` yields `request.port === 1234`) instead of the origin connection's port — keeping `port` consistent with `hostname`/`host` under a reverse proxy, whereas before the fix it could read a different, un-forwarded header.",
+    "category": "cross-file-impact"
+  },
+  {
+    "id": "fastify-q16",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Why does `lib/plugin-override.js`'s `override` function build the child instance with `Object.create(old)` rather than deep-copying the parent instance's properties?",
+    "answer": "`Object.create(old)` gives the child a live prototype link to the parent, so any property the child does not explicitly override (decorators, config, etc.) is transparently inherited by prototype lookup without needing to be copied or kept in sync. Only the state that must be encapsulated per-plugin — reply/request builders, content-type parser, hooks, route prefix, schema controller, plugin-name chain — is explicitly rebuilt as an own property on `instance` (lines 43-61); everything else falls through to `old` via the prototype chain. This is the mechanism the `docs/Reference/Encapsulation.md` 'encapsulation context' model depends on: child contexts see everything above them for free, but parents never see what children add, matching Fastify's stated encapsulation semantics ('every child context ... has access to the root plugins').",
+    "category": "architecture-why"
+  },
+  {
+    "id": "fastify-q17",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Why does `SchemaController` (lib/schema-controller.js) split validator/serializer construction into a `compilersFactory` with `buildValidator`/`buildSerializer` functions instead of just storing the compiler instances directly?",
+    "answer": "Compilers must be rebuilt from the accumulated schema bucket whenever new schemas are added before the instance is ready (`setupValidator`/`setupSerializer` check `this.addedSchemas` and skip rebuilding only if a compiler already exists and no schemas were added since). Storing only compiler *instances* would make it impossible to regenerate them once new schemas arrive; storing *builder functions* (`compilersFactory.buildValidator(schemas, ajvOpts)`) lets `SchemaController` defer and repeat compilation. The legacy `setValidatorCompiler`/`setSerializerCompiler` APIs are then implemented, per the inline comments, by wrapping the fixed compiler in an adapter builder (`buildValidator: () => validatorCompiler`) so both the new builder-based flow and the old direct-assignment API produce identical runtime behavior.",
+    "category": "architecture-why"
+  },
+  {
+    "id": "fastify-q18",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Why does `ContentTypeParser` (lib/content-type-parser.js) store its custom parsers in a `Map` (`this.customParsers`) instead of a plain JavaScript object?",
+    "answer": "The code comments explicitly state the reason: 'using a map instead of a plain object to avoid prototype hijack attacks' (`lib/content-type-parser.js:38`). A plain object keyed by attacker-influenced content-type strings (e.g. a header value of `__proto__` or `constructor`) would let a client probe or pollute `Object.prototype`-inherited properties (`toString`, `hasOwnProperty`, etc.) when the code does lookups like `this.customParsers[contentType]`; a `Map` has no prototype-chain lookup fallback for arbitrary string keys, closing that class of prototype-pollution/hijacking vector.",
+    "category": "architecture-why"
+  },
+  {
+    "id": "fastify-q19",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Why does `lib/error-handler.js`'s `handleError` maintain a separate `fallbackErrorHandler` path (triggered when `reply[kReplyNextErrorHandler] === false` or when a handler has no `func`) instead of always calling the user/default error handler?",
+    "answer": "Before invoking the resolved error handler, `handleError` reassigns `reply[kReplyNextErrorHandler] = Object.getPrototypeOf(errorHandler)` specifically so that if the error handler itself throws (caught in the `try/catch` around `func(error, request, reply)`, which calls `reply.send(err)` again), the next call to `handleError` uses the *parent* handler in the prototype chain instead of looping back into the same failing handler. Once the chain is exhausted (no more `func`, or explicitly set to `false`), `fallbackErrorHandler` takes over and writes the response directly via `reply.raw.writeHead`/`end`, bypassing the handler abstraction entirely — a hard floor that guarantees a response is always sent even if every registered/default error handler in the chain throws, preventing an unhandled-error scenario from hanging the connection.",
+    "category": "architecture-why"
+  },
+  {
+    "id": "fastify-q20",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Why do the hook runners in `lib/hooks.js` (e.g. `hookRunnerGenerator`, `onSendHookRunner`) use manual index-incrementing callback loops instead of `async`/`await` chaining over the hook array?",
+    "answer": "Fastify hooks must support three calling conventions simultaneously: callback-style (`fn(request, reply, next)`), Promise/async-style (returning a thenable), and synchronous return — and the runner needs to detect which was used at each step without forcing every hook into a Promise wrapper. The manual `next()`-based loop calls `iterator(functions[i++], request, reply, next)`, then checks `if (result && typeof result.then === 'function')` to bridge Promise-returning hooks into the same `next`/`cb` continuation used by callback-style hooks, avoiding the overhead of wrapping every hook invocation in a `Promise`/`await` (each `await` allocates a microtask) on Fastify's hot request path — this is one of the perf-sensitive areas noted by the PR #6831 ('reduce per-request overhead in the request lifecycle').",
+    "category": "architecture-why"
+  },
+  {
+    "id": "fastify-q21",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Commit 2f597a92 ('fix: avoid double slash when joining nested prefixes', PR #6803) changed `buildRoutePrefix`'s second branch condition. What was the bug, and what was the fix?",
+    "answer": "Before the fix, `buildRoutePrefix` prepended a `/` to `pluginPrefix` whenever `pluginPrefix[0] !== '/'`, with no check on whether `instancePrefix` already ended in `/`. When a parent instance's prefix already ended in `/` (a case not caught by the first branch, which only fires when *both* sides have a slash) and the plugin's own prefix didn't start with `/`, this could produce `'/firstsecond'`-style joins going wrong or a redundant slash depending on the exact combination — the commit's own comment states the goal as avoiding `'/first//second'` while a separate uncaught case produced missing/duplicate slashes. The fix added `&& !instancePrefix.endsWith('/')` to the `else if`, so the leading `/` is only injected into `pluginPrefix` when the instance prefix does *not* already supply the separator, preventing the double slash for nested prefixes.",
+    "category": "history-why"
+  },
+  {
+    "id": "fastify-q22",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Commit 7f6d3198 (PR #6810) describes a crash regression that PR #6799 introduced, where a deferred socket `'timeout'` event could fire after `socket._meta` had already been nulled on response finish, crashing `handleTimeout`'s `const { context, request, reply } = this._meta` destructure. The actual merged fix in this repository does not add a null guard inside `handleTimeout` — what does it do instead, and in which two places?",
+    "answer": "Instead of guarding `handleTimeout` against a null `_meta`, the fix ensures the `'timeout'` listener that calls `handleTimeout` is itself removed at the exact moment `socket._meta` is nulled, so a stale listener can never fire against a null `_meta` in the first place. This is done in two places: in `lib/reply.js`'s `setupResponseListeners` cleanup (`lib/reply.js:973-979`), `socket.removeListener('timeout', socket._meta.onTimeout)` was added immediately before `socket._meta = null`; and in `lib/reply.js`'s `Reply.prototype.hijack()` (`lib/reply.js:128-148`), a new block was added that does the same `removeListener` + `socket._meta = null` when `socket?._meta?.request === this.request`, since `hijack()` bypasses the normal response-finish cleanup path. `lib/route.js` was only changed to attach `onTimeout: handleTimeout` onto the stored `socket._meta` object (so the listener reference is available to remove) and to reorder the `onTimeout` setup earlier in `buildRouting`.",
+    "category": "history-why"
+  },
+  {
+    "id": "fastify-q23",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Commit 6ac2e953 (PR #6680, 'fix: derive request.port from request.host') changed `lib/request.js`. Why was reading `this.headers.host ?? this.headers[':authority']` directly inside the `port` getter considered a bug worth fixing?",
+    "answer": "The `port` getter previously recomputed the host header from scratch (`this.headers.host ?? this.headers[':authority'] ?? ''`) rather than reusing the `host` getter, which — under `trustProxy` — already applies precedence logic favoring `x-forwarded-host` over the raw `Host`/`:authority` header. That meant `request.port` and `request.host`/`request.hostname` could disagree behind a reverse proxy: `hostname`/`host` would reflect the forwarded value while `port` silently fell back to the untrusted direct-connection header. The fix made `port`'s regex run against `this.host` instead, so all three getters (`host`, `hostname`, `port`) are derived from the single source of truth and stay consistent under trust-proxy configurations.",
+    "category": "history-why"
+  },
+  {
+    "id": "fastify-q24",
+    "repo": "fastify/fastify",
+    "split_name": "fastify24",
+    "question": "Commit cc8d9a3c (PR #6753) is titled 'fix: make hasRequestDecorator/hasReplyDecorator recognize constructor-assigned built-in properties'. What concrete symptom motivated this fix?",
+    "answer": "Before this fix, `fastify.hasRequestDecorator(name)` / `fastify.hasReplyDecorator(name)` (backed by `checkRequestExistence`/`checkReplyExistence` in `lib/decorate.js`) only recognized properties added via the `decorateRequest`/`decorateReply` API (tracked in `konstructor.props`, checked by `hasKey`) or present directly on the prototype. Built-in properties assigned inside the `Request`/`Reply` constructor itself (not via the decorator API) were invisible to these existence checks, so `hasRequestDecorator`/`hasReplyDecorator` could incorrectly report `false` for a property that actually existed on every request/reply instance. The fix added `hasInstanceProperty`, which walks the `konstructor.parent` chain checking an `instanceProperties` set populated by `lib/request.js` and `lib/reply.js`, and OR'd it into both existence checks.",
+    "category": "history-why"
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "bdce08a793abe4744c02d537e37c9ba63601a849",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 10.2,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0498ad7f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0498ad7f",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 4708,
+    "ranked": [
+      "repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "internal/ghinstance/host.go",
+      "pkg/cmd/api/http.go",
+      "api/client.go",
+      "internal/config/alias_config.go",
+      "pkg/iostreams/color.go",
+      "pkg/cmd/pr/shared/display.go",
+      "pkg/cmd/issue/create/fixtures/repoWithNonLegacyIssueTemplates/.github/ISSUE_TEMPLATE/bug_report.md",
+      "pkg/iostreams/iostreams.go",
+      "internal/ghrepo/repo.go"
+    ],
+    "n_ranked": 10,
+    "gold_files": [
+      "pkg/cmd/auth/status/status.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

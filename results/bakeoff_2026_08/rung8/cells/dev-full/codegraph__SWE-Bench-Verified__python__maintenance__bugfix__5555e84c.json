@@ -1,0 +1,54 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5555e84c",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 54.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-5555e84c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5555e84c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-5555e84c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24684,
+    "ranked": [
+      "django/contrib/gis/gdal/field.py",
+      "django/db/models/fields/__init__.py",
+      "django/contrib/admin/options.py",
+      "django/core/serializers/python.py",
+      "django/core/serializers/xml_serializer.py",
+      "django/forms/fields.py",
+      "django/contrib/postgres/fields/array.py",
+      "www.gdal.org/ogr__api_8h.h"
+    ],
+    "n_ranked": 8,
+    "gold_files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

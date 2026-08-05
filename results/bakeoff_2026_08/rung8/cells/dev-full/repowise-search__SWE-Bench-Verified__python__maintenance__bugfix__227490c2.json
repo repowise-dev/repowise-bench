@@ -1,0 +1,69 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5a8e8f80bb82a867eab7e4d9d099f21d0a976d22",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-227490c2",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5669,
+    "ranked": [
+      "django/db/models/expressions.py::Combinable",
+      "django/test/client.py::AsyncRequestFactory",
+      "django/contrib/gis/gdal/datasource.py",
+      "django/db/models/sql/query.py::split_exclude",
+      "django/test/client.py::RequestFactory",
+      "django/conf/project_template/manage.py-tpl",
+      "tests/admin_scripts/tests.py",
+      "tests/utils_tests/test_module_loading.py"
+    ],
+    "n_ranked": 8,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/core/management/__init__.py",
+      "django/core/management/commands/runserver.py",
+      "django/utils/autoreload.py",
+      "tests/utils_tests/test_autoreload.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

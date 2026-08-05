@@ -131,11 +131,13 @@ _UTF8_ENV = {
         [str(p) for p in _REPOWISE_PKG_SRCS]
         + ([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])
     ),
-    # Put the venv's Scripts dir on PATH so the agent's Bash can resolve the
-    # `repowise` console script for `repowise distill <cmd>` in the long
-    # (Bash-enabled) arm. Harmless for the read-only arms.
+    # Put the venv's script dir (Scripts/ on Windows, bin/ on posix) on PATH
+    # so the agent's Bash can resolve the `repowise` console script for
+    # `repowise distill <cmd>` in the long (Bash-enabled) arm. Harmless for
+    # the read-only arms.
     "PATH": os.pathsep.join(
-        [str(Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts")]
+        [str(Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts"),
+         str(Path(__file__).resolve().parents[1].parent / ".venv" / "bin")]
         + ([os.environ["PATH"]] if os.environ.get("PATH") else [])
     ),
 }
@@ -147,21 +149,36 @@ _UTF8_ENV = {
 _MCP_PASSTHROUGH_ENV = (
     "OPENAI_API_KEY", "OPENAI_BASE_URL",
     "GEMINI_API_KEY", "GOOGLE_API_KEY", "ANTHROPIC_API_KEY",
-    "REPOWISE_EMBEDDER", "REPOWISE_DOC_MODEL",
+    # REPOWISE_PROVIDER must be forwarded explicitly: the server otherwise
+    # falls back to the provider persisted in the index's state.json, and an
+    # index built months ago under a different provider silently runs
+    # get_answer in retrieval-only mode when that provider's key is absent
+    # (observed: a gemini-built index + an openai-only env disabled synthesis
+    # for an entire benchmark arm without a single error).
+    "REPOWISE_PROVIDER", "REPOWISE_EMBEDDER", "REPOWISE_DOC_MODEL",
 )
 
 # Argv prefix for invoking the local repowise CLI.
 # `python -m repowise.cli.main` is a NO-OP on branches where main.py has no
-# __main__ guard (it builds the click group but never invokes it), so prefer the
-# console-script exe when available. Override with REPOWISE_EXE.
+# __main__ guard (it builds the click group but never invokes it), so the
+# console script is REQUIRED — falling back to -m starts a server that serves
+# nothing and the arm silently degrades to bare. Both venv layouts are
+# checked (Scripts/ on Windows, bin/ on posix); the Windows-only lookup
+# previously sent every macOS run down the no-op path. Override with
+# REPOWISE_EXE.
 def _resolve_repowise_cmd() -> list:
     env_exe = os.environ.get("REPOWISE_EXE")
     if env_exe and Path(env_exe).exists():
         return [env_exe]
-    candidate = Path(__file__).resolve().parents[1].parent / ".venv" / "Scripts" / "repowise.exe"
-    if candidate.exists():
-        return [str(candidate)]
-    return [sys.executable, "-m", "repowise.cli.main"]
+    venv = Path(__file__).resolve().parents[1].parent / ".venv"
+    for candidate in (venv / "Scripts" / "repowise.exe", venv / "bin" / "repowise"):
+        if candidate.exists():
+            return [str(candidate)]
+    raise RuntimeError(
+        f"No repowise console script under {venv} (checked Scripts/ and bin/). "
+        "Set REPOWISE_EXE. Refusing the `python -m repowise.cli.main` fallback: "
+        "it is a no-op and silently degrades repowise arms to bare agents."
+    )
 
 
 _REPOWISE_CMD = _resolve_repowise_cmd()
@@ -358,11 +375,16 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
                        skip_tasks: int = 0,
                        exclude_indices: Optional[list] = None,
                        include_indices: Optional[list] = None,
-                       task_ids: Optional[list] = None) -> list:
+                       task_ids: Optional[list] = None,
+                       tasks_file=None) -> list:
     """
     Load SWE-QA tasks from HuggingFace-downloaded JSON or directly from HF.
 
     Each task gets: id, repo (GitHub org/name), question, answer, split_name.
+
+    ``tasks_file`` (str or list of str, relative paths resolved against the
+    bench root) bypasses the swe_qa dataset convention and loads explicit
+    frozen question files, concatenated in order.
 
     `task_ids` selects by NAME rather than by position, and it exists because
     every Layer B run so far selected by position and that turned out not to be
@@ -373,26 +395,16 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
     seed. Applied before skip/max so a named draw is never silently truncated
     by a stale `max_tasks` left in a config.
     """
-    data_path = Path(data_dir) / "swe_qa"
-
-    # Check for pre-downloaded data
-    local_file = data_path / "tasks.json"
-    if local_file.exists():
-        with open(local_file, encoding="utf-8") as f:
-            tasks = json.load(f)
+    if tasks_file:
+        files = tasks_file if isinstance(tasks_file, list) else [tasks_file]
+        tasks = []
+        for f in files:
+            p = Path(f).expanduser()
+            if not p.is_absolute():
+                p = _BENCH_ROOT / p
+            tasks.extend(json.loads(p.read_text(encoding="utf-8")))
     else:
-        # Also try test.json (from earlier mini datasets)
-        for fname in ["test.json", "data.json"]:
-            fp = data_path / fname
-            if fp.exists():
-                with open(fp, encoding="utf-8") as f:
-                    tasks = json.load(f)
-                break
-        else:
-            raise FileNotFoundError(
-                f"No SWE-QA data in {data_path}. "
-                "Run: python scripts/download_benchmarks.py --benchmark swe_qa"
-            )
+        tasks = _load_swe_qa_dataset(data_dir)
 
     # Filter by repo
     if repos:
@@ -435,6 +447,30 @@ def load_swe_qa_tasks(data_dir: str, max_tasks: Optional[int] = None,
     return tasks
 
 
+def _load_swe_qa_dataset(data_dir: str) -> list:
+    data_path = Path(data_dir) / "swe_qa"
+
+    # Check for pre-downloaded data
+    local_file = data_path / "tasks.json"
+    if local_file.exists():
+        with open(local_file, encoding="utf-8") as f:
+            tasks = json.load(f)
+    else:
+        # Also try test.json (from earlier mini datasets)
+        for fname in ["test.json", "data.json"]:
+            fp = data_path / fname
+            if fp.exists():
+                with open(fp, encoding="utf-8") as f:
+                    tasks = json.load(f)
+                break
+        else:
+            raise FileNotFoundError(
+                f"No SWE-QA data in {data_path}. "
+                "Run: python scripts/download_benchmarks.py --benchmark swe_qa"
+            )
+    return tasks
+
+
 # ---------------------------------------------------------------------------
 # Repowise indexing + MCP config
 # ---------------------------------------------------------------------------
@@ -446,7 +482,8 @@ def generate_mcp_config(
 
     ``tools`` is passed straight through to ``repowise mcp --tools``: a
     comma-separated allowlist, or the literal ``"lean"`` for the shipped
-    six-tool profile. ``None`` advertises the default full surface. The tool
+    six-tool profile, so unused tool schemas never enter the agent's context.
+    ``None`` advertises the default full surface. The tool
     surface is baked into the config filename so full and lean arms get
     distinct server launches against the same restored index.
 
@@ -467,6 +504,9 @@ def generate_mcp_config(
 
     server_args = _REPOWISE_CMD[1:] + ["mcp", repo_abs, "--transport", "stdio"]
     if tools:
+        # Current CLI spells profiles through --tools (e.g. --tools lean);
+        # the old --profile flag no longer exists and would kill the server
+        # at mount, silently degrading the arm to a bare agent.
         server_args += ["--tools", tools]
 
     # The server's own env: PYTHONPATH for the local checkout, UTF-8, plus any
@@ -492,6 +532,14 @@ def generate_mcp_config(
                 "command": _REPOWISE_CMD[0],
                 "args": server_args,
                 "env": server_env,
+                # Load tool schemas eagerly. Current Claude Code defers every
+                # MCP tool behind ToolSearch by default, and agents answer
+                # from Read/Grep without ever loading a deferred schema —
+                # observed as zero MCP adoption across all benchmark arms.
+                # Eager schemas also match the regime under which all prior
+                # published numbers were measured (the schema tax is part of
+                # what the lean profile exists to reduce).
+                "alwaysLoad": True,
             }
         }
     }
@@ -533,21 +581,38 @@ _BENCH_ROOT = Path(__file__).resolve().parents[1]
 _C0_WORKTREES_ROOT = _BENCH_ROOT / "scratch_c0"
 
 
-def get_c0_worktree(repo_path: Path) -> Path:
-    """Return a git worktree path for C0 runs.
+def get_c0_worktree(repo_path: Path, variant: str = "") -> Path:
+    """Return a git worktree path for runs that must not see tool artifacts.
 
     Git worktrees share the repo's object store (fast, no full copy) but have
     their own working directory — untracked files like `.repowise/` are NOT
-    present.  This means a C0 agent running in cwd=worktree physically cannot
-    access any repowise artifacts left by a prior C1/C2 run, without any
-    delete-and-restore dance.
+    present.  This means an agent running in cwd=worktree physically cannot
+    access artifacts left in the source checkout by any tool's indexing
+    (.repowise/, .serena/, .codegraph/, CLAUDE.md, .mcp.json).
 
-    The worktree is created once per repo and reused across tasks.  If the
-    repo's HEAD has moved (e.g. after a `git pull`), the existing worktree is
-    torn down and recreated.
+    ``variant`` gives an arm its own worktree, so arm-specific files injected
+    into one arm's working directory (e.g. a packed-repo file) can never be
+    seen by another arm running concurrently against the same repo.
+
+    The worktree is created once per (repo, variant) and reused across tasks.
+    If the repo's HEAD has moved (e.g. after a `git pull`), the existing
+    worktree is torn down and recreated.
     """
     org = repo_path.parent.name
-    wt_path = _C0_WORKTREES_ROOT / org / repo_path.name
+    name = f"{repo_path.name}__{variant}" if variant else repo_path.name
+    wt_path = _C0_WORKTREES_ROOT / org / name
+
+    # Parallel workers race on create/remove of the same worktree (git
+    # worktree add fails with 128 when another worker is mid-prune) —
+    # serialize the check-and-create.
+    with _WORKTREE_LOCK:
+        return _ensure_worktree(repo_path, wt_path)
+
+
+_WORKTREE_LOCK = threading.Lock()
+
+
+def _ensure_worktree(repo_path: Path, wt_path: Path) -> Path:
     wt_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Check if the worktree is healthy and on the same HEAD as the source repo.
@@ -587,8 +652,9 @@ def get_c0_worktree(repo_path: Path) -> Path:
 
     # Belt-and-braces: a worktree shouldn't have these untracked artifacts,
     # but if anything ever leaks in (e.g. a stray CLAUDE.md write), kill it
-    # before handing the path to a C0 agent.
-    for leak in (".repowise", ".mcp.json", "CLAUDE.md"):
+    # before handing the path to the agent.
+    for leak in (".repowise", ".mcp.json", "CLAUDE.md", ".serena", ".codegraph",
+                 ".claude"):
         p = wt_path / leak
         if p.exists():
             if p.is_dir():
@@ -885,6 +951,10 @@ TOOLS_LEAN = (
     ",mcp__repowise__get_symbol"
     ",mcp__repowise__search_codebase"
     ",mcp__repowise__get_context"
+    ",mcp__repowise__get_risk"
+    # Newer lean profiles also serve get_why; allowing it is harmless when
+    # the server under test predates that (an unserved tool cannot be called).
+    ",mcp__repowise__get_why"
 )
 
 # CLAUDE.md written into repo root for C1 runs.
@@ -1062,6 +1132,43 @@ def arm_name_for_condition(condition: dict) -> str:
     return _LEGACY_ARM_FOR_MODE[mode]
 
 
+def _arm_from_mcp_server(condition: dict, bench_root: Path) -> tuple:
+    """Synthesize an `Arm` for a condition carrying `mcp_server`.
+
+    `mcp_server: {prefix, config}` is master's way of mounting a hand-written,
+    pre-flighted MCP config verbatim, used by every `configs/context_bench_*`
+    arm. The arm registry launches servers from a command instead, so a config
+    written that way has no entry in `arms.yaml` and would otherwise fail
+    resolution.
+
+    Rather than keep a second code path for it, build the record the registry
+    would have produced: the prefix names the server (its tools appear as
+    ``mcp__<prefix>__*``, which is what the attach guard checks), the config is
+    mounted as-is, and `index=None` marks it externally provisioned so
+    `ensure_arm_index` skips the build instead of trying to run one.
+
+    Returns `(arm, mcp_config_path)`. Raises if the config is missing, because
+    a third-party arm whose config never loaded is an arm that answers with no
+    tools and scores as a bad tool rather than as a broken setup.
+    """
+    server = dict(condition["mcp_server"])
+    prefix = server["prefix"]
+    cfg_path = Path(server["config"]).expanduser()
+    if not cfg_path.is_absolute():
+        cfg_path = bench_root / cfg_path
+    if not cfg_path.exists():
+        raise FileNotFoundError(f"mcp_config_missing: {cfg_path}")
+    arm = Arm(
+        name=prefix,
+        description=f"third-party MCP server, static config {cfg_path.name}",
+        mcp={"server_name": prefix, "static_config": str(cfg_path)},
+        client_tools=[f"mcp__{prefix}"],
+        index=None,
+        raw=dict(condition),
+    )
+    return arm, str(cfg_path)
+
+
 # An unauthenticated `claude -p` exits 0, reports `subtype: success`, costs
 # $0.00 and answers this. Nothing about the shape of that row says "failure",
 # so a run whose credentials expired mid-flight records a full set of cheap
@@ -1074,6 +1181,24 @@ def _looks_unauthenticated(answer: str) -> bool:
 
 
 MAX_RETRIES = 6
+
+# The standing instruction every augmented arm gets in neutral-comparison
+# mode: the SAME template for every arm with only the server name
+# substituted, and no tool-specific workflow. It assigns the server the
+# primary-interface role because anything weaker does not produce adoption:
+# with eagerly-loaded schemas and a one-sentence "use the X tools" nudge,
+# arms called their server in under 20% of runs (Sonnet defaults hard to
+# Grep/Read), and a comparison in which no arm exercises its tool measures
+# prompt bias, not tools. Adoption rate stays a reported metric either way.
+# Requires eagerly-loaded schemas (alwaysLoad in the server config): under
+# deferred loading the tools are absent from the model's callable set and
+# no phrasing produces any adoption at all.
+NEUTRAL_MCP_PROMPT = (
+    "Your primary interface for exploring this repository is the '{prefix}' "
+    "MCP tool set. For every question, query the '{prefix}' tools first and "
+    "base your answer on what they return; use direct file reads only to "
+    "verify details or fill gaps those tools leave."
+)
 
 
 class _StreamResult:
@@ -1123,7 +1248,8 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     settings_path: Optional[str] = None,
                     prompt_style: str = "arm",
                     tool_descriptions: Optional[dict] = None,
-                    claude_home: Optional[str] = None) -> tuple:
+                    claude_home: Optional[str] = None,
+                    max_turns: Optional[int] = None) -> tuple:
     """
     Run Claude Code with retry on rate limits.
     Returns (output_dict, retries_used).
@@ -1162,6 +1288,10 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
     # degrades into a bare agent wearing the arm's name; a no-MCP arm keeps it
     # blocked. ListMcpResourcesTool / ReadMcpResourceTool are the repo-escape
     # vectors (they read arbitrary MCP resource URIs) and stay blocked everywhere.
+    #
+    # A condition carrying master's `mcp_server: {prefix, config}` (a
+    # hand-written static config mounted verbatim) resolves to a synthesized
+    # third-party arm, so `arm.uses_mcp` is already true for it here.
     base_system_prompt = (
         "You are answering a question about the code repository in your current directory. "
         "Only read files within the current repository. "
@@ -1180,17 +1310,35 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
     # braces blocks the hosted ones.
     disallowed = "ListMcpResourcesTool,ReadMcpResourceTool,mcp__claude_ai_*"
 
+    # Isolation. A no-MCP arm ALWAYS runs in a clean worktree so .repowise/,
+    # .codegraph/, graphify-out/ and .mcp.json from other arms are physically
+    # absent rather than merely disallowed — `--disallowed-tools mcp__*` stops
+    # the agent CALLING a server, it does not stop it Reading a previous arm's
+    # generated wiki off disk. An MCP arm can opt in via `clean_worktree`; its
+    # server keeps pointing at the indexed source checkout through absolute
+    # paths in its config, so the served index is unaffected. If worktree
+    # creation fails we FAIL LOUDLY rather than fall back to the real repo dir
+    # (that's how C0 got silently contaminated before).
+    if (not uses_mcp and manage_c0_worktree) or condition.get("clean_worktree"):
+        variant = condition.get("worktree_variant", "")
+        repo_path = str(get_c0_worktree(Path(repo_path), variant=variant))
+        # Arm-specific files dropped into the private worktree (e.g. a packed
+        # repo file the agent is told exists). {dest_name: source_path},
+        # relative sources resolved against the bench root.
+        for dest, src in (condition.get("worktree_files") or {}).items():
+            src_path = Path(src).expanduser()
+            if not src_path.is_absolute():
+                src_path = _BENCH_ROOT / src_path
+            shutil.copy2(src_path, Path(repo_path) / dest)
+
     if not uses_mcp:
-        # No MCP servers at all. Run in a worktree so .repowise/, .codegraph/,
-        # graphify-out/ and .mcp.json from other arms are physically absent
-        # rather than merely disallowed — `--disallowed-tools mcp__*` stops the
-        # agent CALLING a server, it does not stop it Reading a previous arm's
-        # generated wiki off disk. If worktree creation fails we FAIL LOUDLY
-        # rather than fall back to the real repo dir (that's how C0 got silently
-        # contaminated before).
         disallowed += ",ToolSearch,mcp__*"
-        if manage_c0_worktree:
-            repo_path = str(get_c0_worktree(Path(repo_path)))
+
+    # Master's per-mode client blocklists are deliberately NOT carried over.
+    # They were replaced by the allowlist rule in configs/arms.yaml, which
+    # pins a served surface per arm and applies the same rule to us as to
+    # every vendor. Blocking client-side on top of that would re-handicap
+    # arms whose surface is already pinned.
 
     cmd = [
         "claude",
@@ -1200,9 +1348,17 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         "--include-hook-events",
         "--model", model,
         "--max-budget-usd", str(max_budget_usd),
-        "--append-system-prompt", base_system_prompt,
         "--disallowed-tools", disallowed,
     ]
+    if max_turns:
+        cmd.extend(["--max-turns", str(max_turns)])
+
+    # The CLI honors only the LAST --append-system-prompt flag (verified
+    # empirically: two flags, only the second surfaced). Every prompt part
+    # is therefore collected here and emitted as ONE flag at the end —
+    # passing them as separate flags silently dropped the repo-escape rules
+    # or the arm's tool sentence depending on ordering.
+    system_prompt_parts = [base_system_prompt]
 
     # Pin the settings for this arm: hooks only as declared, no plugins, no
     # inherited MCP servers. See harness/arms.py::generate_settings and finding
@@ -1212,6 +1368,10 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
         cmd.extend(["--settings", settings_path])
 
     allowed_tools = base_tools
+    # A condition using master's `mcp_server: {prefix, config}` arrives here as
+    # a synthesized arm (see `_arm_from_mcp_server`): `client_tools` is
+    # `mcp__<prefix>` and `coaching` is the neutral one-sentence prompt, so the
+    # third-party branch master kept separate is this same branch.
     if uses_mcp:
         # Deferred MCP tools are loaded via ToolSearch — allow it so the agent
         # can pull this arm's tool schemas into context on first use.
@@ -1223,7 +1383,22 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
             # (Figma/Notion/Apollo/Gmail/... from ~/.claude.json) and mount only
             # this arm's server from our config.
             cmd.extend(["--strict-mcp-config", "--mcp-config", mcp_config_path])
-        coaching = arm.resolved_coaching(prompt_style, tool_descriptions)
+        # Neutral-comparison mode: master spelled this `neutral_prompt: true`
+        # on the condition, we spell it `prompt_style: neutral` on the run.
+        # Both mean "give this arm the SAME single sentence as every other
+        # arm instead of its own workflow prompt", so no arm is coached more
+        # than another. Map the config spelling onto the run spelling.
+        style = prompt_style
+        if condition.get("neutral_prompt") and style == "arm":
+            style = "neutral"
+        # A statically-mounted third-party arm has no arms.yaml coaching to
+        # resolve, and master always gave these the neutral one-liner. Without
+        # this they would silently get NO tool prompt at all while every
+        # registry arm got one, which is the coaching asymmetry the neutral
+        # mode exists to remove.
+        if (arm.mcp or {}).get("static_config") and style == "arm":
+            style = "neutral"
+        coaching = arm.resolved_coaching(style, tool_descriptions)
         if coaching:
             cmd.extend(["--append-system-prompt", coaching])
     else:
@@ -1239,8 +1414,14 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
     # Distill instruction (long arm): teach the agent to route noisy command
     # output through `repowise distill`. Independent of the MCP surface.
     if condition.get("distill"):
-        cmd.extend(["--append-system-prompt", DISTILL_PROMPT])
+        system_prompt_parts.append(DISTILL_PROMPT)
 
+    # Arm-specific factual note, e.g. naming a file injected into the
+    # worktree. One neutral sentence owned by the config, never coaching.
+    if condition.get("system_note"):
+        system_prompt_parts.append(condition["system_note"])
+
+    cmd.extend(["--append-system-prompt", "\n\n".join(system_prompt_parts)])
     cmd.extend(["--allowed-tools", allowed_tools])
 
     run_env = dict(_UTF8_ENV)
@@ -1296,6 +1477,7 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                     "mcp_tools_issued": parsed.get("mcp_tools_issued", []),
                     "mcp_isError_count": parsed.get("mcp_isError_count", 0),
                     "mcp_per_server": parsed.get("mcp_per_server", {}),
+                    "server_tools_called": parsed.get("server_tools_called", {}),
                     "hook_events": parsed.get("hook_events", []),
                     "hook_injections": parsed.get("hook_injections", []),
                     "models_used": parsed.get("models_used", []),
@@ -1334,11 +1516,33 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
                 if is_rate_limit_error(err):
                     backoff_sleep(attempt)
                     continue
-                return {
+                # A hard exit (notably error_max_turns) still burned real tokens
+                # and the result event carries the usage. Parse it so the row's
+                # cost is recorded honestly — otherwise an arm that thrashes to
+                # the turn cap looks CHEAPER than one that answers, biasing the
+                # very cost comparison this benchmark exists to make. The row
+                # stays an error (empty answer, not judged); only its accounting
+                # is filled in.
+                err_out = {
                     "error": err,
                     "returncode": result.returncode,
                     "_raw_stream_lines": raw_lines,
-                }, attempt
+                }
+                try:
+                    from harness.metrics import parse_claude_stream_output
+                    p = parse_claude_stream_output(raw_lines)
+                    err_out["total_cost_usd"] = p.get("total_cost_usd", 0.0)
+                    err_out["num_turns"] = p.get("num_turns", 0)
+                    err_out["usage"] = {
+                        "input_tokens": p.get("input_tokens", 0),
+                        "output_tokens": p.get("output_tokens", 0),
+                        "cache_read_input_tokens": p.get("cache_read_tokens", 0),
+                        "cache_creation_input_tokens": p.get("cache_write_tokens", 0),
+                    }
+                    err_out["token_source"] = p.get("token_source", "")
+                except Exception:
+                    pass  # accounting is best-effort; never mask the real error
+                return err_out, attempt
 
         except subprocess.TimeoutExpired as e:
             # Preserve whatever the agent streamed before the kill so a timeout
@@ -1538,9 +1742,37 @@ def _judge_family(judge_model: str) -> str:
     return "unknown"
 
 
+# Per-category additions to the judge rubric. history-why exists because a
+# generic rubric rewards fluent invention: a confident, plausible, WRONG
+# rationale reads as a good answer unless the judge is told groundedness in
+# the actual historical reason is the thing being scored.
+#
+# Note for anyone reading a SWE-QA number: `history-why` is EMPTY in the
+# django SWE-QA set (0 of 48, see harness/question_shapes.py), so this rubric
+# only ever fires on question sources that actually carry the shape, such as
+# data/context_bench/questions_why.json.
+CATEGORY_RUBRICS = {
+    "history-why": """
+CATEGORY NOTE: This question asks WHY the code is the way it is, and the
+reference answer cites a specific historical rationale (a commit, pull
+request, or issue). Score correctness on whether the agent gives the ACTUAL
+recorded reason, not a plausible-sounding invention: a confident rationale
+that differs from the reference's cited reason scores correctness 3 or
+lower, however fluent. An answer that says the reason cannot be determined
+from the available information is honest, not wrong: score its correctness
+5 and judge the other dimensions on their merits.
+""",
+}
+
+
 def judge_answer(question: str, gold_answer: str, agent_answer: str,
-                 judge_model: str) -> dict:
-    """Score agent answer via LLM judge. Retries on rate limits."""
+                 judge_model: str, category: Optional[str] = None) -> dict:
+    """Score agent answer via LLM judge. Retries on rate limits.
+
+    Blind: the judge never sees condition labels. `category` selects an
+    optional per-shape rubric addition from CATEGORY_RUBRICS.
+    """
+    rubric = CATEGORY_RUBRICS.get(category or "", "")
     judge_prompt = f"""You are evaluating an AI agent's answer to a repository-level code question.
 
 QUESTION:
@@ -1551,7 +1783,7 @@ REFERENCE ANSWER:
 
 AGENT ANSWER:
 {agent_answer}
-
+{rubric}
 Score the agent's answer on each dimension (1-10 scale):
 - Correctness: Is the answer factually accurate?
 - Completeness: Does it address all aspects of the question?
@@ -1718,6 +1950,9 @@ Respond with ONLY a JSON object like:
             if not err:
                 err = (f"exit {result.returncode}, no stderr and no parseable "
                        f"stdout; stdout[:200]={(result.stdout or '')[:200]!r}")
+            # Master retried whenever stderr was empty. We diagnose instead:
+            # `err` is filled from the stream above, so an empty-stderr exit
+            # now carries a reason rather than being retried blind.
             if is_rate_limit_error(err):
                 backoff_sleep(attempt, base=20.0)
                 continue
@@ -1808,6 +2043,19 @@ def _index_extra_env(arm: Arm) -> dict:
 def ensure_arm_index(arm: Arm, tree: Path, repo_name: str, config: dict,
                      metrics: RunMetrics) -> dict:
     """Build this arm's index once per (tree-owner, repo). Returns evidence."""
+    # `repowise.assume_indexed` (master's context_bench line): the pinned
+    # staged checkout already carries the index and that index IS the
+    # experiment artifact, so rebuilding would move the thing being measured.
+    # Verify rather than trust: an assume_indexed run against a tree with no
+    # index is an arm querying nothing, which scores as a tool that cannot
+    # retrieve instead of as a setup error.
+    if (config.get("repowise") or {}).get("assume_indexed") and \
+            arm.server_name == "repowise":
+        if not (tree / ".repowise").is_dir():
+            return {"arm": arm.name,
+                    "failed": f"assume_indexed_but_no_index: {tree}"}
+        return {"arm": arm.name, "skipped": "assume_indexed", "seconds": 0.0}
+
     key = (arm.tree_owner, str(tree))
     with _ARM_SETUP_LOCK:
         if key in _ARM_INDEX_DONE:
@@ -1985,26 +2233,46 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         return metrics
 
     repos_dir = config["paths"]["repos_dir"]
-    repo_path = resolve_repo_path(repo_name, repos_dir)
-
-    # Clone if needed
-    if not repo_path.exists():
-        try:
-            ensure_repo_cloned(repo_name, repos_dir)
-        except Exception as e:
-            metrics.error = f"clone_failed: {e}"
+    # Pinned out-of-tree checkouts (e.g. staged benchmark targets) take
+    # precedence over the repos_dir convention; no cloning, no index step.
+    override = (config["paths"].get("repo_overrides") or {}).get(repo_name)
+    if override:
+        repo_path = Path(override).expanduser().resolve()
+        if not repo_path.exists():
+            metrics.error = f"repo_override_missing: {repo_path}"
             return metrics
+    else:
+        repo_path = resolve_repo_path(repo_name, repos_dir)
+        # Clone if needed
+        if not repo_path.exists():
+            try:
+                ensure_repo_cloned(repo_name, repos_dir)
+            except Exception as e:
+                metrics.error = f"clone_failed: {e}"
+                return metrics
 
     metrics.repo_commit = get_repo_commit(repo_path)
+    metrics.category = task.get("category", "")
 
     # ---- resolve the arm --------------------------------------------------
+    static_mcp_config = None
     try:
-        aname = arm_name_for_condition(condition)
-        tree = prepare_arm_tree(aname, repo_path, config)
-        arm = arm_registry.resolve_arm(
-            aname, tree=tree, repo_path=repo_path, repo_name=repo_name,
-            arms_file=config.get("arms_file"), arms_dir=config.get("arms_dir"),
-        )
+        if condition.get("mcp_server"):
+            # Third-party arm defined inline by a static config rather than by
+            # an arms.yaml entry. Its server points at the indexed source
+            # checkout through absolute paths in that config, so it queries
+            # `repo_path` directly and needs no arm-owned tree.
+            arm, static_mcp_config = _arm_from_mcp_server(
+                condition, Path(__file__).resolve().parent.parent)
+            tree = repo_path
+        else:
+            aname = arm_name_for_condition(condition)
+            tree = prepare_arm_tree(aname, repo_path, config)
+            arm = arm_registry.resolve_arm(
+                aname, tree=tree, repo_path=repo_path, repo_name=repo_name,
+                arms_file=config.get("arms_file"),
+                arms_dir=config.get("arms_dir"),
+            )
     except Exception as e:
         metrics.error = f"arm_resolution_failed: {e}"
         return metrics
@@ -2035,10 +2303,16 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             metrics.error = f"indexing_error: {e}"
             return metrics
 
-        mcp_config_path = str(arm_registry.generate_mcp_config(
-            arm, bench_root / "mcp_configs",
-            extra_env=_index_extra_env(arm),
-        ))
+        if static_mcp_config:
+            # Third-party arm: mount the hand-written config verbatim rather
+            # than generating one. It was pre-flighted and its absolute paths
+            # already point at the indexed checkout.
+            mcp_config_path = static_mcp_config
+        else:
+            mcp_config_path = str(arm_registry.generate_mcp_config(
+                arm, bench_root / "mcp_configs",
+                extra_env=_index_extra_env(arm),
+            ))
 
         # ---- proof of life, BEFORE the agent spends anything -------------
         # Record what the server actually advertised, and run this arm's
@@ -2088,6 +2362,15 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         # No server. Scrub the worktree of every other arm's artifacts so the
         # control is a control on disk and not only in the tool allowlist.
         arm_registry.scrub_tree(tree)
+
+    # CLAUDE.md as standing project context. Master wrote this by DEFAULT for
+    # repowise arms; here it is explicit opt-in, because standing context only
+    # one arm receives is exactly the coaching asymmetry the allowlist and
+    # neutral-prompt work exists to remove. No config in the tree relies on
+    # the old default: every config that mentions `claude_md` sets it false.
+    if condition.get("claude_md"):
+        write_repo_claude_md(
+            Path(tree), condition.get("repowise_mode", "full"))
 
     # Build prompt
     question = task.get("question", "")
@@ -2162,6 +2445,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             mcp_config_path=mcp_config_path,
             benchmark="swe_qa",
             arm=arm,
+            max_turns=config["agent"].get("max_turns"),
             settings_path=settings_path,
             prompt_style=metrics.prompt_style,
             tool_descriptions=served_descriptions,
@@ -2187,6 +2471,18 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         if isinstance(metrics.error, str) and len(metrics.error) > 500:
             metrics.error = metrics.error[:500]
         metrics.timed_out = output.get("timed_out", False)
+        # Honest cost accounting for hard failures (e.g. error_max_turns): the
+        # tokens were spent even though there is no answer. Populate from the
+        # parsed result event when present; the row stays an error and is not
+        # judged, but its cost/turns count toward the budget and the totals.
+        usage = output.get("usage", {})
+        metrics.input_tokens = usage.get("input_tokens", 0)
+        metrics.output_tokens = usage.get("output_tokens", 0)
+        metrics.cache_read_tokens = usage.get("cache_read_input_tokens", 0)
+        metrics.cache_write_tokens = usage.get("cache_creation_input_tokens", 0)
+        metrics.num_turns = output.get("num_turns", 0)
+        metrics.estimated_cost_usd = output.get("total_cost_usd", 0.0)
+        metrics.token_source = output.get("token_source", "")
     else:
         usage = output.get("usage", {})
         metrics.input_tokens = usage.get("input_tokens", 0)
@@ -2206,6 +2502,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         metrics.files_edited = output.get("files_edited", [])
         metrics.repowise_tools_called = output.get("repowise_tools_called", [])
         metrics.mcp_tools_issued = output.get("mcp_tools_issued", [])
+        metrics.server_tools_called = output.get("server_tools_called", {})
         metrics.mcp_isError_count = output.get("mcp_isError_count", 0)
         metrics.mcp_per_server = output.get("mcp_per_server", {})
         metrics.hook_events = output.get("hook_events", [])
@@ -2255,6 +2552,14 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
                 flush=True,
             )
 
+            # Master's ATTACH-GUARD under its own name, so analysis written
+            # against either vocabulary reads the same cell the same way. It
+            # is derived from `arm_exercised` rather than recomputed: ours is
+            # the stricter test (it requires a call the server ANSWERED, not
+            # merely one that returned without error), and two guards that
+            # can disagree are worse than one.
+            metrics.attach_guard_fired = not metrics.arm_exercised
+
     metrics.compute_derived()
 
     # Judge
@@ -2268,6 +2573,7 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             gold_answer=gold_answer,
             agent_answer=metrics.answer,
             judge_model=judge_model,
+            category=task.get("category"),
         )
         metrics.judge_time_seconds = time.time() - judge_start
 

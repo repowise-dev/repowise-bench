@@ -1,0 +1,99 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5a8e8f80bb82a867eab7e4d9d099f21d0a976d22",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 928.6,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 34,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-227490c2",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 6.7,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 22308,
+    "ranked": [
+      "django/contrib/gis/gdal/datasource.py",
+      "django/db/models/expressions.py",
+      "django/test/client.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/expressions.py::Combinable",
+      "django/test/client.py::AsyncRequestFactory",
+      "django/db/models/sql/query.py::split_exclude",
+      "django/db/models/sql/query.py::get_order_dir",
+      "django/db/transaction.py",
+      "django/contrib/gis/utils/layermapping.py",
+      "django/contrib/gis/gdal/geometries.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/utils/encoding.py",
+      "django/contrib/gis/gdal/error.py",
+      "scripts/rpm-install.sh",
+      "django/template/base.py",
+      "django/utils/http.py",
+      "django/db/models/query.py",
+      "django/core/management/commands/runserver.py",
+      "django/contrib/staticfiles/management/commands/runserver.py",
+      "django/__main__.py",
+      "django/template/backends/django.py",
+      "django/core/serializers/base.py",
+      "django/test/utils.py"
+    ],
+    "n_ranked": 24,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/core/management/__init__.py",
+      "django/core/management/commands/runserver.py",
+      "django/utils/autoreload.py",
+      "tests/utils_tests/test_autoreload.py"
+    ],
+    "gold_hit_rank": 19
+  }
+}

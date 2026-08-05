@@ -1,0 +1,73 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "8c0886b068ba4e224dd78104b93c9638b860b398",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 16.6,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4e7b7c81"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4e7b7c81",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24725,
+    "ranked": [
+      "django/utils/functional.py",
+      "django/utils/formats.py",
+      "django/forms/fields.py",
+      "django/forms/widgets.py",
+      "django/views/i18n.py",
+      "tests/i18n/tests.py",
+      "django/utils/dateformat.py",
+      "django/contrib/admin/models.py",
+      "django/contrib/auth/forms.py",
+      "django/contrib/humanize/templatetags/humanize.py",
+      "django/core/checks/templates.py",
+      "tests/admin_changelist/tests.py",
+      "tests/check_framework/test_templates.py",
+      "tests/file_uploads/tests.py",
+      "tests/gis_tests/geos_tests/test_geos.py",
+      "django/utils/datetime_safe.py",
+      "django/contrib/admin/filters.py",
+      "django/contrib/admin/templatetags/admin_list.py",
+      "django/db/backends/base/operations.py",
+      "django/db/backends/base/schema.py",
+      "tests/admin_views/test_autocomplete_view.py",
+      "tests/admin_views/test_templatetags.py",
+      "tests/admin_views/tests.py",
+      "tests/aggregation/test_filter_argument.py",
+      "django/utils/log.py",
+      "docs/ref/logging.txt"
+    ],
+    "n_ranked": 26,
+    "gold_files": [
+      "django/utils/formats.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "6a5ef557f80a8eb6a758ebe99c8bb477ca47459e",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 703.2,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__31d4fe9d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-31d4fe9d",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.5,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 18788,
+    "ranked": [
+      "django/utils/html.py",
+      "django/utils/functional.py",
+      "django/utils/regex_helper.py",
+      "django/utils/safestring.py",
+      "django/utils/html.py::urlize",
+      "django/contrib/gis/geos/mutable_list.py",
+      "django/utils/feedgenerator.py",
+      "django/conf/locale/mn/formats.py",
+      "django/conf/locale/te/formats.py",
+      "django/conf/locale/ta/formats.py",
+      "django/template/defaultfilters.py",
+      "django/conf/locale/kn/formats.py",
+      "django/conf/locale/ga/formats.py",
+      "django/contrib/sitemaps/management/commands/ping_google.py",
+      "django/utils/http.py",
+      "django/conf/locale/hi/formats.py",
+      "django/conf/locale/lt/formats.py",
+      "django/conf/locale/et/formats.py",
+      "django/utils/text.py",
+      "django/conf/locale/bg/formats.py",
+      "django/utils/encoding.py"
+    ],
+    "n_ranked": 21,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "django/utils/html.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

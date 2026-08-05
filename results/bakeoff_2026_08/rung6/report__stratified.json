@@ -1,0 +1,552 @@
+{
+  "adoption": {
+    "c0-bare": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 0,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 0,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 0,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 0,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 0,
+          "run": 3
+        }
+      },
+      "used": 0,
+      "run": 15
+    },
+    "code-review-graph": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 0,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 0,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 0,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 0,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 0,
+          "run": 3
+        }
+      },
+      "used": 0,
+      "run": 15
+    },
+    "codegraph": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 2,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 3,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 3,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 2,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 3,
+          "run": 3
+        }
+      },
+      "used": 13,
+      "run": 15
+    },
+    "graphify": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 0,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 1,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 0,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 0,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 2,
+          "run": 3
+        }
+      },
+      "used": 3,
+      "run": 15
+    },
+    "repowise": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 3,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 3,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 3,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 3,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 3,
+          "run": 3
+        }
+      },
+      "used": 15,
+      "run": 15
+    },
+    "serena": {
+      "per_shape": {
+        "symbol-lookup": {
+          "used": 0,
+          "run": 3
+        },
+        "multi-hop-flow": {
+          "used": 1,
+          "run": 3
+        },
+        "architecture-why": {
+          "used": 1,
+          "run": 3
+        },
+        "cross-file-impact": {
+          "used": 0,
+          "run": 3
+        },
+        "performance-why": {
+          "used": 2,
+          "run": 3
+        }
+      },
+      "used": 4,
+      "run": 15
+    }
+  },
+  "proof_of_life": {
+    "c0-bare": {
+      "cells": 15,
+      "ok": 15,
+      "served": [],
+      "mcp_calls": 0,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "code-review-graph": {
+      "cells": 15,
+      "ok": 15,
+      "served": [
+        30
+      ],
+      "mcp_calls": 0,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "codegraph": {
+      "cells": 15,
+      "ok": 15,
+      "served": [
+        1
+      ],
+      "mcp_calls": 27,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "graphify": {
+      "cells": 15,
+      "ok": 15,
+      "served": [
+        10
+      ],
+      "mcp_calls": 4,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "repowise": {
+      "cells": 15,
+      "ok": 15,
+      "served": [
+        11
+      ],
+      "mcp_calls": 26,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    },
+    "serena": {
+      "cells": 15,
+      "ok": 15,
+      "served": [
+        29
+      ],
+      "mcp_calls": 16,
+      "isError": 0,
+      "hook_injections": 0,
+      "judge_failures": 0
+    }
+  },
+  "slices": {
+    "symbol-lookup": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.866666666666667,
+        "d_judge": 0.0,
+        "cost": 0.28479076666666664,
+        "control_cost": 0.28479076666666664,
+        "d_cost_pct": 0.0,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 5.333333333333333,
+        "judge_wtl": "0-3-0"
+      },
+      "codegraph": {
+        "pairs": 2,
+        "gradeable_pairs": 2,
+        "judge": 8.2,
+        "d_judge": -0.10000000000000009,
+        "cost": 0.134694975,
+        "control_cost": 0.28351812499999995,
+        "d_cost_pct": -52.4915823282903,
+        "files_read": 0.5,
+        "tool_calls": 4,
+        "judge_wtl": "0-1-1"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 9.266666666666666,
+        "d_judge": 0.39999999999999974,
+        "cost": 0.14851866666666666,
+        "control_cost": 0.28479076666666664,
+        "d_cost_pct": -47.84990103260604,
+        "files_read": 0.3333333333333333,
+        "tool_calls": 4,
+        "judge_wtl": "2-1-0"
+      }
+    },
+    "multi-hop-flow": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.8,
+        "d_judge": 0.0,
+        "cost": 0.25904951666666665,
+        "control_cost": 0.25904951666666665,
+        "d_cost_pct": 0.0,
+        "files_read": 3.6666666666666665,
+        "tool_calls": 11.666666666666666,
+        "judge_wtl": "0-3-0"
+      },
+      "codegraph": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.266666666666667,
+        "d_judge": -0.5333333333333335,
+        "cost": 0.2685490833333333,
+        "control_cost": 0.25904951666666665,
+        "d_cost_pct": 3.667085269605154,
+        "files_read": 0.6666666666666666,
+        "tool_calls": 7.666666666666667,
+        "judge_wtl": "0-1-2"
+      },
+      "graphify": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 9.2,
+        "d_judge": 0.3999999999999986,
+        "cost": 0.23116600000000004,
+        "control_cost": 0.25304095000000004,
+        "d_cost_pct": -8.644826064714032,
+        "files_read": 3,
+        "tool_calls": 14,
+        "judge_wtl": "1-0-0"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.733333333333334,
+        "d_judge": -0.06666666666666672,
+        "cost": 0.18595178333333331,
+        "control_cost": 0.25904951666666665,
+        "d_cost_pct": -28.217668295205595,
+        "files_read": 2.6666666666666665,
+        "tool_calls": 8.333333333333334,
+        "judge_wtl": "1-1-1"
+      },
+      "serena": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 7.4,
+        "d_judge": -0.39999999999999947,
+        "cost": 0.1808443,
+        "control_cost": 0.29695374999999996,
+        "d_cost_pct": -39.1001797417948,
+        "files_read": 4,
+        "tool_calls": 10,
+        "judge_wtl": "0-0-1"
+      }
+    },
+    "architecture-why": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.933333333333334,
+        "d_judge": 0.0,
+        "cost": 0.2923831,
+        "control_cost": 0.2923831,
+        "d_cost_pct": 0.0,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 4.666666666666667,
+        "judge_wtl": "0-3-0"
+      },
+      "codegraph": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.733333333333333,
+        "d_judge": -0.19999999999999987,
+        "cost": 0.22166888333333334,
+        "control_cost": 0.2923831,
+        "d_cost_pct": -24.18546648786016,
+        "files_read": 2.3333333333333335,
+        "tool_calls": 7,
+        "judge_wtl": "2-0-1"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.266666666666667,
+        "d_judge": -0.6666666666666661,
+        "cost": 0.20725506666666665,
+        "control_cost": 0.2923831,
+        "d_cost_pct": -29.115237280586104,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 6.333333333333333,
+        "judge_wtl": "1-0-2"
+      },
+      "serena": {
+        "pairs": 1,
+        "gradeable_pairs": 1,
+        "judge": 8.4,
+        "d_judge": -0.1999999999999993,
+        "cost": 0.20695515000000003,
+        "control_cost": 0.32455005000000003,
+        "d_cost_pct": -36.23320963900637,
+        "files_read": 2,
+        "tool_calls": 10,
+        "judge_wtl": "0-0-1"
+      }
+    },
+    "cross-file-impact": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.2,
+        "d_judge": 0.0,
+        "cost": 0.41890894999999995,
+        "control_cost": 0.41890894999999995,
+        "d_cost_pct": 0.0,
+        "files_read": 2.6666666666666665,
+        "tool_calls": 12.333333333333334,
+        "judge_wtl": "0-3-0"
+      },
+      "codegraph": {
+        "pairs": 2,
+        "gradeable_pairs": 2,
+        "judge": 8.0,
+        "d_judge": -0.19999999999999885,
+        "cost": 0.30192362500000003,
+        "control_cost": 0.43460135,
+        "d_cost_pct": -30.528603972353046,
+        "files_read": 2,
+        "tool_calls": 14.5,
+        "judge_wtl": "1-0-1"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 8.4,
+        "d_judge": 0.20000000000000107,
+        "cost": 0.27228468333333333,
+        "control_cost": 0.41890894999999995,
+        "d_cost_pct": -35.00146431979231,
+        "files_read": 2,
+        "tool_calls": 11.333333333333334,
+        "judge_wtl": "2-0-1"
+      }
+    },
+    "performance-why": {
+      "c0-bare": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 6.866666666666666,
+        "d_judge": 0.0,
+        "cost": 0.30031114999999997,
+        "control_cost": 0.30031114999999997,
+        "d_cost_pct": 0.0,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 9.333333333333334,
+        "judge_wtl": "0-3-0"
+      },
+      "codegraph": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 5.733333333333333,
+        "d_judge": -1.133333333333333,
+        "cost": 0.19019023333333332,
+        "control_cost": 0.30031114999999997,
+        "d_cost_pct": -36.66894041951711,
+        "files_read": 0,
+        "tool_calls": 3.6666666666666665,
+        "judge_wtl": "0-0-3"
+      },
+      "graphify": {
+        "pairs": 2,
+        "gradeable_pairs": 2,
+        "judge": 6.6,
+        "d_judge": -0.40000000000000036,
+        "cost": 0.238999725,
+        "control_cost": 0.2491659,
+        "d_cost_pct": -4.080082788214599,
+        "files_read": 2.5,
+        "tool_calls": 12.5,
+        "judge_wtl": "1-0-1"
+      },
+      "repowise": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 7.666666666666667,
+        "d_judge": 0.8000000000000002,
+        "cost": 0.22012421666666665,
+        "control_cost": 0.30031114999999997,
+        "d_cost_pct": -26.70128409595625,
+        "files_read": 1.3333333333333333,
+        "tool_calls": 7.666666666666667,
+        "judge_wtl": "2-0-1"
+      },
+      "serena": {
+        "pairs": 2,
+        "gradeable_pairs": 2,
+        "judge": 7.4,
+        "d_judge": 0.40000000000000036,
+        "cost": 0.20779192500000002,
+        "control_cost": 0.2491659,
+        "d_cost_pct": -16.604990891610765,
+        "files_read": 0.5,
+        "tool_calls": 11,
+        "judge_wtl": "1-1-0"
+      }
+    },
+    "POOLED": {
+      "c0-bare": {
+        "pairs": 15,
+        "gradeable_pairs": 15,
+        "judge": 8.333333333333334,
+        "d_judge": 0.0,
+        "cost": 0.31108869666666666,
+        "control_cost": 0.31108869666666666,
+        "d_cost_pct": 0.0,
+        "files_read": 2.066666666666667,
+        "tool_calls": 8.666666666666666,
+        "judge_wtl": "0-15-0"
+      },
+      "codegraph": {
+        "pairs": 13,
+        "gradeable_pairs": 13,
+        "judge": 7.7384615384615385,
+        "d_judge": -0.4769230769230767,
+        "cost": 0.2241893692307692,
+        "control_cost": 0.3070361730769231,
+        "d_cost_pct": -26.982750278547122,
+        "files_read": 1.0769230769230769,
+        "tool_calls": 7.076923076923077,
+        "judge_wtl": "3-2-8"
+      },
+      "graphify": {
+        "pairs": 3,
+        "gradeable_pairs": 3,
+        "judge": 7.466666666666666,
+        "d_judge": -0.13333333333333405,
+        "cost": 0.23638848333333334,
+        "control_cost": 0.25045758333333334,
+        "d_cost_pct": -5.617358361745219,
+        "files_read": 2.6666666666666665,
+        "tool_calls": 13,
+        "judge_wtl": "2-0-1"
+      },
+      "repowise": {
+        "pairs": 15,
+        "gradeable_pairs": 15,
+        "judge": 8.466666666666667,
+        "d_judge": 0.13333333333333364,
+        "cost": 0.20682688333333332,
+        "control_cost": 0.31108869666666666,
+        "d_cost_pct": -33.51514036045175,
+        "files_read": 1.5333333333333334,
+        "tool_calls": 7.533333333333333,
+        "judge_wtl": "8-2-5"
+      },
+      "serena": {
+        "pairs": 4,
+        "gradeable_pairs": 4,
+        "judge": 7.65,
+        "d_judge": 0.05000000000000049,
+        "cost": 0.20084582500000003,
+        "control_cost": 0.2799589,
+        "d_cost_pct": -28.25881763358835,
+        "files_read": 1.75,
+        "tool_calls": 10.5,
+        "judge_wtl": "1-1-2"
+      }
+    }
+  },
+  "reportable_arms": [
+    "c0-bare",
+    "codegraph",
+    "graphify",
+    "repowise",
+    "serena"
+  ],
+  "adoption_only_arms": [
+    "code-review-graph"
+  ],
+  "total_cost_usd": 18.7707998,
+  "cells": 90
+}

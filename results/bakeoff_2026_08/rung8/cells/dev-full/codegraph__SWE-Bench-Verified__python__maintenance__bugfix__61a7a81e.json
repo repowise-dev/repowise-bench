@@ -1,0 +1,73 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__61a7a81e",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "fa5e7e46d875d4143510944f19d79df7b1739bab",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 23.5,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-61a7a81e"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__61a7a81e",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-61a7a81e",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 24680,
+    "ranked": [
+      "Users/u/PycharmProjects/django_debug/foo/tests/test_bug.py",
+      "Users/u/.virtualenvs/django_debug/src/django/django/db/models/query.py",
+      "Users/u/.virtualenvs/django_debug/src/django/django/db/models/sql/query.py",
+      "Users/u/.virtualenvs/django_debug/src/django/django/db/models/lookups.py",
+      "Users/u/.virtualenvs/django_debug/src/django/django/db/models/fields/__init__.py",
+      "django/db/models/query.py",
+      "tests/queryset_pickle/models.py",
+      "tests/auth_tests/test_models.py",
+      "tests/prefetch_related/models.py",
+      "tests/get_earliest_or_latest/models.py",
+      "tests/utils_tests/test_simplelazyobject.py",
+      "django/test/utils.py",
+      "django/contrib/auth/models.py",
+      "tests/admin_changelist/tests.py",
+      "tests/admin_inlines/tests.py",
+      "tests/multiple_database/models.py",
+      "tests/auth_tests/models/custom_user.py",
+      "django/contrib/auth/hashers.py",
+      "tests/auth_tests/models/custom_permissions.py",
+      "tests/admin_changelist/test_date_hierarchy.py",
+      "tests/admin_custom_urls/tests.py",
+      "tests/admin_docs/tests.py"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "django/db/models/expressions.py",
+      "django/db/models/fields/__init__.py",
+      "django/db/models/lookups.py",
+      "django/db/models/query.py",
+      "django/db/models/sql/compiler.py",
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__994d041f",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d89f976bddb49fb168334960acc8979c3de991fa",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 23.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-994d041f"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__994d041f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-994d041f",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 23088,
+    "ranked": [
+      "django/db/models/functions/datetime.py",
+      "django/db/models/functions/__init__.py",
+      "tests/db_functions/datetime/test_extract_trunc.py",
+      "tests/aggregation/tests.py",
+      "django/contrib/admin/widgets.py",
+      "tests/admin_widgets/tests.py",
+      "django/db/models/query.py",
+      "django/forms/widgets.py",
+      "django/forms/widgets/date.h",
+      "django/forms/widgets/datetime.h",
+      "django/forms/widgets/time.h",
+      "django/forms/widgets/multiwidget.h",
+      "django/forms/widgets/splitdatetime.h",
+      "django/forms/widgets/splithiddendatetime.h",
+      "admin/widgets/split_datetime.h",
+      "django/contrib/gis/db/models/functions.py",
+      "django/db/backends/base/operations.py",
+      "django/utils/datetime_safe.py",
+      "tests/admin_docs/test_utils.py",
+      "tests/admin_views/models.py",
+      "django/db/models/sql/compiler.py",
+      "django/utils/timezone.py",
+      "django/utils/translation/__init__.py",
+      "django/forms/utils.py"
+    ],
+    "n_ranked": 24,
+    "gold_files": [
+      "django/db/backends/postgresql/operations.py",
+      "django/db/models/functions/datetime.py",
+      "django/utils/timezone.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

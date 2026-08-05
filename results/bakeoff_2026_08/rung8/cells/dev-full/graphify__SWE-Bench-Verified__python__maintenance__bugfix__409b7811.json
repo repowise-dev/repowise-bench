@@ -1,0 +1,75 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__409b7811",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "c2678e49759e5c4c329bff0eeca2886267005d21",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 487.5,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-409b7811"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__409b7811",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-409b7811",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 2326,
+    "ranked": [
+      "models/fields/__init__.py",
+      "tests/admin_filters/tests.py",
+      "tests/queryset_pickle/models.py",
+      "tests/select_related_regress/tests.py",
+      "tests/queries/tests.py",
+      "django/db/models/lookups.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/db/models/fields/__init__.py",
+      "tests/model_meta/models.py",
+      "model_meta/tests.py",
+      "tests/fixtures/tests.py",
+      "fixtures/tests.py",
+      "tests/ordering/tests.py",
+      "tests/auth_tests/test_auth_backends.py",
+      "django/contrib/admin/checks.py",
+      "tests/view_tests/regression_21530_urls.py",
+      "utils/http.py",
+      "tests/queries/models.py",
+      "queries/tests.py",
+      "tests/postgres_tests/test_apps.py"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "django/db/models/base.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

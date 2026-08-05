@@ -1,0 +1,70 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__994d041f",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d89f976bddb49fb168334960acc8979c3de991fa",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__994d041f",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-994d041f",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 2.1,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5829,
+    "ranked": [
+      "django/http/response.py::HttpResponseBase",
+      "django/utils/timezone.py::get_default_timezone",
+      "django/utils/timezone.py::get_default_timezone_name",
+      "django/utils/timezone.py::get_current_timezone_name",
+      "django/utils/timezone.py::activate",
+      "django/contrib/gis/db/backends/base/models.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/core/cache/backends/db.py",
+      "django/views/generic/dates.py",
+      "django/views/generic/base.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/backends/postgresql/operations.py",
+      "django/db/models/functions/datetime.py",
+      "django/utils/timezone.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

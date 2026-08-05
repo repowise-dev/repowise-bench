@@ -1,0 +1,996 @@
+{
+  "tag": "canary8",
+  "split": "dev",
+  "arms": [
+    "repowise",
+    "repowise-search",
+    "codegraph",
+    "crg",
+    "graphify"
+  ],
+  "workers": 8,
+  "n_instances": 8,
+  "instance_ids": [
+    "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+    "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+    "Multi-SWE-Bench__go__maintenance__bugfix__2c512ec3",
+    "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+    "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+    "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+    "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c"
+  ],
+  "preflight": {
+    "mp_workers": 0
+  },
+  "timings_publishable": false,
+  "units": [
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 5,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1b8cfbf9",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 6.4,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1b8cfbf9"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 2,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-03f04397",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 13.9,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-03f04397"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2a889a1d",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 2.4,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2a889a1d"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1b8cfbf9",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 27.0,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-1b8cfbf9"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2a889a1d",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 5.6,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2a889a1d"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 4,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-03f04397",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 38.9,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-03f04397"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2c512ec3",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2c512ec3",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 12.8,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2c512ec3"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-2a889a1d",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 3.8,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-2a889a1d",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 7,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-1b8cfbf9",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 13.2,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-1b8cfbf9",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-03f04397",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 24.8,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-03f04397",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2c512ec3",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2c512ec3",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 28.9,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-2c512ec3"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2c512ec3",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-2c512ec3",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 17.8,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-2c512ec3",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-02b5862c",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 21.9,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-02b5862c"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2a889a1d",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-2a889a1d",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 38.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1b8cfbf9",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 6,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-1b8cfbf9",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 82.5,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-05a89a66",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 22.0,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-05a89a66"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2c512ec3",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-2c512ec3",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 147.3,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 1,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-03f04397",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 194.5,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0b74a2c7",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 35.5,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0b74a2c7"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-02b5862c",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 298.0,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-02b5862c"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 40,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-05a89a66",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 343.9,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-05a89a66"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-02b5862c",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 727.8,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 8,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0b74a2c7",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 439.5,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-0b74a2c7"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+      "parent": "codegraph",
+      "arms": [
+        "codegraph"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-16c72e4c",
+      "build": {
+        "arm": "codegraph",
+        "rc": 0,
+        "seconds": 43.0,
+        "argv": [
+          "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+          "init",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-16c72e4c"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-05a89a66",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 785.7,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-0b74a2c7",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 889.2,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__05a89a66",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-05a89a66",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 131.8,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-05a89a66",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-02b5862c",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 112.4,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-02b5862c",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+      "parent": "graphify",
+      "arms": [
+        "graphify"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 8,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-16c72e4c",
+      "build": {
+        "arm": "graphify",
+        "rc": 0,
+        "seconds": 325.4,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+          "update",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-16c72e4c"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0b74a2c7",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-0b74a2c7",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 144.7,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-0b74a2c7",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+      "parent": "crg",
+      "arms": [
+        "crg"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c",
+      "build": {
+        "arm": "crg",
+        "rc": 0,
+        "seconds": 116.9,
+        "argv": [
+          "C:\\Users\\ragha\\.local\\bin\\code-review-graph.exe",
+          "build",
+          "--repo",
+          "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-crg-16c72e4c",
+          "--embedding-provider",
+          "local",
+          "--embedding-model",
+          "sentence-transformers/all-MiniLM-L6-v2"
+        ]
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__16c72e4c",
+      "parent": "repowise",
+      "arms": [
+        "repowise",
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 8,
+        "mp_workers": 0,
+        "workers": 8
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-16c72e4c",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 793.0,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ]
+      }
+    }
+  ],
+  "run_seconds": 1442.0,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 8,
+      "ok": 8,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 8,
+      "embedder_degraded": 0
+    },
+    "repowise-search": {
+      "cells": 8,
+      "ok": 8,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 8,
+      "embedder_degraded": 0
+    },
+    "codegraph": {
+      "cells": 8,
+      "ok": 8,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "crg": {
+      "cells": 8,
+      "ok": 8,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "graphify": {
+      "cells": 8,
+      "ok": 8,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    }
+  },
+  "prewarm": {
+    "rc": 0,
+    "n": 8,
+    "failed": []
+  },
+  "selftest": {
+    "perfect": {
+      "rc": 0,
+      "file_coverage": 1.0,
+      "evaluation": "1/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": 0.0,
+      "evaluation": "1/1 instances"
+    },
+    "discriminates": true
+  },
+  "graded": {
+    "repowise": {
+      "n": 8,
+      "rc": 0,
+      "evaluation": "8/8 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__canary8__repowise.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__canary8__repowise.jsonl",
+      "graded_rows": 8,
+      "valid": 8,
+      "file_coverage": 0.0,
+      "file_precision": 0.0
+    },
+    "codegraph": {
+      "n": 8,
+      "rc": 0,
+      "evaluation": "8/8 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__canary8__codegraph.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__canary8__codegraph.jsonl",
+      "graded_rows": 8,
+      "valid": 8,
+      "file_coverage": 0.5729,
+      "file_precision": 0.0954
+    },
+    "repowise-search": {
+      "n": 8,
+      "rc": 0,
+      "evaluation": "8/8 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__canary8__repowise-search.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__canary8__repowise-search.jsonl",
+      "graded_rows": 8,
+      "valid": 8,
+      "file_coverage": 0.1562,
+      "file_precision": 0.0417
+    },
+    "crg": {
+      "n": 8,
+      "rc": 0,
+      "evaluation": "8/8 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__canary8__crg.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__canary8__crg.jsonl",
+      "graded_rows": 8,
+      "valid": 8,
+      "file_coverage": 0.3021,
+      "file_precision": 0.1366
+    },
+    "graphify": {
+      "n": 8,
+      "rc": 0,
+      "evaluation": "8/8 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__canary8__graphify.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__canary8__graphify.jsonl",
+      "graded_rows": 8,
+      "valid": 8,
+      "file_coverage": 0.4688,
+      "file_precision": 0.0346
+    }
+  }
+}

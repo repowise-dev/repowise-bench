@@ -1,0 +1,96 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__55a3ef80",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e6588aa4e793b7f56f4cadbfa155b581e0efc59a",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 635.3,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__55a3ef80",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-55a3ef80",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.4,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 5219,
+    "ranked": [
+      "django/forms/models.py",
+      "django/template/backends/django.py",
+      "django/db/backends/oracle/functions.py",
+      "django/contrib/gis/db/models/functions.py",
+      "django/forms/models.py::model_to_dict",
+      "django/db/utils.py",
+      "django/apps/config.py",
+      "django/core/exceptions.py",
+      "django/db/models/options.py",
+      "django/db/models/query.py",
+      "django/db/models/fields/__init__.py",
+      "django/core/serializers/pyyaml.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/base.py",
+      "django/db/models/query_utils.py",
+      "django/urls/resolvers.py",
+      "django/utils/datastructures.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/manager.py",
+      "django/template/context_processors.py",
+      "django/utils/functional.py"
+    ],
+    "n_ranked": 21,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "gold_files": [
+      "django/forms/models.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ebf021d0",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "321ecb40f4da842926e1bc07e11df4aabe53ca4b",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 18.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ebf021d0"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ebf021d0",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-ebf021d0",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19307,
+    "ranked": [
+      "django/db/models/sql/query.py",
+      "django/contrib/gis/db/models/lookups.py",
+      "django/contrib/postgres/constraints.py",
+      "django/db/backends/base/schema.py",
+      "django/db/models/constraints.py",
+      "tests/backends/test_ddl_references.py",
+      "tests/prefetch_related/tests.py",
+      "tests/queries/test_query.py",
+      "tests/queries/test_sqlcompiler.py",
+      "django/db/backends/ddl_references.py",
+      "django/db/backends/sqlite3/schema.py",
+      "django/db/migrations/operations/base.py",
+      "django/contrib/postgres/operations.py",
+      "django/db/migrations/operations/fields.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/migrations/operations/special.py",
+      "tests/custom_migration_operations/more_operations.py",
+      "tests/custom_migration_operations/operations.py",
+      "tests/migrations/test_optimizer.py",
+      "django/db/models/query.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "n_ranked": 21,
+    "gold_files": [
+      "django/db/models/expressions.py",
+      "django/db/models/lookups.py",
+      "django/db/models/query_utils.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/where.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

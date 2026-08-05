@@ -1,0 +1,55 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c9656d7a",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "71e7c8e73712419626f1c2b6ec036e8559a2d667",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 27.0,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c9656d7a"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c9656d7a",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-c9656d7a",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25209,
+    "ranked": [
+      "django/django/core/management/__init__.py",
+      "django/django/core/management/base.py",
+      "django/django/core/management/commands/makemigrations.py",
+      "django/django/db/migrations/autodetector.py",
+      "tests/migrations/test_autodetector.py",
+      "django/core/management/__init__.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/db/models/expressions.py",
+      "django/db/migrations/recorder.py"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "gold_hit_rank": 4
+  }
+}

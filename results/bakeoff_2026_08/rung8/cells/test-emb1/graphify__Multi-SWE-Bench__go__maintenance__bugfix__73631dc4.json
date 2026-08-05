@@ -1,0 +1,78 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "88eaa28aef1f1539abbcb3ce6580cce9122e783a",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 4.3,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-73631dc4"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-73631dc4",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6520,
+    "ranked": [
+      "utils/utils.go",
+      "pkg/httpmock/stub.go",
+      "api/queries_pr.go",
+      "internal/config/alias_config.go",
+      "command/issue.go",
+      "api/pull_request_test.go",
+      "pkg/browser/browser.go",
+      "internal/ghrepo/repo.go",
+      "command/root.go",
+      "api/queries_issue.go",
+      "api/queries_user.go",
+      "command/pr.go",
+      "api/client.go",
+      "context/context.go",
+      "api/queries_repo.go",
+      "utils/table_printer.go",
+      "utils/color.go",
+      "api/client_test.go",
+      "context/remote.go",
+      "utils/terminal.go"
+    ],
+    "n_ranked": 20,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/command/issue.go",
+      "/workspace/cli__cli__0.1/command/issue_test.go",
+      "/workspace/cli__cli__0.1/command/pr.go"
+    ],
+    "gold_hit_rank": 5
+  }
+}

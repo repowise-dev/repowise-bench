@@ -1,0 +1,60 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a5ec0eec",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 23.9,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-a5ec0eec"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 32,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a5ec0eec",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-a5ec0eec",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 18189,
+    "ranked": [
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/auth/management/commands/createsuperuser.py",
+      "django/contrib/auth/models.py",
+      "django/contrib/gis/utils/layermapping.py",
+      "django/db/models/query.py",
+      "django/db/models/fields/related.py",
+      "django/db/models/__init__.py",
+      "tests/indexes/tests.py",
+      "tests/modeladmin/test_checks.py",
+      "tests/schema/tests.py",
+      "django/forms/models.py",
+      "django/db/migrations/operations/models.py"
+    ],
+    "n_ranked": 12,
+    "gold_files": [
+      "django/db/backends/base/schema.py",
+      "django/db/migrations/operations/models.py",
+      "django/db/models/options.py"
+    ],
+    "gold_hit_rank": 12
+  }
+}

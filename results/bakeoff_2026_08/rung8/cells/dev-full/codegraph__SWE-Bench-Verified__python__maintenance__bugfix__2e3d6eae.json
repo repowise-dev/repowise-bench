@@ -1,0 +1,56 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2e3d6eae",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "361bb8f786f112ee275be136795c0b1ecefff928",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 43.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2e3d6eae"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2e3d6eae",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-2e3d6eae",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25209,
+    "ranked": [
+      "django/test/runner.py",
+      "django/db/backends/creation.py",
+      "django/db/migrations/executor.py",
+      "django/db/migrations/recorder.py",
+      "tests/migrations/test_executor.py",
+      "tests/migrations/test_loader.py",
+      "tests/migrations/test_commands.py",
+      "tests/migrations/test_operations.py",
+      "django/db/utils.py"
+    ],
+    "n_ranked": 9,
+    "gold_files": [
+      "django/db/migrations/executor.py",
+      "django/db/migrations/recorder.py"
+    ],
+    "gold_hit_rank": 3
+  }
+}

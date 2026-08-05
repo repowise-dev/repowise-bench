@@ -1,0 +1,57 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 20.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0006beec"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-0006beec",
+    "command": "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 25187,
+    "ranked": [
+      "django/contrib/auth/password_validation.py",
+      "tests/auth_tests/test_validators.py",
+      "django/contrib/admin/checks.py",
+      "tests/admin_views/tests.py",
+      "tests/invalid_models_tests/test_models.py",
+      "tests/invalid_models_tests/test_relative_fields.py",
+      "tests/modeladmin/test_checks.py",
+      "django/forms/widgets.py",
+      "tests/forms_tests/tests/test_media.py",
+      "django/db/migrations/state.py"
+    ],
+    "n_ranked": 10,
+    "gold_files": [
+      "django/db/migrations/state.py"
+    ],
+    "gold_hit_rank": 10
+  }
+}

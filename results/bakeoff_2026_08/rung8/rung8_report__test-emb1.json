@@ -1,0 +1,1634 @@
+{
+  "tag": "test-emb1",
+  "split": "test",
+  "arms": [
+    "repowise",
+    "repowise-search",
+    "codegraph",
+    "crg",
+    "graphify"
+  ],
+  "workers": 3,
+  "n_instances": 42,
+  "instance_ids": [
+    "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+    "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+    "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+    "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+    "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+    "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+    "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+    "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+    "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+    "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+    "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+    "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+    "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+    "SWE-Bench-Verified__python__maintenance__bugfix__01527b89",
+    "SWE-Bench-Verified__python__maintenance__bugfix__12d848d7",
+    "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+    "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+    "SWE-Bench-Verified__python__maintenance__bugfix__2c34be8a",
+    "SWE-Bench-Verified__python__maintenance__bugfix__2d5d4dcd",
+    "SWE-Bench-Verified__python__maintenance__bugfix__3e44d93a",
+    "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+    "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+    "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+    "SWE-Bench-Verified__python__maintenance__bugfix__6809df19",
+    "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+    "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+    "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+    "SWE-Bench-Verified__python__maintenance__bugfix__768d44e5",
+    "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+    "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+    "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+    "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+    "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+    "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+    "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+    "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+    "SWE-Bench-Verified__python__maintenance__bugfix__d105d187",
+    "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+    "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+    "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+    "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d"
+  ],
+  "preflight": {
+    "mp_workers": 0
+  },
+  "timings_publishable": false,
+  "units": [
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0498ad7f",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0f79e39c",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__2fea5f6b",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3e92c76b",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__73631dc4",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__01527b89",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__01527b89",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__01527b89",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__01527b89",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__12d848d7",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__12d848d7",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__12d848d7",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__12d848d7",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2c34be8a",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2c34be8a",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2c34be8a",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2d5d4dcd",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2d5d4dcd",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2d5d4dcd",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2d5d4dcd",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 2,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-2d5d4dcd",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 759.2,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3e44d93a",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3e44d93a",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3e44d93a",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__3e44d93a",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-3e44d93a",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 786.1,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2c34be8a",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 1,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-2c34be8a",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 804.2,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__607f6b9e",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-607f6b9e",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 792.8,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-4e7b7c81",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 928.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6809df19",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6809df19",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6809df19",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__60b000ec",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-60b000ec",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 966.7,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6f3e4cd9",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-7489fdd8",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 993.9,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-6cf8c11d",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 1232.3,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__768d44e5",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__768d44e5",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__768d44e5",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__768d44e5",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-768d44e5",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 769.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-84effcbc",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 744.1,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-8f9e4358",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 830.5,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-914c325d",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 832.6,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-93721db4",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 695.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-9a05fe0c",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 705.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-a7a5e8ed",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 795.2,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__afcc47be",
+      "parent": "repowise",
+      "arms": [
+        "repowise-search"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-afcc47be",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 840.9,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__c20c3c4f",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-c20c3c4f",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 765.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d105d187",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d105d187",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d105d187",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d105d187",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-d105d187",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 779.5,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+      "parent": "repowise",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__d2a786e2",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-d2a786e2",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 780.4,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__ee10f0e4",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-ee10f0e4",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 764.2,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+      "parent": "codegraph",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+      "parent": "crg",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+      "parent": "graphify",
+      "resumed": true
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__f3695f8d",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-f3695f8d",
+      "build": {
+        "arm": "repowise",
+        "rc": 0,
+        "seconds": 780.5,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      }
+    },
+    {
+      "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6809df19",
+      "parent": "repowise",
+      "arms": [
+        "repowise"
+      ],
+      "contention": {
+        "inflight_at_start": 3,
+        "mp_workers": 0,
+        "workers": 3
+      },
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-6809df19",
+      "build": {
+        "arm": "repowise",
+        "rc": 4294967295,
+        "seconds": 8481.3,
+        "argv": [
+          "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+          "init",
+          "--no-prose",
+          "--embedder",
+          "openai",
+          "--max-file-pages",
+          "0",
+          "--no-workspace",
+          "--no-editor-setup",
+          "--yes"
+        ],
+        "index_vector_dim": 1536,
+        "index_embedder_mock": false
+      },
+      "refused": "build-failed rc=4294967295"
+    }
+  ],
+  "run_seconds": 10132.9,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 42,
+      "ok": 41,
+      "statuses": [
+        "build-unusable",
+        "ok"
+      ],
+      "empty_responses": 1,
+      "is_error": 0,
+      "embedder_live": 41,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0
+    },
+    "repowise-search": {
+      "cells": 42,
+      "ok": 42,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "embedder_live": 42,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0
+    },
+    "codegraph": {
+      "cells": 42,
+      "ok": 42,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "crg": {
+      "cells": 42,
+      "ok": 42,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    },
+    "graphify": {
+      "cells": 42,
+      "ok": 42,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0
+    }
+  },
+  "mock_embedded_cells": [],
+  "prewarm": {
+    "rc": 0,
+    "n": 42,
+    "failed": []
+  },
+  "selftest": {
+    "perfect": {
+      "rc": 0,
+      "file_coverage": 1.0,
+      "evaluation": "1/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": 0.0,
+      "evaluation": "1/1 instances"
+    },
+    "discriminates": true
+  },
+  "graded": {
+    "repowise": {
+      "n": 41,
+      "rc": 0,
+      "evaluation": "40/41 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__test-emb1__repowise.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__test-emb1__repowise.jsonl",
+      "graded_rows": 41,
+      "valid": 40,
+      "file_coverage": 0.5975,
+      "file_precision": 0.1132,
+      "mean_pred_files": 12.12
+    },
+    "repowise-search": {
+      "n": 42,
+      "rc": 0,
+      "evaluation": "42/42 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__test-emb1__repowise-search.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__test-emb1__repowise-search.jsonl",
+      "graded_rows": 42,
+      "valid": 42,
+      "file_coverage": 0.746,
+      "file_precision": 0.1682,
+      "mean_pred_files": 8.14
+    },
+    "codegraph": {
+      "n": 42,
+      "rc": 0,
+      "evaluation": "42/42 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__test-emb1__codegraph.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__test-emb1__codegraph.jsonl",
+      "graded_rows": 42,
+      "valid": 42,
+      "file_coverage": 0.6095,
+      "file_precision": 0.0927,
+      "mean_pred_files": 14.02
+    },
+    "crg": {
+      "n": 42,
+      "rc": 0,
+      "evaluation": "42/42 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__test-emb1__crg.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__test-emb1__crg.jsonl",
+      "graded_rows": 42,
+      "valid": 42,
+      "file_coverage": 0.4452,
+      "file_precision": 0.2405,
+      "mean_pred_files": 5.38
+    },
+    "graphify": {
+      "n": 42,
+      "rc": 0,
+      "evaluation": "42/42 instances",
+      "pred": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\pred__test-emb1__graphify.jsonl",
+      "graded": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\graded__test-emb1__graphify.jsonl",
+      "graded_rows": 42,
+      "valid": 42,
+      "file_coverage": 0.546,
+      "file_precision": 0.0326,
+      "mean_pred_files": 34.55
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# SWE-QA flask48 — v2 rerun (2026-06)
+# SWE-QA flask48: v2 rerun (2026-06), superseded by v3
 
 A full re-run of the published [flask48 benchmark](BENCHMARK_REPORT_FLASK48.md)
 against the current repowise codebase (post-Distill, post-perf-overhaul),
@@ -6,10 +6,12 @@ with the documentation index regenerated on OpenAI `gpt-5.4-nano` instead of
 Gemini. Same 48 paired tasks, same C0/C2 design, same model family for agent
 and judge.
 
-> **Status: stopped deliberately at 24/48 pairs** (0 errors, clean paired
-> data) once the cost verdict was structurally clear — see
-> [Results](#results-24-paired-tasks--run-stopped-early). A rerun is planned
-> after MCP-surface changes.
+> **Status: superseded interim run, stopped deliberately at 24/48 pairs** (0
+> errors, clean paired data) once the cost verdict was structurally clear; see
+> [Results](#results-24-paired-tasks-run-stopped-early). The planned MCP-surface
+> rerun has since been completed as
+> [BENCHMARK_REPORT_FLASK_V3.md](BENCHMARK_REPORT_FLASK_V3.md) (lean MCP surface
+> plus distill); treat v2 as the interim record behind it.
 
 ---
 
@@ -35,7 +37,7 @@ python analysis/aggregate_flask48.py --results results/swe_qa_flask48_v2/swe_qa.
 ```
 
 The committed index cache (`indexes/pallets_flask_full/`) lets the C2 arm run
-without paying the doc-generation cost again — the harness restores it into
+without paying the doc-generation cost again; the harness restores it into
 the checkout automatically.
 
 ---
@@ -52,7 +54,7 @@ been dramatically worse than v1, not better.
 
 A repo path passed explicitly to `repowise mcp <path>` was silently re-routed
 to an *enclosing workspace's* default repo whenever the path sat below a
-workspace root — even when the path carries its own `.repowise/` index. Any
+workspace root, even when the path carries its own `.repowise/` index. Any
 nested checkout (like this benchmark's `repos/pallets/flask` under a developer
 machine's workspace) served the wrong index: `search_codebase` returned `[]`,
 `get_answer` answered "No wiki hits" on every question.
@@ -60,7 +62,7 @@ machine's workspace) served the wrong index: `search_codebase` returned `[]`,
 **Fix:** subpath matching treats a self-indexed nested checkout as a distinct
 repo and serves it single-repo.
 
-### 2. First-call vector-store stall (30s) → silent BM25 degradation
+### 2. First-call vector-store stall (30s) -> silent BM25 degradation
 
 Vector stores were loaded in an asyncio background task. Under the stdio
 transport that task did not get resumed until the next event-loop wake-up: a
@@ -83,15 +85,15 @@ reads the live store.
 
 `get_answer`'s identifier-citation gate treated acronyms ("JSON", "ASCII") and
 capitalised nouns in paraphrased questions as code identifiers, then demanded
-a hydrated-symbol match they can never satisfy — downgrading every
+a hydrated-symbol match they can never satisfy, downgrading every
 high-confidence answer to medium (which tells the agent to re-verify, erasing
 the single-call win). **Fix:** the gate only fires on strong identifiers
 (snake_case, dotted paths, digits, true CamelCase). High-confidence rate on a
-16-question sample: 2/16 → 4/16, with 9/16 synthesizing an answer.
+16-question sample: 2/16 -> 4/16, with 9/16 synthesizing an answer.
 
 ---
 
-## Results (24 paired tasks — run stopped early)
+## Results (24 paired tasks, run stopped early)
 
 | Metric (mean/task) | C0 bare | C2 repowise | Δ v2 | v1 published Δ |
 |---|---:|---:|---:|---:|
@@ -107,15 +109,15 @@ C2 cheaper on 3/24 pairs, faster on 10/24. C2 repowise tool mix:
 ### Why cost flipped relative to v1
 
 1. **The baseline changed under us.** In v1, ~30% of C0's dollars went to
-   `Agent` subagent dispatches on hard tasks — the main spend C2's
+   `Agent` subagent dispatches on hard tasks, the main spend C2's
    single-call answers eliminated. In this run, **C0 dispatched zero
    subagents across all 48 rows**; the current agent runtime greps/reads
    directly with strong prompt caching, making raw exploration much cheaper
    than in May.
 2. **C2's fixed overhead is now the whole delta.** C2 writes +14.6k more
-   cache tokens per task than C0 (mean 29.1k vs 14.4k — the 9 MCP tool
+   cache tokens per task than C0 (mean 29.1k vs 14.4k, the 9 MCP tool
    schemas plus the managed CLAUDE.md), ≈ $0.05/task at sonnet cache-write
-   pricing — almost exactly the observed +$0.047/task gap. The navigation
+   pricing, almost exactly the observed +$0.047/task gap. The navigation
    savings are real but cannot amortize the schema tax on a ~3-turn task.
 
 **Takeaway:** the navigation and latency claims reproduce directionally
@@ -123,12 +125,13 @@ C2 cheaper on 3/24 pairs, faster on 10/24. C2 repowise tool mix:
 per-task cost claim does not reproduce on the current agent runtime and
 should be re-scoped. The actionable product lever is shrinking the per-task
 MCP overhead (leaner/fewer tool schemas, compact agent mode, terser managed
-CLAUDE.md) — a rerun is planned after that work.
+CLAUDE.md); that rerun has since been completed as
+[BENCHMARK_REPORT_FLASK_V3.md](BENCHMARK_REPORT_FLASK_V3.md).
 
 ### Note on Distill
 
 This benchmark's task shape (read-only Q&A: `Read/Grep/Glob` + MCP) cannot
-exercise the Distill command path — no Bash, so nothing runs
+exercise the Distill command path: no Bash, so nothing runs
 `repowise distill <cmd>` and no rewrite hook fires. MCP response budgeting
 never triggered either (flask responses fit the 8k budget; 0 omission events
 across the scanned streams). Distill's measured savings live in

@@ -1,0 +1,77 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__eb5704a5",
+  "arm": "graphify",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "cc96ddd5514c04ee90fff11c840aad68af9fada3",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 6.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-eb5704a5"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 2,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__eb5704a5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-eb5704a5",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 6536,
+    "ranked": [
+      "context/config_file_test.go",
+      "command/pr_create_test.go",
+      "command/issue_test.go",
+      "api/client.go",
+      "git/git.go",
+      "command/pr.go",
+      "update/update.go",
+      "command/pr_test.go",
+      "command/testing.go",
+      "pkg/browser/browser.go",
+      "utils/prepare_cmd.go",
+      "internal/ghrepo/repo.go",
+      "command/root.go",
+      "api/queries_pr.go",
+      "context/config_file.go",
+      "context/blank_context.go",
+      "context/context.go",
+      "api/fake_http.go",
+      "api/queries_repo.go",
+      "utils/color.go",
+      "context/remote.go",
+      "git/url.go"
+    ],
+    "n_ranked": 22,
+    "gold_files": [
+      "/workspace/cli__cli__0.1/command/pr.go"
+    ],
+    "gold_hit_rank": 6
+  }
+}

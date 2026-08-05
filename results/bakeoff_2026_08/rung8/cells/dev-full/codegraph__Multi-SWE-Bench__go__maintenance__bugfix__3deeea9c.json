@@ -1,0 +1,72 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3deeea9c",
+  "arm": "codegraph",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "b5366c6ebf22589f62089ea79c349538335a3e99",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 4.4,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3deeea9c"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3deeea9c",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-3deeea9c",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 16559,
+    "ranked": [
+      "internal/config/config_type.go",
+      "context/remote.go",
+      "api/client.go",
+      "cmd/gh/main.go",
+      "internal/authflow/flow.go",
+      "api/client_test.go",
+      "api/queries_issue_test.go",
+      "api/queries_pr_test.go",
+      "api/queries_repo_test.go",
+      "pkg/cmd/auth/shared/client.go",
+      "pkg/cmd/factory/http.go",
+      "api/cache_test.go",
+      "pkg/cmd/repo/create/http_test.go",
+      "api/queries_comments.go",
+      "api/queries_issue.go",
+      "api/queries_org.go",
+      "api/queries_pr.go",
+      "api/queries_repo.go",
+      "pkg/cmd/auth/logout/logout.go",
+      "pkg/cmd/auth/status/status.go",
+      "pkg/cmd/auth/login/login_test.go",
+      "pkg/cmd/auth/status/status_test.go",
+      "internal/config/alias_config.go",
+      "api/cache.go",
+      "pkg/cmd/root/root.go"
+    ],
+    "n_ranked": 25,
+    "gold_files": [
+      "api/queries_pr.go",
+      "pkg/cmd/pr/create/create.go"
+    ],
+    "gold_hit_rank": 17
+  }
+}

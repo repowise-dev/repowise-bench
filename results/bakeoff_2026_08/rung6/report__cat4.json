@@ -1,0 +1,188 @@
+{
+  "proof_of_life": {
+    "c0-bare": {
+      "cells": 10,
+      "ok": 10,
+      "errors": {},
+      "served": [],
+      "served_count": [],
+      "cells_calling_mcp": 0,
+      "mcp_calls": 0,
+      "mcp_isError": 0,
+      "hook_injected": 0,
+      "index_dims": [],
+      "token_sources": [
+        "modelUsage"
+      ],
+      "models": [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-5"
+      ],
+      "judges": [
+        "gpt-5.6-luna"
+      ],
+      "prompt_styles": [
+        "neutral"
+      ]
+    },
+    "repowise-lean": {
+      "cells": 10,
+      "ok": 10,
+      "errors": {},
+      "served": [
+        "get_answer",
+        "get_context",
+        "get_symbol",
+        "search_codebase"
+      ],
+      "served_count": [
+        4
+      ],
+      "cells_calling_mcp": 10,
+      "mcp_calls": 30,
+      "mcp_isError": 0,
+      "hook_injected": 0,
+      "index_dims": [
+        1536
+      ],
+      "token_sources": [
+        "modelUsage"
+      ],
+      "models": [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-5"
+      ],
+      "judges": [
+        "gpt-5.6-luna"
+      ],
+      "prompt_styles": [
+        "neutral"
+      ]
+    },
+    "codegraph": {
+      "cells": 10,
+      "ok": 10,
+      "errors": {},
+      "served": [
+        "codegraph_explore"
+      ],
+      "served_count": [
+        1
+      ],
+      "cells_calling_mcp": 10,
+      "mcp_calls": 16,
+      "mcp_isError": 0,
+      "hook_injected": 0,
+      "index_dims": [],
+      "token_sources": [
+        "modelUsage"
+      ],
+      "models": [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-5"
+      ],
+      "judges": [
+        "gpt-5.6-luna"
+      ],
+      "prompt_styles": [
+        "neutral"
+      ]
+    },
+    "graphify": {
+      "cells": 10,
+      "ok": 10,
+      "errors": {},
+      "served": [
+        "get_community",
+        "get_neighbors",
+        "get_node",
+        "get_pr_impact",
+        "god_nodes",
+        "graph_stats",
+        "list_prs",
+        "query_graph",
+        "shortest_path",
+        "triage_prs"
+      ],
+      "served_count": [
+        10
+      ],
+      "cells_calling_mcp": 4,
+      "mcp_calls": 4,
+      "mcp_isError": 0,
+      "hook_injected": 0,
+      "index_dims": [],
+      "token_sources": [
+        "modelUsage"
+      ],
+      "models": [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-5"
+      ],
+      "judges": [
+        "gpt-5.6-luna"
+      ],
+      "prompt_styles": [
+        "neutral"
+      ],
+      "not_exercised": 6
+    }
+  },
+  "table": {
+    "c0-bare": {
+      "n": 10,
+      "judge": 8.76,
+      "judged_n": 10,
+      "tool_calls": 7.4,
+      "files_read": 2.6,
+      "turns": 8.4,
+      "input_tokens": 605.7,
+      "output_tokens": 2868.1,
+      "cache_read": 352227.6,
+      "cost": 0.227198055,
+      "wall": 43.0276382446289
+    },
+    "codegraph": {
+      "n": 10,
+      "judge": 8.82,
+      "judged_n": 10,
+      "tool_calls": 6.2,
+      "files_read": 1.4,
+      "turns": 7.2,
+      "input_tokens": 606.1,
+      "output_tokens": 2539.5,
+      "cache_read": 293625.5,
+      "cost": 0.21023462499999998,
+      "wall": 39.326259803771975
+    },
+    "graphify": {
+      "n": 4,
+      "judge": 9.15,
+      "judged_n": 4,
+      "tool_calls": 8,
+      "files_read": 2.75,
+      "turns": 9,
+      "input_tokens": 612.5,
+      "output_tokens": 2710.75,
+      "cache_read": 308468.5,
+      "cost": 0.1869033,
+      "wall": 41.23289430141449
+    },
+    "repowise-lean": {
+      "n": 10,
+      "judge": 8.280000000000001,
+      "judged_n": 10,
+      "tool_calls": 6.4,
+      "files_read": 0.8,
+      "turns": 7.4,
+      "input_tokens": 604.1,
+      "output_tokens": 2263.1,
+      "cache_read": 249396.6,
+      "cost": 0.198488205,
+      "wall": 40.27196025848389
+    }
+  },
+  "scored_cells": 34,
+  "excluded_cells": 6,
+  "total_cost_usd": 8.0036769
+}

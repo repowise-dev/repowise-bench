@@ -1,0 +1,127 @@
+$ C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe init --no-prose --embedder openai --max-file-pages 0 --no-workspace --no-editor-setup --yes
+(cwd=C:\Users\ragha\Desktop\bakeoff\svelte)
+
+--- stdout ---
+repowise index-only â€” C:\Users\ragha\Desktop\bakeoff\svelte
+Building the wiki from structure â€” no model, no spend.
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 1 of 4 Â· Ingestion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Walking the tree, parsing files, building the dependency graph
+
+  Scanned 7,179 files, 3,285 included
+    Excluded: 1 by filename pattern, 1 binary, 9 generated, 3,883 unknown type
+  Graph build can take several minutes on a first run. Safe to Ctrl-C â€” re-run 
+'repowise init --resume' to continue where it stopped.
+    â†³ betweenness centrality âœ“ (13.0s)
+    â†³ symbol betweenness âœ“ (40.3s)
+    â†³ symbol PageRank âœ“ (40.7s)
+    â†³ PageRank âœ“ (40.8s)
+    â†³ community detection âœ“ (0.2s)
+    â†³ symbol communities âœ“ (0.6s)
+  â†’ External systems: 51 declared deps across manifests
+  â†’ 3,285 files parsed Â· 4,287 symbols extracted
+  â†’ Graph: 10,876 nodes Â· 17,067 edges
+  â†’ Git: 2,752 files indexed
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 2 of 4 Â· Analysis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Dead code, code health, architectural decisions
+
+  â†’ 2 unreachable files Â· 0 unused exports Â· ~0 deletable lines
+  â†’ 0 architectural decisions found
+  â†’ 2510 health findings Â· avg 8.88/10 Â· worst 2.05/10
+    â†³ KG skeleton: 6679 nodes, 7828 edges, 78 layers
+
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Analysis Complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   3,285 files Â· 4,287 symbols                                               â”‚
+â”‚   javascript 81%, json 12%, markdown 4%, typescript 2% +1 more              â”‚
+â”‚                                                                             â”‚
+â”‚   Graph          10,876 nodes Â· 17,067 edges                                â”‚
+â”‚   Git            2,752 files indexed                                        â”‚
+â”‚   Dead code      2 unreachable Â· 0 unused exports                           â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 3 of 4 Â· Generation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Building wiki pages from the code's structure (no model, no cost)
+
+  Onboarding: 6/8 slots â€” codebase_map, getting_started, guided_tour, 
+how_it_works, key_concepts, project_overview
+  Generated 766 pages
+
+  âœ“ Generated 766 pages
+
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Phase 4 of 4 Â· Persistence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  Saving to database and building search index
+
+  âœ“ Database updated
+  âœ“ .claude/CLAUDE.md updated
+  âœ“ VS Code MCP configured 
+(C:\Users\ragha\Desktop\bakeoff\svelte\.vscode\mcp.json)
+  âœ“ VS Code extension recommended 
+(C:\Users\ragha\Desktop\bakeoff\svelte\.vscode\extensions.json)
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ {^ ^}  repowise index complete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚                                                                             â”‚
+â”‚   Files indexed           3,285                                             â”‚
+â”‚   Symbols                 4,287                                             â”‚
+â”‚   Languages               javascript 81%, json 12%, markdown 4%,            â”‚
+â”‚                           typescript 2% +1 more                             â”‚
+â”‚   Wiki pages              766 rendered from structure                       â”‚
+â”‚   Elapsed                 3m 5s                                             â”‚
+â”‚                                                                             â”‚
+â”‚   Graph                   10,876 nodes Â· 17,067 edges                       â”‚
+â”‚   Dead code               2 unreachable Â· 0 unused exports                  â”‚
+â”‚   Decisions               0                                                 â”‚
+â”‚   Git history             2,752 files Â· 0 hotspots                          â”‚
+â”‚                                                                             â”‚
+â”‚   What's next:                                                              â”‚
+â”‚   repowise serve               open the dashboard at http://localhost:3000  â”‚
+â”‚   repowise generate            upgrade the wiki to model-written prose      â”‚
+â”‚ (needs a key)                                                               â”‚
+â”‚   repowise mcp .               connect an MCP client (Cursor, Codex, Claude â”‚
+â”‚ Code)                                                                       â”‚
+â”‚   repowise dead-code           explore 2 dead code findings                 â”‚
+â”‚                                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+  Every page is derived from structure and says so in its footer. Full-text
+  search works now; semantic search needs an embedder (Ollama is the keyless 
+one).
+
+                               Generation Checks                               
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚ Check                â”‚                                               Result â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ Orientation overlap  â”‚                                4 of 15 pairs overlap â”‚
+â”‚ Layer grouping       â”‚                           all 32 pages carry a layer â”‚
+â”‚ Artifact checks      â”‚                        not run (0 responses checked) â”‚
+â”‚ Overview length      â”‚                                      151 / 450 words â”‚
+â”‚ Question-shaped text â”‚                                     719 of 728 pages â”‚
+â”‚ Module page openings â”‚  22 of 27 pages (81%) â€” "covers the 13 source files" â”‚
+â”‚                      â”‚                                                   Ã—4 â”‚
+â”‚ Module concept index â”‚                                       27 of 27 pages â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  overlap 'Repository Overview: svelte' and 'Codebase Map' share 36% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: svelte' and 'Guided Tour' share 27% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: svelte' and 'Key Concepts' share 25% of their 
+vocabulary (threshold 22%)
+  overlap 'Repository Overview: svelte' and 'How It Works' share 25% of their 
+vocabulary (threshold 22%)
+
+--- stderr ---
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::SvelteComponent chars=53767 chars_dropped=23767 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::SvelteComponentTyped chars=51799 chars_dropped=21799 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::Component chars=52760 chars_dropped=22760 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::ComponentConstructorOptions chars=51960 chars_dropped=21960 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::EventDispatcher chars=52279 chars_dropped=22279 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::Snippet chars=51949 chars_dropped=21949 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::ComponentEvents chars=51667 chars_dropped=21667 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::ComponentInternals chars=51635 chars_dropped=21635 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::ComponentProps chars=51733 chars_dropped=21733 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::ComponentType chars=51889 chars_dropped=21889 cap=30000
+embed_text_truncated page_id=symbol_spotlight:packages/svelte/src/index.d.ts::MountOptions chars=52343 chars_dropped=22343 cap=30000
+

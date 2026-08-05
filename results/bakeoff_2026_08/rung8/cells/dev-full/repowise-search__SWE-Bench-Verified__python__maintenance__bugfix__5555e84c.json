@@ -1,0 +1,67 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5555e84c",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f83b44075dafa429d59e8755aa47e15577cc49f9",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 4,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__5555e84c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-5555e84c",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5476,
+    "ranked": [
+      "django/db/models/fields/__init__.py::DecimalField",
+      "django/template/base.py::Variable",
+      "django/db/models/query.py::aggregate",
+      "django/utils/datastructures.py::MultiValueDict",
+      "django/db/models/fields/__init__.py::FloatField",
+      "django/contrib/gis/gdal/field.py",
+      "django/forms/fields.py",
+      "django/core/checks/messages.py",
+      "django/db/utils.py"
+    ],
+    "n_ranked": 9,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/fields/__init__.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

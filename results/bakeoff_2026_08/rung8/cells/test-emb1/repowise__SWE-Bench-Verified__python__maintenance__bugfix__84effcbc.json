@@ -1,0 +1,99 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+  "arm": "repowise",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+  "build": {
+    "arm": "repowise",
+    "rc": 0,
+    "seconds": 744.1,
+    "argv": [
+      "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+      "init",
+      "--no-prose",
+      "--embedder",
+      "openai",
+      "--max-file-pages",
+      "0",
+      "--no-workspace",
+      "--no-editor-setup",
+      "--yes"
+    ],
+    "index_vector_dim": 1536,
+    "index_embedder_mock": false
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 0,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-84effcbc",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-repair\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.8,
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 33713,
+    "ranked": [
+      "django/db/models/fields/related.py",
+      "django/db/models/base.py",
+      "django/contrib/admin/options.py",
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py",
+      "django/forms/models.py",
+      "django/db/models/sql/subqueries.py",
+      "django/contrib/admin/actions.py",
+      "django/contrib/contenttypes/models.py",
+      "django/contrib/admin/models.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/core/exceptions.py",
+      "django/utils/functional.py",
+      "django/utils/inspect.py",
+      "django/contrib/auth/base_user.py",
+      "django/utils/jslex.py",
+      "django/db/models/deletion.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "tests/admin_views/admin.py"
+    ],
+    "n_ranked": 19,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 2922,
+    "server_stderr": "debug    ] openai.generate.start          max_tokens=1024 model=gpt-5.4-nano request_id=None\r\n[08/03/26 12:28:31] INFO     HTTP Request: POST                 _client.py:1740\r\n                             https://api.openai.com/v1/chat/com                \r\n                             pletions \"HTTP/1.1 200 OK\"                        \r\n2026-08-03 12:28:31 [debug    ] openai.generate.done           input_tokens=6745 output_tokens=490 request_id=None\r\n2026-08-03 12:28:31 [debug    ] cost_tracker.record            cost_usd=0.0019615 file_path=None input_tokens=6745 model=gpt-5.4-nano operation=answer_synthesis output_tokens=490\r\n                    INFO     get_answer synthesis cost:        synthesis.py:377\r\n                             provider=openai                                   \r\n                             model=gpt-5.4-nano                                \r\n                             operation=answer_synthesis                        \r\n                             input_tokens=6745                                 \r\n                             output_tokens=490 cached_tokens=0                 \r\n                             cost_usd=0.001962                                 \r\n",
+    "gold_files": [
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/where.py",
+      "tests/queries/tests.py"
+    ],
+    "gold_hit_rank": 4
+  }
+}

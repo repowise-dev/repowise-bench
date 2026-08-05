@@ -1,0 +1,174 @@
+[
+  {
+    "arm": "repowise",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-django",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 17106,
+    "ranked": [
+      "django/db/models/expressions.py",
+      "django/db/models/aggregates.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py::combine"
+    ],
+    "n_ranked": 5,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/aggregates.py"
+    ],
+    "gold_hit_rank": 2
+  },
+  {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__93721db4",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-django",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6003,
+    "ranked": [
+      "django/db/models/fields/__init__.py::Field",
+      "django/db/models/aggregates.py::Aggregate",
+      "django/db/models/sql/query.py::combine",
+      "django/db/models/sql/query.py::get_aggregation",
+      "django/db/models/sql/query.py",
+      "django/db/models/aggregates.py::as_sql",
+      "django/db/models/sql/query.py::Query",
+      "django/db/models/sql/query.py::JoinPromoter",
+      "django/db/models/expressions.py::When",
+      "django/forms/formsets.py::BaseFormSet"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/models/aggregates.py"
+    ],
+    "gold_hit_rank": null
+  },
+  {
+    "arm": "repowise",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-cli",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "get_answer",
+    "status": "ok",
+    "isError": false,
+    "chars": 19934,
+    "ranked": [
+      "internal/gh/gh.go",
+      "internal/config/config.go",
+      "Makefile",
+      "cmd/gh/main.go",
+      "git/errors.go"
+    ],
+    "n_ranked": 5,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/gist/edit/edit.go",
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": null
+  },
+  {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__3da242a2",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\c8-repowise-cli",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5356,
+    "ranked": [
+      "Makefile",
+      "internal/gh/gh.go",
+      "internal/config/config.go",
+      "internal/featuredetection",
+      "cmd/gh/main.go",
+      "internal",
+      "internal/gh/gh.go::ConfigEntry",
+      "script/build.go",
+      "internal/gh/gh.go::Migration",
+      "internal/gh/gh.go::AliasConfig"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "pkg/cmd/gist/edit/edit.go",
+      "pkg/cmd/gist/view/view.go"
+    ],
+    "gold_hit_rank": null
+  }
+]

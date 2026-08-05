@@ -1,0 +1,90 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+  "arm": "graphify",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "8c0886b068ba4e224dd78104b93c9638b860b398",
+  "build": {
+    "arm": "graphify",
+    "rc": 0,
+    "seconds": 181.5,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\graphify.exe",
+      "update",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4e7b7c81"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 25,
+    "workers": 3
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "graphify",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4e7b7c81",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-graphify-4e7b7c81",
+    "command": "C:\\Users\\ragha\\.local\\bin\\graphify-mcp.exe",
+    "served_tools": [
+      "get_community",
+      "get_neighbors",
+      "get_node",
+      "get_pr_impact",
+      "god_nodes",
+      "graph_stats",
+      "list_prs",
+      "query_graph",
+      "shortest_path",
+      "triage_prs"
+    ],
+    "served_count": 10,
+    "tool": "query_graph",
+    "status": "ok",
+    "isError": false,
+    "chars": 3896,
+    "ranked": [
+      "utils/html.py",
+      "django/utils/formats.py",
+      "translation/__init__.py",
+      "tests/template_tests/syntax_tests/test_regroup.py",
+      "tests/utils_tests/test_simplelazyobject.py",
+      "django/utils/_os.py",
+      "core/exceptions.py",
+      "django/contrib/admin/static/admin/js/actions.js",
+      "tests/test_utils/tests.py",
+      "test_utils/tests.py",
+      "tests/admin_views/admin.py",
+      "django/db/transaction.py",
+      "db/transaction.py",
+      "django/utils/datetime_safe.py",
+      "django/contrib/gis/gdal/raster/band.py",
+      "django/contrib/gis/gdal/geomtype.py",
+      "tests/test_runner/test_parallel.py",
+      "tests/transactions/tests.py",
+      "django/db/backends/oracle/base.py",
+      "django/conf/__init__.py",
+      "django/utils/functional.py",
+      "django/core/management/templates.py",
+      "tests/admin_views/models.py",
+      "tests/backends/tests.py",
+      "django/db/models/expressions.py",
+      "django/db/models/__init__.py",
+      "tests/generic_views/test_dates.py",
+      "tests/view_tests/regression_21530_urls.py",
+      "tests/string_lookup/tests.py",
+      "django/template/base.py",
+      "django/core/exceptions.py",
+      "django/contrib/admin/static/admin/js/vendor/select2/select2.full.js",
+      "tests/auth_tests/test_auth_backends.py",
+      "django/utils/html.py"
+    ],
+    "n_ranked": 34,
+    "gold_files": [
+      "django/utils/formats.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

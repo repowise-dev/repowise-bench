@@ -1,0 +1,64 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5a8e8f80bb82a867eab7e4d9d099f21d0a976d22",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 39.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-227490c2"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 8,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__227490c2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-227490c2",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 21965,
+    "ranked": [
+      "django/db/models/expressions.py",
+      "django/contrib/admin/views/main.py",
+      "django/contrib/auth/backends.py",
+      "django/db/backends/oracle/operations.py",
+      "django/db/models/__init__.py",
+      "tests/aggregation/test_filter_argument.py",
+      "tests/aggregation/tests.py",
+      "tests/annotations/tests.py",
+      "tests/delete_regress/tests.py",
+      "django/db/models/query.py",
+      "django/core/files/storage.py",
+      "django/contrib/staticfiles/finders.py",
+      "django/core/cache/backends/filebased.py",
+      "django/core/files/base.py",
+      "tests/file_storage/tests.py"
+    ],
+    "n_ranked": 15,
+    "gold_files": [
+      "django/core/management/__init__.py",
+      "django/core/management/commands/runserver.py",
+      "django/utils/autoreload.py",
+      "tests/utils_tests/test_autoreload.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

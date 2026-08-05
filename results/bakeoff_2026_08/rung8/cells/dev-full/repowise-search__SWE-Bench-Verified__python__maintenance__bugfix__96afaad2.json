@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d01709aae21de9cd2565b9c52f32732ea28a2d98",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__96afaad2",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-96afaad2",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 30.0,
+    "warm_abandoned": "TimeoutError",
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5923,
+    "ranked": [
+      "django/utils/datastructures.py::OrderedSet",
+      "django/utils/datastructures.py::add",
+      "django/utils/datastructures.py::__bool__",
+      "django/utils/datastructures.py::__iter__",
+      "django/utils/datastructures.py::__len__",
+      "django/core/cache/backends/base.py",
+      "django/core/cache/backends/db.py",
+      "django/core/cache/backends/dummy.py",
+      "django/core/cache/backends/filebased.py",
+      "django/core/cache/backends/locmem.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/utils/datastructures.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

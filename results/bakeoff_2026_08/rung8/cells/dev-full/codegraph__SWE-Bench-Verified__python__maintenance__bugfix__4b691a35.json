@@ -1,0 +1,59 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4b691a35",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "4a72da71001f154ea60906a2f74898d32b7322a7",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 27.3,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4b691a35"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__4b691a35",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-4b691a35",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19490,
+    "ranked": [
+      "django/contrib/gis/db/models/fields.py",
+      "django/contrib/gis/db/models/__init__.py",
+      "django/contrib/gis/db/models/aggregates.py",
+      "django/db/migrations/operations/fields.py",
+      "django/db/migrations/operations/__init__.py",
+      "django/db/migrations/operations/models.py",
+      "tests/migrations/test_state.py",
+      "django/contrib/postgres/fields/array.py",
+      "django/contrib/postgres/aggregates/general.py",
+      "django/contrib/postgres/expressions.py",
+      "django/contrib/postgres/fields/hstore.py",
+      "django/contrib/postgres/search.py",
+      "django/db/models/fields/__init__.py"
+    ],
+    "n_ranked": 13,
+    "gold_files": [
+      "django/db/migrations/serializer.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1a760e52",
+  "arm": "codegraph",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "d26b2424437dabeeca94d7900b37d2df4410da0c",
+  "build": {
+    "arm": "codegraph",
+    "rc": 0,
+    "seconds": 26.7,
+    "argv": [
+      "C:\\Users\\ragha\\AppData\\Roaming\\npm\\codegraph.cmd",
+      "init",
+      "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1a760e52"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 10,
+    "mp_workers": 0,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "codegraph",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1a760e52",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-codegraph-1a760e52",
+    "served_tools": [
+      "codegraph_explore"
+    ],
+    "served_count": 1,
+    "tool": "codegraph_explore",
+    "status": "ok",
+    "isError": false,
+    "chars": 19613,
+    "ranked": [
+      "django/contrib/auth/validators.py",
+      "tests/auth_tests/test_validators.py",
+      "django/core/validators.py",
+      "django/forms/fields.py",
+      "tests/validators/tests.py",
+      "django/contrib/auth/models.py",
+      "django/contrib/auth/admin.py",
+      "django/contrib/auth/forms.py",
+      "tests/admin_changelist/admin.py",
+      "tests/admin_changelist/test_date_hierarchy.py",
+      "tests/admin_changelist/tests.py",
+      "tests/admin_custom_urls/tests.py",
+      "django/contrib/auth/migrations/0001_initial.py",
+      "django/contrib/auth/migrations/0004_alter_user_username_opts.py",
+      "django/contrib/auth/migrations/0007_alter_validators_add_error_messages.py",
+      "django/contrib/postgres/validators.py",
+      "tests/postgres_tests/test_hstore.py",
+      "django/contrib/postgres/fields/array.py"
+    ],
+    "n_ranked": 18,
+    "gold_files": [
+      "django/contrib/auth/validators.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

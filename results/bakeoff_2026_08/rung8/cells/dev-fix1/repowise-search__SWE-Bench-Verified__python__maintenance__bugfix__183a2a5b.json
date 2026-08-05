@@ -1,0 +1,68 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__183a2a5b",
+  "arm": "repowise-search",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "2480554dc4ada4ecf3f6a08e318735a2e50783f3",
+  "build": {
+    "shared_with": "repowise"
+  },
+  "contention": {
+    "inflight_at_start": 9,
+    "mp_workers": 64,
+    "workers": 10
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {
+    "configured_embedder": "openai",
+    "openai_key_available": true,
+    "embedder_degraded": null,
+    "embedder_live": true
+  },
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__183a2a5b",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-repowise-183a2a5b",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-retrieval\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 14.0,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 5778,
+    "ranked": [
+      "docs/Makefile",
+      "django/db/models/fields/related.py::ManyToManyField",
+      "django/db/models/fields/related.py::create_many_to_many_intermediary_model",
+      "django/db/models/options.py::Options",
+      "django/core/management/base.py::BaseCommand",
+      "django/contrib/gis/db/models/functions.py",
+      "django/core/management/commands/runserver.py",
+      "django/contrib/gis/db/backends/base/models.py",
+      "django/contrib/gis/gdal/datasource.py",
+      "django/contrib/gis/gdal/field.py"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "gold_files": [
+      "django/db/migrations/autodetector.py"
+    ],
+    "gold_hit_rank": null
+  }
+}
