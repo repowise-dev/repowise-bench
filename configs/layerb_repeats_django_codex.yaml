@@ -1,0 +1,82 @@
+# Adoption under a DIFFERENT AGENT: Codex, repowise arm, 15 questions, 1 run.
+#
+# Is the adoption collapse a Claude thing? Repeat 1 returned repowise adoption
+# 4/15 on the Claude harness against 12/15 and 15/15 earlier, with nothing
+# changed on our side. The codegraph addition varies the SERVER and holds the
+# agent; this one varies the AGENT and holds the server. Together they separate
+# our surface, the Claude harness/model, and the questions themselves.
+#
+# repowise arm ONLY, no control: adoption is a single-arm property.
+# ONE run, not repeats: this measures a level, not a variance.
+#
+# NOT held constant, and it cannot be: changing harness changes the model too
+# (claude-sonnet-5 -> gpt-5.6-sol). A difference means "the Claude harness or
+# the Claude model", never one or the other. The Claude harness also defers MCP
+# schemas behind ToolSearch, an extra step at which an agent can decline, and
+# Codex does not. That is the leading alternative explanation for any gap.
+#
+# NO cost claim: Codex reports tokens and no cost, so its dollars are computed
+# by codex_runner.py from list rates, not reported by the CLI.
+# NO quality claim: no control arm.
+#
+# Index REUSED, not rebuilt: bakeoff/lb-repowise-full-django-django at django
+# 3b161e6096. Build repowise-layerb2 at 172ce0b8, carrying #1306.
+#
+# Pre-registration: configs/layerb_repeats_django_codex.PREREGISTRATION.md
+#
+# NEVER launch this with Start-Process. The runner resumes on
+# (task_id, condition), so a killed run costs nothing: just relaunch.
+
+experiment_name: "layerb_repeats_django_codex"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "repowise"
+    arm: "repowise"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_repeats_django/codex"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_repeats_django/codex"
+  trees_dir: null
+
+budget:
+  max_total_usd: 4.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
