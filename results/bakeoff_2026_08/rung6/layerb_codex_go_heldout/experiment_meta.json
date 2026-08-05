@@ -1,0 +1,83 @@
+{
+  "config_path": "configs/layerb_codex_go_heldout.yaml",
+  "started_at": "2026-08-05T16:02:09.679699+00:00",
+  "conditions": [
+    "repowise-go",
+    "c0-bare"
+  ],
+  "config": {
+    "experiment_name": "layerb_codex_go_heldout",
+    "arms_file": null,
+    "arms_dir": null,
+    "prompt_style": "neutral",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "data_dir": "./data/cb_go",
+        "task_ids": [
+          "cbgo_03f04397",
+          "cbgo_3d85271b",
+          "cbgo_3e2d031f",
+          "cbgo_4606de0b",
+          "cbgo_6e022940",
+          "cbgo_85c030cf",
+          "cbgo_cedbb0cb",
+          "cbgo_eb5704a5",
+          "cbgo_ff0cfab5"
+        ]
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "repowise-go",
+        "arm": "repowise-go"
+      },
+      {
+        "name": "c0-bare",
+        "arm": "c0-bare"
+      }
+    ],
+    "agent": {
+      "harness": "codex",
+      "model": "gpt-5.6-sol",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_codex_go_heldout",
+      "repos_dir": "C:/Users/ragha/Desktop/bakeoff/_cbgo_src",
+      "logs_dir": "./logs/layerb_codex_go_heldout",
+      "trees_dir": null
+    },
+    "budget": {
+      "max_total_usd": 6.0,
+      "max_per_task_usd": 1.5,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ]
+    },
+    "parallelism": {
+      "max_workers": 1
+    }
+  }
+}
