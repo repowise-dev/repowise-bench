@@ -114,12 +114,15 @@ paths:
   trees_dir: null
 
 budget:
-  # Sonnet ran these same 90 cells for $18.77. Opus list is roughly 5x, so the
-  # estimate is $90-$140 and this rail sits above the upper end so the run does
-  # not abort at cell 80 and leave a partial arm table. It is a rail, not a
-  # target, and the gate replaces the estimate with a measurement before this
-  # config is launched.
-  max_total_usd: 160.0
+  # MEASURED, not extrapolated. The gate ran 6 Opus cells at $2.44, avg
+  # $0.407/cell against Sonnet's $0.209, so Opus is ~1.95x and not the ~5x that
+  # list rates implied. 90 cells projects to ~$37, so the pre-registration's
+  # arm-dropping clause does NOT fire and all six arms are retained.
+  #
+  # The rail drops 160.0 -> 60.0 accordingly: still ~1.6x the projection, so a
+  # normal run cannot trip it, but low enough to actually stop a runaway. Per
+  # PREREGISTRATION section 7 the gate is what replaces the estimate.
+  max_total_usd: 60.0
   max_per_task_usd: 3.0
   abort_on_exceed: true
 
