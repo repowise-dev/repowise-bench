@@ -1,4 +1,4 @@
-# Pre-registration: Layer A on mui/material-ui, a second language
+﻿# Pre-registration: Layer A on mui/material-ui, a second language
 
 **Committed before any index was built.** The draw below was computed and pinned
 before a single instance was indexed by any tool, which is the same protocol the
@@ -30,7 +30,7 @@ typescript`. So it is 45 genuine instances of one repository.
 ## 3. The draw: 15 development, 30 sealed
 
 `scripts/draw_mui_instances.py`, seed **20260806**, output pinned at
-`data/contextbench/mui_split.json`.
+`configs/mui_split.json`.
 
 **Computed, not listed**, following `harness/question_shapes.py`: the rule and
 the seed are committed and the ids are derived, so a reader who disagrees with
@@ -182,3 +182,4 @@ files-served beside it.
 
 Published regardless of outcome. We came last at 0.228 on django once and
 published that; a TypeScript row that goes against us ships on the same terms.
+

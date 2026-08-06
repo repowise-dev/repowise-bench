@@ -53,7 +53,10 @@ import pandas as pd
 BENCH_ROOT = Path(__file__).resolve().parents[1]
 PARQUET = BENCH_ROOT / "data" / "contextbench" / "contextbench_verified.parquet"
 MUI_CLONE = BENCH_ROOT / "repos" / "mui" / "material-ui"
-OUT = BENCH_ROOT / "data" / "contextbench" / "mui_split.json"
+# configs/, NOT data/. `data/contextbench` is gitignored, so writing the split
+# there leaves the sealed 30 unauditable: the whole point of pinning a held-out
+# set is that a reader can check afterwards that it was fixed beforehand.
+OUT = BENCH_ROOT / "configs" / "mui_split.json"
 
 # Pinned. Changing either of these changes the draw and is a new experiment.
 SEED = 20260806
