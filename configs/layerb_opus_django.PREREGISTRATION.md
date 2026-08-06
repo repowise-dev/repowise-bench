@@ -221,6 +221,42 @@ happens if the measurement comes back above the estimate.
 `budget.abort_on_exceed` is `true` in both configs. The rails are spend limits,
 not knobs the run reads.
 
+## 7b. n stops at 15. Fixed before the 15-question run returned.
+
+**Decided 2026-08-06 (Raghav), with the flagship in flight and no cell of it
+read.** The Opus half is n=15 and does not scale to 48 on the strength of what
+comes back.
+
+This is recorded here rather than in a session note because the alternative was
+a rule of the form "scale to 48 if the 15 gives good results", and that rule is
+**conditional-on-outcome scaling**: the published 48 would then be conditioned
+on a favourable 15, and the honest description of the method becomes "we kept
+going until it looked good". It is the same family as optional stopping, it is
+the exact failure this workstream exists to criticise in other people's
+benchmark pages, and it would have been invisible in the final table.
+
+Two alternatives were considered and both are legitimate; neither was taken:
+
+- **unconditional 48**, matching the Codex table's n for the output-token column
+- **conditional on the pre-registered INCONCLUSIVE band (7 to 11) only**, which
+  triggers on ambiguity rather than on favourability, so a clear but unflattering
+  result such as 2/15 would still stop the run
+
+**What n=15 costs us, stated rather than discovered later.** At django's paired
+sigma of 0.69, `n = 7.849 * sigma^2 / delta^2` gives a smallest detectable
+effect of **0.50 judge points at n=15** against **0.28 at n=48**. Our own
+believed quality ceiling is +0.08 to +0.25, so **the quality column is
+underpowered at both n and 48 would not have rescued it.** What 48 would have
+bought is a tighter output-token column and adoption over more cells. Neither is
+purchased.
+
+n=15 also matches the published Claude Code table exactly, which is the table
+this run reruns.
+
+**If 48 is ever run on this half, it is pre-registered as its own commit before
+it starts, and this section is quoted in it.** A later decision to extend is not
+forbidden; extending without a fresh pre-registration is.
+
 ## 8. Deliverable
 
 `local-stash/competitive-proof/50-results/layerb-opus-claude/RESULT.md`, with
