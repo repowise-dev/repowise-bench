@@ -1,0 +1,141 @@
+# THE OPUS RERUN of the Claude Code half. 6 arms x 15 questions = 90 cells.
+#
+# Pre-registration: configs/layerb_opus_django.PREREGISTRATION.md.
+# Gate that must pass first: configs/layerb_opus_smoke_django.yaml.
+#
+# This config is `layerb_stratified_django.yaml` with the model changed and
+# nothing else of substance. That is the whole design: `docs/BENCHMARKS.md`
+# promises in print to rerun the Claude Code half on Opus, because under Sonnet
+# 17 of 30 cells never issued a ToolSearch while Codex called every tool on
+# every question, and harness and model are varied together in that comparison.
+# Opus under Claude Code holds the harness fixed and varies only the model.
+#
+# A hostile key-by-key diff against layerb_stratified_django.yaml should return
+# exactly these keys and nothing else:
+#
+#   agent.model             claude-sonnet-5 -> claude-opus-5   THE VARIABLE
+#   experiment_name         renamed
+#   paths.results_dir       renamed (resume is on (task_id, condition))
+#   paths.logs_dir          renamed
+#   budget.max_total_usd    40.0 -> 160.0, a spend rail, not a knob the run reads
+#
+# NO --effort FLAG. The Sonnet cells passed none and ran under a replaced config
+# root (CLAUDE_CONFIG_DIR + configs/bench_settings.json, which sets no
+# effortLevel), so they took the CLI built-in default. Pinning an effort here
+# would vary a second thing against the only comparator that exists, and
+# adoption is plausibly SENSITIVE to effort: a lower-effort agent plausibly
+# issues fewer ToolSearch calls, which is the outcome being measured.
+#
+# ADOPTION IS A SINGLE-ARM PROPERTY. Count it over every non-error cell of that
+# arm, never over the paired set. Counting over pairs let a control-arm turn
+# exhaustion silently delete a treatment-arm adoption in an earlier session and
+# reported 2/15 where the truth was 3/15.
+#
+# The pre-registered reading, fixed before the numbers exist:
+#   repowise adoption >= 12/15  ->  the collapse was the MODEL
+#   repowise adoption <= 6/15   ->  the collapse was the HARNESS schema deferral
+#   7 to 11                     ->  INCONCLUSIVE, published as inconclusive
+# The same-build Sonnet comparator is the two repeats, 4/15 and 3/15. The 15/15
+# of 2026-08-03 was an earlier build and is not the contrast.
+#
+# QUALITY IS NOT A PRE-REGISTERED OUTCOME HERE. n=15 against a paired sigma of
+# 0.69 detects nothing below ~0.5 judge points. The column is recorded and
+# published labelled underpowered. It may be compared to the Sonnet column
+# (same harness, same gpt-5.6-luna judge) and to NOTHING measured under Codex.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_stratified_django.yaml
+
+experiment_name: "layerb_opus_stratified_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # Computed, not listed, so a later reader who disagrees with a label edits
+    # the classification and the draw follows. Resolves to the same 15 ids the
+    # Sonnet run and both repeats used:
+    #   django_000 004 006 008 011 014 017 020 028 031 033 034 040 044 045
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+# Arms may be DROPPED between the gate and this run if the gate's measured
+# per-cell cost makes 90 cells unaffordable. That is a scope reduction decided
+# on COST, which is not the outcome variable, from a SINGLE question, which is
+# not the measurement, so it cannot move the repowise-versus-bare contrast.
+# `repowise` and `c0-bare` are retained unconditionally. Any drop is recorded in
+# RESULT.md with the cost that forced it. No other post-gate change is permitted
+# without a superseding pre-registration commit.
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "serena"
+    arm: "serena"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+
+agent:
+  harness: "claude_code"
+  # THE ONLY SUBSTANTIVE DIFFERENCE from layerb_stratified_django.yaml.
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_stratified_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_stratified_django"
+  trees_dir: null
+
+budget:
+  # MEASURED, not extrapolated. The gate ran 6 Opus cells at $2.44, avg
+  # $0.407/cell against Sonnet's $0.209, so Opus is ~1.95x and not the ~5x that
+  # list rates implied. 90 cells projects to ~$37, so the pre-registration's
+  # arm-dropping clause does NOT fire and all six arms are retained.
+  #
+  # The rail drops 160.0 -> 60.0 accordingly: still ~1.6x the projection, so a
+  # normal run cannot trip it, but low enough to actually stop a runaway. Per
+  # PREREGISTRATION section 7 the gate is what replaces the estimate.
+  max_total_usd: 60.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  # Unchanged. claude-opus-5 resolves to the `anthropic` family exactly as
+  # claude-sonnet-5 does, so this stays cross-family and `_resolve_judge_model`
+  # accepts it. Same judge as the Sonnet half is what makes the two quality
+  # columns comparable to each other.
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E1: a timed build under a live process pool inflates by 65%. Every
+  # index here is reused rather than built, but max_workers stays 1 to match the
+  # Sonnet run it is being compared against.
+  max_workers: 1

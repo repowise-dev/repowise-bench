@@ -1,0 +1,70 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_8d0f55cd",
+  "instance_id": "Multi-SWE-Bench__typescript__maintenance__bugfix__8d0f55cd",
+  "base_commit": "43a929dda5a0776bcc05f4624a5648441d44c7b2",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_8d0f55cd",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-8d0f55cd-material-ui",
+    "owner": "repowise-layera",
+    "head": "43a929dda5a0776bcc05f4624a5648441d44c7b2",
+    "base_commit": "43a929dda5a0776bcc05f4624a5648441d44c7b2",
+    "stamp": true,
+    "build_seconds": 1700.5,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.7,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_8d0f55cd.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "Multi-SWE-Bench__typescript__maintenance__bugfix__8d0f55cd",
+    "repo": "mui/material",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-8d0f55cd-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.1,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6461,
+    "ranked": [
+      "packages/mui-joy/src/ListItemButton/ListItemButtonProps.ts",
+      "packages/mui-joy/src/ListItemButton/ListItemButton.tsx",
+      "onboarding/getting_started",
+      "docs/data/material/components/links/ButtonLink.js",
+      "docs/nextConfigDocsInfra.js",
+      "docs/data/system/flexbox/AlignContent.js",
+      "docs/data/system/flexbox/AlignContent.tsx",
+      "docs/data/system/flexbox/AlignItems.js",
+      "docs/data/system/flexbox/AlignItems.tsx",
+      "docs/data/system/flexbox/AlignSelf.js"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:23:03] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:23:05] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "packages/mui-material/src/ListItemButton/ListItemButton.js"
+    ],
+    "gold_hit_rank": null
+  }
+}

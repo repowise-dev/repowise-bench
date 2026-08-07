@@ -640,15 +640,26 @@ def generate_mcp_config(arm: Arm, out_dir: Path, extra_env: Optional[dict] = Non
 
     safe = re.sub(r"[^A-Za-z0-9]+", "-", arm.name)
     path = out_dir / f"{safe}.json"
-    path.write_text(json.dumps({
-        "mcpServers": {
-            arm.server_name: {
-                "command": mcp.get("command"),
-                "args": args,
-                "env": server_env,
-            }
-        }
-    }, indent=2), encoding="utf-8")
+    server: dict = {
+        "command": mcp.get("command"),
+        "args": args,
+        "env": server_env,
+    }
+    # WORKING DIRECTORY, for the one server that decides which repository it
+    # serves from it. Every other arm here names its tree in `args`, so a
+    # mis-pointed server fails loudly; `ccc mcp` takes no project or path
+    # argument at all (checked against `ccc mcp --help` on 0.2.41: the only
+    # option is `--help`) and resolves upward from the working directory. A
+    # server launched without this answers every question about whatever
+    # repository sits above the harness's cwd, while reporting itself healthy —
+    # finding A9's shape, which cost this workstream a rung.
+    #
+    # Written only when an arm declares it, so no existing arm's config changes
+    # a byte. Claude Code honours `cwd` on a stdio server entry.
+    if mcp.get("cwd"):
+        server["cwd"] = mcp["cwd"]
+    path.write_text(json.dumps({"mcpServers": {arm.server_name: server}},
+                               indent=2), encoding="utf-8")
     return path.resolve()
 
 

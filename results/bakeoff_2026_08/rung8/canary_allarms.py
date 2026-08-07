@@ -358,6 +358,13 @@ def arm_spec(arm: str, tree: Path) -> dict:
             "start-mcp-server", "--project", str(tree), "--transport", "stdio",
             "--enable-web-dashboard", "false", "--enable-gui-log-window", "false",
         ]
+    elif arm == "cocoindex":
+        # THE ONLY ARM WHOSE REPO IS CHOSEN BY THE WORKING DIRECTORY. Every
+        # other arm above names its tree in argv, so a mis-pointed server fails
+        # loudly; `ccc mcp` has no such argument and resolves upward from cwd,
+        # so a mis-pointed one ANSWERS, about the wrong repository. `args` stays
+        # `["mcp"]` and the tree is carried in `cwd`.
+        spec["cwd"] = str(tree)
     return spec
 
 
@@ -399,8 +406,16 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
         # version other than the one its row claimed. Recorded per cell so the
         # question is answerable from the data rather than from memory.
         "command": spec["command"],
+        # WHICH DIRECTORY THE SERVER WAS LAUNCHED IN, recorded for every arm and
+        # not just the one that needs it. `ccc mcp` resolves its repository from
+        # the working directory and takes no path argument, so for cocoindex
+        # this field IS the tree binding; for every other arm it is None and
+        # says so. A row that cannot name the directory its server ran in cannot
+        # rule out having answered about a different repository.
+        "cwd": spec.get("cwd"),
     }
-    sp = StdioServerParameters(command=spec["command"], args=spec["args"], env=env)
+    sp = StdioServerParameters(command=spec["command"], args=spec["args"], env=env,
+                               cwd=spec.get("cwd"))
 
     # D14. Give this cell's server its own stderr sink before it is launched, so
     # a process that dies mid-call leaves its traceback attached to the cell that
@@ -496,6 +511,14 @@ async def query_arm(arm: str, spec: dict, instance: dict, timeout=300.0,
 
             tool, args = spec["call"](question, "get_answer")
             row["tool"] = tool
+            # THE ARGUMENTS, not just the tool name. cocoindex's `search` takes
+            # `refresh_index`, whose DEFAULT IS TRUE: an unmodified call
+            # reindexes before answering, which bills a rebuild to the cell and
+            # makes the index a variable mid-run. Layer A pins it false, and the
+            # pre-registration requires the per-cell record to say what was
+            # actually passed rather than what the runner intended to pass.
+            # Recorded for every arm: it is the same claim in each case.
+            row["tool_args"] = {k: v for k, v in args.items() if k != "query"}
             if tool not in served:
                 row["status"] = "tool-absent"
                 return row

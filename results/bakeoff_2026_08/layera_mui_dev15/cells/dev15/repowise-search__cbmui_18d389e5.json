@@ -1,0 +1,71 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_18d389e5",
+  "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__18d389e5",
+  "base_commit": "13ac4ce9239e9e3e1fdb902e3f25ad56b3497fe9",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_18d389e5",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-18d389e5-material-ui",
+    "owner": "repowise-layera",
+    "head": "13ac4ce9239e9e3e1fdb902e3f25ad56b3497fe9",
+    "base_commit": "13ac4ce9239e9e3e1fdb902e3f25ad56b3497fe9",
+    "stamp": true,
+    "build_seconds": 451.8,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.4,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_18d389e5.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__18d389e5",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-18d389e5-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.1,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6233,
+    "ranked": [
+      "packages/material-ui-docs/src/svgIcons/TypeScript.js",
+      "docs/src/modules/utils/loadScript.js",
+      "docs/src/modules/utils/helpers.js",
+      "packages/material-ui/src/utils/deprecatedPropType.js",
+      "packages/material-ui-utils/src/elementTypeAcceptingRef.js",
+      "packages/material-ui/src/Popper/Popper.js",
+      "packages/material-ui/src/Grow/Grow.js",
+      "onboarding/getting_started",
+      "docs/src/pages/utils/popper/PopperPopupState.js",
+      "docs/src/modules/components/HomeFooter.js"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:30:39] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:30:41] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "packages/material-ui/src/Popper/Popper.js",
+      "packages/material-ui/src/utils/helpers.js"
+    ],
+    "gold_hit_rank": 6
+  }
+}

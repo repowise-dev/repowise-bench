@@ -1,0 +1,229 @@
+{
+  "tag": "gate-extract",
+  "arms": [
+    "repowise",
+    "repowise-search",
+    "codegraph",
+    "crg",
+    "graphify"
+  ],
+  "n_instances": 1,
+  "instance_ids": [
+    "SWE-PolyBench__typescript__maintenance__bugfix__2bb4ea7a"
+  ],
+  "workers": 1,
+  "timings_publishable": false,
+  "gate_trees": [
+    {
+      "arm": "repowise",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-2bb4ea7a-material-ui",
+      "owner": "repowise-layera",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 166.2,
+      "index_vector_dim": 1536,
+      "ok": true
+    },
+    {
+      "arm": "repowise-search",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-2bb4ea7a-material-ui",
+      "owner": "repowise-layera",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 166.2,
+      "index_vector_dim": 1536,
+      "ok": true
+    },
+    {
+      "arm": "codegraph",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-codegraph-cbmui-2bb4ea7a-material-ui",
+      "owner": "codegraph",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 22.9,
+      "ok": true
+    },
+    {
+      "arm": "crg",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-code-review-graph-cbmui-2bb4ea7a-material-ui",
+      "owner": "code-review-graph",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 38.2,
+      "ok": true
+    },
+    {
+      "arm": "graphify",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-graphify-cbmui-2bb4ea7a-material-ui",
+      "owner": "graphify",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 83.7,
+      "ok": true
+    }
+  ],
+  "noncode_index_proof": [
+    {
+      "arm": "repowise",
+      "task": "cbmui_2bb4ea7a",
+      "index": "repowise-layera",
+      "readable": true,
+      "surface": "wiki_pages.target_path",
+      "surfaces": {
+        "wiki_pages.target_path": {
+          "total_files": 871,
+          "md": 0,
+          "json": 0
+        },
+        "wiki_symbols.file_path": {
+          "total_files": 821,
+          "md": 0,
+          "json": 0
+        },
+        "health_file_metrics.file_path": {
+          "total_files": 2555,
+          "md": 197,
+          "json": 27
+        }
+      },
+      "total_files": 871,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "codegraph",
+      "task": "cbmui_2bb4ea7a",
+      "index": "codegraph",
+      "readable": true,
+      "surface": "files.path",
+      "surfaces": {
+        "files.path": {
+          "total_files": 2326,
+          "md": 0,
+          "json": 0
+        }
+      },
+      "total_files": 2326,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "crg",
+      "task": "cbmui_2bb4ea7a",
+      "index": "code-review-graph",
+      "readable": true,
+      "surface": "nodes.file_path",
+      "surfaces": {
+        "nodes.file_path": {
+          "total_files": 2323,
+          "md": 0,
+          "json": 0
+        }
+      },
+      "total_files": 2323,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "graphify",
+      "task": "cbmui_2bb4ea7a",
+      "index": "graphify",
+      "readable": true,
+      "surface": "nodes[].source_file",
+      "total_files": 2543,
+      "md": 198,
+      "json": 22
+    }
+  ],
+  "query_seconds": 76.6,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 23378,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0
+    },
+    "repowise-search": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 6400,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0
+    },
+    "codegraph": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 24824
+    },
+    "crg": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 7205
+    },
+    "graphify": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 6671
+    }
+  },
+  "prewarm": {
+    "rc": 0,
+    "n": 1,
+    "failed": [
+      "SWE-PolyBench__typescript__maintenance__bugfix__2bb4ea7a"
+    ]
+  },
+  "selftest": {
+    "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__2bb4ea7a",
+    "gold": [
+      "packages/material-ui/src/ListItem/ListItem.js"
+    ],
+    "perfect": {
+      "rc": 0,
+      "file_coverage": null,
+      "evaluation": "0/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": null,
+      "evaluation": "0/1 instances"
+    },
+    "discriminates": false
+  }
+}

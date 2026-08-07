@@ -1,0 +1,116 @@
+# THE GATE for the Opus rerun. 6 arms x 1 question = 6 cells. Not a measurement.
+#
+# Pre-registration: configs/layerb_opus_django.PREREGISTRATION.md, section 2.
+#
+# Three jobs, none of them a number:
+#
+#   1. Prove `claude-opus-5` runs end to end through this harness. No Opus cell
+#      has ever been run by it. The model string is validated against the CLI
+#      (`canonicalModel: claude-opus-5`); the harness path is not.
+#   2. Prove every arm is alive UNDER OPUS. A dead server scores as a bad arm,
+#      and the arm that gets silently zeroed is never ours, because ours is the
+#      only output format we already know.
+#   3. PRICE AN OPUS CELL. The flagship's $90-$140 is 5x arithmetic on Sonnet
+#      list rates and nothing else.
+#
+# What the gate does NOT assert: that the agent CHOSE the tool. A served tool
+# that is never called is a valid gate pass. Conflating "the server answers"
+# with "the agent reached for it" would make this gate reject exactly the
+# finding the flagship exists to measure.
+#
+# `task_ids`, not `max_tasks`. django_000 is a member of the flagship's
+# stratified 15, so the gate exercises a real question from the draw rather than
+# one nothing else touches. `task_ids` also wins over every positional selector
+# and raises on an id that does not exist, rather than quietly running a
+# different question.
+#
+# SEPARATE results_dir from the flagship, and it is load-bearing. The runner
+# resumes on (task_id, condition). Pointed at one directory, these six cells
+# would satisfy the flagship's first six. Fine when the gate passes, silently
+# wrong when it fails and a config is then corrected, because the corrected run
+# would skip exactly the cells the correction was for.
+#
+# NO --effort flag anywhere in this run. See PREREGISTRATION section 3: the
+# Sonnet cells took the CLI built-in default, so pinning one here would vary a
+# second thing against the only comparator that exists.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_opus_smoke_django.yaml
+
+experiment_name: "layerb_opus_smoke_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_000"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "serena"
+    arm: "serena"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+
+agent:
+  harness: "claude_code"
+  # THE ONLY VARIABLE IN THIS RUN against layerb_stratified_django.yaml.
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_smoke_django"
+  trees_dir: null
+
+budget:
+  # A rail, not a target. 6 cells at even 5x Sonnet's $0.21 is ~$6.30; 12.0
+  # leaves room for Opus being more than 5x without the gate aborting halfway
+  # and leaving a partial arm table, which is the one output this gate must not
+  # produce.
+  max_total_usd: 12.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  # Unchanged from the Sonnet run. claude-opus-5 resolves to the `anthropic`
+  # family exactly as claude-sonnet-5 does, so this stays cross-family and
+  # `_resolve_judge_model` accepts it. Same judge as the Sonnet half, which is
+  # what makes the two quality columns comparable to each other (and to nothing
+  # measured under Codex).
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Finding E1: a timed build under a live process pool inflates by 65%. Every
+  # index here is reused rather than built, but max_workers stays 1 because the
+  # gate is also pricing a cell, and contended cells price wrong.
+  max_workers: 1

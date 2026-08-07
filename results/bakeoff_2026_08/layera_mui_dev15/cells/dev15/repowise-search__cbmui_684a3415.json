@@ -1,0 +1,73 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_684a3415",
+  "instance_id": "SWE-PolyBench__typescript__evolution__feature__684a3415",
+  "base_commit": "09896d42e6206984a54272cc2059c49a7aa9d54f",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_684a3415",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-684a3415-material-ui",
+    "owner": "repowise-layera",
+    "head": "09896d42e6206984a54272cc2059c49a7aa9d54f",
+    "base_commit": "09896d42e6206984a54272cc2059c49a7aa9d54f",
+    "stamp": true,
+    "build_seconds": 189.4,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.0,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_684a3415.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__evolution__feature__684a3415",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-684a3415-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.0,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6858,
+    "ranked": [
+      "packages/material-ui/src/SvgIcon/SvgIcon.js",
+      "packages/material-ui/src/StepIcon/StepIcon.js",
+      "packages/material-ui/src/SvgIcon/index.js",
+      "docs/src/pages/style/icons/SvgIcons.js",
+      "packages/material-ui/src/internal/svg-icons/KeyboardArrowLeft.js",
+      "docs/src/pages/customization/css-in-js/CssInJs.js",
+      "docs/src/pages/demos/snackbars/CustomizedSnackbars.js",
+      "examples/nextjs/pages/_document.js",
+      "packages/material-ui-icons/filters/rename/material-design-icons.js"
+    ],
+    "n_ranked": 9,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:28:29] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:28:31] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      ".size-limit.js",
+      "docs/src/pages/style/icons/SvgIcons.js",
+      "packages/material-ui/src/SvgIcon/SvgIcon.d.ts",
+      "packages/material-ui/src/SvgIcon/SvgIcon.js",
+      "pages/api/svg-icon.md"
+    ],
+    "gold_hit_rank": 1
+  }
+}

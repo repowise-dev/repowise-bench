@@ -193,6 +193,47 @@ def paths_from_json(payload: dict, text: str) -> list[str]:
     return out or paths_from_text(text)
 
 
+def paths_from_cocoindex(payload, text: str) -> list[str]:
+    """CocoIndex Code returns ranked code CHUNKS, several per file.
+
+    `search` answers a `SearchResultModel`: `{"success": bool, "results":
+    [{"file_path", "language", "content", "start_line", "end_line", "score"}],
+    "total_returned", "offset", "message"}`. Paths are repo-relative with
+    forward slashes, so `path_matches` needs no normalisation — unlike
+    code-review-graph, which reports absolute Windows paths.
+
+    Two things this does that the generic JSON walker does not:
+
+    * It DE-DUPLICATES BY FILE while keeping first-hit order. `limit=10` buys
+      ten chunks, not ten files, and a chunker that splits a large file into
+      six pieces would otherwise spend six of the ten slots on one file. The
+      ranked list this returns is therefore shorter than `limit`, and that is
+      the arm's own behaviour rather than a handicap: it is what an agent
+      reading the response would see.
+    * It refuses the `success: false` shape rather than falling through to a
+      text scan. A failed call carries a `message` and no results, and letting
+      the free-text regex mine an error string for anything path-shaped is how
+      a dead arm scores like a live one (finding E4).
+
+    Written against a captured response and checked against a known-hit case
+    before any cell was graded (pre-registration section 5, finding E5).
+    """
+    if isinstance(payload, dict):
+        if payload.get("success") is False:
+            return []
+        results = payload.get("results")
+        if isinstance(results, list):
+            out: list[str] = []
+            for hit in results:
+                if not isinstance(hit, dict):
+                    continue
+                p = hit.get("file_path")
+                if isinstance(p, str) and p and p not in out:
+                    out.append(p)
+            return out
+    return paths_from_text(text)
+
+
 def paths_from_serena(payload, text: str) -> list[str]:
     """Serena reports paths as JSON *keys*, not values.
 
@@ -304,6 +345,36 @@ def arm_specs(repo: str) -> dict[str, dict]:
             ],
             "call": lambda q, kind: ("query_graph", {"question": q}),
             "extract": lambda payload, text: paths_from_text(text),
+        },
+        "cocoindex": {
+            "command": str(UV_BIN / "ccc.exe"),
+            # `ccc mcp` TAKES NO PROJECT ARGUMENT, and this is the arm's one
+            # real hazard. `cli.py:mcp` calls `require_project_root()`, which is
+            # `find_project_root(Path.cwd())` walking UP from the working
+            # directory for a `.cocoindex_code/settings.yml`. There is no flag
+            # and no env var on this path (`COCOINDEX_CODE_ROOT_PATH` is read
+            # only by the legacy `cocoindex-code` entry point, not by `ccc`).
+            # Launched without `cwd`, the server inherits the HARNESS's working
+            # directory and answers every question about whatever repository it
+            # finds above it, while reporting itself perfectly healthy. That is
+            # finding A9's shape, and A9 cost this workstream a rung.
+            #
+            # So `cwd` is the whole fix, and it is verified positively rather
+            # than assumed: two instance trees are asked the same question and
+            # the answers must differ. A server pinned to one repo returns
+            # identical bytes for both, which is the only check that catches it.
+            "args": ["mcp"],
+            "cwd": tree("cocoindex"),
+            # `refresh_index` DEFAULTS TO TRUE (server.py), and an unmodified
+            # call reindexes before querying: it bills a rebuild to the cell and
+            # makes the index a variable mid-run. Same objection that excluded
+            # crg's build_or_update_graph_tool, and it cannot be fixed by
+            # exclusion because it is a parameter on the only tool served.
+            # Layer A calls the tool directly, so Layer A pins it false.
+            "call": lambda q, kind: (
+                "search", {"query": q, "limit": 10, "refresh_index": False}
+            ),
+            "extract": paths_from_cocoindex,
         },
         "serena": {
             "command": str(UV_BIN / "serena.exe"),

@@ -46,6 +46,16 @@
 #   | serena            |     29 |                  3 |                10 |
 #   | code-review-graph |     30 |                  1 |                20 |
 #
+# Added 2026-08-06, and NOT from that measurement:
+#
+#   | cocoindex         |    1*  |                  - |                 1 |
+#
+#   * from the vendor's README ("The `ccc mcp` command exposes a single
+#     tool"), NOT from `served_surface`, because the tool was not installed
+#     when the row was written. It is confirmed against the running server
+#     before the arm enters a scored run. 1 of 1 is a full surface, not a
+#     handicap; see the note in the arm's own block.
+#
 # The rung 6 four-arm run gave graphify 1 of 10, and graphify was then
 # exercised on 4 of 10 cells and its row excluded. Serena and crg had never
 # had a cell run at all, and would have gone in at 3 of 29 and 1 of 30. That
@@ -337,6 +347,88 @@ arms:
       timeout_seconds: 3600
     coaching: "builtin:SWEQA_PROMPT_INDEX_ONLY"
 
+  repowise-layera:
+    description: >
+      THE LAYER A BUILD: full semantic index, NO PROSE. Added 2026-08-06 after
+      the mui smoke built the wrong arm and the mistake reached a RESULT.md.
+
+      Why this arm has to exist rather than reusing `repowise`. The `repowise`
+      arm sets `shares_index_with: repowise-full`, and `repowise-full`'s index is
+      `builtin: repowise_legacy`, which the comment on it correctly describes as
+      "a full-prose index (Layer B is about what a user actually runs)". So a
+      Layer A config listing the `repowise` arm silently gets a PROSE index:
+      measured on mui, `docs_mode: llm`, model `gpt-5.4-nano`, **66 LLM calls and
+      $0.1671** across two instances, and build wall clock that includes LLM doc
+      generation at concurrency 5. Against competitors doing index-only builds
+      that is not a like-for-like timing, and it runs AGAINST us.
+
+      `repowise-index-only` is not the answer either: it is the flask48 C1 arm
+      with "no wiki docs and no semantic search", serving neither `get_answer`
+      nor `search_codebase`, so it cannot produce a Layer A retrieval row at all.
+
+      This arm is a command list rather than a builtin, which is what the note on
+      `repowise-full` says a new arm should use, and it carries every flag
+      standing rule 5 asks for. The harness adds `REPOWISE_SKIP_EDITOR_SETUP=1`
+      and `DO_NOT_TRACK=1` itself (`harness/arms.py:549-557`).
+
+      TWO FLAG SEMANTICS THAT ARE NOT GUESSABLE FROM THE NAMES, both verified in
+      code before this arm was written:
+
+        --max-file-pages 0   means UNLIMITED, not zero. `helpers.py:528-529`
+                             returns 0 as "all of them, and it survives the
+                             policy", consumed at
+                             `generation/selection/selector.py:346-351`, where it
+                             DISABLES `FILE_PAGE_AUTO_CEILING = 4500`
+                             (`selector.py:239`). That ceiling is why the prose
+                             build looked sublinear: it emitted 743 file pages on
+                             2,322 files and hit the cap at EXACTLY 4,500 on
+                             28,346, suppressing roughly half the page work and
+                             saturating the largest cost block. Passing this flag
+                             removes that artifact, so this arm is expected to be
+                             SLOWER at the big end, not faster. That is correct:
+                             it is measuring the work instead of the cap.
+
+        --no-prose           sets `index_only=True` and skips the LLM entirely,
+                             but it also normally downgrades to the MOCK embedder
+                             to honour "no spend" (`init_cmd/command.py:188-189`).
+                             `--embedder openai` is therefore load-bearing, not
+                             decoration: without it this arm builds 8-dimensional
+                             mock vectors and queries them, which is finding A9
+                             and which the D13 gate exists to refuse. Embedding
+                             API calls DO cost money here; LLM doc generation
+                             does not. Report the two separately.
+
+      Its own worktree, never shared with the prose arms (finding E3), which also
+      means a repowise Layer A build and a repowise Layer B build are TWO builds
+      per instance rather than one. The plan's "the same builds serve BOTH layers"
+      premise holds for the competitors and fails for us.
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      served_tools: null
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    # Layer A grades a named tool per row and never pools them (finding E7): the
+    # `get_answer` row carries synthesis, the `search_codebase` row is the
+    # zero-LLM like-for-like control. Both are listed so either can be driven.
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__search_codebase
+    index:
+      command: ["{repowise_exe}", "init", "--no-prose", "--embedder", "openai",
+                "--max-file-pages", "0", "--no-workspace", "--no-editor-setup",
+                "--yes"]
+      timeout_seconds: 10800
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+
   # -------------------------------------------------------------------------
   # Competitors. Launch commands, tool names and setup steps are ported
   # verbatim from rung5/retrieval_probe_multiarm.py::arm_specs and
@@ -372,7 +464,15 @@ arms:
       Graphify. Queries a graph.json the build step writes into the tree.
       NOTE the extractor: Graphify writes node lines as `NODE foo() [src=path
       loc=L149]`, and a path regex requiring whitespace before the path scored
-      it 0.012 MRR against a true 0.539. Handled in harness/path_extract.py.
+      it 0.012 MRR against a true 0.539. Handled by `PATH_RE` and
+      `paths_from_text` in
+      results/bakeoff_2026_08/rung5/retrieval_probe_multiarm.py, which is the
+      single implementation every Layer A runner imports through
+      rung8/canary_allarms.py (rung8_runner.py and
+      layera_mui_dev15/grade_mui_layera.py both reach it that way). This line
+      used to name `harness/path_extract.py`, which has never existed; the
+      pointer was corrected 2026-08-07 after it sent a grading session looking
+      for a file that was not there.
     mcp:
       server_name: graphify
       command: "{uv_bin}/graphify-mcp.exe"
@@ -636,4 +736,147 @@ arms:
         through Serena rather than through your own tools.
 
       These tools are loaded on demand: if a tool is not immediately
+      available, call ToolSearch with the tool name first, then call it.
+
+  cocoindex:
+    description: >
+      CocoIndex Code (`cocoindex-io/cocoindex-code`), an AST-chunking semantic
+      code search CLI and MCP server. Rust transformation engine, tree-sitter
+      chunking, local embeddings via sentence-transformers
+      (Snowflake/snowflake-arctic-embed-xs) so NO API KEY, portable SQLite
+      storage, incremental reindex, 28+ languages including TypeScript.
+      Installs as `ccc`; server line `ccc mcp`.
+
+      NOT `cocoindex-io/cocoindex`. That is an ETL/indexing framework you build
+      a pipeline with, and benchmarking it against repowise would be a category
+      error of roughly the LangChain kind. This entry is the code-search server.
+
+      IT ADVERTISES "Instant token saving by 70%", which is the exact class of
+      claim this page opens by reranking, so it is set up to its own
+      documentation rather than to our convenience.
+
+      INSTALLED AND GATE-PASSED 2026-08-07, at version 0.2.41 read from
+      `ccc version` on the installed binary (the pre-registration deliberately
+      did not pin 0.2.40 from a web page). It was installed as
+      `uv tool install "cocoindex-code[full]"`, and the torch plus
+      sentence-transformers download was run on its own, then the embedding
+      model was pulled by indexing a THREE-FILE scratch directory, so neither
+      landed inside a timed build (finding E1). All three UNRESOLVED items below
+      are now settled against that binary; each keeps its original wording with
+      the resolution beneath it.
+    mcp:
+      server_name: cocoindex
+      # UNRESOLVED 1, and it is the wrong-repo hazard. `ccc mcp` takes no
+      # documented project or path argument, so it resolves its project from
+      # the working directory — and `generate_mcp_config` writes no `cwd` key,
+      # because no arm so far needed one. A server that resolves to the harness
+      # cwd instead of {tree} would answer every question about the WRONG
+      # REPOSITORY while reporting itself healthy, which is finding A9's shape
+      # exactly. Check `ccc mcp --help` for a path/project flag first; if there
+      # is none, this arm needs a `cwd` field added to generate_mcp_config
+      # rather than a guess. Do not run it until one of those two is true.
+      #
+      # SETTLED 2026-08-07, AND THE HAZARD IS REAL. `ccc mcp --help` on 0.2.41
+      # lists exactly one option, `--help`. There is no project flag and no env
+      # var on this path either: `COCOINDEX_CODE_ROOT_PATH` is read only by the
+      # legacy `cocoindex-code` entry point, while `ccc mcp` calls
+      # `require_project_root()` -> `find_project_root(Path.cwd())`, which walks
+      # UP from the working directory looking for `.cocoindex_code/settings.yml`.
+      # So the working directory is the only binding, and it is now given
+      # explicitly: `cwd` below, honoured by `generate_mcp_config` (Layer B) and
+      # by `StdioServerParameters(cwd=...)` in `canary_allarms.query_arm`
+      # (Layer A). Proven positively rather than assumed — two different
+      # instance trees are asked the same question and the answers must differ,
+      # because a server pinned to one repo returns identical bytes for both.
+      command: "{uv_bin}/ccc.exe"
+      args: ["mcp"]
+      cwd: "{tree}"
+      served_tools: null
+    # Served (1). Excluded (0). This is the FULL advertised surface.
+    #
+    # One allowlisted tool of one served is NOT the graphify handicap repeated,
+    # and the difference is worth stating because the numbers look identical.
+    # graphify was given 1 of 10; cocoindex serves exactly one MCP tool, so 1
+    # of 1 is its whole surface. Its README's own words: "The `ccc mcp` command
+    # exposes a single tool". `ccc grep`, `ccc status` and `ccc doctor` are CLI
+    # subcommands and are NOT served over MCP, so allowlisting them is not
+    # possible rather than declined. Same reading as codegraph, which serves 1
+    # and gets 1.
+    client_tools:
+      - mcp__cocoindex__search
+    index:
+      # Runs with cwd={tree} (harness/arms.py:561), which is why `ccc index`
+      # needs no path argument. Index lands in {tree}/.cocoindex_code/
+      # (cocoindex.db + target_sqlite.db), so it is per-worktree and satisfies
+      # E3 without extra work.
+      #
+      # UNRESOLVED 2: whether `ccc index` requires `ccc init` first. The docs
+      # list init as "optional" in one place and as a step in another. If a
+      # bare `ccc index` errors on an uninitialized tree, init goes in front of
+      # it here rather than being run by hand, so the build stays reproducible.
+      #
+      # SETTLED 2026-08-07, AND THE ANSWER SPLITS IN TWO.
+      #
+      #   PROJECT settings: NOT required. `ccc index` calls
+      #   `require_project_root(auto_init=True)`, which writes
+      #   `{tree}/.cocoindex_code/settings.yml` itself. It anchors at
+      #   `find_parent_with_marker(cwd) or cwd`, and that walk matches a `.git`
+      #   DIRECTORY — these trees are git WORKTREES, whose `.git` is a file — so
+      #   it finds no marker above and anchors at the tree. Verified on the
+      #   built trees: the settings file and the databases are inside each
+      #   worktree, one project per tree, satisfying E3.
+      #
+      #   USER settings: REQUIRED, and their absence is a hard exit rather than
+      #   a default. `require_project_root` exits 1 when
+      #   `~/.cocoindex_code/global_settings.yml` is missing and stdin is not a
+      #   TTY, which every build in this harness is. Written once, before any
+      #   build, from the tool's OWN `default_user_settings()` so the embedder
+      #   is the documented default rather than a choice this bench made:
+      #   provider `sentence-transformers`, model
+      #   `Snowflake/snowflake-arctic-embed-xs`, 384 dimensions. That file is
+      #   machine-global, so it is recorded in RESULT.md rather than in this
+      #   command.
+      command: ["{uv_bin}/ccc.exe", "index"]
+      timeout_seconds: 10800
+    # UNRESOLVED 3, and it is an uncontrolled-variable hazard rather than a
+    # setup one. `search` takes `refresh_index` and ITS DEFAULT IS TRUE, so an
+    # unmodified call reindexes before querying. That would bill a rebuild to a
+    # cell and make the index a variable mid-run, which is the same reason crg's
+    # build_or_update_graph_tool and embed_graph_tool are excluded. It cannot be
+    # fixed by exclusion here because it is a parameter on the only tool served.
+    # Layer A calls the tool directly, so Layer A pins refresh_index=false and
+    # the pre-registration says so. Layer B cannot pin an agent's arguments, so
+    # if this arm ever reaches Layer B the coaching must ask for false and the
+    # per-cell record must report what was actually passed.
+    #
+    # SETTLED 2026-08-07, CONFIRMED TRUE IN THE SOURCE, AND THERE IS A SECOND
+    # REBUILD THE PRE-REGISTRATION DID NOT KNOW ABOUT.
+    #
+    #   `server.py` declares `refresh_index: bool = Field(default=True, ...)`
+    #   and, when true, awaits `client.index(project_root)` BEFORE searching.
+    #   Layer A pins it false in `r5.arm_specs["cocoindex"]["call"]` and every
+    #   cell now records the arguments actually sent (`query_arm` writes
+    #   `tool_args`), so the claim is checkable per cell rather than asserted.
+    #
+    #   THE SECOND ONE: `ccc mcp` also spawns `_bg_index(project_root)` at
+    #   startup, unconditionally and with no flag to suppress it, so every
+    #   server launch kicks off an incremental reindex regardless of what the
+    #   search call asks for. On these trees that walk finds nothing changed —
+    #   the tree is a detached worktree pinned to its base_commit and the index
+    #   was built from those same bytes — so it cannot alter what is retrieved,
+    #   but it is machine time billed to the cell. Recorded here because Layer A
+    #   publishes no timings; ANY future timed cocoindex cell must account for
+    #   it rather than discover it.
+    coaching: |
+      You have the CocoIndex Code MCP server. Use it to navigate this
+      repository.
+
+      - mcp__cocoindex__search(query="...") — CocoIndex's own and only
+        documented entry point: AST-aware semantic search over the codebase,
+        returning matching code chunks with their file paths. Takes optional
+        limit, offset, languages and paths filters to narrow the result set.
+
+      Pass refresh_index=false: the index is already built.
+
+      These tools are loaded on demand: if the tool is not immediately
       available, call ToolSearch with the tool name first, then call it.

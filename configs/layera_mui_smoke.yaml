@@ -1,0 +1,84 @@
+# Layer A on mui: the SMOKE. Index builds only. No agent, no judge, no grading.
+#
+# Pre-registration: configs/layera_mui.PREREGISTRATION.md, section 5.
+#
+# Two instances, drawn deterministically as the OLDEST and NEWEST base_commit
+# among the dev 15, so the measured build cost BRACKETS a 12x size range rather
+# than sampling its middle:
+#
+#   2bb4ea7a  04fae47c2a  2018-05-19   2,322 src files   (smaller than django)
+#   8fcb53e6  eb8e95bacf  2023-07-24  28,346 src files
+#
+# Both are MEMBERS of the dev 15, so these indexes are 2 of the 15 the full run
+# needs. The smoke is a prefix of the real build, not a side quest.
+#
+# WHAT IT ANSWERS, none of which is a retrieval number:
+#   1. What an mui index costs per tool, in wall clock and disk, at both ends.
+#   2. Whether every competitor indexes TypeScript AT ALL. Four of the five were
+#      only ever pointed at Python, and an indexer that silently emits an empty
+#      graph on .tsx is the graphify-0.012-MRR failure again.
+#   3. Whether our own TypeScript ingestion holds up at this size.
+#
+# TIMING IS THE POINT, so standing rule 7 binds: no timed build while another
+# process pool is alive (finding E1, measured at 65% inflation). Do not start
+# this while any agent run is in flight.
+#
+# repos_dir points at the per-instance staging root, NOT at repos/. That is what
+# gives each instance its own arm trees via arm_tree's lb-<arm>-<parent>-<name>:
+#   bakeoff/lb-repowise-cbmui-2bb4ea7a-material-ui
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   python scripts/prep_mui_instances.py --smoke
+#   python scripts/prebuild_mui_indexes.py --config configs/layera_mui_smoke.yaml
+
+experiment_name: "layera_mui_smoke"
+
+arms_file: null
+arms_dir: null
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui"
+
+# Index-building arms. Serena is included deliberately even though it indexes on
+# demand: "no-index-by-design" is itself a result worth recording next to four
+# tools that do build one, and its absence from the column would read as an
+# omission rather than a design choice.
+# CORRECTED 2026-08-06, mid-smoke. This list originally said "repowise", which
+# `shares_index_with: repowise-full` resolves to a FULL-PROSE Layer B index:
+# measured docs_mode=llm, gpt-5.4-nano, 66 LLM calls, $0.1671, and build times
+# that include LLM doc generation. `repowise-layera` is the --no-prose build with
+# every flag standing rule 5 asks for. The prose numbers are kept in RESULT.md
+# under an INVALID banner rather than deleted (standing rule 3).
+arms:
+  - "repowise-layera"
+  - "codegraph"
+  - "graphify"
+  - "code-review-graph"
+  - "serena"
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  # NOT assume_indexed. These trees are freshly staged at their own base_commit
+  # and carry no index; assume_indexed against an unindexed tree is an arm
+  # querying nothing, which scores as a tool that cannot retrieve rather than as
+  # a setup error.
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layera_mui_smoke"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layera_mui_smoke"
+  trees_dir: null
+
+parallelism:
+  # ONE. Builds are the measurement here, and concurrent builds contend on
+  # exactly the number being measured.
+  max_workers: 1

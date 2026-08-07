@@ -1,0 +1,138 @@
+# The Go adoption re-test: the held-out 9 cli/cli instances, under Codex.
+#
+# The cheapest high-value item on the list, and it may retire a whole session's
+# worth of open questions.
+#
+# ---------------------------------------------------------------------------
+# The question
+# ---------------------------------------------------------------------------
+# The Go run's headline was adoption collapsing to 2 of 9, reproduced at 2 of 9
+# on these same held-out nine. That session killed three explanations and never
+# found the cause:
+#
+#   * the agent WAS told (the coaching block named the tools)
+#   * it COULD see the descriptions (neutral-described made no difference)
+#   * the question-frame A/B came back inconclusive by its own pre-registered
+#     rule
+#
+# Finding E13 is a FOURTH explanation none of those tested, and it is the one
+# that just explained django: the Claude harness defers MCP schemas behind
+# ToolSearch, and 17 of 30 django Claude cells never issued one. Under Codex the
+# identical repowise server on the identical django questions was called 15/15.
+#
+# If Codex returns 8 or 9 of 9 here, the entire Go adoption collapse was a
+# Claude discovery-gate artifact rather than a property of Go, of ContextBench,
+# or of our question frame.
+#
+# ---------------------------------------------------------------------------
+# THE READING, FIXED BEFORE THE RUN
+# ---------------------------------------------------------------------------
+#   >= 7 of 9   the Go adoption finding is RETIRED as a harness artifact
+#   <= 3 of 9   Go is genuinely different; E13 does not explain it; the finding
+#               stands and the cause remains unknown
+#   4 to 6      INCONCLUSIVE, and it says so. No side is picked, no post-hoc
+#               reclassification.
+#
+# Predicted: >= 7 of 9, on the strength of django's 15/15.
+#
+# ---------------------------------------------------------------------------
+# The instances, and what is NOT touched
+# ---------------------------------------------------------------------------
+# The nine task_ids below are copied VERBATIM from
+# configs/layerb_go_frameA_heldout.yaml, which is the Claude run that returned
+# 2 of 9. Same instances, same trees (lb-repowise-go-cbgo-*), same arm, same
+# prompt style. Only the harness differs.
+#
+# ContextBench's 12 Go TEST instances are not touched by this run and are not
+# loaded by any script in it. Neither is Layer A's sealed 42.
+#
+# ---------------------------------------------------------------------------
+# c0-bare is a reference point and NOT part of the reading
+# ---------------------------------------------------------------------------
+# Adoption is a single-arm property, counted over every non-error cell of the
+# repowise-go arm alone. c0-bare contributes nothing to it and is not a control
+# to subtract. Note also that the Claude run this is compared against was
+# SINGLE-ARM, so the run shapes are not identical and no cost claim crosses
+# them (finding E10: interleaving sets prompt-cache warmth, worth 39 percentage
+# points on a dollar delta).
+#
+# Only cbgo_03f04397 has an existing c0-bare tree. The other eight stage as bare
+# checkouts with no index build, so this arm costs staging time and agent
+# dollars, not machine hours.
+#
+# Pre-registration: configs/layerb_codex_bakeoff.PREREGISTRATION.md section 4
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb/.venv/Scripts/repowise.exe"
+#   python harness/run_experiment.py --config configs/layerb_codex_go_heldout.yaml
+
+experiment_name: "layerb_codex_go_heldout"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_go"
+    # Verbatim from layerb_go_frameA_heldout.yaml. load_swe_qa_tasks raises
+    # KeyError on an id it cannot find, so a typo shrinks nothing silently.
+    task_ids:
+      - "cbgo_03f04397"
+      - "cbgo_3d85271b"
+      - "cbgo_3e2d031f"
+      - "cbgo_4606de0b"
+      - "cbgo_6e022940"
+      - "cbgo_85c030cf"
+      - "cbgo_cedbb0cb"
+      - "cbgo_eb5704a5"
+      - "cbgo_ff0cfab5"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  # Named `repowise-go`, not `repowise`, so a raw row can never be read as a
+  # django-comparable repowise cell by accident. The arm differs from `repowise`
+  # in its index command only (standing rule 5's flags); assert_arm_parity.py
+  # asserts nothing else differs.
+  - name: "repowise-go"
+    arm: "repowise-go"
+  - name: "c0-bare"
+    arm: "c0-bare"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_codex_go_heldout"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbgo_src"
+  logs_dir: "./logs/layerb_codex_go_heldout"
+  trees_dir: null
+
+budget:
+  max_total_usd: 6.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET; resolves to claude-sonnet-5 against a gpt-5.6-sol agent.
+  # The Claude Go cells were graded by gpt-5.6-luna, so quality does NOT cross
+  # the two runs. This run's reading is adoption, which no judge touches.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

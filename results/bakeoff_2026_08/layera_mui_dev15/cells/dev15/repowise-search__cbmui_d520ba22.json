@@ -1,0 +1,69 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_d520ba22",
+  "instance_id": "SWE-PolyBench__typescript__evolution__feature__d520ba22",
+  "base_commit": "182d4dc7726f6d77f0ca3863ca6fcdf9eec23a23",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_d520ba22",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-d520ba22-material-ui",
+    "owner": "repowise-layera",
+    "head": "182d4dc7726f6d77f0ca3863ca6fcdf9eec23a23",
+    "base_commit": "182d4dc7726f6d77f0ca3863ca6fcdf9eec23a23",
+    "stamp": true,
+    "build_seconds": 1190.0,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.5,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_d520ba22.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__evolution__feature__d520ba22",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-d520ba22-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.0,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6107,
+    "ranked": [
+      "packages/mui-docs/src/svgIcons/TypeScript.js",
+      "packages/typescript-to-proptypes/src/types/props.ts",
+      "docs/src/components/markdown/MarkdownElement.tsx",
+      "packages/mui-system/src/spacing.js",
+      "docs/src/modules/components/DemoErrorBoundary.js",
+      "packages/mui-system/src/createTheme/createSpacing.ts",
+      "onboarding/getting_started"
+    ],
+    "n_ranked": 7,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:29:16] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:29:18] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "docs/src/pages/system/properties/properties.md",
+      "packages/mui-system/src/spacing.d.ts",
+      "packages/mui-system/src/spacing.js"
+    ],
+    "gold_hit_rank": 4
+  }
+}

@@ -1,0 +1,97 @@
+# Layer A on mui: THE DEV 15. Index builds only. No agent, no judge, no grading.
+#
+# Pre-registration: configs/layera_mui.PREREGISTRATION.md.
+# Smoke result:     local-stash/competitive-proof/50-results/layera-mui/RESULT.md
+#
+# This is a CONTINUATION of the smoke, not a redo. `prebuild_mui_indexes.py`
+# skips any (arm, tree) pair carrying a disk stamp, and the stamp is written only
+# after a build exits 0, so the two smoke instances are skipped and the other
+# thirteen are built. To force a cold rebuild of a pair, use
+# `scripts/reset_mui_arm_indexes.py`, which removes the arm's own index dir as
+# well as the stamp -- removing the stamp alone re-times an INCREMENTAL refresh
+# and reports it as a cold build.
+#
+# ONE SHARED tasks.json, AND IT IS A FOOTGUN WORTH NAMING.
+# `prep_mui_instances.py` writes `data/cb_mui/swe_qa/tasks.json` at a fixed path
+# for both the --smoke set and the dev 15. So once the 15 are staged, that file
+# holds 15 tasks and `layera_mui_smoke.yaml` ALSO resolves to 15 tasks. The smoke
+# config is a record of what was run, not a way to re-run two instances. Re-stage
+# with --smoke if two is what you want.
+#
+# THE SEALED 30 ARE NEVER STAGED. `prep_mui_instances.py` asserts the staging set
+# does not intersect `configs/mui_split.json`'s sealed list before writing
+# anything. They are evaluated once, at publication, same rule as django's 42.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:OPENAI_API_KEY = <from C:/Users/ragha/Desktop/repowise/.repowise/.env>
+#   python scripts/prep_mui_instances.py
+#   python scripts/prebuild_mui_indexes.py --config configs/layera_mui_dev15.yaml
+#
+# OPENAI_API_KEY IS NOT OPTIONAL AND ITS ABSENCE IS NOT A LOUD FAILURE ELSEWHERE.
+# Both repowise builds in the smoke died at ~3.4s on a missing key: `repowise
+# init` will not read it from `.repowise/.env`, and nothing bridges the
+# environment into the build. That is finding A9 on the build side. It failed
+# loudly here, which is the good outcome; the bad outcome is an index built with
+# mock 8-dimensional vectors that scores as a tool which cannot retrieve. Set the
+# key, and the D13 gate will refuse an 8-dim index if it is somehow still wrong.
+
+experiment_name: "layera_mui_dev15"
+
+arms_file: null
+arms_dir: null
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui"
+
+# THE DEFERRED DECISION, per PREREGISTRATION section 6.
+#
+# All five arms are listed. The pre-registration permits a NARROWER set here if
+# measured build cost makes five unaffordable, with `repowise` and `codegraph`
+# retained unconditionally and `code-review-graph` the first to defer. That is a
+# scheduling decision on measured build COST, which is not an outcome variable,
+# taken before any retrieval is graded, so it cannot move the coverage
+# comparison. Any deferral is recorded in RESULT.md with the cost that forced it.
+#
+# Measured at the big end of the 12x range so far (28,346 src files):
+#   codegraph  465.8s   320.9 MB
+# Build cost is SUPERLINEAR in file count, exponent ~1.22, so the ten large
+# 2021-2023 instances dominate the bill and the five pre-2021 ones are nearly
+# free. Do not plan this from a flat per-instance figure.
+# `repowise-layera`, NOT `repowise`. The latter shares repowise-full's index,
+# which is the full-prose Layer B build; the mui smoke measured that mistake at
+# 66 LLM calls and $0.1671 before catching it. See arms.yaml's repowise-layera
+# block for the two flag semantics that are not guessable from their names.
+arms:
+  - "repowise-layera"
+  - "codegraph"
+  - "graphify"
+  - "code-review-graph"
+  - "serena"
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  # NOT assume_indexed. These trees are freshly staged at their own base_commit
+  # and carry no index; assume_indexed against an unindexed tree is an arm
+  # querying nothing, which scores as a tool that cannot retrieve rather than as
+  # a setup error.
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layera_mui_dev15"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layera_mui_dev15"
+  trees_dir: null
+
+parallelism:
+  # ONE. Builds are the measurement here, and concurrent builds contend on
+  # exactly the number being measured (finding E1, 65% inflation from a live
+  # process pool).
+  max_workers: 1
