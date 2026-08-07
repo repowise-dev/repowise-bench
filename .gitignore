@@ -10,6 +10,10 @@ __pycache__/
 .idea/
 .vscode/
 
+# Claude Code's local state for this checkout. `.claude/worktrees/` alone is
+# 311 MB of git worktrees, which is agent scratch and not benchmark evidence.
+/.claude/
+
 # Cloned target repositories — fetched on demand by scripts/download_benchmarks.py
 /repos/
 
