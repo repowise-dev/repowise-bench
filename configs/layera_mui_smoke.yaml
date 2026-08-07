@@ -47,8 +47,14 @@ benchmarks:
 # demand: "no-index-by-design" is itself a result worth recording next to four
 # tools that do build one, and its absence from the column would read as an
 # omission rather than a design choice.
+# CORRECTED 2026-08-06, mid-smoke. This list originally said "repowise", which
+# `shares_index_with: repowise-full` resolves to a FULL-PROSE Layer B index:
+# measured docs_mode=llm, gpt-5.4-nano, 66 LLM calls, $0.1671, and build times
+# that include LLM doc generation. `repowise-layera` is the --no-prose build with
+# every flag standing rule 5 asks for. The prose numbers are kept in RESULT.md
+# under an INVALID banner rather than deleted (standing rule 3).
 arms:
-  - "repowise"
+  - "repowise-layera"
   - "codegraph"
   - "graphify"
   - "code-review-graph"
