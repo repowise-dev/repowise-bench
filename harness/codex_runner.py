@@ -326,6 +326,28 @@ def configured_mcp_servers(codex_home: str, extra: Optional[list[str]] = None) -
 # Stream parsing
 # ---------------------------------------------------------------------------
 
+_ARG_CLIP = 400
+
+
+def _clip_args(args) -> dict:
+    """One MCP call's arguments, with long string values clipped.
+
+    Values stay whole where they are short, which is the case that matters:
+    `refresh_index: false` and a shell command survive verbatim, while a
+    `get_answer` question is cut at 400 characters so this ledger cannot
+    dominate a result row.
+    """
+    if not isinstance(args, dict):
+        return {}
+    out = {}
+    for k, v in args.items():
+        if isinstance(v, str) and len(v) > _ARG_CLIP:
+            out[k] = v[:_ARG_CLIP] + f"...[+{len(v) - _ARG_CLIP} chars]"
+        else:
+            out[k] = v
+    return out
+
+
 def parse_codex_stream(lines: list[str], model: str) -> dict:
     """Codex's JSONL events into the same shape the Claude parser returns.
 
@@ -352,6 +374,7 @@ def parse_codex_stream(lines: list[str], model: str) -> dict:
     usage: dict = {}
     num_tool_calls = 0
     mcp_tools_issued: list[str] = []
+    mcp_call_args: list[dict] = []
     mcp_per_server: dict = {}
     mcp_is_error = 0
     files_explored: list[str] = []
@@ -392,6 +415,19 @@ def parse_codex_stream(lines: list[str], model: str) -> dict:
                 server = item.get("server") or item.get("server_name") or "?"
                 tool = item.get("tool") or item.get("tool_name") or "?"
                 mcp_tools_issued.append(f"mcp__{server}__{tool}")
+                # The ARGUMENTS the agent actually sent, not only the tool
+                # name. Two things need them and neither can be answered from
+                # a name: cocoindex's `refresh_index` defaults TRUE and Layer B
+                # cannot pin an agent's arguments, so the only honest record is
+                # what was passed; and serena's `execute_shell_command` runs
+                # outside codex's sandbox, so `answer_leak_audit.py` has to see
+                # the command to check it never reached the benchmark's own
+                # answer key. Truncated per call: a get_answer question is
+                # prose and this ledger sits on every row.
+                mcp_call_args.append({
+                    "tool": f"mcp__{server}__{tool}",
+                    "arguments": _clip_args(item.get("arguments")),
+                })
                 bucket = mcp_per_server.setdefault(server, {"ok": 0, "error": 0})
                 failed = bool(item.get("isError") or item.get("is_error")
                               or item.get("error")
@@ -415,6 +451,7 @@ def parse_codex_stream(lines: list[str], model: str) -> dict:
         "files_edited": [],
         "repowise_tools_called": [t for t in mcp_tools_issued if "repowise" in t],
         "mcp_tools_issued": mcp_tools_issued,
+        "mcp_call_args": mcp_call_args,
         "mcp_isError_count": mcp_is_error,
         "mcp_per_server": mcp_per_server,
         "commands": commands,
@@ -568,6 +605,7 @@ def run_codex(prompt: str, repo_path: str, condition: dict, model: str,
         "files_edited": [],
         "repowise_tools_called": parsed["repowise_tools_called"],
         "mcp_tools_issued": parsed["mcp_tools_issued"],
+        "mcp_call_args": parsed["mcp_call_args"],
         "mcp_isError_count": parsed["mcp_isError_count"],
         "mcp_per_server": parsed["mcp_per_server"],
         "hook_events": parsed["hook_events"],

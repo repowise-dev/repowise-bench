@@ -2077,8 +2077,60 @@ def ensure_arm_index(arm: Arm, tree: Path, repo_name: str, config: dict,
                 arms_file=config.get("arms_file"),
                 arms_dir=config.get("arms_dir"),
             )
+        requested_name = arm.name
         arm = build_arm
         builtin = (arm.index or {}).get("builtin")
+
+        # A PREBUILD STAMP ON THE TREE MEANS THE BUILD ALREADY HAPPENED, AND
+        # UNTIL NOW THIS FUNCTION DID NOT LOOK.
+        #
+        # `arm_registry.build_index` has no skip guard: it re-runs the arm's
+        # index command every time a fresh process reaches it, because
+        # `_ARM_INDEX_DONE` memoises within one process only. So a run whose
+        # indexes were all prebuilt still rebuilt every competitor index INLINE,
+        # inside the timed run. That is not hypothetical; it is what the Go
+        # ContextBench run did, and its own prebuild script records the
+        # consequence: "prebuild_indexes.py did not prevent inline builds, which
+        # put an E11 confound in that run's cost column". It is finding E1 as
+        # well, since a build running beside cells contends with them.
+        #
+        # The stamp is written by `scripts/prebuild_mui_indexes.py` only AFTER a
+        # build exits 0. The embedding proof is re-run LIVE rather than read out
+        # of the stamp, so D13 still refuses an 8-dimension index here even
+        # though no build ran.
+        # Both names are checked, and that is not belt-and-braces. The prebuild
+        # script stamps under the arm name IT was given, which for a sharing arm
+        # is the sharer (`repowise`), while this function has already resolved
+        # `arm` to the OWNER (`repowise-full`). Checking one name only would
+        # miss the stamp the prebuild actually wrote and rebuild a prose index
+        # inline, which is the exact failure this guard exists to stop.
+        stamp = next(
+            (p for p in (
+                tree / f".bench_prebuild__{n.replace('/', '-')}.json"
+                for n in dict.fromkeys([requested_name, arm.name, key[0]]) if n
+            ) if p.exists()),
+            None,
+        )
+        if arm.index is not None and stamp is not None:
+            try:
+                stamped = json.loads(stamp.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                stamped = {}
+            evidence = {"arm": arm.name, "skipped": "prebuild stamp on tree",
+                        "stamp": str(stamp),
+                        "seconds": 0.0,
+                        "prebuild_seconds": stamped.get("wall_seconds"),
+                        "prebuild_rc": stamped.get("rc")}
+            evidence.update(arm_registry.index_embedding_proof(arm, tree))
+            if evidence.get("index_embedder_mock"):
+                evidence["failed"] = (
+                    f"index is mock-embedded (vector dim "
+                    f"{evidence.get('index_vector_dim')}); the vector retrieval "
+                    f"leg cannot run against it (finding D13)"
+                )
+            metrics.index_time_seconds = 0.0
+            _ARM_INDEX_DONE[key] = evidence
+            return evidence
 
         if arm.index is None:
             evidence = {"skipped": "no-index-by-design", "seconds": 0.0}

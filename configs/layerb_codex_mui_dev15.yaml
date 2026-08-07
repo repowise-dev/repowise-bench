@@ -1,0 +1,160 @@
+# LAYER B ON mui, UNDER CODEX. 6 arms x 15 instances = 90 cells.
+#
+# Pre-registration: configs/layerb_mui_codex.PREREGISTRATION.md. Committed
+# before a cell ran and before a cent was spent.
+#
+# ---------------------------------------------------------------------------
+# Codex, and the reason is measured rather than preferred
+# ---------------------------------------------------------------------------
+# Under Claude Code the tool under test is mostly not called: 22 of 28 pairs had
+# no tool on either side, so an A/B there compares two bare agents. Under Codex
+# the django flagship returned 15/15 adoption for every MCP arm and rung 9
+# returned 44/44 for repowise, 239 calls issued and 239 answered. That is
+# instrument choice on a measured adoption defect, and the Claude collapse is
+# already published as its own finding rather than dropped.
+#
+# ---------------------------------------------------------------------------
+# THE SIXTH ARM IS c0-bare. cocoindex IS DEFERRED, AND SAYING SO IS THE POINT
+# ---------------------------------------------------------------------------
+# See the pre-registration section 3. Short form: every headline column here is
+# a delta against the bare control, so the control is not optional; and
+# cocoindex carries two contaminants Layer A never had to handle, one of which
+# THIS harness structurally cannot fix. `search`'s `refresh_index` defaults TRUE
+# and Layer B cannot pin an agent's arguments, so the only lever is coaching --
+# but `prompt_style: neutral` DISCARDS per-arm coaching by design, which is the
+# fairness setting the whole cross-tool table rests on. Its Layer A row stands.
+#
+# ---------------------------------------------------------------------------
+# What this run may NOT be used for
+# ---------------------------------------------------------------------------
+#   * NO DOLLAR COLUMN. E10: cache warming and arm ordering moved the dollar
+#     delta 39 points, and an arm that never called its server measured 43%
+#     cheaper than bare. OUTPUT TOKENS only.
+#   * No pooled percentage on its own at n=15. Every pooled figure travels with
+#     mean-of-ratios, the median, and the largest item's share.
+#   * No comparison with any Claude-harness number, on any column.
+#   * No comparison with serena's 2026-08-03 django rows: serena's surface here
+#     is 11 allowlisted tools, not 10 (`execute_shell_command` restored).
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:OPENAI_API_KEY = <from C:/Users/ragha/Desktop/repowise/.repowise/.env>
+#   python harness/run_experiment.py --config configs/layerb_codex_mui_dev15.yaml
+
+experiment_name: "layerb_codex_mui_dev15"
+
+arms_file: null
+arms_dir: null
+
+# NEUTRAL. The same template for every arm, with only the server and tool names
+# substituted, so the table compares tools and not the prose we wrote about
+# them. This is also what silently forbids cocoindex: see the note above.
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui_layerb"
+    # Named, not positional, and not `max_tasks`. `data/cb_mui/swe_qa/
+    # tasks.json` is written at a FIXED path by `prep_mui_instances.py` for
+    # whichever set was last staged, and that footgun already made the Layer A
+    # smoke config resolve to 15 tasks instead of 2. Naming all fifteen means a
+    # corpus that ever holds a different set raises KeyError instead of running
+    # a different experiment under this file's name.
+    #
+    # THE SEALED 30 ARE NOT HERE AND ARE NOT TOUCHED. This is the same dev 15
+    # Layer A graded.
+    task_ids:
+      - "cbmui_04b981d7"
+      - "cbmui_05c53458"
+      - "cbmui_1ac0bb81"
+      - "cbmui_8d0f55cd"
+      - "cbmui_8fcb53e6"
+      - "cbmui_b8bf59e7"
+      - "cbmui_07098661"
+      - "cbmui_684a3415"
+      - "cbmui_d520ba22"
+      - "cbmui_18d389e5"
+      - "cbmui_1de1bd3c"
+      - "cbmui_2bb4ea7a"
+      - "cbmui_3864c137"
+      - "cbmui_6659fd5a"
+      - "cbmui_7dfdbbd1"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+  - name: "serena"
+    arm: "serena"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  # 1200, against django's 900, and the deviation is pre-registered rather than
+  # discovered. These trees run to 28,346 source files against django's ~2,800,
+  # and serena's language server indexes on first use. A timeout is an AGENT
+  # OUTCOME: excluded and named, never retried, so a floor set too low deletes
+  # the hardest questions and biases the surviving set toward the easy ones.
+  timeout_seconds: 1200
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  # NOT assume_indexed. Every index is built by
+  # `configs/layerb_mui_prose_build.yaml` BEFORE this runs, and the tree stamps
+  # it writes are what stop an inline rebuild landing inside a timed cell
+  # (`ensure_arm_index` now honours them; the Go run's E11 confound came from
+  # exactly that path).
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layerb_codex_mui_dev15"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layerb_codex_mui_dev15"
+  trees_dir: null
+
+budget:
+  # 90 cells at the measured rung 9 rate of $0.0559/cell is ~$5. mui trees are
+  # 10x django's, so the ceiling is set well above that to abort a runaway
+  # rather than the run's own normal spend.
+  max_total_usd: 20.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  # DELIBERATELY UNSET, as in every Codex config here. `_resolve_judge_model`
+  # refuses a same-family judge, so a gpt-5.6-sol agent resolves to
+  # claude-sonnet-5. Pinning gpt-5.6-luna from a Claude config is what cost a
+  # launch at da136ed, and the refusal message recommends the wrong model for an
+  # openai agent because it looks up the `anthropic` key. That is a string bug;
+  # ignore its suggestion.
+  #
+  # QUALITY IS UNDERPOWERED AT n=15 AND THE READING IS FIXED IN ADVANCE:
+  # inconclusive unless the effect is >= 0.50 judge points. The noise floor is
+  # S = 0.6896 paired, 0.25 would need 60 pairs, and every per-arm quality
+  # effect measured in this workstream so far is smaller than the noise. The
+  # grade is collected because it is nearly free once the cell has run; the
+  # PUBLISHED row is work-saved, not quality.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # ONE. Serialised cells keep the stream logs readable and keep the run shape
+  # comparable with the django flagship's.
+  max_workers: 1

@@ -1,0 +1,106 @@
+# THE PROSE BUILD. Our arm's second index, and the whole bill of Layer B on mui.
+#
+# ---------------------------------------------------------------------------
+# Why this file exists at all, and why no competitor appears in it
+# ---------------------------------------------------------------------------
+# "Build once, serve both layers" holds for every competitor and FAILS FOR US.
+# Layer A is `--no-prose` (`repowise-layera`); Layer B is defined as prose
+# (`repowise` sharing `repowise-full`'s index, `builtin: repowise_legacy`,
+# `docs_mode: llm`). codegraph, graphify, code-review-graph and serena build one
+# artifact that serves both layers, and theirs are on disk behind stamps.
+# So this config builds ONE arm on FIFTEEN trees and nothing else.
+#
+# ---------------------------------------------------------------------------
+# Thirteen builds, not fifteen, and the two that are already done were an
+# accident that is now an asset
+# ---------------------------------------------------------------------------
+# The Layer A smoke built the `repowise` arm by mistake, which resolved to the
+# full-prose Layer B index. That was wrong for Layer A and was retracted there.
+# It is exactly right for Layer B, and both trees verify at their pinned
+# base_commit with 1536-dimension vectors:
+#
+#   cbmui_2bb4ea7a  04fae47c2a  367.0s  69.4 MB  stamped rc=0
+#   cbmui_8fcb53e6  eb8e95bacf 2574.9s          stamped rc=0
+#
+# `prebuild_mui_indexes.py` skips any (arm, tree) carrying a stamp, so this
+# config builds the other thirteen.
+#
+# ---------------------------------------------------------------------------
+# The budget, from Layer A's own measured curve rather than from a guess
+# ---------------------------------------------------------------------------
+# Layer A measured `repowise-layera` on all 15 (166.2s at 2,322 files to
+# 1,866.0s at 28,346) and measured the prose multiplier on both ends of that
+# range: 2.208x small, 1.380x large. Interpolating the multiplier log-linearly
+# in file count over the 13 remaining trees:
+#
+#   13 prose builds  ~= 18,580s  ~= 5.2 hours
+#   LLM spend        ~= 13 x $0.085  ~= $1.10
+#
+# The multiplier SHRINKS with size because `FILE_PAGE_AUTO_CEILING = 4500` caps
+# file pages on the large trees, and Layer B keeps that cap because Layer B is
+# what a user actually runs. Do not reuse Layer A's `--max-file-pages 0` figures
+# here.
+#
+# ---------------------------------------------------------------------------
+# QUIET MACHINE. Not a preference.
+# ---------------------------------------------------------------------------
+# These seconds are a published column in RESULT.md. Contention is ARM-SPECIFIC
+# and cannot be corrected after the fact: one stray background process inflated
+# codegraph 2.5-3.3x and repowise only 1.03-1.20x on the very trees below. Do
+# not start an agent run, a second build, or anything else beside this. If that
+# is violated the numbers are provenance and RESULT.md must say so.
+#
+# Pre-registration: configs/layerb_mui_codex.PREREGISTRATION.md section 2.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:OPENAI_API_KEY = <from C:/Users/ragha/Desktop/repowise/.repowise/.env>
+#   python scripts/prebuild_mui_indexes.py --config configs/layerb_mui_prose_build.yaml
+
+experiment_name: "layerb_mui_prose_build"
+
+arms_file: null
+arms_dir: null
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    # cb_mui_layerb, NOT cb_mui. Same 15 instances, same base commits, same
+    # gold; the Layer B corpus adds the `question` and `answer` fields Layer A
+    # had no use for. Layer A's graded corpus is not edited in place.
+    data_dir: "./data/cb_mui_layerb"
+
+# `repowise`, NOT `repowise-full` and NOT `repowise-layera`.
+#   repowise-layera  is Layer A's --no-prose arm. Wrong layer.
+#   repowise-full    is the eight-tool ABLATION. It owns the tree and the index,
+#                    but naming it here would stamp `.bench_prebuild__
+#                    repowise-full.json` while the two existing stamps say
+#                    `repowise`, and the two done builds would be redone.
+#   repowise         is the allowlist-conformant headline arm, shares
+#                    repowise-full's tree and index, and is what the Layer B run
+#                    below actually mounts.
+arms:
+  - "repowise"
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  # NOT assume_indexed: thirteen of these trees do not exist yet, let alone
+  # carry an index. assume_indexed against an unindexed tree is an arm querying
+  # nothing, which scores as a tool that cannot retrieve.
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layerb_codex_mui_dev15"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layerb_mui_prose_build"
+  trees_dir: null
+
+parallelism:
+  # ONE. The build seconds are a published column (finding E1: a timed build
+  # under a live process pool inflates by 65%).
+  max_workers: 1

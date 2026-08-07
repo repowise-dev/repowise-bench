@@ -694,6 +694,22 @@ arms:
     #     every other competitor. Any published serena row must carry this
     #     note, and a serena re-run must enable it. Recorded as the fairness
     #     defect in `50-results/layerb-payload-rerun/RESULT.md` section 4.
+    #
+    #     ENABLED 2026-08-07, AND THE CONDITION ABOVE IS THE ONE THAT WAS MET.
+    #     The mui Layer B run is a fresh run in which EVERY arm is measured
+    #     from scratch, so restoring the tool does not put a re-run serena row
+    #     beside anyone's older row. Pre-registered in
+    #     `configs/layerb_mui_codex.PREREGISTRATION.md` section 4, before any
+    #     mui cell ran. Two consequences that travel with it:
+    #
+    #       * serena's mui surface is 11 allowlisted tools, not 10, so its mui
+    #         row is NOT comparable with its 2026-08-03 django rows. Nothing
+    #         may pool the two.
+    #       * `execute_shell_command` runs inside serena's own process and so
+    #         is OUTSIDE codex's `--sandbox read-only`. The pre-registration
+    #         requires `scripts/answer_leak_audit.py` over every command serena
+    #         actually ran, which is why `codex_runner` now records MCP call
+    #         ARGUMENTS and not only tool names.
     #   activate_project                         the harness runs it in
     #                                            `activate`, before the cell.
     #   onboarding, initial_instructions,        session setup and self-
@@ -714,6 +730,7 @@ arms:
       - mcp__serena__find_file
       - mcp__serena__list_dir
       - mcp__serena__read_file
+      - mcp__serena__execute_shell_command
     index: null
     activate:
       - tool: activate_project
@@ -734,6 +751,8 @@ arms:
         server diagnostics for a file.
       - mcp__serena__find_file / list_dir / read_file — locate and read files
         through Serena rather than through your own tools.
+      - mcp__serena__execute_shell_command(command="...") — runs a shell
+        command in the project directory.
 
       These tools are loaded on demand: if a tool is not immediately
       available, call ToolSearch with the tool name first, then call it.
