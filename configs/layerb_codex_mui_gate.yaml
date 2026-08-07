@@ -1,0 +1,111 @@
+# THE GATE for Layer B on mui. 6 arms x 2 questions = 12 cells, ~$1.
+#
+# Pre-registration: configs/layerb_mui_codex.PREREGISTRATION.md section 5.
+#
+# ---------------------------------------------------------------------------
+# Why this runs BEFORE the remaining twelve prose builds
+# ---------------------------------------------------------------------------
+# Four of the six arms have never had a Codex cell on mui, and serena runs an
+# 11th allowlisted tool here that has never been exercised anywhere. Prediction
+# M3 says at least one of them fails its first mui gate, on the base rate that
+# every arm's first cell in this workstream needed a fix that was not guessable
+# from its README. Discovering that after 3.8 hours of prose builds costs the
+# builds; discovering it now costs $1.
+#
+# Both gate instances already carry a repowise prose index, which is why these
+# two and not any other pair: `cbmui_8fcb53e6` was built in the Layer A smoke
+# and `cbmui_1ac0bb81` was built on its own before this ran.
+#
+# ---------------------------------------------------------------------------
+# The two questions, named before the run rather than taken by position
+# ---------------------------------------------------------------------------
+#   cbmui_1ac0bb81   1 gold file,  26,303 src files
+#   cbmui_8fcb53e6   7 gold files, 28,346 src files, 18.4% of the dev gold
+#
+# Two shapes rather than two of one: a server can be alive for a single-file
+# lookup and dead for a multi-file traversal. Both are members of the run's own
+# 15, so nothing here is a question the flagship will not also ask.
+#
+# ---------------------------------------------------------------------------
+# The decision rule, fixed in advance
+# ---------------------------------------------------------------------------
+# An arm that passes enters the run. An arm that fails is fixed and re-gated, OR
+# is declared UNRUNNABLE UNDER CODEX ON mui in the pre-registration with the
+# failure quoted, before the run spends anything. An arm declared unrunnable is
+# reported as unrunnable and NEVER as a zero. No arm is dropped silently.
+#
+# Read the result with:
+#   python scripts/assert_codex_proof_of_life.py --self-test
+#   python scripts/assert_codex_proof_of_life.py --results results/bakeoff_2026_08/layerb_codex_mui_gate
+#
+# Run (NEVER with Start-Process; resume is on (task_id, condition)):
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:OPENAI_API_KEY = <from C:/Users/ragha/Desktop/repowise/.repowise/.env>
+#   python harness/run_experiment.py --config configs/layerb_codex_mui_gate.yaml
+
+experiment_name: "layerb_codex_mui_gate"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui_layerb"
+    task_ids:
+      - "cbmui_1ac0bb81"
+      - "cbmui_8fcb53e6"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+  - name: "graphify"
+    arm: "graphify"
+  - name: "code-review-graph"
+    arm: "code-review-graph"
+  - name: "serena"
+    arm: "serena"
+
+agent:
+  harness: "codex"
+  model: "gpt-5.6-sol"
+  max_turns: 15
+  timeout_seconds: 1200
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layerb_codex_mui_gate"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layerb_codex_mui_gate"
+  trees_dir: null
+
+budget:
+  max_total_usd: 4.0
+  max_per_task_usd: 1.5
+  abort_on_exceed: true
+
+evaluation:
+  # Unset judge model, as in every Codex config here. The gate reads proof of
+  # life, not quality; the grade is collected only to keep the cell shape
+  # identical to the run's.
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

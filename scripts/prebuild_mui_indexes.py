@@ -27,9 +27,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
+import subprocess
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 import yaml
@@ -45,6 +48,60 @@ from harness.swe_qa_runner import (  # noqa: E402
 
 INDEX_DIRS = [".repowise", ".codegraph", "graphify-out", ".code-review-graph",
               ".serena", ".cocoindex_code"]
+
+LOCK = BENCH / ".prebuild_mui.lock"
+
+
+def acquire_lock() -> None:
+    """One prebuild at a time, across PROCESSES, or the timings are worthless.
+
+    The disk stamp makes a rebuild idempotent but it is read once per instance
+    at the top of the loop, so two prebuilds started minutes apart do not see
+    each other and run concurrently. That happened on 2026-08-07: a launch the
+    operator's harness reported as KILLED was still running, and three builds
+    started afterwards were timed while it held the machine. Contention is
+    arm-specific and uncorrectable (finding E1, and Layer A section B measured
+    it at 1.03x to 3.31x depending on the arm), so every second measured in that
+    window had to be thrown away.
+
+    A stale lock is detected rather than trusted: if the recorded pid is gone,
+    the lock is taken over. A live pid is a hard exit, because the alternative
+    is silently producing numbers that cannot be published.
+    """
+    if LOCK.exists():
+        try:
+            held = json.loads(LOCK.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            held = {}
+        pid = held.get("pid")
+        alive = False
+        if isinstance(pid, int):
+            r = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"],
+                               capture_output=True, text=True)
+            alive = str(pid) in (r.stdout or "")
+        if alive:
+            raise SystemExit(
+                f"REFUSING TO START: another prebuild is running (pid {pid}, "
+                f"started {held.get('started')}, config "
+                f"{held.get('config')}).\nTwo concurrent prebuilds make every "
+                f"build second in this window unpublishable. Kill it or wait, "
+                f"then retry.\nLock: {LOCK}"
+            )
+        print(f"[lock] taking over a stale lock from dead pid {pid}")
+    LOCK.write_text(json.dumps({
+        "pid": os.getpid(),
+        "started": datetime.now().isoformat(timespec="seconds"),
+        "config": " ".join(sys.argv[1:]),
+    }), encoding="utf-8")
+
+
+def release_lock() -> None:
+    try:
+        if LOCK.exists() and json.loads(
+                LOCK.read_text(encoding="utf-8")).get("pid") == os.getpid():
+            LOCK.unlink()
+    except (OSError, json.JSONDecodeError):
+        pass
 
 
 def dir_size_mb(p: Path) -> float:
@@ -76,6 +133,7 @@ def main() -> int:
     ap.add_argument("--instances", nargs="*", default=None,
                     help="task ids or instance_ids to build; default all")
     args = ap.parse_args()
+    acquire_lock()
 
     config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
     data_dir = config["benchmarks"]["swe_qa"]["data_dir"].lstrip("./")
@@ -161,4 +219,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    finally:
+        release_lock()

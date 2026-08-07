@@ -88,6 +88,38 @@ def main() -> int:
                 n_stamps += 1
                 print(f"  {verb} stamp  {task['id']:<18} {arm_name}")
 
+            # THE HARNESS INDEX CACHE, WITHOUT WHICH THIS SCRIPT DOES NOT DO
+            # WHAT ITS OWN DOCSTRING PROMISES.
+            #
+            # A repowise arm builds through `index_repo_at`, which keys a cache
+            # at `<index_dir>/<repo>_<tree>_<mode>` and, when that directory
+            # exists, COPIES THE INDEX BACK AND RETURNS (True, 0.0) without
+            # running a build at all. So removing the tree's `.repowise` and the
+            # stamp restored a byte-identical index in 1.6 s and 0.3 s and
+            # reported both as successful builds. A cold-build timing taken that
+            # way would have been ~1 s instead of ~350 s.
+            #
+            # Measured 2026-08-07 while resetting four contaminated builds. The
+            # docstring above already warned that removing the stamp alone
+            # re-times an incremental refresh; this is the same failure one
+            # level down, and it is worse, because the cache path does not
+            # rebuild anything at all.
+            cache_root = Path(
+                (config.get("repowise") or {}).get("index_dir") or "./indexes")
+            if not cache_root.is_absolute():
+                cache_root = BENCH / str(cache_root).lstrip("./")
+            for mode in ("full", "index-only"):
+                cache = cache_root / (
+                    f"{task['repo'].replace('/', '_')}_{tree.name}_{mode}")
+                if cache.exists():
+                    size = round(sum(f.stat().st_size for f in cache.rglob('*')
+                                     if f.is_file()) / 1e6, 1)
+                    if not args.dry_run:
+                        shutil.rmtree(cache, ignore_errors=True)
+                    n_dirs += 1
+                    print(f"  {verb} CACHE  {task['id']:<18} {arm_name:<18} "
+                          f"{cache.name} ({size} MB)")
+
             for d in INDEX_DIRS:
                 p = tree / d
                 if p.exists():
