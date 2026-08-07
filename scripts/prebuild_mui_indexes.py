@@ -177,6 +177,33 @@ def main() -> int:
                 print(f"  {task['id']:<22} {arm_name:<18} SKIP", flush=True)
                 continue
 
+            # AN INDEX DIR WITH NO STAMP IS PARTIAL STATE, AND TIMING IT IS A
+            # RESUMED BUILD REPORTED AS A COLD ONE.
+            #
+            # The stamp is written only after rc=0, so a dotdir without one is
+            # the residue of a build that was killed. `index_repo_at` passes
+            # `--resume` (deliberately: it picks up partial pipeline
+            # checkpoints), so the next build continues from that residue and
+            # finishes fast. Measured 2026-08-07: `cbmui_1de1bd3c` came back at
+            # 166.8 s for 8,308 files, against 330.7 s for the 6,668-file
+            # instance beside it, because a killed batch had left it half built.
+            #
+            # This is the third face of one bug in one session: the stamp alone
+            # re-times an incremental refresh, the harness cache returns 0.0 s
+            # without building, and partial tree state resumes. All three report
+            # a number that looks like a cold build and is faster than one.
+            partial = [d for d in INDEX_DIRS if (tree / d).exists()]
+            if partial:
+                raise SystemExit(
+                    f"REFUSING TO BUILD {task['id']} / {arm_name}: the tree "
+                    f"carries {partial} but no stamp, so it is a killed "
+                    f"build's residue and `--resume` would continue it.\n"
+                    f"Timing that reports a resumed build as a cold one.\n"
+                    f"Reset it first:\n"
+                    f"  python scripts/reset_mui_arm_indexes.py --config "
+                    f"{args.config} --instances {task['id']} --arms {arm_name}"
+                )
+
             m = RunMetrics(task_id=task["id"], benchmark="swe_qa",
                            condition=arm_name, repo=repo_name)
             t0 = time.time()
