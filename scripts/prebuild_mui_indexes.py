@@ -44,7 +44,7 @@ from harness.swe_qa_runner import (  # noqa: E402
 )
 
 INDEX_DIRS = [".repowise", ".codegraph", "graphify-out", ".code-review-graph",
-              ".serena"]
+              ".serena", ".cocoindex_code"]
 
 
 def dir_size_mb(p: Path) -> float:
@@ -68,12 +68,26 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
     ap.add_argument("--limit", type=int, default=0)
+    # Named instances, because `--limit` takes the FIRST n of tasks.json and a
+    # cost smoke needs the two ENDS of the size range. cocoindex entered after
+    # the other four and its build cost was unknown across a 12x span, so the
+    # bracket pair (smallest, largest) is what fits a curve; the middle thirteen
+    # tell you nothing you cannot interpolate.
+    ap.add_argument("--instances", nargs="*", default=None,
+                    help="task ids or instance_ids to build; default all")
     args = ap.parse_args()
 
     config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
     data_dir = config["benchmarks"]["swe_qa"]["data_dir"].lstrip("./")
     tasks = json.loads((BENCH / data_dir / "swe_qa" / "tasks.json")
                        .read_text(encoding="utf-8"))
+    if args.instances:
+        want = set(args.instances)
+        tasks = [t for t in tasks if t["id"] in want or t["instance_id"] in want]
+        missing = want - {t["id"] for t in tasks} - {t["instance_id"] for t in tasks}
+        if missing:
+            print(f"unknown instances: {sorted(missing)}")
+            return 2
     if args.limit:
         tasks = tasks[:args.limit]
     arm_names = config["arms"]

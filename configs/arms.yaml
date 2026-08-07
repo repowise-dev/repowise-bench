@@ -755,13 +755,15 @@ arms:
       claim this page opens by reranking, so it is set up to its own
       documentation rather than to our convenience.
 
-      NOT YET GATE-PASSED. Written from the vendor's own docs on 2026-08-06
-      before the tool was installed, deliberately: the `[full]` variant pulls
-      sentence-transformers and torch, and that download plus unpack is heavy
-      disk I/O which would have contended with the mui builds being TIMED the
-      same evening (finding E1). Three items are marked UNRESOLVED below and
-      every one of them is settled against the installed binary before this arm
-      enters a scored run.
+      INSTALLED AND GATE-PASSED 2026-08-07, at version 0.2.41 read from
+      `ccc version` on the installed binary (the pre-registration deliberately
+      did not pin 0.2.40 from a web page). It was installed as
+      `uv tool install "cocoindex-code[full]"`, and the torch plus
+      sentence-transformers download was run on its own, then the embedding
+      model was pulled by indexing a THREE-FILE scratch directory, so neither
+      landed inside a timed build (finding E1). All three UNRESOLVED items below
+      are now settled against that binary; each keeps its original wording with
+      the resolution beneath it.
     mcp:
       server_name: cocoindex
       # UNRESOLVED 1, and it is the wrong-repo hazard. `ccc mcp` takes no
@@ -773,8 +775,22 @@ arms:
       # exactly. Check `ccc mcp --help` for a path/project flag first; if there
       # is none, this arm needs a `cwd` field added to generate_mcp_config
       # rather than a guess. Do not run it until one of those two is true.
+      #
+      # SETTLED 2026-08-07, AND THE HAZARD IS REAL. `ccc mcp --help` on 0.2.41
+      # lists exactly one option, `--help`. There is no project flag and no env
+      # var on this path either: `COCOINDEX_CODE_ROOT_PATH` is read only by the
+      # legacy `cocoindex-code` entry point, while `ccc mcp` calls
+      # `require_project_root()` -> `find_project_root(Path.cwd())`, which walks
+      # UP from the working directory looking for `.cocoindex_code/settings.yml`.
+      # So the working directory is the only binding, and it is now given
+      # explicitly: `cwd` below, honoured by `generate_mcp_config` (Layer B) and
+      # by `StdioServerParameters(cwd=...)` in `canary_allarms.query_arm`
+      # (Layer A). Proven positively rather than assumed — two different
+      # instance trees are asked the same question and the answers must differ,
+      # because a server pinned to one repo returns identical bytes for both.
       command: "{uv_bin}/ccc.exe"
       args: ["mcp"]
+      cwd: "{tree}"
       served_tools: null
     # Served (1). Excluded (0). This is the FULL advertised surface.
     #
@@ -798,6 +814,28 @@ arms:
       # list init as "optional" in one place and as a step in another. If a
       # bare `ccc index` errors on an uninitialized tree, init goes in front of
       # it here rather than being run by hand, so the build stays reproducible.
+      #
+      # SETTLED 2026-08-07, AND THE ANSWER SPLITS IN TWO.
+      #
+      #   PROJECT settings: NOT required. `ccc index` calls
+      #   `require_project_root(auto_init=True)`, which writes
+      #   `{tree}/.cocoindex_code/settings.yml` itself. It anchors at
+      #   `find_parent_with_marker(cwd) or cwd`, and that walk matches a `.git`
+      #   DIRECTORY — these trees are git WORKTREES, whose `.git` is a file — so
+      #   it finds no marker above and anchors at the tree. Verified on the
+      #   built trees: the settings file and the databases are inside each
+      #   worktree, one project per tree, satisfying E3.
+      #
+      #   USER settings: REQUIRED, and their absence is a hard exit rather than
+      #   a default. `require_project_root` exits 1 when
+      #   `~/.cocoindex_code/global_settings.yml` is missing and stdin is not a
+      #   TTY, which every build in this harness is. Written once, before any
+      #   build, from the tool's OWN `default_user_settings()` so the embedder
+      #   is the documented default rather than a choice this bench made:
+      #   provider `sentence-transformers`, model
+      #   `Snowflake/snowflake-arctic-embed-xs`, 384 dimensions. That file is
+      #   machine-global, so it is recorded in RESULT.md rather than in this
+      #   command.
       command: ["{uv_bin}/ccc.exe", "index"]
       timeout_seconds: 10800
     # UNRESOLVED 3, and it is an uncontrolled-variable hazard rather than a
@@ -810,6 +848,25 @@ arms:
     # the pre-registration says so. Layer B cannot pin an agent's arguments, so
     # if this arm ever reaches Layer B the coaching must ask for false and the
     # per-cell record must report what was actually passed.
+    #
+    # SETTLED 2026-08-07, CONFIRMED TRUE IN THE SOURCE, AND THERE IS A SECOND
+    # REBUILD THE PRE-REGISTRATION DID NOT KNOW ABOUT.
+    #
+    #   `server.py` declares `refresh_index: bool = Field(default=True, ...)`
+    #   and, when true, awaits `client.index(project_root)` BEFORE searching.
+    #   Layer A pins it false in `r5.arm_specs["cocoindex"]["call"]` and every
+    #   cell now records the arguments actually sent (`query_arm` writes
+    #   `tool_args`), so the claim is checkable per cell rather than asserted.
+    #
+    #   THE SECOND ONE: `ccc mcp` also spawns `_bg_index(project_root)` at
+    #   startup, unconditionally and with no flag to suppress it, so every
+    #   server launch kicks off an incremental reindex regardless of what the
+    #   search call asks for. On these trees that walk finds nothing changed —
+    #   the tree is a detached worktree pinned to its base_commit and the index
+    #   was built from those same bytes — so it cannot alter what is retrieved,
+    #   but it is machine time billed to the cell. Recorded here because Layer A
+    #   publishes no timings; ANY future timed cocoindex cell must account for
+    #   it rather than discover it.
     coaching: |
       You have the CocoIndex Code MCP server. Use it to navigate this
       repository.

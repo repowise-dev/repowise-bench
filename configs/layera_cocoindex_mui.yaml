@@ -1,0 +1,59 @@
+# Layer A on mui: THE cocoindex ARM ONLY. Index builds. No agent, no judge.
+#
+# Pre-registration: configs/layera_cocoindex.PREREGISTRATION.md.
+# Table it joins:   local-stash/competitive-proof/50-results/layera-mui/RESULT.md
+#
+# WHY A SEPARATE CONFIG RATHER THAN A SIXTH ARM IN layera_mui_dev15.yaml.
+# That config's five arms are all built and stamped, and re-running it would
+# walk 75 stamps to reach the fifteen builds that matter. This one names one arm
+# so the smoke can be run with `--instances` on the two ENDS of the 12x size
+# range before anything commits to fifteen builds of unknown cost.
+#
+# THE BUILD IS THE ONLY THING THAT COSTS. cocoindex embeds locally
+# (sentence-transformers, Snowflake/snowflake-arctic-embed-xs, 384 dimensions),
+# so there is no API key, no per-query spend, and no LLM anywhere in the arm.
+#
+# THE MODEL DOWNLOAD MUST NOT LAND IN A TIMED BUILD (finding E1). The first
+# `ccc index` on a machine pulls torch's model weights. That was done once, off
+# the timed path, on a three-file scratch directory before any tree was built.
+#
+# GLOBAL SETTINGS ARE A PRECONDITION, and their absence is a hard exit rather
+# than a default. `require_project_root` exits 1 when
+# `~/.cocoindex_code/global_settings.yml` is missing and stdin is not a TTY,
+# which every build here is. Written once from the tool's OWN
+# `default_user_settings()` so the embedder is the documented default rather
+# than something this bench chose:
+#     embedding: {provider: sentence-transformers,
+#                 model: Snowflake/snowflake-arctic-embed-xs}
+#
+# Run:
+#   python scripts/prebuild_mui_indexes.py --config configs/layera_cocoindex_mui.yaml \
+#       --instances cbmui_2bb4ea7a cbmui_8fcb53e6      # the bracket smoke
+#   python scripts/prebuild_mui_indexes.py --config configs/layera_cocoindex_mui.yaml
+#
+# No OPENAI_API_KEY is needed to BUILD this arm. It is needed to GRADE the table
+# it joins, because the repowise rows in it query a 1536-dimension index.
+
+experiment_name: "layera_cocoindex_mui"
+
+arms_file: null
+arms_dir: null
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui"
+
+arms:
+  - "cocoindex"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layera_cocoindex_mui"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layera_cocoindex_mui"
+  trees_dir: null
+
+parallelism:
+  # ONE. The build cost IS the measurement for this arm and concurrent builds
+  # contend on exactly the number being measured (finding E1).
+  max_workers: 1
