@@ -151,7 +151,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="dev15")
     ap.add_argument("--arms", nargs="+",
-                    default=["repowise", "repowise-search", "codegraph", "crg", "graphify"])
+                    default=["repowise", "repowise-search", "codegraph", "crg",
+                             "graphify", "cocoindex"])
     args = ap.parse_args()
 
     tasks = json.loads(TASKS.read_text(encoding="utf-8"))
