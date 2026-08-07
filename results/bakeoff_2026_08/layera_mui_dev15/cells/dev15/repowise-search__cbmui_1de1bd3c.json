@@ -1,0 +1,71 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_1de1bd3c",
+  "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__1de1bd3c",
+  "base_commit": "dfe2779b8b6499ccd1922990ac9178d84e02f8b6",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_1de1bd3c",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-1de1bd3c-material-ui",
+    "owner": "repowise-layera",
+    "head": "dfe2779b8b6499ccd1922990ac9178d84e02f8b6",
+    "base_commit": "dfe2779b8b6499ccd1922990ac9178d84e02f8b6",
+    "stamp": true,
+    "build_seconds": 501.9,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.2,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_1de1bd3c.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__1de1bd3c",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-1de1bd3c-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.1,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6797,
+    "ranked": [
+      "packages/material-ui/src/useMediaQuery/useMediaQuery.js",
+      "onboarding/getting_started",
+      "packages/material-ui/src/useMediaQuery/index.js",
+      "docs/src/pages/customization/breakpoints/MediaQuery.js",
+      "examples/preact/config/webpackDevServer.config.js",
+      "packages/material-ui/src/useMediaQuery/useMediaQuery.d.ts",
+      "docs/src/pages/customization/breakpoints/WithWidth.js",
+      "docs/src/pages/customization/breakpoints/WithWidth.tsx",
+      "framer/scripts/buildFramer.js",
+      "packages/material-ui/src/CardMedia/CardMedia.js",
+      "examples/nextjs/pages/_document.js"
+    ],
+    "n_ranked": 11,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:31:36] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:31:38] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "packages/material-ui/src/useMediaQuery/useMediaQuery.js"
+    ],
+    "gold_hit_rank": 1
+  }
+}

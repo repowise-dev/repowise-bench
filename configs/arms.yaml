@@ -464,7 +464,15 @@ arms:
       Graphify. Queries a graph.json the build step writes into the tree.
       NOTE the extractor: Graphify writes node lines as `NODE foo() [src=path
       loc=L149]`, and a path regex requiring whitespace before the path scored
-      it 0.012 MRR against a true 0.539. Handled in harness/path_extract.py.
+      it 0.012 MRR against a true 0.539. Handled by `PATH_RE` and
+      `paths_from_text` in
+      results/bakeoff_2026_08/rung5/retrieval_probe_multiarm.py, which is the
+      single implementation every Layer A runner imports through
+      rung8/canary_allarms.py (rung8_runner.py and
+      layera_mui_dev15/grade_mui_layera.py both reach it that way). This line
+      used to name `harness/path_extract.py`, which has never existed; the
+      pointer was corrected 2026-08-07 after it sent a grading session looking
+      for a file that was not there.
     mcp:
       server_name: graphify
       command: "{uv_bin}/graphify-mcp.exe"

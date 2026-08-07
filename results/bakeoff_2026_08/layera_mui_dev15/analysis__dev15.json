@@ -1,0 +1,874 @@
+{
+  "tag": "dev15",
+  "src_files": {
+    "cbmui_04b981d7": 27730,
+    "cbmui_05c53458": 24606,
+    "cbmui_1ac0bb81": 26303,
+    "cbmui_8d0f55cd": 27709,
+    "cbmui_8fcb53e6": 28346,
+    "cbmui_b8bf59e7": 24653,
+    "cbmui_07098661": 6668,
+    "cbmui_684a3415": 2370,
+    "cbmui_d520ba22": 22413,
+    "cbmui_18d389e5": 7354,
+    "cbmui_1de1bd3c": 8308,
+    "cbmui_2bb4ea7a": 2322,
+    "cbmui_3864c137": 22448,
+    "cbmui_6659fd5a": 8387,
+    "cbmui_7dfdbbd1": 8399
+  },
+  "gold_counts": {
+    "cbmui_04b981d7": 1,
+    "cbmui_05c53458": 5,
+    "cbmui_1ac0bb81": 1,
+    "cbmui_8d0f55cd": 1,
+    "cbmui_8fcb53e6": 7,
+    "cbmui_b8bf59e7": 1,
+    "cbmui_07098661": 4,
+    "cbmui_684a3415": 5,
+    "cbmui_d520ba22": 3,
+    "cbmui_18d389e5": 2,
+    "cbmui_1de1bd3c": 1,
+    "cbmui_2bb4ea7a": 1,
+    "cbmui_3864c137": 3,
+    "cbmui_6659fd5a": 2,
+    "cbmui_7dfdbbd1": 1
+  },
+  "arms": {
+    "repowise": {
+      "n": 15,
+      "coverage": {
+        "pooled": 0.5263,
+        "mean_of_instances": 0.7367,
+        "median": 1.0,
+        "gold_hit": 20,
+        "gold_total": 38,
+        "top_instance": "cbmui_8fcb53e6",
+        "top_instance_share_of_gold": 0.1842
+      },
+      "precision": {
+        "mean": 0.0667,
+        "median": 0.05
+      },
+      "files_served": {
+        "mean": 20.0,
+        "median": 20
+      },
+      "noncode_gold": {
+        "hit": 0,
+        "total": 8,
+        "rate": 0.0,
+        "code_hit": 20,
+        "code_total": 30,
+        "code_rate": 0.6667,
+        "source": "harness r5.path_matches over the arm's ranked list"
+      },
+      "size_vs_coverage": {
+        "n": 15,
+        "slope": -4.761875509602556e-06,
+        "intercept": 0.8154014210926392,
+        "r": -0.1468,
+        "r2": 0.0215,
+        "p": 0.6017
+      },
+      "size_vs_coverage_log": {
+        "n": 15,
+        "slope": -0.03662987464102875,
+        "intercept": 1.0821435258108365,
+        "r": -0.097,
+        "r2": 0.0094,
+        "p": 0.7309
+      },
+      "per_instance": {
+        "cbmui_04b981d7": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 27730
+        },
+        "cbmui_05c53458": {
+          "coverage": 0.4,
+          "precision": 0.1,
+          "intersection": 2,
+          "gold_size": 5,
+          "pred_size": 20,
+          "src_files": 24606
+        },
+        "cbmui_1ac0bb81": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 26303
+        },
+        "cbmui_8d0f55cd": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 27709
+        },
+        "cbmui_8fcb53e6": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 7,
+          "pred_size": 20,
+          "src_files": 28346
+        },
+        "cbmui_b8bf59e7": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 24653
+        },
+        "cbmui_07098661": {
+          "coverage": 0.75,
+          "precision": 0.15,
+          "intersection": 3,
+          "gold_size": 4,
+          "pred_size": 20,
+          "src_files": 6668
+        },
+        "cbmui_684a3415": {
+          "coverage": 0.4,
+          "precision": 0.1,
+          "intersection": 2,
+          "gold_size": 5,
+          "pred_size": 20,
+          "src_files": 2370
+        },
+        "cbmui_d520ba22": {
+          "coverage": 0.6666666666666666,
+          "precision": 0.1,
+          "intersection": 2,
+          "gold_size": 3,
+          "pred_size": 20,
+          "src_files": 22413
+        },
+        "cbmui_18d389e5": {
+          "coverage": 0.5,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 2,
+          "pred_size": 20,
+          "src_files": 7354
+        },
+        "cbmui_1de1bd3c": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 8308
+        },
+        "cbmui_2bb4ea7a": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 2322
+        },
+        "cbmui_3864c137": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 20,
+          "src_files": 22448
+        },
+        "cbmui_6659fd5a": {
+          "coverage": 1.0,
+          "precision": 0.1,
+          "intersection": 2,
+          "gold_size": 2,
+          "pred_size": 20,
+          "src_files": 8387
+        },
+        "cbmui_7dfdbbd1": {
+          "coverage": 1.0,
+          "precision": 0.05,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 20,
+          "src_files": 8399
+        }
+      }
+    },
+    "repowise-search": {
+      "n": 15,
+      "coverage": {
+        "pooled": 0.3684,
+        "mean_of_instances": 0.5344,
+        "median": 0.4,
+        "gold_hit": 14,
+        "gold_total": 38,
+        "top_instance": "cbmui_8fcb53e6",
+        "top_instance_share_of_gold": 0.1842
+      },
+      "precision": {
+        "mean": 0.1022,
+        "median": 0.1
+      },
+      "files_served": {
+        "mean": 9.0,
+        "median": 9
+      },
+      "noncode_gold": {
+        "hit": 0,
+        "total": 8,
+        "rate": 0.0,
+        "code_hit": 14,
+        "code_total": 30,
+        "code_rate": 0.4667,
+        "source": "harness r5.path_matches over the arm's ranked list"
+      },
+      "size_vs_coverage": {
+        "n": 15,
+        "slope": -1.905273477894839e-05,
+        "intercept": 0.8494699823734888,
+        "r": -0.4667,
+        "r2": 0.2178,
+        "p": 0.0795
+      },
+      "size_vs_coverage_log": {
+        "n": 15,
+        "slope": -0.18536582407626473,
+        "intercept": 2.282733329463139,
+        "r": -0.3902,
+        "r2": 0.1522,
+        "p": 0.1505
+      },
+      "per_instance": {
+        "cbmui_04b981d7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 7,
+          "src_files": 27730
+        },
+        "cbmui_05c53458": {
+          "coverage": 0.2,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 5,
+          "pred_size": 10,
+          "src_files": 24606
+        },
+        "cbmui_1ac0bb81": {
+          "coverage": 1.0,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 10,
+          "src_files": 26303
+        },
+        "cbmui_8d0f55cd": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 9,
+          "src_files": 27709
+        },
+        "cbmui_8fcb53e6": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 7,
+          "pred_size": 8,
+          "src_files": 28346
+        },
+        "cbmui_b8bf59e7": {
+          "coverage": 1.0,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 10,
+          "src_files": 24653
+        },
+        "cbmui_07098661": {
+          "coverage": 0.25,
+          "precision": 0.1111111111111111,
+          "intersection": 1,
+          "gold_size": 4,
+          "pred_size": 9,
+          "src_files": 6668
+        },
+        "cbmui_684a3415": {
+          "coverage": 0.4,
+          "precision": 0.2222222222222222,
+          "intersection": 2,
+          "gold_size": 5,
+          "pred_size": 9,
+          "src_files": 2370
+        },
+        "cbmui_d520ba22": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.16666666666666666,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 6,
+          "src_files": 22413
+        },
+        "cbmui_18d389e5": {
+          "coverage": 0.5,
+          "precision": 0.1111111111111111,
+          "intersection": 1,
+          "gold_size": 2,
+          "pred_size": 9,
+          "src_files": 7354
+        },
+        "cbmui_1de1bd3c": {
+          "coverage": 1.0,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 10,
+          "src_files": 8308
+        },
+        "cbmui_2bb4ea7a": {
+          "coverage": 1.0,
+          "precision": 0.1111111111111111,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 9,
+          "src_files": 2322
+        },
+        "cbmui_3864c137": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.1111111111111111,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 9,
+          "src_files": 22448
+        },
+        "cbmui_6659fd5a": {
+          "coverage": 1.0,
+          "precision": 0.2,
+          "intersection": 2,
+          "gold_size": 2,
+          "pred_size": 10,
+          "src_files": 8387
+        },
+        "cbmui_7dfdbbd1": {
+          "coverage": 1.0,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 10,
+          "src_files": 8399
+        }
+      }
+    },
+    "codegraph": {
+      "n": 15,
+      "coverage": {
+        "pooled": 0.3421,
+        "mean_of_instances": 0.4144,
+        "median": 0.3333,
+        "gold_hit": 13,
+        "gold_total": 38,
+        "top_instance": "cbmui_8fcb53e6",
+        "top_instance_share_of_gold": 0.1842
+      },
+      "precision": {
+        "mean": 0.1453,
+        "median": 0.0714
+      },
+      "files_served": {
+        "mean": 11.6,
+        "median": 12
+      },
+      "noncode_gold": {
+        "hit": 0,
+        "total": 8,
+        "rate": 0.0,
+        "code_hit": 13,
+        "code_total": 30,
+        "code_rate": 0.4333,
+        "source": "harness r5.path_matches over the arm's ranked list"
+      },
+      "size_vs_coverage": {
+        "n": 15,
+        "slope": -2.00118226617118e-05,
+        "intercept": 0.745327925062252,
+        "r": -0.4997,
+        "r2": 0.2497,
+        "p": 0.0579
+      },
+      "size_vs_coverage_log": {
+        "n": 15,
+        "slope": -0.23746235909722643,
+        "intercept": 2.654084923420726,
+        "r": -0.5095,
+        "r2": 0.2596,
+        "p": 0.0524
+      },
+      "per_instance": {
+        "cbmui_04b981d7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 12,
+          "src_files": 27730
+        },
+        "cbmui_05c53458": {
+          "coverage": 0.2,
+          "precision": 0.07142857142857142,
+          "intersection": 1,
+          "gold_size": 5,
+          "pred_size": 14,
+          "src_files": 24606
+        },
+        "cbmui_1ac0bb81": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 18,
+          "src_files": 26303
+        },
+        "cbmui_8d0f55cd": {
+          "coverage": 1.0,
+          "precision": 0.5,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 2,
+          "src_files": 27709
+        },
+        "cbmui_8fcb53e6": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 7,
+          "pred_size": 6,
+          "src_files": 28346
+        },
+        "cbmui_b8bf59e7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 9,
+          "src_files": 24653
+        },
+        "cbmui_07098661": {
+          "coverage": 0.25,
+          "precision": 0.07692307692307693,
+          "intersection": 1,
+          "gold_size": 4,
+          "pred_size": 13,
+          "src_files": 6668
+        },
+        "cbmui_684a3415": {
+          "coverage": 0.6,
+          "precision": 0.11538461538461539,
+          "intersection": 3,
+          "gold_size": 5,
+          "pred_size": 26,
+          "src_files": 2370
+        },
+        "cbmui_d520ba22": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.07142857142857142,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 14,
+          "src_files": 22413
+        },
+        "cbmui_18d389e5": {
+          "coverage": 0.5,
+          "precision": 0.125,
+          "intersection": 1,
+          "gold_size": 2,
+          "pred_size": 8,
+          "src_files": 7354
+        },
+        "cbmui_1de1bd3c": {
+          "coverage": 1.0,
+          "precision": 0.07142857142857142,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 14,
+          "src_files": 8308
+        },
+        "cbmui_2bb4ea7a": {
+          "coverage": 1.0,
+          "precision": 0.047619047619047616,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 21,
+          "src_files": 2322
+        },
+        "cbmui_3864c137": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.1,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 10,
+          "src_files": 22448
+        },
+        "cbmui_6659fd5a": {
+          "coverage": 1.0,
+          "precision": 1.0,
+          "intersection": 2,
+          "gold_size": 2,
+          "pred_size": 2,
+          "src_files": 8387
+        },
+        "cbmui_7dfdbbd1": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 5,
+          "src_files": 8399
+        }
+      }
+    },
+    "crg": {
+      "n": 15,
+      "coverage": {
+        "pooled": 0.1579,
+        "mean_of_instances": 0.1622,
+        "median": 0.0,
+        "gold_hit": 6,
+        "gold_total": 38,
+        "top_instance": "cbmui_8fcb53e6",
+        "top_instance_share_of_gold": 0.1842
+      },
+      "precision": {
+        "mean": 0.0579,
+        "median": 0.0
+      },
+      "files_served": {
+        "mean": 5.67,
+        "median": 6
+      },
+      "noncode_gold": {
+        "hit": 0,
+        "total": 8,
+        "rate": 0.0,
+        "code_hit": 6,
+        "code_total": 30,
+        "code_rate": 0.2,
+        "source": "harness r5.path_matches over the arm's ranked list"
+      },
+      "size_vs_coverage": {
+        "n": 15,
+        "slope": 9.77053322981971e-07,
+        "intercept": 0.14606723175870914,
+        "r": 0.0347,
+        "r2": 0.0012,
+        "p": 0.9023
+      },
+      "size_vs_coverage_log": {
+        "n": 15,
+        "slope": 0.007698150359268874,
+        "intercept": 0.08961665549825486,
+        "r": 0.0235,
+        "r2": 0.0006,
+        "p": 0.9338
+      },
+      "per_instance": {
+        "cbmui_04b981d7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 1,
+          "src_files": 27730
+        },
+        "cbmui_05c53458": {
+          "coverage": 0.2,
+          "precision": 0.2,
+          "intersection": 1,
+          "gold_size": 5,
+          "pred_size": 5,
+          "src_files": 24606
+        },
+        "cbmui_1ac0bb81": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 7,
+          "src_files": 26303
+        },
+        "cbmui_8d0f55cd": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 1,
+          "src_files": 27709
+        },
+        "cbmui_8fcb53e6": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 7,
+          "pred_size": 9,
+          "src_files": 28346
+        },
+        "cbmui_b8bf59e7": {
+          "coverage": 1.0,
+          "precision": 0.125,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 8,
+          "src_files": 24653
+        },
+        "cbmui_07098661": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 4,
+          "pred_size": 8,
+          "src_files": 6668
+        },
+        "cbmui_684a3415": {
+          "coverage": 0.4,
+          "precision": 0.2,
+          "intersection": 2,
+          "gold_size": 5,
+          "pred_size": 10,
+          "src_files": 2370
+        },
+        "cbmui_d520ba22": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.14285714285714285,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 7,
+          "src_files": 22413
+        },
+        "cbmui_18d389e5": {
+          "coverage": 0.5,
+          "precision": 0.2,
+          "intersection": 1,
+          "gold_size": 2,
+          "pred_size": 5,
+          "src_files": 7354
+        },
+        "cbmui_1de1bd3c": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 6,
+          "src_files": 8308
+        },
+        "cbmui_2bb4ea7a": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 3,
+          "src_files": 2322
+        },
+        "cbmui_3864c137": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 3,
+          "pred_size": 6,
+          "src_files": 22448
+        },
+        "cbmui_6659fd5a": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 2,
+          "pred_size": 3,
+          "src_files": 8387
+        },
+        "cbmui_7dfdbbd1": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 6,
+          "src_files": 8399
+        }
+      }
+    },
+    "graphify": {
+      "n": 15,
+      "coverage": {
+        "pooled": 0.0789,
+        "mean_of_instances": 0.1022,
+        "median": 0.0,
+        "gold_hit": 3,
+        "gold_total": 38,
+        "top_instance": "cbmui_8fcb53e6",
+        "top_instance_share_of_gold": 0.1842
+      },
+      "precision": {
+        "mean": 0.0057,
+        "median": 0.0
+      },
+      "files_served": {
+        "mean": 31.93,
+        "median": 32
+      },
+      "noncode_gold": {
+        "hit": 0,
+        "total": 8,
+        "rate": 0.0,
+        "code_hit": 3,
+        "code_total": 30,
+        "code_rate": 0.1,
+        "source": "harness r5.path_matches over the arm's ranked list"
+      },
+      "size_vs_coverage": {
+        "n": 15,
+        "slope": -7.235973276844613e-06,
+        "intercept": 0.22186469877088177,
+        "r": -0.2782,
+        "r2": 0.0774,
+        "p": 0.3153
+      },
+      "size_vs_coverage_log": {
+        "n": 15,
+        "slope": -0.1243900032238457,
+        "intercept": 1.2754139965280178,
+        "r": -0.411,
+        "r2": 0.1689,
+        "p": 0.1281
+      },
+      "per_instance": {
+        "cbmui_04b981d7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 29,
+          "src_files": 27730
+        },
+        "cbmui_05c53458": {
+          "coverage": 0.2,
+          "precision": 0.02702702702702703,
+          "intersection": 1,
+          "gold_size": 5,
+          "pred_size": 37,
+          "src_files": 24606
+        },
+        "cbmui_1ac0bb81": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 35,
+          "src_files": 26303
+        },
+        "cbmui_8d0f55cd": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 29,
+          "src_files": 27709
+        },
+        "cbmui_8fcb53e6": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 7,
+          "pred_size": 25,
+          "src_files": 28346
+        },
+        "cbmui_b8bf59e7": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 26,
+          "src_files": 24653
+        },
+        "cbmui_07098661": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 4,
+          "pred_size": 38,
+          "src_files": 6668
+        },
+        "cbmui_684a3415": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 5,
+          "pred_size": 35,
+          "src_files": 2370
+        },
+        "cbmui_d520ba22": {
+          "coverage": 0.3333333333333333,
+          "precision": 0.029411764705882353,
+          "intersection": 1,
+          "gold_size": 3,
+          "pred_size": 34,
+          "src_files": 22413
+        },
+        "cbmui_18d389e5": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 2,
+          "pred_size": 30,
+          "src_files": 7354
+        },
+        "cbmui_1de1bd3c": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 32,
+          "src_files": 8308
+        },
+        "cbmui_2bb4ea7a": {
+          "coverage": 1.0,
+          "precision": 0.029411764705882353,
+          "intersection": 1,
+          "gold_size": 1,
+          "pred_size": 34,
+          "src_files": 2322
+        },
+        "cbmui_3864c137": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 3,
+          "pred_size": 27,
+          "src_files": 22448
+        },
+        "cbmui_6659fd5a": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 2,
+          "pred_size": 31,
+          "src_files": 8387
+        },
+        "cbmui_7dfdbbd1": {
+          "coverage": 0.0,
+          "precision": 0.0,
+          "intersection": 0,
+          "gold_size": 1,
+          "pred_size": 37,
+          "src_files": 8399
+        }
+      }
+    }
+  }
+}

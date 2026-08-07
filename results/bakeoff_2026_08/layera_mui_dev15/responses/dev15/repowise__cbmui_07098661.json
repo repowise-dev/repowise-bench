@@ -1,0 +1,43 @@
+{
+  "arm": "repowise",
+  "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-07098661-material-ui",
+  "raw_chars": 3635,
+  "raw_text": "{\n  \"answer\": \"indexCounter = -10e10  (packages/material-ui/src/styles/withStyles.js:32)\\n\\nlet indexCounter = -10e10;\",\n  \"citations\": [\n    \"packages/material-ui/src/styles/withStyles.js\"\n  ],\n  \"confidence\": \"high\",\n  \"retrieval_quality\": \"high\",\n  \"grounding\": \"extracted\",\n  \"fallback_targets\": [\n    \"packages/material-ui-lab/src/internal/svg-icons/Add.js\",\n    \"packages/material-ui/src/styles/withStyles.js\",\n    \"packages/material-ui/src/withWidth/withWidth.js\",\n    \"docs/src/pages/layout/breakpoints/WithWidth.js\",\n    \"packages/material-ui/src/styles/MuiThemeProvider.js\"\n  ],\n  \"retrieval\": [],\n  \"note\": \"Extracted verbatim from the live source line \u2014 no LLM synthesis involved. Cite directly; no verification Read needed. candidates holds the files retrieval ranked, for the wider question the value sits inside.\",\n  \"_meta\": {\n    \"timing_ms\": 3471.51,\n    \"index_age_days\": 0,\n    \"indexed_commit\": \"18aa6293ad8b\"\n  },\n  \"candidates\": [\n    {\n      \"path\": \"packages/material-ui-lab/src/internal/svg-icons/Add.js\",\n      \"lines\": \"8-12\",\n      \"defines\": \"Add:8\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/styles/withStyles.js\",\n      \"lines\": \"32-321\",\n      \"defines\": \"withStyles:55, getDefaultTheme:43\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/withWidth/withWidth.js\",\n      \"defines\": \"withWidth:29, isWidthUp:14, isWidthDown:22\"\n    },\n    {\n      \"path\": \"docs/src/pages/layout/breakpoints/WithWidth.js\",\n      \"defines\": \"WithWidth:12\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/styles/MuiThemeProvider.js\",\n      \"defines\": \"MuiThemeProvider:13, constructor:21, getChildContext:30, componentDidMount:48, componentDidUpdate:57, componentWillUnmount:64\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/Hidden/HiddenJs.js\",\n      \"defines\": \"HiddenJs:9\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/styles/withTheme.js\",\n      \"defines\": \"getDefaultTheme:9, withTheme:19\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/withWidth/index.js\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/ExpansionPanel/ExpansionPanel.js\",\n      \"defines\": \"ExpansionPanel:83, styles:24, constructor:86, render:110\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/TextField/TextField.js\",\n      \"defines\": \"TextField:40\"\n    },\n    {\n      \"path\": \"docs/src/pages/demos/steppers/VerticalLinearStepper.js\",\n      \"defines\": \"VerticalLinearStepper:50, styles:12, getSteps:28, getStepContent:32, render:73\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/styles/createMuiTheme.js\",\n      \"defines\": \"createMuiTheme:16\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/styles/createGenerateClassName.js\",\n      \"defines\": \"safePrefix:11, createGenerateClassName:24\"\n    },\n    {\n      \"path\": \"docs/src/modules/components/Link.js\",\n      \"defines\": \"styles:11, Link:34\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/RootRef/RootRef.js\",\n      \"defines\": \"RootRef:36, componentDidMount:37, componentWillUnmount:47, render:56\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/test-utils/index.js\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/withWidth/withWidth.d.ts\",\n      \"defines\": \"WithWidthOptions:4, WithWidthProps:8\"\n    },\n    {\n      \"path\": \"packages/material-ui-codemod/src/v1.0.0/color-imports.js\",\n      \"defines\": \"colorAccent:24, colorImportPath:33, transformMemberExpressions:44, transformMemberImports:74, transformNamespaceImports:132\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/RootRef/index.js\"\n    },\n    {\n      \"path\": \"packages/material-ui/src/RootRef/RootRef.d.ts\",\n      \"defines\": \"RootRefProps:3\"\n    }\n  ]\n}",
+  "payload_keys": [
+    "_meta",
+    "answer",
+    "candidates",
+    "citations",
+    "confidence",
+    "fallback_targets",
+    "grounding",
+    "note",
+    "retrieval",
+    "retrieval_quality"
+  ],
+  "answer_degraded": null,
+  "confidence": "high",
+  "extracted": [
+    "packages/material-ui/src/styles/withStyles.js",
+    "packages/material-ui-lab/src/internal/svg-icons/Add.js",
+    "packages/material-ui/src/withWidth/withWidth.js",
+    "docs/src/pages/layout/breakpoints/WithWidth.js",
+    "packages/material-ui/src/styles/MuiThemeProvider.js",
+    "packages/material-ui/src/Hidden/HiddenJs.js",
+    "packages/material-ui/src/styles/withTheme.js",
+    "packages/material-ui/src/withWidth/index.js",
+    "packages/material-ui/src/ExpansionPanel/ExpansionPanel.js",
+    "packages/material-ui/src/TextField/TextField.js",
+    "docs/src/pages/demos/steppers/VerticalLinearStepper.js",
+    "packages/material-ui/src/styles/createMuiTheme.js",
+    "packages/material-ui/src/styles/createGenerateClassName.js",
+    "docs/src/modules/components/Link.js",
+    "packages/material-ui/src/RootRef/RootRef.js",
+    "packages/material-ui/src/test-utils/index.js",
+    "packages/material-ui/src/withWidth/withWidth.d.ts",
+    "packages/material-ui-codemod/src/v1.0.0/color-imports.js",
+    "packages/material-ui/src/RootRef/index.js",
+    "packages/material-ui/src/RootRef/RootRef.d.ts"
+  ],
+  "n_extracted": 20
+}

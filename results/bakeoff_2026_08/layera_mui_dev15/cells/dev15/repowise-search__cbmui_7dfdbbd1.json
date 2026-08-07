@@ -1,0 +1,70 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_7dfdbbd1",
+  "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__7dfdbbd1",
+  "base_commit": "436e461dfd368cd460f23b0cb6ca389f26045d56",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_7dfdbbd1",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-7dfdbbd1-material-ui",
+    "owner": "repowise-layera",
+    "head": "436e461dfd368cd460f23b0cb6ca389f26045d56",
+    "base_commit": "436e461dfd368cd460f23b0cb6ca389f26045d56",
+    "stamp": true,
+    "build_seconds": 568.2,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 5.1,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\dev15\\repowise-search__cbmui_7dfdbbd1.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__maintenance__bugfix__7dfdbbd1",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-7dfdbbd1-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.0,
+    "tool": "search_codebase",
+    "status": "ok",
+    "isError": false,
+    "chars": 6775,
+    "ranked": [
+      "docs/src/pages/components/tree-view/GmailTreeView.js",
+      "docs/src/pages/components/tree-view/GmailTreeView.tsx",
+      "packages/material-ui-lab/src/TreeView/TreeView.d.ts",
+      "packages/material-ui-utils/src/elementTypeAcceptingRef.js",
+      "packages/material-ui-docs/src/svgIcons/TypeScript.js",
+      "packages/material-ui-lab/src/TreeItem/TreeItem.js",
+      "docs/src/pages/components/tree-view/RecursiveTreeView.tsx",
+      "docs/src/pages/components/tree-view/RecursiveTreeView.js",
+      "packages/material-ui-lab/src/TreeItem/index.js",
+      "packages/material-ui-lab/src/TreeView/TreeView.js"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(62880),                            \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:35:37] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/07/26 08:35:39] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "packages/material-ui-lab/src/TreeView/TreeView.js"
+    ],
+    "gold_hit_rank": 10
+  }
+}
