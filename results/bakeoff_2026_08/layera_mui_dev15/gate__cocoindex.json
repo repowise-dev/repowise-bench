@@ -1,0 +1,134 @@
+{
+  "question": "How does the Badge component render its badge content and apply invisible styling?",
+  "trees": [
+    "cbmui_2bb4ea7a",
+    "cbmui_8fcb53e6"
+  ],
+  "gate_trees": [
+    {
+      "arm": "cocoindex",
+      "task": "cbmui_2bb4ea7a",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-2bb4ea7a-material-ui",
+      "owner": "cocoindex",
+      "head": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "base_commit": "04fae47c2a876f38aacfae866d220ddcbb7358ef",
+      "stamp": true,
+      "build_seconds": 150.1,
+      "ok": true
+    },
+    {
+      "arm": "cocoindex",
+      "task": "cbmui_8fcb53e6",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-8fcb53e6-material-ui",
+      "owner": "cocoindex",
+      "head": "eb8e95bacf06f824f9e88e7cf1399be1fa23b48f",
+      "base_commit": "eb8e95bacf06f824f9e88e7cf1399be1fa23b48f",
+      "stamp": true,
+      "build_seconds": 1506.9,
+      "ok": true
+    }
+  ],
+  "binding": {
+    "answers": [
+      {
+        "arm": "cocoindex",
+        "instance_id": "probe__lb-cocoindex-cbmui-2bb4ea7a-material-ui",
+        "repo": "mui/material-ui",
+        "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-2bb4ea7a-material-ui",
+        "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+        "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-2bb4ea7a-material-ui",
+        "served_tools": [
+          "search"
+        ],
+        "served_count": 1,
+        "tool": "search",
+        "tool_args": {
+          "limit": 10,
+          "refresh_index": false
+        },
+        "status": "ok",
+        "isError": false,
+        "chars": 8110,
+        "ranked": [
+          "packages/material-ui/src/Badge/index.js",
+          "docs/src/pages/demos/badges/badges.md",
+          "docs/src/pages/guides/interoperability/interoperability.md",
+          "pages/api/badge.md",
+          "packages/material-ui/src/Badge/Badge.js",
+          "packages/material-ui/src/Badge/index.d.ts",
+          "pages/api/circular-progress.md",
+          "pages/api/card-header.md"
+        ],
+        "n_ranked": 8,
+        "server_stderr_chars": 0,
+        "server_stderr": ""
+      },
+      {
+        "arm": "cocoindex",
+        "instance_id": "probe__lb-cocoindex-cbmui-8fcb53e6-material-ui",
+        "repo": "mui/material-ui",
+        "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-8fcb53e6-material-ui",
+        "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+        "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-cocoindex-cbmui-8fcb53e6-material-ui",
+        "served_tools": [
+          "search"
+        ],
+        "served_count": 1,
+        "tool": "search",
+        "tool_args": {
+          "limit": 10,
+          "refresh_index": false
+        },
+        "status": "ok",
+        "isError": false,
+        "chars": 11359,
+        "ranked": [
+          "docs/translations/api-docs/badge/badge.json",
+          "docs/pages/base-ui/api/badge.json",
+          "docs/translations/api-docs-base/badge/badge.json",
+          "docs/translations/api-docs/badge/badge-zh.json",
+          "docs/pages/joy-ui/api/badge.json",
+          "docs/data/base/components/badge/badge-zh.md",
+          "docs/data/base/components/badge/badge-pt.md",
+          "docs/data/base/components/badge/badge.md",
+          "docs/translations/api-docs/badge/badge-pt.json"
+        ],
+        "n_ranked": 9,
+        "server_stderr_chars": 0,
+        "server_stderr": ""
+      }
+    ],
+    "identical": false,
+    "verdict": "pass: the two trees answered differently"
+  },
+  "captures": [
+    "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\gate-cocoindex\\cocoindex__cbmui_2bb4ea7a.json",
+    "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\gate-cocoindex\\cocoindex__cbmui_8fcb53e6.json"
+  ],
+  "noncode_index_proof": [
+    {
+      "arm": "cocoindex",
+      "task": "cbmui_2bb4ea7a",
+      "index": "cocoindex",
+      "readable": true,
+      "surface": "code_chunks_vec.file_path (via _auxiliary.value00)",
+      "chunks": 7007,
+      "aux_rows_match_vec_rows": true,
+      "total_files": 2541,
+      "md": 196,
+      "json": 26
+    },
+    {
+      "arm": "cocoindex",
+      "task": "cbmui_8fcb53e6",
+      "index": "cocoindex",
+      "readable": true,
+      "surface": "code_chunks_vec.file_path (via _auxiliary.value00)",
+      "chunks": 62790,
+      "aux_rows_match_vec_rows": true,
+      "total_files": 30133,
+      "md": 798,
+      "json": 942
+    }
+  ]
+}

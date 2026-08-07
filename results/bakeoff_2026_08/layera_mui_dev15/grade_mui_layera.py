@@ -71,7 +71,8 @@ CACHE = TREES / "_cbcache"
 # "Serena's rung 5 number"): a single-shot agent-free probe is the wrong
 # instrument for an LSP wrapper, and the number would measure our harness. Its
 # index was still built, so it can be named explicitly with --arms.
-DEFAULT_ARMS = ["repowise", "repowise-search", "codegraph", "crg", "graphify"]
+DEFAULT_ARMS = ["repowise", "repowise-search", "codegraph", "crg", "graphify",
+                "cocoindex"]
 
 # c8 arm name -> the directory name `harness/arms.py:arm_tree` used, which is the
 # BENCHMARK arm name and is not always the same string. `repowise-layera` rather
@@ -84,14 +85,23 @@ TREE_OWNER = {
     "codegraph": "codegraph",
     "crg": "code-review-graph",
     "graphify": "graphify",
+    "cocoindex": "cocoindex",
     "serena": "serena",
 }
 
+# A CONCRETE FILE PER ARM, never "the dotdir exists". Every one of these dirs is
+# created at the START of a build: `.cocoindex_code/` holds `settings.yml` within
+# a second of `ccc index` starting and `target_sqlite.db` only once chunks have
+# been written, so a marker of `.cocoindex_code` would pass on a build that was
+# killed in its first second. The prebuild stamp below is the second, stronger
+# gate — written only after a build exited 0 — and the two are checked together.
 INDEX_MARKERS = {
     "repowise-layera": (".repowise/wiki.db", ".repowise/lancedb"),
     "codegraph": (".codegraph",),
     "code-review-graph": (".code-review-graph",),
     "graphify": ("graphify-out/graph.json",),
+    "cocoindex": (".cocoindex_code/target_sqlite.db",
+                  ".cocoindex_code/settings.yml"),
     "serena": (),
 }
 
@@ -183,7 +193,75 @@ NONCODE_DB = {
     "repowise-layera": ".repowise/wiki.db",
     "codegraph": ".codegraph/codegraph.db",
     "code-review-graph": ".code-review-graph/graph.db",
+    "cocoindex": ".cocoindex_code/target_sqlite.db",
 }
+
+# cocoindex's surface is the one table in this file that a plain `SELECT` cannot
+# read, and the workaround is a mapping that has to be PROVEN rather than
+# assumed.
+#
+# `code_chunks_vec` is a `vec0` VIRTUAL TABLE from the sqlite-vec extension:
+#
+#   CREATE VIRTUAL TABLE code_chunks_vec USING vec0(
+#       id INTEGER primary key, +file_path TEXT, language TEXT partition key,
+#       +content TEXT, +start_line INTEGER, +end_line INTEGER,
+#       embedding float[384])
+#
+# It is what `query.py:query_codebase` runs its KNN against, so it is the
+# surface, and selecting from it without the extension loaded raises
+# `no such module: vec0`. sqlite-vec stores the `+`-prefixed AUXILIARY columns
+# in a plain shadow table, `code_chunks_vec_auxiliary(rowid, value00, value01,
+# ...)`, positionally in declaration order — so `file_path` is `value00`.
+#
+# POSITIONALLY, WHICH IS EXACTLY THE KIND OF ASSUMPTION THIS GATE EXISTS TO
+# CATCH: a generic sniffer reading "some column of some table" reported the
+# OPPOSITE of the truth for codegraph. So the shadow table is not read until the
+# declaration has been parsed out of `sqlite_master` and `file_path` confirmed
+# to be aux column 0, and the row count is cross-checked against the vec table's
+# own rowid registry. A schema that says anything else reports `readable: false`
+# rather than a number.
+def _cocoindex_aux_index_of_file_path(con) -> int | None:
+    """Which `value0N` column of the shadow table holds `file_path`, or None."""
+    row = con.execute(
+        "SELECT sql FROM sqlite_master WHERE name = 'code_chunks_vec'"
+    ).fetchone()
+    if not row or not row[0]:
+        return None
+    inner = row[0][row[0].find("(") + 1: row[0].rfind(")")]
+    aux = [c.strip()[1:].split()[0]
+           for c in inner.split(",") if c.strip().startswith("+")]
+    return aux.index("file_path") if "file_path" in aux else None
+
+
+def cocoindex_surface(tree: Path) -> dict:
+    """Distinct `file_path` values in the table `search` actually ranks from."""
+    import sqlite3
+    db = tree / NONCODE_DB["cocoindex"]
+    con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    try:
+        idx = _cocoindex_aux_index_of_file_path(con)
+        if idx is None:
+            return {"readable": False,
+                    "why": "code_chunks_vec declares no +file_path aux column"}
+        col = f"value{idx:02d}"
+        paths = [r[0] for r in con.execute(
+            f"SELECT DISTINCT {col} FROM code_chunks_vec_auxiliary") if r[0]]
+        chunks = con.execute(
+            "SELECT COUNT(*) FROM code_chunks_vec_auxiliary").fetchone()[0]
+        rowids = con.execute(
+            "SELECT COUNT(*) FROM code_chunks_vec_rowids").fetchone()[0]
+        return {
+            "readable": True,
+            "surface": f"code_chunks_vec.file_path (via _auxiliary.{col})",
+            "paths": paths,
+            "chunks": chunks,
+            # Equal counts mean every live vector row has an auxiliary row, so
+            # the shadow read covers the whole ranked surface rather than a
+            # stale subset of it.
+            "aux_rows_match_vec_rows": chunks == rowids,
+        }
+    finally:
+        con.close()
 
 
 def nonc0de_proof(arm: str, task: dict) -> dict:
@@ -210,6 +288,15 @@ def nonc0de_proof(arm: str, task: dict) -> dict:
         }
 
     try:
+        if owner == "cocoindex":
+            s = cocoindex_surface(tree)
+            if not s.get("readable"):
+                return {**out, **s}
+            return {**out, "readable": True, "surface": s["surface"],
+                    "chunks": s["chunks"],
+                    "aux_rows_match_vec_rows": s["aux_rows_match_vec_rows"],
+                    **tally(s["paths"])}
+
         if owner == "graphify":
             # Graphify's nodes carry `source_file`, not `path`/`file`/`src`.
             g = json.loads((tree / "graphify-out" / "graph.json")
