@@ -229,6 +229,100 @@ arms:
       args: {query: "test", limit: 1}
       timeout_seconds: 15
 
+  # -------------------------------------------------------------------------
+  # `repowise-hooks` is `repowise` PLUS the shipped Claude Code hooks, and it
+  # differs from it in EXACTLY ONE FIELD. Same tree, same index, same server
+  # command, same client allowlist, same coaching, same warm call. Anything
+  # else that differed would invalidate the pair, because the pair is the whole
+  # design: the two arms are read against each other and against `c0-bare`.
+  #
+  # WHAT THE TREATMENT ACTUALLY IS, because the obvious reading is wrong.
+  # Hooks do not make the agent call the MCP server. They INJECT CONTEXT. The
+  # agent can stay on Read and Grep, never issue a ToolSearch, and still
+  # receive repowise content. So `arm_exercised` and adoption are NOT the
+  # outcome variable on this arm, and an adoption figure equal to `repowise`'s
+  # is not a null result: `hook_injections` is where the treatment shows up,
+  # and it is counted separately from tool calls for exactly that reason.
+  #
+  # The `hooks` block is copied from plugins/claude-code/hooks/hooks.json at
+  # repowise-layerb2 172ce0b8, THE PINNED CHECKOUT, and that is load-bearing.
+  # It ships TWO events, SessionStart and PostToolUse. The operator's main
+  # checkout at 57ad2679 ships a third, PostToolUseFailure (the wrong-path
+  # rescue), and the pinned binary's `augment_cmd` does not handle that event
+  # at all. Declaring it here would have wired a hook the binary under test
+  # cannot answer, and the treatment would have been a benchmark's idea of the
+  # product rather than the product. What is measured is the 0.38.0 hook
+  # surface. Matchers and command strings are byte-for-byte; `statusMessage`
+  # is dropped because it is display text the stream never carries.
+  #
+  # THE FAILURE THIS ARM IS MOST LIKELY TO HAVE: the shipped command is
+  # `if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment;
+  # fi`, which exits 0 IN SILENCE when the binary is not on the cell's PATH. An
+  # arm whose hooks fire nothing is indistinguishable from hooks that do not
+  # help, and would publish as "hooks make no difference". Two guards, both
+  # required, neither in this file: swe_qa_runner prepends the pinned binary's
+  # directory to the cell's PATH, and its D16 check prints loudly when an arm
+  # that DECLARED hooks records zero injections.
+  # -------------------------------------------------------------------------
+  repowise-hooks:
+    description: >
+      repowise exactly as `repowise` above (same tree, same prose index, same
+      11-tool server, same 7-tool allowlist) plus the Claude Code hooks the
+      product ships. The ONE declared difference against `repowise`.
+
+      The hooks fire `repowise-augment` on SessionStart (startup|resume|clear)
+      and on PostToolUse matching Bash|PowerShell|Grep|Glob|Read|Edit|Write and
+      repowise's own MCP tools. SessionStart emits an index-freshness block on
+      every session in an indexed tree; the PostToolUse handlers are
+      deliberately quiet and speak only on a zero-result grep, a result flood,
+      or a read of a file edited earlier in the session. So a cell is EXPECTED
+      to carry at least one injection and may carry many.
+
+      Not run against competitors. None of them ships Claude Code hooks, so a
+      hooks-on repowise beside a hookless codegraph measures our installer and
+      not our tool. The only honest comparators are `repowise` and `c0-bare`.
+    shares_index_with: repowise-full
+    mcp:
+      server_name: repowise
+      command: "{repowise_exe}"
+      args: ["mcp", "{tree}", "--transport", "stdio"]
+      served_tools: null
+      env_passthrough:
+        - OPENAI_API_KEY
+        - OPENAI_BASE_URL
+        - GEMINI_API_KEY
+        - GOOGLE_API_KEY
+        - ANTHROPIC_API_KEY
+        - REPOWISE_EMBEDDER
+        - REPOWISE_DOC_MODEL
+    client_tools:
+      - mcp__repowise__get_answer
+      - mcp__repowise__get_context
+      - mcp__repowise__get_overview
+      - mcp__repowise__get_risk
+      - mcp__repowise__get_symbol
+      - mcp__repowise__get_why
+      - mcp__repowise__search_codebase
+    index: null
+    coaching: "builtin:SWEQA_PROMPT_FULL"
+    warm:
+      tool: search_codebase
+      args: {query: "test", limit: 1}
+      timeout_seconds: 15
+    hooks:
+      SessionStart:
+        - matcher: "startup|resume|clear"
+          hooks:
+            - type: command
+              command: "if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi"
+              timeout: 10
+      PostToolUse:
+        - matcher: "Bash|PowerShell|Grep|Glob|Read|Edit|Write|mcp__.*[Rr]epowise.*__.*"
+          hooks:
+            - type: command
+              command: "if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi"
+              timeout: 10
+
   repowise-full:
     description: >
       ABLATION, not the headline arm. repowise MCP with the server pinned to

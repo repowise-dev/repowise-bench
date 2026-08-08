@@ -1,0 +1,115 @@
+# CLAUDE CODE WITH HOOKS, ON OPUS. 3 arms x 15 questions = 45 cells.
+#
+# Pre-registration: configs/layerb_opus_hooks.PREREGISTRATION.md.
+# Gate that must pass first: configs/layerb_opus_hooks_smoke_django.yaml.
+#
+# This config is `layerb_opus_stratified_django.yaml` with the arm list changed
+# and nothing else of substance, because this is a PAIRED RE-RUN against that
+# run's exact cells: same 15 stratified django questions, same seed, same
+# model, same neutral prompt, same max_turns, same judge. A hostile key-by-key
+# diff should return exactly these keys:
+#
+#   conditions              6 arms -> 3            THE VARIABLE
+#   experiment_name         renamed
+#   paths.results_dir       renamed (resume is on (task_id, condition))
+#   paths.logs_dir          renamed
+#   budget.max_total_usd    60.0 -> 25.0, a spend rail, not a knob the run reads
+#
+# WHY THE COMPETITORS ARE GONE, and it is not a convenience. No competitor
+# ships Claude Code hooks. A hooks-on repowise beside a hookless codegraph
+# measures our installer against their tool, which is the graphify defect
+# pointing at a competitor again. The only honest comparators for a hooks arm
+# are the same tool without hooks and the bare agent, so the run is
+# c0-bare / repowise / repowise-hooks and the competitor columns are read off
+# the paired baseline where they were measured under equal conditions.
+#
+# WHAT THE OUTCOME VARIABLE IS, and it is NOT adoption. Hooks do not enforce
+# adoption; they make it unnecessary. They INJECT CONTEXT, so an agent can stay
+# on Read and Grep, never issue a ToolSearch, and still receive repowise
+# content. Adoption may sit at the baseline's 7/15 while context lands on 15/15
+# and that is the finding, not a null. The outcome is OUTPUT TOKENS against
+# c0-bare, plus quality, with hook_injections reported as its own column:
+# context DELIVERED, counted separately from tool CALLED.
+#
+# QUALITY IS UNDERPOWERED AND IS REGISTERED AS UNDERPOWERED. The judge's paired
+# noise floor on django is S = 0.6896; at 80% power n=15 detects 0.50 and
+# nothing smaller. Published inconclusive unless a contrast clears 0.50.
+#
+# `repowise` and `repowise-hooks` SHARE ONE TREE AND ONE INDEX
+# (shares_index_with: repowise-full) and differ in exactly one declared field.
+# Anything else that differs invalidates the pair.
+#
+# NO --effort FLAG, for the same reason the paired run passed none.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_hooks_django.yaml
+
+experiment_name: "layerb_opus_hooks_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # Computed, not listed, so the draw follows the classification rather than a
+    # copied list. Resolves to the same 15 ids the paired Opus run used:
+    #   django_000 004 006 008 011 014 017 020 028 031 033 034 040 044 045
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "repowise-hooks"
+    arm: "repowise-hooks"
+
+agent:
+  harness: "claude_code"
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_hooks_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_hooks_django"
+  trees_dir: null
+
+budget:
+  # 45 cells at the measured Opus $0.304 is ~$13.7. The rail is ~1.8x that:
+  # high enough that a hooks arm paying for injected input on every tool call
+  # cannot trip it, low enough to actually stop a runaway.
+  max_total_usd: 25.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  # Unchanged from the paired run, which is what makes the two quality columns
+  # comparable to each other and to nothing measured under Codex.
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  # Matches the run this one is paired against.
+  max_workers: 1

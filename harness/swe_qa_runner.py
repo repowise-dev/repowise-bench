@@ -1428,6 +1428,25 @@ def run_claude_code(prompt: str, repo_path: str, condition: dict,
     if claude_home:
         run_env["CLAUDE_CONFIG_DIR"] = claude_home
 
+    # PIN THE BINARY FOR THE WHOLE CELL, not just for the MCP launch command.
+    #
+    # `repowise_exe()` already pins what the harness spawns. It does not pin
+    # what the cell spawns, and a declared hook does exactly that: the shipped
+    # command is `if command -v repowise-augment ...; then exec ...; fi`, so it
+    # takes whatever PATH offers. Measured 2026-08-08: PATH offered
+    # `Desktop/repowise/.venv/Scripts/repowise-augment`, an editable install of
+    # a checkout with uncommitted changes, which is the wrong binary for a
+    # pinned run and would have been published as the pinned one. Prepending
+    # the pinned Scripts dir makes `command -v` resolve there (verified under
+    # the git-bash `sh` Claude Code runs hook commands with on Windows).
+    #
+    # Applied to every arm, not just the hooks arm: an arm that declares no
+    # hooks spawns no repowise binary at all, so this is a no-op for it, and a
+    # PATH that differs per arm would be a second difference between the pair.
+    _pinned_bin = Path(arm_registry.repowise_exe()).parent
+    if _pinned_bin.is_dir():
+        run_env["PATH"] = str(_pinned_bin) + os.pathsep + run_env.get("PATH", "")
+
     for attempt in range(MAX_RETRIES):
         try:
             if stream_log_path:
@@ -2592,15 +2611,27 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
                     flush=True,
                 )
 
-        # A cell whose environment injected context is not a cell of this
-        # experiment. Recorded rather than raised, so the row survives and the
-        # contamination is visible in the data instead of being argued about.
-        if metrics.hook_injections:
+        # D16, and it is ARM-AWARE because an arm may legitimately declare
+        # hooks.
+        #
+        # The original check read any injection as contamination, which was
+        # right while no arm declared one: the only thing that could inject was
+        # the operator's own `~/.claude/settings.json`, and it did, into the
+        # bare control. On an arm whose `hooks:` block IS the treatment,
+        # injection is the thing being measured, and the failure runs the other
+        # way: a declared hook that injects NOTHING is the silent no-op that
+        # publishes as "hooks make no difference". Both directions print, and
+        # the contamination check stays exactly as loud as it was for every arm
+        # that declares nothing, which is still every arm but `repowise-hooks`.
+        declared_hooks = list(
+            (metrics.arm_provenance or {}).get("hooks_declared") or []
+        )
+        if metrics.hook_injections and not declared_hooks:
             print(
                 f"  !! {metrics.condition}/{task_id}: "
                 f"{len(metrics.hook_injections)} hook(s) INJECTED CONTEXT into "
-                f"this cell — the arm was not run in the pinned environment "
-                f"(finding D16).",
+                f"this cell. The arm declared NO hooks, so it was not run in "
+                f"the pinned environment (finding D16).",
                 flush=True,
             )
 
@@ -2611,6 +2642,15 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             # merely one that returned without error), and two guards that
             # can disagree are worse than one.
             metrics.attach_guard_fired = not metrics.arm_exercised
+        elif declared_hooks and not metrics.hook_injections:
+            print(
+                f"  !! {metrics.condition}/{task_id}: arm DECLARED hooks on "
+                f"{declared_hooks} and NONE of them injected anything. The "
+                f"shipped command is `if command -v repowise-augment ...; fi`, "
+                f"which exits 0 in silence when the binary is off PATH, so "
+                f"this cell measures an arm with its treatment switched off.",
+                flush=True,
+            )
 
     metrics.compute_derived()
 

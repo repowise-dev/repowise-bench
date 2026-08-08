@@ -1,0 +1,99 @@
+# THE GATE for the hooks run. 3 arms x 2 questions = 6 cells. Not a measurement.
+#
+# Pre-registration: configs/layerb_opus_hooks.PREREGISTRATION.md, section 4.
+#
+# ONE JOB THAT OUTRANKS THE REST. The shipped hook command is
+#   if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi
+# and it exits 0 IN SILENCE when the binary is not on the cell's PATH. A hooks
+# arm that fires nothing is indistinguishable from hooks that do not help, and
+# it would be published as "hooks make no difference". So the gate asserts, on
+# every non-error cell:
+#
+#   repowise-hooks   hook_injections > 0, and the text names repowise content
+#   repowise         hook_injections == 0   (D16 still applies to it)
+#   c0-bare          hook_injections == 0   (D16 still applies to it)
+#
+# Two questions, two DIFFERENT SHAPES, named here rather than taken by
+# position, because the two failure modes live at opposite ends:
+#
+#   django_014  symbol-lookup    the FLOOR. One lookup, few tool calls. If the
+#                                SessionStart block is the only injection a
+#                                cell ever gets, this is where that shows.
+#   django_017  multi-hop-flow   the CEILING. Grep and Read repeatedly, so the
+#                                PostToolUse handlers get many chances to speak.
+#
+# Both are members of the flagship's stratified 15, so the gate exercises real
+# questions from the draw. The results_dir is SEPARATE from the run's, and that
+# is load-bearing: the runner resumes on (task_id, condition), so a shared
+# directory would let six gate cells satisfy the run's first six. Fine when
+# the gate passes, silently wrong when it fails and the config is then fixed.
+#
+# NO COMPETITORS. None of them ships Claude Code hooks; see the pre-registration.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_hooks_smoke_django.yaml
+
+experiment_name: "layerb_opus_hooks_smoke_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_014"
+      - "django_017"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "c0-bare"
+    arm: "c0-bare"
+  - name: "repowise"
+    arm: "repowise"
+  - name: "repowise-hooks"
+    arm: "repowise-hooks"
+
+agent:
+  harness: "claude_code"
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_hooks_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_hooks_smoke_django"
+  trees_dir: null
+
+budget:
+  # A rail, not a target. 6 cells at the measured Opus $0.304 is ~$1.83; 6.0
+  # leaves room for the hooks arm being dearer (injected context is extra input
+  # on every tool call, which is one of the pre-registered outcomes) without
+  # the gate aborting halfway and leaving a partial arm table.
+  max_total_usd: 6.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
