@@ -149,3 +149,52 @@ prediction, per-arm output tokens against the bare control with the pooled
 figure never alone, the per-arm adoption and nudge counts as separate columns,
 the gate table, the unmatched-control limit from section 3, and a provenance
 block. No em dashes.
+
+---
+
+## 8. AMENDMENT, written after the gate and before the 90 spent anything
+
+**The gate FAILED on `code-review-graph`, and P2 is confirmed.**
+
+| arm | nudges delivered | naming its own prefix | server called | isError |
+|---|---|---|---|---|
+| `graphify` | 3 | yes, `mcp__graphify__` | **yes**, `query_graph` | 0 |
+| `serena` | 3 | yes, `mcp__serena__` | **yes**, `find_symbol`, `search_for_pattern` | 0 |
+| `code-review-graph` | 3 | yes, `mcp__crg__` | **NO** | 0 |
+
+`graphify` and `serena` both adopted 0 of 15 in the paired baseline and both
+adopted here after nudges, which is the mechanism working on arms it had never
+touched.
+
+**One fix was tried, and it did not work.** The nudge named EVERY allowlisted
+tool, so `crg` received a 20-name wall where `codegraph` received a single
+name; the nudge's quality varied with a property of the vendor's surface
+instead of being the same nudge for everyone. That is a real defect in the
+mechanism and it is fixed regardless of outcome: at most 3 tools are named, cut
+in the arm's own allowlist order, so nudge length is now 260 to 326 characters
+across the whole field instead of varying five-fold.
+
+`crg` was then re-gated on `django_012`, **a question OUTSIDE the stratified
+15**, specifically so the fix was not tuned against a cell this run reports on.
+It failed again: 3 nudges, `Glob` and five `Read`s, **and no `ToolSearch` at
+all**. So the fix was a fairness fix and not a cure, and it is kept on those
+grounds alone.
+
+**THE DECISION, fixed here before the 90 ran.** `code-review-graph` STAYS in
+the run, at 6 arms, and its row is reported as **UNENFORCEABLE, never as a
+zero**:
+
+1. Its token column is a **bare agent wearing the arm's name** and may not
+   enter any tool-versus-tool table. It is labelled as such wherever it appears.
+2. Excluding it would let a reader assume every arm was enforced. The
+   countermeasure has a limit, one vendor's surface resists it even under
+   direct instruction, and that limit is a result rather than an inconvenience.
+3. **It is the strongest evidence in this run for E13 itself.** An agent told
+   three times, by name, to load a tool with `ToolSearch` did not issue one.
+   The discovery gate is not merely a default-behaviour effect for this arm; it
+   survives explicit instruction.
+
+**No further tuning.** Two fixes have now been tried against `crg` and the
+second was already at the edge of tuning against a competitor. A third would be
+fitting the mechanism to one arm's behaviour, and the fact that it would cut
+AGAINST us does not make it sound.

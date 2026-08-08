@@ -111,6 +111,9 @@ def _called(transcript_path: str, prefix: str) -> bool:
 
 _READ_TOOLS = {"Read", "Grep", "Glob"}
 
+# How many of an arm's tools the nudge may name. See the note at the call site.
+_NAME_CAP = 3
+
 
 def _nudges_used(session_id: str, prefix: str, cap: int) -> int:
     """How many times this session has already been nudged, incrementing.
@@ -161,7 +164,18 @@ def main() -> int:
         return 0
 
     event = payload.get("hook_event_name")
-    named = ", ".join(f"{prefix}{t.strip()}" for t in tools.split(",") if t.strip())
+    # AT MOST `_NAME_CAP` TOOLS, and the cap is a fairness fix rather than a
+    # cosmetic one. Naming every allowlisted tool gave an arm with a 20-tool
+    # surface a 20-name wall where a 1-tool arm got a single name, so the
+    # nudge's quality varied with a property of the vendor's surface rather
+    # than being the same nudge for everyone. Measured: code-review-graph, at
+    # 20 names, took all three nudges and never issued a ToolSearch, while
+    # codegraph (1), graphify (7) and serena (11) all called their servers.
+    # The cut is the arm's own allowlist order, so which tools survive it is
+    # the arm author's choice and not ours. The job of the nudge is to make ONE
+    # tool a candidate, not to recite a catalogue.
+    _all = [t.strip() for t in tools.split(",") if t.strip()]
+    named = ", ".join(f"{prefix}{t}" for t in _all[:_NAME_CAP])
 
     if mode == "pre-guide" and event == "PreToolUse":
         if payload.get("tool_name") not in _READ_TOOLS:
