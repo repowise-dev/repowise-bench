@@ -1,0 +1,101 @@
+# THE GATE for PROMPT-MANDATED TOOL USE. 2 arms x 3 questions = 6 cells.
+#
+# THE QUESTION IT ANSWERS, and it is one question: does mandating the call IN
+# THE PROMPT reach the adoption the Stop hook reached, WITHOUT the extra turn
+# the Stop hook costs?
+#
+# The forced smoke (configs/layerb_opus_forced_smoke_django.yaml) established
+# both halves of that. Adoption went 0 of 4 to 4 of 4 on repowise and on a
+# competitor, so the mechanism works. But on the two cells the hook actually
+# blocked, output tokens went 3259 -> 5244 for repowise and 3443 -> 7816 for
+# codegraph, because blocking a turn buys another turn and the agent re-answers
+# after using the tool. A prompt-mandated call is paid on the FIRST pass, so if
+# it works there is no second answer to pay for.
+#
+# THE PROMPT IS `neutral-mandatory`: the byte-identical neutral template every
+# published row here was produced under, plus ONE paragraph appended verbatim
+# with only the server name filled in. See harness/arms.py MANDATORY_SUFFIX for
+# the three things it deliberately does not say, each of which would buy an arm
+# a result it did not earn.
+#
+# `force_tool_use` IS OFF. Deliberately: this run measures what the prompt
+# alone achieves. If the prompt lands every cell, the hook becomes a backstop
+# that almost never fires and its token cost almost never lands. If the prompt
+# misses cells, the pair is what the flagship runs and the hook's cost is
+# confined to the misses.
+#
+# THE QUESTIONS. django_014 and django_017 are the two the forced smoke used,
+# so prompt-only, hook-forced and unforced baseline can be read off THE SAME
+# CELLS. django_004 is a third cell where both arms also failed to adopt in the
+# baseline, and neither smoke has touched it.
+#
+# ADOPTION IS NOT MEASURABLE UNDER THIS STYLE. That is the trade and it is not
+# a loss: the adoption question is answered and published (7/15 under Opus,
+# 15/15 under Codex). This buys the conditional question instead, which is the
+# one Claude Code has never been able to answer.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_mandated_smoke_django.yaml
+
+experiment_name: "layerb_opus_mandated_smoke_django"
+
+arms_file: null
+arms_dir: null
+
+# THE VARIABLE. `neutral` plus the mandatory paragraph, identical for every arm.
+prompt_style: "neutral-mandatory"
+force_tool_use: false
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_004"
+      - "django_014"
+      - "django_017"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+
+agent:
+  harness: "claude_code"
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_mandated_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_mandated_smoke_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 6.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

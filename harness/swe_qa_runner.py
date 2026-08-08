@@ -2366,6 +2366,19 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     force_tool_use = bool(config.get("force_tool_use")
                           or condition.get("force_tool_use"))
     metrics.arm_provenance["force_tool_use"] = force_tool_use
+
+    # The coaching this cell was actually given, stamped rather than inferred.
+    # `prompt_sent` is the USER prompt; coaching travels by
+    # `--append-system-prompt` and left no trace on the row, so "the agent was
+    # told to use the tool and did not" was an unfalsifiable claim about the
+    # most interesting cells in the run. Length and head, not the whole text:
+    # enough to prove which style arrived, cheap enough to carry on every row.
+    try:
+        _coach = arm.resolved_coaching(metrics.prompt_style)
+    except Exception:
+        _coach = ""
+    metrics.arm_provenance["coaching_chars"] = len(_coach)
+    metrics.arm_provenance["coaching_mandatory"] = "REQUIRED, and not optional" in _coach
     settings_path = str(arm_registry.generate_settings(
         arm, bench_root / "mcp_configs", force_tool_use=force_tool_use))
     claude_home = str(arm_registry.prepare_claude_home())

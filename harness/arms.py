@@ -201,6 +201,49 @@ Glob without hesitation; an unhelpful answer from the server is a reason to stop
 using it, not a reason to retry it.
 """
 
+# `neutral-mandatory` is any neutral style plus this one paragraph, appended
+# verbatim with only {server} filled in, so every arm is compelled in exactly
+# the same words.
+#
+# WHY IT EXISTS. Finding E13: under Claude Code the tool under test is mostly
+# not called, and 17 of 30 cells never issued a ToolSearch at all, so a token
+# or quality comparison there mostly compares two bare agents. Codex calls
+# every tool on every question and therefore HAS an answer to "do these tools
+# save tokens when used"; Claude Code does not, because on Claude Code they
+# mostly are not used. This makes usage a condition of the run instead of an
+# outcome of it.
+#
+# THREE THINGS IT DELIBERATELY DOES NOT SAY, each of which would buy an arm a
+# result it did not earn:
+#
+#   * it does not say the server is good, or that its answer should be
+#     trusted. A prompt that vouches for the tool would lift quality by
+#     suggestion.
+#   * it does not say WHICH tool to call or how to use what comes back. That
+#     would advantage whichever arm the wording happened to suit.
+#   * it does not mention the benchmark. Telling a model it is being evaluated
+#     changes how it behaves, and the change would land on every arm at once
+#     while looking like a property of the tools.
+#
+# It also releases the agent after ONE call, and keeps the fall-back clause, so
+# an arm whose server answers badly is not compelled to keep using it. Forcing
+# continued use of an unhelpful server would depress that arm's quality for a
+# reason the harness invented.
+#
+# ADOPTION IS NOT MEASURABLE UNDER THIS STYLE, by construction. That is the
+# trade: the adoption question is already answered and published (7/15 on Opus,
+# 15/15 under Codex), and this style buys the conditional question instead.
+# Every row records its `prompt_style`, and no table may pool a mandated cell
+# with a `neutral` one.
+MANDATORY_SUFFIX = """
+REQUIRED, and not optional: issue at least one {server} tool call before you
+give your final answer, even if you believe you can answer without one. A
+single call satisfies this. After it you are under no further obligation: keep
+using the server where it helps, and fall back to Read, Grep and Glob where it
+does not.
+"""
+
+
 # One sentence per tool. A server that writes a 40-line description would
 # otherwise hand itself a prompt several times the size of everyone else's,
 # which would be a new asymmetry replacing the one this fixes.
@@ -332,10 +375,30 @@ class Arm:
                           descriptions: Optional[dict] = None) -> str:
         if not self.uses_mcp:
             return ""
-        if style == "neutral-described":
-            return neutral_coaching(self, descriptions, described=True)
-        if style == "neutral":
-            return neutral_coaching(self)
+        # `-mandatory` is a suffix on a neutral style, never a style of its
+        # own, so the compelled prompt is the neutral prompt plus one paragraph
+        # and cannot drift from it.
+        mandatory = style.endswith("-mandatory")
+        base = style[: -len("-mandatory")] if mandatory else style
+        if base == "neutral-described":
+            text = neutral_coaching(self, descriptions, described=True)
+        elif base == "neutral":
+            text = neutral_coaching(self)
+        elif mandatory:
+            raise ValueError(
+                f"prompt_style {style!r} is not a neutral style. Mandating tool "
+                f"use on top of per-arm coaching would compel every arm in "
+                f"DIFFERENT words, which is the asymmetry the neutral styles "
+                f"exist to remove. Use 'neutral-mandatory' or "
+                f"'neutral-described-mandatory'."
+            )
+        else:
+            text = ""
+        if text:
+            if mandatory:
+                text += MANDATORY_SUFFIX.format(
+                    server=(self.mcp or {}).get("server_name", self.name))
+            return text
         text = self.coaching or ""
         if text.startswith("builtin:"):
             key = text.split(":", 1)[1]
