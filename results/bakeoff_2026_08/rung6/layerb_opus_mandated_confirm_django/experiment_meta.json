@@ -1,0 +1,74 @@
+{
+  "config_path": "configs/_tmp_confirm.yaml",
+  "started_at": "2026-08-08T06:09:24.017465+00:00",
+  "conditions": [
+    "repowise"
+  ],
+  "config": {
+    "agent": {
+      "harness": "claude_code",
+      "max_turns": 15,
+      "model": "claude-opus-5",
+      "timeout_seconds": 900
+    },
+    "arms_dir": null,
+    "arms_file": null,
+    "benchmarks": {
+      "fea_bench": {
+        "enabled": false
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "swe_qa": {
+        "enabled": true,
+        "repos": [
+          "django/django"
+        ],
+        "task_ids": [
+          "django_017"
+        ]
+      }
+    },
+    "budget": {
+      "abort_on_exceed": true,
+      "max_per_task_usd": 3.0,
+      "max_total_usd": 6.0
+    },
+    "conditions": [
+      {
+        "arm": "repowise",
+        "name": "repowise"
+      }
+    ],
+    "evaluation": {
+      "dimensions": [
+        "correctness",
+        "completeness",
+        "relevance",
+        "clarity",
+        "reasoning"
+      ],
+      "judge_model": "gpt-5.6-luna"
+    },
+    "experiment_name": "layerb_opus_mandated_confirm_django",
+    "force_tool_use": false,
+    "parallelism": {
+      "max_workers": 1
+    },
+    "paths": {
+      "logs_dir": "./logs/layerb_opus_mandated_confirm_django",
+      "repos_dir": "./repos",
+      "results_dir": "./results/bakeoff_2026_08/rung6/layerb_opus_mandated_confirm_django",
+      "trees_dir": null
+    },
+    "prompt_style": "neutral-mandatory",
+    "repowise": {
+      "binary": "repowise",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai",
+      "index_dir": "./indexes",
+      "provider": "openai"
+    }
+  }
+}
