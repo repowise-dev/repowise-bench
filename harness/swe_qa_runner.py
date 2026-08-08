@@ -2363,8 +2363,11 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     # cell that never called that arm's server. It is stamped on the row
     # because a forced cell and an unforced cell are not the same measurement
     # and no table may mix them silently.
-    force_tool_use = bool(config.get("force_tool_use")
-                          or condition.get("force_tool_use"))
+    # A MODE, not a flag: `stop-block` or `pre-guide`. They cost very different
+    # amounts and no table may pool them, so the mode itself is what gets
+    # stamped rather than a boolean that loses which one ran.
+    force_tool_use = (config.get("force_tool_use")
+                      or condition.get("force_tool_use") or False)
     metrics.arm_provenance["force_tool_use"] = force_tool_use
 
     # The coaching this cell was actually given, stamped rather than inferred.
@@ -2650,8 +2653,9 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         # The run's own forcing hook is declared too, just by the experiment
         # rather than by the arm. Without this a forced cell would trip the
         # contamination alarm on the very mechanism the run switched on.
-        if (metrics.arm_provenance or {}).get("force_tool_use"):
-            declared_hooks.append("Stop(force_tool_use)")
+        _mode = (metrics.arm_provenance or {}).get("force_tool_use")
+        if _mode:
+            declared_hooks.append(f"force_tool_use:{_mode}")
         if metrics.hook_injections and not declared_hooks:
             print(
                 f"  !! {metrics.condition}/{task_id}: "

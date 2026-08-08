@@ -41,9 +41,40 @@ unforced one. Three consequences:
      hook must say how it handled that asymmetry, because "tokens against the
      bare control" now includes the price of the nudge on one side only.
 
-Usage, as a `Stop` hook command:
+TWO MODES, because the first one measured badly.
 
-    python harness/force_tool_use.py --prefix mcp__repowise__ --tools "get_answer,..."
+  `--mode stop-block`   the Stop hook above. It WORKS: adoption went 0 of 4 to
+                        4 of 4 across repowise and a competitor. It is also
+                        expensive, because it fires after the agent has written
+                        a complete answer, which is then discarded and
+                        rewritten: +61% output tokens on the repowise cell it
+                        blocked and +127% on the codegraph one.
+
+  `--mode pre-guide`    a PreToolUse hook on Read/Grep/Glob that injects
+                        guidance instead of denying anything. It arrives BEFORE
+                        an answer exists, so there is nothing to throw away and
+                        no second pass to pay for. `additionalContext` on
+                        PreToolUse is verified present in the binary's own
+                        response schema at 2.1.224, alongside
+                        `permissionDecision`, which this mode deliberately does
+                        not use: denying the read would dictate the agent's
+                        workflow, and the point is to make the tool a candidate,
+                        not to make file reading impossible.
+
+Both modes stay silent once the arm's server has been called, and `pre-guide`
+is capped so it nudges a bounded number of times rather than on every read. An
+uncapped nudge would be noise, would inflate input tokens on every cell, and
+would make the arm's own prompt smaller than the harness's commentary on it.
+
+A prompt-only mandate was tried first and DOES NOT WORK: an explicit "REQUIRED,
+and not optional" paragraph in the system prompt produced 2 of 6, and both were
+a cell that adopts unprompted anyway. The mandate was verified to have arrived
+(`coaching_mandatory: true` on the row) before that was concluded.
+
+Usage, as a hook command:
+
+    python harness/force_tool_use.py --mode stop-block --prefix mcp__repowise__ --tools "..."
+    python harness/force_tool_use.py --mode pre-guide  --prefix mcp__repowise__ --tools "..."
 """
 
 from __future__ import annotations
@@ -78,14 +109,49 @@ def _called(transcript_path: str, prefix: str) -> bool:
     return False
 
 
+_READ_TOOLS = {"Read", "Grep", "Glob"}
+
+
+def _nudges_used(session_id: str, prefix: str, cap: int) -> int:
+    """How many times this session has already been nudged, incrementing.
+
+    A temp counter keyed on the session and the arm, because a PreToolUse hook
+    has no memory and an uncapped nudge would fire on every file read. Fails
+    OPEN at the cap on any error, so a bookkeeping problem silences the nudge
+    rather than turning it into spam.
+    """
+    import hashlib
+    import tempfile
+
+    # hashlib, NOT hash(): every hook fire is a fresh process and PYTHONHASHSEED
+    # is randomised per process, so `hash(prefix)` named a different marker file
+    # every time and the cap never held. Caught by the self-test below, which
+    # fires four times and requires the fourth to be silent.
+    key = hashlib.sha1(f"{session_id}\x00{prefix}".encode()).hexdigest()[:20]
+    marker = Path(tempfile.gettempdir()) / f".bench-nudge-{key}"
+    try:
+        used = int(marker.read_text(encoding="utf-8")) if marker.is_file() else 0
+        if used < cap:
+            marker.write_text(str(used + 1), encoding="utf-8")
+        return used
+    except (OSError, ValueError):
+        return cap
+
+
 def main() -> int:
     argv = sys.argv[1:]
     prefix = tools = ""
+    mode = "stop-block"
+    cap = 3
     for i, a in enumerate(argv):
         if a == "--prefix" and i + 1 < len(argv):
             prefix = argv[i + 1]
         elif a == "--tools" and i + 1 < len(argv):
             tools = argv[i + 1]
+        elif a == "--mode" and i + 1 < len(argv):
+            mode = argv[i + 1]
+        elif a == "--max-nudges" and i + 1 < len(argv):
+            cap = int(argv[i + 1])
     if not prefix:
         return 0
 
@@ -94,7 +160,30 @@ def main() -> int:
     except json.JSONDecodeError:
         return 0
 
-    if payload.get("hook_event_name") != "Stop":
+    event = payload.get("hook_event_name")
+    named = ", ".join(f"{prefix}{t.strip()}" for t in tools.split(",") if t.strip())
+
+    if mode == "pre-guide" and event == "PreToolUse":
+        if payload.get("tool_name") not in _READ_TOOLS:
+            return 0
+        if _called(payload.get("transcript_path", ""), prefix):
+            return 0
+        if _nudges_used(payload.get("session_id", ""), prefix, cap) >= cap:
+            return 0
+        guidance = (
+            "You are reading source files directly and have not used the "
+            "codebase-intelligence server available for this repository in "
+            "this session. Load one of its tools with ToolSearch and try it "
+            "before continuing to explore by hand"
+            + (f". Available: {named}." if named else ".")
+        )
+        print(json.dumps({"hookSpecificOutput": {
+            "hookEventName": "PreToolUse",
+            "additionalContext": guidance,
+        }}))
+        return 0
+
+    if mode != "stop-block" or event != "Stop":
         return 0
     # The binary's own guidance: return success while this is true. Honouring
     # it is what makes this ONE nudge rather than a fight with the block cap.
@@ -103,7 +192,6 @@ def main() -> int:
     if _called(payload.get("transcript_path", ""), prefix):
         return 0
 
-    named = ", ".join(f"{prefix}{t.strip()}" for t in tools.split(",") if t.strip())
     reason = (
         "You have not used the codebase-intelligence tools available for this "
         "task. Before finishing, load them with ToolSearch and make at least "

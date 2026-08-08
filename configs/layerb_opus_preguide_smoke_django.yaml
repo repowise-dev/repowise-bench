@@ -1,0 +1,110 @@
+# THE GATE for PRE-TOOL-USE GUIDANCE. 2 arms x 3 questions = 6 cells.
+#
+# THE QUESTION: does nudging the agent AT THE MOMENT IT REACHES FOR Read or
+# Grep get the tool used, without the extra turn the Stop block costs?
+#
+# WHAT THE OTHER TWO VARIANTS MEASURED, on these same cells:
+#
+#   baseline (neutral prompt)     adoption 0 of 6
+#   prompt mandate                adoption 2 of 6, and BOTH were django_014,
+#                                 which adopts unprompted anyway, so not one
+#                                 cell where the prompt changed the outcome.
+#                                 The mandate was verified to have arrived
+#                                 (coaching_mandatory: true on the row) before
+#                                 that was concluded. DROPPED, and this run is
+#                                 back to the byte-identical `neutral` prompt
+#                                 every published row here was produced under.
+#   Stop block                    adoption 4 of 4, and +61% output tokens on
+#                                 the repowise cell it blocked, +127% on the
+#                                 codegraph one, because it fires after a
+#                                 complete answer exists and that answer is
+#                                 then discarded and rewritten.
+#
+# So enforcement works and prompting does not, and the open question is only
+# the price. `pre-guide` arrives BEFORE an answer exists, so there is nothing
+# to throw away.
+#
+# IT GUIDES, IT DOES NOT DENY. `additionalContext` on PreToolUse is verified
+# present in the Claude Code binary's own response schema at 2.1.224, alongside
+# `permissionDecision`, which this mode deliberately does not use. Denying the
+# read would dictate the agent's workflow rather than make the tool a
+# candidate, and the arms are not equally suited to a tool-first workflow.
+#
+# CAPPED AT 3 NUDGES per session per arm, and silent once the server has been
+# called. Uncapped, it would fire on every file read, which is noise, inflates
+# input tokens on every cell, and would make the harness's commentary larger
+# than the arm's own prompt.
+#
+# THE SAME 3 QUESTIONS as the other two variants, so baseline, prompt, Stop
+# block and pre-guide are all readable off THE SAME CELLS. All three are cells
+# where both arms failed to adopt in the paired Opus baseline.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_preguide_smoke_django.yaml
+
+experiment_name: "layerb_opus_preguide_smoke_django"
+
+arms_file: null
+arms_dir: null
+
+# Back to the published neutral prompt. The mandate is dropped, not disabled:
+# it had no demonstrated effect and dropping it keeps this comparable to every
+# `neutral` row already published.
+prompt_style: "neutral"
+
+# THE VARIABLE.
+force_tool_use: "pre-guide"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_004"
+      - "django_014"
+      - "django_017"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+
+agent:
+  harness: "claude_code"
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_preguide_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_preguide_smoke_django"
+  trees_dir: null
+
+budget:
+  max_total_usd: 6.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1

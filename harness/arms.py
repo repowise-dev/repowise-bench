@@ -731,15 +731,20 @@ def generate_mcp_config(arm: Arm, out_dir: Path, extra_env: Optional[dict] = Non
 # Settings / hooks, per arm
 # ---------------------------------------------------------------------------
 
-def force_tool_use_hook(arm: Arm) -> dict:
-    """A `Stop` hook that refuses to end a cell that never called this arm's
-    server. Empty for an arm with no server, which cannot be forced.
+def force_tool_use_hook(arm: Arm, mode: str = "stop-block") -> dict:
+    """Pressure to actually use this arm's server. Empty for an arm with no
+    server, which cannot be pressured.
 
     Built HERE rather than declared per arm, so it is the same mechanism with
     the same wording for every arm and only the server prefix and tool names
-    differ. See `harness/force_tool_use.py` for what it does and what it costs.
-    A forcing mechanism only one vendor could use would not be a forcing
-    mechanism, it would be a handicap on the others.
+    differ. A mechanism only one vendor could use would not be a countermeasure,
+    it would be a handicap on the others.
+
+    `stop-block` refuses to let the turn end; measured at 0 of 4 to 4 of 4
+    adoption and +61% / +127% output tokens on the cells it blocked, because it
+    fires after a complete answer exists and that answer is then discarded.
+    `pre-guide` injects guidance on Read/Grep/Glob instead, before any answer
+    exists. See `harness/force_tool_use.py`.
     """
     if not arm.uses_mcp:
         return {}
@@ -749,18 +754,32 @@ def force_tool_use_hook(arm: Arm) -> dict:
     )
     script = (BENCH_ROOT / "harness" / "force_tool_use.py").as_posix()
     cmd = (f'"{Path(sys.executable).as_posix()}" "{script}" '
-           f'--prefix {prefix} --tools "{tools}"')
-    return {
-        "Stop": [
-            {"matcher": "", "hooks": [
-                {"type": "command", "command": cmd, "timeout": 15},
-            ]},
-        ],
-    }
+           f'--mode {mode} --prefix {prefix} --tools "{tools}"')
+    if mode == "pre-guide":
+        return {
+            "PreToolUse": [
+                {"matcher": "Read|Grep|Glob", "hooks": [
+                    {"type": "command", "command": cmd, "timeout": 15},
+                ]},
+            ],
+        }
+    if mode == "stop-block":
+        return {
+            "Stop": [
+                {"matcher": "", "hooks": [
+                    {"type": "command", "command": cmd, "timeout": 15},
+                ]},
+            ],
+        }
+    raise ValueError(
+        f"unknown force_tool_use mode {mode!r}. Known: stop-block, pre-guide. "
+        f"An unknown mode must not silently degrade to no pressure at all, "
+        f"because the run would look like the countermeasure had failed."
+    )
 
 
 def generate_settings(arm: Arm, out_dir: Path,
-                      force_tool_use: bool = False) -> Path:
+                      force_tool_use: str | bool = False) -> Path:
     """The `--settings` file for this arm: pinned empty, plus what it declares.
 
     Everything an arm does NOT declare is switched off, which is the opposite of
@@ -768,16 +787,19 @@ def generate_settings(arm: Arm, out_dir: Path,
     machine an unpinned cell fires 8 hooks and receives two injected context
     blocks, one of which advertises repowise's MCP tools, into the C0 arm.
 
-    `force_tool_use` adds the benchmark's OWN Stop hook on top, identically for
-    every MCP arm. It is not an arm's declared surface and is deliberately not
-    spelled in `arms.yaml`: it is a property of the RUN (finding E13, the tool
-    is mostly never called under this harness), so it is switched on per
-    experiment and recorded per cell rather than baked into an arm.
+    `force_tool_use` adds the benchmark's OWN hook on top, identically for
+    every MCP arm. It takes a MODE (`stop-block` or `pre-guide`); `True` means
+    `stop-block` for configs written before the modes existed. It is not an
+    arm's declared surface and is deliberately not spelled in `arms.yaml`: it
+    is a property of the RUN (finding E13, the tool is mostly never called
+    under this harness), so it is switched on per experiment and recorded per
+    cell rather than baked into an arm.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     hooks = copy.deepcopy(arm.hooks)
-    if force_tool_use:
-        for event, blocks in force_tool_use_hook(arm).items():
+    mode = "stop-block" if force_tool_use is True else force_tool_use
+    if mode:
+        for event, blocks in force_tool_use_hook(arm, mode).items():
             hooks.setdefault(event, []).extend(blocks)
     settings = {
         "hooks": hooks,
@@ -787,8 +809,8 @@ def generate_settings(arm: Arm, out_dir: Path,
         "includeCoAuthoredBy": False,
     }
     safe = re.sub(r"[^A-Za-z0-9]+", "-", arm.name)
-    if force_tool_use:
-        safe += "__forced"
+    if mode:
+        safe += "__" + re.sub(r"[^A-Za-z0-9]+", "-", str(mode))
     path = out_dir / f"settings__{safe}.json"
     path.write_text(json.dumps(settings, indent=2), encoding="utf-8")
     return path.resolve()
