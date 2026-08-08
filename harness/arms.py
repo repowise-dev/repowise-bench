@@ -58,6 +58,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -667,23 +668,64 @@ def generate_mcp_config(arm: Arm, out_dir: Path, extra_env: Optional[dict] = Non
 # Settings / hooks, per arm
 # ---------------------------------------------------------------------------
 
-def generate_settings(arm: Arm, out_dir: Path) -> Path:
+def force_tool_use_hook(arm: Arm) -> dict:
+    """A `Stop` hook that refuses to end a cell that never called this arm's
+    server. Empty for an arm with no server, which cannot be forced.
+
+    Built HERE rather than declared per arm, so it is the same mechanism with
+    the same wording for every arm and only the server prefix and tool names
+    differ. See `harness/force_tool_use.py` for what it does and what it costs.
+    A forcing mechanism only one vendor could use would not be a forcing
+    mechanism, it would be a handicap on the others.
+    """
+    if not arm.uses_mcp:
+        return {}
+    prefix = f"mcp__{arm.server_name}__"
+    tools = ",".join(
+        t.split("__")[-1] for t in arm.client_tools if t.startswith(prefix)
+    )
+    script = (BENCH_ROOT / "harness" / "force_tool_use.py").as_posix()
+    cmd = (f'"{Path(sys.executable).as_posix()}" "{script}" '
+           f'--prefix {prefix} --tools "{tools}"')
+    return {
+        "Stop": [
+            {"matcher": "", "hooks": [
+                {"type": "command", "command": cmd, "timeout": 15},
+            ]},
+        ],
+    }
+
+
+def generate_settings(arm: Arm, out_dir: Path,
+                      force_tool_use: bool = False) -> Path:
     """The `--settings` file for this arm: pinned empty, plus what it declares.
 
     Everything an arm does NOT declare is switched off, which is the opposite of
     the default. See `env_isolation_probe.py` for the measurement: on this
     machine an unpinned cell fires 8 hooks and receives two injected context
-    blocks, one of which advertises repowise's MCP tools — into the C0 arm.
+    blocks, one of which advertises repowise's MCP tools, into the C0 arm.
+
+    `force_tool_use` adds the benchmark's OWN Stop hook on top, identically for
+    every MCP arm. It is not an arm's declared surface and is deliberately not
+    spelled in `arms.yaml`: it is a property of the RUN (finding E13, the tool
+    is mostly never called under this harness), so it is switched on per
+    experiment and recorded per cell rather than baked into an arm.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
+    hooks = copy.deepcopy(arm.hooks)
+    if force_tool_use:
+        for event, blocks in force_tool_use_hook(arm).items():
+            hooks.setdefault(event, []).extend(blocks)
     settings = {
-        "hooks": copy.deepcopy(arm.hooks),
+        "hooks": hooks,
         "enabledPlugins": {},
         "mcpServers": {},
         "alwaysThinkingEnabled": False,
         "includeCoAuthoredBy": False,
     }
     safe = re.sub(r"[^A-Za-z0-9]+", "-", arm.name)
+    if force_tool_use:
+        safe += "__forced"
     path = out_dir / f"settings__{safe}.json"
     path.write_text(json.dumps(settings, indent=2), encoding="utf-8")
     return path.resolve()

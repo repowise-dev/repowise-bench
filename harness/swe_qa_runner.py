@@ -2358,8 +2358,16 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
     # Filled from the live server below for MCP arms; stays empty for C0,
     # which has no server to describe.
     served_descriptions: dict = {}
+    # E13 countermeasure, switched on per RUN and not per arm: the benchmark's
+    # own Stop hook, attached identically to every MCP arm, refusing to end a
+    # cell that never called that arm's server. It is stamped on the row
+    # because a forced cell and an unforced cell are not the same measurement
+    # and no table may mix them silently.
+    force_tool_use = bool(config.get("force_tool_use")
+                          or condition.get("force_tool_use"))
+    metrics.arm_provenance["force_tool_use"] = force_tool_use
     settings_path = str(arm_registry.generate_settings(
-        arm, bench_root / "mcp_configs"))
+        arm, bench_root / "mcp_configs", force_tool_use=force_tool_use))
     claude_home = str(arm_registry.prepare_claude_home())
 
     if arm.uses_mcp:
@@ -2626,6 +2634,11 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         declared_hooks = list(
             (metrics.arm_provenance or {}).get("hooks_declared") or []
         )
+        # The run's own forcing hook is declared too, just by the experiment
+        # rather than by the arm. Without this a forced cell would trip the
+        # contamination alarm on the very mechanism the run switched on.
+        if (metrics.arm_provenance or {}).get("force_tool_use"):
+            declared_hooks.append("Stop(force_tool_use)")
         if metrics.hook_injections and not declared_hooks:
             print(
                 f"  !! {metrics.condition}/{task_id}: "
@@ -2643,12 +2656,20 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             # can disagree are worse than one.
             metrics.attach_guard_fired = not metrics.arm_exercised
         elif declared_hooks and not metrics.hook_injections:
+            # Not always a fault, so it says what it saw rather than what it
+            # concluded. Zero injections is the SILENT NO-OP when the hook was
+            # supposed to speak (repowise's shipped command exits 0 in silence
+            # when the binary is off PATH), and it is the CORRECT outcome for
+            # the forcing hook on a cell that called its tool unprompted. The
+            # two are told apart by whether the arm was exercised, which is on
+            # the same row.
             print(
-                f"  !! {metrics.condition}/{task_id}: arm DECLARED hooks on "
-                f"{declared_hooks} and NONE of them injected anything. The "
-                f"shipped command is `if command -v repowise-augment ...; fi`, "
-                f"which exits 0 in silence when the binary is off PATH, so "
-                f"this cell measures an arm with its treatment switched off.",
+                f"  !! {metrics.condition}/{task_id}: hooks declared on "
+                f"{declared_hooks}, {len(metrics.hook_events)} fired, NONE "
+                f"injected. arm_exercised={metrics.arm_exercised}. Silence is "
+                f"a no-op hook if the treatment was meant to speak here, and "
+                f"the intended outcome if it was a guard that found nothing "
+                f"to correct.",
                 flush=True,
             )
 

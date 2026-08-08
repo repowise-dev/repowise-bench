@@ -1,0 +1,112 @@
+# THE GATE for ENFORCED TOOL USE. 2 arms x 2 questions = 4 cells. Not a
+# measurement, and deliberately not one: it asks whether the mechanism works,
+# not whether the tools help.
+#
+# THE PROBLEM IT EXISTS FOR. Finding E13. Under Claude Code the tool under test
+# is mostly not called at all, so a token or quality A/B there mostly measures
+# two bare agents against each other: 17 of 30 Claude cells never issued a
+# ToolSearch, which is the gate the deferred MCP schemas put in front of every
+# server, so the tool was never a CANDIDATE rather than a rejected one. Under
+# Codex the identical repowise server, index and questions gave 15 of 15. So
+# Codex has a measured answer to "do these tools save tokens when they are
+# used" and Claude Code does not.
+#
+# THE MECHANISM. `harness/force_tool_use.py`, attached by the harness as a
+# `Stop` hook, IDENTICALLY for every MCP arm, with only that arm's own server
+# prefix and tool names substituted. It reads the session transcript and blocks
+# the turn from ending if that arm's server was never called. Verified against
+# the Claude Code binary at 2.1.224: the Stop payload carries
+# `stop_hook_active` and `transcript_path`, and a hook printing
+# `{"decision": "block", "reason": ...}` blocks the turn and feeds the reason
+# back to the agent.
+#
+# IT IS NOT repowise's SHIPPED HOOK and shares nothing with it. repowise's hook
+# injects context and deliberately does not force a call. This one is the
+# benchmark's, and it is built to work for every vendor, because a forcing
+# mechanism only one arm could use would be a handicap on the others.
+#
+# THE TWO ARMS ARE `repowise` AND `codegraph`, and the competitor is the point:
+# it is what proves the mechanism generalizes. `c0-bare` is absent because it
+# has no server, cannot be forced, and would test nothing here. That it
+# correctly receives NO Stop hook is asserted offline instead of bought.
+#
+# THE TWO QUESTIONS ARE THE ONES BOTH ARMS FAILED. In the paired Opus baseline
+# `arm_exercised` is FALSE for repowise and for codegraph on both django_014
+# and django_017. So all four cells are known non-adopting cells, and the gate
+# passes only if forcing flips all four.
+#
+# WHAT THIS COSTS, registered before it runs: blocking a turn buys another
+# turn, and another turn costs output tokens. The hook blocks only when the
+# server was never called, and honours `stop_hook_active` so it blocks at most
+# once. Enforcement is therefore not free and the flagship that uses it must
+# say how it handled the fact that `c0-bare` cannot be forced.
+#
+# Run:
+#   $env:REPOWISE_ROOT = "C:/Users/ragha/Desktop/repowise-layerb2"
+#   $env:REPOWISE_EXE  = "C:/Users/ragha/Desktop/repowise-layerb2/.venv/Scripts/repowise.exe"
+#   $env:FORCE_PROMPT_CACHING_5M = "1"
+#   python harness/run_experiment.py --config configs/layerb_opus_forced_smoke_django.yaml
+
+experiment_name: "layerb_opus_forced_smoke_django"
+
+arms_file: null
+arms_dir: null
+prompt_style: "neutral"
+
+# THE VARIABLE. Switched on per run, not per arm, and stamped on every row as
+# arm_provenance.force_tool_use, because a forced cell and an unforced cell are
+# not the same measurement and no table may mix them silently.
+force_tool_use: true
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    task_ids:
+      - "django_014"
+      - "django_017"
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "repowise"
+    arm: "repowise"
+  - name: "codegraph"
+    arm: "codegraph"
+
+agent:
+  harness: "claude_code"
+  model: "claude-opus-5"
+  max_turns: 15
+  timeout_seconds: 900
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/rung6/layerb_opus_forced_smoke_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_opus_forced_smoke_django"
+  trees_dir: null
+
+budget:
+  # A rail, not a target. 4 cells at the measured Opus $0.304 is ~$1.22, and a
+  # forced cell buys at least one extra turn, so 6.0 leaves room for that
+  # without the gate aborting halfway and leaving a partial table.
+  max_total_usd: 6.0
+  max_per_task_usd: 3.0
+  abort_on_exceed: true
+
+evaluation:
+  judge_model: "gpt-5.6-luna"
+  dimensions: ["correctness", "completeness", "relevance", "clarity", "reasoning"]
+
+parallelism:
+  max_workers: 1
