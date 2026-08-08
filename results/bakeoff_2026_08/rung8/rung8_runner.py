@@ -74,7 +74,14 @@ DEFAULT_ARMS = ["repowise", "repowise-search", "codegraph", "crg", "graphify"]
 
 # Arms that stage and build their own tree. Everything else rides on one of
 # these (see c8.SHARED_TREE) and must be queried before that tree is reaped.
-BUILD_ARMS = ("repowise", "codegraph", "crg", "graphify", "serena")
+#
+# cocoindex added 2026-08-08 for the sealed-42 run
+# (configs/layera_cocoindex_contextbench.PREREGISTRATION.md). It builds its own
+# tree like the rest: `ccc index` writes `.cocoindex_code/` per worktree, and
+# its server resolves the project by WORKING DIRECTORY with no path flag, so a
+# shared tree would not merely bias it (finding E3), it would point it at
+# whatever repository the cwd resolved to.
+BUILD_ARMS = ("repowise", "codegraph", "crg", "graphify", "serena", "cocoindex")
 
 # What "the index exists" means per arm, for the resume check. Deliberately a
 # concrete file rather than "the dotdir exists": finding E3's follow-on left
@@ -86,6 +93,11 @@ INDEX_MARKERS = {
     "crg": (".code-review-graph",),
     "graphify": ("graphify-out/graph.json",),
     "serena": (),  # builds nothing by design
+    # A concrete file, not the dotdir: the mui reset found `.cocoindex_code/`
+    # surviving a removal because the daemon's live SQLite handles kept
+    # `target_sqlite.db` on disk underneath it. A directory-existence check
+    # would have called that build done.
+    "cocoindex": (".cocoindex_code/target_sqlite.db",),
 }
 
 
