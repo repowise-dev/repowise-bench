@@ -1,0 +1,59 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "3a4d947603603f5dea742442d32bc131e9786d25",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 463.3,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 1,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0e3febd0",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0e3febd0",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0e3febd0",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 9395,
+    "ranked": [
+      "pkg/cmd/browse/browse_test.go",
+      "pkg/cmd/browse/browse.go",
+      "pkg/cmd/factory/default.go",
+      "README.md",
+      "docs/README.md",
+      "pkg/cmd/pr/shared/finder_test.go"
+    ],
+    "n_ranked": 6,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "pkg/cmd/browse/browse.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

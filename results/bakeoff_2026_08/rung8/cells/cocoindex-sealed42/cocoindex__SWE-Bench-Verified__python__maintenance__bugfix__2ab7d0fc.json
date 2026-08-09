@@ -1,0 +1,60 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "5eb6a2b33d70b9889e1cafa12594ad6f80773d3a",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 1683.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__2ab7d0fc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-2ab7d0fc",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-2ab7d0fc",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10622,
+    "ranked": [
+      "tests/proxy_models/models.py",
+      "tests/defer_regress/tests.py",
+      "tests/proxy_models/tests.py",
+      "django/db/models/query.py",
+      "tests/select_related_regress/tests.py",
+      "django/db/models/manager.py",
+      "tests/gis_tests/relatedapp/tests.py"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

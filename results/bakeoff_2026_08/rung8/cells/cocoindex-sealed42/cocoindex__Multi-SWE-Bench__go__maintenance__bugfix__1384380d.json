@@ -1,0 +1,67 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "537dcb27398bd193a094d5fcd3aa9bc67a546328",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 535.7,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 5,
+    "mp_workers": 1,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1384380d",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1384380d",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1384380d",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 11128,
+    "ranked": [
+      "pkg/cmd/pr/diff/diff_test.go",
+      "pkg/cmd/browse/browse_test.go",
+      "pkg/cmd/status/fixtures/search.json",
+      "README.md",
+      "docs/command-line-syntax.md",
+      "pkg/cmd/status/fixtures/notifications.json",
+      "pkg/cmd/auth/login/login_test.go",
+      "pkg/cmd/status/fixtures/events.json",
+      "pkg/cmd/config/set/set_test.go"
+    ],
+    "n_ranked": 9,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "/workspace/cli__cli__0.1/Makefile",
+      "/workspace/cli__cli__0.1/api/queries_pr.go",
+      "/workspace/cli__cli__0.1/api/query_builder.go",
+      "/workspace/cli__cli__0.1/api/query_builder_test.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/aggregate.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/pr/checks/checks.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

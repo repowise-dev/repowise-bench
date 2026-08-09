@@ -1,0 +1,87 @@
+{
+  "config_path": "configs\\layerb_local8b_stratified_django.yaml",
+  "started_at": "2026-08-09T08:04:17.557231+00:00",
+  "conditions": [
+    "C0_bare",
+    "C2_repowise",
+    "C2_repowise_local"
+  ],
+  "config": {
+    "experiment_name": "layerb_local8b_stratified_django",
+    "benchmarks": {
+      "swe_qa": {
+        "enabled": true,
+        "repos": [
+          "django/django"
+        ],
+        "stratified_shapes": {
+          "per_shape": 3,
+          "seed": 20260803
+        }
+      },
+      "swe_bench": {
+        "enabled": false
+      },
+      "fea_bench": {
+        "enabled": false
+      }
+    },
+    "conditions": [
+      {
+        "name": "C0_bare",
+        "repowise_enabled": false,
+        "repowise_mode": null,
+        "claude_md": false,
+        "plugin_skills": false
+      },
+      {
+        "name": "C2_repowise",
+        "repowise_enabled": true,
+        "repowise_mode": "full",
+        "claude_md": false,
+        "plugin_skills": false
+      },
+      {
+        "name": "C2_repowise_local",
+        "repowise_enabled": true,
+        "repowise_mode": "full",
+        "claude_md": false,
+        "plugin_skills": false,
+        "allowed_tools": [
+          "search_codebase",
+          "get_context",
+          "get_symbol"
+        ]
+      }
+    ],
+    "parallelism": {
+      "max_workers": 1
+    },
+    "agent": {
+      "harness": "opencode",
+      "model": "ollama/qwen3:8b-16k",
+      "max_turns": 15,
+      "timeout_seconds": 900
+    },
+    "repowise": {
+      "binary": "repowise",
+      "index_dir": "./indexes",
+      "provider": "openai",
+      "doc_model": "gpt-5.4-nano",
+      "embedder": "openai"
+    },
+    "paths": {
+      "results_dir": "./results/bakeoff_2026_08/layerb_local8b_stratified_django",
+      "repos_dir": "./repos",
+      "logs_dir": "./logs/layerb_local8b_stratified_django"
+    },
+    "budget": {
+      "max_total_usd": 8.0,
+      "max_per_task_usd": 1.0,
+      "abort_on_exceed": true
+    },
+    "evaluation": {
+      "judge_model": "gpt-5.6-luna"
+    }
+  }
+}

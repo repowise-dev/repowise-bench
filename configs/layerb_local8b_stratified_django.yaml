@@ -1,0 +1,121 @@
+# Layer B, THIRD HARNESS: qwen3:8b via opencode + Ollama, on the SAME django 15
+# that Claude Code / Opus and Codex already ran.
+#
+# THE POINT IS COMPARABILITY. The `benchmarks` block below is byte-identical to
+# `layerb_opus_stratified_django.yaml` and `layerb_codex_stratified_django.yaml`
+# (same repo, same `per_shape: 3`, same `seed: 20260803`), so the three harnesses
+# answer the SAME 15 questions and the harness is the only thing that varies.
+# Do not "improve" the draw here; changing the seed or per_shape silently ends
+# the comparison this config exists to make.
+#
+# THE CONFOUND THIS CONFIG IS BUILT TO AVOID, and it invalidated the earlier
+# flask numbers as a "local model" claim: `get_answer` synthesizes through a
+# FRONTIER model (gemini), so a C2 row that leans on it is measuring gemini, not
+# qwen. That is finding E7's shape exactly, and Layer A already resolved E7 by
+# carrying two repowise rows and never pooling them.
+#
+# So this config carries THREE conditions, not two:
+#
+#   C0_bare            read/grep/glob only. The control.
+#   C2_repowise        full surface, `get_answer` included. What a user runs,
+#                      and NOT a pure-local number.
+#   C2_repowise_local  zero-LLM tools only (search_codebase / get_context /
+#                      get_symbol). No frontier model touches the answer, so
+#                      THIS is the row that can carry a "small local model plus
+#                      repowise" claim.
+#
+# Never pool C2_repowise with C2_repowise_local. They are two different claims.
+#
+# PRIOR RESULT THIS IS SCALING UP (flask, n=5, sonnet judge):
+#   qwen3.5:4b   C2 3.65 < C0 5.0   context made the WEAKER model WORSE
+#   qwen3:8b-16k C2 5.05 > C0 3.6   +40%, but only 1 of 3 wins audited as
+#                                   genuinely grounded in repowise
+# n=5 is not a result. 15 paired is the point of this run, and 48 is next if
+# the per-task latency allows.
+
+experiment_name: "layerb_local8b_stratified_django"
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    repos:
+      - "django/django"
+    # IDENTICAL to the Opus and Codex configs. This is the comparison.
+    stratified_shapes:
+      per_shape: 3
+      seed: 20260803
+  swe_bench:
+    enabled: false
+  fea_bench:
+    enabled: false
+
+conditions:
+  - name: "C0_bare"
+    repowise_enabled: false
+    repowise_mode: null
+    claude_md: false
+    plugin_skills: false
+
+  - name: "C2_repowise"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+
+  # The pure-local row. Tool allowlist must exclude `get_answer` so no frontier
+  # model can enter the loop. Verify against the RUNNING server, not this
+  # comment: the gate asserts the served list and the per-cell `mcp_tools_issued`
+  # contains no `get_answer`.
+  - name: "C2_repowise_local"
+    repowise_enabled: true
+    repowise_mode: "full"
+    claude_md: false
+    plugin_skills: false
+    allowed_tools:
+      - "search_codebase"
+      - "get_context"
+      - "get_symbol"
+
+# One worker, as in the Opus and Codex configs. Not a throughput choice here:
+# a local GPU serves one inference at a time, so a second worker would contend
+# for VRAM rather than add throughput.
+parallelism:
+  max_workers: 1
+
+agent:
+  harness: "opencode"
+  # The 16k variant is REQUIRED, not cosmetic: Ollama's default 4096 ctx
+  # truncates the tool definitions and the model then cannot call anything.
+  model: "ollama/qwen3:8b-16k"
+  max_turns: 15
+  # Local 8b is slower than a frontier API. 900s matches the Opus and Codex
+  # configs so a timeout means the same thing in all three.
+  timeout_seconds: 900
+
+# IDENTICAL to the Opus and Codex configs, and it has to be: the index these
+# three harnesses query must be built the same way, or the harness stops being
+# the only variable. The block was incomplete when this config was written and
+# every repowise cell died with `indexing_error: 'doc_model'` before the agent
+# ran, because the legacy index path reads these keys positionally.
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layerb_local8b_stratified_django"
+  repos_dir: "./repos"
+  logs_dir: "./logs/layerb_local8b_stratified_django"
+
+budget:
+  # Local inference is $0. This cap guards ONLY the judge calls.
+  max_total_usd: 8.0
+  max_per_task_usd: 1.0
+  abort_on_exceed: true
+
+evaluation:
+  # Cross-family and unchanged from the other two harnesses' runs, so the
+  # quality column is comparable across all three (D3/D8: never the agent model).
+  judge_model: "gpt-5.6-luna"

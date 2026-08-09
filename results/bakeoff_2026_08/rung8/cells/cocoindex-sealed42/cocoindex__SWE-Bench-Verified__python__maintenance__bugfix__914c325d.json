@@ -1,0 +1,58 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "9b224579875e30203d079cc2fee83b116d98eb78",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__914c325d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-914c325d",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-914c325d",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 11257,
+    "ranked": [
+      "docs/ref/settings.txt",
+      "django/utils/crypto.py",
+      "docs/releases/1.7.txt",
+      "docs/releases/1.4.txt",
+      "docs/topics/auth/default.txt"
+    ],
+    "n_ranked": 5,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/conf/global_settings.py",
+      "django/contrib/auth/__init__.py",
+      "django/contrib/auth/base_user.py",
+      "django/core/signing.py",
+      "django/utils/crypto.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

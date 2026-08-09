@@ -1,0 +1,46 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "1250483ebf73f7a82ff820b94092c63ce4238264",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "--skip-build",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__8f9e4358",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-8f9e4358",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-8f9e4358",
+    "server_stderr_log": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\rung8\\logs\\server-stderr\\cocoindex__8f9e4358__n5rsr46n.log",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "call-failed",
+    "error": "TimeoutError: ",
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/core/management/base.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

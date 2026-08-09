@@ -1,0 +1,62 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "71ae1ab0123582cc5bfe0f7d5f4cc19a9412f396",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 1162.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__1ae3c3bd",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1ae3c3bd",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1ae3c3bd",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10896,
+    "ranked": [
+      "docs/topics/db/aggregation.txt",
+      "django/db/models/sql/compiler.py",
+      "tests/queries/tests.py",
+      "tests/aggregation/tests.py",
+      "tests/ordering/models.py",
+      "tests/aggregation_regress/tests.py",
+      "django/contrib/admin/options.py"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/db/models/query.py",
+      "django/db/models/sql/compiler.py",
+      "django/db/models/sql/query.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "4e8121e8e42a24acc3565851c9ef50ca8322b15c",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__0006beec",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0006beec",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0006beec",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10076,
+    "ranked": [
+      "django/db/migrations/state.py",
+      "django/db/migrations/loader.py",
+      "docs/ref/signals.txt",
+      "tests/migrations/test_state.py",
+      "docs/ref/migration-operations.txt",
+      "django/db/migrations/executor.py",
+      "django/db/migrations/operations/base.py",
+      "django/db/migrations/autodetector.py"
+    ],
+    "n_ranked": 8,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/db/migrations/state.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

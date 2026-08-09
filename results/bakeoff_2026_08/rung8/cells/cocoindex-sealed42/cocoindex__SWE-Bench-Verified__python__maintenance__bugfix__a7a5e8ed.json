@@ -1,0 +1,58 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "a708f39ce67af174df90c5b5e50ad1976cec7cb8",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__a7a5e8ed",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-a7a5e8ed",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-a7a5e8ed",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10440,
+    "ranked": [
+      "tests/validators/tests.py",
+      "tests/gis_tests/geos_tests/test_geos.py",
+      "tests/gis_tests/gdal_tests/test_driver.py",
+      "docs/releases/1.7.7.txt",
+      "docs/releases/1.4.2.txt",
+      "tests/utils_tests/test_autoreload.py",
+      "docs/releases/1.6.11.txt",
+      "tests/admin_scripts/tests.py"
+    ],
+    "n_ranked": 8,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/core/validators.py",
+      "tests/validators/tests.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

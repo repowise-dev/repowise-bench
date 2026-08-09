@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "f8fab6f90233c7114d642dfe01a4e6d4cb14ee7d",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 735.3,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 1,
+    "workers": 2
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__02b5862c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-02b5862c",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-02b5862c",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 9315,
+    "ranked": [
+      "django/db/migrations/operations/base.py",
+      "tests/migrations/test_commands.py",
+      "django/db/utils.py",
+      "docs/topics/db/multi-db.txt",
+      "tests/multiple_database/routers.py",
+      "django/db/models/fields/__init__.py",
+      "docs/releases/1.8.txt",
+      "docs/topics/migrations.txt"
+    ],
+    "n_ranked": 8,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/core/management/commands/makemigrations.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

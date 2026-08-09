@@ -1,0 +1,56 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e065b293878b1e3ea56655aa9d33e87576cd77ff",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__7489fdd8",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-7489fdd8",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-7489fdd8",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10791,
+    "ranked": [
+      "django/contrib/auth/backends.py",
+      "docs/topics/auth/customizing.txt",
+      "tests/auth_tests/test_auth_backends.py",
+      "docs/topics/auth/default.txt",
+      "tests/test_client_regress/auth_backends.py",
+      "docs/ref/contrib/auth.txt",
+      "django/contrib/auth/handlers/modwsgi.py"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/contrib/auth/backends.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

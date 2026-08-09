@@ -1,0 +1,57 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "1f488f4d5496e176300614b7bd9ded02c8572ec3",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 2,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__52c152ba",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-52c152ba",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-52c152ba",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10322,
+    "ranked": [
+      "internal/config/stub.go",
+      "pkg/cmd/auth/status/status_test.go",
+      "internal/ghrepo/repo_test.go",
+      "pkg/cmd/config/set/set_test.go",
+      "pkg/cmd/factory/remote_resolver.go",
+      "pkg/cmd/auth/setupgit/setupgit_test.go",
+      "pkg/cmd/factory/remote_resolver_test.go",
+      "pkg/cmd/auth/login/login_test.go"
+    ],
+    "n_ranked": 8,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "pkg/cmd/config/get/get.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

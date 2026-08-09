@@ -1,0 +1,61 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "f015020bcd61caf00d41d4c2dae014be2fb2fc29",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 265.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 2
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__03f04397",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-03f04397",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-03f04397",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 7879,
+    "ranked": [
+      "pkg/cmd/extension/ext_tmpls/goBinWorkflow.yml",
+      "pkg/cmd/extension/ext_tmpls/otherBinWorkflow.yml",
+      "docs/working-with-us.md",
+      "README.md",
+      "docs/install_linux.md",
+      "pkg/cmd/extension/command.go",
+      "docs/releasing.md"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/http.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/release/list/list.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

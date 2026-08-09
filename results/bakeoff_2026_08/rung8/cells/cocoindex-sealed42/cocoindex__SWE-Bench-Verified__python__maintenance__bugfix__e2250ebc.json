@@ -1,0 +1,60 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "953f29f700a60fc09b08b2c2270c12c447490c6a",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 7994.9,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__e2250ebc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-e2250ebc",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-e2250ebc",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10344,
+    "ranked": [
+      "django/apps/registry.py",
+      "docs/topics/auth/customizing.txt",
+      "docs/releases/1.7.txt",
+      "django/db/migrations/state.py",
+      "docs/ref/contrib/sites.txt",
+      "django/contrib/sites/models.py",
+      "django/test/signals.py"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/apps/registry.py"
+    ],
+    "gold_hit_rank": 1
+  }
+}

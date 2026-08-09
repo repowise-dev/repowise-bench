@@ -1,0 +1,60 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "beba0e1d78996f0033c77e462e6bf9db0fecc2af",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 535.6,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__1ba303a5",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1ba303a5",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-1ba303a5",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10512,
+    "ranked": [
+      "pkg/cmd/repo/create/http_test.go",
+      "pkg/githubtemplate/github_template_test.go",
+      "pkg/cmd/browse/browse_test.go",
+      "pkg/cmd/codespace/common_test.go",
+      "pkg/cmd/repo/create/create_test.go"
+    ],
+    "n_ranked": 5,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "/workspace/cli__cli__0.1/Makefile",
+      "/workspace/cli__cli__0.1/pkg/cmd/repo/create/create.go",
+      "/workspace/cli__cli__0.1/pkg/cmd/repo/create/http.go"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__84effcbc",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-84effcbc",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-84effcbc",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10861,
+    "ranked": [
+      "docs/faq/admin.txt",
+      "docs/topics/db/queries.txt",
+      "docs/topics/db/examples/many_to_many.txt",
+      "docs/ref/models/querysets.txt",
+      "tests/distinct_on_fields/tests.py"
+    ],
+    "n_ranked": 5,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/db/models/query.py",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/where.py",
+      "tests/queries/tests.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "e1d673c373a7d032060872b690a92fc95496612e",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__b10492be",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-b10492be",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-b10492be",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 10425,
+    "ranked": [
+      "tests/admin_utils/models.py",
+      "docs/ref/contrib/admin/index.txt",
+      "django/db/models/sql/datastructures.py",
+      "docs/topics/db/models.txt",
+      "docs/releases/2.0.7.txt",
+      "docs/releases/2.0.4.txt",
+      "docs/releases/3.2.1.txt",
+      "tests/update/models.py",
+      "tests/db_functions/models.py",
+      "docs/releases/2.0.1.txt"
+    ],
+    "n_ranked": 10,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/utils.py",
+      "django/utils/text.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

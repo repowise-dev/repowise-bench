@@ -1,0 +1,57 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "bd366ca2aeffa869b7dbc0b0aa01caea75e6dc31",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 1
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__6cf8c11d",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-6cf8c11d",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-6cf8c11d",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 9751,
+    "ranked": [
+      "django/contrib/admin/options.py",
+      "django/contrib/admin/templatetags/admin_modify.py",
+      "docs/releases/2.2.8.txt",
+      "docs/releases/2.1.15.txt",
+      "tests/admin_views/tests.py",
+      "docs/releases/1.9.2.txt",
+      "django/contrib/auth/admin.py",
+      "docs/topics/auth/customizing.txt"
+    ],
+    "n_ranked": 8,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/contrib/admin/templatetags/admin_modify.py"
+    ],
+    "gold_hit_rank": 2
+  }
+}

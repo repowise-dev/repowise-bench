@@ -1,0 +1,63 @@
+{
+  "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+  "arm": "cocoindex",
+  "repo": "django/django",
+  "language": "python",
+  "source": "Verified",
+  "base_commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 4883.4,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 6,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "SWE-Bench-Verified__python__maintenance__bugfix__9a05fe0c",
+    "repo": "django/django",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-9a05fe0c",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-9a05fe0c",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 9350,
+    "ranked": [
+      "docs/topics/db/queries.txt",
+      "tests/migrations/test_migrations_no_ancestor/0002_conflicting_second.py",
+      "tests/migrations/test_migrations_no_ancestor/0002_second.py",
+      "tests/migrations/test_migrations/0002_second.py",
+      "tests/migrations/test_migrations_no_changes/0002_second.py",
+      "tests/migrations/migrations_test_apps/unspecified_app_with_conflict/migrations/0002_second.py",
+      "tests/migrations/test_migrations_conflict/0002_second.py",
+      "tests/migrations/test_migrations_squashed/0002_second.py",
+      "docs/ref/models/relations.txt"
+    ],
+    "n_ranked": 9,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "django/db/models/base.py",
+      "django/db/models/deletion.py"
+    ],
+    "gold_hit_rank": null
+  }
+}

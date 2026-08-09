@@ -1,0 +1,55 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "504cfbc654b39b994895d69f792859e69fa2589c",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 1,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__0b78ed50",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0b78ed50",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-0b78ed50",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 11976,
+    "ranked": [
+      "pkg/cmd/pr/merge/merge_test.go",
+      "pkg/cmd/pr/view/view_test.go",
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmd/pr/status/fixtures/prStatusCurrentBranch.json",
+      "pkg/cmd/pr/list/fixtures/prList.json"
+    ],
+    "n_ranked": 5,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "pkg/cmd/pr/merge/merge.go",
+      "pkg/cmd/pr/merge/merge_test.go"
+    ],
+    "gold_hit_rank": 1
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "2df3dd4f7dd98e7969e6d9b760f0725aac8a2158",
+  "build": {
+    "arm": "cocoindex",
+    "skipped": "index-present",
+    "seconds": 0.0
+  },
+  "contention": {
+    "inflight_at_start": 3,
+    "mp_workers": 1,
+    "workers": 6
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__d129d52f",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-d129d52f",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-d129d52f",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 9172,
+    "ranked": [
+      "pkg/cmd/gist/delete/delete.go",
+      "pkg/cmd/issue/delete/delete.go",
+      "pkg/cmd/search/issues/issues_test.go",
+      "pkg/cmd/search/repos/repos_test.go",
+      "pkg/cmd/repo/delete/delete_test.go",
+      "pkg/cmd/codespace/delete_test.go",
+      "pkg/cmd/issue/delete/delete_test.go",
+      "pkg/cmd/pr/view/view_test.go",
+      "pkg/cmd/gist/delete/delete_test.go",
+      "pkg/cmd/pr/create/create_test.go"
+    ],
+    "n_ranked": 10,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "pkg/cmd/issue/delete/delete.go"
+    ],
+    "gold_hit_rank": 2
+  }
+}

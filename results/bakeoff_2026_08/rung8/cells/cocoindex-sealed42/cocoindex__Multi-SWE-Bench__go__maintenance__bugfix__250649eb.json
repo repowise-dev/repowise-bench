@@ -1,0 +1,61 @@
+{
+  "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+  "arm": "cocoindex",
+  "repo": "cli/cli",
+  "language": "go",
+  "source": "Multi",
+  "base_commit": "aecfc01e6911e0ed58e91f5072305f5441cc76fe",
+  "build": {
+    "arm": "cocoindex",
+    "rc": 0,
+    "seconds": 375.1,
+    "argv": [
+      "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+      "index"
+    ]
+  },
+  "contention": {
+    "inflight_at_start": 7,
+    "mp_workers": 1,
+    "workers": 8
+  },
+  "timings_are_contended": true,
+  "embedder_proof": {},
+  "query": {
+    "arm": "cocoindex",
+    "instance_id": "Multi-SWE-Bench__go__maintenance__bugfix__250649eb",
+    "repo": "cli/cli",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-250649eb",
+    "command": "C:\\Users\\ragha\\.local\\bin\\ccc.exe",
+    "cwd": "C:\\Users\\ragha\\Desktop\\bakeoff\\r8-cocoindex-250649eb",
+    "served_tools": [
+      "search"
+    ],
+    "served_count": 1,
+    "tool": "search",
+    "tool_args": {
+      "limit": 10,
+      "refresh_index": false
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 11631,
+    "ranked": [
+      "pkg/cmd/secret/set/set_test.go",
+      "pkg/cmd/root/root.go",
+      "pkg/cmd/auth/login/login_test.go",
+      "wix.json",
+      "pkg/cmd/secret/secret.go",
+      "pkg/cmd/secret/set/set.go",
+      "internal/config/from_env_test.go"
+    ],
+    "n_ranked": 7,
+    "server_stderr_chars": 0,
+    "server_stderr": "",
+    "gold_files": [
+      "pkg/cmd/secret/set/http.go",
+      "pkg/cmd/secret/set/set.go"
+    ],
+    "gold_hit_rank": 6
+  }
+}
