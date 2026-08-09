@@ -14,18 +14,27 @@ the one exclusion: 49 MB of transcript that no rerun is graded against.
 
 ## What each claim costs to reproduce
 
+Section numbers below refer to the OSS
+[`docs/BENCHMARKS.md`](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md).
+
 | Claim | Where | Reproducible by a third party? | Cost | Wall clock |
 |---|---|---|---|---|
 | Retrieval, file coverage (§1) | `results/bakeoff_2026_08/rung8/` | **Yes**, with an OpenAI key | Embeddings only, a few dollars | ~12 h serial, ~1.5 h at 8 workers |
-| Agent cost and adoption (§2, §3) | `results/bakeoff_2026_08/rung6/` | **Yes**, with a Claude subscription | ~$19 for the stratified draw | ~3 h |
+| Agent loop, Codex, 48 questions (§2) | `results/bakeoff_2026_08/rung9/` | **Yes**, with a Codex subscription | ~$18 | ~5 h |
+| Agent loop, Claude Code, 15 questions (§2) | `results/bakeoff_2026_08/rung6/` | **Yes**, with a Claude subscription | ~$19 for the stratified draw | ~3 h |
+| Agent loop, local `qwen3:8b` (§2) | `results/bakeoff_2026_08/rung6/` | **Yes**, and this one needs no account at all | **$0**, Ollama on your own GPU | ~2 h |
+| Loading one commit's context (§3) | `results/bakeoff_2026_08/rung1/` | **Yes**, no credentials | $0 | minutes |
 | Distill compression (§4) | OSS repo | **Yes**, no credentials | $0 | minutes |
 | Code health defect prediction (§5) | `health-defect/` | **Yes** for the cross-project and PROMISE arms | $0 | ~1 h |
 | CodeScene head to head (§5) | `health-defect/` | **Partly.** Needs a CodeScene account | licence cost | ~1 h |
 | Indexing time (§6) | `results/bakeoff_2026_08/rung4/` | **Yes**, no credentials for the competitor arms; ours needs an OpenAI key with prose on | $0 to a few dollars | ~1 h |
+| Cross-function performance bugs | `perf-detection/` | **Partly.** The clippy arm was never run end to end | $0 | ~2 h |
 
-The honest summary: §4 and most of §5 need nothing but a checkout. §1 and §6 need
-an embeddings key. §2 and §3 need a paid coding-agent subscription, and no amount
-of packaging on our side changes that.
+The honest summary: §3, §4 and most of §5 need nothing but a checkout. §1 and §6
+need an embeddings key. The hosted §2 rows need a paid coding-agent subscription,
+and no amount of packaging on our side changes that. **The local `qwen3:8b` row is
+the one third party reproduction that needs neither**, which is part of why it was
+worth running.
 
 ## Before any run
 
@@ -61,7 +70,7 @@ to us too.
 Grading is deterministic against ContextBench gold spans. No LLM judge is
 involved anywhere in this number.
 
-## Agent cost and adoption (§2, §3)
+## Agent loop, cost and adoption (§2)
 
 Pre-registration:
 [`configs/layerb_stratified_django.PREREGISTRATION.md`](../configs/layerb_stratified_django.PREREGISTRATION.md),
@@ -78,10 +87,19 @@ verified free of the operator's own hooks by `harness/env_isolation_probe.py`,
 which carries a positive control, because a flag whose name says it isolates the
 environment is not evidence that it did.
 
-Judge agreement is measured, not assumed, by `harness/judge_agreement.py`. It
-reads 0.46 points of disagreement between graders on the same answers, which is
-larger than every per-arm quality effect in the run. That is why we publish the
-cost result and not a quality result.
+Judge agreement is measured, not assumed, by `harness/judge_agreement.py`. The
+noise floor on django, measured 2026-08-05, is **0.69 points** of disagreement
+between graders on the same answers, which is larger than every per-arm quality
+effect in the run. That is why we publish the work-saved result and not a quality
+result. **An earlier 0.46 was quoted here and in several result files for months
+and is superseded**; anything still citing 0.46, or Go's 1.235, predates that
+measurement. `results/bakeoff_2026_08/rung6/` carries the repeats it came from.
+
+One consequence binds every future quality run and is worth stating here, because
+it is the thing most likely to waste someone's money: a paired test is governed by
+the **paired-delta standard deviation**, measured at **2.23** on one arm, not by
+the judge's repeat noise. Sizing a run off 0.69 understates the required n by
+roughly 10x. A 0.50-point effect needs about **156 pairs, not 15**.
 
 ## Indexing time (§6)
 

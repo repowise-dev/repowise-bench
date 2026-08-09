@@ -9,7 +9,11 @@ each score a clean zero when missed.**
 | Index | `.code-review-graph/graph.db`, SQLite, plus embeddings |
 | Tools served | **30** |
 | Tools allowlisted | **20 of 30**, every exclusion named below |
+| Coverage, sealed 42 | 0.445 · **precision 0.240, the highest in the field** · 5.4 files served · 4th of six |
+| Agent loop, Codex | **-6.0%** output tokens vs bare, 7.2 tool calls · 5th of five |
+| Adoption, Claude Code | **0 of 15**. Never called once, across 30 advertised tools |
 | Graph size, django | 40,904 nodes, 380,168 edges |
+| Build, django | **44.8s** |
 | Cost exponent | 1.186 (R² 0.999) |
 
 ## What it serves, and what was excluded

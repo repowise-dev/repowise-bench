@@ -8,6 +8,8 @@
 | Index | **none**. Nothing persistent is built; the language server answers on demand |
 | Tools served | **29** |
 | Tools allowlisted | **10 of 29**, every exclusion named below |
+| Coverage, sealed 42 | **no row.** It serves no retrieval-by-question tool at all, see below |
+| Agent loop, Codex | **-14.8%** output tokens vs bare, but **10.1 tool calls** against the bare agent's 7.2 · 3rd of five |
 | Build cost | **0.0s** everywhere |
 
 ## Why it has no coverage row

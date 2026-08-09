@@ -46,7 +46,9 @@ mechanical, because it serves 5.4 files to our 19.2 and precision rises for
 whoever returns fewest. That is why files-served is a column here.
 
 **CocoIndex is the only tool in the field that retrieves non-code gold**, and it
-beats us on file types we do not index at all. See below.
+beats us on file types we do not index at all. See below. That is corpus-bound:
+where documentation gold is 21% of the total it is the only arm scoring on it,
+and where it is 4.6% it places **last of six at 0.361**.
 
 **Graphify serves 34.5 files per query to reach 0.546**, which is the worst of
 both columns. Its results also come with the caveat that our own extractor once
@@ -61,6 +63,22 @@ interesting counter-case: less output than a bare agent while calling tools 42%
 
 **We lose indexing time, by about 22x.** Published with the work-done split
 rather than without it.
+
+---
+
+## How deep do you want to go
+
+Each level is the evidence for the one above it. Stop wherever you like.
+
+| | Level | Time |
+|---|---|---|
+| 1 | **The headline tables**, on this page and in [../README.md](../README.md) | 5 min |
+| 2 | **[arms/](arms/)** — one page per competitor: what it is, what it serves, what it is good and bad at, and every setup trap | 5 min each |
+| 3 | **[THE_LOOP.md](THE_LOOP.md)** — the method and all nine gates, each named with the failure that created it | 20 min |
+| 4 | **[../configs/arms.yaml](../configs/arms.yaml)** — every launch command, allowlisted tool and exclusion with its reason. **Read this if you think an arm was set up unfairly** | 10 min |
+| 5 | **[../configs/](../configs/)`*.PREREGISTRATION.md`** — one per scored run, each committed before its run spent anything. Check the commit dates yourself | varies |
+| 6 | **[../results/bakeoff_2026_08/](../results/bakeoff_2026_08/)** — every graded cell, with each raw response on disk beside the paths the extractor pulled from it. This is what makes level 2's trap list checkable rather than anecdotal | as long as you like |
+| 7 | **[../repro/README.md](../repro/README.md)** — per claim: what it costs to rerun, how long it takes, and which ones need credentials we cannot hand you | 5 min |
 
 ---
 
@@ -140,6 +158,12 @@ the single most useful thing adding a sixth tool produced, and it is the argumen
 for adding arms **before** publishing rather than after: an arm added afterwards
 either forces a revision or quietly never happens.
 
+**The sealed django half is what that trade costs when the breadth does not
+pay.** Documentation is 4.6% of gold there against 21% here, so the one thing
+CocoIndex is uniquely good at is almost absent while the price it pays for it is
+not, and it lands last of six. Both rows are the same tool measured the same way;
+which one you quote is a statement about the corpus, not about the tool.
+
 That same arm also **broke a finding this bench had already written down**. One
 instance carrying 18.4% of the gold had been scored 0.000 by all five arms and
 hand-checked, and was recorded as a genuine unanimous retrieval failure. CocoIndex
@@ -153,9 +177,15 @@ zeros stand exactly as measured; the generalisation drawn from them never held.
 
 | corpus | language | arms | status |
 |---|---|---:|---|
-| `django/django`, 112 instances, 70 dev / **42 sealed** | Python | 5 | **published**, sealed half evaluated once |
+| `django/django` + `cli/cli`, 112 instances, 70 dev / **42 sealed** | Python, Go | 6 | **published**, sealed half evaluated once |
 | `django/django`, 48 questions, agent loop | Python | 6 | **published**, Codex and Claude Code |
 | `mui/material-ui`, 45 instances, 15 dev / **30 sealed** | JavaScript / TypeScript | 6 | **development half graded, sealed half untouched** |
+
+CocoIndex's sealed-half row was measured on 2026-08-09, later than the other
+five, on the same instances and the same fixed gold spans with the same
+deterministic grading. Its n is 41 rather than 42: one instance served its tool
+and never answered, even queried alone, so it is named and excluded rather than
+counted as a zero.
 
 **The mui coverage row is deliberately not on this page.** The 30 sealed
 instances have never been run, and publishing a development-half figure is
@@ -182,23 +212,9 @@ result: mui is 88% `.js`/`.jsx` at every pinned commit, and its gold files are 1
 
 ---
 
-## Levels of depth
+## Disagree with any of this
 
-Stop wherever you like. Each level is the evidence for the one above it.
-
-1. **The headline tables**, on this page and in [../README.md](../README.md).
-2. **One page per competitor**, in [arms/](arms/): what it is, what it serves,
-   what it is good and bad at, and every setup trap.
-3. **The method and its gates**, in [THE_LOOP.md](THE_LOOP.md).
-4. **The arm definitions**, in [../configs/arms.yaml](../configs/arms.yaml). Every
-   launch command, every allowlisted tool, every exclusion with its reason. This
-   is the file to read if you think an arm was set up unfairly.
-5. **The pre-registrations**, `../configs/*.PREREGISTRATION.md`, each committed
-   before its run spent anything.
-6. **Graded cells and verbatim responses**, under
-   [../results/bakeoff_2026_08/](../results/bakeoff_2026_08/). Every raw response
-   is on disk beside the paths the extractor pulled out of it, which is what
-   makes level 2's trap list checkable rather than anecdotal.
-7. **[../repro/README.md](../repro/README.md)**, which says per claim what it
-   costs to reproduce, how long it takes, and which ones need credentials we
-   cannot hand you.
+Every arm definition, every exclusion with its reason, and every verbatim response
+is in this repository so that an objection can be checked rather than argued about.
+If your tool is in the field and its arm is set up wrong, fixing it is a YAML block
+and no Python. See **[../CONTRIBUTING.md](../CONTRIBUTING.md)**.

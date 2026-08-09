@@ -9,6 +9,9 @@ by hand.**
 | Index | `graphify-out/graph.json`, a flat JSON file in the tree |
 | Tools served | **10** |
 | Tools allowlisted | **7 of 10** (originally 1 of 10, which was wrong) |
+| Coverage, sealed 42 | **0.546** · precision 0.033 · **34.5 files served**, the most in the field · 3rd of six |
+| Agent loop, Codex | **-8.9%** output tokens vs bare, 7.4 tool calls · 4th of five |
+| Build, django | **141.5s** |
 | Cost exponent | 1.193 (R² 0.994) |
 
 ## The 0.012 that was really 0.539

@@ -9,8 +9,11 @@ and this page is written to be as useful to a skeptic as the other five.
 | Index | `.repowise/wiki.db` (SQLite) plus `.repowise/lancedb` (vectors) |
 | Tools served | **11** by default in single-repo mode |
 | Tools allowlisted | **7 of 11**, every exclusion named below |
-| Build, django | 366.8s with prose off, 1,058s with prose on |
-| Cost exponent | 0.906 (R² 0.968) |
+| Coverage, sealed 42 | **0.876** (`get_answer`) and **0.742** (`search_codebase`), never pooled · 1st and 2nd of six |
+| Precision | 0.087 from 19.2 files, and 0.168 from 8.2 · **precision is not our column** |
+| Agent loop, Codex | **-31.6%** output tokens vs bare, 3.8 tool calls · 1st of five |
+| Build, django | 366.8s with prose off, 1,058s with prose on · **slowest in the field** |
+| Cost exponent | 0.906 (R² 0.968), and it is sublinear **work**, not efficiency |
 
 ## Two rows, never pooled
 

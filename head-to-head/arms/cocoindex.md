@@ -1,7 +1,9 @@
 # CocoIndex Code
 
 **The sixth arm, added before publication rather than after, and it corrected two
-claims this bench had already written down.**
+claims this bench had already written down.** It is also the clearest case in the
+field of a tool whose ranking depends entirely on which corpus you ask about:
+fourth of six on JavaScript, **last of six on the sealed django half at 0.361**.
 
 | | |
 |---|---|
@@ -13,7 +15,10 @@ claims this bench had already written down.**
 | API key | **none**. Local embeddings, no per-query cost, no LLM anywhere |
 | Tools served | **1** |
 | Tools allowlisted | **1 of 1**, its full surface |
-| Cost exponent | 0.892 (R² 0.933) |
+| Coverage, sealed 42 | **0.361** · precision 0.092 · 7.1 files served · **6th of six**, and n=41, see below |
+| Agent loop | **never run.** No arm has an agent-loop number for it |
+| Non-code gold | **the only arm of six that retrieves any**, 2 of 8 on the JavaScript corpus |
+| Cost exponent | 0.892 (R² 0.933), the only sublinear arm besides ours |
 
 The version is read off the binary rather than a web page deliberately: PyPI
 showed 0.2.40 when the arm was written, and the installed build was one release
@@ -47,10 +52,16 @@ zeros stand exactly as measured; the generalisation drawn from them never held.
 **Only another arm could have caught that**, which is the whole argument for
 adding arms before publishing.
 
-**3. It places fourth of six on coverage**, and is tied with code-review-graph in
-a way this sample size cannot resolve: pooled favours one, mean-of-ratios favours
-the other, and excluding that one heavy instance they are identical. Reported as
-an artifact, per this bench's own rule.
+**3. Where it places depends on the corpus, and the two answers are different.**
+On the JavaScript corpus it is fourth of six, tied with code-review-graph in a way
+that sample size cannot resolve: pooled favours one, mean-of-ratios favours the
+other, and excluding one heavy instance they are identical. On the sealed django
+half it is **last of six at 0.361 against code-review-graph's 0.445**.
+
+The gap between those two placements is the non-code trade below. The JavaScript
+corpus carries 21% documentation gold, which only CocoIndex reaches; the django
+half carries 4.6%, so the thing it is uniquely good at is almost absent there
+while the price it pays for that breadth is not.
 
 ## Setup traps, and the first one is serious
 
@@ -85,11 +96,19 @@ it is recorded in the result rather than in the arm's index command.
 before answering, billing a rebuild to the cell and making the index a variable
 mid-run. Pinned false, and every cell records the arguments actually sent.
 
-**And a second rebuild the pre-registration did not know about:** `ccc mcp`
-spawns a background index at startup, unconditionally, with no flag to suppress
-it. On a worktree pinned to its commit that walk finds nothing changed, so it
-cannot alter what is retrieved, but it is machine time billed to the cell. Any
-timed CocoIndex cell has to account for it rather than discover it.
+**And a second rebuild, which is the more expensive one:** `ccc mcp` spawns a
+background index at startup, unconditionally, with no flag to suppress it. On a
+worktree pinned to its commit that walk finds nothing changed, so it cannot
+change *what* is retrieved. It can stop retrieval happening at all.
+
+**Run concurrently, that startup reindex starves the `search` call.** On the
+django corpus at six workers, **11 of 42 cells returned no answer whatsoever**
+and had to be re-queried one at a time; one instance could not be answered even
+alone on an idle machine under a 900s ceiling, and is excluded from its row. The
+other five arms ran the same harness at the same worker counts without needing a
+serial pass. **CocoIndex is the only arm in this field that has to be queried
+serially to be measured**, and that is a property of the tool rather than of the
+bench.
 
 **4. A killed build must be cold-reset, and the daemon holds the database.**
 `ccc index` updates incrementally when `.cocoindex_code/` exists, so restarting
@@ -135,8 +154,16 @@ by file, its ranked list is shorter than the limit. That is the arm's own
 behaviour and what an agent would see, not a handicap, but it means a naive
 comparison of "files returned" against the other arms is not like for like.
 
-**Median coverage 0.000** on the corpus measured, so its mean is carried by a few
-instances.
+**It is bimodal, and the mean flatters it.** On the sealed django half, 20 of 41
+instances score exactly 0.000 and 11 score exactly 1.000, for a median of 0.200
+against a mean of 0.361. On the JavaScript corpus the median is 0.000 outright.
+It either finds the file or it is nowhere near it, which is what a single ranked
+chunk list under a `limit` produces.
+
+**Precision does not compensate for the short list.** It serves 7.1 files per
+query, second fewest in the field, but at 0.092 precision, fourth of six. Serving
+few files is only a virtue when they are the right ones: code-review-graph
+reaches 0.445 from 5.4 files at 0.240 precision.
 
 ## What this bench cannot say about it
 
@@ -146,15 +173,32 @@ gold spans. A token claim needs an agent harness, and every token column this
 bench has produced under Claude Code failed its own control. **No coverage number
 here is a verdict on that claim in either direction.**
 
-It has also only been run on one corpus, so it carries one row where every other
-arm carries two. That is a scope choice taken before any coverage was graded, not
-an affordability refusal.
+Its django row is **n=41 against every other arm's n=42**, so it is not a
+like-for-like 42-instance measurement. The missing instance served its tool and
+never answered, so it is named and excluded rather than counted as a zero;
+counting it would put the row at 0.353 instead of 0.361, which is to say the
+exclusion runs in CocoIndex's favour.
+
+Its django row is also **dated later than the other five**, measured 2026-08-09
+against their 2026-08-02 to 2026-08-06. Same sealed instances, same fixed gold
+spans, same deterministic grading and no judge, which is why the comparison
+holds.
 
 ## Where its numbers are
+
+JavaScript corpus:
 
 - Gate, including the two-tree binding proof:
   [`../../results/bakeoff_2026_08/layera_mui_dev15/gate__cocoindex.json`](../../results/bakeoff_2026_08/layera_mui_dev15/gate__cocoindex.json)
 - Raw responses, verbatim: `../../results/bakeoff_2026_08/layera_mui_dev15/responses/`
 - Builds: [`../../results/bakeoff_2026_08/layera_cocoindex_mui/prebuild.json`](../../results/bakeoff_2026_08/layera_cocoindex_mui/prebuild.json)
 - Pre-registration: `../../configs/layera_cocoindex.PREREGISTRATION.md`
-- Arm definition: [`../../configs/arms.yaml`](../../configs/arms.yaml), `cocoindex`
+
+Sealed django half:
+
+- Graded cells: `../../results/bakeoff_2026_08/rung8/graded__cocoindex-sealed42__cocoindex.jsonl`
+- Per-cell records, including the `cwd` each server launched in and the arguments
+  actually sent: `../../results/bakeoff_2026_08/rung8/cells/cocoindex-sealed42/`
+- Pre-registration: `../../configs/layera_cocoindex_contextbench.PREREGISTRATION.md`
+
+Arm definition: [`../../configs/arms.yaml`](../../configs/arms.yaml), `cocoindex`

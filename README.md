@@ -64,7 +64,7 @@ them exists because something above got past its predecessor.
 | What | Against | Result | Where |
 |---|---|---|---|
 | Finding the files a fix touches | CodeGraph, Graphify, code-review-graph, cocoindex | **we win**, 0.876 vs 0.610, n=42 sealed, p=0.00004 | [§1](#1-head-to-head-against-the-agent-context-field) · [head-to-head/](head-to-head/README.md) |
-| Work saved in a real agent loop | the same field plus Serena and a bare agent | **we win**, -31.6% output tokens, n=43, p<0.0001 | [§2](#2-work-saved-in-a-real-agent-loop) |
+| Work saved in a real agent loop | the same field plus Serena and a bare agent | **we win**, -31.6% output tokens, n=43, p<0.0001, on all three agent harnesses tried | [§2](#2-work-saved-in-a-real-agent-loop) |
 | Does the health score predict real bugs | CodeScene | **we win** on recall, effort-aware ranking and defect density, p=0.003 | [§3](#3-does-the-health-score-predict-real-bugs) |
 | Cross-function performance bugs | clippy, ruff PERF, ESLint, golangci-lint | **0 linter hits vs 557 findings** | [§4](#4-performance-bugs-a-file-local-linter-cannot-see) |
 | Loading one commit's context | naive file reads, `git diff` | 393 tokens vs 13,984, **35.6x** pooled | [§5](#5-the-easy-number-loading-one-commits-context) |
@@ -84,8 +84,9 @@ measures only that, and **grading is deterministic**: ContextBench ships gold
 file spans, a tool either returns them or it does not, and no LLM judge is
 involved anywhere in the number.
 
-112 instances of `django/django`, split **70 development / 42 sealed** by
-instance id and pinned before any work began. The 42 were evaluated once.
+112 instances of `django/django` and `cli/cli`, split **70 development / 42
+sealed** by instance id and pinned before any work began. The sealed 42 are 30
+Python and 12 Go, at 42 distinct base commits, and were evaluated once.
 
 | Tool | File coverage | n | Precision | Files served |
 |---|---:|---:|---:|---:|
@@ -94,6 +95,12 @@ instance id and pinned before any work began. The 42 were evaluated once.
 | CodeGraph | 0.610 | 42 | 0.093 | 14.0 |
 | Graphify | 0.546 | 42 | 0.033 | 34.5 |
 | code-review-graph | 0.445 | 42 | 0.240 | 5.4 |
+| cocoindex | 0.361 | 41 | 0.092 | 7.1 |
+
+cocoindex's row was measured later than the other five, on the same instances and
+gold spans with the same deterministic grading, and its n is 41: one instance
+served its tool and never answered, even queried alone, so it is named and
+excluded rather than counted as a zero.
 
 Per instance against CodeGraph: `get_answer` **19 wins, 1 loss, 22 ties, sign
 test p = 0.00004**; `search_codebase` **13 wins, 3 losses, 26 ties, p = 0.021**.
@@ -202,6 +209,39 @@ deferral is part of the story and not all of it. Its token column **failed its
 own control** (-9.3% when the tool was called against -10.7% when it was not), so
 no token claim comes off that run for any tool, ours included.
 [`results/bakeoff_2026_08/rung6/`](results/bakeoff_2026_08/rung6/).
+
+### Third harness: a local 8B model, zero inference cost
+
+`qwen3:8b` under Ollama, driven by opencode, on the same 15 django questions drawn
+with the same seed. **This is the one row in this repository a third party can
+reproduce with no account and no API key at all.**
+
+| Row | Used it | Output tokens | vs bare | Leaner on | p | Wall clock | vs bare |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **repowise, full surface** | **15 / 15** | **1,319** | **-40.8%** | **15 of 15** | **0.00006** | **117s** | **-27.5%** |
+| **repowise, local-only tools** | **15 / 15** | **1,172** | **-47.9%** | **15 of 15** | **0.00006** | **96s** | **-41.5%** |
+| *bare agent (control)* | 0 / 15 | 2,336 | baseline | n/a | n/a | 171s | baseline |
+
+**Two rows, never combined.** `get_answer` writes its answer with a hosted model, so
+a row using it is not a local-only result. The second row switches it off and leaves
+only tools that run against the local index. The restriction was verified rather than
+assumed: instructed directly and repeatedly to call `get_answer`, that agent could
+not reach it in any of its 15 cells.
+
+**The mechanism inverts.** repowise roughly doubles the tokens fed in on a single
+step while cutting steps from 3.3 to 2.1. Reading a large payload once is cheap on a
+GPU; generating text token-by-token across several rounds is not. So a bigger payload
+and a shorter loop is a straight win here, where on a hosted harness a big payload is
+a cost.
+
+**And this run is also where the quality column was declined, deliberately.** The full
+surface scored +1.32 on a 0 to 10 judge scale, above the 0.69 noise floor, but the
+win-loss count is 10 to 5 at p = 0.30 and dropping the single best question leaves
++0.99. The local-only row is **+0.20, a null**. Splitting the full-surface cells by
+whether `get_answer` actually ran gives **+3.30 when called (n=4), +0.60 when not
+(n=11), +0.20 pure-local (n=15)**: the gain is monotonic in how much a *hosted* model
+did. A two-condition design would have published +1.32 as a local-model number, which
+is exactly the shape of error this repository exists to catch.
 
 ---
 
@@ -385,6 +425,7 @@ Full prerequisites are in [§7](#swe-qa-in-detail) below.
 ```
 repowise-bench/
 ├── README.md                         this file: the index and the findings
+├── CONTRIBUTING.md                   how to add an arm, dispute a number, or add a benchmark
 ├── requirements.txt                  shared Python dependencies
 │
 ├── head-to-head/                     the 2026-08 bake-off against the field
@@ -440,25 +481,25 @@ cost-caching effect, superseded by [flask v3](BENCHMARK_REPORT_FLASK_V3.md).
 
 ---
 
-## Adding a benchmark
+## Contributing
 
-Each benchmark gets its own directory:
+**This benchmark is meant to be argued with**, and the most valuable contribution is
+a number of ours that turns out to be wrong. You do not need to run anything;
+reading and disagreeing counts.
 
-1. **Create** `repowise-bench/<benchmark-name>/`
-2. **Add a `README.md`** with methodology, headline numbers and reproduction steps
-3. **Add a `run_benchmark.py`** runnable from within the directory
-4. **Write results to `../results/<benchmark_name>_{variant}/`**
-5. **Add a row** to the table at the top of this file
+- **Your tool is in the field and its arm is set up wrong?** That is the fix we most
+  want, and it needs no Python: a YAML block dropped in
+  [`configs/arms.d/`](configs/arms.d/README.md), which merges over the tracked
+  registry. Four arms here have scored a clean 0.000 purely because we guessed one
+  of their setup steps wrong.
+- **Think one of our numbers is wrong?** Open an issue. Every verbatim response is on
+  disk beside what the extractor pulled out of it, so this is checkable rather than a
+  matter of trust.
+- **Want to add a whole benchmark?** One directory, one `README.md`, one
+  `run_benchmark.py`, one row in the table at the top of this file.
 
-Shared repos and indexes are reusable from `../repos/` and `../indexes/`. New
-Python dependencies go in the top-level `requirements.txt`.
-
-**Adding a competing tool** is different and cheaper: it is a YAML block in
-[`configs/arms.yaml`](configs/arms.yaml), no Python and no runner change. Drop
-files into `configs/arms.d/*.yaml` and they merge over it, so a third party can
-add an arm without editing a tracked file.
-[head-to-head/THE_LOOP.md](head-to-head/THE_LOOP.md) says what a fair arm
-definition has to contain.
+Full guide, including the eight levels of depth to read at and the rules a
+contribution has to meet: **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ---
 

@@ -8,6 +8,8 @@
 | Index | `.codegraph/codegraph.db`, SQLite, written into the tree |
 | Tools served | **1** |
 | Tools allowlisted | **1 of 1**, its full surface |
+| Coverage, sealed 42 | **0.610** · precision 0.093 · 14.0 files served · **2nd of six** |
+| Agent loop, Codex | **-24.4%** output tokens vs bare, 4.0 tool calls · **2nd of five** |
 | Build, django | **16.4s** |
 | Cost exponent | 1.100 (R² 0.999) |
 
