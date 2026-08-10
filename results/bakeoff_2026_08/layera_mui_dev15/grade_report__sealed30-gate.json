@@ -1,0 +1,324 @@
+{
+  "tag": "sealed30-gate",
+  "arms": [
+    "repowise",
+    "repowise-search",
+    "codegraph",
+    "crg",
+    "graphify"
+  ],
+  "n_instances": 1,
+  "instance_ids": [
+    "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff"
+  ],
+  "workers": 1,
+  "timings_publishable": false,
+  "gate_trees": [
+    {
+      "arm": "repowise",
+      "task": "cbmui_c2e9e5ff",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-c2e9e5ff-material-ui",
+      "owner": "repowise-layera",
+      "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "stamp": true,
+      "build_seconds": 416.1,
+      "index_vector_dim": 1536,
+      "ok": true
+    },
+    {
+      "arm": "repowise-search",
+      "task": "cbmui_c2e9e5ff",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-c2e9e5ff-material-ui",
+      "owner": "repowise-layera",
+      "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "stamp": true,
+      "build_seconds": 416.1,
+      "index_vector_dim": 1536,
+      "ok": true
+    },
+    {
+      "arm": "codegraph",
+      "task": "cbmui_c2e9e5ff",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-codegraph-cbmui-c2e9e5ff-material-ui",
+      "owner": "codegraph",
+      "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "stamp": true,
+      "build_seconds": 43.1,
+      "ok": true
+    },
+    {
+      "arm": "crg",
+      "task": "cbmui_c2e9e5ff",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-code-review-graph-cbmui-c2e9e5ff-material-ui",
+      "owner": "code-review-graph",
+      "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "stamp": true,
+      "build_seconds": 110.4,
+      "ok": true
+    },
+    {
+      "arm": "graphify",
+      "task": "cbmui_c2e9e5ff",
+      "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-graphify-cbmui-c2e9e5ff-material-ui",
+      "owner": "graphify",
+      "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+      "stamp": true,
+      "build_seconds": 200.6,
+      "ok": true
+    }
+  ],
+  "noncode_index_proof": [
+    {
+      "arm": "repowise",
+      "task": "cbmui_c2e9e5ff",
+      "index": "repowise-layera",
+      "readable": true,
+      "surface": "wiki_pages.target_path",
+      "surfaces": {
+        "wiki_pages.target_path": {
+          "total_files": 1032,
+          "md": 0,
+          "json": 0
+        },
+        "wiki_symbols.file_path": {
+          "total_files": 998,
+          "md": 0,
+          "json": 0
+        },
+        "health_file_metrics.file_path": {
+          "total_files": 7033,
+          "md": 310,
+          "json": 26
+        }
+      },
+      "total_files": 1032,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "codegraph",
+      "task": "cbmui_c2e9e5ff",
+      "index": "codegraph",
+      "readable": true,
+      "surface": "files.path",
+      "surfaces": {
+        "files.path": {
+          "total_files": 6693,
+          "md": 0,
+          "json": 0
+        }
+      },
+      "total_files": 6693,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "crg",
+      "task": "cbmui_c2e9e5ff",
+      "index": "code-review-graph",
+      "readable": true,
+      "surface": "nodes.file_path",
+      "surfaces": {
+        "nodes.file_path": {
+          "total_files": 6688,
+          "md": 0,
+          "json": 0
+        }
+      },
+      "total_files": 6688,
+      "md": 0,
+      "json": 0
+    },
+    {
+      "arm": "graphify",
+      "task": "cbmui_c2e9e5ff",
+      "index": "graphify",
+      "readable": true,
+      "surface": "nodes[].source_file",
+      "total_files": 7023,
+      "md": 311,
+      "json": 24
+    }
+  ],
+  "query_seconds": 95.4,
+  "proof_of_life": {
+    "repowise": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 17855,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0,
+      "answer_degraded": [
+        null
+      ]
+    },
+    "repowise-search": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 6661,
+      "embedder_degraded": 0,
+      "retrieval_degraded": 0,
+      "answer_degraded": [
+        null
+      ]
+    },
+    "codegraph": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 21642
+    },
+    "crg": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 11150
+    },
+    "graphify": {
+      "cells": 1,
+      "ok": 1,
+      "statuses": [
+        "ok"
+      ],
+      "empty_responses": 0,
+      "is_error": 0,
+      "mean_chars": 11405
+    }
+  },
+  "longpaths": {
+    "base": "C:\\Users\\ragha\\Desktop\\bakeoff\\_cbcache\\github.com__mui__material-ui",
+    "present": true,
+    "core.longpaths": "true"
+  },
+  "prewarm": {
+    "rc": 0,
+    "n": 1,
+    "failed": []
+  },
+  "selftest": {
+    "instance_id": "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff",
+    "gold": [
+      "docs/src/pages/demos/badges/badges.md",
+      "packages/material-ui/src/Badge/Badge.d.ts",
+      "packages/material-ui/src/Badge/Badge.js",
+      "pages/api/badge.md",
+      "pages/demos/badges.js"
+    ],
+    "perfect": {
+      "rc": 0,
+      "file_coverage": 1.0,
+      "evaluation": "1/1 instances"
+    },
+    "wrong": {
+      "rc": 0,
+      "file_coverage": 0.0,
+      "evaluation": "1/1 instances"
+    },
+    "discriminates": true
+  },
+  "graded": {
+    "repowise-search": {
+      "n": 1,
+      "rc": 0,
+      "evaluation": "1/1 instances",
+      "graded_rows": 1,
+      "valid": 1,
+      "file_coverage_mean": 0.4,
+      "file_coverage_median": 0.4,
+      "file_precision_mean": 0.2,
+      "file_precision_median": 0.2,
+      "mean_pred_files": 10.0,
+      "median_pred_files": 10,
+      "per_instance": {
+        "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff": 0.4
+      }
+    },
+    "repowise": {
+      "n": 1,
+      "rc": 0,
+      "evaluation": "1/1 instances",
+      "graded_rows": 1,
+      "valid": 1,
+      "file_coverage_mean": 0.4,
+      "file_coverage_median": 0.4,
+      "file_precision_mean": 0.1,
+      "file_precision_median": 0.1,
+      "mean_pred_files": 20.0,
+      "median_pred_files": 20,
+      "per_instance": {
+        "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff": 0.4
+      }
+    },
+    "codegraph": {
+      "n": 1,
+      "rc": 0,
+      "evaluation": "1/1 instances",
+      "graded_rows": 1,
+      "valid": 1,
+      "file_coverage_mean": 0.2,
+      "file_coverage_median": 0.2,
+      "file_precision_mean": 0.0625,
+      "file_precision_median": 0.0625,
+      "mean_pred_files": 16.0,
+      "median_pred_files": 16,
+      "per_instance": {
+        "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff": 0.2
+      }
+    },
+    "graphify": {
+      "n": 1,
+      "rc": 0,
+      "evaluation": "1/1 instances",
+      "graded_rows": 1,
+      "valid": 1,
+      "file_coverage_mean": 0.2,
+      "file_coverage_median": 0.2,
+      "file_precision_mean": 0.0294,
+      "file_precision_median": 0.0294,
+      "mean_pred_files": 34.0,
+      "median_pred_files": 34,
+      "per_instance": {
+        "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff": 0.2
+      }
+    },
+    "crg": {
+      "n": 1,
+      "rc": 0,
+      "evaluation": "1/1 instances",
+      "graded_rows": 1,
+      "valid": 1,
+      "file_coverage_mean": 0.2,
+      "file_coverage_median": 0.2,
+      "file_precision_mean": 0.2,
+      "file_precision_median": 0.2,
+      "mean_pred_files": 5.0,
+      "median_pred_files": 5,
+      "per_instance": {
+        "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff": 0.2
+      }
+    }
+  }
+}

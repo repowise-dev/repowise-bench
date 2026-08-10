@@ -1,0 +1,78 @@
+{
+  "arm": "repowise-search",
+  "task": "cbmui_c2e9e5ff",
+  "instance_id": "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff",
+  "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+  "gate": {
+    "arm": "repowise-search",
+    "task": "cbmui_c2e9e5ff",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-c2e9e5ff-material-ui",
+    "owner": "repowise-layera",
+    "head": "20cd3e33ae60e4970653716b7732212e93bab38c",
+    "base_commit": "20cd3e33ae60e4970653716b7732212e93bab38c",
+    "stamp": true,
+    "build_seconds": 416.1,
+    "index_vector_dim": 1536,
+    "ok": true
+  },
+  "cell_seconds": 6.1,
+  "response_capture": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\results\\bakeoff_2026_08\\layera_mui_dev15\\responses\\sealed30-gate\\repowise-search__cbmui_c2e9e5ff.json",
+  "query": {
+    "arm": "repowise-search",
+    "instance_id": "SWE-PolyBench__typescript__evolution__feature__c2e9e5ff",
+    "repo": "mui/material-ui",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\lb-repowise-layera-cbmui-c2e9e5ff-material-ui",
+    "command": "C:\\Users\\ragha\\Desktop\\repowise-layerb2\\.venv\\Scripts\\repowise.exe",
+    "cwd": null,
+    "served_tools": [
+      "get_answer",
+      "get_change_risk",
+      "get_context",
+      "get_dead_code",
+      "get_health",
+      "get_overview",
+      "get_risk",
+      "get_symbol",
+      "get_why",
+      "list_repos",
+      "search_codebase"
+    ],
+    "served_count": 11,
+    "warm_seconds": 1.2,
+    "tool": "search_codebase",
+    "tool_args": {
+      "limit": 10
+    },
+    "status": "ok",
+    "isError": false,
+    "chars": 6661,
+    "ranked": [
+      "packages/material-ui/src/Badge/Badge.d.ts",
+      "packages/material-ui/src/Badge/index.js",
+      "docs/src/pages/demos/badges/CustomizedBadge.js",
+      "docs/src/pages/demos/badges/SimpleBadge.js",
+      "packages/material-ui/src/Avatar/Avatar.js",
+      "packages/material-ui/src/Hidden/Hidden.js",
+      "packages/material-ui/src/Badge/Badge.js",
+      "docs/src/modules/components/Demo.js",
+      "packages/material-ui/src/Hidden/HiddenJs.js",
+      "packages/material-ui/src/Hidden/HiddenCss.js"
+    ],
+    "n_ranked": 10,
+    "embedder": null,
+    "embedder_degraded": null,
+    "retrieval_degraded": null,
+    "server_stderr_chars": 1620,
+    "server_stderr": "              powershell.exe(106676),                           \r\n                             claude.exe(68984)                                 \r\n                    INFO     repowise MCP: initialising          _server.py:473\r\n                             database\u2026                                         \r\n                    INFO     repowise MCP: ready (vector stores  _server.py:495\r\n                             loading in background)                            \r\n                    INFO     Processing request of type           server.py:733\r\n                             ListToolsRequest                                  \r\n                    INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/10/26 00:35:28] INFO     Processing request of type           server.py:733\r\n                             CallToolRequest                                   \r\n[08/10/26 00:35:30] INFO     HTTP Request: POST                 _client.py:1025\r\n                             https://api.openai.com/v1/embeddin                \r\n                             gs \"HTTP/1.1 200 OK\"                              \r\n",
+    "answer_degraded": null,
+    "confidence": null,
+    "gold_files": [
+      "docs/src/pages/demos/badges/badges.md",
+      "packages/material-ui/src/Badge/Badge.d.ts",
+      "packages/material-ui/src/Badge/Badge.js",
+      "pages/api/badge.md",
+      "pages/demos/badges.js"
+    ],
+    "gold_hit_rank": 1
+  }
+}

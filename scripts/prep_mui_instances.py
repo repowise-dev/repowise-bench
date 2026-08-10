@@ -18,8 +18,24 @@ clones. mui has 24,715 reachable commits and the staged tree's `.git` is a
 96-byte pointer, so fifteen instances share one object store instead of
 duplicating history fifteen times.
 
-THE SEALED 30 ARE NEVER STAGED. The split is read from `configs/mui_split.json`
-and the intersection is asserted empty before anything is written.
+BY DEFAULT THE SEALED 30 ARE NEVER STAGED. The split is read from
+`configs/mui_split.json` and the intersection is asserted empty before anything
+is written.
+
+`--sealed` IS THE ONE WAY PAST THAT, AND IT IS AN ACT, NOT A CONVENIENCE.
+The sealed 30 are evaluated ONCE, at publication, and whatever comes back gets
+published (`00_START_HERE.md`, the overfitting protocol, item 1). So the flag
+does not disable the guard, it swaps it: with `--sealed` the staging set must be
+EXACTLY the sealed list and must not intersect dev or smoke, which is the same
+assertion pointed the other way. Nothing here is reversible by re-running it,
+because the seal is spent by the reading, not by the checkout.
+
+ONE tasks.json, AND IT IS SHARED. Both `prebuild_mui_indexes.py` and
+`grade_mui_layera.py` read `data/cb_mui/swe_qa/tasks.json` at a fixed path, so
+staging a new split OVERWRITES the previous one and a config naming the old
+split silently resolves to the new tasks. A per-split copy is written beside it
+so the previous draw is recoverable; the canonical file is still the one the
+harness reads, and which split is live is a property of what was staged last.
 """
 from __future__ import annotations
 
@@ -73,15 +89,35 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true",
                     help="stage only the 2 smoke instances, not all 15")
+    ap.add_argument("--sealed", action="store_true",
+                    help="UNSEAL: stage the held-out 30. Spent once, and "
+                         "whatever it returns is published.")
     args = ap.parse_args()
+    if args.smoke and args.sealed:
+        print("FAIL: --smoke and --sealed name different sets")
+        return 1
 
     split = json.loads(SPLIT.read_text(encoding="utf-8"))
-    want = split["smoke"] if args.smoke else split["dev"]
     sealed = set(split["sealed"])
-    if set(want) & sealed:
-        print("FAIL: the staging set intersects the sealed 30")
-        return 1
-    print(f"staging {len(want)} instances, sealed {len(sealed)} untouched")
+    if args.sealed:
+        want = split["sealed"]
+        # The guard, pointed the other way: the unsealed run must be the sealed
+        # list and nothing else. A dev or smoke instance leaking in here would
+        # put a tuned-against instance inside the held-out number.
+        held_out_only = set(want) - set(split["dev"]) - set(split["smoke"])
+        if set(want) != sealed or held_out_only != sealed:
+            print("FAIL: the --sealed staging set is not exactly the sealed 30")
+            return 1
+        split_name = "contextbench_mui_sealed"
+        print(f"UNSEALING {len(want)} held-out instances. This is a FIRST and "
+              f"ONLY touch; whatever it measures gets published.")
+    else:
+        want = split["smoke"] if args.smoke else split["dev"]
+        if set(want) & sealed:
+            print("FAIL: the staging set intersects the sealed 30")
+            return 1
+        split_name = "contextbench_mui_dev"
+        print(f"staging {len(want)} instances, sealed {len(sealed)} untouched")
 
     df = pd.read_parquet(PARQUET).set_index("instance_id")
     tasks = []
@@ -96,7 +132,7 @@ def main() -> int:
             "repo": f"cbmui-{sid}/material-ui",
             "upstream_repo": row["repo"],
             "base_commit": row["base_commit"],
-            "split_name": "contextbench_mui_dev",
+            "split_name": split_name,
             "problem_statement": row["problem_statement"],
             "gold_files": gold,
             "gold_spans": row["gold_context"],
@@ -105,8 +141,14 @@ def main() -> int:
         print(f"  {sid} @ {row['base_commit'][:10]} gold={len(gold):>3} -> {tree}")
 
     TASKS.parent.mkdir(parents=True, exist_ok=True)
-    TASKS.write_text(json.dumps(tasks, indent=2, default=str), encoding="utf-8")
+    payload = json.dumps(tasks, indent=2, default=str)
+    TASKS.write_text(payload, encoding="utf-8")
+    # Per-split copy, so overwriting the shared path does not destroy the draw a
+    # previous run was graded against.
+    keep = TASKS.parent / f"tasks__{split_name}.json"
+    keep.write_text(payload, encoding="utf-8")
     print(f"\nwrote {len(tasks)} tasks -> {TASKS}")
+    print(f"and a per-split copy -> {keep}")
     return 0
 
 

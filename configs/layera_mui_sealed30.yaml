@@ -1,0 +1,107 @@
+# Layer A on mui: THE SEALED 30. Index builds only. No agent, no judge, no grading.
+#
+# Copied from `layera_mui_dev15.yaml` 2026-08-09, changing only the three names
+# that keep this run's artifacts off the dev half's: `experiment_name`,
+# `paths.results_dir` and `paths.logs_dir`. The dev-15 config is NOT edited and
+# NOT overwritten; it stays the record of what produced the dev row.
+#
+# Pre-registration: configs/layera_mui.PREREGISTRATION.md (section 8.5 is the
+# clause this run spends).
+# Dev-half result:  local-stash/competitive-proof/50-results/layera-mui/RESULT.md
+# This run:         local-stash/competitive-proof/50-results/layera-mui-sealed30/RESULT.md
+#
+# THIS IS THE UNSEALING RUN, AND IT IS SPENT ONCE.
+# The 30 held-out instances are evaluated a single time, at publication, and
+# whatever comes back gets published. Nothing measured here may be used to tune
+# anything: a fix validated on these instances would turn the held-out number
+# into a development number retroactively, which is the exact failure the
+# overfitting protocol exists to prevent. Findings go to `OSS_FINDINGS.md`
+# unvalidated, and any fix is validated on `svelte` or `vue-element-admin`.
+#
+# STAGING IS A SEPARATE, DELIBERATE ACT:
+#   python scripts/prep_mui_instances.py --sealed
+# The default guard refuses any staging set that intersects the sealed list;
+# `--sealed` swaps it for the assertion that the set IS the sealed list. Staging
+# overwrites the shared `data/cb_mui/swe_qa/tasks.json`, so after this runs the
+# dev-15 config ALSO resolves to these 30 tasks. Per-split copies are written
+# beside it (`tasks__contextbench_mui_{dev,sealed}.json`); restaging is how you
+# go back, not editing this file.
+#
+# WHAT THE CENSUS SAYS ABOUT THIS DRAW, measured before a single build
+# (distinct gold FILES, not spans, per the cocoindex correction):
+#   193 distinct gold files, median 2 per instance, 14 of 30 single-gold-file
+#   19 non-code (.md/.json) = 9.8%, against 21% on the dev 15
+#   53 .tsx gold files across 6 instances, against ZERO on the dev 15
+#   one instance (`6cb88b18`) carries 116 of the 193, which is 60.1%
+# The .tsx line matters: the hazard the mui arc was written to catch was
+# untestable on the dev draw and IS testable here. The 60.1% line matters the
+# other way: per-instance coverage averaged over 30 is robust to it, any pooled
+# or micro-averaged figure is not, so the mean and median are reported side by
+# side exactly as the dev half reported them.
+#
+# Run (through the launcher, which sets the environment and detaches):
+#   powershell -ExecutionPolicy Bypass -File scripts/run_mui_sealed30.ps1
+#
+# OPENAI_API_KEY IS NOT OPTIONAL. `repowise init` does not read it from
+# `.repowise/.env` and nothing bridges it in; both repowise builds in the mui
+# smoke died at ~3.4s without it. The loud failure is the good outcome. The bad
+# one is an 8-dimension mock index that scores as a tool which cannot retrieve,
+# which is finding D13 and is why the grader asserts `embedder_live` and
+# `index_vector_dim: 1536` on every repowise cell before anything is scored.
+
+experiment_name: "layera_mui_sealed30"
+
+arms_file: null
+arms_dir: null
+
+benchmarks:
+  swe_qa:
+    enabled: true
+    data_dir: "./data/cb_mui"
+
+# THE SAME FIVE ARMS AS THE DEV HALF, and the set is not re-litigated here.
+# The pre-registration permits a narrower set on measured build cost, with
+# `repowise` and `codegraph` retained unconditionally and `code-review-graph`
+# deferred first. The dev half exercised no deferral and neither does this one:
+# a held-out row that scores fewer arms than the development row is not the same
+# table, and the whole point of the sealed half is that it is comparable.
+#
+# `repowise-layera`, NOT `repowise`. The latter resolves through
+# `shares_index_with` to the full-prose Layer B index; the mui smoke measured
+# that mistake at 66 LLM calls and $0.1671 before catching it and had to retract
+# four readings.
+#
+# cocoindex is NOT here. It builds through `layera_cocoindex_mui.yaml` as its own
+# one-arm config, exactly as it did on the dev 15, and it is owed on this half
+# too. Recorded as owed rather than silently dropped.
+arms:
+  - "repowise-layera"
+  - "codegraph"
+  - "graphify"
+  - "code-review-graph"
+  - "serena"
+
+repowise:
+  binary: "repowise"
+  index_dir: "./indexes"
+  provider: "openai"
+  doc_model: "gpt-5.4-nano"
+  embedder: "openai"
+  # NOT assume_indexed. These trees are freshly staged at their own base_commit
+  # and carry no index; assume_indexed against an unindexed tree is an arm
+  # querying nothing, which scores as a tool that cannot retrieve rather than as
+  # a setup error.
+  assume_indexed: false
+
+paths:
+  results_dir: "./results/bakeoff_2026_08/layera_mui_sealed30"
+  repos_dir: "C:/Users/ragha/Desktop/bakeoff/_cbmui_src"
+  logs_dir: "./logs/layera_mui_sealed30"
+  trees_dir: null
+
+parallelism:
+  # ONE. Builds are the measurement here, and concurrent builds contend on
+  # exactly the number being measured (finding E1, 65% inflation from a live
+  # process pool; Layer A section B measured the arm-specific range at 1.03x to
+  # 3.31x, which is not correctable after the fact).
+  max_workers: 1
