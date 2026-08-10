@@ -30,6 +30,12 @@ baseline:
 
 test_env:
   python: C:\Users\ragha\Desktop\bakeoff\se-venv\Scripts\python.exe
+  # Given to every arm verbatim in the system prompt. An arm that had to
+  # discover the test command for itself would differ from one that did not by
+  # something other than its treatment, and the bench venv deliberately does
+  # not have `rich` installed, so a bare `pytest` off PATH is not equivalent.
+  command_display: >-
+    C:\Users\ragha\Desktop\bakeoff\se-venv\Scripts\python.exe -m pytest -q
   # rich/ sits at the repo root, so pytest's rootdir insertion imports the tree
   # under test. The bench venv deliberately does NOT have rich installed.
   env:
