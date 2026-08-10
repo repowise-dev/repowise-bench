@@ -1,0 +1,90 @@
+﻿diff --git a/rich/__init__.py b/rich/__init__.py
+index 3edd12e0..a34b692b 100644
+--- a/rich/__init__.py
++++ b/rich/__init__.py
+@@ -15,8 +15,8 @@ _console: Optional["Console"] = None
+ 
+ try:
+     _IMPORT_CWD = os.path.abspath(os.getcwd())
+-except FileNotFoundError:
+-    # Can happen if the cwd has been deleted
++except OSError:
++    # Can happen if the cwd has been deleted, or is unreadable
+     _IMPORT_CWD = ""
+ 
+ 
+diff --git a/rich/ansi.py b/rich/ansi.py
+index 7bbcb0bf..d8485b9a 100644
+--- a/rich/ansi.py
++++ b/rich/ansi.py
+@@ -133,7 +133,7 @@ class AnsiDecoder:
+             Text: Marked up Text.
+         """
+         for line in re.split(r"(?<=\n)", terminal_text):
+-            yield self.decode_line(line.rstrip("\n"))
++            yield self.decode_line(line.rstrip("\n").removesuffix("\r"))
+ 
+     def decode_line(self, line: str) -> Text:
+         """Decode a line containing ansi codes.
+diff --git a/rich/highlighter.py b/rich/highlighter.py
+index df28048f..0d6e0690 100644
+--- a/rich/highlighter.py
++++ b/rich/highlighter.py
+@@ -82,7 +82,7 @@ class ReprHighlighter(RegexHighlighter):
+ 
+     base_style = "repr."
+     highlights: ClassVar[Sequence[str]] = [
+-        r"(?P<tag_start><)(?P<tag_name>[-\w.:|]*)(?P<tag_contents>[\w\W]*)(?P<tag_end>>)",
++        r"(?P<tag_start><)(?P<tag_name>[-\w.:|]*)(?P<tag_contents>(?:[^<>]|<[^>]*>)*)(?P<tag_end>>)",
+         r'(?P<attrib_name>[\w_]{1,50})=(?P<attrib_value>"?[\w_]+"?)?',
+         r"(?P<brace>[][{}()])",
+         _combine_regex(
+diff --git a/rich/progress.py b/rich/progress.py
+index c2de125a..351823e5 100644
+--- a/rich/progress.py
++++ b/rich/progress.py
+@@ -118,6 +118,7 @@ def track(
+     update_period: float = 0.1,
+     disable: bool = False,
+     show_speed: bool = True,
++    expand: bool = False,
+ ) -> Iterable[ProgressType]:
+     """Track progress by iterating over a sequence.
+ 
+@@ -139,6 +140,7 @@ def track(
+         update_period (float, optional): Minimum time (in seconds) between calls to update(). Defaults to 0.1.
+         disable (bool, optional): Disable display of progress.
+         show_speed (bool, optional): Show speed if total isn't known. Defaults to True.
++        expand (bool, optional): Expand the progress bar to the full available width. Defaults to False.
+     Returns:
+         Iterable[ProgressType]: An iterable of the values in the sequence.
+ 
+@@ -150,6 +152,7 @@ def track(
+     columns.extend(
+         (
+             BarColumn(
++                bar_width=None if expand else 40,
+                 style=style,
+                 complete_style=complete_style,
+                 finished_style=finished_style,
+@@ -167,6 +170,7 @@ def track(
+         get_time=get_time,
+         refresh_per_second=refresh_per_second or 10,
+         disable=disable,
++        expand=expand,
+     )
+ 
+     with progress:
+diff --git a/tests/test_panel.py b/tests/test_panel.py
+index 33ce1afa..35f782d1 100644
+--- a/tests/test_panel.py
++++ b/tests/test_panel.py
+@@ -37,7 +37,7 @@ def render(panel, width=50) -> str:
+     return result
+ 
+ 
+-@pytest.mark.parametrize("panel,expected", zip(tests, expected))
++@pytest.mark.parametrize("panel,expected", list(zip(tests, expected)))
+ def test_render_panel(panel, expected) -> None:
+     assert render(panel) == expected
+ 
