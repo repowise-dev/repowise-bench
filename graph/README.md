@@ -11,17 +11,22 @@ neighbourhood does not require the arrows between the houses to be correct.
 **Nobody in this field publishes a graph-correctness number against an outside
 oracle.** We checked every comparable tool (see [arms/](arms/)). CodeGraph
 publishes agent-efficiency deltas and a coverage table. Graphify publishes memory
-and QA scores. code-review-graph publishes an F1 of 0.69 scored *against its own
-graph*, which measures self-consistency rather than correctness. The gap this
-benchmark fills is the obvious one, and it is the reason it exists.
+and QA scores. code-review-graph publishes an F1 — 0.714, with precision 0.578 —
+graded against ground truth derived from the same graph its predictor walks,
+which measures self-consistency rather than correctness. To their credit **they
+say so themselves**, calling it "circular by construction" in both their README
+and their eval code, and they ship a non-circular co-change mode whose numbers
+they decline to quote before measuring. The gap this benchmark fills is the
+obvious one, and it is the reason it exists.
 
 ---
 
 ## Status
 
-Nothing on this page is published yet. This is the design plus the first
-scouting numbers, not a result set. Rows marked **measured** have a number in
-hand; rows marked **designed** have a written protocol and no run behind them.
+Nothing on this page is published externally yet. Bold rows have run at a
+recorded commit across every arm; `designed` rows have a written protocol and
+no run behind them. G1's rows exist and are graded but predate the current
+Python resolver, so they are not on this page.
 
 | | Experiment | What it settles | Status |
 |---|---|---|---|
