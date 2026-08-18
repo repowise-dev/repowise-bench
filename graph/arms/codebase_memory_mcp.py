@@ -171,6 +171,32 @@ def _open(db: Path) -> sqlite3.Connection:
     return sqlite3.connect("file:" + Path(db).as_posix() + "?mode=ro", uri=True)
 
 
+def _cached_handle(conn: sqlite3.Connection, root: str) -> dict:
+    """The handle shape both `build` and `open_cached` must produce.
+
+    Written once so the two cannot drift: a restored artifact that lacked
+    `project_prefix` would silently stop stripping the path out of callee
+    identities, and the resulting mismatch would look like a real disagreement
+    between a cached and a fresh build.
+    """
+    return {"conn": conn, "root": root, "project_prefix": _project_prefix(conn)}
+
+
+def _project_prefix(conn: sqlite3.Connection) -> str | None:
+    """The `<project>.` prefix every qualified name in this index carries.
+
+    Read from the index rather than reconstructed from the build path, because
+    the tool's own path-to-project-name mangling is its business and not
+    something this adapter should reimplement. An index also carries a second
+    `<project>::missed` row; the base name is the shorter one and is the prefix
+    qualified names actually use.
+    """
+    names = [r[0] for r in conn.execute("SELECT DISTINCT project FROM nodes") if r[0]]
+    if not names:
+        return None
+    return min(names, key=len) + "."
+
+
 class CodebaseMemoryMcpArm:
     name = "codebase-memory-mcp"
 
@@ -218,7 +244,7 @@ class CodebaseMemoryMcpArm:
             version=self.version(),
             repo_name=repo_name,
             repo_path=Path(repo).resolve(),
-            handle={"conn": conn, "root": build_root},
+            handle=_cached_handle(conn, build_root),
             seconds=res.seconds,
             peak_rss_mb=res.peak_rss_mb,
             index_size_mb=size,
@@ -257,7 +283,7 @@ class CodebaseMemoryMcpArm:
             version=self.version(),
             repo_name=repo_name,
             repo_path=Path(repo).resolve(),
-            handle={"conn": _open(Path(payload)), "root": root},
+            handle=_cached_handle(_open(Path(payload)), root),
             seconds=cost.get("seconds"),
             peak_rss_mb=cost.get("peak_rss_mb"),
             index_size_mb=cost.get("index_size_mb"),
@@ -275,6 +301,38 @@ class CodebaseMemoryMcpArm:
 
     def _n(self, art: arms.Artifact, p: str) -> str:
         return arms.norm_path(p, art.handle["root"])
+
+    @staticmethod
+    def _real_file(path: str) -> bool:
+        """Reject the tool's synthetic pseudo-files.
+
+        It files builtin symbols under `<python-builtins>`, which is not a path
+        and has no row in `file_hashes`. Left in, it makes `symbol_files` not a
+        subset of `files_seen` -- an invariant every other arm holds and one the
+        smoke suite asserts, because a denominator carrying a file that cannot
+        exist is a denominator nobody can reconcile.
+        """
+        return bool(path) and not (path.startswith("<") and path.endswith(">"))
+
+    def _q(self, art: arms.Artifact, qualified: str) -> str:
+        """Strip the project prefix from a qualified name.
+
+        The tool derives its project name from the **absolute path it indexed**,
+        so a scratch copy yields
+        `C-Users-...-Temp-gq-gitleaks-8k_mag8d-gitleaks.cmd.runVersion` and the
+        random tempdir component changes on every build. Left alone, two builds
+        of one repository share no callee identities at all: the determinism
+        gate fails, and every cross-arm comparison against this arm intersects to
+        zero -- which reads as a finding rather than as a path leaking into an
+        identifier.
+
+        Stripping the prefix restores both properties and loses nothing: the
+        prefix is constant within an index, so it distinguishes no two symbols.
+        """
+        prefix = art.handle.get("project_prefix")
+        if prefix and qualified.startswith(prefix):
+            return qualified[len(prefix):]
+        return qualified
 
     def files_seen(self, art: arms.Artifact) -> set[str]:
         """`file_hashes.rel_path`: one row per file the indexer hashed.
@@ -295,7 +353,11 @@ class CodebaseMemoryMcpArm:
             "SELECT DISTINCT file_path FROM nodes WHERE file_path <> '' "
             f"AND label IN ({','.join('?' * len(labels))})"
         )
-        return {self._n(art, r[0]) for r in art.handle["conn"].execute(sql, labels) if r[0]}
+        return {
+            self._n(art, r[0])
+            for r in art.handle["conn"].execute(sql, labels)
+            if self._real_file(r[0])
+        }
 
     def call_edges(self, art: arms.Artifact) -> set[tuple[str, int, str]]:
         """Distinct `(caller_file, line, callee_qualified_name)`.
@@ -315,8 +377,9 @@ class CodebaseMemoryMcpArm:
             WHERE e.type IN ('CALLS', 'ASYNC_CALLS') AND src.file_path <> ''
         """
         return {
-            (self._n(art, f), int(line if line is not None else -1), target)
+            (self._n(art, f), int(line if line is not None else -1), self._q(art, target))
             for f, line, target in art.handle["conn"].execute(sql)
+            if self._real_file(f)
         }
 
     def cross_file_edges(

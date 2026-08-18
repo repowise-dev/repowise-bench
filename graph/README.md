@@ -45,11 +45,16 @@ and a mutation's effect can be separated from drift.
 
 A fifth, **codebase-memory-mcp 0.10.6**, has [an adapter and a
 page](arms/codebase-memory-mcp.md) and now **builds**, so it carries cost and
-memory rows. It is held out of the coverage and precision tables: it records no
-language for a file, it walks its own output directory, and the identity it
-gives a callee embeds the absolute path it was built under, so its edge sets are
-not yet comparable with the other four. Those are adapter-level gaps and they
-are being fixed, not measured around.
+memory rows. Reading its adapter against an index it produced, rather than
+against the schema in its source, falsified three of its queries; two are fixed
+— it now rebuilds identically, where two builds of one repository previously
+shared no callee identities at all, because the tool derives its project name
+from the absolute path it indexed and that path leaked into every qualified
+name. The third is open: **the tool records no language for a file**, and
+deriving one from the file extension would mean this adapter inventing a
+language-attribution scheme and applying it to another tool's index. So it is
+**included in cost and memory and excluded from every coverage and precision
+table** until that is settled.
 
 Getting it to run at all is itself a portability finding worth one line. It
 validates the ACL of every ancestor of both its coordination directory and its

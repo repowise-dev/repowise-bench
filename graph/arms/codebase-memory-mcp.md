@@ -16,29 +16,40 @@
 > and memory tables** and **held out of the coverage and precision tables**.
 >
 > Reading the adapter against a database it produced, rather than against the
-> schema in the tool's source, falsified three of its queries:
+> schema in the tool's source, falsified three of its queries. **Two are fixed
+> and the suite is green at 16/16; one remains and is why the arm is cost-only.**
 >
-> 1. **`file_languages` returns nothing.** The adapter reads
->    `json_extract(properties, '$.language')`, and `language` is not a key the
->    tool writes — the property set is `complexity`, `lines`, `is_exported`,
->    `is_test`, `signature` and similar, with `extension` on `File` nodes.
->    Silently returns `{}`, which in a language-scoped experiment is an empty
->    denominator reading as a coverage of **zero** rather than as a bug.
-> 2. **It walks its own output.** `.codebase-memory/` appears in `file_hashes`
->    (3 of 314 rows on gitleaks), so the tool's own artifact directory pads
->    `files_seen`.
-> 3. **Callee identity is not stable across builds.** The `project` name is
->    derived from the absolute path indexed, so a scratch copy yields
+> 1. **FIXED — callee identity was not stable across builds.** The `project`
+>    name is derived from the absolute path indexed, so a scratch copy produced
 >    `C-Users-ragha-AppData-Local-Temp-gq-gitleaks-8k_mag8d-gitleaks.logging.Error`
->    — a fresh random component every build. Two builds of the same repository
->    produce disjoint `call_edges` sets, which fails the determinism gate and
->    makes the identity incomparable with every other arm.
+>    with a fresh random component every build. Two builds of one repository
+>    shared **no** callee identities, so the determinism gate failed and any
+>    cross-arm intersection would have come out empty — which reads as a finding
+>    rather than as a path leaking into an identifier. The adapter now strips the
+>    project prefix, read off the index rather than reconstructed from the build
+>    path. Two builds of gitleaks now agree on all 1,826 edges.
+> 2. **FIXED — one synthetic pseudo-file broke a protocol invariant.** The tool
+>    files builtin symbols under `<python-builtins>`, which has no row in
+>    `file_hashes`, so `symbol_files` was not a subset of `files_seen`. Synthetic
+>    `<...>` paths are now rejected.
+> 3. **OPEN — the tool records no language for a file.** The adapter read
+>    `json_extract(properties, '$.language')` and `language` is not a key the
+>    tool writes: the property set is `complexity`, `lines`, `is_exported`,
+>    `is_test`, `signature` and similar, with `extension` on `File` nodes only.
+>    It returns `{}`, and in a language-scoped experiment an empty denominator
+>    reads as a coverage of **zero** rather than as a missing attribution.
 >
-> (1) and (3) each have the shape this benchmark exists to catch: a confident
-> number that is wrong. **Do not publish a coverage or precision number from this
-> arm until all three are fixed and the determinism gate passes.** Cost and peak
-> memory are unaffected — they are measured on the process, not read out of the
-> database — and are published.
+> (3) is deliberately not worked around. Deriving a language from `extension`
+> means this adapter inventing a language-attribution scheme and applying it to
+> another tool's index, which is a methodological choice that moves numbers and
+> needs validating against the arms that do report a language. Until that is
+> done, **the arm is included in cost and memory and excluded from every coverage
+> and precision table.** Cost and memory are unaffected by all three: they are
+> measured on the process, not read out of the database.
+>
+> It also walks its own output — `.codebase-memory/` is 3 of 314 rows in
+> `file_hashes` on gitleaks — which is left in deliberately, because `files_seen`
+> is meant to record what the tool actually walked.
 
 It is simultaneously a **corpus entry** — `test-repos/codebase-memory-mcp` at
 pin `10cb0e03` — and a candidate arm. The two uses must never be blurred in a
