@@ -325,9 +325,60 @@ strongest competitor:
 | swift | 1 | 0.388 | 0.582 | 0.368 | 0.000 | *n=1, no claim* |
 | **median of the ten at n>=3** | | **0.360** | **0.462** | 0.197 | 0.200 | |
 
-**We win one language, tie four and lose six.** That is the opposite of the
-impression six repositories gave, and it is published because a benchmark that
-only reports the corpus where it wins is an advertisement.
+**On this reading we win one language, tie four and lose six.** That is the
+opposite of the impression six repositories gave, and it is published because a
+benchmark that only reports the corpus where it wins is an advertisement. On the
+shared denominator below — the fair comparison — it becomes **one ours, six
+tied, four theirs**, and the four that survive are the real finding.
+
+### On the denominator both tools agree on
+
+The table above is each arm's own metric on its own population, which is what
+CodeGraph's published metric is and why it is reproduced that way. It is **not a
+comparison**: two arms disagree about which files can carry an edge at all. Our
+denominator is smaller than theirs in 8 of 11 languages and larger in exactly
+two — cpp and rust — and that asymmetry has already reversed one headline on
+this page, when 123 `package-info.java` files padded the peer's caffeine
+denominator.
+
+Recomputed on the files **both** arms call symbol-bearing, within the walk they
+share, pooled per language with 95% Wilson intervals:
+
+| language | repos | shared denom | ours | theirs | verdict |
+|---|---:|---:|---:|---:|---|
+| java | 3 | 1,820 | **0.685** | 0.495 | **ours** |
+| csharp | 4 | 2,099 | 0.334 | 0.304 | tie |
+| go | 3 | 1,382 | 0.527 | 0.551 | tie |
+| php | 3 | 4,316 | 0.271 | 0.280 | tie |
+| ruby | 3 | 322 | 0.332 | 0.348 | tie |
+| swift | 1 | 98 | 0.388 | 0.582 | tie |
+| typescript | 3 | 617 | 0.379 | 0.392 | tie |
+| python | 3 | 824 | 0.373 | **0.455** | theirs |
+| kotlin | 3 | 3,384 | 0.447 | **0.591** | theirs |
+| rust | 3 | 1,995 | 0.341 | **0.489** | theirs |
+| cpp | 6 | 2,035 | 0.226 | **0.419** | theirs |
+
+**One ours, four theirs, six tied** on non-overlapping intervals — against one
+win, four ties and six losses on the own-denominator reading. TypeScript and
+Swift move from loss to tie once the populations match and the intervals are
+honoured.
+
+**cpp and rust do not move, and cpp gets worse.** Pooled, we go from 0.336 to
+0.226 there, because the shared denominator removes files only we counted. So
+those two are real resolution gaps and not denominator artifacts, which is what
+makes them the right place to spend hand-graded precision rows next.
+
+Two things the pooled figures hide, printed rather than left in the data:
+
+* **cpp's pooled 0.226 against a per-repository median of 0.357** is one
+  repository doing the work: `aria2` carries 1,118 of the 2,035 shared files at
+  0.200. Weighting by size is what pooling means, but a reader should see it.
+* **`nlohmann-json` is hard for everyone** — 0.108 us, 0.143 them. A
+  header-only template library is close to the worst case for file-granular
+  call resolution on both sides.
+
+Java strengthens on the fair denominator rather than weakening: **0.685 against
+0.495**, our clearest result on the page.
 
 ### The two things that stop this being the whole story
 
@@ -340,8 +391,8 @@ gap of 0.10 does not mean they resolve more real calls than we do.
 
 **But that audit does not cover the languages where we now trail hardest.** It
 sampled five repositories in go, typescript, csharp, python and java. It says
-nothing about cpp, rust, kotlin, ruby, php or swift, and four of those are where
-the gap is widest. So the honest statement is: *we trail on coverage across most
+nothing about cpp, rust, kotlin, ruby, php or swift — and cpp, rust and kotlin
+are exactly the three that survive the shared-denominator recount as losses. So the honest statement is: *we trail on coverage across most
 of the corpus, we lead on precision where precision has been measured, and the
 two have never been measured on the same languages.* Closing that is what
 [G1](experiments/g1-edge-precision/) and [G4](experiments/g4-oracle-anchored/)
