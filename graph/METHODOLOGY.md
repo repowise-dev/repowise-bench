@@ -57,6 +57,29 @@ repairing it — rule 10's frozen indexes live under those directories, and a
 helpful `git checkout` would invalidate every baseline silently. A rerun on a
 different pin is a different measurement and says so.
 
+**12. A cached artifact may supply coverage. It may never supply a cost.** A
+competitor index depends only on `(tool, tool_version, repo, pin)` and not at
+all on our commit, so it is built once and restored afterwards -- otherwise
+thirty-five repositories times five arms is not affordable and the corpus stays
+at six. Two guarantees make that legitimate, and both are enforced rather than
+asserted. A restore reproduces every set the protocol exposes, byte for byte,
+which `smoke.py` checks by storing and restoring a real index. And a restored
+artifact carries `from_cache` with the date its cost was really measured, so a
+run using the cache is stamped `publishable: false` with that reason recorded;
+G6 and the determinism gate pass `fresh=True`, which bypasses the cache in both
+directions. **No cost number that has ever been published came out of a cache.**
+
+**13. No per-language claim from fewer than three repositories, and the three
+must be different kinds.** Library, application, framework -- they stress
+different things, and three libraries is still n=1 about libraries. This rule
+exists because we nearly published a fact about zod as a fact about TypeScript:
+on the same arm, TypeScript reads 0.138 on zod and 0.573 on dub. **Disagreement
+between the three is a finding, not a failed measurement**, so G7 reports the
+spread with the repository named at each end rather than a mean, and a language
+below three repositories is printed as carrying no language-level claim instead
+of being averaged in with the rest.
+
+
 ## Cost is measured on the graph, and only the graph
 
 Our published indexing-time row in [docs/BENCHMARKS.md §6](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md)
