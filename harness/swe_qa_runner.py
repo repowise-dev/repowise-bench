@@ -1754,10 +1754,34 @@ def _judge_family(judge_model: str) -> str:
     spend was already gone. Route explicitly, and refuse what cannot be routed.
     """
     m = judge_model.lower()
+
+    # A SERVING STACK IS NOT A FAMILY. `ollama/qwen3:8b-16k` names where the
+    # weights are served, not whose lineage they are, and self-preference bias
+    # attaches to the lineage. Strip the stack prefix and classify what is
+    # underneath, so a local arm is placed by model rather than by host.
+    for stack in ("ollama/", "openrouter/", "together/", "groq/", "lmstudio/"):
+        if m.startswith(stack):
+            m = m[len(stack):]
+            break
+
     if m.startswith(("gpt-", "o1", "o3", "o4")):
         return "openai"
-    if m.startswith("claude") or m == "sonnet" or m == "opus" or m == "haiku":
+    if m.startswith("claude") or m in ("sonnet", "opus", "haiku"):
         return "anthropic"
+    # Local open-weight families. Named so the cross-family check can PASS for a
+    # local agent against a hosted judge, instead of refusing the run: an agent
+    # this function cannot place is rejected outright, which is right for an
+    # unknown model and wrong for a known one nobody had added yet.
+    if m.startswith("qwen"):
+        return "qwen"
+    if m.startswith(("llama", "codellama")):
+        return "meta"
+    if m.startswith(("mistral", "mixtral", "codestral")):
+        return "mistral"
+    if m.startswith(("gemma", "gemini")):
+        return "google"
+    if m.startswith("deepseek"):
+        return "deepseek"
     return "unknown"
 
 
@@ -2514,8 +2538,12 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             codex_home=str(prepare_codex_home()),
         )
     elif harness == "opencode":
+        # One `opencode run` process per cell. The shared REST server this used
+        # to need was scaffolding around `--format json` emitting zero bytes on
+        # the 1.15.x Windows build; 1.18.15 emits NDJSON including tool events,
+        # so the singleton and its cross-cell state are gone.
         from harness.opencode_runner import (
-            run_opencode, get_shared_server, build_opencode_system_prompt,
+            run_opencode, build_opencode_system_prompt,
         )
         output, retries = run_opencode(
             prompt=prompt,
@@ -2523,9 +2551,12 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
             condition=condition,
             model=config["agent"]["model"],
             timeout=config["agent"]["timeout_seconds"],
-            server=get_shared_server(),
             benchmark="swe_qa",
             system_prompt=build_opencode_system_prompt(condition, "swe_qa"),
+            stream_log_path=str(
+                Path(config["paths"]["logs_dir"]) / "streams"
+                / f"{task_id}__{condition['name']}.jsonl"
+            ),
         )
     else:
         output, retries = run_claude_code(
@@ -2600,6 +2631,12 @@ def run_swe_qa_task(task: dict, condition: dict, config: dict,
         metrics.server_tools_called = output.get("server_tools_called", {})
         metrics.mcp_isError_count = output.get("mcp_isError_count", 0)
         metrics.mcp_per_server = output.get("mcp_per_server", {})
+        metrics.token_steps = output.get("token_steps", [])
+        metrics.max_step_input = output.get("max_step_input", 0)
+        # Recorded from the CONDITION, not from the harness output, because it
+        # is the thing under test rather than a thing observed: a row that
+        # claims a restricted surface must carry what that surface was.
+        metrics.condition_allowed_tools = condition.get("allowed_tools")
         metrics.hook_events = output.get("hook_events", [])
         metrics.hook_injections = output.get("hook_injections", [])
         metrics.models_used = output.get("models_used", [])

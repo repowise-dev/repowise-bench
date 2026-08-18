@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -78,7 +79,7 @@ def looks_unauthenticated(answer: str) -> bool:
 # by something other than its treatment.
 BASE_TOOLS = "Read,Grep,Glob,Bash,Edit,Write"
 
-SYSTEM_PROMPT = (
+SYSTEM_PROMPT_HEAD = (
     "You are working in the code repository in your current directory, task by "
     "task, in one continuous session. "
     "Only read and modify files within the current repository. "
@@ -86,12 +87,51 @@ SYSTEM_PROMPT = (
     "Do NOT read any benchmark, test-harness, or evaluation data, and do not "
     "look for a reference solution; there is none inside this repository. "
     "Do NOT use ListMcpResourcesTool or ReadMcpResourceTool. "
+)
+
+# Emitted ONLY for tasks that actually need to run tests.
+#
+# This used to be one command interpolated for the WHOLE session. On a small
+# repo that was harmless (`pytest -q` names nothing). On a repo whose suite is
+# too large to run whole, every affordable command names test FILES — and
+# naming the module of a later edit task in the system prompt hands the agent
+# the location of that answer before the session's first task has started.
+#
+# The hint is treatment-independent, so it inflates every arm equally rather
+# than favouring one, but it corrupts the COMPLETION signal specifically, which
+# is the signal a large repo is supposed to pay in. Scoping it per task means a
+# task leaks only the module it is already being pointed at, and a task that
+# changes no code leaks nothing at all.
+SYSTEM_PROMPT_TEST = (
     "Run the test suite with this exact command from the repository root: "
     "{test_cmd} "
+)
+
+SYSTEM_PROMPT_TAIL = (
     "When a task says not to change code, answer it and change nothing. "
     "When a task asks for a fix, make the smallest change that fixes it and "
     "keep the whole test suite passing."
 )
+
+
+def system_prompt_for(task: dict, cfg: dict) -> str:
+    """The system prompt for ONE task, with the test clause scoped to it.
+
+    Resolution order: the task's own ``test_command``, else the cell-wide
+    ``test_env.command_display``, else the clause is omitted entirely. A task
+    that declares ``test_command: none`` gets no clause even when the cell
+    defines one — that is how read-only tasks (retrieval, architecture) avoid
+    carrying another task's module name.
+    """
+    per_task = task.get("test_command")
+    if per_task is None:
+        cmd = (cfg.get("test_env") or {}).get("command_display")
+    elif str(per_task).strip().lower() in ("none", "false", ""):
+        cmd = None
+    else:
+        cmd = per_task
+    middle = SYSTEM_PROMPT_TEST.format(test_cmd=cmd) if cmd else ""
+    return SYSTEM_PROMPT_HEAD + middle + SYSTEM_PROMPT_TAIL
 
 # Blocked everywhere. The first two read arbitrary MCP resource URIs, which
 # would bypass the mcp__* disallow through the resource namespace; the hosted
@@ -100,8 +140,15 @@ DISALLOWED_BASE = "ListMcpResourcesTool,ReadMcpResourceTool,mcp__claude_ai_*"
 
 
 def _utf8_env(claude_home: Path | None = None,
-              pinned_bin: Path | None = None) -> dict:
+              pinned_bin: Path | None = None,
+              task_id: str | None = None) -> dict:
     env = dict(os.environ)
+    if task_id:
+        # The enforcement hook caps its nudges per unit of work. Without this the
+        # unit is the whole 11-task session, and the enforced condition quietly
+        # degrades to 2 injections across 154 firings. See
+        # `force_tool_use.py::_nudges_used`.
+        env["BENCH_TASK_ID"] = task_id
     env["PYTHONUTF8"] = "1"
     env["PYTHONIOENCODING"] = "utf-8"
     env["DO_NOT_TRACK"] = "1"
@@ -139,7 +186,13 @@ def parse_stream(lines: list) -> dict:
         "token_source": "", "models_used": [],
         "tool_calls": 0, "tool_names": {},
         "mcp_calls": 0, "mcp_tools": {}, "mcp_isError": 0,
-        "hook_events": 0, "hook_injections": 0,
+        # The CLI arm's adoption column. Without it a CLI arm reports
+        # `mcp_calls: 0` and nothing else, so "did the agent use the tool" is
+        # unanswerable for half of step 2's arms and prediction S4 has no
+        # measurement at all. Counted from the same tool_use blocks as
+        # `mcp_calls`, so the two columns are the same kind of number.
+        "cli_calls": 0, "cli_cmds": {},
+        "hook_events": 0, "hook_injections": 0, "hook_names": {},
         "stop_reason": "", "session_id": "", "is_error": False,
         "cache_ttl_1h": 0, "cache_ttl_5m": 0,
     }
@@ -162,6 +215,12 @@ def parse_stream(lines: list) -> dict:
                     if name.startswith("mcp__"):
                         out["mcp_calls"] += 1
                         out["mcp_tools"][name] = out["mcp_tools"].get(name, 0) + 1
+                    elif name == "Bash":
+                        sub = _repowise_subcommand(
+                            (block.get("input") or {}).get("command"))
+                        if sub:
+                            out["cli_calls"] += 1
+                            out["cli_cmds"][sub] = out["cli_cmds"].get(sub, 0) + 1
 
         elif etype == "user":
             for block in ((ev.get("message") or {}).get("content") or []):
@@ -169,11 +228,25 @@ def parse_stream(lines: list) -> dict:
                     if block.get("is_error"):
                         out["mcp_isError"] += 1
 
-        elif etype and "hook" in etype:
-            out["hook_events"] += 1
-            blob = json.dumps(ev)
-            if "additionalContext" in blob or "systemMessage" in blob:
-                out["hook_injections"] += 1
+        elif etype == "system" and str(ev.get("subtype", "")).startswith("hook_"):
+            # Hook events arrive as `type: "system"` with `subtype:
+            # "hook_started"` / `"hook_response"`. The first version of this
+            # counter tested `"hook" in etype`, which is never true for
+            # "system", so it read ZERO on every row of every arm including one
+            # whose hooks demonstrably fired 154 times. A dead counter reporting
+            # a clean zero is this workstream's house speciality, and here it
+            # was one edit away from being published as "the control is
+            # provably bare".
+            if ev.get("subtype") == "hook_started":
+                out["hook_events"] += 1
+                name = ev.get("hook_name") or "?"
+                out["hook_names"][name] = out["hook_names"].get(name, 0) + 1
+            elif ev.get("subtype") == "hook_response":
+                # A hook that fires and emits nothing has cost wall clock and
+                # changed nothing. Counting firings alone hides that, and the
+                # gap between the two is the whole story of the enforced arm.
+                if (ev.get("output") or "").strip() or (ev.get("stdout") or "").strip():
+                    out["hook_injections"] += 1
 
         elif etype == "result":
             out["answer"] = ev.get("result") or ""
@@ -213,7 +286,36 @@ def parse_stream(lines: list) -> dict:
     return out
 
 
-def build_cmd(task_prompt: str, session_id: str, first: bool, arm: dict,
+# The subcommands that count as using the repowise CLI surface. Same six the
+# step-2 arms advertise, and the same list `force_tool_use.py --surface cli`
+# nudges toward, so the counter and the enforcement cannot disagree about what
+# adoption is.
+_CLI_SUBCOMMANDS = ("ask", "context", "symbol", "why", "search", "risk")
+
+
+def _repowise_subcommand(command: str | None) -> str | None:
+    """Which of the six this Bash command invoked, if any.
+
+    Tight on purpose. `grep -rn "repowise" .` and `repowise --version` are NOT
+    adoption, and a counter that merely looked for the word would score both as
+    a tool call. Proved in both directions before use — see
+    `scratchpad/prove_cli_detector.py`, which holds the enforcement hook to the
+    same cases.
+    """
+    if not command:
+        return None
+    for raw in re.split(r"&&|\|\||[;|\n]", command):
+        parts = raw.strip().split()
+        # Skip a leading env assignment or interpreter, e.g. `cd x && repowise ...`
+        while parts and ("=" in parts[0] and not parts[0].startswith("-")):
+            parts = parts[1:]
+        if len(parts) >= 2 and Path(parts[0]).stem.lower() == "repowise":
+            if parts[1] in _CLI_SUBCOMMANDS:
+                return parts[1]
+    return None
+
+
+def build_cmd(task: dict, session_id: str, first: bool, arm: dict,
               cfg: dict, mcp_config: str | None, settings: str | None,
               model: str, max_turns: int, max_budget: float) -> list:
     uses_mcp = bool(arm.get("uses_mcp"))
@@ -250,12 +352,12 @@ def build_cmd(task_prompt: str, session_id: str, first: bool, arm: dict,
             empty.write_text('{"mcpServers": {}}', encoding="utf-8")
         cmd += ["--strict-mcp-config", "--mcp-config", str(empty)]
 
-    parts = [SYSTEM_PROMPT.format(test_cmd=cfg["test_env"]["command_display"])]
+    parts = [system_prompt_for(task, cfg)]
     if arm.get("coaching"):
         parts.append(arm["coaching"])
     cmd += ["--append-system-prompt", "\n\n".join(parts)]
 
-    cmd.append(task_prompt)
+    cmd.append(task["prompt"])
     return cmd
 
 
@@ -313,8 +415,24 @@ def main() -> int:
     ap.add_argument("--uses-mcp", action="store_true")
     ap.add_argument("--client-tools", default="")
     ap.add_argument("--coaching", default="")
+    # Coaching that spans lines or contains quotes cannot survive a shell
+    # argument list. PowerShell split a multi-line CLI-arm coaching on its
+    # embedded double quotes and argparse rejected the remainder as unknown
+    # arguments; had it split somewhere less lucky, the arm would have run with
+    # SILENTLY TRUNCATED coaching and been reported as a low-adoption result.
+    # Read it from a file instead, so the bytes the agent receives are the bytes
+    # on disk.
+    ap.add_argument("--coaching-file", default=None)
     ap.add_argument("--limit-tasks", type=int, default=0,
                     help="stop after N tasks (costing runs only)")
+    # A cell whose tasks are split across several SESSIONS needs to run one
+    # session's slice per invocation, and `--limit-tasks` can only take a
+    # prefix. Ids are explicit rather than a range so the selection is visible
+    # in the command line that gets recorded with the run.
+    ap.add_argument("--task-ids", default="",
+                    help="comma-separated task ids to run, in config order "
+                         "(default: all). Unknown ids are a hard error rather "
+                         "than a silent empty run.")
     ap.add_argument("--pinned-bin",
                     default=r"C:\Users\ragha\Desktop\repowise-sessioneval\.venv\Scripts",
                     help="Scripts dir of the repowise build under test")
@@ -336,6 +454,20 @@ def main() -> int:
 
     cfg = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
     tasks = cfg["tasks"]
+    if args.task_ids:
+        wanted = [t.strip() for t in args.task_ids.split(",") if t.strip()]
+        known = {t["id"] for t in tasks}
+        missing = [w for w in wanted if w not in known]
+        if missing:
+            # A typo'd id must not silently select nothing: an empty task list
+            # runs no work, writes a clean summary row and reads as a completed
+            # session. Fail loudly instead.
+            print(f"--task-ids names unknown task(s): {missing}. "
+                  f"Known: {sorted(known)}", file=sys.stderr)
+            return 2
+        # Config order, not argument order, so a session's task sequence stays
+        # frozen regardless of how the ids were typed.
+        tasks = [t for t in tasks if t["id"] in set(wanted)]
     if args.limit_tasks:
         tasks = tasks[: args.limit_tasks]
 
@@ -367,7 +499,8 @@ def main() -> int:
         "name": args.arm,
         "uses_mcp": args.uses_mcp,
         "client_tools": [t for t in args.client_tools.split(",") if t],
-        "coaching": args.coaching or "",
+        "coaching": (Path(args.coaching_file).read_text(encoding="utf-8")
+                     if args.coaching_file else (args.coaching or "")),
     }
 
     claude_home = prepare_claude_home()
@@ -384,11 +517,24 @@ def main() -> int:
     print(f"session_id={session_id} (resuming={not first}) tasks={len(tasks)}")
     print(f"tree={tree}")
 
-    scratch = out_path.parent / f"_status_{cfg['cell_id']}_{args.arm}_{args.condition}"
+    # Keyed on session_id, NOT just cell/arm/condition. The old name was stable
+    # across runs, so re-running an arm silently OVERWROTE the previous run's
+    # transcripts — and the transcripts are the only record of what the agent
+    # actually did. That cost a real comparison: a post-fix re-run destroyed the
+    # pre-fix run's payloads, and the question "did the same mechanism cause
+    # both failures" became unanswerable.
+    #
+    # session_id is the right key rather than a timestamp: it is generated fresh
+    # per run (uuid4) so two runs can never collide, and it is READ BACK from the
+    # out file on resume, so a resumed session keeps writing to its own
+    # directory instead of starting a second one.
+    scratch = (out_path.parent /
+               f"_status_{cfg['cell_id']}_{args.arm}_{args.condition}__{session_id[:8]}")
     scratch.mkdir(parents=True, exist_ok=True)
 
     totals = {k: 0 for k in ("input_tokens", "output_tokens", "cache_read_tokens",
                              "cache_creation_tokens", "tool_calls", "mcp_calls",
+                             "cli_calls",
                              "num_turns", "hook_events", "hook_injections")}
     total_cost, agent_wall, oracle_wall = 0.0, 0.0, 0.0
 
@@ -409,7 +555,7 @@ def main() -> int:
         baseline = scratch / f"{tid}_pre.txt"
         baseline.write_text(git_status(tree), encoding="utf-8")
 
-        cmd = build_cmd(task["prompt"], session_id, first, arm, cfg,
+        cmd = build_cmd(task, session_id, first, arm, cfg,
                         args.mcp_config, args.settings, args.model,
                         args.max_turns, args.max_budget_usd)
         log_path = scratch / f"{tid}_stream.jsonl"
@@ -420,7 +566,7 @@ def main() -> int:
                 proc = subprocess.Popen(cmd, cwd=str(tree), stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE, text=True,
                                         encoding="utf-8", errors="replace",
-                                        env=run_env)
+                                        env={**run_env, "BENCH_TASK_ID": tid})
                 lines = []
                 for ln in proc.stdout:
                     fh.write(ln)
@@ -474,7 +620,8 @@ def main() -> int:
         }
         for k in ("input_tokens", "output_tokens", "cache_read_tokens",
                   "cache_creation_tokens", "tool_calls", "mcp_calls",
-                  "num_turns", "hook_events", "hook_injections",
+                  "cli_calls", "cli_cmds",
+                  "num_turns", "hook_events", "hook_injections", "hook_names",
                   "mcp_isError", "token_source", "models_used",
                   "tool_names", "mcp_tools", "stop_reason", "is_error",
                   "cache_ttl_1h", "cache_ttl_5m"):
@@ -491,6 +638,7 @@ def main() -> int:
         oc_s = "-" if oc is None else ("PASS" if oc else "FAIL")
         print(f"  {tid} {task['kind']:<12} turns={parsed['num_turns']:>3} "
               f"tools={parsed['tool_calls']:>3} mcp={parsed['mcp_calls']:>2} "
+              f"cli={parsed['cli_calls']:>2} "
               f"out={parsed['output_tokens']:>6} cr={parsed['cache_read_tokens']:>8} "
               f"${parsed['cost_usd']:.4f} {elapsed:>7.1f}s oracle={oc_s}")
 

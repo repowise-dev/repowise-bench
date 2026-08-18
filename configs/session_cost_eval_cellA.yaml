@@ -1,0 +1,182 @@
+# SUPERSEDED 2026-08-10, before any cell ran. Cell A is `Textualize/rich`, in
+# `session_cost_eval_cellA_rich.yaml`. Kept, not deleted, because its oracle
+# verification is reusable and because a future session finding two cell-A
+# configs should be told which one is live rather than guess.
+#
+# Nothing was ever run against this file. Its one durable output is the record in
+# `C:\Users\ragha\Desktop\bakeoff\sc-oracles.json`: 8 candidate pydantic fixes
+# put through `harness/verify_oracles.py`, 7 verified in both directions and
+# 1 (94dd544c) REJECTED by the positive control because its test still failed
+# with the gold patch applied, which would have scored every arm incomplete.
+#
+# ---------------------------------------------------------------------------
+# Cell A task set: pydantic, one continuous session, ordered.
+#
+# COMMITTED BEFORE THE FIRST RUN. Do not edit after any cell has run; append an
+# amendment block with a date instead.
+#
+# Authored from the repo's own git history. Every `oracle: pytest` task is a real
+# upstream fix landing AFTER the pinned commit, and every one of them was
+# verified in BOTH directions by `harness/verify_oracles.py`: its test half fails
+# on the pinned tree and passes with the gold source patch applied. The
+# verification record is `C:\Users\ragha\Desktop\bakeoff\sc-oracles.json`.
+#
+# One candidate (94dd544c, "Push down constraints in unions involving MISSING")
+# was REJECTED by the positive control: its test still failed with the gold patch
+# applied, which would have scored every arm incomplete. It is named here rather
+# than dropped silently.
+#
+# No task was authored by looking at what repowise is good at. The task mix was
+# fixed before any repowise output was consulted, per the overfitting protocol.
+
+cell_id: A
+repo: pydantic
+repo_path: C:\Users\ragha\Desktop\bakeoff\sc-pydantic-base
+base_commit: d286c73df5d3d2bc1ae530a1d2d29787c8cdee6e
+upstream: https://github.com/pydantic/pydantic
+language: python
+
+# The test oracle runs against the arm's own worktree with `tests/` reset to the
+# pinned state first, so an agent that edits tests cannot move its own oracle.
+# Whether it touched tests is recorded per task either way.
+test_command: "{python} -m pytest {targets} -q --no-header"
+reset_tests_before_oracle: true
+
+tasks:
+
+  # --- retrieval-heavy (3) -------------------------------------------------
+  - id: A01
+    shape: retrieval
+    oracle: none
+    prompt: >
+      If we wanted to change how a field's validation alias is resolved when a
+      model validates input, which files and which functions would have to
+      change? List them as path plus function name. Do not make any edit.
+
+  - id: A02
+    shape: retrieval
+    oracle: none
+    prompt: >
+      What calls `GenerateSchema._model_schema`? List every call site as path
+      plus the function or method containing it. Do not make any edit.
+
+  - id: A03
+    shape: retrieval
+    oracle: none
+    prompt: >
+      Where is the JSON Schema `$ref` naming and deduplication logic
+      implemented, and which function decides the final ref name a model gets?
+      Give paths and function names. Do not make any edit.
+
+  # --- architecture (3) ----------------------------------------------------
+  - id: A04
+    shape: architecture
+    oracle: none
+    prompt: >
+      How does pydantic turn a model class into a core schema at class-creation
+      time? Describe the pipeline end to end, naming the modules and the main
+      entry points in the order they run. Do not make any edit.
+
+  - id: A05
+    shape: architecture
+    oracle: none
+    prompt: >
+      How do the `@field_validator` and `@model_validator` decorators get
+      collected and attached to a model's core schema? Walk the mechanism from
+      the decorator call to the built schema. Do not make any edit.
+
+  - id: A06
+    shape: architecture
+    oracle: none
+    prompt: >
+      How does `pydantic/_migration.py` implement the v1-to-v2 attribute
+      migration, and what happens when an attribute is not in any of its
+      mappings? Do not make any edit.
+
+  # --- edits with a test oracle (4) ----------------------------------------
+  # Each prompt states the defect in prose, the way an issue reporter would. The
+  # gold test is NOT shown to the agent and is applied by the harness afterwards.
+  - id: A07
+    shape: edit
+    oracle: pytest
+    gold_commit: fc684220
+    oracle_tests: ["tests/test_types.py"]
+    prompt: >
+      `InstanceOf[...]` does not handle every schema-generation error it can
+      hit. When the wrapped type cannot produce a core schema, the failure
+      escapes instead of falling back to the isinstance-only schema that
+      `InstanceOf` is supposed to guarantee. Fix it so that any schema
+      generation error from the wrapped type is handled, not just the one case
+      handled today. Do not modify anything under `tests/`.
+
+  - id: A08
+    shape: edit
+    oracle: pytest
+    gold_commit: 0967dd93
+    oracle_tests: ["tests/test_main.py"]
+    prompt: >
+      When a model defines its own `model_post_init()` and is built with
+      `model_construct()`, `__pydantic_private__` is not set on the resulting
+      instance, so later access to a private attribute fails. It is set
+      correctly on the normal validation path. Make `model_construct()` set it
+      in this case too. Do not modify anything under `tests/`.
+
+  - id: A09
+    shape: edit
+    oracle: pytest
+    gold_commit: a2fcb8ba
+    oracle_tests: ["tests/test_types_typeddict.py"]
+    prompt: >
+      For a `TypedDict`, JSON Schema generation ignores a configured
+      `extras_schema` when the config sets only `extra_fields_behavior` and not
+      `extra`. The extras schema should be respected in that case as well. Fix
+      the JSON Schema generation accordingly. Do not modify anything under
+      `tests/`.
+
+  - id: A10
+    shape: edit
+    oracle: pytest
+    gold_commit: 0574aaab
+    oracle_tests: ["tests/test_types_namedtuple.py"]
+    prompt: >
+      When building a schema for a `NamedTuple`, annotations that are not
+      actually named-tuple fields (for example a `ClassVar`, or an annotation
+      with no corresponding entry in `_fields`) are being treated as fields.
+      They should be excluded. Fix the schema generation so only real
+      named-tuple fields are included. Do not modify anything under `tests/`.
+
+  # --- pure mechanical, the honesty control (2) ----------------------------
+  # repowise should NOT help here. If it does, the instrument is measuring
+  # position or variance rather than the tool.
+  - id: A11
+    shape: mechanical
+    oracle: suite_plus_grep
+    gold_commit: 14e0f2ba
+    oracle_tests: ["tests/test_migration.py"]
+    # Resolved from the gold diff and verified against the pinned tree: each of
+    # these subscripts appears TWICE on one path at the pin (once in the `in`
+    # test's body, once again in the returned `import_string(...)` call) and
+    # exactly once after the gold refactor.
+    oracle_file: pydantic/_migration.py
+    oracle_max_occurrences:
+      "MOVED_IN_V2[import_path]": 1
+      "REDIRECT_TO_V1[import_path]": 1
+    prompt: >
+      In `pydantic/_migration.py`, `getattr_migration` looks up the same key in
+      the same dictionary more than once along a single code path. Rewrite those
+      places to look the key up once and reuse the result. This is a pure
+      refactor: behaviour must not change. Do not modify anything under `tests/`.
+
+  - id: A12
+    shape: mechanical
+    oracle: suite_plus_grep
+    # Premise verified against the pinned tree: `_repr.py` contains zero
+    # occurrences of `__all__` at `d286c73d`.
+    oracle_file: pydantic/_internal/_repr.py
+    oracle_min_occurrences:
+      "__all__": 1
+    oracle_tests: ["tests/test_main.py"]
+    prompt: >
+      `pydantic/_internal/_repr.py` has no `__all__`. Add one listing every
+      public name the module defines, in alphabetical order. Do not change any
+      other behaviour and do not modify anything under `tests/`.

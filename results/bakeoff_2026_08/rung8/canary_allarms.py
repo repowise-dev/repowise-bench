@@ -170,6 +170,24 @@ BUILDS = {
         "--embedding-model", "sentence-transformers/all-MiniLM-L6-v2",
     ],
     "graphify": lambda t: [str(UV_BIN / "graphify.exe"), "update", str(t)],
+    # cocoindex. Added 2026-08-09 for the sealed-42 run: `ee6a57f` put the arm
+    # in `BUILD_ARMS` and `INDEX_MARKERS` but not here, so `build_index` would
+    # have raised `KeyError: 'cocoindex'` on the first unit. Made before step 1,
+    # never during it (pre-registration section 2).
+    #
+    # The tree is carried by `cwd`, which `build_index` already passes, and NOT
+    # in argv: `ccc index` resolves its project the same way `ccc mcp` does, by
+    # walking up from the working directory, and it takes no path argument
+    # either. So the command is bare and the binding is positional.
+    #
+    # `ccc index` self-initialises PROJECT settings via
+    # `require_project_root(auto_init=True)` and needs no `ccc init` step. It
+    # does NOT self-initialise USER settings: a missing
+    # `~/.cocoindex_code/global_settings.yml` is a hard exit 1 on a non-TTY
+    # stdin, which every build here is. That file is machine-global, was
+    # written once from the tool's own `default_user_settings()` before the mui
+    # run, and is recorded in the RESULT rather than passed here.
+    "cocoindex": lambda t: [str(UV_BIN / "ccc.exe"), "index"],
     # Serena is an LSP wrapper and builds no persistent index. It still needs a
     # worktree to point at, so it is staged and skipped here rather than absent.
     "serena": None,

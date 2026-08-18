@@ -9,7 +9,7 @@ variance rather than the tool.
 import subprocess
 from pathlib import Path
 
-from _common import BASELINE_PASSED, BENCH_VENV_PY, _env, main_wrapper
+from _common import BENCH_VENV_PY, _env, main_wrapper, suite_verdict
 
 WARNING = "PytestRemovedIn10Warning"
 
@@ -26,10 +26,11 @@ def check(tree: Path, args):
         timeout=900,
     )
     out = (r.stdout or "") + (r.stderr or "")
-    lines = [ln for ln in out.strip().splitlines() if ln.strip()]
-    summary = lines[-1] if lines else "(no pytest output)"
     warned = WARNING in out
-    green = r.returncode == 0 and f"{BASELINE_PASSED} passed" in summary and " failed" not in summary
+    # The green rule is `_common`'s, never a local copy: this oracle carried one
+    # written before defect D1 and it still required the EXACT baseline count,
+    # so it failed three arms on a suite of 988 passed / 0 failed.
+    green, summary = suite_verdict(r.returncode, r.stdout or "")
     if warned:
         return False, f"{WARNING} still emitted; suite: {summary}"
     if not green:

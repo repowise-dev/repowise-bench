@@ -1,0 +1,158 @@
+"""Stamp a fresh hermes worktree from an already-built golden index.
+
+Every treated tree in cell B is the same repo at the same pin with the same
+flags, so rebuilding the index per (session, rep) costs ~42 min x 18 trees =
+~12.6 hours to produce 18 byte-equivalent stores. RESULT_S3C_SMOKE.md section
+8.3 recommended copying instead; this is that, with the two conditions it
+attached made mandatory rather than advisory:
+
+  * the copy must come from a COMPLETED index, not one still being written; and
+  * `index_vector_dim` must be re-asserted on EVERY copy, or the copy becomes
+    the inherited-cache problem wearing a new costume.
+
+What is deliberately NOT copied
+-------------------------------
+`.repowise/sessions/`, `.repowise/hook-sessions/` and `.repowise/episodes/`
+carry per-run agent state. RESULT_S3C_SMOKE.md section 7.2 records an aborted
+arm leaving rows in `sessions/sessions.db` that correctly failed the next
+`hook_ledger_clean_before_run` gate. Copying that state into 18 fresh trees
+would seed every one of them with a previous run's hook history -- the exact
+class of unstated shared state this cell has already paid to discover twice.
+The gate would then either fail every arm or, worse, pass them all with an
+inherited ledger. So the run state is left behind and each tree starts empty.
+
+Usage:
+  python clone_hermes_index.py --golden C:\\...\\se-hermes-pf-golden \\
+      --dest C:\\...\\se-rw-full-hermes-r1 --pin c0106e50e7ec...
+"""
+
+from __future__ import annotations
+
+import argparse
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+HERMES_CLONE = Path(r"C:\Users\ragha\Desktop\repowise\test-repos\hermes-agent-full")
+
+# Per-run agent state. Never copied -- see module docstring.
+EXCLUDE = {"sessions", "hook-sessions", "episodes", "jobs"}
+
+
+def embedding_proof(tree: Path) -> dict:
+    """Vector dim read off the store, mirroring arms.index_embedding_proof."""
+    lance = tree / ".repowise" / "lancedb"
+    if not lance.exists():
+        return {"index_vector_dim": None, "index_embedder_mock": None}
+    try:
+        import lancedb
+
+        db = lancedb.connect(str(lance))
+        names = list(db.table_names())
+        if not names:
+            return {"index_vector_dim": None, "index_embedder_mock": None}
+        table = db.open_table(names[0])
+        field = next(x for x in table.schema if x.name == "vector")
+        dim = int(field.type.list_size)
+    except Exception as exc:  # noqa: BLE001
+        return {"index_vector_dim": None, "index_embedder_probe_error": repr(exc)}
+    return {"index_vector_dim": dim, "index_embedder_mock": dim <= 16}
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--golden", required=True, type=Path)
+    ap.add_argument("--dest", required=True, type=Path)
+    ap.add_argument("--pin", required=True)
+    args = ap.parse_args()
+
+    src = args.golden / ".repowise"
+    if not src.exists():
+        print(f"FAIL golden has no .repowise: {src}")
+        return 1
+
+    # Refuse to copy from a half-built store. A wiki.db with a live write-ahead
+    # log is being written to right now, and a copy of it is a copy of a
+    # partial index that will still answer queries.
+    wal = src / "wiki.db-wal"
+    if wal.exists() and wal.stat().st_size > 0:
+        print(f"FAIL golden index looks live (non-empty {wal.name}); is init still running?")
+        return 1
+
+    golden_proof = embedding_proof(args.golden)
+    if golden_proof.get("index_vector_dim") != 1536:
+        print(f"FAIL golden is not a real store: {golden_proof}")
+        return 1
+    print(f"golden verified: {golden_proof}")
+
+    if args.dest.exists():
+        print(f"FAIL dest already exists: {args.dest}")
+        print("     `prepare` skips worktree add when the path exists, so an")
+        print("     existing tree would be silently reused. Remove it first.")
+        return 1
+
+    print(f"creating worktree {args.dest} at {args.pin[:12]}")
+    rc = subprocess.run(
+        ["git", "worktree", "add", "--detach", str(args.dest), args.pin],
+        cwd=HERMES_CLONE, capture_output=True, text=True,
+    )
+    if rc.returncode != 0:
+        print(f"FAIL worktree add: {rc.stderr.strip()}")
+        return 1
+
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=args.dest, capture_output=True, text=True
+    ).stdout.strip()
+    if head != args.pin:
+        print(f"FAIL dest HEAD is {head}, expected {args.pin}")
+        return 1
+
+    dst = args.dest / ".repowise"
+    dst.mkdir()
+    copied, skipped = [], []
+    for item in sorted(src.iterdir()):
+        if item.name in EXCLUDE:
+            skipped.append(item.name)
+            continue
+        if item.is_dir():
+            shutil.copytree(item, dst / item.name)
+        else:
+            shutil.copy2(item, dst / item.name)
+        copied.append(item.name)
+
+    print(f"copied  : {', '.join(copied)}")
+    print(f"excluded: {', '.join(skipped) or '(none present)'}  <- per-run agent state")
+
+    # The resident block is generated by `init` alongside the index and lives
+    # OUTSIDE `.repowise/`, at `.claude/CLAUDE.md`. A copy that carries only the
+    # index is not a treated tree: `install_block` fails the pre-gate with
+    # "declares the resident block but has none", which is the gate working.
+    #
+    # It must be copied rather than regenerated, and it is not a constant: this
+    # tree's block is 7,394 chars against the pre-fix tree's 7,260, because the
+    # block summarises the index and the index changed. Note also that
+    # `--no-editor-setup` does NOT suppress it (`--no-claude-md` does) and
+    # `scrub_tree` only removes a ROOT `CLAUDE.md`, never `.claude/CLAUDE.md`.
+    src_block = args.golden / ".claude"
+    if src_block.exists():
+        shutil.copytree(src_block, args.dest / ".claude")
+        block = args.dest / ".claude" / "CLAUDE.md"
+        n = block.stat().st_size if block.exists() else 0
+        print(f"block   : .claude/ copied ({n} chars)")
+    else:
+        print("FAIL golden has no .claude/ -- it is not a treated tree")
+        return 1
+
+    proof = embedding_proof(args.dest)
+    print(f"copy verified: {proof}")
+    if proof.get("index_vector_dim") != 1536 or proof.get("index_embedder_mock") is not False:
+        print("FAIL copy did not re-assert 1536")
+        return 1
+
+    print(f"OK {args.dest}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

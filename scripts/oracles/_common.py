@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -111,11 +112,49 @@ def run_suite(tree: Path, timeout: int = 900) -> tuple[bool, str]:
         errors="replace",
         timeout=timeout,
     )
-    tail = [ln for ln in (r.stdout or "").strip().splitlines() if ln.strip()]
+    return suite_verdict(r.returncode, r.stdout or "")
+
+
+def suite_verdict(returncode: int, stdout: str) -> tuple[bool, str]:
+    """The ONE definition of "the suite is green". Returns (green, summary).
+
+    Split out of :func:`run_suite` because it was not the only place the rule
+    lived. `t04` runs pytest itself (it needs the whole output to look for a
+    deprecation warning, not just the summary line) and carried its own copy of
+    the green check — a copy written BEFORE defect D1 and never updated with it.
+    So the `>= baseline` fix landed in `run_suite` and t04 went on requiring the
+    exact 984, which is the same detector that scored a working arm 1 of 6.
+
+    Found on 2026-08-11 by final-state re-grading: three arms failed T04 with
+    "warning gone but suite not green: 988 passed, 23 skipped" — a fully green
+    suite with four agent-added tests. Fifth dead detector of this run, and the
+    only one that was a SURVIVING copy of an already-fixed one.
+    """
+    tail = [ln for ln in stdout.strip().splitlines() if ln.strip()]
     summary = tail[-1] if tail else "(no pytest output)"
-    passed = f"{BASELINE_PASSED} passed" in summary
+
+    # `>= baseline`, NOT `== baseline`.
+    #
+    # Requiring the exact count scored three genuinely-solved tasks as failures
+    # in the first treatment arm: the agent added tests alongside its fix, the
+    # suite read 986 and 987 passed with zero failures, and every "+ suite green"
+    # oracle then failed on a green suite. It would have been recorded as the
+    # arm collapsing task completion from 5 of 6 to 1 of 6, which is a dramatic
+    # and false finding.
+    #
+    # Adding tests with a fix is legitimate and arguably good agent behaviour. An
+    # oracle that punishes it measures conformity, not correctness. What must
+    # never pass is a suite with failures or errors, or one that lost coverage,
+    # and both are still asserted.
+    m = re.search(r"(\d+) passed", summary)
+    count = int(m.group(1)) if m else -1
     no_fail = " failed" not in summary and "error" not in summary.lower()
-    return (r.returncode == 0 and passed and no_fail), summary
+    green = returncode == 0 and no_fail and count >= BASELINE_PASSED
+    if count > BASELINE_PASSED:
+        summary += f" [+{count - BASELINE_PASSED} tests added by the agent]"
+    elif 0 <= count < BASELINE_PASSED:
+        summary += f" [LOST {BASELINE_PASSED - count} tests vs baseline]"
+    return green, summary
 
 
 def verdict(name: str, ok: bool, detail: str, args: argparse.Namespace) -> int:
