@@ -114,6 +114,10 @@ the only reading that describes whether the call graph connected the file.
 | caffeine | java | 536 / 664 | 0.608 | 0.517 |
 | zod | typescript | 269 / 291 | 0.138 | 0.148 |
 
+Our side at `3594ba75`. Every cell is byte-identical to the same run at
+`8848c456` one commit earlier, including celery, which gained 758 edges in
+between. That is not a copy-paste error, it is the result: see below.
+
 **Read this as a wash, not a win.** Two cells each way on the comparable repos,
 and the two where we lead have denominators that do not match, which is a
 caveat and not a footnote (below). Coverage is simply not where the difference
@@ -139,9 +143,36 @@ Nobody has connected that repository, and the miss taxonomy already says why:
 65% of what we miss there is external, and the remaining large block is
 return-type inference.
 
-**celery is expected to move.** This was measured at `8848c456`, which does not
-include the Python call-resolution work in flight on `feat/python-task-receiver`.
-Re-measure that cell after it lands rather than treating 0.378 as current.
+## The coverage metric is provably insensitive to real improvement
+
+The celery cell was expected to move when the Python call-resolution work
+landed. It did not move at all, and chasing that is the most useful thing this
+experiment has produced.
+
+`#1684` types a call receiver that a framework decorator retyped. Measured
+across the two commits, in the same process, on the same checkout:
+
+| | distinct resolved call edges on celery | incoming `calls` coverage |
+|---|---:|---:|
+| `8848c456`, before | 8,756 | 0.378 |
+| `3594ba75`, after | **9,514** | **0.378** |
+
+**758 new edges, 8.7% more of them, and the coverage figure does not move by a
+single file.** The gain independently reproduces a +758 prediction made from an
+instrument that shares no code with the change, so the edges are real and the
+number of them is not in doubt.
+
+The reason is structural, not a fluke. Coverage asks whether a file has *at
+least one* incoming edge. Resolution improvements overwhelmingly add edges into
+files that already had one, so the metric saturates long before the graph stops
+improving. It can only move when a change connects a file that was completely
+disconnected.
+
+This is the empirical version of the argument the rest of this page makes from
+the definition alone. A tool optimising for the published coverage number would
+have taken no credit for this change, and a tool that regressed 758 edges would
+show no penalty either. **Coverage cannot be the headline metric for a call
+graph, and no number on this page should be read as if it could.**
 
 One instrument note worth recording, because it would have quietly cost us 27%:
 our `GraphBuilder` collapses multiple call sites onto a single `calls` edge, so

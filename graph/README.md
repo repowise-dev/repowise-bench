@@ -96,6 +96,14 @@ Their metric puts five of six repos above 0.9 and calls that a language result.
 The incoming-`calls` column, which is the one that describes whether the call
 graph connected anything, puts zod at 0.148.
 
+**And the metric is provably insensitive to real improvement.** `#1684` added
+**758 resolved call edges** to celery, 8.7% more, independently predicted before
+it was measured. Coverage moved by **zero files**, 0.378 before and after.
+Resolution improvements land in files that already had an edge, so the metric
+saturates long before the graph stops getting better. A tool optimising this
+number would take no credit for that change, and would pay no penalty for
+undoing it. [Details](experiments/g2-cross-file-coverage/#the-coverage-metric-is-provably-insensitive-to-real-improvement).
+
 **What we will and will not say about this.** We will publish the reproduction,
 because a metric that cannot be reproduced from its own definition is worth
 knowing about, and because we found the reading that does reproduce rather than
