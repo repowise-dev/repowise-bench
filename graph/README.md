@@ -249,6 +249,39 @@ documentation, no embeddings, no health pass, and it must never be quoted
 beside the full-index row. And CodeGraph produces more distinct call edges than
 we do on three of the six, so seconds alone is not a quality claim.
 
+### "But isn't CodeGraph Rust and repowise Python?"
+
+Partly, and it matters less than the framing suggests. Their README leads with
+"Kernel powered by Rust" and "the fastest complete code graph", and we are a
+Python program that came out ahead on four of six repositories. That deserves
+an explanation rather than a victory lap, because the obvious reading — that a
+scripting language beat compiled code — is not what happened.
+
+**The Rust is in the parser, and their own README scopes it that way**: parsing
+and extraction run in a compiled kernel with "one boundary crossing per file".
+Resolution, graph assembly and storage stay in JavaScript on a bundled Node 24
+runtime. Our side is the same shape: tree-sitter is compiled C, and Python only
+orchestrates it. **On the hot loop both tools are running native code.** The
+language difference lives in the glue, and the glue is not where the seconds
+are.
+
+**They persist a real index and we do not.** CodeGraph writes 115 MB of SQLite
+on dub; our graph lives in memory and is discarded when the process exits.
+Serialisation is genuine work that our number excludes, and that is a caveat in
+their favour, not ours. The honest sentence is "faster to build the graph", not
+"faster", and this benchmark should never write the second one.
+
+**The memory gap is the more solid result.** 141 MB against 1,752 MB is a wide
+enough margin that no accounting choice closes it, and it is mostly structural:
+a V8 heap plus a bundled runtime plus holding a graph in memory to write it out,
+against a build that streams.
+
+**Their headline claim is about a number we have not measured.** The speed
+CodeGraph advertises is mostly *incremental re-sync* — roughly 0.3s to fold one
+saved file into a 4,400-file project, never re-scanning the tree. That is a real
+capability, it is a different measurement from a cold build, and **we expect to
+lose it**. It is listed as unmeasured in G6 rather than quietly omitted.
+
 ---
 
 ## How this is organised
