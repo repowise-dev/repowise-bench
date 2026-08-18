@@ -1,0 +1,140 @@
+{
+  "metric": "cross_file_coverage",
+  "arm": "repowise",
+  "repos": {
+    "caffeine": {
+      "language_pin": [
+        "java"
+      ],
+      "index": {
+        "repowise_build": true,
+        "files_walked": 833,
+        "nodes": 12690,
+        "edges": 64726,
+        "calls_raw": 65635,
+        "calls_distinct": 56376,
+        "timings_sec": {
+          "walk": 8.352,
+          "parse": 6.282,
+          "build": 4.591,
+          "total": 19.225,
+          "script_wall": 19.225
+        }
+      },
+      "file_languages": {
+        "yaml": 36,
+        "toml": 10,
+        "json": 9,
+        "markdown": 55,
+        "kotlin": 46,
+        "python": 2,
+        "shell": 3,
+        "java": 668,
+        "c": 2,
+        "cpp": 2
+      },
+      "edge_type_histogram": {
+        "defines": 11192,
+        "calls": 39951,
+        "imports": 5084,
+        "has_method": 7175,
+        "dispatches_to": 487,
+        "type_use": 578,
+        "extends": 114,
+        "implements": 145
+      },
+      "coverage": {
+        "primary_language__any_dependency__either": {
+          "covered": 535,
+          "symbol_bearing": 536,
+          "rate": 0.9981
+        },
+        "primary_language__any_dependency__incoming": {
+          "covered": 431,
+          "symbol_bearing": 536,
+          "rate": 0.8041
+        },
+        "primary_language__any_dependency__outgoing": {
+          "covered": 505,
+          "symbol_bearing": 536,
+          "rate": 0.9422
+        },
+        "primary_language__calls_or_refs__either": {
+          "covered": 522,
+          "symbol_bearing": 536,
+          "rate": 0.9739
+        },
+        "primary_language__calls_or_refs__incoming": {
+          "covered": 326,
+          "symbol_bearing": 536,
+          "rate": 0.6082
+        },
+        "primary_language__calls_or_refs__outgoing": {
+          "covered": 467,
+          "symbol_bearing": 536,
+          "rate": 0.8713
+        },
+        "primary_language__calls_only__either": {
+          "covered": 522,
+          "symbol_bearing": 536,
+          "rate": 0.9739
+        },
+        "primary_language__calls_only__incoming": {
+          "covered": 326,
+          "symbol_bearing": 536,
+          "rate": 0.6082
+        },
+        "primary_language__calls_only__outgoing": {
+          "covered": 467,
+          "symbol_bearing": 536,
+          "rate": 0.8713
+        },
+        "all_files__any_dependency__either": {
+          "covered": 554,
+          "symbol_bearing": 567,
+          "rate": 0.9771
+        },
+        "all_files__any_dependency__incoming": {
+          "covered": 439,
+          "symbol_bearing": 567,
+          "rate": 0.7743
+        },
+        "all_files__any_dependency__outgoing": {
+          "covered": 521,
+          "symbol_bearing": 567,
+          "rate": 0.9189
+        },
+        "all_files__calls_or_refs__either": {
+          "covered": 539,
+          "symbol_bearing": 567,
+          "rate": 0.9506
+        },
+        "all_files__calls_or_refs__incoming": {
+          "covered": 331,
+          "symbol_bearing": 567,
+          "rate": 0.5838
+        },
+        "all_files__calls_or_refs__outgoing": {
+          "covered": 480,
+          "symbol_bearing": 567,
+          "rate": 0.8466
+        },
+        "all_files__calls_only__either": {
+          "covered": 539,
+          "symbol_bearing": 567,
+          "rate": 0.9506
+        },
+        "all_files__calls_only__incoming": {
+          "covered": 331,
+          "symbol_bearing": 567,
+          "rate": 0.5838
+        },
+        "all_files__calls_only__outgoing": {
+          "covered": 480,
+          "symbol_bearing": 567,
+          "rate": 0.8466
+        }
+      }
+    }
+  }
+}

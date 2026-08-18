@@ -98,28 +98,60 @@ Peer indexes are opened through a `file:...?mode=ro` URI. They are frozen
 baselines that earlier numbers reconcile against, and SQLite will create a `-wal`
 beside a database opened read-write.
 
-## Our side, on gitleaks
+## Both arms, five repositories
 
-`run_ours.py` computes the same sweep from our graph. Smoke run only: the
-`repowise` tree carried uncommitted ingestion changes, so this is stamped
-`publishable: false` and is here to show the instrument agrees, not to claim a
-number.
+Our side measured in a detached worktree at `8848c456` on `origin/main`, so no
+uncommitted work is in it. The peer side is the frozen indexes.
 
-| arm | symbol-bearing go files | either | incoming | incoming `calls` |
-|---|---:|---:|---:|---:|
-| repowise | 213 | 0.953 | 0.859 | **0.761** |
-| CodeGraph | 213 | 0.915 | 0.789 | **0.784** |
+The column that matters is the last pair: incoming resolved `calls`, which is
+the only reading that describes whether the call graph connected the file.
 
-**The denominator matches exactly at 213 files**, computed independently from two
-different data structures. That is the check worth having: had the two sides
-disagreed on which files are symbol-bearing, every rate above would have been
-comparing different populations while looking perfectly reasonable.
+| repo | language | denominator ours / theirs | incoming `calls` ours | theirs |
+|---|---|---:|---:|---:|
+| gitleaks | go | 213 / 213 | 0.761 | **0.784** |
+| Ocelot | csharp | 732 / 732 | **0.419** | 0.352 |
+| celery | python | 373 / 372 | 0.378 | **0.489** |
+| caffeine | java | 536 / 664 | 0.608 | 0.517 |
+| zod | typescript | 269 / 291 | 0.138 | 0.148 |
 
-On the columns themselves we are ahead on the two saturated readings and
-**slightly behind on the discriminating one**, 0.761 against 0.784. That is one
-repository and the gap is 5 files, so it is not a result in either direction. It
-is printed because printing the cell we do not win is the only reason to trust
-the cells we do.
+**Read this as a wash, not a win.** Two cells each way on the comparable repos,
+and the two where we lead have denominators that do not match, which is a
+caveat and not a footnote (below). Coverage is simply not where the difference
+between these two tools lives, which is the useful thing this experiment
+established. The difference lives in whether the edges are *right*, and that is
+G1 and G4.
+
+**Two denominators match exactly**, gitleaks at 213 and Ocelot at 732, computed
+independently from two unrelated data structures. That is the check worth
+having, and it is what makes those two rows trustworthy.
+
+**Two do not, and until they are reconciled those rows are not comparable.**
+On caffeine they count 664 symbol-bearing java files out of 668 walked, and we
+count 536. That is **128 java files, 19% of the repository, where we produce no
+symbol at all.** Either our walk excludes them or we parse them and extract
+nothing. This is the most actionable thing G2 has produced and it is worth
+chasing before any caffeine number is quoted. zod has the same shape, 269
+against 291, though the peer also walks 404 typescript files and finds only 291
+symbol-bearing, so that denominator is doing something of its own.
+
+**zod is the industry's problem, not ours.** 0.138 and 0.148 are both terrible.
+Nobody has connected that repository, and the miss taxonomy already says why:
+65% of what we miss there is external, and the remaining large block is
+return-type inference.
+
+**celery is expected to move.** This was measured at `8848c456`, which does not
+include the Python call-resolution work in flight on `feat/python-task-receiver`.
+Re-measure that cell after it lands rather than treating 0.378 as current.
+
+One instrument note worth recording, because it would have quietly cost us 27%:
+our `GraphBuilder` collapses multiple call sites onto a single `calls` edge, so
+counting edges off the built graph undercounts distinct call sites. `ours.py`
+therefore observes `CallResolver.resolve_file` rather than reading the graph.
+This is the mirror image of the peer's raw-versus-distinct trap, and it points
+the other way.
+
+`run_ours.py` does not yet persist the symbol-bearing file list, which is why
+the caffeine gap can be sized but not explained. Add that first next session.
 
 One instrument note worth recording, because it would have quietly cost us 27%:
 our `GraphBuilder` collapses multiple call sites onto a single `calls` edge, so
