@@ -394,6 +394,75 @@ def main() -> int:
             ip.close(a)
             sp.close(b)
 
+    @r.check("a cached artifact restores to the same sets", "arms")
+    def _():
+        """Store and restore one artifact, and compare every protocol set.
+
+        The corpus sweep is only affordable because competitor artifacts are
+        built once and restored afterwards, so a restore that differs from its
+        build silently rewrites thirty-five repositories' worth of coverage.
+
+        This caught a real one. `lookup` used to infer the payload shape as
+        "exactly one entry and it is a file", which is false the moment SQLite
+        leaves a `-wal` and a `-shm` beside the database: the payload has three
+        entries, the directory comes back instead of the database, and the arm
+        dies with "unable to open database file". Whether the sidecars exist
+        depends on whether the tool checkpointed before exiting, so 97 slots
+        cached correctly and 2 did not.
+
+        The sidecars are recreated here deliberately -- a guard that has never
+        been made to fail is not known to work.
+        """
+        import artifact_cache
+        import arms as arms_lib
+
+        arm = arms_lib.get_arm("codegraph")
+        pin = "smoketest" + "0" * 31
+        artifact_cache_slot = artifact_cache.slot(arm.name, arm.version(), "gitleaks", pin)
+        shutil.rmtree(artifact_cache_slot, ignore_errors=True)
+
+        def sets(art):
+            return (
+                arm.files_seen(art),
+                arm.symbol_files(art),
+                arm.call_edges(art),
+                arm.cross_file_edges(art, arms_lib.CALLS),
+            )
+
+        try:
+            built = arms_lib.build_cached(
+                arm, SMOKE_REPO, repo_name="gitleaks", pin=pin, fresh=False
+            )
+            try:
+                fresh_sets = sets(built)
+            finally:
+                arm.close(built)
+            require(all(fresh_sets[:3]), "the build under test produced an empty set")
+
+            payload = artifact_cache_slot / "payload"
+            db = next(p for p in payload.iterdir() if p.suffix == ".db")
+            for suffix in ("-wal", "-shm"):
+                (payload / (db.name + suffix)).write_bytes(b"")
+
+            restored = arms_lib.build_cached(
+                arm, SMOKE_REPO, repo_name="gitleaks", pin=pin, fresh=False
+            )
+            try:
+                require(restored.extra.get("from_cache"), "the second build was not a cache hit")
+                cached_sets = sets(restored)
+            finally:
+                arm.close(restored)
+        finally:
+            shutil.rmtree(artifact_cache_slot, ignore_errors=True)
+
+        names = ("files_seen", "symbol_files", "call_edges", "cross_file_edges")
+        for name, a, b in zip(names, fresh_sets, cached_sets):
+            require(a == b, f"{name} differs after a cache restore: {len(a)} vs {len(b)}")
+        return (
+            f"{len(fresh_sets[0])} files, {len(fresh_sets[2])} calls identical "
+            "after store and restore, with -wal/-shm present"
+        )
+
     @r.check("a fresh peer index reconciles with the frozen one", "arms")
     def _():
         import arms as arms_lib

@@ -65,11 +65,26 @@ def lookup(arm: str, arm_version: str, repo_name: str, pin: str) -> tuple[Path, 
     entries = list(payload.iterdir())
     if not entries:
         return None
-    # A single-file payload (a SQLite database) is returned as that file; a
-    # multi-file one (graphify's output directory) as the directory. The
-    # adapter that stored it knows which shape it asked for.
-    inner = entries[0] if len(entries) == 1 and entries[0].is_file() else payload
-    return inner, meta
+    # The shape is read from the metadata, not guessed from the directory.
+    # It used to be inferred as "exactly one entry and it is a file", which is
+    # wrong the moment SQLite leaves a `-wal` and a `-shm` beside the database:
+    # the payload then has three entries, `lookup` hands back the directory,
+    # and the adapter fails with "unable to open database file". Whether those
+    # sidecars exist depends on whether the tool checkpointed before exiting,
+    # so the same arm on the same repository cached correctly 97 times and
+    # broke twice. A benchmark cannot have a cache that works most of the time.
+    name = meta.get("payload_name")
+    if name:
+        inner = payload / name
+        if not inner.exists():
+            return None  # a half-written store; rebuilding is the cure
+        return inner, meta
+    # Entries stored before `payload_name` was recorded. Same heuristic as
+    # before, minus the sidecars, so an old slot still opens.
+    real = [e for e in entries if not e.name.endswith(("-wal", "-shm", "-journal"))]
+    if len(real) == 1 and real[0].is_file():
+        return real[0], meta
+    return payload, meta
 
 
 def store(
@@ -98,6 +113,10 @@ def store(
         json.dumps(
             {
                 **meta,
+                # What to hand back on lookup. Recorded rather than inferred:
+                # see the comment there. Absent for a directory payload, which
+                # is returned whole.
+                **({"payload_name": payload.name} if payload.is_file() else {}),
                 "arm": arm,
                 "arm_version": arm_version,
                 "repo": repo_name,
