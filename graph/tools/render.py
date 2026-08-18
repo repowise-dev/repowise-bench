@@ -232,16 +232,20 @@ def render_g7(doc: dict) -> str:
     dropping it is the entire point of the experiment.
     """
     out = ["## G7 language breadth", "", _provenance_line(doc), ""]
+    out += _g7_spread(doc)
     out += [
-        "| repo | language | arm | files (lang) | node share | edge share | calls/file |",
-        "|---|---|---|---:|---:|---:|---:|",
+        "### Per repository",
+        "",
+        "| repo | kind | language | arm | files (lang) | node share | edge share | calls/file |",
+        "|---|---|---|---|---:|---:|---:|---:|",
     ]
     nominal: list[str] = []
     for name, repo in doc["repos"].items():
         lang = repo["language"]
         for a, row in repo["arms"].items():
             if "error" in row:
-                out.append(f"| {name} | {lang} | {a} | | FAILED | | |")
+                out.append(
+                    f"| {name} | {repo.get('kind') or '-'} | {lang} | {a} | | FAILED | | |")
                 continue
             counts = row["counts"]
             in_lang = counts["files_in_language"]
@@ -250,7 +254,7 @@ def render_g7(doc: dict) -> str:
             node_share = sym / in_lang if in_lang else None
             per_file = counts["call_edges_distinct"] / sym if sym else None
             out.append(
-                f"| {name} | {lang} | {a} | {in_lang} | "
+                f"| {name} | {repo.get('kind') or '-'} | {lang} | {a} | {in_lang} | "
                 f"{_fmt(node_share)} | {_fmt(cell.get('rate'))} | "
                 f"{f'{per_file:.1f}' if per_file is not None else '-'} |"
             )
@@ -272,6 +276,74 @@ def render_g7(doc: dict) -> str:
             + ". Recorded as a capability gap, not as a failed run.",
         ]
     return "\n".join(out)
+
+
+def _g7_spread(doc: dict) -> list[str]:
+    """Edge share per (language, arm), across the language's three repositories.
+
+    The per-repository table below is the evidence, but at thirty-five
+    repositories times five arms it is 175 rows and no reader extracts a
+    language from it. Worse, reading any single row as the language's number is
+    the exact mistake the three-kinds rule exists to forbid -- we nearly
+    published a fact about zod as a fact about TypeScript.
+
+    So the spread is printed rather than the mean: a language whose three
+    repositories read 3%, 14% and 26% does not have "a" rate, and collapsing
+    that to 14% throws away the finding and hides which kind the tool is weak
+    on. A language below three repositories, or missing a kind, is named
+    underneath instead of being quietly averaged in with the rest.
+    """
+    per: dict[tuple[str, str], list[tuple[float, str]]] = {}
+    kinds: dict[str, set[str]] = {}
+    repos_per_lang: dict[str, set[str]] = {}
+    for name, repo in doc["repos"].items():
+        lang = repo["language"]
+        kinds.setdefault(lang, set()).add(repo.get("kind") or "?")
+        repos_per_lang.setdefault(lang, set()).add(name)
+        for a, row in repo["arms"].items():
+            if "error" in row:
+                continue
+            cell = row.get("coverage", {}).get("primary_language__calls_only__incoming") or {}
+            if cell.get("rate") is None:
+                continue
+            per.setdefault((lang, a), []).append((cell["rate"], name))
+
+    out = [
+        "### Edge share by language, across kinds",
+        "",
+        "| language | kinds | arm | n | min | median | max | spread |",
+        "|---|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for lang, arm in sorted(per):
+        vals = sorted(per[(lang, arm)])
+        rates = [v for v, _ in vals]
+        n = len(rates)
+        median = rates[n // 2] if n % 2 else (rates[n // 2 - 1] + rates[n // 2]) / 2
+        lo, hi = rates[0], rates[-1]
+        out.append(
+            f"| {lang} | {','.join(sorted(kinds.get(lang, set())))} | {arm} | {n} | "
+            f"{lo:.3f} ({vals[0][1]}) | {median:.3f} | {hi:.3f} ({vals[-1][1]}) | "
+            f"{hi - lo:.3f} |"
+        )
+
+    thin = sorted(
+        lang for lang in kinds
+        if len({k for k in kinds[lang] if k != "?"}) < 3 or len(repos_per_lang[lang]) < 3
+    )
+    out += [
+        "",
+        "`spread` is max minus min across the language's repositories, for that "
+        "arm. It is reported instead of a mean because disagreement between the "
+        "three kinds is a finding, not noise to average away.",
+    ]
+    if thin:
+        out += [
+            "",
+            "**Below three repositories, or missing a kind, so no language-level "
+            "claim is available:** " + ", ".join(thin) + ". Those rows describe "
+            "the repositories named, not the language.",
+        ]
+    return out + [""]
 
 
 def render_compare(base: dict, head: dict) -> str:
