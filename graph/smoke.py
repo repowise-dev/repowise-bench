@@ -281,14 +281,14 @@ def main() -> int:
         return f"6 published cells reproduce; 30-row margin at 60% is +/-{stats.margin(18, 30) * 100:.1f}pt"
 
     # ---------------------------------------------------------------------- arms
-    @r.check("both arms answer the whole protocol", "arms")
+    @r.check("every arm answers the whole protocol", "arms")
     def _():
         import arms as arms_lib
 
         names = arms_lib.arm_names()
         require("codegraph" in names and "repowise" in names, f"arms missing: {names}")
         counts = {}
-        for name in ("codegraph", "repowise"):
+        for name in names:
             arm = arms_lib.get_arm(name)
             art = arm.build(SMOKE_REPO, repo_name="gitleaks")
             try:
@@ -297,7 +297,14 @@ def main() -> int:
                 sym = arm.symbol_files(art)
                 calls = arm.call_edges(art)
                 xfile = arm.cross_file_edges(art)
-                require(seen and sym and calls and xfile, f"{name} returned an empty set")
+                # Walk, symbols and call edges must all be non-empty: an
+                # instrument returning nothing passes an import test and has to
+                # fail here. Cross-file edges are deliberately NOT in that list.
+                # code-review-graph genuinely emits zero of them on gitleaks --
+                # all 105 of its resolved calls are same-file -- and that is a
+                # finding about the tool, not a broken adapter. Asserting it
+                # away would delete the most interesting number this arm has.
+                require(seen and sym and calls, f"{name} returned an empty set")
                 require(sym <= seen, f"{name}: symbol_files is not a subset of files_seen")
                 # Every path repo-relative and forward-slashed. A single
                 # backslash makes a cross-arm intersection silently empty, and
@@ -308,40 +315,57 @@ def main() -> int:
                     arm.cross_file_edges(art, arms_lib.CALLS) <= xfile,
                     f"{name}: calls-only edges are not a subset of all dependency edges",
                 )
-                counts[name] = (len(seen), len(sym), len(calls))
+                counts[name] = (len(seen), len(sym), len(calls), len(xfile))
             finally:
                 arm.close(art)
         # The intersection every cross-arm comparison starts from. Non-empty is
         # the only assertion that matters here; its size is a G3 result.
         shared = counts["codegraph"][0] and counts["repowise"][0]
         require(shared, "no shared files between arms")
-        return " ".join(f"{k}: {v[0]} seen/{v[1]} sym/{v[2]} calls" for k, v in counts.items())
+        return " ".join(
+            f"{k}: {v[0]}/{v[1]}/{v[2]}/{v[3]}" for k, v in sorted(counts.items())
+        ) + "  (seen/sym/calls/xfile)"
 
-    @r.check("our arm rebuilds identically", "arms")
+    @r.check("every arm rebuilds identically", "arms")
     def _():
         import arms as arms_lib
 
-        rep = arms_lib.determinism_report(
-            arms_lib.get_arm("repowise"), SMOKE_REPO, repo_name="gitleaks"
-        )
-        require(rep["identical"], f"our graph is not reproducible: {rep['sets']}")
-        return f"{rep['sets']['call_edges']['n_run1']} call edges, two builds identical"
+        # A non-deterministic arm is a publishable finding about that tool, not
+        # a reason to stop -- but it is still a failure here, because G5 cannot
+        # separate a mutation's effect from run-to-run drift.
+        drifting = []
+        edges = {}
+        for name in arms_lib.arm_names():
+            rep = arms_lib.determinism_report(
+                arms_lib.get_arm(name), SMOKE_REPO, repo_name="gitleaks"
+            )
+            edges[name] = rep["sets"]["call_edges"]["n_run1"]
+            if not rep["identical"]:
+                drifting.append(f"{name}: {rep['sets']}")
+        require(not drifting, "arms are NOT deterministic -- publish this: " + "; ".join(drifting))
+        return ", ".join(f"{k} {v}" for k, v in sorted(edges.items()))
 
-    @r.check("the peer rebuilds identically", "arms")
+    @r.check("our two arms agree edge for edge", "arms")
     def _():
         import arms as arms_lib
-        import provenance as pv
 
-        if pv.tool_versions()["codegraph"] is None:
-            raise _Skip("codegraph not on PATH")
-        rep = arms_lib.determinism_report(
-            arms_lib.get_arm("codegraph"), SMOKE_REPO, repo_name="gitleaks"
-        )
-        # A non-deterministic competitor is a publishable finding about that
-        # tool, not a reason to stop. It is still a failure here, because G5
-        # cannot separate a mutation's effect from run-to-run drift.
-        require(rep["identical"], f"codegraph is NOT deterministic -- publish this: {rep['sets']}")
-        return f"{rep['sets']['call_edges']['n_run1']} call edges, two indexes identical"
+        ip, sp = arms_lib.get_arm("repowise"), arms_lib.get_arm("repowise-subprocess")
+        a = ip.build(SMOKE_REPO, repo_name="gitleaks")
+        b = sp.build(SMOKE_REPO, repo_name="gitleaks")
+        try:
+            for meth in ("files_seen", "symbol_files", "call_edges", "cross_file_edges"):
+                x, y = getattr(ip, meth)(a), getattr(sp, meth)(b)
+                require(
+                    x == y,
+                    f"{meth} differs in process vs subprocess: "
+                    f"{len(x)} vs {len(y)}. The subprocess arm supplies G6's memory "
+                    "column, so a divergence means that column describes the "
+                    "difference rather than the graph.",
+                )
+            return f"{len(ip.call_edges(a))} call edges, identical both ways"
+        finally:
+            ip.close(a)
+            sp.close(b)
 
     @r.check("a fresh peer index reconciles with the frozen one", "arms")
     def _():
