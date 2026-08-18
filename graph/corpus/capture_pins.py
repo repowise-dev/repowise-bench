@@ -49,22 +49,33 @@ _EXT_LANG = {
 # The three-kinds table from the corpus plan, for the repositories a
 # per-language claim is meant to rest on. Everything absent from here is
 # breadth pool and gets a null kind.
+# Two slots in the original plan were assigned by reputation and are wrong on
+# the file counts, which is exactly the lopsidedness the three-kinds rule exists
+# to catch:
+#
+#   javalin             303 .kt against 64 .java -- a Kotlin repository. It is
+#                       kotlin/application here, which completes Kotlin's three
+#                       kinds, and leaves Java needing an application (Signal-Server).
+#   jhipster-sample-app TypeScript-majority (an Angular frontend). Dropped to
+#                       the breadth pool rather than counted as Java.
 _KIND = {
     "requests": "library", "scrapy": "application", "django": "framework",
     "celery": "framework",
     "zod": "library", "taxonomy": "application", "dub": "application",
     "hono": "framework",
-    "caffeine": "library", "javalin": "application",
-    "spring-petclinic": "framework", "jhipster-sample-app": "framework",
-    "eShopOnWeb": "application", "Ocelot": "framework",
+    "caffeine": "library", "Signal-Server": "application",
+    "spring-petclinic": "framework",
+    "Polly": "library", "eShopOnWeb": "application", "Ocelot": "framework",
     "CleanArchitecture": "framework",
-    "gitleaks": "application", "hugo": "framework", "syft": "framework",
-    "bevy": "framework",
-    "guzzle": "library",
-    "jekyll": "application", "sinatra": "framework",
+    "cobra": "library", "gitleaks": "application", "hugo": "framework",
+    "syft": "framework",
+    "serde": "library", "ripgrep": "application", "bevy": "framework",
+    "guzzle": "library", "monica": "application",
+    "laravel-framework": "framework",
+    "faraday": "library", "jekyll": "application", "sinatra": "framework",
     "fmt": "library", "nlohmann-json": "library", "leveldb": "library",
-    "Crow": "framework", "seastar": "framework",
-    "exposed": "library", "ktor": "framework",
+    "aria2": "application", "Crow": "framework", "seastar": "framework",
+    "exposed": "library", "javalin": "application", "ktor": "framework",
     "Alamofire": "library",
 }
 
