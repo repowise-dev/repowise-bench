@@ -206,11 +206,79 @@ def render_g6(doc: dict) -> str:
     return "\n".join(out)
 
 
+def render_g7(doc: dict) -> str:
+    """Language breadth: what a claimed language actually delivers, per arm.
+
+    Every tool in this field claims twenty to forty languages and none of them
+    says what a claimed language produces. Three readings per cell, all off the
+    arm's own artifact:
+
+    * **node share** -- files in the language that declare at least one symbol,
+      over files in the language the arm walked. A language that parses but
+      yields no symbols cannot contribute an edge, and that is the first place
+      support turns out to be nominal.
+    * **edge share** -- the G2 incoming `calls` reading, over the arm's
+      symbol-bearing files in the language.
+    * **calls/file** -- distinct call edges over symbol-bearing files.
+
+    The designed metric was edges per thousand lines. `run_corpus.py` records
+    no line counts and adding them is a tree walk on every repository, so this
+    prints per symbol-bearing file instead and says so rather than quietly
+    relabelling a different denominator.
+
+    An empty cell is a result. code-review-graph resolves no cross-file call
+    edges at all on Go and C# while resolving 12,395 on TypeScript; that is a
+    per-language capability gap, and printing it as a blank row rather than
+    dropping it is the entire point of the experiment.
+    """
+    out = ["## G7 language breadth", "", _provenance_line(doc), ""]
+    out += [
+        "| repo | language | arm | files (lang) | node share | edge share | calls/file |",
+        "|---|---|---|---:|---:|---:|---:|",
+    ]
+    nominal: list[str] = []
+    for name, repo in doc["repos"].items():
+        lang = repo["language"]
+        for a, row in repo["arms"].items():
+            if "error" in row:
+                out.append(f"| {name} | {lang} | {a} | | FAILED | | |")
+                continue
+            counts = row["counts"]
+            in_lang = counts["files_in_language"]
+            sym = counts["symbol_files_in_language"]
+            cell = row.get("coverage", {}).get("primary_language__calls_only__incoming") or {}
+            node_share = sym / in_lang if in_lang else None
+            per_file = counts["call_edges_distinct"] / sym if sym else None
+            out.append(
+                f"| {name} | {lang} | {a} | {in_lang} | "
+                f"{_fmt(node_share)} | {_fmt(cell.get('rate'))} | "
+                f"{f'{per_file:.1f}' if per_file is not None else '-'} |"
+            )
+            if in_lang and not cell.get("covered"):
+                nominal.append(f"{a} on {lang} ({name})")
+    out += [
+        "",
+        "`node share` is symbol-bearing files over walked files, in the "
+        "repository's primary language. `edge share` is the incoming `calls` "
+        "coverage on the arm's own denominator. `calls/file` is distinct call "
+        "edges over symbol-bearing files -- not per thousand lines; the runner "
+        "records no line counts.",
+    ]
+    if nominal:
+        out += [
+            "",
+            "**Walked the language and resolved no cross-file call edge in it:** "
+            + "; ".join(sorted(set(nominal)))
+            + ". Recorded as a capability gap, not as a failed run.",
+        ]
+    return "\n".join(out)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--run", help="a run directory name, e.g. 2026-08-18-3594ba75")
     ap.add_argument("--list", action="store_true")
-    ap.add_argument("--only", choices=["g2", "g6"])
+    ap.add_argument("--only", choices=["g2", "g6", "g7"])
     args = ap.parse_args()
 
     if args.list:
@@ -227,6 +295,9 @@ def main() -> int:
         print()
     if args.only in (None, "g6"):
         print(render_g6(doc))
+        print()
+    if args.only in (None, "g7"):
+        print(render_g7(doc))
     return 0
 
 
