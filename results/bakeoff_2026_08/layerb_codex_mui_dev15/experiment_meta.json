@@ -1,6 +1,6 @@
 {
-  "config_path": "configs\\layerb_codex_mui_gate.yaml",
-  "started_at": "2026-08-08T22:17:37.387619+00:00",
+  "config_path": "configs\\layerb_codex_mui_dev15.yaml",
+  "started_at": "2026-08-09T03:06:24.275507+00:00",
   "conditions": [
     "c0-bare",
     "repowise",
@@ -10,7 +10,7 @@
     "serena"
   ],
   "config": {
-    "experiment_name": "layerb_codex_mui_gate",
+    "experiment_name": "layerb_codex_mui_dev15",
     "arms_file": null,
     "arms_dir": null,
     "prompt_style": "neutral",
@@ -19,8 +19,21 @@
         "enabled": true,
         "data_dir": "./data/cb_mui_layerb",
         "task_ids": [
+          "cbmui_04b981d7",
+          "cbmui_05c53458",
           "cbmui_1ac0bb81",
-          "cbmui_8fcb53e6"
+          "cbmui_8d0f55cd",
+          "cbmui_8fcb53e6",
+          "cbmui_b8bf59e7",
+          "cbmui_07098661",
+          "cbmui_684a3415",
+          "cbmui_d520ba22",
+          "cbmui_18d389e5",
+          "cbmui_1de1bd3c",
+          "cbmui_2bb4ea7a",
+          "cbmui_3864c137",
+          "cbmui_6659fd5a",
+          "cbmui_7dfdbbd1"
         ]
       },
       "swe_bench": {
@@ -71,13 +84,13 @@
       "assume_indexed": false
     },
     "paths": {
-      "results_dir": "./results/bakeoff_2026_08/layerb_codex_mui_gate",
+      "results_dir": "./results/bakeoff_2026_08/layerb_codex_mui_dev15",
       "repos_dir": "C:/Users/ragha/Desktop/bakeoff/_cbmui_src",
-      "logs_dir": "./logs/layerb_codex_mui_gate",
+      "logs_dir": "./logs/layerb_codex_mui_dev15",
       "trees_dir": null
     },
     "budget": {
-      "max_total_usd": 4.0,
+      "max_total_usd": 20.0,
       "max_per_task_usd": 1.5,
       "abort_on_exceed": true
     },

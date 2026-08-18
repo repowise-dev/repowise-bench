@@ -1,0 +1,140 @@
+﻿
+======================================================================
+=== c0-bare-r1  (15:25:09)
+======================================================================
+cell=cellA-rich arm=c0-bare-r1 condition=unenforced
+claude_home=C:\Users\ragha\Desktop\repowise\repowise-bench\.claude_bench_home
+session_id=8682d418-8eba-4ee6-9be2-29ea4226cd1e (resuming=False) tasks=11
+tree=C:\Users\ragha\Desktop\bakeoff\se-c0-bare-r1-rich
+  T01 retrieval    turns=  9 tools=  8 mcp= 0 cli= 0 out=  2705 cr=  351081 $0.4622    42.3s oracle=-
+  T02 architecture turns= 11 tools= 10 mcp= 0 cli= 0 out=  3967 cr=  402179 $0.2507    49.6s oracle=-
+  T03 edit         turns=  6 tools=  5 mcp= 0 cli= 0 out=  1229 cr=  409139 $0.1836    35.9s oracle=PASS
+  T04 mechanical   turns=  5 tools=  4 mcp= 0 cli= 0 out=   779 cr=  329419 $0.3206    22.7s oracle=PASS
+  T05 retrieval    turns= 17 tools= 16 mcp= 0 cli= 0 out=  4313 cr=  343179 $0.4238    47.3s oracle=-
+  T06 edit         turns=  8 tools=  7 mcp= 0 cli= 0 out=  2171 cr=  603325 $0.2632    43.8s oracle=PASS
+  T07 architecture turns= 15 tools= 14 mcp= 0 cli= 0 out=  4646 cr=  807125 $0.6932    65.1s oracle=-
+  T08 edit         turns= 15 tools= 14 mcp= 0 cli= 0 out=  5117 cr= 1654234 $0.6623    96.2s oracle=PASS
+  T09 retrieval    turns=  8 tools=  7 mcp= 0 cli= 0 out=  2340 cr=  517799 $0.6943    36.8s oracle=-
+  T10 mechanical   turns=  9 tools=  8 mcp= 0 cli= 0 out=  2478 cr= 1151666 $0.4428    57.9s oracle=PASS
+  T11 edit         turns= 11 tools= 10 mcp= 0 cli= 0 out=  3892 cr= 1282882 $1.0656    69.7s oracle=FAIL
+
+=== SESSION SUMMARY ===
+{
+  "type": "session_summary",
+  "cell_id": "cellA-rich",
+  "arm": "c0-bare-r1",
+  "condition": "unenforced",
+  "session_id": "8682d418-8eba-4ee6-9be2-29ea4226cd1e",
+  "model": "claude-sonnet-5",
+  "tasks": 11,
+  "total_billed_tokens": 8319901,
+  "total_cost_usd": 5.462048,
+  "agent_wall_seconds": 567.2,
+  "oracle_wall_seconds": 26.5,
+  "input_tokens": 737,
+  "output_tokens": 33637,
+  "cache_read_tokens": 7852028,
+  "cache_creation_tokens": 433499,
+  "tool_calls": 103,
+  "mcp_calls": 0,
+  "cli_calls": 0,
+  "num_turns": 114,
+  "hook_events": 0,
+  "hook_injections": 0,
+  "ts": "2026-08-11T15:35:04+0530"
+}
+=== c0-bare-r1 exited 0 after 595s
+
+======================================================================
+=== c0-bare-r2  (15:35:07)
+======================================================================
+cell=cellA-rich arm=c0-bare-r2 condition=unenforced
+claude_home=C:\Users\ragha\Desktop\repowise\repowise-bench\.claude_bench_home
+session_id=391400f0-1fa2-476c-a134-b10310873ba6 (resuming=False) tasks=11
+tree=C:\Users\ragha\Desktop\bakeoff\se-c0-bare-r2-rich
+  T01 retrieval    turns=  8 tools=  7 mcp= 0 cli= 0 out=  2633 cr=  352999 $0.2528    38.2s oracle=-
+  T02 architecture turns= 10 tools=  9 mcp= 0 cli= 0 out=  3877 cr=  432509 $0.2630    56.8s oracle=-
+  T03 edit         turns= 13 tools= 12 mcp= 0 cli= 0 out=  2953 cr=  902121 $0.3741    76.5s oracle=PASS
+  T04 mechanical   turns=  6 tools=  5 mcp= 0 cli= 0 out=  1014 cr=  442254 $0.4068    59.8s oracle=PASS
+  T05 retrieval    turns= 15 tools= 14 mcp= 0 cli= 0 out=  4458 cr=  459038 $0.5005    53.8s oracle=-
+  T06 edit         turns= 21 tools= 20 mcp= 0 cli= 0 out=  5811 cr= 1942372 $1.0392   118.6s oracle=PASS
+  T07 architecture turns= 14 tools= 13 mcp= 0 cli= 0 out=  5164 cr= 1400641 $0.9912    81.9s oracle=-
+  T08 edit         turns= 19 tools= 18 mcp= 0 cli= 0 out=  5763 cr= 2511051 $0.9526   120.1s oracle=PASS
+  T09 retrieval    turns= 10 tools=  9 mcp= 0 cli= 0 out=  3164 cr= 1334097 $1.1028    50.5s oracle=-
+  T10 mechanical   turns= 11 tools= 10 mcp= 0 cli= 0 out=  2384 cr= 1691192 $0.6249    67.1s oracle=PASS
+  T11 edit         turns= 21 tools= 20 mcp= 0 cli= 0 out=  6694 cr= 3454257 $1.9660   112.9s oracle=FAIL
+
+=== SESSION SUMMARY ===
+{
+  "type": "session_summary",
+  "cell_id": "cellA-rich",
+  "arm": "c0-bare-r2",
+  "condition": "unenforced",
+  "session_id": "391400f0-1fa2-476c-a134-b10310873ba6",
+  "model": "claude-sonnet-5",
+  "tasks": 11,
+  "total_billed_tokens": 15523494,
+  "total_cost_usd": 8.473995,
+  "agent_wall_seconds": 836.3,
+  "oracle_wall_seconds": 51.8,
+  "input_tokens": 829,
+  "output_tokens": 43915,
+  "cache_read_tokens": 14922531,
+  "cache_creation_tokens": 556219,
+  "tool_calls": 137,
+  "mcp_calls": 0,
+  "cli_calls": 0,
+  "num_turns": 148,
+  "hook_events": 0,
+  "hook_injections": 0,
+  "ts": "2026-08-11T15:49:57+0530"
+}
+=== c0-bare-r2 exited 0 after 890s
+
+======================================================================
+=== c0-bare-r3  (15:49:58)
+======================================================================
+cell=cellA-rich arm=c0-bare-r3 condition=unenforced
+claude_home=C:\Users\ragha\Desktop\repowise\repowise-bench\.claude_bench_home
+session_id=ba051bc7-24a5-4056-93b6-db73956ff6e6 (resuming=False) tasks=11
+tree=C:\Users\ragha\Desktop\bakeoff\se-c0-bare-r3-rich
+  T01 retrieval    turns=  6 tools=  5 mcp= 0 cli= 0 out=  2120 cr=  235303 $0.1788    32.8s oracle=-
+  T02 architecture turns= 11 tools= 10 mcp= 0 cli= 0 out=  4247 cr=  397255 $0.2573    54.6s oracle=-
+  T03 edit         turns=  7 tools=  6 mcp= 0 cli= 0 out=  1576 cr=  469798 $0.1994    45.6s oracle=PASS
+  T04 mechanical   turns=  5 tools=  4 mcp= 0 cli= 0 out=   798 cr=  323059 $0.3089    24.6s oracle=PASS
+  T05 retrieval    turns= 11 tools= 10 mcp= 0 cli= 0 out=  3804 cr=  260140 $0.3656    40.9s oracle=-
+  T06 edit         turns=  9 tools=  8 mcp= 0 cli= 0 out=  2531 cr=  747680 $0.3193    46.9s oracle=PASS
+  T07 architecture turns= 12 tools= 11 mcp= 0 cli= 0 out=  4330 cr=  600375 $0.6221    58.8s oracle=-
+  T08 edit         turns= 11 tools= 10 mcp= 0 cli= 0 out=  3151 cr= 1192863 $0.4751    65.0s oracle=FAIL
+  T09 retrieval    turns=  7 tools=  6 mcp= 0 cli= 0 out=  2411 cr=  617283 $0.7000    40.5s oracle=-
+  T10 mechanical   turns=  9 tools=  8 mcp= 0 cli= 0 out=  1668 cr= 1100896 $0.4074    51.7s oracle=PASS
+  T11 edit         turns= 13 tools= 12 mcp= 0 cli= 0 out=  4273 cr= 1652301 $1.1603    82.2s oracle=FAIL
+
+=== SESSION SUMMARY ===
+{
+  "type": "session_summary",
+  "cell_id": "cellA-rich",
+  "arm": "c0-bare-r3",
+  "condition": "unenforced",
+  "session_id": "ba051bc7-24a5-4056-93b6-db73956ff6e6",
+  "model": "claude-sonnet-5",
+  "tasks": 11,
+  "total_billed_tokens": 8003710,
+  "total_cost_usd": 4.994336,
+  "agent_wall_seconds": 543.6,
+  "oracle_wall_seconds": 22.4,
+  "input_tokens": 731,
+  "output_tokens": 30909,
+  "cache_read_tokens": 7596953,
+  "cache_creation_tokens": 375117,
+  "tool_calls": 90,
+  "mcp_calls": 0,
+  "cli_calls": 0,
+  "num_turns": 101,
+  "hook_events": 0,
+  "hook_injections": 0,
+  "ts": "2026-08-11T15:59:26+0530"
+}
+=== c0-bare-r3 exited 0 after 568s
+
+stage 1 complete: 3 bare arms -> C:\Users\ragha\Desktop\repowise\repowise-bench\results\bakeoff_2026_08\session-cost-eval\sessions_s3.jsonl

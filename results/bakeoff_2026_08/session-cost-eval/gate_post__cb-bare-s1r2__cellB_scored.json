@@ -1,0 +1,49 @@
+{
+  "gate": {
+    "arm": "cb-bare-s1r2",
+    "phase": "post",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-cb-bare-s1r2-hermes-pf",
+    "passed": true,
+    "checks": [
+      {
+        "check": "tree_exists",
+        "ok": true,
+        "detail": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-cb-bare-s1r2-hermes-pf"
+      },
+      {
+        "check": "tree_pinned",
+        "ok": true,
+        "detail": {
+          "head": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+          "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457"
+        }
+      },
+      {
+        "check": "block_matches_declaration",
+        "ok": true,
+        "detail": {
+          "visible": false,
+          "declared": false,
+          "chars": 0
+        }
+      },
+      {
+        "check": "block_charges_nothing",
+        "ok": true,
+        "detail": {
+          "chars": 0
+        }
+      },
+      {
+        "check": "hook_ledger_empty",
+        "ok": true,
+        "detail": {
+          "db_present": false,
+          "sessions": 0,
+          "hook_runs": 0,
+          "skeleton_or_digest": 0
+        }
+      }
+    ]
+  }
+}
