@@ -26,29 +26,40 @@ hand; rows marked **designed** have a written protocol and no run behind them.
 | | Experiment | What it settles | Status |
 |---|---|---|---|
 | **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | measured privately, needs porting |
-| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on both sides by one script. | **both arms run** |
-| **G3** | [Shared-denominator recall](experiments/g3-shared-denominator/) | Of the calls that exist in the source, what share does each tool resolve? | designed |
+| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **four arms, six repos** |
+| **G3** | [Shared-denominator recall](experiments/g3-shared-denominator/) | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
 | **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
-| **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | mutations built, scorer next |
-| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **both arms run** |
+| **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
+| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **four arms, six repos** |
 | **G7** | [Language breadth](experiments/g7-breadth/) | Every tool claims 20 to 40 languages. How many of them work? | designed |
+
+Four arms: **repowise**, **CodeGraph 1.5.0**, **Graphify 0.9.31** and
+**code-review-graph 2.3.7**, all behind [one adapter protocol](lib/arms.py) so
+an experiment takes an arm name and stops caring what the tool is. All four
+rebuild byte-identically on a repeat run, so none of them is non-deterministic
+and a mutation's effect can be separated from drift.
 
 G4 and G5 are the two that do not exist anywhere in this field. G1 is the one we
 already have and have not published. G2 is the one a reader will ask for first,
 because it is the number our largest competitor puts on its front page.
 
-**Every number produced so far is a smoke test, not a result**, because the
-`repowise` tree it measured has uncommitted ingestion changes from another
-session. `lib/provenance.py` refuses to run without `--allow-dirty` and stamps
-anything produced that way `publishable: false`, and the two files under
-`results/graph/` carry a `-SMOKE` suffix for the same reason. Re-run at a clean
-commit before quoting anything.
+Every number on this page was measured at **`3594ba75`**, on a clean detached
+worktree, with a discarded warmup run per arm per repository.
+`lib/provenance.py` refuses to run against a dirty tree without `--allow-dirty`
+and stamps anything produced that way `publishable: false`. Every table is
+generated from `results/graph/` by `graph/tools/render.py` rather than typed,
+because the sibling retrieval bench has twice published a row that no longer
+matched the data behind it.
 
 Check the instruments still work:
 
 ```bash
-python graph/smoke.py          # 9 checks, exit code is the failure count
+python graph/smoke.py          # 14 checks, exit code is the failure count
 ```
+
+Note it needs an interpreter that can import `repowise.core`. Run under one
+that cannot and it used to report six passes and two skips, having never
+touched our graph; it now fails loudly instead.
 
 ---
 
@@ -113,11 +124,125 @@ thing to want to measure. What we will not do is report our own number under
 their metric and call it a win, because on a metric this saturated a win is
 noise. G2's published table will carry all three columns for both tools.
 
-Our side of this table is not measured yet. Numbers above are the peer's index
-only, and the honest expectation is that we score similarly on the saturated
-column, because it is saturated.
-
 Reproduce: [`experiments/g2-cross-file-coverage/`](experiments/g2-cross-file-coverage/).
+
+---
+
+## Second result: a denominator can hand you a win you did not earn
+
+Coverage is a fraction, and this benchmark spent a session looking at
+numerators. The denominator turned out to be where our best-looking cell came
+from.
+
+caffeine has 668 java files. We call 536 of them symbol-bearing; CodeGraph
+calls 664. Session 1 read that as our gap — 128 java files, 19% of the
+repository, producing no symbol at all — and called it the largest concrete
+finding the bench had surfaced.
+
+Adding two more arms settled it. **code-review-graph independently counts 536,
+exactly as we do**; Graphify counts 664, as CodeGraph does. All four agree on
+668 java files, so nobody's walk is at fault. Classifying the 128
+([`probe_symbol_gap.py`](experiments/probe_symbol_gap.py)):
+
+| what the 128 files are | count |
+|---|---:|
+| `package-info.java` — declares a package, no type | 123 |
+| `public @interface X {}` — annotation declarations | 5 |
+
+So it is a definitional disagreement about `package-info.java`, plus five real
+misses of ours.
+
+**And it was inflating our score.** Those 123 files cannot receive an incoming
+call edge, and measurement confirms that under CodeGraph not one of them does.
+They are pure denominator padding:
+
+| caffeine, incoming `calls` | repowise | codegraph |
+|---|---:|---:|
+| each arm's own denominator | 0.608 (326/536) | 0.517 (343/664) |
+| **shared 536-file denominator** | **0.608** | **0.640** |
+
+On its own denominator we lead by 9 points. On a fair one **CodeGraph leads by
+3**. The intervals overlap, [56.6, 64.9] against [59.8, 67.9], and a
+two-proportion test is not significant, so the honest answer is a tie — but the
+0.608-against-0.517 row is retired, and it was ours.
+
+This is why every arm implements `files_seen()` and why every cross-arm
+comparison intersects on it before computing anything.
+
+---
+
+## Third result: the resolvers, adversarially
+
+G5 mutates a repository in a way whose correct answer is known in advance. It
+is the one experiment here that a coverage number cannot approximate, because a
+resolver that binds by bare name and one that models scope score identically on
+unmutated source.
+
+gitleaks, Go, at `3594ba75`:
+
+| arm | M1 decoy twin | M2 consistent rename | M3 shadowing |
+|---|---|---|---|
+| repowise | pass | pass | **fail** |
+| codegraph | pass | pass | **fail** |
+| graphify | untestable | untestable | untestable |
+| code-review-graph | untestable | untestable | untestable |
+
+**M1** adds a same-named declaration in a package nothing imports; 319 call
+sites name that symbol. Neither we nor CodeGraph put a single edge on the
+decoy. **M2** renames a symbol everywhere, isomorphically; both graphs come
+through with zero edges lost and zero gained across 284 affected edges. Neither
+tool is a name-matcher.
+
+**M3** shadows an imported package with a local variable. Both of us still bind
+the call through it. Ours resolves `secrets.NewSecret(...)` to the package
+function after `secrets` has become an `int`; CodeGraph does the same. Nobody
+in this field passes it.
+
+`untestable` is not a pass and is never reported as one. Graphify and
+code-review-graph resolved no edge to the mutated symbol at the baseline, so
+the mutation cannot change their answer. An arm that resolves nothing cannot be
+tricked, and scoring that as a pass would rank it above one that resolves
+almost everything.
+
+Reproduce: [`experiments/g5-invariance/`](experiments/g5-invariance/).
+
+---
+
+## Fourth result: we were wrong about build cost
+
+This page previously said we lose on build cost and expect to keep losing. That
+was carried over from the full-index comparison in
+[docs/BENCHMARKS.md §6](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md),
+which is a different denominator. Measured on graph construction alone, across
+six repositories with a discarded warmup each:
+
+| repo | repowise | codegraph | graphify | code-review-graph |
+|---|---:|---:|---:|---:|
+| dub (4,066 files) | **11.6s** | 22.3s | 176.5s | 56.5s |
+| caffeine | **10.3s** | 11.2s | 49.8s | 33.9s |
+| Ocelot | 6.1s | **4.3s** | 39.5s | 11.3s |
+| celery | 4.6s | **3.9s** | 31.3s | 22.1s |
+| zod | **3.4s** | 3.9s | 16.2s | 11.6s |
+| gitleaks | **1.7s** | 1.7s | 5.0s | 3.7s |
+
+Peak RSS, from a Windows job object over the whole process tree:
+
+| repo | repowise | codegraph | graphify | code-review-graph |
+|---|---:|---:|---:|---:|
+| dub | **141 MB** | 1,752 MB | 1,534 MB | 373 MB |
+| caffeine | **161 MB** | 1,534 MB | 995 MB | 477 MB |
+| gitleaks | **54 MB** | 708 MB | 834 MB | 369 MB |
+
+We are fastest on four of six including both largest, and use roughly a tenth
+of CodeGraph's memory. Our figures come from the `repowise-subprocess` arm,
+which builds the same graph in a child process precisely so it can be measured
+the way every competitor already was — in process there is no child to attach a
+job object to, and this column was empty until now.
+
+Two things to keep saying anyway. This is graph construction only: no
+documentation, no embeddings, no health pass, and it must never be quoted
+beside the full-index row. And CodeGraph produces more distinct call edges than
+we do on three of the six, so seconds alone is not a quality claim.
 
 ---
 
@@ -141,10 +266,20 @@ have a path under `results/graph/` behind it.
 ## What a reader should be suspicious of
 
 * **Six repositories is not a language.** Every per-language figure here is one
-  repository, chosen for continuity with earlier work, not sampled.
-* **Both tools are held to a metric one of them designed.** G2 is CodeGraph's
+  repository, chosen for continuity with earlier work, not sampled. The paired
+  sign test over six repositories cannot reach significance below a 6-0 sweep,
+  so no corpus-level coverage claim is made from it.
+* **Every tool is held to a metric one of them designed.** G2 is CodeGraph's
   metric and we are reproducing it. G1, G4 and G5 are ours, and a reader should
   discount them the same way.
-* **We lose on build cost and expect to keep losing.** See G6.
 * **Our worst cell is Java**, at roughly 67% edge precision, and it is also our
   largest edge count. [METHODOLOGY.md](METHODOLOGY.md) explains why it stands.
+* **Two arms are being read through an adapter we wrote.** Graphify's call
+  edges are 93% `INFERRED` by its own tagging, and code-review-graph stores
+  unresolved callees in the same table as resolved ones, so we filter to the
+  ones that resolve. Both choices are argued in [arms/](arms/) and both change
+  those tools' numbers substantially. A reader who disagrees with either should
+  say so; the counts either way are recorded in every result file.
+* **Two of our own results moved against us this session** — the caffeine
+  coverage cell and the build-cost claim — and both are above rather than in a
+  changelog.
