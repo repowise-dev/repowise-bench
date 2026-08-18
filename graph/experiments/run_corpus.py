@@ -204,7 +204,21 @@ def measure(
             # result is written: six repositories' worth of file lists is
             # megabytes of JSON nobody reads, and the intersection sizes are
             # what any comparison actually uses.
-            "_sets": {"files_seen": seen, "symbol_files": sym, "in_language": in_lang},
+            "_sets": {
+                "files_seen": seen,
+                "symbol_files": sym,
+                "in_language": in_lang,
+                # Covered-file sets, so `shared_denominator` can score a shared
+                # denominator rather than only measure its size. Sizes alone
+                # were what the caffeine correction had to be done by hand from.
+                "covered": {
+                    f"{set_name}__{direction}": covered_files(
+                        arm.cross_file_edges(art, kinds), direction
+                    )
+                    for set_name, kinds in EDGE_SETS.items()
+                    for direction in DIRECTIONS
+                },
+            },
         }
     finally:
         arm.close(art)
@@ -239,6 +253,8 @@ def shared_denominator(rows: dict[str, dict], language: str) -> dict:
             sym_shared & row["_sets"]["in_language"]
         )
 
+    out["pairwise"] = _pairwise_shared_coverage(rows, shared_seen)
+
     # The symbol gap, per language, in both directions. This is the
     # measurement that sized the caffeine 128-file finding, and it is computed
     # here for every repository rather than by hand for one.
@@ -250,6 +266,56 @@ def shared_denominator(rows: dict[str, dict], language: str) -> dict:
         f"{a}_only": len(lang_sym[a] - set.union(*[v for b, v in lang_sym.items() if b != a]))
         for a in lang_sym
     }
+    return out
+
+
+def _pairwise_shared_coverage(rows: dict[str, dict], shared_seen: set[str]) -> dict:
+    """Coverage for each arm pair on the files **both** call symbol-bearing.
+
+    The own-denominator rate each arm reports is not a comparison: two arms
+    disagree about which files can carry an edge at all, so they are answering
+    the same question about different populations. On caffeine that mattered
+    more than the headline -- 123 `package-info.java` files padded the peer's
+    denominator, and recounting on a shared one turned a 0.608-to-0.517 win
+    into a 0.640-to-0.608 loss inside overlapping intervals.
+
+    The denominator is the **intersection**, not the union the docstring above
+    once described. With five arms a union is worse than useless: graphify
+    emits a node for every file it walks -- 401 of 401 on zod, 355 of 357 on
+    hono -- so a union re-pads the denominator with test files and barrels that
+    nothing can import, which is the very thing this correction exists to
+    remove. An intersection asks only about files both tools agree declare a
+    symbol, which is the population where a disagreement about edges is real.
+
+    Reported per pair rather than as one all-arms intersection, because a
+    single intersection across five arms is dominated by the most conservative
+    of them and answers nobody's question.
+    """
+    names = sorted(rows)
+    out: dict[str, dict] = {}
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            ra, rb = rows[a], rows[b]
+            denom = (
+                shared_seen
+                & ra["_sets"]["symbol_files"] & rb["_sets"]["symbol_files"]
+                & ra["_sets"]["in_language"] & rb["_sets"]["in_language"]
+            )
+            cell: dict = {"denominator": len(denom)}
+            if denom:
+                for arm_name, row in ((a, ra), (b, rb)):
+                    got = {}
+                    for key, cov in row["_sets"]["covered"].items():
+                        hit = cov & denom
+                        iv = stats.wilson(len(hit), len(denom))
+                        got[key] = {
+                            "covered": len(hit),
+                            "rate": round(len(hit) / len(denom), 4),
+                            "ci_low": round(iv.low, 4),
+                            "ci_high": round(iv.high, 4),
+                        }
+                    cell[arm_name] = got
+            out[f"{a}__vs__{b}"] = cell
     return out
 
 
