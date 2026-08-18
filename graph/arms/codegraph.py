@@ -121,13 +121,38 @@ class CodeGraphArm:
             extra={"frozen": False, "db_path": str(kept), "returncode": res.returncode},
         )
 
+    def cache_payload(self, art: arms.Artifact) -> Path | None:
+        """The database is the whole artifact, so the cache stores that file."""
+        p = art.extra.get("db_path")
+        return Path(p) if p and not art.extra.get("frozen") else None
+
+    def open_cached(
+        self, payload: Path, repo: Path, repo_name: str, meta: dict
+    ) -> arms.Artifact:
+        cost = meta.get("cost", {})
+        return arms.Artifact(
+            arm=self.name,
+            version=self.version(),
+            repo_name=repo_name,
+            repo_path=Path(repo).resolve(),
+            handle=peer.connect(payload),
+            seconds=cost.get("seconds"),
+            peak_rss_mb=cost.get("peak_rss_mb"),
+            index_size_mb=cost.get("index_size_mb"),
+            extra={"frozen": False, "db_path": str(payload)},
+        )
+
     def close(self, art: arms.Artifact) -> None:
         if isinstance(art.handle, sqlite3.Connection):
             art.handle.close()
             art.handle = None
-        # A fresh build leaves a copied-out database behind; a frozen one must
-        # never be touched. `frozen` is the discriminator, not the path shape.
-        if not art.extra.get("frozen") and art.extra.get("db_path"):
+        # A fresh build leaves a copied-out database behind. A frozen baseline
+        # and a cached artifact are both files somebody else owns, and deleting
+        # either would destroy the thing that makes a rerun cheap or a
+        # published number reconcilable.
+        if art.extra.get("frozen") or art.extra.get("from_cache"):
+            return
+        if art.extra.get("db_path"):
             shutil.rmtree(Path(art.extra["db_path"]).parent, ignore_errors=True)
 
     def files_seen(self, art: arms.Artifact) -> set[str]:

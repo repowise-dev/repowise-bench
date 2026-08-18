@@ -153,10 +153,49 @@ class CodeReviewGraphArm:
             },
         )
 
+    def cache_payload(self, art: arms.Artifact) -> Path | None:
+        p = art.extra.get("db_path")
+        return Path(p) if p else None
+
+    def open_cached(
+        self, payload: Path, repo: Path, repo_name: str, meta: dict
+    ) -> arms.Artifact:
+        """`build_root` has to come out of the metadata, not be recomputed.
+
+        The paths inside this database are absolute into the scratch tree that
+        built it, and that tree was deleted the moment the build finished.
+        `_n` only ever uses the root as a prefix to strip, so a recorded root
+        keeps normalising correctly long after the directory is gone -- but a
+        guessed one would silently leave every path absolute, which reads as an
+        empty intersection rather than as a bug.
+        """
+        cost = meta.get("cost", {})
+        root = (meta.get("extra") or {}).get("build_root")
+        if not root:
+            raise RuntimeError(
+                f"cached code-review-graph artifact for {repo_name} has no "
+                "build_root; its paths cannot be normalised, so it is unusable"
+            )
+        conn = sqlite3.connect("file:" + Path(payload).as_posix() + "?mode=ro", uri=True)
+        return arms.Artifact(
+            arm=self.name,
+            version=self.version(),
+            repo_name=repo_name,
+            repo_path=Path(repo).resolve(),
+            handle={"conn": conn, "root": root},
+            seconds=cost.get("seconds"),
+            peak_rss_mb=cost.get("peak_rss_mb"),
+            index_size_mb=cost.get("index_size_mb"),
+            extra={"build_root": root, "db_path": str(payload)},
+        )
+
     def close(self, art: arms.Artifact) -> None:
         if isinstance(art.handle, dict) and isinstance(art.handle.get("conn"), sqlite3.Connection):
             art.handle["conn"].close()
         art.handle = None
+        # A cached payload belongs to the artifact cache, not to this run.
+        if art.extra.get("from_cache"):
+            return
         if art.extra.get("db_path"):
             shutil.rmtree(Path(art.extra["db_path"]).parent, ignore_errors=True)
 

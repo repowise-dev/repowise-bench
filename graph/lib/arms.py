@@ -285,6 +285,49 @@ def _load_adapters() -> None:
         importlib.import_module(mod.stem)
 
 
+def build_cached(
+    arm: Arm, repo: Path, *, repo_name: str, pin: str | None, fresh: bool = False
+) -> Artifact:
+    """`arm.build`, but reusing a stored artifact when one exists for this pin.
+
+    A competitor artifact depends only on `(tool, tool_version, repo, pin)` and
+    not at all on our commit, so indexing thirty repositories with three
+    external tools is a cost this benchmark should pay once rather than every
+    graph session. See `artifact_cache.py` for the storage layout.
+
+    `fresh=True` bypasses the cache in both directions -- it neither reads nor
+    writes -- because G6 and the determinism gate need a real timed build and a
+    cache hit is not one. An arm with no `cache_payload` (both of ours, which
+    rebuild in seconds and have nothing on disk to keep) falls straight
+    through to a normal build.
+    """
+    if fresh or not pin or not hasattr(arm, "cache_payload"):
+        return arm.build(repo, repo_name=repo_name, fresh=fresh)
+
+    import artifact_cache
+
+    version = arm.version()
+    hit = artifact_cache.lookup(arm.name, version, repo_name, pin)
+    if hit is not None:
+        payload, meta = hit
+        art = arm.open_cached(payload, Path(repo), repo_name, meta)
+        # The cost carried here was measured on a real build, on the date in
+        # the metadata. Flagged so no table can quote it as this run's.
+        art.extra["from_cache"] = True
+        art.extra["cost_measured_at"] = meta.get("stored_at")
+        return art
+
+    art = arm.build(repo, repo_name=repo_name, fresh=True)
+    payload = arm.cache_payload(art)
+    if payload is not None and Path(payload).exists():
+        artifact_cache.store(
+            arm.name, version, repo_name, pin, Path(payload),
+            {"cost": art.cost_row(), "extra": {k: v for k, v in art.extra.items()
+                                               if isinstance(v, (str, int, float, bool, type(None)))}},
+        )
+    return art
+
+
 def determinism_report(arm: Arm, repo: Path, *, repo_name: str) -> dict[str, Any]:
     """Build *repo* twice with *arm* and compare every set the protocol exposes.
 

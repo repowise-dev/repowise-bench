@@ -122,6 +122,14 @@ class GraphifyArm:
                 if manifest_path.is_file()
                 else []
             )
+            # graph.json and manifest.json are the two files this arm reads
+            # back; `cache/` is graphify's own AST cache and is megabytes of
+            # nothing we use. Copied out before the scratch tree is removed,
+            # so the artifact cache has something to store.
+            kept = Path(tempfile.mkdtemp(prefix=f"gq-gfy-{repo_name}-"))
+            shutil.copy2(graph_json, kept / "graph.json")
+            if manifest_path.is_file():
+                shutil.copy2(manifest_path, kept / "manifest.json")
 
         return arms.Artifact(
             arm=self.name,
@@ -140,11 +148,54 @@ class GraphifyArm:
                 "run_flags": ["--code-only"],
                 "files_seen_is_processed_only": True,
                 "returncode": res.returncode,
+                "out_dir": str(kept),
+            },
+        )
+
+    def cache_payload(self, art: arms.Artifact) -> Path | None:
+        d = art.extra.get("out_dir")
+        return Path(d) if d else None
+
+    def open_cached(
+        self, payload: Path, repo: Path, repo_name: str, meta: dict
+    ) -> arms.Artifact:
+        payload = Path(payload)
+        doc = json.loads((payload / "graph.json").read_text(encoding="utf-8"))
+        manifest = payload / "manifest.json"
+        processed = (
+            sorted(json.loads(manifest.read_text(encoding="utf-8")))
+            if manifest.is_file()
+            else []
+        )
+        cost = meta.get("cost", {})
+        return arms.Artifact(
+            arm=self.name,
+            version=self.version(),
+            repo_name=repo_name,
+            repo_path=Path(repo).resolve(),
+            handle={"doc": doc, "processed": processed},
+            seconds=cost.get("seconds"),
+            peak_rss_mb=cost.get("peak_rss_mb"),
+            index_size_mb=cost.get("index_size_mb"),
+            extra={
+                "nodes": len(doc.get("nodes", [])),
+                "links": len(doc.get("links", [])),
+                "directed": doc.get("directed"),
+                "files_processed": len(processed),
+                "run_flags": ["--code-only"],
+                "files_seen_is_processed_only": True,
+                "out_dir": str(payload),
             },
         )
 
     def close(self, art: arms.Artifact) -> None:
         art.handle = None
+        # The copied-out graph.json belongs to this run unless it came from the
+        # cache, which owns its own copy.
+        if art.extra.get("from_cache"):
+            return
+        if art.extra.get("out_dir"):
+            shutil.rmtree(art.extra["out_dir"], ignore_errors=True)
 
     def _nodes(self, art: arms.Artifact) -> dict[str, dict]:
         return {n["id"]: n for n in art.handle["doc"].get("nodes", []) if "id" in n}
