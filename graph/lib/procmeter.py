@@ -156,7 +156,8 @@ class ProcResult:
 
 
 def run_measured(command: list[str], *, cwd: Path | str | None = None,
-                 timeout: int = 3600, shell: bool = False) -> ProcResult:
+                 timeout: int = 3600, shell: bool = False,
+                 env: dict[str, str] | None = None) -> ProcResult:
     """Run a command, returning wall clock and true peak working set.
 
     The peak is read while the handle is still open, immediately after the child
@@ -179,6 +180,11 @@ def run_measured(command: list[str], *, cwd: Path | str | None = None,
         encoding="utf-8",
         errors="replace",
         shell=shell,
+        # `None` inherits this process's environment, which is what every arm
+        # but one wants. codebase-memory-mcp needs a per-build CBM_CACHE_DIR,
+        # and passing it here rather than mutating os.environ keeps two arms
+        # measured in the same session from inheriting each other's cache.
+        env=env,
     )
     if job is not None:
         job.assign(int(proc._handle))  # noqa: SLF001 - the handle is the only way in

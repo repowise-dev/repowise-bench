@@ -124,17 +124,47 @@ def _find_executable() -> str | None:
     return shutil.which("codebase-memory-mcp")
 
 
-def _scratch_root() -> str:
-    """A scratch parent outside `%LOCALAPPDATA%`.
+# The cache parent, which is NOT under `_DEFAULT_HOME`, and the reason is a
+# precondition of the tool rather than a preference of ours.
+#
+# The tool validates the DACL of every ancestor of `CBM_CACHE_DIR`, separately
+# from the ancestors of its coordination endpoint, and refuses any ACE granting
+# mutation rights to an untrusted SID. On the measurement machine
+# `C:\Users\ragha\Desktop` carries such an ACE, so a cache under `_DEFAULT_HOME`
+# -- which lives on `Desktop` -- fails that check even though the binary itself
+# is happy to run from there. Its own default, `C:\Users\ragha\.cache`, fails
+# the same way.
+#
+# `%LOCALAPPDATA%` is the cleared path: the `AppData` ACE that used to block the
+# coordination endpoint was removed (see the arm doc's Precondition), and nothing
+# re-adds one. The repository under test may stay on `Desktop`; only the cache
+# and coordination trees are validated.
+_CACHE_PARENT = Path(
+    os.environ.get("LOCALAPPDATA") or Path.home() / "AppData/Local"
+) / "cbm-bench"
 
-    The default temp directory on the measurement machine is under `AppData`,
-    whose DACL is what this tool refuses to run beneath. Keeping our own
-    scratch off that path costs nothing and removes one way for a build to fail
-    for a reason that has nothing to do with the repository.
+
+def _scratch_root() -> str:
+    """The parent every per-build cache and kept database is created under.
+
+    Must sit outside `Desktop` -- see `_CACHE_PARENT`. Overridable with
+    `CBM_SCRATCH_ROOT` for a machine whose clean path is somewhere else, but the
+    override is only safe if that path's ancestors pass the tool's DACL check.
     """
-    root = Path(os.environ.get("CBM_SCRATCH_ROOT") or (_DEFAULT_HOME / "scratch"))
+    root = Path(os.environ.get("CBM_SCRATCH_ROOT") or _CACHE_PARENT)
     root.mkdir(parents=True, exist_ok=True)
     return str(root)
+
+
+def _env_with_cache(cache: Path) -> dict[str, str]:
+    """This process's environment with `CBM_CACHE_DIR` pointed at *cache*.
+
+    Passed through `run_measured(env=...)` rather than set on `os.environ`, so
+    two arms measured in one session cannot inherit each other's cache. The
+    per-build freshness is what stops an incremental indexer joining an index a
+    previous build left behind and reporting a graph this run did not produce.
+    """
+    return {**os.environ, "CBM_CACHE_DIR": str(cache)}
 
 
 def _open(db: Path) -> sqlite3.Connection:
@@ -159,7 +189,7 @@ class CodebaseMemoryMcpArm:
     def build(self, repo: Path, *, repo_name: str, fresh: bool = False) -> arms.Artifact:
         """`fresh` is ignored: nothing is frozen for this arm."""
         cache = Path(tempfile.mkdtemp(prefix=f"gq-cbm-{repo_name}-", dir=_scratch_root()))
-        env = {**os.environ, "CBM_CACHE_DIR": str(cache)}
+        env = _env_with_cache(cache)
         with arms.scratch_copy(repo) as work:
             res = procmeter.run_measured(
                 [self._exe, "cli", "index_repository", "--repo-path", str(work)],
@@ -342,7 +372,15 @@ def _probe(exe: str) -> str | None:
     that goes through the coordination path.
     """
     try:
-        res = procmeter.run_measured([exe, "cli", "list_projects"], timeout=180)
+        # With no CBM_CACHE_DIR the tool falls back to `~/.cache`, whose
+        # ancestors fail its own DACL check on this machine -- so a probe run
+        # bare reports the arm unavailable for a reason no build would ever
+        # hit. Probe through the same cache parent every build uses.
+        probe_cache = Path(_scratch_root()) / "_probe"
+        probe_cache.mkdir(parents=True, exist_ok=True)
+        res = procmeter.run_measured(
+            [exe, "cli", "list_projects"], timeout=180, env=_env_with_cache(probe_cache)
+        )
     except Exception as exc:  # noqa: BLE001 - an unusable tool is not an error
         return f"{type(exc).__name__}: {exc}"
     if res.returncode == 0:

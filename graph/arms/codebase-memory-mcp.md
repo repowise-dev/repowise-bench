@@ -10,15 +10,35 @@
 | artifact | SQLite at `${CBM_CACHE_DIR}/<project>.db` |
 | adapter | `graph/arms/codebase_memory_mcp.py` |
 
-> **Status: written, not yet verified against a real database.** The adapter
-> below is written from the SQLite schema in the tool's own source
-> (`src/store/store.c`), not from an index it produced, because the release
-> binary will not run on the measurement machine — see *Precondition* at the
-> bottom. Every query here is therefore a claim about the schema and not yet a
-> measurement. It does not register as an arm until it can run, and
-> `smoke.py --only arms` reports the reason as a SKIP rather than passing over
-> it. **Do not publish a number from this arm before the smoke suite has built
-> gitleaks with it.**
+> **VERIFIED 2026-08-19 against a real gitleaks index, and the gate caught three
+> defects.** The arm registers and builds: 314 files hashed, 299 symbol-bearing,
+> 1,826 `CALLS` edges, exit 0, 6.1s, 1,075 MB peak. It is **included in the cost
+> and memory tables** and **held out of the coverage and precision tables**.
+>
+> Reading the adapter against a database it produced, rather than against the
+> schema in the tool's source, falsified three of its queries:
+>
+> 1. **`file_languages` returns nothing.** The adapter reads
+>    `json_extract(properties, '$.language')`, and `language` is not a key the
+>    tool writes — the property set is `complexity`, `lines`, `is_exported`,
+>    `is_test`, `signature` and similar, with `extension` on `File` nodes.
+>    Silently returns `{}`, which in a language-scoped experiment is an empty
+>    denominator reading as a coverage of **zero** rather than as a bug.
+> 2. **It walks its own output.** `.codebase-memory/` appears in `file_hashes`
+>    (3 of 314 rows on gitleaks), so the tool's own artifact directory pads
+>    `files_seen`.
+> 3. **Callee identity is not stable across builds.** The `project` name is
+>    derived from the absolute path indexed, so a scratch copy yields
+>    `C-Users-ragha-AppData-Local-Temp-gq-gitleaks-8k_mag8d-gitleaks.logging.Error`
+>    — a fresh random component every build. Two builds of the same repository
+>    produce disjoint `call_edges` sets, which fails the determinism gate and
+>    makes the identity incomparable with every other arm.
+>
+> (1) and (3) each have the shape this benchmark exists to catch: a confident
+> number that is wrong. **Do not publish a coverage or precision number from this
+> arm until all three are fixed and the determinism gate passes.** Cost and peak
+> memory are unaffected — they are measured on the process, not read out of the
+> database — and are published.
 
 It is simultaneously a **corpus entry** — `test-repos/codebase-memory-mcp` at
 pin `10cb0e03` — and a candidate arm. The two uses must never be blurred in a
@@ -156,7 +176,74 @@ the extracted binary directly and never calls `install`. A benchmark must not
 reconfigure the machine measuring it, and here that would have edited the very
 agent session running the benchmark.
 
-## Precondition: why this arm is currently absent
+## Precondition: RESOLVED, and there were two gates, not one
+
+**Gate 1, the coordination endpoint.** Cleared on 2026-08-19 by removing two
+explicit ACEs from `C:\Users\ragha\AppData`, both left behind by a Codex sandbox
+no longer in use: `Raghav_Strix\CodexSandboxUsers` and an orphaned SID
+`S-1-5-21-...-249729005`. Note that `icacls /remove:g` silently matches nothing
+for the orphaned SID and still exits 0; it takes a PowerShell `PurgeAccessRules`
+plus `Set-Acl`. Backup and exact restore commands are in the main repo at
+`local-stash/acl-backup/RESTORE.md`.
+
+**Gate 2, the cache directory, and this one is in no note that requested this
+arm.** With gate 1 clear the tool failed again, differently:
+
+```
+secure CLI coordination could not be created (cache-private):
+C:\Users\ragha\Desktop: DACL entry 0 grants mutation rights 0x00010112
+to untrusted identity (other S-1-5-21-3419747168-2900033029-1073337155-1004)
+```
+
+It validates the ancestors of `CBM_CACHE_DIR` **separately** from the ancestors
+of the coordination endpoint, and `C:\Users\ragha\Desktop` carries its own
+offending ACE, with a different SID again.
+
+**Do not strip that one.** Point the cache somewhere clean instead:
+
+```powershell
+$env:CBM_CACHE_DIR = "C:\Users\ragha\AppData\Local\cbm-cache"
+```
+
+**This changed the adapter, and the change is now made.** `_DEFAULT_HOME` is
+`C:/Users/ragha/Desktop/bench-worktrees/cbm`, which sits under `Desktop`, so a
+cache derived from it failed gate 2. Caches now come from `_CACHE_PARENT` --
+`%LOCALAPPDATA%/cbm-bench` -- while the **per-build fresh `CBM_CACHE_DIR` is
+preserved**: each build still gets its own `mkdtemp` under that parent, which is
+what stops an incremental indexer joining an index a previous build left behind
+and reporting a graph this run did not produce. The binary itself may stay on
+`Desktop`; only the cache and coordination trees are validated.
+
+**There is a third offending path, and it is the tool's own default.** With
+`CBM_CACHE_DIR` unset the tool falls back to `C:\Users\ragha\.cache`, whose
+ancestors fail the same check:
+
+```
+secure CLI coordination could not be created (cache-private):
+C:\Users\ragha\.cache: DACL entry 0 grants mutation rights 0x00010112
+to untrusted identity (other S-1-5-21-...-1004)
+```
+
+This mattered beyond the builds: the registration probe ran with no
+`CBM_CACHE_DIR`, so it hit that default and reported the arm permanently
+unavailable for a reason **no actual build would have hit**. The probe now runs
+through the same cache parent every build uses. An arm can be lost to its own
+availability check.
+
+`procmeter.run_measured` also gained an `env` parameter as part of this: the
+adapter was already passing `env=` to it and the function did not accept one, so
+every build would have raised `TypeError` the moment the gate cleared.
+
+**The repository under test may stay on `Desktop`.** Only the cache and
+coordination paths are validated; the fixture that succeeded was itself under
+`Desktop\bench-worktrees`.
+
+**The portability finding stands and is worth one line in any write-up.** Of the
+arms measured this is the only one that refuses to run on a stock developer
+profile carrying a second local account. It fails closed, offers no override in a
+release build, and enforces the check on two independent path trees.
+
+## Original diagnosis, kept for the record
 
 On the measurement machine the release binary exits before doing any work:
 

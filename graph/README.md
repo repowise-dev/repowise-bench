@@ -25,18 +25,17 @@ obvious one, and it is the reason it exists.
 
 Nothing on this page is published externally yet. Bold rows have run at a
 recorded commit across every arm; `designed` rows have a written protocol and
-no run behind them. G1's rows exist and are graded but predate the current
-Python resolver, so they are not on this page.
+no run behind them.
 
 | | Experiment | What it settles | Status |
 |---|---|---|---|
-| **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | measured privately, needs porting |
+| **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | **both sides, nine languages, 540 graded rows** |
 | **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **four arms, 35 repos, 11 languages** |
-| **G3** | [Shared-denominator recall](experiments/g3-shared-denominator/) | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
+| **G3** | Shared-denominator recall *(no page yet)* | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
 | **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
 | **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **four arms, six repos** (the 35-repo run is coverage only) |
-| **G7** | [Language breadth](experiments/g7-breadth/) | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
+| **G7** | Language breadth *(no page yet; results below)* | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
 
 Four arms: **repowise**, **CodeGraph 1.5.0**, **Graphify 0.9.31** and
 **code-review-graph 2.3.7**, all behind [one adapter protocol](lib/arms.py) so
@@ -45,16 +44,25 @@ rebuild byte-identically on a repeat run, so none of them is non-deterministic
 and a mutation's effect can be separated from drift.
 
 A fifth, **codebase-memory-mcp 0.10.6**, has [an adapter and a
-page](arms/codebase-memory-mcp.md) but no numbers: its release binary refuses to
-start on the measurement machine, because it validates the ACL of every ancestor
-of `%LOCALAPPDATA%` and rejects a profile where another local account holds
-write rights there. That is a portability finding rather than an omission, and
-it is the only arm of five that will not run on a stock developer profile
-carrying a second account.
+page](arms/codebase-memory-mcp.md) and now **builds**, so it carries cost and
+memory rows. It is held out of the coverage and precision tables: it records no
+language for a file, it walks its own output directory, and the identity it
+gives a callee embeds the absolute path it was built under, so its edge sets are
+not yet comparable with the other four. Those are adapter-level gaps and they
+are being fixed, not measured around.
 
-G4 and G5 are the two that do not exist anywhere in this field. G1 is the one we
-already have and have not published. G2 is the one a reader will ask for first,
-because it is the number our largest competitor puts on its front page.
+Getting it to run at all is itself a portability finding worth one line. It
+validates the ACL of every ancestor of both its coordination directory and its
+cache directory, **separately**, and refuses to start if any of them grants
+write rights to another local account. On a stock developer profile carrying a
+second account that is two independent refusals, its own default cache location
+is one of them, it fails closed, and a release build offers no override. It is
+the only arm of five with that property.
+
+G4 and G5 are the two that do not exist anywhere in this field. G1 is the one
+that took the most human time and is the only reading here that asks whether an
+edge is true. G2 is the one a reader will ask for first, because it is the
+number our largest competitor puts on its front page.
 
 Numbers on this page were measured at **`3594ba75`** unless the section says
 otherwise; the 35-repository corpus below was measured at **`58576af0`**. Both
@@ -387,34 +395,44 @@ Java strengthens on the fair denominator rather than weakening: **0.685 against
 precision is a regression wearing a win's clothes; the same holds between two
 tools. Our defensible claim has always been precision per edge, not more edges.
 
-The hand-graded audit now covers **nine languages at 230/270 = 85.2%**
-[80.5, 88.9], 30 rows each spread over three repositories, every row read from
-source. That is **down** from the 89.3% this page used to quote, and it is worth
+The hand-graded audit now covers **nine languages on both sides**, 30 rows per
+side per language, every row read from source:
+**ours 229/270 = 84.8%** [80.0, 88.6] against **theirs 154/270 = 57.0%**
+[51.1, 62.8]. The intervals are disjoint. Full tables, per-repository splits and
+the failure taxonomy are in [G1](experiments/g1-edge-precision/).
+
+Our figure is **down** from the 89.3% this page used to quote, and it is worth
 more: 89.3% was five languages chosen for continuity with earlier work, all of
-them ones where we are strong.
+them ones where we are strong. Read the 84.8% the other way round and it says
+**roughly fifteen percent of our call edges are wrong**, which is the number to
+plan against.
 
-**The peer has not been read on the four new languages, so there is no
-head-to-head precision claim there.** The 62.0% figure for CodeGraph is a
-five-language number and it must not be printed beside the nine-language row.
-Where both sides have been graded, we lead by roughly 27 points pooled; on cpp,
-rust, kotlin and swift nobody has read their edges at all.
+**Four of the nine cells separate; five are ties and are reported as ties** —
+go, java, swift, rust and cpp. C++ is a tie in particular: a 23-point
+point-estimate gap that sits inside two overlapping intervals is not a win, at
+either n=30 or the n=50 depth read.
 
-**And rust is weak on both axes at once.** It is our worst precision cell,
-**20/30**, where 6 of the 10 misses are prelude and std name collisions
-(`.unwrap()`, `Ok(...)`) landing on unrelated in-repo symbols and 3 are macros
-captured as calls; and it is a confirmed shared-denominator coverage loss,
-0.341 against 0.489. Coverage and precision usually trade against each other,
-so a language losing both is a genuine resolution gap rather than a metric
-artifact. cpp is the same shape with weaker evidence — its 86.7% is carried by
-one repository (fmt 10/10, aria2 10/10, Crow 6/10) and is not a language claim.
+**And rust is weak on both axes at once.** It is our worst cell but one,
+**22/30**, where the residual is 4 macro invocations graded as calls, 3
+cross-module or overload collisions and 1 std type constructor; and it is a
+confirmed shared-denominator coverage loss, 0.341 against 0.489. Coverage and
+precision usually trade against each other, so a language losing both is a
+genuine resolution gap rather than a metric artifact.
 
-So the honest statement is: **we lead on precision where both sides have been
-graded, we trail on coverage on four languages after the fair recount, and rust
-is genuinely weak on both.** What is missing is not more of our own rows — it is
-the peer's rows on cpp, rust, kotlin and swift, and a test of whether the
-coverage gap is in **resolution reach** rather than in which files we call
-symbol-bearing. Two candidate explanations for that gap, receiver typing and
-symbol extraction, have each been measured and refused.
+**One cell goes clearly to the peer, and it is worth publishing unprompted.** On
+`seastar` they read **6/10 against our 4/10** — the only repository in the audit,
+on any language, where they beat us on a clear margin. Our failures there are
+chained calls on an untyped receiver bound to an unrelated method; they infer the
+callee's declared return type and validate against it, so a failed inference
+costs them an edge instead of buying them a wrong one. On `aria2` both sides read
+10/10 and they resolve 24,950 distinct call edges to our 9,486.
+
+So the honest statement is: **we lead on precision pooled and on four of nine
+languages, five languages are ties, one repository goes clearly to them, and we
+trail on coverage on four languages after the fair recount.** What is still
+missing is a test of whether the coverage gap is in **resolution reach** rather
+than in which files we call symbol-bearing. Two candidate explanations for that
+gap, receiver typing and symbol extraction, have each been measured and refused.
 
 ### A language does not have "a" rate
 
@@ -440,9 +458,21 @@ repositories is unreachable before edge resolution is even attempted.
 
 ### Provenance
 
-Measured at **`58576af0`** — `repowise 0.43.0+dev`. There is no 0.44.0 tag; the
-latest release tag is `v0.43.0` and `origin/main` carries unreleased work past
-it.
+Measured at **`58576af0`** — `repowise 0.43.0+dev`.
+
+**`v0.44.0` exists and is `7f44232e`.** An earlier version of this line said it
+did not, which was wrong. What is true is narrower and matters more: **`#1708`
+(`13cc339a`) landed after that tag**, and the rust and cpp precision cells were
+measured on it, so those cells reflect code that is not in 0.44.0. Nothing on
+this page should be quoted as "measured on 0.44.0"; every table here carries the
+commit it was taken at, and [G1](experiments/g1-edge-precision/) pins a commit
+per cell.
+
+Where cells were taken at different commits, the staleness runs **conservative**.
+Every resolver change between the earliest cell and `13cc339a` — `#1690`,
+`#1692`, `#1708` — only removes wrong edges: measured at the time, they removed
+16,122, 1,399 and a further set respectively, and **gained 0** between them. An
+older cell can therefore only understate our precision, never overstate it.
 
 Competitor artifacts were restored from the prebuild cache and warmup was
 skipped, so this run is stamped `publishable: false` **for cost**. Coverage is
