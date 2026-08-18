@@ -385,18 +385,36 @@ Java strengthens on the fair denominator rather than weakening: **0.685 against
 **Coverage is not correctness, and this page says so first.**
 [Rule 1](METHODOLOGY.md) exists because a change that raises coverage and lowers
 precision is a regression wearing a win's clothes; the same holds between two
-tools. The [300-row hand-graded audit](#third-result-the-resolvers-adversarially)
-puts our edge precision at 89.3% against CodeGraph's 62.0% pooled, so a coverage
-gap of 0.10 does not mean they resolve more real calls than we do.
+tools. Our defensible claim has always been precision per edge, not more edges.
 
-**But that audit does not cover the languages where we now trail hardest.** It
-sampled five repositories in go, typescript, csharp, python and java. It says
-nothing about cpp, rust, kotlin, ruby, php or swift — and cpp, rust and kotlin
-are exactly the three that survive the shared-denominator recount as losses. So the honest statement is: *we trail on coverage across most
-of the corpus, we lead on precision where precision has been measured, and the
-two have never been measured on the same languages.* Closing that is what
-[G1](experiments/g1-edge-precision/) and [G4](experiments/g4-oracle-anchored/)
-are for, and it is now the most valuable open work on this page.
+The hand-graded audit now covers **nine languages at 230/270 = 85.2%**
+[80.5, 88.9], 30 rows each spread over three repositories, every row read from
+source. That is **down** from the 89.3% this page used to quote, and it is worth
+more: 89.3% was five languages chosen for continuity with earlier work, all of
+them ones where we are strong.
+
+**The peer has not been read on the four new languages, so there is no
+head-to-head precision claim there.** The 62.0% figure for CodeGraph is a
+five-language number and it must not be printed beside the nine-language row.
+Where both sides have been graded, we lead by roughly 27 points pooled; on cpp,
+rust, kotlin and swift nobody has read their edges at all.
+
+**And rust is weak on both axes at once.** It is our worst precision cell,
+**20/30**, where 6 of the 10 misses are prelude and std name collisions
+(`.unwrap()`, `Ok(...)`) landing on unrelated in-repo symbols and 3 are macros
+captured as calls; and it is a confirmed shared-denominator coverage loss,
+0.341 against 0.489. Coverage and precision usually trade against each other,
+so a language losing both is a genuine resolution gap rather than a metric
+artifact. cpp is the same shape with weaker evidence — its 86.7% is carried by
+one repository (fmt 10/10, aria2 10/10, Crow 6/10) and is not a language claim.
+
+So the honest statement is: **we lead on precision where both sides have been
+graded, we trail on coverage on four languages after the fair recount, and rust
+is genuinely weak on both.** What is missing is not more of our own rows — it is
+the peer's rows on cpp, rust, kotlin and swift, and a test of whether the
+coverage gap is in **resolution reach** rather than in which files we call
+symbol-bearing. Two candidate explanations for that gap, receiver typing and
+symbol extraction, have each been measured and refused.
 
 ### A language does not have "a" rate
 
