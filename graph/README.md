@@ -31,12 +31,12 @@ Python resolver, so they are not on this page.
 | | Experiment | What it settles | Status |
 |---|---|---|---|
 | **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | measured privately, needs porting |
-| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **four arms, six repos** |
+| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **four arms, 35 repos, 11 languages** |
 | **G3** | [Shared-denominator recall](experiments/g3-shared-denominator/) | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
 | **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
-| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **four arms, six repos** |
-| **G7** | [Language breadth](experiments/g7-breadth/) | Every tool claims 20 to 40 languages. How many of them work? | designed |
+| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **four arms, six repos** (the 35-repo run is coverage only) |
+| **G7** | [Language breadth](experiments/g7-breadth/) | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
 
 Four arms: **repowise**, **CodeGraph 1.5.0**, **Graphify 0.9.31** and
 **code-review-graph 2.3.7**, all behind [one adapter protocol](lib/arms.py) so
@@ -44,12 +44,22 @@ an experiment takes an arm name and stops caring what the tool is. All four
 rebuild byte-identically on a repeat run, so none of them is non-deterministic
 and a mutation's effect can be separated from drift.
 
+A fifth, **codebase-memory-mcp 0.10.6**, has [an adapter and a
+page](arms/codebase-memory-mcp.md) but no numbers: its release binary refuses to
+start on the measurement machine, because it validates the ACL of every ancestor
+of `%LOCALAPPDATA%` and rejects a profile where another local account holds
+write rights there. That is a portability finding rather than an omission, and
+it is the only arm of five that will not run on a stock developer profile
+carrying a second account.
+
 G4 and G5 are the two that do not exist anywhere in this field. G1 is the one we
 already have and have not published. G2 is the one a reader will ask for first,
 because it is the number our largest competitor puts on its front page.
 
-Every number on this page was measured at **`3594ba75`**, on a clean detached
-worktree, with a discarded warmup run per arm per repository.
+Numbers on this page were measured at **`3594ba75`** unless the section says
+otherwise; the 35-repository corpus below was measured at **`58576af0`**. Both
+on a clean detached worktree. Cost figures always come from a run with a
+discarded warmup per arm per repository.
 `lib/provenance.py` refuses to run against a dirty tree without `--allow-dirty`
 and stamps anything produced that way `publishable: false`. Every table is
 generated from `results/graph/` by `graph/tools/render.py` rather than typed,
@@ -59,7 +69,7 @@ matched the data behind it.
 Check the instruments still work:
 
 ```bash
-python graph/smoke.py          # 14 checks, exit code is the failure count
+python graph/smoke.py          # 16 checks, exit code is the failure count
 ```
 
 Note it needs an interpreter that can import `repowise.core`. Run under one
@@ -284,6 +294,94 @@ lose it**. It is listed as unmeasured in G6 rather than quietly omitted.
 
 ---
 
+## Fifth result: at six repositories we looked better than we are
+
+Every per-language number this page carried before was a fact about one
+repository wearing a language's name. The six head-to-head repositories are
+typescript x2, java x1, csharp x1, python x1, go x1 — four of five languages
+resting on a single repository, which is precisely what
+[rule 13](METHODOLOGY.md) forbids.
+
+The corpus is now **35 repositories across 11 languages**, pinned in
+[`corpus/corpus.lock`](corpus/corpus.lock), ten of them at n=3 with a library,
+an application and a framework each. Swift has only a library and is reported
+as carrying no language-level claim.
+
+Median incoming cross-file `calls` coverage, per language, ours against the
+strongest competitor:
+
+| language | n | repowise | CodeGraph | Graphify | code-review-graph | |
+|---|---:|---:|---:|---:|---:|---|
+| java | 3 | **0.606** | 0.434 | 0.340 | 0.261 | ours +0.172 |
+| csharp | 4 | 0.291 | 0.280 | 0.128 | 0.000 | tie |
+| go | 3 | 0.639 | 0.639 | 0.466 | 0.000 | tie |
+| php | 3 | 0.334 | 0.317 | 0.135 | **0.443** | tie |
+| ruby | 3 | 0.337 | 0.318 | 0.197 | 0.000 | tie |
+| typescript | 3 | 0.390 | **0.426** | 0.064 | 0.434 | theirs +0.036 |
+| kotlin | 3 | 0.439 | **0.498** | 0.350 | 0.067 | theirs +0.060 |
+| python | 3 | 0.378 | **0.489** | 0.333 | 0.329 | theirs +0.111 |
+| cpp | 6 | 0.336 | **0.496** | 0.184 | 0.000 | theirs +0.161 |
+| rust | 3 | 0.342 | **0.513** | 0.118 | 0.200 | theirs +0.170 |
+| swift | 1 | 0.388 | 0.582 | 0.368 | 0.000 | *n=1, no claim* |
+| **median of the ten at n>=3** | | **0.360** | **0.462** | 0.197 | 0.200 | |
+
+**We win one language, tie four and lose six.** That is the opposite of the
+impression six repositories gave, and it is published because a benchmark that
+only reports the corpus where it wins is an advertisement.
+
+### The two things that stop this being the whole story
+
+**Coverage is not correctness, and this page says so first.**
+[Rule 1](METHODOLOGY.md) exists because a change that raises coverage and lowers
+precision is a regression wearing a win's clothes; the same holds between two
+tools. The [300-row hand-graded audit](#third-result-the-resolvers-adversarially)
+puts our edge precision at 89.3% against CodeGraph's 62.0% pooled, so a coverage
+gap of 0.10 does not mean they resolve more real calls than we do.
+
+**But that audit does not cover the languages where we now trail hardest.** It
+sampled five repositories in go, typescript, csharp, python and java. It says
+nothing about cpp, rust, kotlin, ruby, php or swift, and four of those are where
+the gap is widest. So the honest statement is: *we trail on coverage across most
+of the corpus, we lead on precision where precision has been measured, and the
+two have never been measured on the same languages.* Closing that is what
+[G1](experiments/g1-edge-precision/) and [G4](experiments/g4-oracle-anchored/)
+are for, and it is now the most valuable open work on this page.
+
+### A language does not have "a" rate
+
+The spread across three kinds is reported instead of a mean, because the
+disagreement is the finding. On our arm TypeScript reads **0.138 on zod and
+0.589 on hono** — a 0.451 spread. Rust reads 0.175 on serde and 0.490 on
+ripgrep. Quoting either end as "the TypeScript number" is the mistake the
+three-kinds rule was written to prevent, and we nearly made it.
+
+### What a claimed language delivers, for the tool that claims most
+
+code-review-graph **walks the language and resolves zero cross-file call edges**
+on 17 of the 35 repositories: all 6 cpp, all 4 csharp, all 3 go, all 3 ruby and
+Alamofire. It resolves 12,395 on TypeScript. That is a per-language capability
+gap rather than a broken run, and printing the zero is the entire point of G7 —
+every tool in this field claims 20 to 40 languages and none says what a claimed
+language actually produces.
+
+Our own worst rows are the other half of the same table. On zod we declare
+symbols in only **269 of 400** TypeScript files and on hono **260 of 382**; a
+file that yields no symbol cannot contribute an edge, so a third of those
+repositories is unreachable before edge resolution is even attempted.
+
+### Provenance
+
+Measured at **`58576af0`** — `repowise 0.43.0+dev`. There is no 0.44.0 tag; the
+latest release tag is `v0.43.0` and `origin/main` carries unreleased work past
+it.
+
+Competitor artifacts were restored from the prebuild cache and warmup was
+skipped, so this run is stamped `publishable: false` **for cost**. Coverage is
+unaffected and the tables above stand: a restore reproduces every set the
+protocol exposes byte for byte, which `smoke.py` asserts by storing and
+restoring a real index with the SQLite sidecars deliberately present. See
+[rule 12](METHODOLOGY.md). **No cost number on this page comes from that run.**
+
 ## How this is organised
 
 ```
@@ -303,10 +401,13 @@ have a path under `results/graph/` behind it.
 
 ## What a reader should be suspicious of
 
-* **Six repositories is not a language.** Every per-language figure here is one
-  repository, chosen for continuity with earlier work, not sampled. The paired
-  sign test over six repositories cannot reach significance below a 6-0 sweep,
-  so no corpus-level coverage claim is made from it.
+* **The head-to-head six are still six.** G2's paired arm-versus-arm rows and
+  every cost figure come from those, and a paired sign test over six cannot
+  reach significance below a 6-0 sweep. The 35-repository corpus fixes the
+  breadth problem, not that one: it is measured with competitor artifacts
+  restored from cache, so it carries coverage and not cost.
+* **Ten languages at n=3 is still n=3.** Three repositories bound the spread;
+  they do not estimate a language. Swift is n=1 and says so.
 * **Every tool is held to a metric one of them designed.** G2 is CodeGraph's
   metric and we are reproducing it. G1, G4 and G5 are ours, and a reader should
   discount them the same way.
@@ -318,6 +419,7 @@ have a path under `results/graph/` behind it.
   ones that resolve. Both choices are argued in [arms/](arms/) and both change
   those tools' numbers substantially. A reader who disagrees with either should
   say so; the counts either way are recorded in every result file.
-* **Two of our own results moved against us this session** — the caffeine
-  coverage cell and the build-cost claim — and both are above rather than in a
-  changelog.
+* **Three of our own results have moved against us** — the caffeine coverage
+  cell, the build-cost claim, and now the per-language coverage picture, which
+  at 35 repositories has us losing six languages and winning one. All three are
+  above rather than in a changelog.
