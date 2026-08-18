@@ -240,7 +240,22 @@ def main() -> int:
     # else's half-finished ingestion change.
     import repowise.core
 
-    measured_tree = Path(repowise.core.__file__).resolve().parents[4]
+    # Walk up to the checkout root rather than counting path segments. The
+    # count was off by one -- it landed on `packages/` -- so the dirty guard
+    # was scoped to `packages/packages`, matched nothing, and passed every run
+    # regardless of the tree. `provenance.require_clean` now refuses a scope
+    # that matches nothing, but the root has to be right for it to have
+    # anything to check.
+    measured_tree = Path(repowise.core.__file__).resolve()
+    for parent in measured_tree.parents:
+        if (parent / ".git").exists():
+            measured_tree = parent
+            break
+    else:
+        raise SystemExit(
+            f"no git checkout above {repowise.core.__file__}; refusing to run "
+            "a measurement whose source tree cannot be identified"
+        )
     publishable = provenance.require_clean(measured_tree, allow_dirty=args.allow_dirty)
     if args.no_warmup:
         publishable = False

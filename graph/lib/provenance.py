@@ -78,10 +78,18 @@ def git_state(repo: Path | str, *, paths: list[str] | None = None) -> dict[str, 
     """
     repo = Path(repo)
     status_args = ["status", "--porcelain"]
+    # A scope that matches nothing makes this guard vacuous: `status -- packages`
+    # run from a directory that has no `packages/` returns empty, which reads as
+    # "clean" and stamps the result publishable without having checked anything.
+    # That is exactly what happened -- `run_corpus.py` passed the *packages*
+    # directory as the repo root, so every run it ever produced was gated on
+    # `packages/packages`. Vacuity is not a pass, so a missing scope is reported.
+    missing = [p for p in (paths or []) if not (repo / p).exists()]
     if paths:
         status_args += ["--", *paths]
     status = _git(repo, *status_args, keep_leading=True)
     return {
+        "dirty_scope_missing": missing or None,
         "path": str(repo),
         "head": _git(repo, "rev-parse", "HEAD"),
         "head_short": _git(repo, "rev-parse", "--short", "HEAD"),
@@ -157,6 +165,14 @@ def require_clean(repowise_repo: Path | str, *, allow_dirty: bool) -> bool:
     is indistinguishable from a good one once it is written down.
     """
     state = git_state(repowise_repo, paths=["packages"])
+    if state.get("dirty_scope_missing"):
+        raise DirtyTreeError(
+            f"{state['path']} contains no {state['dirty_scope_missing']}, so the "
+            "dirty check matched no files and would have passed whatever the tree "
+            "looked like. Pass the repository root, not a subdirectory of it. "
+            "--allow-dirty does not suppress this: a guard that cannot fail is "
+            "not a guard, and this one silently stamped every run publishable."
+        )
     if not state["dirty"]:
         return True
     if allow_dirty:
