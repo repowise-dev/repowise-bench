@@ -98,11 +98,41 @@ Peer indexes are opened through a `file:...?mode=ro` URI. They are frozen
 baselines that earlier numbers reconcile against, and SQLite will create a `-wal`
 beside a database opened read-write.
 
+## Our side, on gitleaks
+
+`run_ours.py` computes the same sweep from our graph. Smoke run only: the
+`repowise` tree carried uncommitted ingestion changes, so this is stamped
+`publishable: false` and is here to show the instrument agrees, not to claim a
+number.
+
+| arm | symbol-bearing go files | either | incoming | incoming `calls` |
+|---|---:|---:|---:|---:|
+| repowise | 213 | 0.953 | 0.859 | **0.761** |
+| CodeGraph | 213 | 0.915 | 0.789 | **0.784** |
+
+**The denominator matches exactly at 213 files**, computed independently from two
+different data structures. That is the check worth having: had the two sides
+disagreed on which files are symbol-bearing, every rate above would have been
+comparing different populations while looking perfectly reasonable.
+
+On the columns themselves we are ahead on the two saturated readings and
+**slightly behind on the discriminating one**, 0.761 against 0.784. That is one
+repository and the gap is 5 files, so it is not a result in either direction. It
+is printed because printing the cell we do not win is the only reason to trust
+the cells we do.
+
+One instrument note worth recording, because it would have quietly cost us 27%:
+our `GraphBuilder` collapses multiple call sites onto a single `calls` edge, so
+counting edges off the built graph undercounts distinct call sites. `ours.py`
+therefore observes `CallResolver.resolve_file` rather than reading the graph.
+This is the mirror image of the peer's raw-versus-distinct trap, and it points
+the other way.
+
 ## Next
 
-Our side, through the same script, reading our graph instead of theirs. The
-mapping is not one-to-one and the differences have to be settled before a number
-is computed:
+Extend our side to the remaining five repositories, at a clean commit. The
+mapping is not one-to-one and the differences have to be settled before a
+published table exists:
 
 * We separate `references` from `calls`; they do not. Their `instantiates` is our
   resolved call to a constructor.

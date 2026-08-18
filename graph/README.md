@@ -26,16 +26,29 @@ hand; rows marked **designed** have a written protocol and no run behind them.
 | | Experiment | What it settles | Status |
 |---|---|---|---|
 | **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | measured privately, needs porting |
-| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on both sides by one script. | **first numbers below** |
+| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on both sides by one script. | **both arms run** |
 | **G3** | [Shared-denominator recall](experiments/g3-shared-denominator/) | Of the calls that exist in the source, what share does each tool resolve? | designed |
 | **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
-| **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | designed |
-| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | designed |
+| **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | mutations built, scorer next |
+| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **both arms run** |
 | **G7** | [Language breadth](experiments/g7-breadth/) | Every tool claims 20 to 40 languages. How many of them work? | designed |
 
 G4 and G5 are the two that do not exist anywhere in this field. G1 is the one we
 already have and have not published. G2 is the one a reader will ask for first,
 because it is the number our largest competitor puts on its front page.
+
+**Every number produced so far is a smoke test, not a result**, because the
+`repowise` tree it measured has uncommitted ingestion changes from another
+session. `lib/provenance.py` refuses to run without `--allow-dirty` and stamps
+anything produced that way `publishable: false`, and the two files under
+`results/graph/` carry a `-SMOKE` suffix for the same reason. Re-run at a clean
+commit before quoting anything.
+
+Check the instruments still work:
+
+```bash
+python graph/smoke.py          # 9 checks, exit code is the failure count
+```
 
 ---
 
