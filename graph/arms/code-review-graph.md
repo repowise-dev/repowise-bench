@@ -142,3 +142,16 @@ python -c "import sys; sys.path.insert(0,'graph/lib'); import arms; \
 Community detection falls back to directory grouping unless `igraph` is
 installed, so `communities` rows are not graph communities in a default install.
 Irrelevant to the edge sets above, but do not read that table as advertised.
+
+## Caching this arm's artifact
+
+The database stores paths **absolute into the scratch tree that built it**, and
+that tree is deleted the moment the build finishes. Normalisation strips the
+build root as a prefix, so the root is recorded on the artifact rather than
+recomputed.
+
+A cached artifact therefore has to restore `build_root` out of its stored
+metadata. Guessing it, or deriving it from the repository path, leaves every
+row absolute — which does not raise, it just makes every cross-arm intersection
+empty, and an empty intersection reads like a finding. `open_cached` refuses to
+build an artifact when the metadata carries no root.

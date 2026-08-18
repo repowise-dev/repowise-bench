@@ -104,3 +104,15 @@ worth stating rather than leaving them to discover it.
 `graphify.html` loads `vis-network` from a CDN, so the generated visualisation
 is not offline-safe. Irrelevant to the measurement, noted because it surprised
 the survey.
+
+## Caching this arm's artifact
+
+`graph.json` and `manifest.json` are the only two files this adapter reads back;
+`graphify-out/cache/` is graphify's own AST cache and is megabytes of nothing we
+use. Both are copied out of the scratch tree before it is removed, which the
+adapter did not previously do — it parsed `graph.json` into memory and dropped
+the file — so a cached entry holds those two files and nothing else.
+
+`index_size_mb` still reports the size of the whole output directory as built,
+cache included, because that is what the tool wrote to disk. It is not the size
+of what we keep.
