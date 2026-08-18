@@ -34,7 +34,7 @@ no run behind them.
 | **G3** | Shared-denominator recall *(no page yet)* | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
 | **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
-| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **four arms, six repos** (the 35-repo run is coverage only) |
+| **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **five arms, 35 repos, 175 cells, 0 failed** |
 | **G7** | Language breadth *(no page yet; results below)* | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
 
 Four arms: **repowise**, **CodeGraph 1.5.0**, **Graphify 0.9.31** and
@@ -236,44 +236,54 @@ Reproduce: [`experiments/g5-invariance/`](experiments/g5-invariance/).
 This page previously said we lose on build cost and expect to keep losing. That
 was carried over from the full-index comparison in
 [docs/BENCHMARKS.md §6](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md),
-which is a different denominator. Measured on graph construction alone, across
-six repositories with a discarded warmup each:
+which is a different denominator. Measured on graph construction alone, now
+across **all 35 corpus repositories on five arms** — 175 cells, 0 failed, three
+timed builds each after a discarded warmup, nothing restored from cache:
 
-| repo | repowise | codegraph | graphify | code-review-graph |
+| arm | median build | median peak memory | vs repowise | repos where fastest |
 |---|---:|---:|---:|---:|
-| dub (4,066 files) | **11.6s** | 22.3s | 176.5s | 56.5s |
-| caffeine | **10.3s** | 11.2s | 49.8s | 33.9s |
-| Ocelot | 6.1s | **4.3s** | 39.5s | 11.3s |
-| celery | 4.6s | **3.9s** | 31.3s | 22.1s |
-| zod | **3.4s** | 3.9s | 16.2s | 11.6s |
-| gitleaks | **1.7s** | 1.7s | 5.0s | 3.7s |
+| **repowise** | **2.77s** | **75 MB** | — | 14 |
+| CodeGraph | 3.65s | 757 MB | 10.1x memory | **16** |
+| Graphify | 12.23s | 860 MB | 11.4x memory | 0 |
+| code-review-graph | 9.97s | 361 MB | 4.8x memory | 0 |
+| codebase-memory-mcp | 6.21s | 1,113 MB | 14.8x memory | 5 |
 
-Peak RSS, from a Windows job object over the whole process tree:
+**Memory is the result, and it is unambiguous: we are the lowest-memory arm on
+35 of 35 repositories.** No exceptions, and the gap widens with size — 64 MB
+against CodeGraph's 749 MB on repositories under 1,000 files, 152 MB against
+1,164 MB above it. Our worst cell in the corpus is bevy at 468 MB; three arms
+exceed that on repositories a tenth the size, and codebase-memory-mcp reaches
+**5,523 MB** on the same repository.
 
-| repo | repowise | codegraph | graphify | code-review-graph |
-|---|---:|---:|---:|---:|
-| dub | **141 MB** | 1,752 MB | 1,534 MB | 373 MB |
-| caffeine | **161 MB** | 1,534 MB | 995 MB | 477 MB |
-| gitleaks | **54 MB** | 708 MB | 834 MB | 369 MB |
+**Build time is not a win, and the six-repo table used to say it was.** At n=6
+we were fastest on four including both largest. At n=35 CodeGraph is fastest on
+16 to our 14, and the split is size: we lead 2.04s to 2.37s under 1,000 files
+and trail 10.63s to 8.86s above it. The two worst cells are `exposed` (36.65s
+against 8.82s) and `bevy` (34.19s against 15.14s). **We win the middle and lose
+the tail**, and our resolution doing more work per file is why — the other half
+of that trade is [G1](experiments/g1-edge-precision/).
 
-We are fastest on four of six including both largest, and use roughly a tenth
-of CodeGraph's memory. Our figures come from the `repowise-subprocess` arm,
-which builds the same graph in a child process precisely so it can be measured
-the way every competitor already was — in process there is no child to attach a
-job object to, and this column was empty until now.
+Our figures come from the `repowise-subprocess` arm, which builds the same graph
+in a child process precisely so it can be measured the way every competitor
+already was — in process there is no child to attach a job object to, and this
+column was empty until now.
 
 Two things to keep saying anyway. This is graph construction only: no
 documentation, no embeddings, no health pass, and it must never be quoted
 beside the full-index row. And CodeGraph produces more distinct call edges than
-we do on three of the six, so seconds alone is not a quality claim.
+we do on several repositories, so seconds alone is not a quality claim.
+
+Full per-repository tables are in [G6](experiments/g6-build-cost/).
 
 ### "But isn't CodeGraph Rust and repowise Python?"
 
 Partly, and it matters less than the framing suggests. Their README leads with
 "Kernel powered by Rust" and "the fastest complete code graph", and we are a
-Python program that came out ahead on four of six repositories. That deserves
-an explanation rather than a victory lap, because the obvious reading — that a
-scripting language beat compiled code — is not what happened.
+Python program that is within a rounding distance of it on build time and an
+order of magnitude below it on memory. That deserves an explanation rather than
+a victory lap, because the obvious reading — that a scripting language beat
+compiled code — is not what happened, and on the largest repositories they are
+comfortably faster than us.
 
 **The Rust is in the parser, and their own README scopes it that way**: parsing
 and extraction run in a compiled kernel with "one boundary crossing per file".
@@ -289,8 +299,9 @@ Serialisation is genuine work that our number excludes, and that is a caveat in
 their favour, not ours. The honest sentence is "faster to build the graph", not
 "faster", and this benchmark should never write the second one.
 
-**The memory gap is the more solid result.** 141 MB against 1,752 MB is a wide
-enough margin that no accounting choice closes it, and it is mostly structural:
+**The memory gap is the more solid result.** 75 MB against 757 MB at the corpus
+median, on 35 of 35 repositories, is a wide enough margin that no accounting
+choice closes it, and it is mostly structural:
 a V8 heap plus a bundled runtime plus holding a graph in memory to write it out,
 against a build that streams.
 

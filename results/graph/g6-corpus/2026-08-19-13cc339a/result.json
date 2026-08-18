@@ -1,0 +1,6175 @@
+{
+  "schema": "graph-cost/1",
+  "experiments": [
+    "g6-build-cost"
+  ],
+  "provenance": {
+    "experiment": "g6-corpus-cost",
+    "run_at": "2026-08-18T19:35:10+00:00",
+    "publishable": true,
+    "repowise": {
+      "dirty_scope_missing": null,
+      "path": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean",
+      "head": "13cc339a7a7c0582c0aa14d65ed637a3c058fe17",
+      "head_short": "13cc339a",
+      "branch": "HEAD",
+      "describe": "v0.44.0-1-g13cc339a",
+      "dirty": false,
+      "dirty_paths": [],
+      "dirty_scope": [
+        "packages"
+      ],
+      "version": "0.44.0"
+    },
+    "bench": {
+      "dirty_scope_missing": null,
+      "path": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench",
+      "head": "44a4595a8a8ed40cb94d97a57a79a0fdf15267ae",
+      "head_short": "44a4595",
+      "branch": "bench/graph-quality",
+      "describe": "44a4595",
+      "dirty": true,
+      "dirty_paths": [
+        "graph/arms/codebase-memory-mcp.md",
+        "graph/arms/codebase_memory_mcp.py",
+        "graph/lib/procmeter.py",
+        "graph/experiments/g6-build-cost/run_corpus_cost.py",
+        "results/graph/g6-corpus/"
+      ],
+      "dirty_scope": null
+    },
+    "tools": {
+      "python": "3.13.5",
+      "platform": "Windows 11",
+      "codegraph": "1.5.0"
+    },
+    "warmup": true,
+    "runs_per_cell": 3,
+    "arms_requested": [
+      "repowise-subprocess",
+      "codegraph",
+      "graphify",
+      "code-review-graph",
+      "codebase-memory-mcp"
+    ],
+    "measured_tree": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean",
+    "cost_from_cache": false,
+    "caveats": [],
+    "corpus": {
+      "lock": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench\\graph\\corpus\\corpus.lock",
+      "selected": [
+        "cobra",
+        "spring-petclinic",
+        "requests",
+        "fmt",
+        "faraday",
+        "leveldb",
+        "guzzle",
+        "taxonomy",
+        "Crow",
+        "ripgrep",
+        "sinatra",
+        "serde",
+        "gitleaks",
+        "eShopOnWeb",
+        "hono",
+        "javalin",
+        "CleanArchitecture",
+        "Alamofire",
+        "zod",
+        "scrapy",
+        "seastar",
+        "jekyll",
+        "celery",
+        "caffeine",
+        "Ocelot",
+        "Polly",
+        "nlohmann-json",
+        "Signal-Server",
+        "aria2",
+        "monica",
+        "syft",
+        "bevy",
+        "ktor",
+        "laravel-framework",
+        "exposed"
+      ],
+      "skipped_oversize": [
+        "hugo",
+        "dub",
+        "django"
+      ],
+      "kept_oversize": [
+        "syft",
+        "ktor",
+        "exposed",
+        "monica",
+        "laravel-framework",
+        "bevy"
+      ],
+      "max_files": 2000
+    }
+  },
+  "repos": {
+    "Alamofire": {
+      "language": "swift",
+      "kind": "library",
+      "files_at_pin": 568,
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "Alamofire",
+          "started_at": "2026-08-18T20:03:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.715,
+              "peak_rss_mb": 287.1,
+              "index_size_mb": 26.05
+            },
+            {
+              "seconds": 4.576,
+              "peak_rss_mb": 289.1,
+              "index_size_mb": 26.05
+            },
+            {
+              "seconds": 4.823,
+              "peak_rss_mb": 287.3,
+              "index_size_mb": 26.05
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.715,
+          "min_seconds": 4.576,
+          "max_seconds": 4.823,
+          "median_peak_rss_mb": 287.3,
+          "min_peak_rss_mb": 287.1,
+          "max_peak_rss_mb": 289.1,
+          "index_size_mb": 26.05,
+          "time_spread_pct": 5.2
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "Alamofire",
+          "started_at": "2026-08-18T20:04:05+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.642,
+              "peak_rss_mb": 841.0,
+              "index_size_mb": 59.81
+            },
+            {
+              "seconds": 6.51,
+              "peak_rss_mb": 837.0,
+              "index_size_mb": 59.75
+            },
+            {
+              "seconds": 6.454,
+              "peak_rss_mb": 831.7,
+              "index_size_mb": 59.75
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.51,
+          "min_seconds": 6.454,
+          "max_seconds": 6.642,
+          "median_peak_rss_mb": 837.0,
+          "min_peak_rss_mb": 831.7,
+          "max_peak_rss_mb": 841.0,
+          "index_size_mb": 59.81,
+          "time_spread_pct": 2.9
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "Alamofire",
+          "started_at": "2026-08-18T20:02:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.089,
+              "peak_rss_mb": 784.2,
+              "index_size_mb": 16.89
+            },
+            {
+              "seconds": 3.019,
+              "peak_rss_mb": 792.3,
+              "index_size_mb": 16.89
+            },
+            {
+              "seconds": 3.069,
+              "peak_rss_mb": 803.0,
+              "index_size_mb": 16.89
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.069,
+          "min_seconds": 3.019,
+          "max_seconds": 3.089,
+          "median_peak_rss_mb": 792.3,
+          "min_peak_rss_mb": 784.2,
+          "max_peak_rss_mb": 803.0,
+          "index_size_mb": 16.89,
+          "time_spread_pct": 2.3
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "Alamofire",
+          "started_at": "2026-08-18T20:02:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 13.65,
+              "peak_rss_mb": 853.5,
+              "index_size_mb": 11.21
+            },
+            {
+              "seconds": 13.691,
+              "peak_rss_mb": 852.8,
+              "index_size_mb": 11.21
+            },
+            {
+              "seconds": 13.609,
+              "peak_rss_mb": 853.6,
+              "index_size_mb": 11.21
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 13.65,
+          "min_seconds": 13.609,
+          "max_seconds": 13.691,
+          "median_peak_rss_mb": 853.5,
+          "min_peak_rss_mb": 852.8,
+          "max_peak_rss_mb": 853.6,
+          "index_size_mb": 11.21,
+          "time_spread_pct": 0.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "Alamofire",
+          "started_at": "2026-08-18T20:02:04+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.596,
+              "peak_rss_mb": 65.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.428,
+              "peak_rss_mb": 64.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.484,
+              "peak_rss_mb": 64.7,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.484,
+          "min_seconds": 5.428,
+          "max_seconds": 5.596,
+          "median_peak_rss_mb": 64.7,
+          "min_peak_rss_mb": 64.5,
+          "max_peak_rss_mb": 65.6,
+          "index_size_mb": null,
+          "time_spread_pct": 3.1
+        }
+      }
+    },
+    "aria2": {
+      "language": "cpp",
+      "kind": "application",
+      "files_at_pin": 1393,
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "aria2",
+          "started_at": "2026-08-18T20:50:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 15.149,
+              "peak_rss_mb": 360.8,
+              "index_size_mb": 66.51
+            },
+            {
+              "seconds": 15.221,
+              "peak_rss_mb": 366.1,
+              "index_size_mb": 66.51
+            },
+            {
+              "seconds": 15.062,
+              "peak_rss_mb": 358.3,
+              "index_size_mb": 66.51
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 15.149,
+          "min_seconds": 15.062,
+          "max_seconds": 15.221,
+          "median_peak_rss_mb": 360.8,
+          "min_peak_rss_mb": 358.3,
+          "max_peak_rss_mb": 366.1,
+          "index_size_mb": 66.51,
+          "time_spread_pct": 1.0
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "aria2",
+          "started_at": "2026-08-18T20:51:22+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.066,
+              "peak_rss_mb": 2669.0,
+              "index_size_mb": 75.56
+            },
+            {
+              "seconds": 8.111,
+              "peak_rss_mb": 2682.4,
+              "index_size_mb": 75.44
+            },
+            {
+              "seconds": 8.116,
+              "peak_rss_mb": 2672.6,
+              "index_size_mb": 75.56
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.111,
+          "min_seconds": 8.066,
+          "max_seconds": 8.116,
+          "median_peak_rss_mb": 2672.6,
+          "min_peak_rss_mb": 2669.0,
+          "max_peak_rss_mb": 2682.4,
+          "index_size_mb": 75.56,
+          "time_spread_pct": 0.6
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "aria2",
+          "started_at": "2026-08-18T20:47:29+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.25,
+              "peak_rss_mb": 1006.3,
+              "index_size_mb": 43.96
+            },
+            {
+              "seconds": 6.393,
+              "peak_rss_mb": 1005.8,
+              "index_size_mb": 43.96
+            },
+            {
+              "seconds": 6.243,
+              "peak_rss_mb": 1000.8,
+              "index_size_mb": 43.96
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.25,
+          "min_seconds": 6.243,
+          "max_seconds": 6.393,
+          "median_peak_rss_mb": 1005.8,
+          "min_peak_rss_mb": 1000.8,
+          "max_peak_rss_mb": 1006.3,
+          "index_size_mb": 43.96,
+          "time_spread_pct": 2.4
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "aria2",
+          "started_at": "2026-08-18T20:47:58+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 33.432,
+              "peak_rss_mb": 926.1,
+              "index_size_mb": 41.8
+            },
+            {
+              "seconds": 33.53,
+              "peak_rss_mb": 924.6,
+              "index_size_mb": 41.8
+            },
+            {
+              "seconds": 33.438,
+              "peak_rss_mb": 925.8,
+              "index_size_mb": 41.8
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 33.438,
+          "min_seconds": 33.432,
+          "max_seconds": 33.53,
+          "median_peak_rss_mb": 925.8,
+          "min_peak_rss_mb": 924.6,
+          "max_peak_rss_mb": 926.1,
+          "index_size_mb": 41.8,
+          "time_spread_pct": 0.3
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "aria2",
+          "started_at": "2026-08-18T20:46:50+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 7.382,
+              "peak_rss_mb": 107.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 7.406,
+              "peak_rss_mb": 106.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 7.392,
+              "peak_rss_mb": 106.7,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 7.392,
+          "min_seconds": 7.382,
+          "max_seconds": 7.406,
+          "median_peak_rss_mb": 106.8,
+          "min_peak_rss_mb": 106.7,
+          "max_peak_rss_mb": 107.2,
+          "index_size_mb": null,
+          "time_spread_pct": 0.3
+        }
+      }
+    },
+    "bevy": {
+      "language": "rust",
+      "kind": "framework",
+      "files_at_pin": 2897,
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "bevy",
+          "started_at": "2026-08-18T21:20:41+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 66.67,
+              "peak_rss_mb": 495.9,
+              "index_size_mb": 344.83
+            },
+            {
+              "seconds": 66.677,
+              "peak_rss_mb": 495.5,
+              "index_size_mb": 344.85
+            },
+            {
+              "seconds": 66.777,
+              "peak_rss_mb": 501.1,
+              "index_size_mb": 344.84
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 66.677,
+          "min_seconds": 66.67,
+          "max_seconds": 66.777,
+          "median_peak_rss_mb": 495.9,
+          "min_peak_rss_mb": 495.5,
+          "max_peak_rss_mb": 501.1,
+          "index_size_mb": 344.83,
+          "time_spread_pct": 0.2
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "bevy",
+          "started_at": "2026-08-18T21:25:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.89,
+              "peak_rss_mb": 5514.8,
+              "index_size_mb": 240.38
+            },
+            {
+              "seconds": 13.215,
+              "peak_rss_mb": 5527.9,
+              "index_size_mb": 240.44
+            },
+            {
+              "seconds": 12.949,
+              "peak_rss_mb": 5522.7,
+              "index_size_mb": 240.25
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.949,
+          "min_seconds": 12.89,
+          "max_seconds": 13.215,
+          "median_peak_rss_mb": 5522.7,
+          "min_peak_rss_mb": 5514.8,
+          "max_peak_rss_mb": 5527.9,
+          "index_size_mb": 240.38,
+          "time_spread_pct": 2.5
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "bevy",
+          "started_at": "2026-08-18T21:13:52+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 15.292,
+              "peak_rss_mb": 2067.2,
+              "index_size_mb": 157.51
+            },
+            {
+              "seconds": 15.057,
+              "peak_rss_mb": 2061.4,
+              "index_size_mb": 157.51
+            },
+            {
+              "seconds": 15.145,
+              "peak_rss_mb": 2067.4,
+              "index_size_mb": 157.51
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 15.145,
+          "min_seconds": 15.057,
+          "max_seconds": 15.292,
+          "median_peak_rss_mb": 2067.2,
+          "min_peak_rss_mb": 2061.4,
+          "max_peak_rss_mb": 2067.4,
+          "index_size_mb": 157.51,
+          "time_spread_pct": 1.6
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "bevy",
+          "started_at": "2026-08-18T21:15:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 81.269,
+              "peak_rss_mb": 1198.0,
+              "index_size_mb": 121.33
+            },
+            {
+              "seconds": 81.1,
+              "peak_rss_mb": 1198.7,
+              "index_size_mb": 121.33
+            },
+            {
+              "seconds": 82.127,
+              "peak_rss_mb": 1198.4,
+              "index_size_mb": 121.33
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 81.269,
+          "min_seconds": 81.1,
+          "max_seconds": 82.127,
+          "median_peak_rss_mb": 1198.4,
+          "min_peak_rss_mb": 1198.0,
+          "max_peak_rss_mb": 1198.7,
+          "index_size_mb": 121.33,
+          "time_spread_pct": 1.3
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "bevy",
+          "started_at": "2026-08-18T21:11:15+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 34.159,
+              "peak_rss_mb": 467.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 34.186,
+              "peak_rss_mb": 468.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 34.307,
+              "peak_rss_mb": 468.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 34.186,
+          "min_seconds": 34.159,
+          "max_seconds": 34.307,
+          "median_peak_rss_mb": 468.0,
+          "min_peak_rss_mb": 467.9,
+          "max_peak_rss_mb": 468.1,
+          "index_size_mb": null,
+          "time_spread_pct": 0.4
+        }
+      }
+    },
+    "caffeine": {
+      "language": "java",
+      "kind": "library",
+      "files_at_pin": 961,
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "caffeine",
+          "started_at": "2026-08-18T20:24:40+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 32.791,
+              "peak_rss_mb": 473.9,
+              "index_size_mb": 276.2
+            },
+            {
+              "seconds": 30.844,
+              "peak_rss_mb": 469.4,
+              "index_size_mb": 276.2
+            },
+            {
+              "seconds": 31.476,
+              "peak_rss_mb": 478.5,
+              "index_size_mb": 276.2
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 31.476,
+          "min_seconds": 30.844,
+          "max_seconds": 32.791,
+          "median_peak_rss_mb": 473.9,
+          "min_peak_rss_mb": 469.4,
+          "max_peak_rss_mb": 478.5,
+          "index_size_mb": 276.2,
+          "time_spread_pct": 6.2
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "caffeine",
+          "started_at": "2026-08-18T20:26:52+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.889,
+              "peak_rss_mb": 1998.6,
+              "index_size_mb": 122.44
+            },
+            {
+              "seconds": 8.859,
+              "peak_rss_mb": 1989.2,
+              "index_size_mb": 122.44
+            },
+            {
+              "seconds": 8.766,
+              "peak_rss_mb": 1984.2,
+              "index_size_mb": 122.5
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.859,
+          "min_seconds": 8.766,
+          "max_seconds": 8.889,
+          "median_peak_rss_mb": 1989.2,
+          "min_peak_rss_mb": 1984.2,
+          "max_peak_rss_mb": 1998.6,
+          "index_size_mb": 122.44,
+          "time_spread_pct": 1.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "caffeine",
+          "started_at": "2026-08-18T20:20:48+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 10.839,
+              "peak_rss_mb": 1519.2,
+              "index_size_mb": 104.55
+            },
+            {
+              "seconds": 10.505,
+              "peak_rss_mb": 1597.4,
+              "index_size_mb": 104.55
+            },
+            {
+              "seconds": 10.539,
+              "peak_rss_mb": 1612.9,
+              "index_size_mb": 104.55
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 10.539,
+          "min_seconds": 10.505,
+          "max_seconds": 10.839,
+          "median_peak_rss_mb": 1597.4,
+          "min_peak_rss_mb": 1519.2,
+          "max_peak_rss_mb": 1612.9,
+          "index_size_mb": 104.55,
+          "time_spread_pct": 3.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "caffeine",
+          "started_at": "2026-08-18T20:21:35+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 44.827,
+              "peak_rss_mb": 993.8,
+              "index_size_mb": 83.43
+            },
+            {
+              "seconds": 44.77,
+              "peak_rss_mb": 996.6,
+              "index_size_mb": 83.43
+            },
+            {
+              "seconds": 44.864,
+              "peak_rss_mb": 993.3,
+              "index_size_mb": 83.43
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 44.827,
+          "min_seconds": 44.77,
+          "max_seconds": 44.864,
+          "median_peak_rss_mb": 993.8,
+          "min_peak_rss_mb": 993.3,
+          "max_peak_rss_mb": 996.6,
+          "index_size_mb": 83.43,
+          "time_spread_pct": 0.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "caffeine",
+          "started_at": "2026-08-18T20:20:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 9.337,
+              "peak_rss_mb": 162.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 9.132,
+              "peak_rss_mb": 160.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 9.015,
+              "peak_rss_mb": 160.6,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 9.132,
+          "min_seconds": 9.015,
+          "max_seconds": 9.337,
+          "median_peak_rss_mb": 160.6,
+          "min_peak_rss_mb": 160.4,
+          "max_peak_rss_mb": 162.0,
+          "index_size_mb": null,
+          "time_spread_pct": 3.5
+        }
+      }
+    },
+    "celery": {
+      "language": "python",
+      "kind": "framework",
+      "files_at_pin": 821,
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "celery",
+          "started_at": "2026-08-18T20:18:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 18.357,
+              "peak_rss_mb": 407.2,
+              "index_size_mb": 95.3
+            },
+            {
+              "seconds": 19.143,
+              "peak_rss_mb": 402.2,
+              "index_size_mb": 95.23
+            },
+            {
+              "seconds": 19.109,
+              "peak_rss_mb": 409.4,
+              "index_size_mb": 95.23
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 19.109,
+          "min_seconds": 18.357,
+          "max_seconds": 19.143,
+          "median_peak_rss_mb": 407.2,
+          "min_peak_rss_mb": 402.2,
+          "max_peak_rss_mb": 409.4,
+          "index_size_mb": 95.3,
+          "time_spread_pct": 4.1
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "celery",
+          "started_at": "2026-08-18T20:19:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.851,
+              "peak_rss_mb": 1645.2,
+              "index_size_mb": 66.19
+            },
+            {
+              "seconds": 6.764,
+              "peak_rss_mb": 1640.2,
+              "index_size_mb": 66.19
+            },
+            {
+              "seconds": 6.787,
+              "peak_rss_mb": 1653.0,
+              "index_size_mb": 66.25
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.787,
+          "min_seconds": 6.764,
+          "max_seconds": 6.851,
+          "median_peak_rss_mb": 1645.2,
+          "min_peak_rss_mb": 1640.2,
+          "max_peak_rss_mb": 1653.0,
+          "index_size_mb": 66.19,
+          "time_spread_pct": 1.3
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "celery",
+          "started_at": "2026-08-18T20:16:15+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.904,
+              "peak_rss_mb": 748.9,
+              "index_size_mb": 31.65
+            },
+            {
+              "seconds": 3.936,
+              "peak_rss_mb": 758.9,
+              "index_size_mb": 31.65
+            },
+            {
+              "seconds": 3.797,
+              "peak_rss_mb": 739.3,
+              "index_size_mb": 31.65
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.904,
+          "min_seconds": 3.797,
+          "max_seconds": 3.936,
+          "median_peak_rss_mb": 748.9,
+          "min_peak_rss_mb": 739.3,
+          "max_peak_rss_mb": 758.9,
+          "index_size_mb": 31.65,
+          "time_spread_pct": 3.6
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "celery",
+          "started_at": "2026-08-18T20:16:34+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 24.805,
+              "peak_rss_mb": 898.3,
+              "index_size_mb": 26.13
+            },
+            {
+              "seconds": 24.217,
+              "peak_rss_mb": 894.8,
+              "index_size_mb": 26.13
+            },
+            {
+              "seconds": 24.26,
+              "peak_rss_mb": 894.3,
+              "index_size_mb": 26.13
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 24.26,
+          "min_seconds": 24.217,
+          "max_seconds": 24.805,
+          "median_peak_rss_mb": 894.8,
+          "min_peak_rss_mb": 894.3,
+          "max_peak_rss_mb": 898.3,
+          "index_size_mb": 26.13,
+          "time_spread_pct": 2.4
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "celery",
+          "started_at": "2026-08-18T20:15:53+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.923,
+              "peak_rss_mb": 82.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 3.968,
+              "peak_rss_mb": 81.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 3.833,
+              "peak_rss_mb": 83.2,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.923,
+          "min_seconds": 3.833,
+          "max_seconds": 3.968,
+          "median_peak_rss_mb": 82.4,
+          "min_peak_rss_mb": 81.9,
+          "max_peak_rss_mb": 83.2,
+          "index_size_mb": null,
+          "time_spread_pct": 3.4
+        }
+      }
+    },
+    "CleanArchitecture": {
+      "language": "csharp",
+      "kind": "framework",
+      "files_at_pin": 539,
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "CleanArchitecture",
+          "started_at": "2026-08-18T20:01:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.601,
+              "peak_rss_mb": 355.7,
+              "index_size_mb": 29.08
+            },
+            {
+              "seconds": 8.04,
+              "peak_rss_mb": 369.7,
+              "index_size_mb": 29.08
+            },
+            {
+              "seconds": 8.033,
+              "peak_rss_mb": 360.8,
+              "index_size_mb": 29.08
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.04,
+          "min_seconds": 8.033,
+          "max_seconds": 8.601,
+          "median_peak_rss_mb": 360.8,
+          "min_peak_rss_mb": 355.7,
+          "max_peak_rss_mb": 369.7,
+          "index_size_mb": 29.08,
+          "time_spread_pct": 7.1
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "CleanArchitecture",
+          "started_at": "2026-08-18T20:01:39+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.808,
+              "peak_rss_mb": 840.6,
+              "index_size_mb": 14.0
+            },
+            {
+              "seconds": 5.696,
+              "peak_rss_mb": 867.8,
+              "index_size_mb": 14.0
+            },
+            {
+              "seconds": 5.662,
+              "peak_rss_mb": 841.1,
+              "index_size_mb": 14.0
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.696,
+          "min_seconds": 5.662,
+          "max_seconds": 5.808,
+          "median_peak_rss_mb": 841.1,
+          "min_peak_rss_mb": 840.6,
+          "max_peak_rss_mb": 867.8,
+          "index_size_mb": 14.0,
+          "time_spread_pct": 2.6
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "CleanArchitecture",
+          "started_at": "2026-08-18T20:00:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.785,
+              "peak_rss_mb": 754.6,
+              "index_size_mb": 6.98
+            },
+            {
+              "seconds": 1.847,
+              "peak_rss_mb": 767.7,
+              "index_size_mb": 6.98
+            },
+            {
+              "seconds": 1.775,
+              "peak_rss_mb": 756.2,
+              "index_size_mb": 6.98
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.785,
+          "min_seconds": 1.775,
+          "max_seconds": 1.847,
+          "median_peak_rss_mb": 756.2,
+          "min_peak_rss_mb": 754.6,
+          "max_peak_rss_mb": 767.7,
+          "index_size_mb": 6.98,
+          "time_spread_pct": 4.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "CleanArchitecture",
+          "started_at": "2026-08-18T20:00:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.059,
+              "peak_rss_mb": 841.5,
+              "index_size_mb": 7.59
+            },
+            {
+              "seconds": 12.154,
+              "peak_rss_mb": 841.5,
+              "index_size_mb": 7.59
+            },
+            {
+              "seconds": 12.254,
+              "peak_rss_mb": 841.8,
+              "index_size_mb": 7.59
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.154,
+          "min_seconds": 12.059,
+          "max_seconds": 12.254,
+          "median_peak_rss_mb": 841.5,
+          "min_peak_rss_mb": 841.5,
+          "max_peak_rss_mb": 841.8,
+          "index_size_mb": 7.59,
+          "time_spread_pct": 1.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "CleanArchitecture",
+          "started_at": "2026-08-18T19:59:49+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.057,
+              "peak_rss_mb": 53.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.995,
+              "peak_rss_mb": 53.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.039,
+              "peak_rss_mb": 53.5,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.039,
+          "min_seconds": 1.995,
+          "max_seconds": 2.057,
+          "median_peak_rss_mb": 53.5,
+          "min_peak_rss_mb": 53.2,
+          "max_peak_rss_mb": 53.7,
+          "index_size_mb": null,
+          "time_spread_pct": 3.0
+        }
+      }
+    },
+    "cobra": {
+      "language": "go",
+      "kind": "library",
+      "files_at_pin": 66,
+      "pin": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "cobra",
+          "started_at": "2026-08-18T19:35:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.451,
+              "peak_rss_mb": 155.4,
+              "index_size_mb": 8.5
+            },
+            {
+              "seconds": 2.489,
+              "peak_rss_mb": 155.3,
+              "index_size_mb": 8.5
+            },
+            {
+              "seconds": 2.569,
+              "peak_rss_mb": 154.9,
+              "index_size_mb": 8.5
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.489,
+          "min_seconds": 2.451,
+          "max_seconds": 2.569,
+          "median_peak_rss_mb": 155.3,
+          "min_peak_rss_mb": 154.9,
+          "max_peak_rss_mb": 155.4,
+          "index_size_mb": 8.5,
+          "time_spread_pct": 4.7
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "cobra",
+          "started_at": "2026-08-18T19:35:48+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.494,
+              "peak_rss_mb": 725.1,
+              "index_size_mb": 7.88
+            },
+            {
+              "seconds": 5.576,
+              "peak_rss_mb": 723.0,
+              "index_size_mb": 7.88
+            },
+            {
+              "seconds": 5.446,
+              "peak_rss_mb": 695.1,
+              "index_size_mb": 7.88
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.494,
+          "min_seconds": 5.446,
+          "max_seconds": 5.576,
+          "median_peak_rss_mb": 723.0,
+          "min_peak_rss_mb": 695.1,
+          "max_peak_rss_mb": 725.1,
+          "index_size_mb": 7.88,
+          "time_spread_pct": 2.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "cobra",
+          "started_at": "2026-08-18T19:35:20+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.203,
+              "peak_rss_mb": 717.4,
+              "index_size_mb": 3.77
+            },
+            {
+              "seconds": 1.124,
+              "peak_rss_mb": 715.6,
+              "index_size_mb": 3.77
+            },
+            {
+              "seconds": 1.153,
+              "peak_rss_mb": 709.5,
+              "index_size_mb": 3.77
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.153,
+          "min_seconds": 1.124,
+          "max_seconds": 1.203,
+          "median_peak_rss_mb": 715.6,
+          "min_peak_rss_mb": 709.5,
+          "max_peak_rss_mb": 717.4,
+          "index_size_mb": 3.77,
+          "time_spread_pct": 6.9
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "cobra",
+          "started_at": "2026-08-18T19:35:25+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.963,
+              "peak_rss_mb": 829.2,
+              "index_size_mb": 2.11
+            },
+            {
+              "seconds": 2.954,
+              "peak_rss_mb": 829.4,
+              "index_size_mb": 2.11
+            },
+            {
+              "seconds": 2.888,
+              "peak_rss_mb": 829.2,
+              "index_size_mb": 2.11
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.954,
+          "min_seconds": 2.888,
+          "max_seconds": 2.963,
+          "median_peak_rss_mb": 829.2,
+          "min_peak_rss_mb": 829.2,
+          "max_peak_rss_mb": 829.4,
+          "index_size_mb": 2.11,
+          "time_spread_pct": 2.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "cobra",
+          "started_at": "2026-08-18T19:35:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.236,
+              "peak_rss_mb": 54.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.281,
+              "peak_rss_mb": 54.3,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.264,
+              "peak_rss_mb": 54.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.264,
+          "min_seconds": 1.236,
+          "max_seconds": 1.281,
+          "median_peak_rss_mb": 54.2,
+          "min_peak_rss_mb": 54.1,
+          "max_peak_rss_mb": 54.3,
+          "index_size_mb": null,
+          "time_spread_pct": 3.6
+        }
+      }
+    },
+    "Crow": {
+      "language": "cpp",
+      "kind": "framework",
+      "files_at_pin": 193,
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "Crow",
+          "started_at": "2026-08-18T19:46:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.744,
+              "peak_rss_mb": 246.1,
+              "index_size_mb": 6.28
+            },
+            {
+              "seconds": 2.599,
+              "peak_rss_mb": 247.7,
+              "index_size_mb": 6.28
+            },
+            {
+              "seconds": 2.589,
+              "peak_rss_mb": 247.0,
+              "index_size_mb": 6.28
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.599,
+          "min_seconds": 2.589,
+          "max_seconds": 2.744,
+          "median_peak_rss_mb": 247.0,
+          "min_peak_rss_mb": 246.1,
+          "max_peak_rss_mb": 247.7,
+          "index_size_mb": 6.28,
+          "time_spread_pct": 6.0
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "Crow",
+          "started_at": "2026-08-18T19:46:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.649,
+              "peak_rss_mb": 782.1,
+              "index_size_mb": 11.06
+            },
+            {
+              "seconds": 5.55,
+              "peak_rss_mb": 784.3,
+              "index_size_mb": 11.06
+            },
+            {
+              "seconds": 5.726,
+              "peak_rss_mb": 783.8,
+              "index_size_mb": 11.06
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.649,
+          "min_seconds": 5.55,
+          "max_seconds": 5.726,
+          "median_peak_rss_mb": 783.8,
+          "min_peak_rss_mb": 782.1,
+          "max_peak_rss_mb": 784.3,
+          "index_size_mb": 11.06,
+          "time_spread_pct": 3.1
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "Crow",
+          "started_at": "2026-08-18T19:45:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.704,
+              "peak_rss_mb": 749.5,
+              "index_size_mb": 4.49
+            },
+            {
+              "seconds": 1.771,
+              "peak_rss_mb": 748.6,
+              "index_size_mb": 4.49
+            },
+            {
+              "seconds": 1.618,
+              "peak_rss_mb": 747.0,
+              "index_size_mb": 4.49
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.704,
+          "min_seconds": 1.618,
+          "max_seconds": 1.771,
+          "median_peak_rss_mb": 748.6,
+          "min_peak_rss_mb": 747.0,
+          "max_peak_rss_mb": 749.5,
+          "index_size_mb": 4.49,
+          "time_spread_pct": 9.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "Crow",
+          "started_at": "2026-08-18T19:45:46+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.012,
+              "peak_rss_mb": 833.5,
+              "index_size_mb": 2.89
+            },
+            {
+              "seconds": 4.213,
+              "peak_rss_mb": 834.6,
+              "index_size_mb": 2.89
+            },
+            {
+              "seconds": 4.088,
+              "peak_rss_mb": 833.7,
+              "index_size_mb": 2.89
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.088,
+          "min_seconds": 4.012,
+          "max_seconds": 4.213,
+          "median_peak_rss_mb": 833.7,
+          "min_peak_rss_mb": 833.5,
+          "max_peak_rss_mb": 834.6,
+          "index_size_mb": 2.89,
+          "time_spread_pct": 4.9
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "Crow",
+          "started_at": "2026-08-18T19:45:29+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.67,
+              "peak_rss_mb": 53.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.659,
+              "peak_rss_mb": 53.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.732,
+              "peak_rss_mb": 53.7,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.67,
+          "min_seconds": 1.659,
+          "max_seconds": 1.732,
+          "median_peak_rss_mb": 53.4,
+          "min_peak_rss_mb": 53.4,
+          "max_peak_rss_mb": 53.7,
+          "index_size_mb": null,
+          "time_spread_pct": 4.4
+        }
+      }
+    },
+    "eShopOnWeb": {
+      "language": "csharp",
+      "kind": "application",
+      "files_at_pin": 459,
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "eShopOnWeb",
+          "started_at": "2026-08-18T19:53:39+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.12,
+              "peak_rss_mb": 359.0,
+              "index_size_mb": 8.31
+            },
+            {
+              "seconds": 3.196,
+              "peak_rss_mb": 351.8,
+              "index_size_mb": 8.32
+            },
+            {
+              "seconds": 3.091,
+              "peak_rss_mb": 356.6,
+              "index_size_mb": 8.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.12,
+          "min_seconds": 3.091,
+          "max_seconds": 3.196,
+          "median_peak_rss_mb": 356.6,
+          "min_peak_rss_mb": 351.8,
+          "max_peak_rss_mb": 359.0,
+          "index_size_mb": 8.31,
+          "time_spread_pct": 3.4
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "eShopOnWeb",
+          "started_at": "2026-08-18T19:53:53+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.486,
+              "peak_rss_mb": 752.5,
+              "index_size_mb": 10.75
+            },
+            {
+              "seconds": 5.508,
+              "peak_rss_mb": 753.6,
+              "index_size_mb": 10.75
+            },
+            {
+              "seconds": 5.493,
+              "peak_rss_mb": 747.7,
+              "index_size_mb": 10.75
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.493,
+          "min_seconds": 5.486,
+          "max_seconds": 5.508,
+          "median_peak_rss_mb": 752.5,
+          "min_peak_rss_mb": 747.7,
+          "max_peak_rss_mb": 753.6,
+          "index_size_mb": 10.75,
+          "time_spread_pct": 0.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "eShopOnWeb",
+          "started_at": "2026-08-18T19:52:57+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.669,
+              "peak_rss_mb": 752.1,
+              "index_size_mb": 5.95
+            },
+            {
+              "seconds": 1.6,
+              "peak_rss_mb": 756.8,
+              "index_size_mb": 5.95
+            },
+            {
+              "seconds": 1.638,
+              "peak_rss_mb": 756.7,
+              "index_size_mb": 5.95
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.638,
+          "min_seconds": 1.6,
+          "max_seconds": 1.669,
+          "median_peak_rss_mb": 756.7,
+          "min_peak_rss_mb": 752.1,
+          "max_peak_rss_mb": 756.8,
+          "index_size_mb": 5.95,
+          "time_spread_pct": 4.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "eShopOnWeb",
+          "started_at": "2026-08-18T19:53:05+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 7.989,
+              "peak_rss_mb": 836.6,
+              "index_size_mb": 4.99
+            },
+            {
+              "seconds": 8.192,
+              "peak_rss_mb": 836.8,
+              "index_size_mb": 4.99
+            },
+            {
+              "seconds": 8.055,
+              "peak_rss_mb": 836.9,
+              "index_size_mb": 4.99
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.055,
+          "min_seconds": 7.989,
+          "max_seconds": 8.192,
+          "median_peak_rss_mb": 836.8,
+          "min_peak_rss_mb": 836.6,
+          "max_peak_rss_mb": 836.9,
+          "index_size_mb": 4.99,
+          "time_spread_pct": 2.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "eShopOnWeb",
+          "started_at": "2026-08-18T19:52:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.758,
+              "peak_rss_mb": 52.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.776,
+              "peak_rss_mb": 52.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.768,
+              "peak_rss_mb": 52.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.768,
+          "min_seconds": 1.758,
+          "max_seconds": 1.776,
+          "median_peak_rss_mb": 52.1,
+          "min_peak_rss_mb": 52.0,
+          "max_peak_rss_mb": 52.2,
+          "index_size_mb": null,
+          "time_spread_pct": 1.0
+        }
+      }
+    },
+    "exposed": {
+      "language": "kotlin",
+      "kind": "library",
+      "files_at_pin": 5380,
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "exposed",
+          "started_at": "2026-08-18T22:09:42+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 24.199,
+              "peak_rss_mb": 468.2,
+              "index_size_mb": 225.27
+            },
+            {
+              "seconds": 24.268,
+              "peak_rss_mb": 467.0,
+              "index_size_mb": 225.27
+            },
+            {
+              "seconds": 24.531,
+              "peak_rss_mb": 465.1,
+              "index_size_mb": 225.35
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 24.268,
+          "min_seconds": 24.199,
+          "max_seconds": 24.531,
+          "median_peak_rss_mb": 467.0,
+          "min_peak_rss_mb": 465.1,
+          "max_peak_rss_mb": 468.2,
+          "index_size_mb": 225.27,
+          "time_spread_pct": 1.4
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "exposed",
+          "started_at": "2026-08-18T22:11:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 17.688,
+              "peak_rss_mb": 3116.8,
+              "index_size_mb": 191.19
+            },
+            {
+              "seconds": 17.772,
+              "peak_rss_mb": 3093.4,
+              "index_size_mb": 191.44
+            },
+            {
+              "seconds": 17.777,
+              "peak_rss_mb": 3102.6,
+              "index_size_mb": 191.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 17.772,
+          "min_seconds": 17.688,
+          "max_seconds": 17.777,
+          "median_peak_rss_mb": 3102.6,
+          "min_peak_rss_mb": 3093.4,
+          "max_peak_rss_mb": 3116.8,
+          "index_size_mb": 191.19,
+          "time_spread_pct": 0.5
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "exposed",
+          "started_at": "2026-08-18T21:59:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.816,
+              "peak_rss_mb": 1112.9,
+              "index_size_mb": 82.96
+            },
+            {
+              "seconds": 8.831,
+              "peak_rss_mb": 1113.5,
+              "index_size_mb": 82.96
+            },
+            {
+              "seconds": 8.735,
+              "peak_rss_mb": 1156.2,
+              "index_size_mb": 82.96
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.816,
+          "min_seconds": 8.735,
+          "max_seconds": 8.831,
+          "median_peak_rss_mb": 1113.5,
+          "min_peak_rss_mb": 1112.9,
+          "max_peak_rss_mb": 1156.2,
+          "index_size_mb": 82.96,
+          "time_spread_pct": 1.1
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "exposed",
+          "started_at": "2026-08-18T22:00:41+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 129.882,
+              "peak_rss_mb": 995.0,
+              "index_size_mb": 44.36
+            },
+            {
+              "seconds": 129.214,
+              "peak_rss_mb": 994.0,
+              "index_size_mb": 44.36
+            },
+            {
+              "seconds": 131.198,
+              "peak_rss_mb": 1002.1,
+              "index_size_mb": 44.36
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 129.882,
+          "min_seconds": 129.214,
+          "max_seconds": 131.198,
+          "median_peak_rss_mb": 995.0,
+          "min_peak_rss_mb": 994.0,
+          "max_peak_rss_mb": 1002.1,
+          "index_size_mb": 44.36,
+          "time_spread_pct": 1.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "exposed",
+          "started_at": "2026-08-18T21:55:53+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 36.466,
+              "peak_rss_mb": 188.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 36.653,
+              "peak_rss_mb": 189.3,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 36.875,
+              "peak_rss_mb": 189.4,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 36.653,
+          "min_seconds": 36.466,
+          "max_seconds": 36.875,
+          "median_peak_rss_mb": 189.3,
+          "min_peak_rss_mb": 188.2,
+          "max_peak_rss_mb": 189.4,
+          "index_size_mb": null,
+          "time_spread_pct": 1.1
+        }
+      }
+    },
+    "faraday": {
+      "language": "ruby",
+      "kind": "library",
+      "files_at_pin": 143,
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "faraday",
+          "started_at": "2026-08-18T19:40:29+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.81,
+              "peak_rss_mb": 205.9,
+              "index_size_mb": 1.22
+            },
+            {
+              "seconds": 1.854,
+              "peak_rss_mb": 203.5,
+              "index_size_mb": 1.22
+            },
+            {
+              "seconds": 1.85,
+              "peak_rss_mb": 208.8,
+              "index_size_mb": 1.22
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.85,
+          "min_seconds": 1.81,
+          "max_seconds": 1.854,
+          "median_peak_rss_mb": 205.9,
+          "min_peak_rss_mb": 203.5,
+          "max_peak_rss_mb": 208.8,
+          "index_size_mb": 1.22,
+          "time_spread_pct": 2.4
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "faraday",
+          "started_at": "2026-08-18T19:40:37+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.263,
+              "peak_rss_mb": 667.8,
+              "index_size_mb": 5.31
+            },
+            {
+              "seconds": 5.215,
+              "peak_rss_mb": 660.1,
+              "index_size_mb": 5.31
+            },
+            {
+              "seconds": 5.277,
+              "peak_rss_mb": 663.8,
+              "index_size_mb": 5.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.263,
+          "min_seconds": 5.215,
+          "max_seconds": 5.277,
+          "median_peak_rss_mb": 663.8,
+          "min_peak_rss_mb": 660.1,
+          "max_peak_rss_mb": 667.8,
+          "index_size_mb": 5.31,
+          "time_spread_pct": 1.2
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "faraday",
+          "started_at": "2026-08-18T19:40:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.104,
+              "peak_rss_mb": 710.5,
+              "index_size_mb": 1.52
+            },
+            {
+              "seconds": 1.086,
+              "peak_rss_mb": 708.2,
+              "index_size_mb": 1.52
+            },
+            {
+              "seconds": 1.11,
+              "peak_rss_mb": 706.8,
+              "index_size_mb": 1.52
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.104,
+          "min_seconds": 1.086,
+          "max_seconds": 1.11,
+          "median_peak_rss_mb": 708.2,
+          "min_peak_rss_mb": 706.8,
+          "max_peak_rss_mb": 710.5,
+          "index_size_mb": 1.52,
+          "time_spread_pct": 2.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "faraday",
+          "started_at": "2026-08-18T19:40:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.682,
+              "peak_rss_mb": 825.7,
+              "index_size_mb": 0.98
+            },
+            {
+              "seconds": 2.706,
+              "peak_rss_mb": 826.5,
+              "index_size_mb": 0.98
+            },
+            {
+              "seconds": 2.503,
+              "peak_rss_mb": 825.8,
+              "index_size_mb": 0.98
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.682,
+          "min_seconds": 2.503,
+          "max_seconds": 2.706,
+          "median_peak_rss_mb": 825.8,
+          "min_peak_rss_mb": 825.7,
+          "max_peak_rss_mb": 826.5,
+          "index_size_mb": 0.98,
+          "time_spread_pct": 7.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "faraday",
+          "started_at": "2026-08-18T19:40:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 0.986,
+              "peak_rss_mb": 46.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.022,
+              "peak_rss_mb": 46.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.049,
+              "peak_rss_mb": 46.3,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.022,
+          "min_seconds": 0.986,
+          "max_seconds": 1.049,
+          "median_peak_rss_mb": 46.4,
+          "min_peak_rss_mb": 46.3,
+          "max_peak_rss_mb": 46.5,
+          "index_size_mb": null,
+          "time_spread_pct": 6.2
+        }
+      }
+    },
+    "fmt": {
+      "language": "cpp",
+      "kind": "library",
+      "files_at_pin": 142,
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "fmt",
+          "started_at": "2026-08-18T19:39:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.353,
+              "peak_rss_mb": 255.8,
+              "index_size_mb": 20.32
+            },
+            {
+              "seconds": 5.204,
+              "peak_rss_mb": 251.0,
+              "index_size_mb": 20.32
+            },
+            {
+              "seconds": 5.28,
+              "peak_rss_mb": 255.9,
+              "index_size_mb": 20.32
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.28,
+          "min_seconds": 5.204,
+          "max_seconds": 5.353,
+          "median_peak_rss_mb": 255.8,
+          "min_peak_rss_mb": 251.0,
+          "max_peak_rss_mb": 255.9,
+          "index_size_mb": 20.32,
+          "time_spread_pct": 2.8
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "fmt",
+          "started_at": "2026-08-18T19:39:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.173,
+              "peak_rss_mb": 1272.3,
+              "index_size_mb": 30.25
+            },
+            {
+              "seconds": 8.093,
+              "peak_rss_mb": 1270.0,
+              "index_size_mb": 30.19
+            },
+            {
+              "seconds": 8.247,
+              "peak_rss_mb": 1274.0,
+              "index_size_mb": 30.19
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.173,
+          "min_seconds": 8.093,
+          "max_seconds": 8.247,
+          "median_peak_rss_mb": 1272.3,
+          "min_peak_rss_mb": 1270.0,
+          "max_peak_rss_mb": 1274.0,
+          "index_size_mb": 30.25,
+          "time_spread_pct": 1.9
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "fmt",
+          "started_at": "2026-08-18T19:38:23+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.044,
+              "peak_rss_mb": 923.8,
+              "index_size_mb": 15.75
+            },
+            {
+              "seconds": 3.04,
+              "peak_rss_mb": 914.1,
+              "index_size_mb": 15.75
+            },
+            {
+              "seconds": 3.038,
+              "peak_rss_mb": 921.9,
+              "index_size_mb": 15.75
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.04,
+          "min_seconds": 3.038,
+          "max_seconds": 3.044,
+          "median_peak_rss_mb": 921.9,
+          "min_peak_rss_mb": 914.1,
+          "max_peak_rss_mb": 923.8,
+          "index_size_mb": 15.75,
+          "time_spread_pct": 0.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "fmt",
+          "started_at": "2026-08-18T19:38:36+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.726,
+              "peak_rss_mb": 860.5,
+              "index_size_mb": 12.99
+            },
+            {
+              "seconds": 8.625,
+              "peak_rss_mb": 860.2,
+              "index_size_mb": 12.99
+            },
+            {
+              "seconds": 8.734,
+              "peak_rss_mb": 860.5,
+              "index_size_mb": 12.99
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.726,
+          "min_seconds": 8.625,
+          "max_seconds": 8.734,
+          "median_peak_rss_mb": 860.5,
+          "min_peak_rss_mb": 860.2,
+          "max_peak_rss_mb": 860.5,
+          "index_size_mb": 12.99,
+          "time_spread_pct": 1.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "fmt",
+          "started_at": "2026-08-18T19:38:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.82,
+              "peak_rss_mb": 80.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 3.826,
+              "peak_rss_mb": 80.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 3.884,
+              "peak_rss_mb": 80.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.826,
+          "min_seconds": 3.82,
+          "max_seconds": 3.884,
+          "median_peak_rss_mb": 80.5,
+          "min_peak_rss_mb": 80.1,
+          "max_peak_rss_mb": 80.9,
+          "index_size_mb": null,
+          "time_spread_pct": 1.7
+        }
+      }
+    },
+    "gitleaks": {
+      "language": "go",
+      "kind": "application",
+      "files_at_pin": 454,
+      "pin": "8ad8470035d31a209322c580153b45c18e21b980",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "gitleaks",
+          "started_at": "2026-08-18T19:52:05+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.501,
+              "peak_rss_mb": 357.9,
+              "index_size_mb": 7.2
+            },
+            {
+              "seconds": 3.391,
+              "peak_rss_mb": 356.7,
+              "index_size_mb": 7.2
+            },
+            {
+              "seconds": 3.518,
+              "peak_rss_mb": 365.5,
+              "index_size_mb": 7.2
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.501,
+          "min_seconds": 3.391,
+          "max_seconds": 3.518,
+          "median_peak_rss_mb": 357.9,
+          "min_peak_rss_mb": 356.7,
+          "max_peak_rss_mb": 365.5,
+          "index_size_mb": 7.2,
+          "time_spread_pct": 3.6
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "gitleaks",
+          "started_at": "2026-08-18T19:52:21+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.561,
+              "peak_rss_mb": 1074.5,
+              "index_size_mb": 11.31
+            },
+            {
+              "seconds": 5.486,
+              "peak_rss_mb": 1074.7,
+              "index_size_mb": 11.31
+            },
+            {
+              "seconds": 5.516,
+              "peak_rss_mb": 1074.3,
+              "index_size_mb": 11.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.516,
+          "min_seconds": 5.486,
+          "max_seconds": 5.561,
+          "median_peak_rss_mb": 1074.5,
+          "min_peak_rss_mb": 1074.3,
+          "max_peak_rss_mb": 1074.7,
+          "index_size_mb": 11.31,
+          "time_spread_pct": 1.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "gitleaks",
+          "started_at": "2026-08-18T19:51:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.481,
+              "peak_rss_mb": 714.5,
+              "index_size_mb": 4.98
+            },
+            {
+              "seconds": 1.48,
+              "peak_rss_mb": 711.1,
+              "index_size_mb": 4.98
+            },
+            {
+              "seconds": 1.466,
+              "peak_rss_mb": 709.0,
+              "index_size_mb": 4.98
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.48,
+          "min_seconds": 1.466,
+          "max_seconds": 1.481,
+          "median_peak_rss_mb": 711.1,
+          "min_peak_rss_mb": 709.0,
+          "max_peak_rss_mb": 714.5,
+          "index_size_mb": 4.98,
+          "time_spread_pct": 1.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "gitleaks",
+          "started_at": "2026-08-18T19:51:45+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.618,
+              "peak_rss_mb": 833.6,
+              "index_size_mb": 2.78
+            },
+            {
+              "seconds": 4.504,
+              "peak_rss_mb": 833.6,
+              "index_size_mb": 2.78
+            },
+            {
+              "seconds": 4.518,
+              "peak_rss_mb": 833.1,
+              "index_size_mb": 2.78
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.518,
+          "min_seconds": 4.504,
+          "max_seconds": 4.618,
+          "median_peak_rss_mb": 833.6,
+          "min_peak_rss_mb": 833.1,
+          "max_peak_rss_mb": 833.6,
+          "index_size_mb": 2.78,
+          "time_spread_pct": 2.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "gitleaks",
+          "started_at": "2026-08-18T19:51:27+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.68,
+              "peak_rss_mb": 54.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.62,
+              "peak_rss_mb": 54.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.562,
+              "peak_rss_mb": 54.0,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.62,
+          "min_seconds": 1.562,
+          "max_seconds": 1.68,
+          "median_peak_rss_mb": 54.0,
+          "min_peak_rss_mb": 54.0,
+          "max_peak_rss_mb": 54.2,
+          "index_size_mb": null,
+          "time_spread_pct": 7.3
+        }
+      }
+    },
+    "guzzle": {
+      "language": "php",
+      "kind": "library",
+      "files_at_pin": 170,
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "guzzle",
+          "started_at": "2026-08-18T19:43:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 10.017,
+              "peak_rss_mb": 348.9,
+              "index_size_mb": 40.7
+            },
+            {
+              "seconds": 9.969,
+              "peak_rss_mb": 349.2,
+              "index_size_mb": 40.7
+            },
+            {
+              "seconds": 9.96,
+              "peak_rss_mb": 348.8,
+              "index_size_mb": 40.7
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 9.969,
+          "min_seconds": 9.96,
+          "max_seconds": 10.017,
+          "median_peak_rss_mb": 348.9,
+          "min_peak_rss_mb": 348.8,
+          "max_peak_rss_mb": 349.2,
+          "index_size_mb": 40.7,
+          "time_spread_pct": 0.6
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "guzzle",
+          "started_at": "2026-08-18T19:43:58+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.878,
+              "peak_rss_mb": 843.8,
+              "index_size_mb": 24.75
+            },
+            {
+              "seconds": 6.199,
+              "peak_rss_mb": 842.4,
+              "index_size_mb": 25.0
+            },
+            {
+              "seconds": 6.553,
+              "peak_rss_mb": 840.0,
+              "index_size_mb": 24.75
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.199,
+          "min_seconds": 5.878,
+          "max_seconds": 6.553,
+          "median_peak_rss_mb": 842.4,
+          "min_peak_rss_mb": 840.0,
+          "max_peak_rss_mb": 843.8,
+          "index_size_mb": 24.75,
+          "time_spread_pct": 10.9
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "guzzle",
+          "started_at": "2026-08-18T19:42:30+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.355,
+              "peak_rss_mb": 734.6,
+              "index_size_mb": 17.38
+            },
+            {
+              "seconds": 2.367,
+              "peak_rss_mb": 732.1,
+              "index_size_mb": 17.38
+            },
+            {
+              "seconds": 2.368,
+              "peak_rss_mb": 731.2,
+              "index_size_mb": 17.38
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.367,
+          "min_seconds": 2.355,
+          "max_seconds": 2.368,
+          "median_peak_rss_mb": 732.1,
+          "min_peak_rss_mb": 731.2,
+          "max_peak_rss_mb": 734.6,
+          "index_size_mb": 17.38,
+          "time_spread_pct": 0.5
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "guzzle",
+          "started_at": "2026-08-18T19:42:40+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.921,
+              "peak_rss_mb": 844.3,
+              "index_size_mb": 9.96
+            },
+            {
+              "seconds": 9.493,
+              "peak_rss_mb": 844.6,
+              "index_size_mb": 9.96
+            },
+            {
+              "seconds": 9.115,
+              "peak_rss_mb": 844.3,
+              "index_size_mb": 9.96
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 9.115,
+          "min_seconds": 8.921,
+          "max_seconds": 9.493,
+          "median_peak_rss_mb": 844.3,
+          "min_peak_rss_mb": 844.3,
+          "max_peak_rss_mb": 844.6,
+          "index_size_mb": 9.96,
+          "time_spread_pct": 6.3
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "guzzle",
+          "started_at": "2026-08-18T19:42:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.12,
+              "peak_rss_mb": 84.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.149,
+              "peak_rss_mb": 84.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.102,
+              "peak_rss_mb": 85.0,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.12,
+          "min_seconds": 2.102,
+          "max_seconds": 2.149,
+          "median_peak_rss_mb": 84.9,
+          "min_peak_rss_mb": 84.6,
+          "max_peak_rss_mb": 85.0,
+          "index_size_mb": null,
+          "time_spread_pct": 2.2
+        }
+      }
+    },
+    "hono": {
+      "language": "typescript",
+      "kind": "framework",
+      "files_at_pin": 490,
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "hono",
+          "started_at": "2026-08-18T19:55:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.534,
+              "peak_rss_mb": 377.0,
+              "index_size_mb": 83.36
+            },
+            {
+              "seconds": 14.651,
+              "peak_rss_mb": 378.6,
+              "index_size_mb": 83.36
+            },
+            {
+              "seconds": 14.534,
+              "peak_rss_mb": 379.6,
+              "index_size_mb": 83.36
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.534,
+          "min_seconds": 14.534,
+          "max_seconds": 14.651,
+          "median_peak_rss_mb": 378.6,
+          "min_peak_rss_mb": 377.0,
+          "max_peak_rss_mb": 379.6,
+          "index_size_mb": 83.36,
+          "time_spread_pct": 0.8
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "hono",
+          "started_at": "2026-08-18T19:56:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.943,
+              "peak_rss_mb": 1030.3,
+              "index_size_mb": 16.12
+            },
+            {
+              "seconds": 5.857,
+              "peak_rss_mb": 1035.3,
+              "index_size_mb": 16.12
+            },
+            {
+              "seconds": 5.842,
+              "peak_rss_mb": 1023.6,
+              "index_size_mb": 16.12
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.857,
+          "min_seconds": 5.842,
+          "max_seconds": 5.943,
+          "median_peak_rss_mb": 1030.3,
+          "min_peak_rss_mb": 1023.6,
+          "max_peak_rss_mb": 1035.3,
+          "index_size_mb": 16.12,
+          "time_spread_pct": 1.7
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "hono",
+          "started_at": "2026-08-18T19:54:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.743,
+              "peak_rss_mb": 752.1,
+              "index_size_mb": 22.55
+            },
+            {
+              "seconds": 3.737,
+              "peak_rss_mb": 756.8,
+              "index_size_mb": 22.55
+            },
+            {
+              "seconds": 3.704,
+              "peak_rss_mb": 762.2,
+              "index_size_mb": 22.55
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.737,
+          "min_seconds": 3.704,
+          "max_seconds": 3.743,
+          "median_peak_rss_mb": 756.8,
+          "min_peak_rss_mb": 752.1,
+          "max_peak_rss_mb": 762.2,
+          "index_size_mb": 22.55,
+          "time_spread_pct": 1.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "hono",
+          "started_at": "2026-08-18T19:54:50+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 13.989,
+              "peak_rss_mb": 947.6,
+              "index_size_mb": 3.46
+            },
+            {
+              "seconds": 13.632,
+              "peak_rss_mb": 947.6,
+              "index_size_mb": 3.46
+            },
+            {
+              "seconds": 13.498,
+              "peak_rss_mb": 944.6,
+              "index_size_mb": 3.46
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 13.632,
+          "min_seconds": 13.498,
+          "max_seconds": 13.989,
+          "median_peak_rss_mb": 947.6,
+          "min_peak_rss_mb": 944.6,
+          "max_peak_rss_mb": 947.6,
+          "index_size_mb": 3.46,
+          "time_spread_pct": 3.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "hono",
+          "started_at": "2026-08-18T19:54:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.771,
+              "peak_rss_mb": 78.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.765,
+              "peak_rss_mb": 79.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.698,
+              "peak_rss_mb": 78.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.765,
+          "min_seconds": 2.698,
+          "max_seconds": 2.771,
+          "median_peak_rss_mb": 78.2,
+          "min_peak_rss_mb": 78.1,
+          "max_peak_rss_mb": 79.0,
+          "index_size_mb": null,
+          "time_spread_pct": 2.6
+        }
+      }
+    },
+    "javalin": {
+      "language": "kotlin",
+      "kind": "application",
+      "files_at_pin": 500,
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "javalin",
+          "started_at": "2026-08-18T19:58:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 10.694,
+              "peak_rss_mb": 361.5,
+              "index_size_mb": 68.42
+            },
+            {
+              "seconds": 10.294,
+              "peak_rss_mb": 368.3,
+              "index_size_mb": 68.42
+            },
+            {
+              "seconds": 10.186,
+              "peak_rss_mb": 364.7,
+              "index_size_mb": 68.42
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 10.294,
+          "min_seconds": 10.186,
+          "max_seconds": 10.694,
+          "median_peak_rss_mb": 364.7,
+          "min_peak_rss_mb": 361.5,
+          "max_peak_rss_mb": 368.3,
+          "index_size_mb": 68.42,
+          "time_spread_pct": 4.9
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "javalin",
+          "started_at": "2026-08-18T19:59:22+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.205,
+              "peak_rss_mb": 1105.2,
+              "index_size_mb": 32.94
+            },
+            {
+              "seconds": 6.148,
+              "peak_rss_mb": 1119.3,
+              "index_size_mb": 32.94
+            },
+            {
+              "seconds": 6.209,
+              "peak_rss_mb": 1112.8,
+              "index_size_mb": 33.12
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.205,
+          "min_seconds": 6.148,
+          "max_seconds": 6.209,
+          "median_peak_rss_mb": 1112.8,
+          "min_peak_rss_mb": 1105.2,
+          "max_peak_rss_mb": 1119.3,
+          "index_size_mb": 32.94,
+          "time_spread_pct": 1.0
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "javalin",
+          "started_at": "2026-08-18T19:57:29+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.104,
+              "peak_rss_mb": 797.1,
+              "index_size_mb": 24.8
+            },
+            {
+              "seconds": 3.961,
+              "peak_rss_mb": 803.2,
+              "index_size_mb": 24.8
+            },
+            {
+              "seconds": 4.174,
+              "peak_rss_mb": 808.5,
+              "index_size_mb": 24.8
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.104,
+          "min_seconds": 3.961,
+          "max_seconds": 4.174,
+          "median_peak_rss_mb": 803.2,
+          "min_peak_rss_mb": 797.1,
+          "max_peak_rss_mb": 808.5,
+          "index_size_mb": 24.8,
+          "time_spread_pct": 5.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "javalin",
+          "started_at": "2026-08-18T19:57:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.376,
+              "peak_rss_mb": 846.4,
+              "index_size_mb": 14.59
+            },
+            {
+              "seconds": 12.229,
+              "peak_rss_mb": 846.7,
+              "index_size_mb": 14.59
+            },
+            {
+              "seconds": 12.02,
+              "peak_rss_mb": 847.0,
+              "index_size_mb": 14.59
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.229,
+          "min_seconds": 12.02,
+          "max_seconds": 12.376,
+          "median_peak_rss_mb": 846.7,
+          "min_peak_rss_mb": 846.4,
+          "max_peak_rss_mb": 847.0,
+          "index_size_mb": 14.59,
+          "time_spread_pct": 2.9
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "javalin",
+          "started_at": "2026-08-18T19:57:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.793,
+              "peak_rss_mb": 70.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.768,
+              "peak_rss_mb": 71.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.737,
+              "peak_rss_mb": 71.6,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.768,
+          "min_seconds": 2.737,
+          "max_seconds": 2.793,
+          "median_peak_rss_mb": 71.6,
+          "min_peak_rss_mb": 70.9,
+          "max_peak_rss_mb": 71.9,
+          "index_size_mb": null,
+          "time_spread_pct": 2.0
+        }
+      }
+    },
+    "jekyll": {
+      "language": "ruby",
+      "kind": "application",
+      "files_at_pin": 816,
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "jekyll",
+          "started_at": "2026-08-18T20:15:10+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.692,
+              "peak_rss_mb": 366.7,
+              "index_size_mb": 4.42
+            },
+            {
+              "seconds": 3.804,
+              "peak_rss_mb": 361.1,
+              "index_size_mb": 4.42
+            },
+            {
+              "seconds": 3.581,
+              "peak_rss_mb": 358.0,
+              "index_size_mb": 4.42
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.692,
+          "min_seconds": 3.581,
+          "max_seconds": 3.804,
+          "median_peak_rss_mb": 361.1,
+          "min_peak_rss_mb": 358.0,
+          "max_peak_rss_mb": 366.7,
+          "index_size_mb": 4.42,
+          "time_spread_pct": 6.0
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "jekyll",
+          "started_at": "2026-08-18T20:15:27+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.66,
+              "peak_rss_mb": 719.9,
+              "index_size_mb": 13.06
+            },
+            {
+              "seconds": 5.636,
+              "peak_rss_mb": 716.5,
+              "index_size_mb": 13.06
+            },
+            {
+              "seconds": 5.688,
+              "peak_rss_mb": 720.1,
+              "index_size_mb": 13.06
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.66,
+          "min_seconds": 5.636,
+          "max_seconds": 5.688,
+          "median_peak_rss_mb": 719.9,
+          "min_peak_rss_mb": 716.5,
+          "max_peak_rss_mb": 720.1,
+          "index_size_mb": 13.06,
+          "time_spread_pct": 0.9
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "jekyll",
+          "started_at": "2026-08-18T20:14:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.584,
+              "peak_rss_mb": 725.7,
+              "index_size_mb": 4.63
+            },
+            {
+              "seconds": 1.602,
+              "peak_rss_mb": 726.8,
+              "index_size_mb": 4.63
+            },
+            {
+              "seconds": 1.565,
+              "peak_rss_mb": 726.1,
+              "index_size_mb": 4.63
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.584,
+          "min_seconds": 1.565,
+          "max_seconds": 1.602,
+          "median_peak_rss_mb": 726.1,
+          "min_peak_rss_mb": 725.7,
+          "max_peak_rss_mb": 726.8,
+          "index_size_mb": 4.63,
+          "time_spread_pct": 2.3
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "jekyll",
+          "started_at": "2026-08-18T20:14:42+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.267,
+              "peak_rss_mb": 835.2,
+              "index_size_mb": 3.24
+            },
+            {
+              "seconds": 6.29,
+              "peak_rss_mb": 833.8,
+              "index_size_mb": 3.24
+            },
+            {
+              "seconds": 6.268,
+              "peak_rss_mb": 834.7,
+              "index_size_mb": 3.24
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.268,
+          "min_seconds": 6.267,
+          "max_seconds": 6.29,
+          "median_peak_rss_mb": 834.7,
+          "min_peak_rss_mb": 833.8,
+          "max_peak_rss_mb": 835.2,
+          "index_size_mb": 3.24,
+          "time_spread_pct": 0.4
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "jekyll",
+          "started_at": "2026-08-18T20:14:19+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.94,
+              "peak_rss_mb": 54.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.841,
+              "peak_rss_mb": 54.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.835,
+              "peak_rss_mb": 54.6,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.841,
+          "min_seconds": 1.835,
+          "max_seconds": 1.94,
+          "median_peak_rss_mb": 54.7,
+          "min_peak_rss_mb": 54.6,
+          "max_peak_rss_mb": 54.7,
+          "index_size_mb": null,
+          "time_spread_pct": 5.7
+        }
+      }
+    },
+    "ktor": {
+      "language": "kotlin",
+      "kind": "framework",
+      "files_at_pin": 3017,
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "ktor",
+          "started_at": "2026-08-18T21:33:45+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 45.078,
+              "peak_rss_mb": 429.0,
+              "index_size_mb": 335.38
+            },
+            {
+              "seconds": 44.171,
+              "peak_rss_mb": 428.8,
+              "index_size_mb": 335.06
+            },
+            {
+              "seconds": 44.696,
+              "peak_rss_mb": 427.2,
+              "index_size_mb": 335.38
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 44.696,
+          "min_seconds": 44.171,
+          "max_seconds": 45.078,
+          "median_peak_rss_mb": 428.8,
+          "min_peak_rss_mb": 427.2,
+          "max_peak_rss_mb": 429.0,
+          "index_size_mb": 335.38,
+          "time_spread_pct": 2.0
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "ktor",
+          "started_at": "2026-08-18T21:36:58+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.115,
+              "peak_rss_mb": 2984.8,
+              "index_size_mb": 171.12
+            },
+            {
+              "seconds": 12.149,
+              "peak_rss_mb": 2977.4,
+              "index_size_mb": 171.12
+            },
+            {
+              "seconds": 12.169,
+              "peak_rss_mb": 3002.7,
+              "index_size_mb": 171.19
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.149,
+          "min_seconds": 12.115,
+          "max_seconds": 12.169,
+          "median_peak_rss_mb": 2984.8,
+          "min_peak_rss_mb": 2977.4,
+          "max_peak_rss_mb": 3002.7,
+          "index_size_mb": 171.12,
+          "time_spread_pct": 0.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "ktor",
+          "started_at": "2026-08-18T21:27:50+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.211,
+              "peak_rss_mb": 1642.7,
+              "index_size_mb": 118.9
+            },
+            {
+              "seconds": 14.22,
+              "peak_rss_mb": 1650.2,
+              "index_size_mb": 118.9
+            },
+            {
+              "seconds": 14.292,
+              "peak_rss_mb": 1649.1,
+              "index_size_mb": 118.9
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.22,
+          "min_seconds": 14.211,
+          "max_seconds": 14.292,
+          "median_peak_rss_mb": 1649.1,
+          "min_peak_rss_mb": 1642.7,
+          "max_peak_rss_mb": 1650.2,
+          "index_size_mb": 118.9,
+          "time_spread_pct": 0.6
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "ktor",
+          "started_at": "2026-08-18T21:29:02+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 65.673,
+              "peak_rss_mb": 961.3,
+              "index_size_mb": 84.76
+            },
+            {
+              "seconds": 66.345,
+              "peak_rss_mb": 960.8,
+              "index_size_mb": 84.76
+            },
+            {
+              "seconds": 65.891,
+              "peak_rss_mb": 968.0,
+              "index_size_mb": 84.75
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 65.891,
+          "min_seconds": 65.673,
+          "max_seconds": 66.345,
+          "median_peak_rss_mb": 961.3,
+          "min_peak_rss_mb": 960.8,
+          "max_peak_rss_mb": 968.0,
+          "index_size_mb": 84.76,
+          "time_spread_pct": 1.0
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "ktor",
+          "started_at": "2026-08-18T21:26:19+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 16.824,
+              "peak_rss_mb": 315.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 16.701,
+              "peak_rss_mb": 316.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 16.878,
+              "peak_rss_mb": 316.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 16.824,
+          "min_seconds": 16.701,
+          "max_seconds": 16.878,
+          "median_peak_rss_mb": 316.1,
+          "min_peak_rss_mb": 315.4,
+          "max_peak_rss_mb": 316.5,
+          "index_size_mb": null,
+          "time_spread_pct": 1.1
+        }
+      }
+    },
+    "laravel-framework": {
+      "language": "php",
+      "kind": "framework",
+      "files_at_pin": 3354,
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "laravel-framework",
+          "started_at": "2026-08-18T21:47:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 106.944,
+              "peak_rss_mb": 529.6,
+              "index_size_mb": 548.27
+            },
+            {
+              "seconds": 106.445,
+              "peak_rss_mb": 532.2,
+              "index_size_mb": 548.27
+            },
+            {
+              "seconds": 107.703,
+              "peak_rss_mb": 533.2,
+              "index_size_mb": 548.58
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 106.944,
+          "min_seconds": 106.445,
+          "max_seconds": 107.703,
+          "median_peak_rss_mb": 532.2,
+          "min_peak_rss_mb": 529.6,
+          "max_peak_rss_mb": 533.2,
+          "index_size_mb": 548.27,
+          "time_spread_pct": 1.2
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "laravel-framework",
+          "started_at": "2026-08-18T21:54:48+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 13.439,
+              "peak_rss_mb": 3006.1,
+              "index_size_mb": 307.94
+            },
+            {
+              "seconds": 13.437,
+              "peak_rss_mb": 3003.5,
+              "index_size_mb": 307.94
+            },
+            {
+              "seconds": 13.548,
+              "peak_rss_mb": 3024.2,
+              "index_size_mb": 307.94
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 13.439,
+          "min_seconds": 13.437,
+          "max_seconds": 13.548,
+          "median_peak_rss_mb": 3006.1,
+          "min_peak_rss_mb": 3003.5,
+          "max_peak_rss_mb": 3024.2,
+          "index_size_mb": 307.94,
+          "time_spread_pct": 0.8
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "laravel-framework",
+          "started_at": "2026-08-18T21:39:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 18.401,
+              "peak_rss_mb": 2013.3,
+              "index_size_mb": 177.53
+            },
+            {
+              "seconds": 18.496,
+              "peak_rss_mb": 2053.5,
+              "index_size_mb": 177.53
+            },
+            {
+              "seconds": 18.687,
+              "peak_rss_mb": 2044.0,
+              "index_size_mb": 177.53
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 18.496,
+          "min_seconds": 18.401,
+          "max_seconds": 18.687,
+          "median_peak_rss_mb": 2044.0,
+          "min_peak_rss_mb": 2013.3,
+          "max_peak_rss_mb": 2053.5,
+          "index_size_mb": 177.53,
+          "time_spread_pct": 1.5
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "laravel-framework",
+          "started_at": "2026-08-18T21:41:09+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 92.575,
+              "peak_rss_mb": 1406.0,
+              "index_size_mb": 128.7
+            },
+            {
+              "seconds": 92.718,
+              "peak_rss_mb": 1457.9,
+              "index_size_mb": 128.7
+            },
+            {
+              "seconds": 92.301,
+              "peak_rss_mb": 1424.9,
+              "index_size_mb": 128.7
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 92.575,
+          "min_seconds": 92.301,
+          "max_seconds": 92.718,
+          "median_peak_rss_mb": 1424.9,
+          "min_peak_rss_mb": 1406.0,
+          "max_peak_rss_mb": 1457.9,
+          "index_size_mb": 128.7,
+          "time_spread_pct": 0.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "laravel-framework",
+          "started_at": "2026-08-18T21:38:02+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.543,
+              "peak_rss_mb": 252.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 14.444,
+              "peak_rss_mb": 251.3,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 14.366,
+              "peak_rss_mb": 253.3,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.444,
+          "min_seconds": 14.366,
+          "max_seconds": 14.543,
+          "median_peak_rss_mb": 252.8,
+          "min_peak_rss_mb": 251.3,
+          "max_peak_rss_mb": 253.3,
+          "index_size_mb": null,
+          "time_spread_pct": 1.2
+        }
+      }
+    },
+    "leveldb": {
+      "language": "cpp",
+      "kind": "library",
+      "files_at_pin": 154,
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "leveldb",
+          "started_at": "2026-08-18T19:41:37+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.917,
+              "peak_rss_mb": 319.6,
+              "index_size_mb": 13.58
+            },
+            {
+              "seconds": 4.194,
+              "peak_rss_mb": 331.7,
+              "index_size_mb": 13.58
+            },
+            {
+              "seconds": 4.185,
+              "peak_rss_mb": 332.5,
+              "index_size_mb": 13.58
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.185,
+          "min_seconds": 3.917,
+          "max_seconds": 4.194,
+          "median_peak_rss_mb": 331.7,
+          "min_peak_rss_mb": 319.6,
+          "max_peak_rss_mb": 332.5,
+          "index_size_mb": 13.58,
+          "time_spread_pct": 6.6
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "leveldb",
+          "started_at": "2026-08-18T19:41:54+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.576,
+              "peak_rss_mb": 830.0,
+              "index_size_mb": 15.38
+            },
+            {
+              "seconds": 5.585,
+              "peak_rss_mb": 832.2,
+              "index_size_mb": 15.38
+            },
+            {
+              "seconds": 5.673,
+              "peak_rss_mb": 832.8,
+              "index_size_mb": 15.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.585,
+          "min_seconds": 5.576,
+          "max_seconds": 5.673,
+          "median_peak_rss_mb": 832.2,
+          "min_peak_rss_mb": 830.0,
+          "max_peak_rss_mb": 832.8,
+          "index_size_mb": 15.38,
+          "time_spread_pct": 1.7
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "leveldb",
+          "started_at": "2026-08-18T19:41:07+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.926,
+              "peak_rss_mb": 747.5,
+              "index_size_mb": 7.61
+            },
+            {
+              "seconds": 1.901,
+              "peak_rss_mb": 745.6,
+              "index_size_mb": 7.61
+            },
+            {
+              "seconds": 1.834,
+              "peak_rss_mb": 745.8,
+              "index_size_mb": 7.61
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.901,
+          "min_seconds": 1.834,
+          "max_seconds": 1.926,
+          "median_peak_rss_mb": 745.8,
+          "min_peak_rss_mb": 745.6,
+          "max_peak_rss_mb": 747.5,
+          "index_size_mb": 7.61,
+          "time_spread_pct": 4.8
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "leveldb",
+          "started_at": "2026-08-18T19:41:16+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.082,
+              "peak_rss_mb": 842.2,
+              "index_size_mb": 6.36
+            },
+            {
+              "seconds": 5.125,
+              "peak_rss_mb": 842.5,
+              "index_size_mb": 6.36
+            },
+            {
+              "seconds": 5.194,
+              "peak_rss_mb": 842.2,
+              "index_size_mb": 6.36
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.125,
+          "min_seconds": 5.082,
+          "max_seconds": 5.194,
+          "median_peak_rss_mb": 842.2,
+          "min_peak_rss_mb": 842.2,
+          "max_peak_rss_mb": 842.5,
+          "index_size_mb": 6.36,
+          "time_spread_pct": 2.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "leveldb",
+          "started_at": "2026-08-18T19:40:58+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.833,
+              "peak_rss_mb": 55.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.806,
+              "peak_rss_mb": 55.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.809,
+              "peak_rss_mb": 54.7,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.809,
+          "min_seconds": 1.806,
+          "max_seconds": 1.833,
+          "median_peak_rss_mb": 55.0,
+          "min_peak_rss_mb": 54.7,
+          "max_peak_rss_mb": 55.5,
+          "index_size_mb": null,
+          "time_spread_pct": 1.5
+        }
+      }
+    },
+    "monica": {
+      "language": "php",
+      "kind": "application",
+      "files_at_pin": 2093,
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "monica",
+          "started_at": "2026-08-18T20:57:19+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 28.743,
+              "peak_rss_mb": 366.0,
+              "index_size_mb": 111.54
+            },
+            {
+              "seconds": 29.548,
+              "peak_rss_mb": 361.1,
+              "index_size_mb": 111.54
+            },
+            {
+              "seconds": 29.163,
+              "peak_rss_mb": 363.7,
+              "index_size_mb": 111.54
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 29.163,
+          "min_seconds": 28.743,
+          "max_seconds": 29.548,
+          "median_peak_rss_mb": 363.7,
+          "min_peak_rss_mb": 361.1,
+          "max_peak_rss_mb": 366.0,
+          "index_size_mb": 111.54,
+          "time_spread_pct": 2.8
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "monica",
+          "started_at": "2026-08-18T20:59:20+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.577,
+              "peak_rss_mb": 1753.4,
+              "index_size_mb": 132.31
+            },
+            {
+              "seconds": 8.642,
+              "peak_rss_mb": 1759.3,
+              "index_size_mb": 132.25
+            },
+            {
+              "seconds": 8.608,
+              "peak_rss_mb": 1760.5,
+              "index_size_mb": 132.25
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.608,
+          "min_seconds": 8.577,
+          "max_seconds": 8.642,
+          "median_peak_rss_mb": 1759.3,
+          "min_peak_rss_mb": 1753.4,
+          "max_peak_rss_mb": 1760.5,
+          "index_size_mb": 132.31,
+          "time_spread_pct": 0.8
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "monica",
+          "started_at": "2026-08-18T20:52:48+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 9.16,
+              "peak_rss_mb": 1213.9,
+              "index_size_mb": 63.19
+            },
+            {
+              "seconds": 8.821,
+              "peak_rss_mb": 1206.7,
+              "index_size_mb": 63.19
+            },
+            {
+              "seconds": 8.908,
+              "peak_rss_mb": 1215.6,
+              "index_size_mb": 63.19
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.908,
+          "min_seconds": 8.821,
+          "max_seconds": 9.16,
+          "median_peak_rss_mb": 1213.9,
+          "min_peak_rss_mb": 1206.7,
+          "max_peak_rss_mb": 1215.6,
+          "index_size_mb": 63.19,
+          "time_spread_pct": 3.8
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "monica",
+          "started_at": "2026-08-18T20:53:32+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 54.306,
+              "peak_rss_mb": 1338.8,
+              "index_size_mb": 42.83
+            },
+            {
+              "seconds": 54.843,
+              "peak_rss_mb": 1335.1,
+              "index_size_mb": 42.83
+            },
+            {
+              "seconds": 54.031,
+              "peak_rss_mb": 1339.1,
+              "index_size_mb": 42.83
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 54.306,
+          "min_seconds": 54.031,
+          "max_seconds": 54.843,
+          "median_peak_rss_mb": 1338.8,
+          "min_peak_rss_mb": 1335.1,
+          "max_peak_rss_mb": 1339.1,
+          "index_size_mb": 42.83,
+          "time_spread_pct": 1.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "monica",
+          "started_at": "2026-08-18T20:51:59+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.227,
+              "peak_rss_mb": 100.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.472,
+              "peak_rss_mb": 101.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.328,
+              "peak_rss_mb": 101.2,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.328,
+          "min_seconds": 5.227,
+          "max_seconds": 5.472,
+          "median_peak_rss_mb": 101.2,
+          "min_peak_rss_mb": 100.4,
+          "max_peak_rss_mb": 101.7,
+          "index_size_mb": null,
+          "time_spread_pct": 4.6
+        }
+      }
+    },
+    "nlohmann-json": {
+      "language": "cpp",
+      "kind": "library",
+      "files_at_pin": 1205,
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "nlohmann-json",
+          "started_at": "2026-08-18T20:37:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 7.832,
+              "peak_rss_mb": 385.5,
+              "index_size_mb": 59.59
+            },
+            {
+              "seconds": 7.776,
+              "peak_rss_mb": 386.6,
+              "index_size_mb": 59.59
+            },
+            {
+              "seconds": 7.785,
+              "peak_rss_mb": 381.7,
+              "index_size_mb": 59.62
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 7.785,
+          "min_seconds": 7.776,
+          "max_seconds": 7.832,
+          "median_peak_rss_mb": 385.5,
+          "min_peak_rss_mb": 381.7,
+          "max_peak_rss_mb": 386.6,
+          "index_size_mb": 59.59,
+          "time_spread_pct": 0.7
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "nlohmann-json",
+          "started_at": "2026-08-18T20:38:19+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 7.782,
+              "peak_rss_mb": 1527.3,
+              "index_size_mb": 32.38
+            },
+            {
+              "seconds": 7.671,
+              "peak_rss_mb": 1513.3,
+              "index_size_mb": 32.31
+            },
+            {
+              "seconds": 7.743,
+              "peak_rss_mb": 1535.9,
+              "index_size_mb": 32.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 7.743,
+          "min_seconds": 7.671,
+          "max_seconds": 7.782,
+          "median_peak_rss_mb": 1527.3,
+          "min_peak_rss_mb": 1513.3,
+          "max_peak_rss_mb": 1535.9,
+          "index_size_mb": 32.38,
+          "time_spread_pct": 1.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "nlohmann-json",
+          "started_at": "2026-08-18T20:36:23+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.026,
+              "peak_rss_mb": 988.5,
+              "index_size_mb": 31.54
+            },
+            {
+              "seconds": 6.069,
+              "peak_rss_mb": 984.6,
+              "index_size_mb": 31.54
+            },
+            {
+              "seconds": 6.091,
+              "peak_rss_mb": 985.1,
+              "index_size_mb": 31.54
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.069,
+          "min_seconds": 6.026,
+          "max_seconds": 6.091,
+          "median_peak_rss_mb": 985.1,
+          "min_peak_rss_mb": 984.6,
+          "max_peak_rss_mb": 988.5,
+          "index_size_mb": 31.54,
+          "time_spread_pct": 1.1
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "nlohmann-json",
+          "started_at": "2026-08-18T20:36:51+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 11.955,
+              "peak_rss_mb": 870.6,
+              "index_size_mb": 11.58
+            },
+            {
+              "seconds": 12.048,
+              "peak_rss_mb": 868.9,
+              "index_size_mb": 11.58
+            },
+            {
+              "seconds": 12.22,
+              "peak_rss_mb": 867.5,
+              "index_size_mb": 11.58
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.048,
+          "min_seconds": 11.955,
+          "max_seconds": 12.22,
+          "median_peak_rss_mb": 868.9,
+          "min_peak_rss_mb": 867.5,
+          "max_peak_rss_mb": 870.6,
+          "index_size_mb": 11.58,
+          "time_spread_pct": 2.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "nlohmann-json",
+          "started_at": "2026-08-18T20:35:50+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.229,
+              "peak_rss_mb": 110.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.218,
+              "peak_rss_mb": 110.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.266,
+              "peak_rss_mb": 111.2,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.229,
+          "min_seconds": 6.218,
+          "max_seconds": 6.266,
+          "median_peak_rss_mb": 110.8,
+          "min_peak_rss_mb": 110.6,
+          "max_peak_rss_mb": 111.2,
+          "index_size_mb": null,
+          "time_spread_pct": 0.8
+        }
+      }
+    },
+    "Ocelot": {
+      "language": "csharp",
+      "kind": "framework",
+      "files_at_pin": 998,
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "Ocelot",
+          "started_at": "2026-08-18T20:30:45+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.315,
+              "peak_rss_mb": 364.4,
+              "index_size_mb": 51.11
+            },
+            {
+              "seconds": 12.859,
+              "peak_rss_mb": 368.3,
+              "index_size_mb": 51.11
+            },
+            {
+              "seconds": 12.348,
+              "peak_rss_mb": 368.2,
+              "index_size_mb": 51.11
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 12.348,
+          "min_seconds": 12.315,
+          "max_seconds": 12.859,
+          "median_peak_rss_mb": 368.2,
+          "min_peak_rss_mb": 364.4,
+          "max_peak_rss_mb": 368.3,
+          "index_size_mb": 51.11,
+          "time_spread_pct": 4.4
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "Ocelot",
+          "started_at": "2026-08-18T20:31:40+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.935,
+              "peak_rss_mb": 1515.4,
+              "index_size_mb": 58.12
+            },
+            {
+              "seconds": 6.908,
+              "peak_rss_mb": 1550.7,
+              "index_size_mb": 58.12
+            },
+            {
+              "seconds": 6.808,
+              "peak_rss_mb": 1504.6,
+              "index_size_mb": 58.19
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.908,
+          "min_seconds": 6.808,
+          "max_seconds": 6.935,
+          "median_peak_rss_mb": 1515.4,
+          "min_peak_rss_mb": 1504.6,
+          "max_peak_rss_mb": 1550.7,
+          "index_size_mb": 58.12,
+          "time_spread_pct": 1.8
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "Ocelot",
+          "started_at": "2026-08-18T20:28:04+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.31,
+              "peak_rss_mb": 780.6,
+              "index_size_mb": 35.89
+            },
+            {
+              "seconds": 4.444,
+              "peak_rss_mb": 783.3,
+              "index_size_mb": 35.89
+            },
+            {
+              "seconds": 4.303,
+              "peak_rss_mb": 792.0,
+              "index_size_mb": 35.89
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.31,
+          "min_seconds": 4.303,
+          "max_seconds": 4.444,
+          "median_peak_rss_mb": 783.3,
+          "min_peak_rss_mb": 780.6,
+          "max_peak_rss_mb": 792.0,
+          "index_size_mb": 35.89,
+          "time_spread_pct": 3.3
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "Ocelot",
+          "started_at": "2026-08-18T20:28:25+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 33.663,
+              "peak_rss_mb": 891.4,
+              "index_size_mb": 36.85
+            },
+            {
+              "seconds": 33.954,
+              "peak_rss_mb": 891.2,
+              "index_size_mb": 36.85
+            },
+            {
+              "seconds": 33.789,
+              "peak_rss_mb": 890.7,
+              "index_size_mb": 36.85
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 33.789,
+          "min_seconds": 33.663,
+          "max_seconds": 33.954,
+          "median_peak_rss_mb": 891.2,
+          "min_peak_rss_mb": 890.7,
+          "max_peak_rss_mb": 891.4,
+          "index_size_mb": 36.85,
+          "time_spread_pct": 0.9
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "Ocelot",
+          "started_at": "2026-08-18T20:27:32+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.139,
+              "peak_rss_mb": 88.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.11,
+              "peak_rss_mb": 88.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 5.049,
+              "peak_rss_mb": 89.5,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.11,
+          "min_seconds": 5.049,
+          "max_seconds": 5.139,
+          "median_peak_rss_mb": 88.9,
+          "min_peak_rss_mb": 88.0,
+          "max_peak_rss_mb": 89.5,
+          "index_size_mb": null,
+          "time_spread_pct": 1.8
+        }
+      }
+    },
+    "Polly": {
+      "language": "csharp",
+      "kind": "library",
+      "files_at_pin": 1028,
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "Polly",
+          "started_at": "2026-08-18T20:34:35+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 10.92,
+              "peak_rss_mb": 361.4,
+              "index_size_mb": 58.45
+            },
+            {
+              "seconds": 10.869,
+              "peak_rss_mb": 353.7,
+              "index_size_mb": 58.45
+            },
+            {
+              "seconds": 10.667,
+              "peak_rss_mb": 367.0,
+              "index_size_mb": 58.45
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 10.869,
+          "min_seconds": 10.667,
+          "max_seconds": 10.92,
+          "median_peak_rss_mb": 361.4,
+          "min_peak_rss_mb": 353.7,
+          "max_peak_rss_mb": 367.0,
+          "index_size_mb": 58.45,
+          "time_spread_pct": 2.3
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "Polly",
+          "started_at": "2026-08-18T20:35:21+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.452,
+              "peak_rss_mb": 1486.8,
+              "index_size_mb": 51.38
+            },
+            {
+              "seconds": 6.463,
+              "peak_rss_mb": 1528.8,
+              "index_size_mb": 51.38
+            },
+            {
+              "seconds": 6.491,
+              "peak_rss_mb": 1472.5,
+              "index_size_mb": 51.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.463,
+          "min_seconds": 6.452,
+          "max_seconds": 6.491,
+          "median_peak_rss_mb": 1486.8,
+          "min_peak_rss_mb": 1472.5,
+          "max_peak_rss_mb": 1528.8,
+          "index_size_mb": 51.38,
+          "time_spread_pct": 0.6
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "Polly",
+          "started_at": "2026-08-18T20:32:45+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.105,
+              "peak_rss_mb": 896.3,
+              "index_size_mb": 41.44
+            },
+            {
+              "seconds": 4.259,
+              "peak_rss_mb": 898.1,
+              "index_size_mb": 41.44
+            },
+            {
+              "seconds": 4.192,
+              "peak_rss_mb": 892.9,
+              "index_size_mb": 41.44
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.192,
+          "min_seconds": 4.105,
+          "max_seconds": 4.259,
+          "median_peak_rss_mb": 896.3,
+          "min_peak_rss_mb": 892.9,
+          "max_peak_rss_mb": 898.1,
+          "index_size_mb": 41.44,
+          "time_spread_pct": 3.7
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "Polly",
+          "started_at": "2026-08-18T20:33:05+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 21.154,
+              "peak_rss_mb": 917.3,
+              "index_size_mb": 33.91
+            },
+            {
+              "seconds": 21.341,
+              "peak_rss_mb": 915.1,
+              "index_size_mb": 33.91
+            },
+            {
+              "seconds": 21.519,
+              "peak_rss_mb": 926.8,
+              "index_size_mb": 33.91
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 21.341,
+          "min_seconds": 21.154,
+          "max_seconds": 21.519,
+          "median_peak_rss_mb": 917.3,
+          "min_peak_rss_mb": 915.1,
+          "max_peak_rss_mb": 926.8,
+          "index_size_mb": 33.91,
+          "time_spread_pct": 1.7
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "Polly",
+          "started_at": "2026-08-18T20:32:11+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.071,
+              "peak_rss_mb": 88.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.043,
+              "peak_rss_mb": 86.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.042,
+              "peak_rss_mb": 87.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.043,
+          "min_seconds": 6.042,
+          "max_seconds": 6.071,
+          "median_peak_rss_mb": 87.1,
+          "min_peak_rss_mb": 86.7,
+          "max_peak_rss_mb": 88.4,
+          "index_size_mb": null,
+          "time_spread_pct": 0.5
+        }
+      }
+    },
+    "requests": {
+      "language": "python",
+      "kind": "library",
+      "files_at_pin": 130,
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "requests",
+          "started_at": "2026-08-18T19:37:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.561,
+              "peak_rss_mb": 166.7,
+              "index_size_mb": 7.31
+            },
+            {
+              "seconds": 2.55,
+              "peak_rss_mb": 167.2,
+              "index_size_mb": 7.31
+            },
+            {
+              "seconds": 2.586,
+              "peak_rss_mb": 165.1,
+              "index_size_mb": 7.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.561,
+          "min_seconds": 2.55,
+          "max_seconds": 2.586,
+          "median_peak_rss_mb": 166.7,
+          "min_peak_rss_mb": 165.1,
+          "max_peak_rss_mb": 167.2,
+          "index_size_mb": 7.31,
+          "time_spread_pct": 1.4
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "requests",
+          "started_at": "2026-08-18T19:37:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.332,
+              "peak_rss_mb": 721.8,
+              "index_size_mb": 9.25
+            },
+            {
+              "seconds": 5.315,
+              "peak_rss_mb": 724.6,
+              "index_size_mb": 9.25
+            },
+            {
+              "seconds": 5.311,
+              "peak_rss_mb": 716.9,
+              "index_size_mb": 9.25
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.315,
+          "min_seconds": 5.311,
+          "max_seconds": 5.332,
+          "median_peak_rss_mb": 721.8,
+          "min_peak_rss_mb": 716.9,
+          "max_peak_rss_mb": 724.6,
+          "index_size_mb": 9.25,
+          "time_spread_pct": 0.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "requests",
+          "started_at": "2026-08-18T19:37:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.15,
+              "peak_rss_mb": 696.0,
+              "index_size_mb": 2.98
+            },
+            {
+              "seconds": 1.161,
+              "peak_rss_mb": 699.4,
+              "index_size_mb": 2.98
+            },
+            {
+              "seconds": 1.135,
+              "peak_rss_mb": 699.2,
+              "index_size_mb": 2.98
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.15,
+          "min_seconds": 1.135,
+          "max_seconds": 1.161,
+          "median_peak_rss_mb": 699.2,
+          "min_peak_rss_mb": 696.0,
+          "max_peak_rss_mb": 699.4,
+          "index_size_mb": 2.98,
+          "time_spread_pct": 2.3
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "requests",
+          "started_at": "2026-08-18T19:37:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.948,
+              "peak_rss_mb": 833.8,
+              "index_size_mb": 2.63
+            },
+            {
+              "seconds": 3.812,
+              "peak_rss_mb": 835.2,
+              "index_size_mb": 2.63
+            },
+            {
+              "seconds": 3.822,
+              "peak_rss_mb": 835.6,
+              "index_size_mb": 2.63
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.822,
+          "min_seconds": 3.812,
+          "max_seconds": 3.948,
+          "median_peak_rss_mb": 835.2,
+          "min_peak_rss_mb": 833.8,
+          "max_peak_rss_mb": 835.6,
+          "index_size_mb": 2.63,
+          "time_spread_pct": 3.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "requests",
+          "started_at": "2026-08-18T19:37:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.073,
+              "peak_rss_mb": 65.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.012,
+              "peak_rss_mb": 64.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.019,
+              "peak_rss_mb": 65.6,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.019,
+          "min_seconds": 1.012,
+          "max_seconds": 1.073,
+          "median_peak_rss_mb": 65.6,
+          "min_peak_rss_mb": 64.9,
+          "max_peak_rss_mb": 65.7,
+          "index_size_mb": null,
+          "time_spread_pct": 6.0
+        }
+      }
+    },
+    "ripgrep": {
+      "language": "rust",
+      "kind": "application",
+      "files_at_pin": 237,
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "ripgrep",
+          "started_at": "2026-08-18T19:47:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.735,
+              "peak_rss_mb": 323.9,
+              "index_size_mb": 38.74
+            },
+            {
+              "seconds": 8.806,
+              "peak_rss_mb": 323.9,
+              "index_size_mb": 38.74
+            },
+            {
+              "seconds": 8.884,
+              "peak_rss_mb": 318.7,
+              "index_size_mb": 38.74
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.806,
+          "min_seconds": 8.735,
+          "max_seconds": 8.884,
+          "median_peak_rss_mb": 323.9,
+          "min_peak_rss_mb": 318.7,
+          "max_peak_rss_mb": 323.9,
+          "index_size_mb": 38.74,
+          "time_spread_pct": 1.7
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "ripgrep",
+          "started_at": "2026-08-18T19:48:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.907,
+              "peak_rss_mb": 967.8,
+              "index_size_mb": 25.94
+            },
+            {
+              "seconds": 6.101,
+              "peak_rss_mb": 965.7,
+              "index_size_mb": 26.06
+            },
+            {
+              "seconds": 6.005,
+              "peak_rss_mb": 964.6,
+              "index_size_mb": 26.06
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.005,
+          "min_seconds": 5.907,
+          "max_seconds": 6.101,
+          "median_peak_rss_mb": 965.7,
+          "min_peak_rss_mb": 964.6,
+          "max_peak_rss_mb": 967.8,
+          "index_size_mb": 25.94,
+          "time_spread_pct": 3.2
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "ripgrep",
+          "started_at": "2026-08-18T19:46:50+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.646,
+              "peak_rss_mb": 764.2,
+              "index_size_mb": 13.56
+            },
+            {
+              "seconds": 2.585,
+              "peak_rss_mb": 762.2,
+              "index_size_mb": 13.56
+            },
+            {
+              "seconds": 2.569,
+              "peak_rss_mb": 769.0,
+              "index_size_mb": 13.56
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.585,
+          "min_seconds": 2.569,
+          "max_seconds": 2.646,
+          "median_peak_rss_mb": 764.2,
+          "min_peak_rss_mb": 762.2,
+          "max_peak_rss_mb": 769.0,
+          "index_size_mb": 13.56,
+          "time_spread_pct": 3.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "ripgrep",
+          "started_at": "2026-08-18T19:47:01+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.943,
+              "peak_rss_mb": 853.3,
+              "index_size_mb": 10.06
+            },
+            {
+              "seconds": 9.369,
+              "peak_rss_mb": 853.6,
+              "index_size_mb": 10.06
+            },
+            {
+              "seconds": 9.538,
+              "peak_rss_mb": 853.4,
+              "index_size_mb": 10.06
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 9.369,
+          "min_seconds": 8.943,
+          "max_seconds": 9.538,
+          "median_peak_rss_mb": 853.4,
+          "min_peak_rss_mb": 853.3,
+          "max_peak_rss_mb": 853.6,
+          "index_size_mb": 10.06,
+          "time_spread_pct": 6.4
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "ripgrep",
+          "started_at": "2026-08-18T19:46:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.366,
+              "peak_rss_mb": 63.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.312,
+              "peak_rss_mb": 63.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.271,
+              "peak_rss_mb": 64.5,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.312,
+          "min_seconds": 2.271,
+          "max_seconds": 2.366,
+          "median_peak_rss_mb": 63.7,
+          "min_peak_rss_mb": 63.6,
+          "max_peak_rss_mb": 64.5,
+          "index_size_mb": null,
+          "time_spread_pct": 4.1
+        }
+      }
+    },
+    "scrapy": {
+      "language": "python",
+      "kind": "application",
+      "files_at_pin": 630,
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "scrapy",
+          "started_at": "2026-08-18T20:09:18+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.0,
+              "peak_rss_mb": 366.8,
+              "index_size_mb": 68.62
+            },
+            {
+              "seconds": 13.944,
+              "peak_rss_mb": 366.5,
+              "index_size_mb": 68.57
+            },
+            {
+              "seconds": 13.893,
+              "peak_rss_mb": 372.0,
+              "index_size_mb": 68.57
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 13.944,
+          "min_seconds": 13.893,
+          "max_seconds": 14.0,
+          "median_peak_rss_mb": 366.8,
+          "min_peak_rss_mb": 366.5,
+          "max_peak_rss_mb": 372.0,
+          "index_size_mb": 68.62,
+          "time_spread_pct": 0.8
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "scrapy",
+          "started_at": "2026-08-18T20:10:15+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.562,
+              "peak_rss_mb": 1663.8,
+              "index_size_mb": 48.06
+            },
+            {
+              "seconds": 6.391,
+              "peak_rss_mb": 1668.4,
+              "index_size_mb": 47.94
+            },
+            {
+              "seconds": 6.393,
+              "peak_rss_mb": 1659.4,
+              "index_size_mb": 47.94
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.393,
+          "min_seconds": 6.391,
+          "max_seconds": 6.562,
+          "median_peak_rss_mb": 1663.8,
+          "min_peak_rss_mb": 1659.4,
+          "max_peak_rss_mb": 1668.4,
+          "index_size_mb": 48.06,
+          "time_spread_pct": 2.7
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "scrapy",
+          "started_at": "2026-08-18T20:07:36+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.718,
+              "peak_rss_mb": 721.3,
+              "index_size_mb": 25.92
+            },
+            {
+              "seconds": 3.781,
+              "peak_rss_mb": 720.9,
+              "index_size_mb": 25.92
+            },
+            {
+              "seconds": 3.779,
+              "peak_rss_mb": 721.3,
+              "index_size_mb": 25.92
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.779,
+          "min_seconds": 3.718,
+          "max_seconds": 3.781,
+          "median_peak_rss_mb": 721.3,
+          "min_peak_rss_mb": 720.9,
+          "max_peak_rss_mb": 721.3,
+          "index_size_mb": 25.92,
+          "time_spread_pct": 1.7
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "scrapy",
+          "started_at": "2026-08-18T20:07:53+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 20.77,
+              "peak_rss_mb": 959.6,
+              "index_size_mb": 23.43
+            },
+            {
+              "seconds": 20.466,
+              "peak_rss_mb": 959.2,
+              "index_size_mb": 23.43
+            },
+            {
+              "seconds": 20.49,
+              "peak_rss_mb": 953.6,
+              "index_size_mb": 23.43
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 20.49,
+          "min_seconds": 20.466,
+          "max_seconds": 20.77,
+          "median_peak_rss_mb": 959.2,
+          "min_peak_rss_mb": 953.6,
+          "max_peak_rss_mb": 959.6,
+          "index_size_mb": 23.43,
+          "time_spread_pct": 1.5
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "scrapy",
+          "started_at": "2026-08-18T20:07:18+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.098,
+              "peak_rss_mb": 76.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 3.021,
+              "peak_rss_mb": 75.1,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.985,
+              "peak_rss_mb": 75.3,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.021,
+          "min_seconds": 2.985,
+          "max_seconds": 3.098,
+          "median_peak_rss_mb": 75.3,
+          "min_peak_rss_mb": 75.1,
+          "max_peak_rss_mb": 76.0,
+          "index_size_mb": null,
+          "time_spread_pct": 3.7
+        }
+      }
+    },
+    "seastar": {
+      "language": "cpp",
+      "kind": "framework",
+      "files_at_pin": 682,
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "seastar",
+          "started_at": "2026-08-18T20:12:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.459,
+              "peak_rss_mb": 377.5,
+              "index_size_mb": 73.79
+            },
+            {
+              "seconds": 14.79,
+              "peak_rss_mb": 375.2,
+              "index_size_mb": 73.88
+            },
+            {
+              "seconds": 14.891,
+              "peak_rss_mb": 377.8,
+              "index_size_mb": 73.79
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.79,
+          "min_seconds": 14.459,
+          "max_seconds": 14.891,
+          "median_peak_rss_mb": 377.5,
+          "min_peak_rss_mb": 375.2,
+          "max_peak_rss_mb": 377.8,
+          "index_size_mb": 73.79,
+          "time_spread_pct": 2.9
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "seastar",
+          "started_at": "2026-08-18T20:13:45+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 7.718,
+              "peak_rss_mb": 1632.6,
+              "index_size_mb": 73.44
+            },
+            {
+              "seconds": 7.722,
+              "peak_rss_mb": 1622.7,
+              "index_size_mb": 73.5
+            },
+            {
+              "seconds": 7.75,
+              "peak_rss_mb": 1602.4,
+              "index_size_mb": 73.44
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 7.722,
+          "min_seconds": 7.718,
+          "max_seconds": 7.75,
+          "median_peak_rss_mb": 1622.7,
+          "min_peak_rss_mb": 1602.4,
+          "max_peak_rss_mb": 1632.6,
+          "index_size_mb": 73.44,
+          "time_spread_pct": 0.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "seastar",
+          "started_at": "2026-08-18T20:11:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.727,
+              "peak_rss_mb": 823.3,
+              "index_size_mb": 28.87
+            },
+            {
+              "seconds": 4.678,
+              "peak_rss_mb": 826.2,
+              "index_size_mb": 28.87
+            },
+            {
+              "seconds": 4.855,
+              "peak_rss_mb": 817.0,
+              "index_size_mb": 28.87
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.727,
+          "min_seconds": 4.678,
+          "max_seconds": 4.855,
+          "median_peak_rss_mb": 823.3,
+          "min_peak_rss_mb": 817.0,
+          "max_peak_rss_mb": 826.2,
+          "index_size_mb": 28.87,
+          "time_spread_pct": 3.7
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "seastar",
+          "started_at": "2026-08-18T20:11:36+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 16.25,
+              "peak_rss_mb": 878.4,
+              "index_size_mb": 23.59
+            },
+            {
+              "seconds": 16.521,
+              "peak_rss_mb": 887.6,
+              "index_size_mb": 23.59
+            },
+            {
+              "seconds": 16.434,
+              "peak_rss_mb": 881.8,
+              "index_size_mb": 23.59
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 16.434,
+          "min_seconds": 16.25,
+          "max_seconds": 16.521,
+          "median_peak_rss_mb": 881.8,
+          "min_peak_rss_mb": 878.4,
+          "max_peak_rss_mb": 887.6,
+          "index_size_mb": 23.59,
+          "time_spread_pct": 1.6
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "seastar",
+          "started_at": "2026-08-18T20:10:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.291,
+              "peak_rss_mb": 102.2,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.252,
+              "peak_rss_mb": 101.9,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 6.251,
+              "peak_rss_mb": 101.8,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.252,
+          "min_seconds": 6.251,
+          "max_seconds": 6.291,
+          "median_peak_rss_mb": 101.9,
+          "min_peak_rss_mb": 101.8,
+          "max_peak_rss_mb": 102.2,
+          "index_size_mb": null,
+          "time_spread_pct": 0.6
+        }
+      }
+    },
+    "serde": {
+      "language": "rust",
+      "kind": "library",
+      "files_at_pin": 361,
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "serde",
+          "started_at": "2026-08-18T19:50:38+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.854,
+              "peak_rss_mb": 363.8,
+              "index_size_mb": 23.28
+            },
+            {
+              "seconds": 5.873,
+              "peak_rss_mb": 355.9,
+              "index_size_mb": 23.26
+            },
+            {
+              "seconds": 6.015,
+              "peak_rss_mb": 358.8,
+              "index_size_mb": 23.26
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.873,
+          "min_seconds": 5.854,
+          "max_seconds": 6.015,
+          "median_peak_rss_mb": 358.8,
+          "min_peak_rss_mb": 355.9,
+          "max_peak_rss_mb": 363.8,
+          "index_size_mb": 23.28,
+          "time_spread_pct": 2.7
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "serde",
+          "started_at": "2026-08-18T19:51:02+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.766,
+              "peak_rss_mb": 1118.1,
+              "index_size_mb": 16.62
+            },
+            {
+              "seconds": 5.797,
+              "peak_rss_mb": 1112.4,
+              "index_size_mb": 16.62
+            },
+            {
+              "seconds": 5.823,
+              "peak_rss_mb": 1116.5,
+              "index_size_mb": 16.69
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.797,
+          "min_seconds": 5.766,
+          "max_seconds": 5.823,
+          "median_peak_rss_mb": 1116.5,
+          "min_peak_rss_mb": 1112.4,
+          "max_peak_rss_mb": 1118.1,
+          "index_size_mb": 16.62,
+          "time_spread_pct": 1.0
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "serde",
+          "started_at": "2026-08-18T19:50:00+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.64,
+              "peak_rss_mb": 729.5,
+              "index_size_mb": 10.77
+            },
+            {
+              "seconds": 2.6,
+              "peak_rss_mb": 733.5,
+              "index_size_mb": 10.77
+            },
+            {
+              "seconds": 2.733,
+              "peak_rss_mb": 733.7,
+              "index_size_mb": 10.77
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.64,
+          "min_seconds": 2.6,
+          "max_seconds": 2.733,
+          "median_peak_rss_mb": 733.5,
+          "min_peak_rss_mb": 729.5,
+          "max_peak_rss_mb": 733.7,
+          "index_size_mb": 10.77,
+          "time_spread_pct": 5.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "serde",
+          "started_at": "2026-08-18T19:50:12+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.044,
+              "peak_rss_mb": 845.4,
+              "index_size_mb": 6.87
+            },
+            {
+              "seconds": 5.978,
+              "peak_rss_mb": 845.6,
+              "index_size_mb": 6.87
+            },
+            {
+              "seconds": 5.735,
+              "peak_rss_mb": 845.6,
+              "index_size_mb": 6.87
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.978,
+          "min_seconds": 5.735,
+          "max_seconds": 6.044,
+          "median_peak_rss_mb": 845.6,
+          "min_peak_rss_mb": 845.4,
+          "max_peak_rss_mb": 845.6,
+          "index_size_mb": 6.87,
+          "time_spread_pct": 5.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "serde",
+          "started_at": "2026-08-18T19:49:49+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.835,
+              "peak_rss_mb": 58.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.88,
+              "peak_rss_mb": 58.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.803,
+              "peak_rss_mb": 58.8,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.835,
+          "min_seconds": 1.803,
+          "max_seconds": 1.88,
+          "median_peak_rss_mb": 58.6,
+          "min_peak_rss_mb": 58.5,
+          "max_peak_rss_mb": 58.8,
+          "index_size_mb": null,
+          "time_spread_pct": 4.2
+        }
+      }
+    },
+    "Signal-Server": {
+      "language": "java",
+      "kind": "application",
+      "files_at_pin": 1385,
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "Signal-Server",
+          "started_at": "2026-08-18T20:43:51+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 33.55,
+              "peak_rss_mb": 443.3,
+              "index_size_mb": 353.86
+            },
+            {
+              "seconds": 33.329,
+              "peak_rss_mb": 441.0,
+              "index_size_mb": 353.86
+            },
+            {
+              "seconds": 33.56,
+              "peak_rss_mb": 443.1,
+              "index_size_mb": 353.86
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 33.55,
+          "min_seconds": 33.329,
+          "max_seconds": 33.56,
+          "median_peak_rss_mb": 443.1,
+          "min_peak_rss_mb": 441.0,
+          "max_peak_rss_mb": 443.3,
+          "index_size_mb": 353.86,
+          "time_spread_pct": 0.7
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "Signal-Server",
+          "started_at": "2026-08-18T20:46:10+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 8.801,
+              "peak_rss_mb": 2659.0,
+              "index_size_mb": 136.56
+            },
+            {
+              "seconds": 8.969,
+              "peak_rss_mb": 2672.8,
+              "index_size_mb": 137.06
+            },
+            {
+              "seconds": 8.728,
+              "peak_rss_mb": 2674.6,
+              "index_size_mb": 136.69
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 8.801,
+          "min_seconds": 8.728,
+          "max_seconds": 8.969,
+          "median_peak_rss_mb": 2672.8,
+          "min_peak_rss_mb": 2659.0,
+          "max_peak_rss_mb": 2674.6,
+          "index_size_mb": 136.56,
+          "time_spread_pct": 2.7
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "Signal-Server",
+          "started_at": "2026-08-18T20:39:42+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.139,
+              "peak_rss_mb": 1764.2,
+              "index_size_mb": 134.83
+            },
+            {
+              "seconds": 13.806,
+              "peak_rss_mb": 1782.9,
+              "index_size_mb": 134.83
+            },
+            {
+              "seconds": 14.303,
+              "peak_rss_mb": 1692.8,
+              "index_size_mb": 134.83
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.139,
+          "min_seconds": 13.806,
+          "max_seconds": 14.303,
+          "median_peak_rss_mb": 1764.2,
+          "min_peak_rss_mb": 1692.8,
+          "max_peak_rss_mb": 1782.9,
+          "index_size_mb": 134.83,
+          "time_spread_pct": 3.5
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "Signal-Server",
+          "started_at": "2026-08-18T20:40:43+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 45.287,
+              "peak_rss_mb": 977.6,
+              "index_size_mb": 91.64
+            },
+            {
+              "seconds": 45.426,
+              "peak_rss_mb": 969.0,
+              "index_size_mb": 91.64
+            },
+            {
+              "seconds": 45.837,
+              "peak_rss_mb": 972.6,
+              "index_size_mb": 91.64
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 45.426,
+          "min_seconds": 45.287,
+          "max_seconds": 45.837,
+          "median_peak_rss_mb": 972.6,
+          "min_peak_rss_mb": 969.0,
+          "max_peak_rss_mb": 977.6,
+          "index_size_mb": 91.64,
+          "time_spread_pct": 1.2
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "Signal-Server",
+          "started_at": "2026-08-18T20:38:53+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 9.383,
+              "peak_rss_mb": 176.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 9.341,
+              "peak_rss_mb": 177.3,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 9.396,
+              "peak_rss_mb": 177.8,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 9.383,
+          "min_seconds": 9.341,
+          "max_seconds": 9.396,
+          "median_peak_rss_mb": 177.3,
+          "min_peak_rss_mb": 176.6,
+          "max_peak_rss_mb": 177.8,
+          "index_size_mb": null,
+          "time_spread_pct": 0.6
+        }
+      }
+    },
+    "sinatra": {
+      "language": "ruby",
+      "kind": "framework",
+      "files_at_pin": 292,
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "sinatra",
+          "started_at": "2026-08-18T19:49:13+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.038,
+              "peak_rss_mb": 363.1,
+              "index_size_mb": 3.36
+            },
+            {
+              "seconds": 2.988,
+              "peak_rss_mb": 362.4,
+              "index_size_mb": 3.37
+            },
+            {
+              "seconds": 2.769,
+              "peak_rss_mb": 360.9,
+              "index_size_mb": 3.37
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.988,
+          "min_seconds": 2.769,
+          "max_seconds": 3.038,
+          "median_peak_rss_mb": 362.4,
+          "min_peak_rss_mb": 360.9,
+          "max_peak_rss_mb": 363.1,
+          "index_size_mb": 3.36,
+          "time_spread_pct": 9.0
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "sinatra",
+          "started_at": "2026-08-18T19:49:26+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.778,
+              "peak_rss_mb": 701.9,
+              "index_size_mb": 9.12
+            },
+            {
+              "seconds": 5.504,
+              "peak_rss_mb": 700.8,
+              "index_size_mb": 9.12
+            },
+            {
+              "seconds": 5.53,
+              "peak_rss_mb": 702.1,
+              "index_size_mb": 9.12
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.53,
+          "min_seconds": 5.504,
+          "max_seconds": 5.778,
+          "median_peak_rss_mb": 701.9,
+          "min_peak_rss_mb": 700.8,
+          "max_peak_rss_mb": 702.1,
+          "index_size_mb": 9.12,
+          "time_spread_pct": 5.0
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "sinatra",
+          "started_at": "2026-08-18T19:48:48+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.409,
+              "peak_rss_mb": 719.6,
+              "index_size_mb": 3.29
+            },
+            {
+              "seconds": 1.442,
+              "peak_rss_mb": 719.2,
+              "index_size_mb": 3.29
+            },
+            {
+              "seconds": 1.405,
+              "peak_rss_mb": 717.7,
+              "index_size_mb": 3.29
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.409,
+          "min_seconds": 1.405,
+          "max_seconds": 1.442,
+          "median_peak_rss_mb": 719.2,
+          "min_peak_rss_mb": 717.7,
+          "max_peak_rss_mb": 719.6,
+          "index_size_mb": 3.29,
+          "time_spread_pct": 2.6
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "sinatra",
+          "started_at": "2026-08-18T19:48:55+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.9,
+              "peak_rss_mb": 829.7,
+              "index_size_mb": 2.42
+            },
+            {
+              "seconds": 4.32,
+              "peak_rss_mb": 829.6,
+              "index_size_mb": 2.42
+            },
+            {
+              "seconds": 4.2,
+              "peak_rss_mb": 829.8,
+              "index_size_mb": 2.42
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.2,
+          "min_seconds": 3.9,
+          "max_seconds": 4.32,
+          "median_peak_rss_mb": 829.7,
+          "min_peak_rss_mb": 829.6,
+          "max_peak_rss_mb": 829.8,
+          "index_size_mb": 2.42,
+          "time_spread_pct": 10.0
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "sinatra",
+          "started_at": "2026-08-18T19:48:40+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.401,
+              "peak_rss_mb": 52.0,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.443,
+              "peak_rss_mb": 51.6,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.443,
+              "peak_rss_mb": 51.5,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.443,
+          "min_seconds": 1.401,
+          "max_seconds": 1.443,
+          "median_peak_rss_mb": 51.6,
+          "min_peak_rss_mb": 51.5,
+          "max_peak_rss_mb": 52.0,
+          "index_size_mb": null,
+          "time_spread_pct": 2.9
+        }
+      }
+    },
+    "spring-petclinic": {
+      "language": "java",
+      "kind": "framework",
+      "files_at_pin": 127,
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "spring-petclinic",
+          "started_at": "2026-08-18T19:36:34+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.326,
+              "peak_rss_mb": 208.2,
+              "index_size_mb": 5.65
+            },
+            {
+              "seconds": 2.275,
+              "peak_rss_mb": 208.7,
+              "index_size_mb": 5.65
+            },
+            {
+              "seconds": 2.28,
+              "peak_rss_mb": 208.9,
+              "index_size_mb": 5.65
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.28,
+          "min_seconds": 2.275,
+          "max_seconds": 2.326,
+          "median_peak_rss_mb": 208.7,
+          "min_peak_rss_mb": 208.2,
+          "max_peak_rss_mb": 208.9,
+          "index_size_mb": 5.65,
+          "time_spread_pct": 2.2
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "spring-petclinic",
+          "started_at": "2026-08-18T19:36:44+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.286,
+              "peak_rss_mb": 680.4,
+              "index_size_mb": 6.62
+            },
+            {
+              "seconds": 5.261,
+              "peak_rss_mb": 694.1,
+              "index_size_mb": 6.62
+            },
+            {
+              "seconds": 5.432,
+              "peak_rss_mb": 685.3,
+              "index_size_mb": 6.62
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.286,
+          "min_seconds": 5.261,
+          "max_seconds": 5.432,
+          "median_peak_rss_mb": 685.3,
+          "min_peak_rss_mb": 680.4,
+          "max_peak_rss_mb": 694.1,
+          "index_size_mb": 6.62,
+          "time_spread_pct": 3.2
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "spring-petclinic",
+          "started_at": "2026-08-18T19:36:17+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.248,
+              "peak_rss_mb": 701.2,
+              "index_size_mb": 2.5
+            },
+            {
+              "seconds": 1.162,
+              "peak_rss_mb": 699.8,
+              "index_size_mb": 2.5
+            },
+            {
+              "seconds": 1.093,
+              "peak_rss_mb": 700.0,
+              "index_size_mb": 2.5
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.162,
+          "min_seconds": 1.093,
+          "max_seconds": 1.248,
+          "median_peak_rss_mb": 700.0,
+          "min_peak_rss_mb": 699.8,
+          "max_peak_rss_mb": 701.2,
+          "index_size_mb": 2.5,
+          "time_spread_pct": 13.3
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "spring-petclinic",
+          "started_at": "2026-08-18T19:36:22+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.753,
+              "peak_rss_mb": 826.8,
+              "index_size_mb": 1.69
+            },
+            {
+              "seconds": 2.651,
+              "peak_rss_mb": 826.8,
+              "index_size_mb": 1.69
+            },
+            {
+              "seconds": 2.734,
+              "peak_rss_mb": 826.9,
+              "index_size_mb": 1.69
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.734,
+          "min_seconds": 2.651,
+          "max_seconds": 2.753,
+          "median_peak_rss_mb": 826.8,
+          "min_peak_rss_mb": 826.8,
+          "max_peak_rss_mb": 826.9,
+          "index_size_mb": 1.69,
+          "time_spread_pct": 3.7
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "spring-petclinic",
+          "started_at": "2026-08-18T19:36:11+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.118,
+              "peak_rss_mb": 51.7,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.083,
+              "peak_rss_mb": 51.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.092,
+              "peak_rss_mb": 52.3,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.092,
+          "min_seconds": 1.083,
+          "max_seconds": 1.118,
+          "median_peak_rss_mb": 51.8,
+          "min_peak_rss_mb": 51.7,
+          "max_peak_rss_mb": 52.3,
+          "index_size_mb": null,
+          "time_spread_pct": 3.2
+        }
+      }
+    },
+    "syft": {
+      "language": "go",
+      "kind": "framework",
+      "files_at_pin": 2856,
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "syft",
+          "started_at": "2026-08-18T21:08:42+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 20.039,
+              "peak_rss_mb": 385.4,
+              "index_size_mb": 84.1
+            },
+            {
+              "seconds": 20.1,
+              "peak_rss_mb": 382.8,
+              "index_size_mb": 84.1
+            },
+            {
+              "seconds": 20.104,
+              "peak_rss_mb": 383.6,
+              "index_size_mb": 84.1
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 20.1,
+          "min_seconds": 20.039,
+          "max_seconds": 20.104,
+          "median_peak_rss_mb": 383.6,
+          "min_peak_rss_mb": 382.8,
+          "max_peak_rss_mb": 385.4,
+          "index_size_mb": 84.1,
+          "time_spread_pct": 0.3
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "syft",
+          "started_at": "2026-08-18T21:10:14+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 12.022,
+              "peak_rss_mb": 4656.3,
+              "index_size_mb": 250.31
+            },
+            {
+              "seconds": 11.941,
+              "peak_rss_mb": 4645.5,
+              "index_size_mb": 251.12
+            },
+            {
+              "seconds": 11.889,
+              "peak_rss_mb": 4633.4,
+              "index_size_mb": 250.19
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 11.941,
+          "min_seconds": 11.889,
+          "max_seconds": 12.022,
+          "median_peak_rss_mb": 4645.5,
+          "min_peak_rss_mb": 4633.4,
+          "max_peak_rss_mb": 4656.3,
+          "index_size_mb": 250.31,
+          "time_spread_pct": 1.1
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "syft",
+          "started_at": "2026-08-18T21:01:09+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 6.642,
+              "peak_rss_mb": 899.7,
+              "index_size_mb": 43.6
+            },
+            {
+              "seconds": 6.496,
+              "peak_rss_mb": 900.2,
+              "index_size_mb": 43.6
+            },
+            {
+              "seconds": 6.897,
+              "peak_rss_mb": 897.8,
+              "index_size_mb": 43.6
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 6.642,
+          "min_seconds": 6.496,
+          "max_seconds": 6.897,
+          "median_peak_rss_mb": 899.7,
+          "min_peak_rss_mb": 897.8,
+          "max_peak_rss_mb": 900.2,
+          "index_size_mb": 43.6,
+          "time_spread_pct": 6.0
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "syft",
+          "started_at": "2026-08-18T21:01:47+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 100.274,
+              "peak_rss_mb": 1044.6,
+              "index_size_mb": 95.03
+            },
+            {
+              "seconds": 99.229,
+              "peak_rss_mb": 1044.7,
+              "index_size_mb": 95.03
+            },
+            {
+              "seconds": 101.2,
+              "peak_rss_mb": 1045.7,
+              "index_size_mb": 95.03
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 100.274,
+          "min_seconds": 99.229,
+          "max_seconds": 101.2,
+          "median_peak_rss_mb": 1044.7,
+          "min_peak_rss_mb": 1044.6,
+          "max_peak_rss_mb": 1045.7,
+          "index_size_mb": 95.03,
+          "time_spread_pct": 2.0
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "syft",
+          "started_at": "2026-08-18T21:00:03+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 11.885,
+              "peak_rss_mb": 127.1,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 11.828,
+              "peak_rss_mb": 127.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 11.899,
+              "peak_rss_mb": 126.2,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 11.885,
+          "min_seconds": 11.828,
+          "max_seconds": 11.899,
+          "median_peak_rss_mb": 127.1,
+          "min_peak_rss_mb": 126.2,
+          "max_peak_rss_mb": 127.8,
+          "index_size_mb": null,
+          "time_spread_pct": 0.6
+        }
+      }
+    },
+    "taxonomy": {
+      "language": "typescript",
+      "kind": "application",
+      "files_at_pin": 188,
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "taxonomy",
+          "started_at": "2026-08-18T19:44:55+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.572,
+              "peak_rss_mb": 328.6,
+              "index_size_mb": 2.58
+            },
+            {
+              "seconds": 2.606,
+              "peak_rss_mb": 325.6,
+              "index_size_mb": 2.58
+            },
+            {
+              "seconds": 2.578,
+              "peak_rss_mb": 321.2,
+              "index_size_mb": 2.58
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.578,
+          "min_seconds": 2.572,
+          "max_seconds": 2.606,
+          "median_peak_rss_mb": 325.6,
+          "min_peak_rss_mb": 321.2,
+          "max_peak_rss_mb": 328.6,
+          "index_size_mb": 2.58,
+          "time_spread_pct": 1.3
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "taxonomy",
+          "started_at": "2026-08-18T19:45:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.459,
+              "peak_rss_mb": 711.8,
+              "index_size_mb": 5.31
+            },
+            {
+              "seconds": 5.82,
+              "peak_rss_mb": 711.3,
+              "index_size_mb": 5.31
+            },
+            {
+              "seconds": 5.361,
+              "peak_rss_mb": 711.8,
+              "index_size_mb": 5.31
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.459,
+          "min_seconds": 5.361,
+          "max_seconds": 5.82,
+          "median_peak_rss_mb": 711.8,
+          "min_peak_rss_mb": 711.3,
+          "max_peak_rss_mb": 711.8,
+          "index_size_mb": 5.31,
+          "time_spread_pct": 8.4
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "taxonomy",
+          "started_at": "2026-08-18T19:44:30+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.398,
+              "peak_rss_mb": 720.4,
+              "index_size_mb": 1.99
+            },
+            {
+              "seconds": 1.371,
+              "peak_rss_mb": 722.0,
+              "index_size_mb": 1.99
+            },
+            {
+              "seconds": 1.523,
+              "peak_rss_mb": 720.1,
+              "index_size_mb": 1.99
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.398,
+          "min_seconds": 1.371,
+          "max_seconds": 1.523,
+          "median_peak_rss_mb": 720.4,
+          "min_peak_rss_mb": 720.1,
+          "max_peak_rss_mb": 722.0,
+          "index_size_mb": 1.99,
+          "time_spread_pct": 10.9
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "taxonomy",
+          "started_at": "2026-08-18T19:44:37+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 4.158,
+              "peak_rss_mb": 830.6,
+              "index_size_mb": 0.84
+            },
+            {
+              "seconds": 4.168,
+              "peak_rss_mb": 830.4,
+              "index_size_mb": 0.84
+            },
+            {
+              "seconds": 4.273,
+              "peak_rss_mb": 830.2,
+              "index_size_mb": 0.84
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 4.168,
+          "min_seconds": 4.158,
+          "max_seconds": 4.273,
+          "median_peak_rss_mb": 830.4,
+          "min_peak_rss_mb": 830.2,
+          "max_peak_rss_mb": 830.6,
+          "index_size_mb": 0.84,
+          "time_spread_pct": 2.8
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "taxonomy",
+          "started_at": "2026-08-18T19:44:23+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 1.223,
+              "peak_rss_mb": 52.5,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.215,
+              "peak_rss_mb": 52.1,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 1.215,
+              "peak_rss_mb": 52.1,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 1.215,
+          "min_seconds": 1.215,
+          "max_seconds": 1.223,
+          "median_peak_rss_mb": 52.1,
+          "min_peak_rss_mb": 52.1,
+          "max_peak_rss_mb": 52.5,
+          "index_size_mb": null,
+          "time_spread_pct": 0.7
+        }
+      }
+    },
+    "zod": {
+      "language": "typescript",
+      "kind": "library",
+      "files_at_pin": 582,
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "arms": {
+        "code-review-graph": {
+          "arm": "code-review-graph",
+          "version": "2.3.7",
+          "repo": "zod",
+          "started_at": "2026-08-18T20:06:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 10.988,
+              "peak_rss_mb": 394.0,
+              "index_size_mb": 76.14
+            },
+            {
+              "seconds": 11.155,
+              "peak_rss_mb": 389.2,
+              "index_size_mb": 76.14
+            },
+            {
+              "seconds": 11.117,
+              "peak_rss_mb": 391.0,
+              "index_size_mb": 76.11
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 11.117,
+          "min_seconds": 10.988,
+          "max_seconds": 11.155,
+          "median_peak_rss_mb": 391.0,
+          "min_peak_rss_mb": 389.2,
+          "max_peak_rss_mb": 394.0,
+          "index_size_mb": 76.14,
+          "time_spread_pct": 1.5
+        },
+        "codebase-memory-mcp": {
+          "arm": "codebase-memory-mcp",
+          "version": "0.10.6",
+          "repo": "zod",
+          "started_at": "2026-08-18T20:06:52+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 5.889,
+              "peak_rss_mb": 1063.3,
+              "index_size_mb": 20.69
+            },
+            {
+              "seconds": 5.879,
+              "peak_rss_mb": 1055.8,
+              "index_size_mb": 20.69
+            },
+            {
+              "seconds": 5.926,
+              "peak_rss_mb": 1072.6,
+              "index_size_mb": 20.69
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 5.889,
+          "min_seconds": 5.879,
+          "max_seconds": 5.926,
+          "median_peak_rss_mb": 1063.3,
+          "min_peak_rss_mb": 1055.8,
+          "max_peak_rss_mb": 1072.6,
+          "index_size_mb": 20.69,
+          "time_spread_pct": 0.8
+        },
+        "codegraph": {
+          "arm": "codegraph",
+          "version": "1.5.0",
+          "repo": "zod",
+          "started_at": "2026-08-18T20:04:49+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 3.717,
+              "peak_rss_mb": 761.6,
+              "index_size_mb": 27.92
+            },
+            {
+              "seconds": 3.638,
+              "peak_rss_mb": 756.8,
+              "index_size_mb": 27.92
+            },
+            {
+              "seconds": 3.647,
+              "peak_rss_mb": 757.1,
+              "index_size_mb": 27.92
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 3.647,
+          "min_seconds": 3.638,
+          "max_seconds": 3.717,
+          "median_peak_rss_mb": 757.1,
+          "min_peak_rss_mb": 756.8,
+          "max_peak_rss_mb": 761.6,
+          "index_size_mb": 27.92,
+          "time_spread_pct": 2.2
+        },
+        "graphify": {
+          "arm": "graphify",
+          "version": "0.9.31",
+          "repo": "zod",
+          "started_at": "2026-08-18T20:05:06+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 14.513,
+              "peak_rss_mb": 963.3,
+              "index_size_mb": 4.16
+            },
+            {
+              "seconds": 14.63,
+              "peak_rss_mb": 955.2,
+              "index_size_mb": 4.16
+            },
+            {
+              "seconds": 14.496,
+              "peak_rss_mb": 952.7,
+              "index_size_mb": 4.16
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 14.513,
+          "min_seconds": 14.496,
+          "max_seconds": 14.63,
+          "median_peak_rss_mb": 955.2,
+          "min_peak_rss_mb": 952.7,
+          "max_peak_rss_mb": 963.3,
+          "index_size_mb": 4.16,
+          "time_spread_pct": 0.9
+        },
+        "repowise-subprocess": {
+          "arm": "repowise-subprocess",
+          "version": "13cc339a",
+          "repo": "zod",
+          "started_at": "2026-08-18T20:04:33+00:00",
+          "warmup_discarded": true,
+          "runs": [
+            {
+              "seconds": 2.541,
+              "peak_rss_mb": 67.4,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.527,
+              "peak_rss_mb": 67.8,
+              "index_size_mb": null
+            },
+            {
+              "seconds": 2.555,
+              "peak_rss_mb": 67.8,
+              "index_size_mb": null
+            }
+          ],
+          "n_runs": 3,
+          "median_seconds": 2.541,
+          "min_seconds": 2.527,
+          "max_seconds": 2.555,
+          "median_peak_rss_mb": 67.8,
+          "min_peak_rss_mb": 67.4,
+          "max_peak_rss_mb": 67.8,
+          "index_size_mb": null,
+          "time_spread_pct": 1.1
+        }
+      }
+    }
+  },
+  "counts": {
+    "repos": 35,
+    "cells": 175,
+    "failed_cells": 0
+  }
+}
