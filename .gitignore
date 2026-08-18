@@ -153,3 +153,17 @@ mcp_configs/
 # artifact (repo precedent); per-run transcripts under logs/ stay local.
 !/results/context_bench/
 !/results/context_bench/**
+
+# Per-arm MCP configs written under a results/ run directory. These carry a live
+# OPENAI_API_KEY in their `env` block, the same hazard as /mcp_configs/ above,
+# and the `!/results/bakeoff_2026_08/**` un-ignore would otherwise pull them in.
+/results/**/arms/
+/results/**/arms-s2/
+
+# Per-session agent stream transcripts. 43 MB for the session-cost cells alone,
+# and nothing is graded on them: the graded artifacts are sessions*.jsonl and the
+# gate_post__* scores beside them. Same rule as the **/logs/ exclusion above.
+/results/**/_status_*/
+
+# Ad-hoc overnight run logs dropped at the repo root.
+/logs_*.log
