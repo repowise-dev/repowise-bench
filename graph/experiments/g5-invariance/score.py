@@ -130,6 +130,12 @@ def score_m1(mut: dict, base: set, mutated: set) -> dict:
         and any(symbol in t for t in targets | base_sites[site])
     }
     denom = mut.get("call_sites_naming_symbol") or 0
+    # An arm that never bound the original symbol cannot be lured to a twin of
+    # it. Scoring that as a pass would rank a tool that resolves nothing above
+    # one that resolves nearly everything, which is the exact inversion this
+    # benchmark exists to argue against.
+    baseline_hits = len([e for e in base if symbol in e[2]])
+    vacuous = baseline_hits == 0
     return {
         "mutation": "m1",
         "kind": "decoy_twin",
@@ -138,8 +144,14 @@ def score_m1(mut: dict, base: set, mutated: set) -> dict:
         "edges_at_decoy": len(decoy_edges),
         "sites_retargeted": len(retargeted),
         "call_sites_naming_symbol": denom,
+        "baseline_edges_to_symbol": baseline_hits,
         "rate": round(len(decoy_edges) / denom, 4) if denom else None,
-        "passed": len(decoy_edges) == 0,
+        "vacuous": vacuous,
+        "vacuous_because": (
+            "this arm resolved no edge to the original symbol, so a decoy of it "
+            "cannot capture anything" if vacuous else None
+        ),
+        "passed": (not vacuous) and len(decoy_edges) == 0,
         "sample": sorted(map(str, list(decoy_edges)[:5])),
     }
 
@@ -178,32 +190,72 @@ def score_m2(mut: dict, base: set, mutated: set) -> dict:
         "baseline_edges_touching_symbol": denom,
         "unrelated_drift": len(lost - lost_sym) + len(gained - gained_sym),
         "rate": round((len(lost_sym) + len(gained_sym)) / denom, 4) if denom else None,
-        "passed": not lost_sym and not gained_sym,
+        "vacuous": denom == 0,
+        "vacuous_because": (
+            "no baseline edge names this symbol, so renaming it everywhere "
+            "cannot change this arm's answer. For an arm whose callee identity "
+            "is not the source-level name (graphify emits snake_case node ids), "
+            "this means the rename is untestable as scored here, NOT that the "
+            "arm is rename-invariant" if denom == 0 else None
+        ),
+        "passed": denom > 0 and not lost_sym and not gained_sym,
         "sample_lost": sorted(map(str, list(lost_sym)[:5])),
         "sample_gained": sorted(map(str, list(gained_sym)[:5])),
     }
 
 
 def score_m3(mut: dict, base: set, mutated: set) -> dict:
-    """The shadowed site must no longer bind to the import."""
-    site = (mut["call_site"]["file"], mut["call_site"]["line"])
-    shadowed = mut["shadowed_import"]
-    tail = shadowed.rstrip("/").split("/")[-1]
+    """The shadowed site must lose the edge that went through the import.
 
-    mut_sites = edges_by_site(mutated)
-    base_sites = edges_by_site(base)
-    still_bound = {t for t in mut_sites.get(site, set()) if tail in t or shadowed in t}
+    Two things this has to get right, and both were got wrong first.
+
+    **The line moves.** The shadow statement is inserted at the top of the
+    enclosing function, so the call sits `lines_inserted` lines further down in
+    the mutated tree. Comparing `(file, line)` across the two trees reads a
+    different call expression, and the arm most obviously guilty of the failure
+    scored a pass because the line it was graded at held someone else's call.
+
+    **The verdict cannot depend on how an arm names a target.** The first
+    version asked whether the surviving target string still contained the
+    shadowed package name. Our qualified names embed the package path, so we
+    were caught; CodeGraph emits a bare `NewSecret`, which contains no package
+    name, so an identical failure scored a pass. The test is now purely
+    set-based: whatever the arm bound at that site before, has any of it gone?
+    A resolver that understands the shadow must drop at least the edge that
+    reached through it, whatever it calls the target.
+
+    **Vacuity is reported, not scored as a pass.** An arm with no edge at the
+    site to begin with cannot fail this, and calling that a pass would rank a
+    tool that resolves nothing above one that resolves almost everything.
+    """
+    site_file = mut["call_site"]["file"]
+    base_site = (site_file, mut["call_site"]["line"])
+    # Older manifests have no line_mutated; fall back to the unshifted line
+    # rather than crash, but the shift is what makes the result meaningful.
+    mut_site = (site_file, mut["call_site"].get("line_mutated", mut["call_site"]["line"]))
+
+    base_targets = edges_by_site(base).get(base_site, set())
+    mut_targets = edges_by_site(mutated).get(mut_site, set())
+    dropped = base_targets - mut_targets
+
+    vacuous = not base_targets
     return {
         "mutation": "m3",
         "kind": "shadowing",
         "symbol": mut["symbol"],
-        "correct_answer": 0,
-        "site": f"{site[0]}:{site[1]}",
-        "shadowed_import": shadowed,
-        "was_bound_at_baseline": sorted(base_sites.get(site, set()))[:3],
-        "still_bound_to_import": len(still_bound),
-        "targets_now": sorted(mut_sites.get(site, set()))[:3],
-        "passed": not still_bound,
+        "correct_answer": "at least one baseline target dropped",
+        "site_baseline": f"{base_site[0]}:{base_site[1]}",
+        "site_mutated": f"{mut_site[0]}:{mut_site[1]}",
+        "shadowed_import": mut["shadowed_import"],
+        "was_bound_at_baseline": sorted(base_targets),
+        "targets_now": sorted(mut_targets),
+        "targets_dropped": sorted(dropped),
+        "vacuous": vacuous,
+        "vacuous_because": (
+            "this arm bound nothing at the site in the unmutated tree, so the "
+            "mutation cannot change its answer" if vacuous else None
+        ),
+        "passed": (not vacuous) and bool(dropped),
     }
 
 
@@ -287,7 +339,7 @@ def main() -> int:
                 score["baseline_edges"] = len(base_edges)
                 score["mutated_edges"] = len(mutated_edges)
                 scores.append(score)
-                mark = "PASS" if score["passed"] else "FAIL"
+                mark = "VACUOUS" if score.get("vacuous") else ("PASS" if score["passed"] else "FAIL")
                 print(f"  {m} {mark}  {json.dumps({k: v for k, v in score.items() if k not in ('sample', 'sample_lost', 'sample_gained', 'was_bound_at_baseline', 'targets_now')})}", flush=True)
 
             result["arms"][arm_name] = {"version": version, "scores": scores}

@@ -5,7 +5,7 @@
   ],
   "provenance": {
     "experiment": "g5",
-    "run_at": "2026-08-18T06:13:22+00:00",
+    "run_at": "2026-08-18T06:55:20+00:00",
     "publishable": true,
     "repowise": {
       "path": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean\\packages",
@@ -21,15 +21,20 @@
     },
     "bench": {
       "path": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench",
-      "head": "e57cac96634417cb425e184341c3f4e765d15b54",
-      "head_short": "e57cac9",
+      "head": "29ebad85cada22a28b37cd6deb8f7ab59b9ff792",
+      "head_short": "29ebad8",
       "branch": "bench/graph-quality",
-      "describe": "e57cac9",
+      "describe": "29ebad8",
       "dirty": true,
       "dirty_paths": [
         "graph/experiments/g5-invariance/mutate.py",
         "graph/experiments/g5-invariance/score.py",
-        "results/graph/g2g6/"
+        "results/graph/g5/2026-08-18-3594ba75/result.json",
+        "graph/arms/code-review-graph.md",
+        "graph/arms/graphify.md",
+        "graph/experiments/probe_symbol_gap.py",
+        "results/graph/g2g6/",
+        "results/graph/symbol-gap/"
       ],
       "dirty_scope": null
     },
@@ -58,7 +63,10 @@
           "edges_at_decoy": 0,
           "sites_retargeted": 0,
           "call_sites_naming_symbol": 319,
+          "baseline_edges_to_symbol": 284,
           "rate": 0.0,
+          "vacuous": false,
+          "vacuous_because": null,
           "passed": true,
           "sample": [],
           "baseline_edges": 2286,
@@ -74,6 +82,8 @@
           "baseline_edges_touching_symbol": 284,
           "unrelated_drift": 0,
           "rate": 0.0,
+          "vacuous": false,
+          "vacuous_because": null,
           "passed": true,
           "sample_lost": [],
           "sample_gained": [],
@@ -84,22 +94,201 @@
           "mutation": "m3",
           "kind": "shadowing",
           "symbol": "secrets",
-          "correct_answer": 0,
-          "site": "cmd/generate/config/rules/jfrog.go:62",
+          "correct_answer": "at least one baseline target dropped",
+          "site_baseline": "cmd/generate/config/rules/jfrog.go:62",
+          "site_mutated": "cmd/generate/config/rules/jfrog.go:64",
           "shadowed_import": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets",
           "was_bound_at_baseline": [
             "cmd.generate.config.utils.patterns.AlphaNumeric",
             "cmd.generate.secrets.regen.NewSecret"
           ],
-          "still_bound_to_import": 1,
           "targets_now": [
-            "cmd.generate.config.utils.generate.GenerateSampleSecrets",
             "cmd.generate.config.utils.patterns.AlphaNumeric",
             "cmd.generate.secrets.regen.NewSecret"
           ],
+          "targets_dropped": [],
+          "vacuous": false,
+          "vacuous_because": null,
           "passed": false,
           "baseline_edges": 2286,
           "mutated_edges": 2286
+        }
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "scores": [
+        {
+          "mutation": "m1",
+          "kind": "decoy_twin",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_at_decoy": 0,
+          "sites_retargeted": 0,
+          "call_sites_naming_symbol": 319,
+          "baseline_edges_to_symbol": 284,
+          "rate": 0.0,
+          "vacuous": false,
+          "vacuous_because": null,
+          "passed": true,
+          "sample": [],
+          "baseline_edges": 2058,
+          "mutated_edges": 2058
+        },
+        {
+          "mutation": "m2",
+          "kind": "consistent_rename",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_lost": 0,
+          "edges_gained": 0,
+          "baseline_edges_touching_symbol": 284,
+          "unrelated_drift": 0,
+          "rate": 0.0,
+          "vacuous": false,
+          "vacuous_because": null,
+          "passed": true,
+          "sample_lost": [],
+          "sample_gained": [],
+          "baseline_edges": 2058,
+          "mutated_edges": 2058
+        },
+        {
+          "mutation": "m3",
+          "kind": "shadowing",
+          "symbol": "secrets",
+          "correct_answer": "at least one baseline target dropped",
+          "site_baseline": "cmd/generate/config/rules/jfrog.go:62",
+          "site_mutated": "cmd/generate/config/rules/jfrog.go:64",
+          "shadowed_import": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets",
+          "was_bound_at_baseline": [
+            "AlphaNumeric",
+            "NewSecret"
+          ],
+          "targets_now": [
+            "AlphaNumeric",
+            "NewSecret"
+          ],
+          "targets_dropped": [],
+          "vacuous": false,
+          "vacuous_because": null,
+          "passed": false,
+          "baseline_edges": 2058,
+          "mutated_edges": 2058
+        }
+      ]
+    },
+    "graphify": {
+      "version": "0.9.31",
+      "scores": [
+        {
+          "mutation": "m1",
+          "kind": "decoy_twin",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_at_decoy": 0,
+          "sites_retargeted": 0,
+          "call_sites_naming_symbol": 319,
+          "baseline_edges_to_symbol": 0,
+          "rate": 0.0,
+          "vacuous": true,
+          "vacuous_because": "this arm resolved no edge to the original symbol, so a decoy of it cannot capture anything",
+          "passed": false,
+          "sample": [],
+          "baseline_edges": 1476,
+          "mutated_edges": 1476
+        },
+        {
+          "mutation": "m2",
+          "kind": "consistent_rename",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_lost": 0,
+          "edges_gained": 0,
+          "baseline_edges_touching_symbol": 0,
+          "unrelated_drift": 400,
+          "rate": null,
+          "vacuous": true,
+          "vacuous_because": "no baseline edge names this symbol, so renaming it everywhere cannot change this arm's answer. For an arm whose callee identity is not the source-level name (graphify emits snake_case node ids), this means the rename is untestable as scored here, NOT that the arm is rename-invariant",
+          "passed": false,
+          "sample_lost": [],
+          "sample_gained": [],
+          "baseline_edges": 1476,
+          "mutated_edges": 1476
+        },
+        {
+          "mutation": "m3",
+          "kind": "shadowing",
+          "symbol": "secrets",
+          "correct_answer": "at least one baseline target dropped",
+          "site_baseline": "cmd/generate/config/rules/jfrog.go:62",
+          "site_mutated": "cmd/generate/config/rules/jfrog.go:64",
+          "shadowed_import": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets",
+          "was_bound_at_baseline": [],
+          "targets_now": [],
+          "targets_dropped": [],
+          "vacuous": true,
+          "vacuous_because": "this arm bound nothing at the site in the unmutated tree, so the mutation cannot change its answer",
+          "passed": false,
+          "baseline_edges": 1476,
+          "mutated_edges": 1476
+        }
+      ]
+    },
+    "code-review-graph": {
+      "version": "2.3.7",
+      "scores": [
+        {
+          "mutation": "m1",
+          "kind": "decoy_twin",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_at_decoy": 0,
+          "sites_retargeted": 0,
+          "call_sites_naming_symbol": 319,
+          "baseline_edges_to_symbol": 0,
+          "rate": 0.0,
+          "vacuous": true,
+          "vacuous_because": "this arm resolved no edge to the original symbol, so a decoy of it cannot capture anything",
+          "passed": false,
+          "sample": [],
+          "baseline_edges": 105,
+          "mutated_edges": 105
+        },
+        {
+          "mutation": "m2",
+          "kind": "consistent_rename",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_lost": 0,
+          "edges_gained": 0,
+          "baseline_edges_touching_symbol": 0,
+          "unrelated_drift": 0,
+          "rate": null,
+          "vacuous": true,
+          "vacuous_because": "no baseline edge names this symbol, so renaming it everywhere cannot change this arm's answer. For an arm whose callee identity is not the source-level name (graphify emits snake_case node ids), this means the rename is untestable as scored here, NOT that the arm is rename-invariant",
+          "passed": false,
+          "sample_lost": [],
+          "sample_gained": [],
+          "baseline_edges": 105,
+          "mutated_edges": 105
+        },
+        {
+          "mutation": "m3",
+          "kind": "shadowing",
+          "symbol": "secrets",
+          "correct_answer": "at least one baseline target dropped",
+          "site_baseline": "cmd/generate/config/rules/jfrog.go:62",
+          "site_mutated": "cmd/generate/config/rules/jfrog.go:64",
+          "shadowed_import": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets",
+          "was_bound_at_baseline": [],
+          "targets_now": [],
+          "targets_dropped": [],
+          "vacuous": true,
+          "vacuous_because": "this arm bound nothing at the site in the unmutated tree, so the mutation cannot change its answer",
+          "passed": false,
+          "baseline_edges": 105,
+          "mutated_edges": 105
         }
       ]
     }

@@ -523,6 +523,14 @@ def apply_m3(root: Path, seed: int, rng: Random) -> dict:
     new_src = src[:insert_at] + payload + src[insert_at:]
     path.write_bytes(new_src)
 
+    # This insertion pushes every line below it down, so the call site the
+    # scorer has to look at is NOT at `call_line` in the mutated tree. Without
+    # these two fields a scorer compares (file, line) across the two trees and
+    # silently reads a different call expression -- which is what happened, and
+    # what made a resolver that plainly fails this mutation look like it passed.
+    lines_inserted = payload.count(eol)
+    insert_after_line = src[:insert_at].count(eol) + 1
+
     return {
         "id": "m3",
         "kind": "shadowing",
@@ -530,7 +538,19 @@ def apply_m3(root: Path, seed: int, rng: Random) -> dict:
         "symbol": chosen.pkg_ident,
         "shadowed_import": chosen.import_path,
         "function": chosen.func_name,
-        "call_site": {"file": chosen.file, "line": chosen.call_line},
+        "call_site": {
+            "file": chosen.file,
+            # `line` is the site in the UNMUTATED tree; `line_mutated` is the
+            # same call expression after the insertion pushed it down.
+            "line": chosen.call_line,
+            "line_mutated": (
+                chosen.call_line + lines_inserted
+                if chosen.call_line > insert_after_line
+                else chosen.call_line
+            ),
+        },
+        "lines_inserted": lines_inserted,
+        "insert_after_line": insert_after_line,
         "files_touched": [chosen.file],
     }
 
