@@ -175,3 +175,9 @@ mcp_configs/
 
 # Graph-quality scratch: per-run repo copies, multi-GB, always regenerable.
 /scratch_graph/
+
+# Prebuilt competitor artifacts (graph/lib/artifact_cache.py). Rebuildable from
+# corpus.lock by graph/experiments/prebuild_artifacts.py, and already 716 MB
+# part-way through one sweep -- an index is evidence only while it sits beside
+# the tool version and pin that produced it, both of which are in meta.json.
+/artifacts/
