@@ -72,8 +72,29 @@ def main() -> int:
         want = set(args.languages.split(","))
         rows = [r for r in rows if r.get("language") in want]
 
-    oversize = [r for r in rows if r["files"] > args.max_files]
-    rows = [r for r in rows if r["files"] <= args.max_files]
+    # The size cap exists to stop spares costing an hour each. It must not
+    # delete a per-language claim: if a (language, kind) slot has no
+    # under-cap repository at all, its smallest repository is kept however
+    # large, because the alternative is a G7 table that quietly has no Rust
+    # framework row and no PHP framework row and looks complete.
+    under = {r["name"] for r in rows if r["files"] <= args.max_files}
+    covered = {
+        (r["language"], r["kind"]) for r in rows if r["name"] in under
+    }
+    kept_oversize: list[dict] = []
+    for slot in sorted({(r["language"], r["kind"]) for r in rows} - covered):
+        candidates = [r for r in rows if (r["language"], r["kind"]) == slot]
+        kept_oversize.append(min(candidates, key=lambda r: r["files"]))
+    keep = under | {r["name"] for r in kept_oversize}
+
+    oversize = [r for r in rows if r["name"] not in keep]
+    rows = [r for r in rows if r["name"] in keep]
+    if kept_oversize:
+        print(
+            "kept over the cap as the only repository in its (language, kind): "
+            + ", ".join(f"{r['name']}({r['files']}, {r['language']}/{r['kind']})"
+                        for r in sorted(kept_oversize, key=lambda r: r["files"]))
+        )
     rows.sort(key=lambda r: r["files"])  # cheapest first, so a broken arm shows early
 
     test_repos = Path(args.test_repos).resolve()
