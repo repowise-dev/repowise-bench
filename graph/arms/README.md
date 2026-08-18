@@ -12,8 +12,16 @@ be re-read from source before being quoted.
 |---|---|---|---|---|
 | **repowise** | main | `.repowise/` | yes | us |
 | **CodeGraph** | `@colbymchenry/codegraph@1.5.0` | SQLite, `.codegraph/codegraph.db` | yes | the only tool with a frozen index on our corpus, and the only one publishing a coverage table |
-| **Graphify** | `v0.9.46` (2026-08-17) | `graph.json` | yes, `graphify query` | already an arm in the retrieval head-to-head |
+| **Graphify** | **`0.9.31`**, what `uv tool install` resolved | `graph.json` | yes, `graphify query` | already an arm in the retrieval head-to-head |
 | **code-review-graph** | `v2.3.7` (2026-07-18) | SQLite, `.code-review-graph/` | yes | already an arm, and the only competitor publishing an accuracy figure at all |
+| **codebase-memory-mcp** | `v0.10.6` (2026-08-17) | SQLite, `${CBM_CACHE_DIR}/<project>.db` | yes | native single binary, no language runtime; **does not run on the measurement machine** -- see [its page](codebase-memory-mcp.md) |
+
+**Graphify's version is 0.9.31, not the 0.9.46 this table used to say.** The
+survey read 0.9.46 off the release page on the day it was written; `uv tool
+install` resolved 0.9.31, and 0.9.31 is what produced every number here. A
+version recorded from a release page rather than from the installed binary is
+how a benchmark becomes unreconcilable a week later, and this table was an
+example of it.
 
 `v1.5.0` is CodeGraph's current tagged release and matches the binary that wrote
 every frozen index in `test-repos/`, so this benchmark is already running against
@@ -70,9 +78,15 @@ against an external oracle.**
   its own index.
 * Graphify publishes LOCOMO and LongMemEval scores, which measure a memory system
   built on the graph rather than the graph.
-* code-review-graph publishes an F1 of 0.69 and precision of 0.546, scored
-  against "graph-derived ground truth", which is its own graph. Self-consistency,
-  not correctness.
+* code-review-graph publishes, **in 2.3.7**, an average F1 of 0.714 and average
+  precision of 0.578 across 13 commits, with recall 1.000, scored against
+  "graph-derived ground truth" -- its own graph. Self-consistency, not
+  correctness, and **they say so themselves**: "circular by construction" and
+  "an upper bound, not independent evidence" are their words, in both the
+  shipped README and `eval/benchmarks/impact_accuracy.py`. They also ship an
+  honest non-circular mode and decline to quote it before measuring it. (The
+  0.69/0.546 pair this page used to carry appears nowhere in 2.3.7 and should
+  not be quoted.)
 * Serena, cocoindex, Blarify and potpie publish no accuracy figures at all.
 
 There is real prior art in the literature to anchor against, and it is not being
