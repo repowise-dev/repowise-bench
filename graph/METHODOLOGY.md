@@ -80,6 +80,19 @@ below three repositories is printed as carrying no language-level claim instead
 of being averaged in with the rest.
 
 
+
+**14. Every control and every delta is reported per source language, not per
+repository.** A repository is not a language. `ktor` lost 28 call edges between
+`2dcd2ac5` and `58576af0` and every one of them came from its **8 embedded `.rs`
+files** -- its Kotlin-sourced edges were byte-identical across the pair. Read
+per repository that is "ktor changed", which invites the wrong explanation; read
+per source language it is "the Rust fix did exactly what it said and Kotlin was
+untouched", which is the truth. So a "control repository is byte-identical"
+claim means nothing on its own: at least one repository in this corpus is not
+monolingual, and the languages inside it move independently. Split every control
+and every before/after by the language of the *calling* file before quoting it.
+
+
 ## Cost is measured on the graph, and only the graph
 
 Our published indexing-time row in [docs/BENCHMARKS.md §6](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md)
