@@ -87,6 +87,65 @@ benchmark that only reports the columns its author wins is not evidence.
 * **Two heavy parses at once will exhaust memory** on the measurement machine.
   Parse serially.
 
+## How results are reported
+
+The measurement rules above stop a number being wrong. These stop a page of
+correct numbers reading as an advertisement, which is a separate failure and a
+more likely one, because the author is also the tool's author.
+
+**1. Every headline number ships with three things**: the mechanism that
+explains it, the caveat that runs against us, and what we did not measure. A
+number with only the first is marketing. The clearest example on this page is
+build cost — we are faster to build the graph, we do not persist an index while
+CodeGraph writes 115 MB of SQLite, and we have not measured incremental re-sync,
+which is their actual claim and the one we expect to lose.
+
+**2. Reproduce a competitor's metric faithfully before criticising it.** G2 is
+CodeGraph's own coverage metric, computed on their index by our script, and we
+went looking for the reading that *does* reproduce their published table rather
+than stopping at "it does not". A critique that cannot first reproduce the thing
+it attacks is not evidence.
+
+**3. Never claim a win on a metric that is saturated.** Five of six repositories
+sit above 0.9 on the either-direction reading. A lead there is noise, and
+reporting one would be the same sin this page documents in others.
+
+**4. Ties are called ties.** Overlapping 95% intervals are never written up as a
+lead, and this is enforced in code rather than remembered: `stats.overlaps` is
+the gate, and `stats.diff_significant` is the sharper test where overlap is too
+blunt. gitleaks and caffeine are ties. The pooled precision gap is not.
+
+**5. Untestable is not a pass.** An arm that resolved nothing cannot be fooled by
+a decoy, cannot lose an edge to a rename, and cannot drop one at a shadowed
+site. G5 reports `vacuous` and never counts it as a pass, because the
+alternative ranks a tool that resolves nothing above one that resolves almost
+everything.
+
+**6. State what our own normalisation did to a competitor's number.** Two
+choices in this benchmark move a competitor's figures substantially: we filter
+code-review-graph's `CALLS` rows to those that resolve, because it stores
+unresolved callees in the same table, and we run Graphify `--code-only` because
+no other arm calls a language model. Both are argued in `arms/`, and the counts
+either way are in every result file, so a reader who disagrees can recompute
+rather than take our word.
+
+**7. Name the cells where we are worst, in the same table as the wins.** zod,
+Java precision, M3 shadowing and incremental re-sync are all ours to lose and
+all appear by name.
+
+**8. A correction goes in the body, not a changelog.** Two of this benchmark's
+results moved against us on the day they were checked properly — the caffeine
+coverage cell and the claim that we lose on build cost. Both are in the README's
+result sections where a first-time reader meets them, not in a footnote. This is
+the single most useful thing on the page for a skeptical reader, because it is
+evidence the harness is not tuned toward a conclusion.
+
+**9. If a table has us ahead in every column, treat that as a bug in the table.**
+No honest comparison of four real tools comes out clean, and a sweep is far more
+likely to mean a denominator is wrong, a competitor is misconfigured, or a
+metric is measuring what we happen to do. The caffeine row looked like our
+clearest win until the denominator was checked.
+
 ## Known weaknesses we publish rather than wait to be caught on
 
 * **Java is our least precise language and our largest edge count.** Roughly 67%
@@ -104,3 +163,18 @@ benchmark that only reports the columns its author wins is not evidence.
   wrong alongside class-level errors. Grading it separately moves the peer's
   Ocelot and caffeine cells up by 3 and 4 rows. Stating the choice beats letting
   a reader find it.
+* **zod is our worst cell against any arm.** We find 269 symbol-bearing
+  TypeScript files against a 401-file population; Graphify finds 401,
+  code-review-graph 320, CodeGraph 291. Three of four arms beat us there, and
+  unlike caffeine there is no denominator story that explains it away.
+* **We fail G5's shadowing mutation.** After a local identifier shadows an
+  imported package, we still bind the call through it. CodeGraph fails
+  identically, but "nobody passes" is not "we pass".
+* **We have not measured incremental re-sync**, which is CodeGraph's headline
+  claim — roughly 0.3s to fold one saved file into a 4,400-file project. We
+  expect to lose it. Quoting our cold-build result against that claim would be
+  answering a question nobody asked.
+* **Our own central argument currently indicts us too.** This benchmark exists
+  because nobody publishes a graph-correctness number against an external
+  oracle. G4 is the experiment that would fix that, and it is designed and not
+  built, so today we are in the same position as everyone we are describing.
