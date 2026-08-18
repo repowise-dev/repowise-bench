@@ -1,0 +1,107 @@
+{
+  "schema": "graph-result/1",
+  "experiments": [
+    "g5-invariance"
+  ],
+  "provenance": {
+    "experiment": "g5",
+    "run_at": "2026-08-18T06:13:22+00:00",
+    "publishable": true,
+    "repowise": {
+      "path": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean\\packages",
+      "head": "3594ba75547b8821b01e321928bda55df905fcea",
+      "head_short": "3594ba75",
+      "branch": "HEAD",
+      "describe": "vscode-v0.8.0-62-g3594ba75",
+      "dirty": false,
+      "dirty_paths": [],
+      "dirty_scope": [
+        "packages"
+      ]
+    },
+    "bench": {
+      "path": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench",
+      "head": "e57cac96634417cb425e184341c3f4e765d15b54",
+      "head_short": "e57cac9",
+      "branch": "bench/graph-quality",
+      "describe": "e57cac9",
+      "dirty": true,
+      "dirty_paths": [
+        "graph/experiments/g5-invariance/mutate.py",
+        "graph/experiments/g5-invariance/score.py",
+        "results/graph/g2g6/"
+      ],
+      "dirty_scope": null
+    },
+    "tools": {
+      "python": "3.13.5",
+      "platform": "Windows 11",
+      "codegraph": "1.5.0"
+    },
+    "repo": "gitleaks",
+    "seed": 2026,
+    "mutations": [
+      "m1",
+      "m2",
+      "m3"
+    ]
+  },
+  "arms": {
+    "repowise": {
+      "version": "3594ba75",
+      "scores": [
+        {
+          "mutation": "m1",
+          "kind": "decoy_twin",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_at_decoy": 0,
+          "sites_retargeted": 0,
+          "call_sites_naming_symbol": 319,
+          "rate": 0.0,
+          "passed": true,
+          "sample": [],
+          "baseline_edges": 2286,
+          "mutated_edges": 2286
+        },
+        {
+          "mutation": "m2",
+          "kind": "consistent_rename",
+          "symbol": "NewSecret",
+          "correct_answer": 0,
+          "edges_lost": 0,
+          "edges_gained": 0,
+          "baseline_edges_touching_symbol": 284,
+          "unrelated_drift": 0,
+          "rate": 0.0,
+          "passed": true,
+          "sample_lost": [],
+          "sample_gained": [],
+          "baseline_edges": 2286,
+          "mutated_edges": 2286
+        },
+        {
+          "mutation": "m3",
+          "kind": "shadowing",
+          "symbol": "secrets",
+          "correct_answer": 0,
+          "site": "cmd/generate/config/rules/jfrog.go:62",
+          "shadowed_import": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets",
+          "was_bound_at_baseline": [
+            "cmd.generate.config.utils.patterns.AlphaNumeric",
+            "cmd.generate.secrets.regen.NewSecret"
+          ],
+          "still_bound_to_import": 1,
+          "targets_now": [
+            "cmd.generate.config.utils.generate.GenerateSampleSecrets",
+            "cmd.generate.config.utils.patterns.AlphaNumeric",
+            "cmd.generate.secrets.regen.NewSecret"
+          ],
+          "passed": false,
+          "baseline_edges": 2286,
+          "mutated_edges": 2286
+        }
+      ]
+    }
+  }
+}

@@ -488,8 +488,20 @@ def apply_m3(root: Path, seed: int, rng: Random) -> dict:
     chosen = _pick_with_seed_obj(candidates, rng)
 
     path = root / chosen.file
-    text = path.read_text(encoding="utf-8")
-    src = text.encode("utf-8")
+    # BYTES, not text. `block_start_byte` was computed by tree-sitter over
+    # `path.read_bytes()`, so it indexes the file as it sits on disk, CRLF and
+    # all. Reading it back with `read_text` collapses every CRLF to one LF, so
+    # the same logical position sits one byte earlier per preceding line and
+    # the offset lands that many bytes too far along -- 37 lines in, 37 bytes
+    # into the wrong statement.
+    #
+    # Not hypothetical: this split the string literal in jfrog.go's
+    # `[]string{"jfrog", "artifactory", ...}` into `"art` + the inserted
+    # statement + `ifactory"`, and `gofmt -e` rejected the file. It went
+    # unnoticed because the combined m1,m2,m3 run picks a different candidate,
+    # one where the drift happened to land somewhere still parseable -- so the
+    # syntax gate passed while the shadow statement sat in the wrong scope.
+    src = path.read_bytes()
     # Insert immediately after the enclosing block's opening `{`, as a new
     # first statement, so every call to `pkg_ident.X(...)` later in that
     # block sees the local instead of the import. `_ = ident` keeps the
@@ -502,8 +514,14 @@ def apply_m3(root: Path, seed: int, rng: Random) -> dict:
         f'// g5-mutation: shadows import "{chosen.import_path}"\n'
         f"\t_ = {chosen.pkg_ident}"
     )
-    new_src = src[:insert_at] + shadow_stmt.encode("utf-8") + src[insert_at:]
-    path.write_text(new_src.decode("utf-8"), encoding="utf-8", newline="\n")
+    # The inserted statement takes the line ending the file already uses, so a
+    # CRLF file stays CRLF and the mutation is a pure insertion. Writing bytes
+    # back also leaves every unrelated line untouched, which is what makes
+    # "the only difference is the mutation" true rather than approximately so.
+    eol = b"\r\n" if src.count(b"\r\n") * 2 > src.count(b"\n") else b"\n"
+    payload = shadow_stmt.encode("utf-8").replace(b"\n", eol)
+    new_src = src[:insert_at] + payload + src[insert_at:]
+    path.write_bytes(new_src)
 
     return {
         "id": "m3",
