@@ -56,14 +56,41 @@ def _fmt(rate, low=None, high=None) -> str:
 
 
 def _provenance_line(doc: dict) -> str:
+    """Provenance, distinguishing what a caveat actually invalidates.
+
+    `publishable` is one document-level boolean and it is deliberately
+    conservative, so a run whose only defect is a cached *cost* row reads the
+    same as one measured against somebody's half-finished working tree. Those
+    are not the same claim. Coverage depends on the sets an artifact yields,
+    and neither a skipped warmup nor a restored artifact changes one -- the
+    restore is byte-exact on every protocol set and `smoke.py` asserts it.
+
+    So the line separates them: a dirty tree invalidates everything, while a
+    cached peer or a skipped warmup invalidates only cost. Anything else
+    unknown falls back to the blanket warning rather than being assumed benign.
+    """
     p = doc["provenance"]
     bits = [
         f"Measured at `{p['repowise']['head_short']}`",
+        f"{p['repowise'].get('version') or 'version not stamped'}",
         f"run {p['run_at'][:10]}",
         f"warmup {'on' if p.get('warmup') else 'OFF'}",
     ]
     if not p["publishable"]:
-        bits.append("**NOT PUBLISHABLE**")
+        cost_only = not p["repowise"].get("dirty", True) and not any(
+            "allow-dirty" in c for c in p.get("caveats", [])
+        )
+        if cost_only and (p.get("cost_from_cache") or not p.get("warmup")):
+            why = []
+            if p.get("cost_from_cache"):
+                why.append("competitor artifacts restored from cache")
+            if not p.get("warmup"):
+                why.append("no warmup")
+            bits.append(
+                "coverage stands, **cost NOT PUBLISHABLE** (" + ", ".join(why) + ")"
+            )
+        else:
+            bits.append("**NOT PUBLISHABLE**")
     # ASCII separator: this prints to a cp1252 console on the measurement
     # machine, where a middot comes out as a replacement character.
     return " | ".join(bits)

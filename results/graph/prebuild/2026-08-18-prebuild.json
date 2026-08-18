@@ -1,0 +1,1350 @@
+{
+  "schema": "prebuild/1",
+  "arms": [
+    "codegraph",
+    "graphify",
+    "code-review-graph"
+  ],
+  "max_files": 2000,
+  "skipped_oversize": [
+    "django",
+    "dub",
+    "hugo"
+  ],
+  "log": [
+    {
+      "repo": "cobra",
+      "arm": "codegraph",
+      "status": "hit"
+    },
+    {
+      "repo": "cobra",
+      "arm": "graphify",
+      "status": "hit"
+    },
+    {
+      "repo": "cobra",
+      "arm": "code-review-graph",
+      "status": "hit"
+    },
+    {
+      "repo": "spring-petclinic",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "counts": {
+        "files_seen": 72,
+        "symbol_files": 50,
+        "call_edges": 250,
+        "cross_file_edges": 72
+      }
+    },
+    {
+      "repo": "spring-petclinic",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "counts": {
+        "files_seen": 61,
+        "symbol_files": 51,
+        "call_edges": 162,
+        "cross_file_edges": 52
+      }
+    },
+    {
+      "repo": "spring-petclinic",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "counts": {
+        "files_seen": 59,
+        "symbol_files": 50,
+        "call_edges": 86,
+        "cross_file_edges": 5
+      }
+    },
+    {
+      "repo": "requests",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "counts": {
+        "files_seen": 49,
+        "symbol_files": 34,
+        "call_edges": 810,
+        "cross_file_edges": 67
+      }
+    },
+    {
+      "repo": "requests",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "counts": {
+        "files_seen": 39,
+        "symbol_files": 38,
+        "call_edges": 574,
+        "cross_file_edges": 42
+      }
+    },
+    {
+      "repo": "requests",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "counts": {
+        "files_seen": 37,
+        "symbol_files": 30,
+        "call_edges": 284,
+        "cross_file_edges": 3
+      }
+    },
+    {
+      "repo": "fmt",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "counts": {
+        "files_seen": 93,
+        "symbol_files": 73,
+        "call_edges": 8768,
+        "cross_file_edges": 249
+      }
+    },
+    {
+      "repo": "fmt",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "counts": {
+        "files_seen": 83,
+        "symbol_files": 83,
+        "call_edges": 2483,
+        "cross_file_edges": 92
+      }
+    },
+    {
+      "repo": "fmt",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "counts": {
+        "files_seen": 80,
+        "symbol_files": 71,
+        "call_edges": 3279,
+        "cross_file_edges": 2
+      }
+    },
+    {
+      "repo": "faraday",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "counts": {
+        "files_seen": 78,
+        "symbol_files": 63,
+        "call_edges": 336,
+        "cross_file_edges": 73
+      }
+    },
+    {
+      "repo": "faraday",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "counts": {
+        "files_seen": 75,
+        "symbol_files": 75,
+        "call_edges": 207,
+        "cross_file_edges": 23
+      }
+    },
+    {
+      "repo": "faraday",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "counts": {
+        "files_seen": 71,
+        "symbol_files": 40,
+        "call_edges": 0,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "leveldb",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "counts": {
+        "files_seen": 134,
+        "symbol_files": 122,
+        "call_edges": 5603,
+        "cross_file_edges": 561
+      }
+    },
+    {
+      "repo": "leveldb",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "counts": {
+        "files_seen": 134,
+        "symbol_files": 134,
+        "call_edges": 1455,
+        "cross_file_edges": 197
+      }
+    },
+    {
+      "repo": "leveldb",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "counts": {
+        "files_seen": 133,
+        "symbol_files": 130,
+        "call_edges": 2851,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "guzzle",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "counts": {
+        "files_seen": 136,
+        "symbol_files": 131,
+        "call_edges": 5828,
+        "cross_file_edges": 305
+      }
+    },
+    {
+      "repo": "guzzle",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "counts": {
+        "files_seen": 136,
+        "symbol_files": 135,
+        "call_edges": 1111,
+        "cross_file_edges": 111
+      }
+    },
+    {
+      "repo": "guzzle",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "counts": {
+        "files_seen": 132,
+        "symbol_files": 131,
+        "call_edges": 7035,
+        "cross_file_edges": 265
+      }
+    },
+    {
+      "repo": "taxonomy",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "counts": {
+        "files_seen": 132,
+        "symbol_files": 118,
+        "call_edges": 388,
+        "cross_file_edges": 187
+      }
+    },
+    {
+      "repo": "taxonomy",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "counts": {
+        "files_seen": 140,
+        "symbol_files": 136,
+        "call_edges": 106,
+        "cross_file_edges": 69
+      }
+    },
+    {
+      "repo": "taxonomy",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "counts": {
+        "files_seen": 135,
+        "symbol_files": 86,
+        "call_edges": 320,
+        "cross_file_edges": 143
+      }
+    },
+    {
+      "repo": "Crow",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "counts": {
+        "files_seen": 85,
+        "symbol_files": 66,
+        "call_edges": 1867,
+        "cross_file_edges": 190
+      }
+    },
+    {
+      "repo": "Crow",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "counts": {
+        "files_seen": 89,
+        "symbol_files": 78,
+        "call_edges": 387,
+        "cross_file_edges": 15
+      }
+    },
+    {
+      "repo": "Crow",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "counts": {
+        "files_seen": 76,
+        "symbol_files": 65,
+        "call_edges": 544,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "ripgrep",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "counts": {
+        "files_seen": 118,
+        "symbol_files": 93,
+        "call_edges": 9102,
+        "cross_file_edges": 553
+      }
+    },
+    {
+      "repo": "ripgrep",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "counts": {
+        "files_seen": 119,
+        "symbol_files": 115,
+        "call_edges": 3206,
+        "cross_file_edges": 21
+      }
+    },
+    {
+      "repo": "ripgrep",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "counts": {
+        "files_seen": 120,
+        "symbol_files": 93,
+        "call_edges": 4110,
+        "cross_file_edges": 97
+      }
+    },
+    {
+      "repo": "sinatra",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "counts": {
+        "files_seen": 159,
+        "symbol_files": 127,
+        "call_edges": 853,
+        "cross_file_edges": 166
+      }
+    },
+    {
+      "repo": "sinatra",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "counts": {
+        "files_seen": 147,
+        "symbol_files": 145,
+        "call_edges": 623,
+        "cross_file_edges": 68
+      }
+    },
+    {
+      "repo": "sinatra",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "counts": {
+        "files_seen": 147,
+        "symbol_files": 99,
+        "call_edges": 0,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "serde",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "counts": {
+        "files_seen": 210,
+        "symbol_files": 196,
+        "call_edges": 3754,
+        "cross_file_edges": 227
+      }
+    },
+    {
+      "repo": "serde",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "counts": {
+        "files_seen": 208,
+        "symbol_files": 203,
+        "call_edges": 1132,
+        "cross_file_edges": 34
+      }
+    },
+    {
+      "repo": "serde",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "counts": {
+        "files_seen": 208,
+        "symbol_files": 197,
+        "call_edges": 1952,
+        "cross_file_edges": 92
+      }
+    },
+    {
+      "repo": "gitleaks",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "8ad8470035d31a209322c580153b45c18e21b980",
+      "counts": {
+        "files_seen": 225,
+        "symbol_files": 214,
+        "call_edges": 2058,
+        "cross_file_edges": 725
+      }
+    },
+    {
+      "repo": "gitleaks",
+      "arm": "graphify",
+      "status": "failed",
+      "error": "PermissionError: [WinError 5] Access is denied: 'C:\\\\Users\\\\ragha\\\\Desktop\\\\repowise\\\\repowise-bench\\\\artifacts\\\\graphify-0.9.31\\\\gitleaks-8ad84700.partial' -> 'C:\\\\Users\\\\ragha\\\\Desktop\\\\repowise\\\\repowise-bench\\\\artifacts\\\\graphify-0.9.31\\\\gitleaks-8ad84700'"
+    },
+    {
+      "repo": "gitleaks",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "8ad8470035d31a209322c580153b45c18e21b980",
+      "counts": {
+        "files_seen": 216,
+        "symbol_files": 212,
+        "call_edges": 105,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "eShopOnWeb",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "counts": {
+        "files_seen": 324,
+        "symbol_files": 251,
+        "call_edges": 348,
+        "cross_file_edges": 152
+      }
+    },
+    {
+      "repo": "eShopOnWeb",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "counts": {
+        "files_seen": 354,
+        "symbol_files": 331,
+        "call_edges": 220,
+        "cross_file_edges": 59
+      }
+    },
+    {
+      "repo": "eShopOnWeb",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "counts": {
+        "files_seen": 255,
+        "symbol_files": 251,
+        "call_edges": 103,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "hono",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "counts": {
+        "files_seen": 401,
+        "symbol_files": 274,
+        "call_edges": 9594,
+        "cross_file_edges": 955
+      }
+    },
+    {
+      "repo": "hono",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "counts": {
+        "files_seen": 423,
+        "symbol_files": 414,
+        "call_edges": 586,
+        "cross_file_edges": 121
+      }
+    },
+    {
+      "repo": "hono",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "counts": {
+        "files_seen": 363,
+        "symbol_files": 291,
+        "call_edges": 6947,
+        "cross_file_edges": 371
+      }
+    },
+    {
+      "repo": "javalin",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "counts": {
+        "files_seen": 419,
+        "symbol_files": 368,
+        "call_edges": 7999,
+        "cross_file_edges": 1356
+      }
+    },
+    {
+      "repo": "javalin",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "counts": {
+        "files_seen": 413,
+        "symbol_files": 409,
+        "call_edges": 2096,
+        "cross_file_edges": 322
+      }
+    },
+    {
+      "repo": "javalin",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "counts": {
+        "files_seen": 391,
+        "symbol_files": 364,
+        "call_edges": 2270,
+        "cross_file_edges": 142
+      }
+    },
+    {
+      "repo": "CleanArchitecture",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "counts": {
+        "files_seen": 374,
+        "symbol_files": 345,
+        "call_edges": 364,
+        "cross_file_edges": 203
+      }
+    },
+    {
+      "repo": "CleanArchitecture",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "counts": {
+        "files_seen": 428,
+        "symbol_files": 396,
+        "call_edges": 198,
+        "cross_file_edges": 92
+      }
+    },
+    {
+      "repo": "CleanArchitecture",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "counts": {
+        "files_seen": 370,
+        "symbol_files": 350,
+        "call_edges": 2460,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "Alamofire",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "counts": {
+        "files_seen": 114,
+        "symbol_files": 106,
+        "call_edges": 4657,
+        "cross_file_edges": 369
+      }
+    },
+    {
+      "repo": "Alamofire",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "counts": {
+        "files_seen": 131,
+        "symbol_files": 104,
+        "call_edges": 2624,
+        "cross_file_edges": 133
+      }
+    },
+    {
+      "repo": "Alamofire",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "counts": {
+        "files_seen": 104,
+        "symbol_files": 100,
+        "call_edges": 1920,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "zod",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "counts": {
+        "files_seen": 421,
+        "symbol_files": 293,
+        "call_edges": 12884,
+        "cross_file_edges": 807
+      }
+    },
+    {
+      "repo": "zod",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "counts": {
+        "files_seen": 443,
+        "symbol_files": 436,
+        "call_edges": 480,
+        "cross_file_edges": 11
+      }
+    },
+    {
+      "repo": "zod",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "counts": {
+        "files_seen": 407,
+        "symbol_files": 321,
+        "call_edges": 2847,
+        "cross_file_edges": 183
+      }
+    },
+    {
+      "repo": "scrapy",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "counts": {
+        "files_seen": 455,
+        "symbol_files": 420,
+        "call_edges": 8700,
+        "cross_file_edges": 1514
+      }
+    },
+    {
+      "repo": "scrapy",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "counts": {
+        "files_seen": 446,
+        "symbol_files": 444,
+        "call_edges": 4995,
+        "cross_file_edges": 746
+      }
+    },
+    {
+      "repo": "scrapy",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "counts": {
+        "files_seen": 444,
+        "symbol_files": 410,
+        "call_edges": 7277,
+        "cross_file_edges": 908
+      }
+    },
+    {
+      "repo": "seastar",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "counts": {
+        "files_seen": 276,
+        "symbol_files": 263,
+        "call_edges": 11195,
+        "cross_file_edges": 1292
+      }
+    },
+    {
+      "repo": "seastar",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "counts": {
+        "files_seen": 284,
+        "symbol_files": 281,
+        "call_edges": 3048,
+        "cross_file_edges": 241
+      }
+    },
+    {
+      "repo": "seastar",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "counts": {
+        "files_seen": 563,
+        "symbol_files": 521,
+        "call_edges": 8158,
+        "cross_file_edges": 4
+      }
+    },
+    {
+      "repo": "jekyll",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "counts": {
+        "files_seen": 219,
+        "symbol_files": 165,
+        "call_edges": 1587,
+        "cross_file_edges": 451
+      }
+    },
+    {
+      "repo": "jekyll",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "counts": {
+        "files_seen": 208,
+        "symbol_files": 202,
+        "call_edges": 832,
+        "cross_file_edges": 179
+      }
+    },
+    {
+      "repo": "jekyll",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "counts": {
+        "files_seen": 197,
+        "symbol_files": 166,
+        "call_edges": 6,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "celery",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "counts": {
+        "files_seen": 435,
+        "symbol_files": 372,
+        "call_edges": 13301,
+        "cross_file_edges": 1642
+      }
+    },
+    {
+      "repo": "celery",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "counts": {
+        "files_seen": 431,
+        "symbol_files": 422,
+        "call_edges": 7104,
+        "cross_file_edges": 605
+      }
+    },
+    {
+      "repo": "celery",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "counts": {
+        "files_seen": 430,
+        "symbol_files": 352,
+        "call_edges": 10206,
+        "cross_file_edges": 521
+      }
+    },
+    {
+      "repo": "caffeine",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "counts": {
+        "files_seen": 785,
+        "symbol_files": 694,
+        "call_edges": 38597,
+        "cross_file_edges": 2604
+      }
+    },
+    {
+      "repo": "caffeine",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "counts": {
+        "files_seen": 734,
+        "symbol_files": 718,
+        "call_edges": 18465,
+        "cross_file_edges": 1203
+      }
+    },
+    {
+      "repo": "caffeine",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "counts": {
+        "files_seen": 682,
+        "symbol_files": 548,
+        "call_edges": 14504,
+        "cross_file_edges": 484
+      }
+    },
+    {
+      "repo": "Ocelot",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "counts": {
+        "files_seen": 772,
+        "symbol_files": 733,
+        "call_edges": 9383,
+        "cross_file_edges": 1362
+      }
+    },
+    {
+      "repo": "Ocelot",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "counts": {
+        "files_seen": 875,
+        "symbol_files": 819,
+        "call_edges": 5395,
+        "cross_file_edges": 532
+      }
+    },
+    {
+      "repo": "Ocelot",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "counts": {
+        "files_seen": 777,
+        "symbol_files": 731,
+        "call_edges": 2665,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "Polly",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "counts": {
+        "files_seen": 834,
+        "symbol_files": 787,
+        "call_edges": 6083,
+        "cross_file_edges": 1357
+      }
+    },
+    {
+      "repo": "Polly",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "counts": {
+        "files_seen": 844,
+        "symbol_files": 827,
+        "call_edges": 1742,
+        "cross_file_edges": 437
+      }
+    },
+    {
+      "repo": "Polly",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "counts": {
+        "files_seen": 804,
+        "symbol_files": 785,
+        "call_edges": 1155,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "nlohmann-json",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "counts": {
+        "files_seen": 523,
+        "symbol_files": 471,
+        "call_edges": 11903,
+        "cross_file_edges": 516
+      }
+    },
+    {
+      "repo": "nlohmann-json",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "counts": {
+        "files_seen": 506,
+        "symbol_files": 502,
+        "call_edges": 2161,
+        "cross_file_edges": 99
+      }
+    },
+    {
+      "repo": "nlohmann-json",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "counts": {
+        "files_seen": 501,
+        "symbol_files": 445,
+        "call_edges": 8100,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "Signal-Server",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "counts": {
+        "files_seen": 1287,
+        "symbol_files": 1260,
+        "call_edges": 24707,
+        "cross_file_edges": 4460
+      }
+    },
+    {
+      "repo": "Signal-Server",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "counts": {
+        "files_seen": 1287,
+        "symbol_files": 1266,
+        "call_edges": 13414,
+        "cross_file_edges": 2975
+      }
+    },
+    {
+      "repo": "Signal-Server",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "counts": {
+        "files_seen": 1261,
+        "symbol_files": 1117,
+        "call_edges": 12874,
+        "cross_file_edges": 1814
+      }
+    },
+    {
+      "repo": "aria2",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "counts": {
+        "files_seen": 1206,
+        "symbol_files": 1154,
+        "call_edges": 25472,
+        "cross_file_edges": 4115
+      }
+    },
+    {
+      "repo": "aria2",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "counts": {
+        "files_seen": 1208,
+        "symbol_files": 1208,
+        "call_edges": 4165,
+        "cross_file_edges": 959
+      }
+    },
+    {
+      "repo": "aria2",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "counts": {
+        "files_seen": 1208,
+        "symbol_files": 1172,
+        "call_edges": 3983,
+        "cross_file_edges": 0
+      }
+    },
+    {
+      "repo": "monica",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "counts": {
+        "files_seen": 1927,
+        "symbol_files": 1498,
+        "call_edges": 9613,
+        "cross_file_edges": 2770
+      }
+    },
+    {
+      "repo": "monica",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "counts": {
+        "files_seen": 1971,
+        "symbol_files": 1927,
+        "call_edges": 10006,
+        "cross_file_edges": 2124
+      }
+    },
+    {
+      "repo": "monica",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "counts": {
+        "files_seen": 1923,
+        "symbol_files": 1555,
+        "call_edges": 9467,
+        "cross_file_edges": 2150
+      }
+    },
+    {
+      "repo": "syft",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "counts": {
+        "files_seen": 1381,
+        "symbol_files": 1184,
+        "call_edges": 14326,
+        "cross_file_edges": 3605
+      }
+    },
+    {
+      "repo": "syft",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "counts": {
+        "files_seen": 1531,
+        "symbol_files": 1451,
+        "call_edges": 8171,
+        "cross_file_edges": 3099
+      }
+    },
+    {
+      "repo": "syft",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "counts": {
+        "files_seen": 1250,
+        "symbol_files": 1196,
+        "call_edges": 3939,
+        "cross_file_edges": 7
+      }
+    },
+    {
+      "repo": "bevy",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "counts": {
+        "files_seen": 1840,
+        "symbol_files": 1715,
+        "call_edges": 84946,
+        "cross_file_edges": 18894
+      }
+    },
+    {
+      "repo": "bevy",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "counts": {
+        "files_seen": 1832,
+        "symbol_files": 1826,
+        "call_edges": 16107,
+        "cross_file_edges": 1205
+      }
+    },
+    {
+      "repo": "bevy",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "counts": {
+        "files_seen": 1819,
+        "symbol_files": 1709,
+        "call_edges": 29050,
+        "cross_file_edges": 2386
+      }
+    },
+    {
+      "repo": "ktor",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "counts": {
+        "files_seen": 2593,
+        "symbol_files": 2362,
+        "call_edges": 56494,
+        "cross_file_edges": 13568
+      }
+    },
+    {
+      "repo": "ktor",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "counts": {
+        "files_seen": 2535,
+        "symbol_files": 2500,
+        "call_edges": 20525,
+        "cross_file_edges": 4152
+      }
+    },
+    {
+      "repo": "ktor",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "counts": {
+        "files_seen": 2354,
+        "symbol_files": 2261,
+        "call_edges": 11003,
+        "cross_file_edges": 22
+      }
+    },
+    {
+      "repo": "laravel-framework",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "counts": {
+        "files_seen": 3089,
+        "symbol_files": 2793,
+        "call_edges": 83359,
+        "cross_file_edges": 8877
+      }
+    },
+    {
+      "repo": "laravel-framework",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "counts": {
+        "files_seen": 3096,
+        "symbol_files": 3041,
+        "call_edges": 23179,
+        "cross_file_edges": 2250
+      }
+    },
+    {
+      "repo": "laravel-framework",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "counts": {
+        "files_seen": 3036,
+        "symbol_files": 2794,
+        "call_edges": 70713,
+        "cross_file_edges": 4391
+      }
+    },
+    {
+      "repo": "exposed",
+      "arm": "codegraph",
+      "status": "built",
+      "version": "1.5.0",
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "counts": {
+        "files_seen": 905,
+        "symbol_files": 796,
+        "call_edges": 30412,
+        "cross_file_edges": 4564
+      }
+    },
+    {
+      "repo": "exposed",
+      "arm": "graphify",
+      "status": "built",
+      "version": "0.9.31",
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "counts": {
+        "files_seen": 869,
+        "symbol_files": 826,
+        "call_edges": 8226,
+        "cross_file_edges": 1233
+      }
+    },
+    {
+      "repo": "exposed",
+      "arm": "code-review-graph",
+      "status": "built",
+      "version": "2.3.7",
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "counts": {
+        "files_seen": 805,
+        "symbol_files": 800,
+        "call_edges": 6085,
+        "cross_file_edges": 91
+      }
+    }
+  ]
+}
