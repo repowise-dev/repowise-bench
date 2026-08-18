@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -104,6 +105,8 @@ def store(
     d = slot(arm, arm_version, repo_name, pin)
     staging = d.with_name(d.name + ".partial")
     shutil.rmtree(staging, ignore_errors=True)
+    if staging.exists():  # rmtree swallowed a locked handle; do not stage over it
+        raise OSError(f"cannot clear a stale staging directory at {staging}")
     (staging / "payload").mkdir(parents=True, exist_ok=True)
     if payload.is_dir():
         shutil.copytree(payload, staging / "payload", dirs_exist_ok=True)
@@ -128,8 +131,36 @@ def store(
         encoding="utf-8",
     )
     shutil.rmtree(d, ignore_errors=True)
-    staging.rename(d)
+    _rename_with_retry(staging, d)
     return d
+
+
+def _rename_with_retry(staging: Path, dest: Path, attempts: int = 6) -> None:
+    """Publish the staged slot, retrying a Windows lock rather than losing it.
+
+    One graphify build in a 105-build sweep died here with `WinError 5` renaming
+    `gitleaks-8ad84700.partial` to a destination that **did not exist**, so it
+    was not a collision -- it was a transient handle on the staged directory,
+    the usual suspects being an antivirus scan or the search indexer opening
+    the freshly written files.
+
+    Losing the entry is not the real cost. The real cost is that the sweep
+    reports one FAILED row, the later run silently misses the cache and does a
+    full rebuild, and nobody connects the two. A few hundred milliseconds of
+    retry is cheaper than either.
+    """
+    delay = 0.2
+    for attempt in range(attempts):
+        try:
+            staging.rename(dest)
+            return
+        except OSError:
+            if attempt == attempts - 1:
+                raise
+            # A previous failed publish can also leave the destination behind.
+            shutil.rmtree(dest, ignore_errors=True)
+            time.sleep(delay)
+            delay *= 2
 
 
 def index() -> list[dict]:
