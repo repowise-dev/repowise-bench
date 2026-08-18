@@ -103,7 +103,7 @@ observed on gitleaks/Go). `resolved_call_edges` folds to distinct
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -203,6 +203,13 @@ class BuiltGraph:
     resolved_calls: list[tuple[str, int, str]]  # (file, line, target), raw — see resolved_call_edges
     parsed_count: int
     timings: BuildTimings
+    # Everything FileTraverser yielded, before parsing. Strictly a superset of
+    # parsed_files, which loses any file that could not be read off disk. The
+    # arms protocol's files_seen() is this set, not parsed_files: a tool must
+    # be credited with what it walked, and charged for what it walked and then
+    # made nothing of. The gap between this, symbol_bearing_files() and the
+    # peer's two equivalents is the whole caffeine 128-file measurement.
+    walked_files: set[str] = field(default_factory=set)
 
 
 def _symbol_id_to_qualified_name(parsed_files: dict[str, ParsedFile]) -> dict[str, str]:
@@ -283,6 +290,7 @@ def build_graph(repo_path: Path | str) -> BuiltGraph:
         resolved_calls=observed,
         parsed_count=len(parsed_files),
         timings=BuildTimings(walk=t1 - t0, parse=t2 - t1, build=t3 - t2),
+        walked_files={info.path for info in file_infos},
     )
 
 

@@ -94,12 +94,12 @@ def require(condition: bool, message: str) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--only", help="run one group: provenance, peer, ours, mutate")
+    ap.add_argument("--only", help="run one group: provenance, peer, ours, stats, arms, mutate")
     ap.add_argument("--list", action="store_true", help="list groups and exit")
     args = ap.parse_args()
 
     if args.list:
-        print("groups: provenance, peer, ours, mutate")
+        print("groups: provenance, peer, ours, stats, arms, mutate")
         return 0
 
     r = Runner(only=args.only)
@@ -221,10 +221,7 @@ def main() -> int:
     # ---------------------------------------------------------------------- ours
     @r.check("our graph builds and yields call edges", "ours")
     def _():
-        try:
-            import ours
-        except ModuleNotFoundError:
-            raise _Skip("graph/lib/ours.py not built yet") from None
+        ours = _import_ours()
         built = ours.build_graph(SMOKE_REPO)
         edges = ours.resolved_call_edges(built)
         require(len(edges) > 0, "our graph resolved zero call edges on gitleaks")
@@ -235,10 +232,7 @@ def main() -> int:
 
     @r.check("resolver wrap is restored", "ours")
     def _():
-        try:
-            import ours
-        except ModuleNotFoundError:
-            raise _Skip("graph/lib/ours.py not built yet") from None
+        ours = _import_ours()
         from repowise.core.ingestion import call_resolver as cr
 
         before = cr.CallResolver.resolve_file
@@ -249,6 +243,137 @@ def main() -> int:
             "this process would double-count",
         )
         return "original restored"
+
+    # --------------------------------------------------------------------- stats
+    @r.check("intervals reproduce the published audit", "stats")
+    def _():
+        import stats
+
+        # These six cells are printed in SYMMETRIC_PRECISION_AUDIT.md and in
+        # the substrate doc. If Wilson here stops reproducing them, either this
+        # module changed or those tables were never what they claimed.
+        published = {
+            (29, 30): (83.3, 99.4),
+            (20, 30): (48.8, 80.8),
+            (28, 30): (78.7, 98.2),
+            (7, 30): (11.8, 40.9),
+            (134, 150): (83.4, 93.3),
+            (93, 150): (54.0, 69.4),
+        }
+        for (k, n), (lo, hi) in published.items():
+            iv = stats.wilson(k, n)
+            require(
+                abs(iv.low * 100 - lo) < 0.05 and abs(iv.high * 100 - hi) < 0.05,
+                f"{k}/{n} -> [{iv.low * 100:.1f}, {iv.high * 100:.1f}], published [{lo}, {hi}]",
+            )
+        require(stats.wilson(30, 30).high <= 1.0, "interval left [0,1]")
+        require(stats.sign_test([(1, 0)] * 6).p_value < 0.05, "6-0 sign test should reach 0.031")
+        require(
+            stats.sign_test([(1, 0)] * 5 + [(0, 1)]).p_value > 0.05,
+            "5-1 must NOT be significant; a test that calls it one is worse than none",
+        )
+        # Seeded: a bootstrap that moves between runs cannot gate anything.
+        units = [(162, 213), (307, 732), (141, 373)]
+        require(
+            stats.bootstrap(units).low == stats.bootstrap(units).low,
+            "bootstrap is not reproducible at a fixed seed",
+        )
+        return f"6 published cells reproduce; 30-row margin at 60% is +/-{stats.margin(18, 30) * 100:.1f}pt"
+
+    # ---------------------------------------------------------------------- arms
+    @r.check("both arms answer the whole protocol", "arms")
+    def _():
+        import arms as arms_lib
+
+        names = arms_lib.arm_names()
+        require("codegraph" in names and "repowise" in names, f"arms missing: {names}")
+        counts = {}
+        for name in ("codegraph", "repowise"):
+            arm = arms_lib.get_arm(name)
+            art = arm.build(SMOKE_REPO, repo_name="gitleaks")
+            try:
+                require(art.version and art.version != "unknown", f"{name} has no version")
+                seen = arm.files_seen(art)
+                sym = arm.symbol_files(art)
+                calls = arm.call_edges(art)
+                xfile = arm.cross_file_edges(art)
+                require(seen and sym and calls and xfile, f"{name} returned an empty set")
+                require(sym <= seen, f"{name}: symbol_files is not a subset of files_seen")
+                # Every path repo-relative and forward-slashed. A single
+                # backslash makes a cross-arm intersection silently empty, and
+                # an empty intersection reads as a finding rather than a bug.
+                bad = [p for p in list(seen)[:500] if "\\" in p or p.startswith("/")]
+                require(not bad, f"{name} returned unnormalised paths: {bad[:3]}")
+                require(
+                    arm.cross_file_edges(art, arms_lib.CALLS) <= xfile,
+                    f"{name}: calls-only edges are not a subset of all dependency edges",
+                )
+                counts[name] = (len(seen), len(sym), len(calls))
+            finally:
+                arm.close(art)
+        # The intersection every cross-arm comparison starts from. Non-empty is
+        # the only assertion that matters here; its size is a G3 result.
+        shared = counts["codegraph"][0] and counts["repowise"][0]
+        require(shared, "no shared files between arms")
+        return " ".join(f"{k}: {v[0]} seen/{v[1]} sym/{v[2]} calls" for k, v in counts.items())
+
+    @r.check("our arm rebuilds identically", "arms")
+    def _():
+        import arms as arms_lib
+
+        rep = arms_lib.determinism_report(
+            arms_lib.get_arm("repowise"), SMOKE_REPO, repo_name="gitleaks"
+        )
+        require(rep["identical"], f"our graph is not reproducible: {rep['sets']}")
+        return f"{rep['sets']['call_edges']['n_run1']} call edges, two builds identical"
+
+    @r.check("the peer rebuilds identically", "arms")
+    def _():
+        import arms as arms_lib
+        import provenance as pv
+
+        if pv.tool_versions()["codegraph"] is None:
+            raise _Skip("codegraph not on PATH")
+        rep = arms_lib.determinism_report(
+            arms_lib.get_arm("codegraph"), SMOKE_REPO, repo_name="gitleaks"
+        )
+        # A non-deterministic competitor is a publishable finding about that
+        # tool, not a reason to stop. It is still a failure here, because G5
+        # cannot separate a mutation's effect from run-to-run drift.
+        require(rep["identical"], f"codegraph is NOT deterministic -- publish this: {rep['sets']}")
+        return f"{rep['sets']['call_edges']['n_run1']} call edges, two indexes identical"
+
+    @r.check("a fresh peer index reconciles with the frozen one", "arms")
+    def _():
+        import arms as arms_lib
+        import provenance as pv
+
+        if pv.tool_versions()["codegraph"] is None:
+            raise _Skip("codegraph not on PATH")
+        arm = arms_lib.get_arm("codegraph")
+        frozen = arm.build(SMOKE_REPO, repo_name="gitleaks")
+        fresh = arm.build(SMOKE_REPO, repo_name="gitleaks", fresh=True)
+        try:
+            require(frozen.extra.get("frozen"), "frozen build did not open the frozen index")
+            require(not fresh.extra.get("frozen"), "fresh build reused the frozen index")
+            require(
+                arm.call_edges(frozen) == arm.call_edges(fresh),
+                "the 1.5.0 binary no longer reproduces the frozen index's call edges; "
+                "every published baseline reconciles against those bytes",
+            )
+            # The frozen indexes were written in place, so they walked our own
+            # .repowise/ config; scratch_copy excludes it. That one file is the
+            # entire expected difference, and naming it keeps a future reader
+            # from treating it as drift.
+            extra = arm.files_seen(frozen) - arm.files_seen(fresh)
+            require(
+                extra <= {".repowise/config.yaml"},
+                f"frozen index saw files the fresh one did not: {sorted(extra)[:5]}",
+            )
+            return f"call edges identical, files differ only by {sorted(extra) or 'nothing'}"
+        finally:
+            arm.close(frozen)
+            arm.close(fresh)
 
     # -------------------------------------------------------------------- mutate
     @r.check("mutation is deterministic and non-destructive", "mutate")
@@ -281,6 +406,36 @@ def main() -> int:
         return f"{len(muts)} mutations, two runs byte-identical, source untouched"
 
     return _report(r.results)
+
+
+def _import_ours():
+    """Import `lib/ours.py`, telling three failures apart.
+
+    The bare `except ModuleNotFoundError -> _Skip` this replaces swallowed the
+    interpreter error as well as the absent-file one, because `ours.py` imports
+    `repowise.core` and a missing `repowise.core` raises the same exception as a
+    missing `ours`. Run under the wrong python -- the default on this machine's
+    PATH is a different venv entirely -- the suite printed "not built yet" for
+    both `ours` checks and reported 6 passed, 0 failed. That is a green-looking
+    run of a suite that never touched our graph, which is exactly the class of
+    silent failure this file exists to catch.
+    """
+    if not (GRAPH / "lib" / "ours.py").is_file():
+        raise _Skip("graph/lib/ours.py not built yet")
+    try:
+        import ours
+    except ModuleNotFoundError as exc:
+        # The file is present, so this is a dependency the interpreter lacks --
+        # `repowise.core` under a stray python, `networkx` under a venv that
+        # never installed it. Either way the fix is the same interpreter, so
+        # both get the same message rather than only the one anticipated.
+        raise AssertionError(
+            f"{exc}. This interpreter ({sys.executable}) cannot import lib/ours.py's "
+            "dependencies, so it cannot measure our graph. Use the measurement "
+            "worktree's python: "
+            "C:/Users/ragha/Desktop/bench-worktrees/g2clean/.venv/Scripts/python.exe"
+        ) from None
+    return ours
 
 
 def _run(cmd: list[str]) -> subprocess.CompletedProcess:
