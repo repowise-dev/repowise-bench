@@ -167,3 +167,8 @@ mcp_configs/
 
 # Ad-hoc overnight run logs dropped at the repo root.
 /logs_*.log
+
+# Graph-quality results. Small JSON aggregates that graph/ cites by path, so
+# they have to be in the repo a skeptic clones.
+!/results/graph/
+!/results/graph/**

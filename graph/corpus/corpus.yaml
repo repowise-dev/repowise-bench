@@ -1,0 +1,98 @@
+# The graph-quality corpus.
+#
+# Two tiers. The head-to-head six are the only repositories where a frozen peer
+# index exists, so they are the only place a comparison is possible at all. The
+# breadth tier exists so a per-language claim is not resting on one repository.
+#
+# Pins are the commit each repository is checked out at locally. They are
+# recorded rather than enforced: a rerun on a different pin is a different
+# measurement and must say so.
+
+head_to_head:
+  # Frozen CodeGraph indexes at test-repos/<repo>/.codegraph/codegraph.db,
+  # written by @colbymchenry/codegraph@1.5.0, extraction version 24.
+  # READ ONLY. Never reindex one of these in place.
+  - repo: caffeine
+    language: java
+    peer_index: test-repos/caffeine/.codegraph/codegraph.db
+    peer_files: 786
+    peer_distinct_calls: 38609
+    note: >
+      Largest edge count on both sides and our least precise language. The index
+      carries kotlin and python callers too, so any java figure must pin
+      files.language. Has a guava/ compatibility subtree that mirrors Guava
+      names deliberately; rows there look wrong and are not.
+  - repo: zod
+    language: typescript
+    peer_index: test-repos/zod/.codegraph/codegraph.db
+    peer_files: 422
+    peer_distinct_calls: 12884
+    note: >
+      Parallel v3/v4/mini trees plus a zod4 package.json alias to a published npm
+      package. Read the imports before grading. Scores lowest of the six on every
+      coverage reading, on the peer's own index.
+  - repo: Ocelot
+    language: csharp
+    peer_index: test-repos/Ocelot/.codegraph/codegraph.db
+    peer_files: 772
+    peer_distinct_calls: 9512
+  - repo: celery
+    language: python
+    peer_index: test-repos/celery/.codegraph/codegraph.db
+    peer_files: 436
+    peer_distinct_calls: 13301
+    note: >
+      Framework and repository under test at once. Any decorator-shaped result
+      measured here must be rerun on a repository that imports celery rather
+      than vendoring it before it is quoted. Python resolution is under active
+      change; re-check any celery figure against the tree before citing it.
+  - repo: gitleaks
+    language: go
+    peer_index: test-repos/gitleaks/.codegraph/codegraph.db
+    peer_files: 226
+    peer_distinct_calls: 2058
+    note: >
+      Smallest and cleanest cell, and the first target for G4 because Go has the
+      strongest available oracle. Vendors its own regexp wrapper that its tests
+      import instead of the stdlib.
+  - repo: dub
+    language: typescript
+    peer_index: test-repos/dub/.codegraph/codegraph.db
+    peer_files: 4066
+    peer_distinct_calls: 24076
+    note: Largest of the six. No hand-graded precision rows exist for it yet.
+
+# Repositories CodeGraph publishes a coverage figure for. Present locally, no
+# frozen index, so G2 can index them fresh and check the published table.
+peer_published:
+  - repo: requests
+    language: python
+    their_published_coverage: 1.00
+    local_pin: 4ed3d1b3
+    reproduced: 0.971  # either-direction reading; 0.794 incoming only
+  - repo: guzzle
+    language: php
+    their_published_coverage: 1.00
+    local_pin: d1cbca7
+    reproduced: 1.000  # exact, either-direction reading; 0.603 incoming only
+  - repo: leveldb
+    language: cpp
+    their_published_coverage: 0.948
+    local_pin: 7ee830d
+    reproduced: null
+  - repo: Alamofire
+    language: swift
+    their_published_coverage: 0.953
+    local_pin: 0455bfb
+    reproduced: null
+
+# For G7 breadth and for control repositories on any language-scoped change.
+# The standing rule is at least three repositories in untouched languages,
+# byte identical, or the change is not gated.
+breadth_pool:
+  root: test-repos
+  count: 91
+  note: >
+    Covers go, java, csharp, python, typescript, php, ruby, rust, cpp, swift,
+    kotlin, scala, dart, vue, svelte and more. Enumerate at run time rather than
+    listing here, and record what was enumerated in the run's output.
