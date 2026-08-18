@@ -15,6 +15,7 @@ change.
 from __future__ import annotations
 
 import platform
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -48,6 +49,22 @@ def _git(repo: Path, *args: str, keep_leading: bool = False) -> str | None:
     if out.returncode != 0:
         return None
     return out.stdout.rstrip("\r\n") if keep_leading else out.stdout.strip()
+
+
+def _package_version(repo: Path) -> str | None:
+    """The version a reader would `pip install`, read from the measured tree.
+
+    A SHA reconciles against our git history; nobody outside it can act on one.
+    `describe` is close but a tag can be moved and points at the last release
+    rather than at what is installed. Both go in the result, and a row is
+    quoted as "repowise 0.43.0 (6540c8b6)" -- never either alone.
+    """
+    try:
+        text = (repo / "pyproject.toml").read_text(encoding="utf-8")
+    except OSError:
+        return None
+    m = re.search(r"""^version\s*=\s*['"]([^'"]+)['"]""", text, re.MULTILINE)
+    return m.group(1) if m else None
 
 
 def git_state(repo: Path | str, *, paths: list[str] | None = None) -> dict[str, Any]:
@@ -115,7 +132,10 @@ def stamp(
         "experiment": experiment,
         "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "publishable": publishable,
-        "repowise": git_state(repowise_repo, paths=["packages"]),
+        "repowise": {
+            **git_state(repowise_repo, paths=["packages"]),
+            "version": _package_version(Path(repowise_repo)),
+        },
         "bench": git_state(bench_repo),
         "tools": tool_versions(),
     }
