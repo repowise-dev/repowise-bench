@@ -29,6 +29,7 @@ from pathlib import Path
 
 BENCH = Path(__file__).resolve().parent.parent
 GRAPH = BENCH / "graph"
+ARMS_DIR = GRAPH / "arms"
 sys.path.insert(0, str(GRAPH / "lib"))
 
 # gitleaks is the smoke repository throughout: 226 files, the smallest frozen
@@ -281,6 +282,32 @@ def main() -> int:
         return f"6 published cells reproduce; 30-row margin at 60% is +/-{stats.margin(18, 30) * 100:.1f}pt"
 
     # ---------------------------------------------------------------------- arms
+    @r.check("an unregistered arm says why", "arms")
+    def _():
+        """An arm absent because its tool cannot run must say so out loud.
+
+        `graph/arms/` registers on import, and an adapter that declines to
+        register is indistinguishable from one nobody wrote -- the row simply
+        never appears in a table, which reads as "not run" when it means
+        "could not run here". Each optional adapter exposes `UNAVAILABLE`, and
+        this reports it as a SKIP carrying the tool's own words.
+        """
+        import importlib
+
+        import arms as arms_lib
+
+        arms_lib.arm_names()  # force the one-time import of every adapter
+        blocked = []
+        for mod_path in sorted((ARMS_DIR).glob("*.py")):
+            if mod_path.stem.startswith("_"):
+                continue
+            reason = getattr(importlib.import_module(mod_path.stem), "UNAVAILABLE", None)
+            if reason:
+                blocked.append(f"{mod_path.stem}: {reason.splitlines()[0][:160]}")
+        if blocked:
+            raise _Skip("; ".join(blocked))
+        return "every adapter in graph/arms/ registered"
+
     @r.check("every arm answers the whole protocol", "arms")
     def _():
         import arms as arms_lib
