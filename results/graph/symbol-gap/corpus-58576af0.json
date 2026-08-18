@@ -1,0 +1,2671 @@
+{
+  "peers": [
+    "codegraph",
+    "graphify",
+    "code-review-graph"
+  ],
+  "repos": [
+    {
+      "repo": "cobra",
+      "language": "go",
+      "kind": "library",
+      "pin": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 59,
+        "our_symbol_files": 37,
+        "peer_symbol_files": {
+          "codegraph": 36,
+          "graphify": 36,
+          "code-review-graph": 35
+        },
+        "our_symbol_in_language_published": 36,
+        "our_covered_in_language_published": 23,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 1
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.6389,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.6389,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 1,
+          "rate_ceiling": 0.6486,
+          "delta_upper_bound": 0.0098
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "spring-petclinic",
+      "language": "java",
+      "kind": "framework",
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 79,
+        "our_symbol_files": 45,
+        "peer_symbol_files": {
+          "codegraph": 50,
+          "graphify": 51,
+          "code-review-graph": 50
+        },
+        "our_symbol_in_language_published": 42,
+        "our_covered_in_language_published": 19,
+        "gap_all_languages": 8,
+        "gap_in_primary_language": 5,
+        "gap_in_primary_language_union_of_peers": 5
+      },
+      "buckets": {
+        "parsed, yields no symbol": 5,
+        "extension never parsed": 3
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 5
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".java": 5
+        },
+        "extension never parsed": {
+          ".properties": 3
+        }
+      },
+      "g2": {
+        "rate_now": 0.4524,
+        "vs_head_peer": {
+          "gap": 5,
+          "rate_ceiling": 0.5106,
+          "delta_upper_bound": 0.0583
+        },
+        "vs_peer_union": {
+          "gap": 5,
+          "rate_ceiling": 0.5106,
+          "delta_upper_bound": 0.0583
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "src/main/java/org/springframework/samples/petclinic/model/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/owner/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/system/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/vet/package-info.java"
+        ],
+        "extension never parsed": [
+          "src/main/resources/application-mysql.properties",
+          "src/main/resources/application-postgres.properties",
+          "src/main/resources/application.properties"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "src/main/java/org/springframework/samples/petclinic/model/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/owner/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/system/package-info.java",
+          "src/main/java/org/springframework/samples/petclinic/vet/package-info.java"
+        ]
+      },
+      "full_gap_list": [
+        "src/main/java/org/springframework/samples/petclinic/model/package-info.java",
+        "src/main/java/org/springframework/samples/petclinic/owner/package-info.java",
+        "src/main/java/org/springframework/samples/petclinic/package-info.java",
+        "src/main/java/org/springframework/samples/petclinic/system/package-info.java",
+        "src/main/java/org/springframework/samples/petclinic/vet/package-info.java",
+        "src/main/resources/application-mysql.properties",
+        "src/main/resources/application-postgres.properties",
+        "src/main/resources/application.properties"
+      ]
+    },
+    {
+      "repo": "requests",
+      "language": "python",
+      "kind": "library",
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 74,
+        "our_symbol_files": 38,
+        "peer_symbol_files": {
+          "codegraph": 34,
+          "graphify": 38,
+          "code-review-graph": 30
+        },
+        "our_symbol_in_language_published": 32,
+        "our_covered_in_language_published": 18,
+        "gap_all_languages": 2,
+        "gap_in_primary_language": 2,
+        "gap_in_primary_language_union_of_peers": 4
+      },
+      "buckets": {
+        "parsed, yields no symbol": 2
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 2
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".py": 2
+        }
+      },
+      "g2": {
+        "rate_now": 0.5625,
+        "vs_head_peer": {
+          "gap": 2,
+          "rate_ceiling": 0.5882,
+          "delta_upper_bound": 0.0257
+        },
+        "vs_peer_union": {
+          "gap": 4,
+          "rate_ceiling": 0.6111,
+          "delta_upper_bound": 0.0486
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "src/requests/packages.py",
+          "tests/__init__.py"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "src/requests/packages.py",
+          "tests/__init__.py"
+        ]
+      },
+      "full_gap_list": [
+        "src/requests/packages.py",
+        "tests/__init__.py"
+      ]
+    },
+    {
+      "repo": "fmt",
+      "language": "cpp",
+      "kind": "library",
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 106,
+        "our_symbol_files": 75,
+        "peer_symbol_files": {
+          "codegraph": 73,
+          "graphify": 83,
+          "code-review-graph": 71
+        },
+        "our_symbol_in_language_published": 68,
+        "our_covered_in_language_published": 27,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 3
+      },
+      "buckets": {
+        "extension never parsed": 1
+      },
+      "buckets_in_primary_language": {
+        "extension never parsed": 1
+      },
+      "extensions_by_bucket": {
+        "extension never parsed": {
+          ".cu": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.3971,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.4058,
+          "delta_upper_bound": 0.0087
+        },
+        "vs_peer_union": {
+          "gap": 3,
+          "rate_ceiling": 0.4225,
+          "delta_upper_bound": 0.0255
+        }
+      },
+      "examples": {
+        "extension never parsed": [
+          "test/cuda-test/cuda-cpp14.cu"
+        ]
+      },
+      "examples_in_primary_language": {
+        "extension never parsed": [
+          "test/cuda-test/cuda-cpp14.cu"
+        ]
+      },
+      "full_gap_list": [
+        "test/cuda-test/cuda-cpp14.cu"
+      ]
+    },
+    {
+      "repo": "faraday",
+      "language": "ruby",
+      "kind": "library",
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 126,
+        "our_symbol_files": 51,
+        "peer_symbol_files": {
+          "codegraph": 63,
+          "graphify": 75,
+          "code-review-graph": 40
+        },
+        "our_symbol_in_language_published": 51,
+        "our_covered_in_language_published": 24,
+        "gap_all_languages": 12,
+        "gap_in_primary_language": 12,
+        "gap_in_primary_language_union_of_peers": 20
+      },
+      "buckets": {
+        "parsed, yields no symbol": 12
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 12
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".rb": 12
+        }
+      },
+      "g2": {
+        "rate_now": 0.4706,
+        "vs_head_peer": {
+          "gap": 12,
+          "rate_ceiling": 0.5714,
+          "delta_upper_bound": 0.1008
+        },
+        "vs_peer_union": {
+          "gap": 20,
+          "rate_ceiling": 0.6197,
+          "delta_upper_bound": 0.1491
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "spec/faraday/options/env_spec.rb",
+          "spec/faraday/options/proxy_options_spec.rb",
+          "spec/faraday/params_encoders/flat_spec.rb",
+          "spec/faraday/params_encoders/nested_spec.rb",
+          "spec/faraday/request/url_encoded_spec.rb",
+          "spec/faraday/request_spec.rb",
+          "spec/faraday/response_spec.rb",
+          "spec/faraday/utils/headers_spec.rb",
+          "spec/faraday/utils_spec.rb",
+          "spec/faraday_spec.rb",
+          "spec/support/shared_examples/params_encoder.rb",
+          "spec/support/shared_examples/request_method.rb"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "spec/faraday/options/env_spec.rb",
+          "spec/faraday/options/proxy_options_spec.rb",
+          "spec/faraday/params_encoders/flat_spec.rb",
+          "spec/faraday/params_encoders/nested_spec.rb",
+          "spec/faraday/request/url_encoded_spec.rb",
+          "spec/faraday/request_spec.rb",
+          "spec/faraday/response_spec.rb",
+          "spec/faraday/utils/headers_spec.rb",
+          "spec/faraday/utils_spec.rb",
+          "spec/faraday_spec.rb",
+          "spec/support/shared_examples/params_encoder.rb",
+          "spec/support/shared_examples/request_method.rb"
+        ]
+      },
+      "full_gap_list": [
+        "spec/faraday/options/env_spec.rb",
+        "spec/faraday/options/proxy_options_spec.rb",
+        "spec/faraday/params_encoders/flat_spec.rb",
+        "spec/faraday/params_encoders/nested_spec.rb",
+        "spec/faraday/request/url_encoded_spec.rb",
+        "spec/faraday/request_spec.rb",
+        "spec/faraday/response_spec.rb",
+        "spec/faraday/utils/headers_spec.rb",
+        "spec/faraday/utils_spec.rb",
+        "spec/faraday_spec.rb",
+        "spec/support/shared_examples/params_encoder.rb",
+        "spec/support/shared_examples/request_method.rb"
+      ]
+    },
+    {
+      "repo": "leveldb",
+      "language": "cpp",
+      "kind": "library",
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 144,
+        "our_symbol_files": 133,
+        "peer_symbol_files": {
+          "codegraph": 122,
+          "graphify": 134,
+          "code-review-graph": 130
+        },
+        "our_symbol_in_language_published": 132,
+        "our_covered_in_language_published": 48,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 0
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.3636,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.3636,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 0,
+          "rate_ceiling": 0.3636,
+          "delta_upper_bound": 0.0
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "guzzle",
+      "language": "php",
+      "kind": "library",
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 161,
+        "our_symbol_files": 132,
+        "peer_symbol_files": {
+          "codegraph": 131,
+          "graphify": 135,
+          "code-review-graph": 131
+        },
+        "our_symbol_in_language_published": 131,
+        "our_covered_in_language_published": 65,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 0
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.4962,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.4962,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 0,
+          "rate_ceiling": 0.4962,
+          "delta_upper_bound": 0.0
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "taxonomy",
+      "language": "typescript",
+      "kind": "application",
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 159,
+        "our_symbol_files": 126,
+        "peer_symbol_files": {
+          "codegraph": 118,
+          "graphify": 136,
+          "code-review-graph": 86
+        },
+        "our_symbol_in_language_published": 123,
+        "our_covered_in_language_published": 48,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 2
+      },
+      "buckets": {
+        "parsed, yields no symbol": 1
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 1
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".ts": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.3902,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.3952,
+          "delta_upper_bound": 0.0049
+        },
+        "vs_peer_union": {
+          "gap": 2,
+          "rate_ceiling": 0.4,
+          "delta_upper_bound": 0.0098
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "lib/db.ts"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "lib/db.ts"
+        ]
+      },
+      "full_gap_list": [
+        "lib/db.ts"
+      ]
+    },
+    {
+      "repo": "Crow",
+      "language": "cpp",
+      "kind": "framework",
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 140,
+        "our_symbol_files": 68,
+        "peer_symbol_files": {
+          "codegraph": 66,
+          "graphify": 78,
+          "code-review-graph": 65
+        },
+        "our_symbol_in_language_published": 65,
+        "our_covered_in_language_published": 20,
+        "gap_all_languages": 2,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 4
+      },
+      "buckets": {
+        "parsed, yields no symbol": 2
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 1
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".py": 1,
+          ".cpp": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.3077,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.3182,
+          "delta_upper_bound": 0.0105
+        },
+        "vs_peer_union": {
+          "gap": 4,
+          "rate_ceiling": 0.3478,
+          "delta_upper_bound": 0.0401
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "tests/template/test.py",
+          "tests/unit_tests/test_mustache.cpp"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "tests/unit_tests/test_mustache.cpp"
+        ]
+      },
+      "full_gap_list": [
+        "tests/template/test.py",
+        "tests/unit_tests/test_mustache.cpp"
+      ]
+    },
+    {
+      "repo": "ripgrep",
+      "language": "rust",
+      "kind": "application",
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 159,
+        "our_symbol_files": 108,
+        "peer_symbol_files": {
+          "codegraph": 93,
+          "graphify": 115,
+          "code-review-graph": 93
+        },
+        "our_symbol_in_language_published": 102,
+        "our_covered_in_language_published": 50,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 8
+      },
+      "buckets": {
+        "excluded by the traverser": 1
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 1
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".rs": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.4902,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.4951,
+          "delta_upper_bound": 0.0049
+        },
+        "vs_peer_union": {
+          "gap": 8,
+          "rate_ceiling": 0.5273,
+          "delta_upper_bound": 0.0371
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "crates/core/flags/complete/zsh.rs"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "crates/core/flags/complete/zsh.rs"
+        ]
+      },
+      "full_gap_list": [
+        "crates/core/flags/complete/zsh.rs"
+      ]
+    },
+    {
+      "repo": "sinatra",
+      "language": "ruby",
+      "kind": "framework",
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 170,
+        "our_symbol_files": 113,
+        "peer_symbol_files": {
+          "codegraph": 127,
+          "graphify": 145,
+          "code-review-graph": 99
+        },
+        "our_symbol_in_language_published": 113,
+        "our_covered_in_language_published": 27,
+        "gap_all_languages": 14,
+        "gap_in_primary_language": 14,
+        "gap_in_primary_language_union_of_peers": 32
+      },
+      "buckets": {
+        "parsed, yields no symbol": 14
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 14
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".rb": 14
+        }
+      },
+      "g2": {
+        "rate_now": 0.2389,
+        "vs_head_peer": {
+          "gap": 14,
+          "rate_ceiling": 0.3228,
+          "delta_upper_bound": 0.0839
+        },
+        "vs_peer_union": {
+          "gap": 32,
+          "rate_ceiling": 0.4069,
+          "delta_upper_bound": 0.168
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "examples/chat.rb",
+          "rack-protection/spec/lib/rack/protection/authenticity_token_spec.rb",
+          "rack-protection/spec/lib/rack/protection/base_spec.rb",
+          "rack-protection/spec/lib/rack/protection/content_security_policy_spec.rb",
+          "rack-protection/spec/lib/rack/protection/cookie_tossing_spec.rb",
+          "rack-protection/spec/lib/rack/protection/escaped_params_spec.rb",
+          "rack-protection/spec/lib/rack/protection/path_traversal_spec.rb",
+          "rack-protection/spec/lib/rack/protection/protection_spec.rb",
+          "rack-protection/spec/lib/rack/protection/session_hijacking_spec.rb",
+          "sinatra-contrib/spec/custom_logger_spec.rb",
+          "sinatra-contrib/spec/haml_helpers_spec.rb",
+          "sinatra-contrib/spec/link_header_spec.rb",
+          "sinatra-contrib/spec/multi_route_spec.rb",
+          "sinatra-contrib/spec/quiet_logger_spec.rb"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "examples/chat.rb",
+          "rack-protection/spec/lib/rack/protection/authenticity_token_spec.rb",
+          "rack-protection/spec/lib/rack/protection/base_spec.rb",
+          "rack-protection/spec/lib/rack/protection/content_security_policy_spec.rb",
+          "rack-protection/spec/lib/rack/protection/cookie_tossing_spec.rb",
+          "rack-protection/spec/lib/rack/protection/escaped_params_spec.rb",
+          "rack-protection/spec/lib/rack/protection/path_traversal_spec.rb",
+          "rack-protection/spec/lib/rack/protection/protection_spec.rb",
+          "rack-protection/spec/lib/rack/protection/session_hijacking_spec.rb",
+          "sinatra-contrib/spec/custom_logger_spec.rb",
+          "sinatra-contrib/spec/haml_helpers_spec.rb",
+          "sinatra-contrib/spec/link_header_spec.rb",
+          "sinatra-contrib/spec/multi_route_spec.rb",
+          "sinatra-contrib/spec/quiet_logger_spec.rb"
+        ]
+      },
+      "full_gap_list": [
+        "examples/chat.rb",
+        "rack-protection/spec/lib/rack/protection/authenticity_token_spec.rb",
+        "rack-protection/spec/lib/rack/protection/base_spec.rb",
+        "rack-protection/spec/lib/rack/protection/content_security_policy_spec.rb",
+        "rack-protection/spec/lib/rack/protection/cookie_tossing_spec.rb",
+        "rack-protection/spec/lib/rack/protection/escaped_params_spec.rb",
+        "rack-protection/spec/lib/rack/protection/path_traversal_spec.rb",
+        "rack-protection/spec/lib/rack/protection/protection_spec.rb",
+        "rack-protection/spec/lib/rack/protection/session_hijacking_spec.rb",
+        "sinatra-contrib/spec/custom_logger_spec.rb",
+        "sinatra-contrib/spec/haml_helpers_spec.rb",
+        "sinatra-contrib/spec/link_header_spec.rb",
+        "sinatra-contrib/spec/multi_route_spec.rb",
+        "sinatra-contrib/spec/quiet_logger_spec.rb"
+      ]
+    },
+    {
+      "repo": "serde",
+      "language": "rust",
+      "kind": "library",
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 227,
+        "our_symbol_files": 206,
+        "peer_symbol_files": {
+          "codegraph": 196,
+          "graphify": 203,
+          "code-review-graph": 197
+        },
+        "our_symbol_in_language_published": 206,
+        "our_covered_in_language_published": 36,
+        "gap_all_languages": 2,
+        "gap_in_primary_language": 2,
+        "gap_in_primary_language_union_of_peers": 2
+      },
+      "buckets": {
+        "excluded by the traverser": 2
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 2
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".rs": 2
+        }
+      },
+      "g2": {
+        "rate_now": 0.1748,
+        "vs_head_peer": {
+          "gap": 2,
+          "rate_ceiling": 0.1827,
+          "delta_upper_bound": 0.0079
+        },
+        "vs_peer_union": {
+          "gap": 2,
+          "rate_ceiling": 0.1827,
+          "delta_upper_bound": 0.0079
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "serde_core/src/private/content.rs",
+          "serde_core/src/private/string.rs"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "serde_core/src/private/content.rs",
+          "serde_core/src/private/string.rs"
+        ]
+      },
+      "full_gap_list": [
+        "serde_core/src/private/content.rs",
+        "serde_core/src/private/string.rs"
+      ]
+    },
+    {
+      "repo": "gitleaks",
+      "language": "go",
+      "kind": "application",
+      "pin": "8ad8470035d31a209322c580153b45c18e21b980",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 296,
+        "our_symbol_files": 217,
+        "peer_symbol_files": {
+          "codegraph": 214,
+          "graphify": 217,
+          "code-review-graph": 212
+        },
+        "our_symbol_in_language_published": 213,
+        "our_covered_in_language_published": 162,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 2
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.7606,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.7606,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 2,
+          "rate_ceiling": 0.7628,
+          "delta_upper_bound": 0.0022
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "eShopOnWeb",
+      "language": "csharp",
+      "kind": "application",
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 282,
+        "our_symbol_files": 247,
+        "peer_symbol_files": {
+          "codegraph": 251,
+          "graphify": 331,
+          "code-review-graph": 251
+        },
+        "our_symbol_in_language_published": 245,
+        "our_covered_in_language_published": 66,
+        "gap_all_languages": 6,
+        "gap_in_primary_language": 6,
+        "gap_in_primary_language_union_of_peers": 9
+      },
+      "buckets": {
+        "excluded by the traverser": 6
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 6
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".cs": 6
+        }
+      },
+      "g2": {
+        "rate_now": 0.2694,
+        "vs_head_peer": {
+          "gap": 6,
+          "rate_ceiling": 0.2869,
+          "delta_upper_bound": 0.0175
+        },
+        "vs_peer_union": {
+          "gap": 9,
+          "rate_ceiling": 0.2953,
+          "delta_upper_bound": 0.0259
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "src/Infrastructure/Data/Migrations/20201202111507_InitialModel.Designer.cs",
+          "src/Infrastructure/Data/Migrations/20211026175614_FixBuyerId.Designer.cs",
+          "src/Infrastructure/Data/Migrations/20211231093753_FixShipToAddress.Designer.cs",
+          "src/Infrastructure/Data/Migrations/CatalogContextModelSnapshot.cs",
+          "src/Infrastructure/Identity/Migrations/20201202111612_InitialIdentityModel.Designer.cs",
+          "src/Infrastructure/Identity/Migrations/AppIdentityDbContextModelSnapshot.cs"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "src/Infrastructure/Data/Migrations/20201202111507_InitialModel.Designer.cs",
+          "src/Infrastructure/Data/Migrations/20211026175614_FixBuyerId.Designer.cs",
+          "src/Infrastructure/Data/Migrations/20211231093753_FixShipToAddress.Designer.cs",
+          "src/Infrastructure/Data/Migrations/CatalogContextModelSnapshot.cs",
+          "src/Infrastructure/Identity/Migrations/20201202111612_InitialIdentityModel.Designer.cs",
+          "src/Infrastructure/Identity/Migrations/AppIdentityDbContextModelSnapshot.cs"
+        ]
+      },
+      "full_gap_list": [
+        "src/Infrastructure/Data/Migrations/20201202111507_InitialModel.Designer.cs",
+        "src/Infrastructure/Data/Migrations/20211026175614_FixBuyerId.Designer.cs",
+        "src/Infrastructure/Data/Migrations/20211231093753_FixShipToAddress.Designer.cs",
+        "src/Infrastructure/Data/Migrations/CatalogContextModelSnapshot.cs",
+        "src/Infrastructure/Identity/Migrations/20201202111612_InitialIdentityModel.Designer.cs",
+        "src/Infrastructure/Identity/Migrations/AppIdentityDbContextModelSnapshot.cs"
+      ]
+    },
+    {
+      "repo": "hono",
+      "language": "typescript",
+      "kind": "framework",
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 445,
+        "our_symbol_files": 266,
+        "peer_symbol_files": {
+          "codegraph": 274,
+          "graphify": 414,
+          "code-review-graph": 291
+        },
+        "our_symbol_in_language_published": 260,
+        "our_covered_in_language_published": 153,
+        "gap_all_languages": 8,
+        "gap_in_primary_language": 8,
+        "gap_in_primary_language_union_of_peers": 120
+      },
+      "buckets": {
+        "parsed, yields no symbol": 8
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 8
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".ts": 8
+        }
+      },
+      "g2": {
+        "rate_now": 0.5885,
+        "vs_head_peer": {
+          "gap": 8,
+          "rate_ceiling": 0.6007,
+          "delta_upper_bound": 0.0123
+        },
+        "vs_peer_union": {
+          "gap": 120,
+          "rate_ceiling": 0.7184,
+          "delta_upper_bound": 0.13
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "src/adapter/service-worker/handler.test.ts",
+          "src/middleware/bearer-auth/index.test.ts",
+          "src/middleware/logger/index.test.ts",
+          "src/middleware/request-id/index.test.ts",
+          "src/preset/quick.test.ts",
+          "src/preset/tiny.test.ts",
+          "src/utils/compress.ts",
+          "src/utils/types.test.ts"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "src/adapter/service-worker/handler.test.ts",
+          "src/middleware/bearer-auth/index.test.ts",
+          "src/middleware/logger/index.test.ts",
+          "src/middleware/request-id/index.test.ts",
+          "src/preset/quick.test.ts",
+          "src/preset/tiny.test.ts",
+          "src/utils/compress.ts",
+          "src/utils/types.test.ts"
+        ]
+      },
+      "full_gap_list": [
+        "src/adapter/service-worker/handler.test.ts",
+        "src/middleware/bearer-auth/index.test.ts",
+        "src/middleware/logger/index.test.ts",
+        "src/middleware/request-id/index.test.ts",
+        "src/preset/quick.test.ts",
+        "src/preset/tiny.test.ts",
+        "src/utils/compress.ts",
+        "src/utils/types.test.ts"
+      ]
+    },
+    {
+      "repo": "javalin",
+      "language": "kotlin",
+      "kind": "application",
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 416,
+        "our_symbol_files": 386,
+        "peer_symbol_files": {
+          "codegraph": 368,
+          "graphify": 409,
+          "code-review-graph": 364
+        },
+        "our_symbol_in_language_published": 303,
+        "our_covered_in_language_published": 166,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 0
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.5479,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.5479,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 0,
+          "rate_ceiling": 0.5479,
+          "delta_upper_bound": 0.0
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "CleanArchitecture",
+      "language": "csharp",
+      "kind": "framework",
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 423,
+        "our_symbol_files": 337,
+        "peer_symbol_files": {
+          "codegraph": 345,
+          "graphify": 396,
+          "code-review-graph": 350
+        },
+        "our_symbol_in_language_published": 336,
+        "our_covered_in_language_published": 97,
+        "gap_all_languages": 8,
+        "gap_in_primary_language": 7,
+        "gap_in_primary_language_union_of_peers": 26
+      },
+      "buckets": {
+        "excluded by the traverser": 8
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 7
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".cs": 7,
+          ".js": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.2887,
+        "vs_head_peer": {
+          "gap": 7,
+          "rate_ceiling": 0.3032,
+          "delta_upper_bound": 0.0145
+        },
+        "vs_peer_union": {
+          "gap": 26,
+          "rate_ceiling": 0.3398,
+          "delta_upper_bound": 0.0511
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251020223304_Initial.Designer.cs",
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251024232246_AddGuestUsersAndOrdersSqlServer.Designer.cs",
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs",
+          "sample/src/NimblePros.SampleToDo.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20231218143922_PhoneNumber.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20251113164108_UpdateForNet10.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20260424000000_UseDbGeneratedIds.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251020223304_Initial.Designer.cs",
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251024232246_AddGuestUsersAndOrdersSqlServer.Designer.cs",
+          "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20231218143922_PhoneNumber.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20251113164108_UpdateForNet10.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/20260424000000_UseDbGeneratedIds.Designer.cs",
+          "src/Clean.Architecture.Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs"
+        ]
+      },
+      "full_gap_list": [
+        "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251020223304_Initial.Designer.cs",
+        "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/20251024232246_AddGuestUsersAndOrdersSqlServer.Designer.cs",
+        "MinimalClean/src/MinimalClean.Architecture.Web/Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs",
+        "sample/src/NimblePros.SampleToDo.Web/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+        "src/Clean.Architecture.Infrastructure/Data/Migrations/20231218143922_PhoneNumber.Designer.cs",
+        "src/Clean.Architecture.Infrastructure/Data/Migrations/20251113164108_UpdateForNet10.Designer.cs",
+        "src/Clean.Architecture.Infrastructure/Data/Migrations/20260424000000_UseDbGeneratedIds.Designer.cs",
+        "src/Clean.Architecture.Infrastructure/Data/Migrations/AppDbContextModelSnapshot.cs"
+      ]
+    },
+    {
+      "repo": "Alamofire",
+      "language": "swift",
+      "kind": "library",
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 476,
+        "our_symbol_files": 104,
+        "peer_symbol_files": {
+          "codegraph": 106,
+          "graphify": 104,
+          "code-review-graph": 100
+        },
+        "our_symbol_in_language_published": 98,
+        "our_covered_in_language_published": 38,
+        "gap_all_languages": 2,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 0
+      },
+      "buckets": {
+        "excluded by the traverser": 2
+      },
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".js": 2
+        }
+      },
+      "g2": {
+        "rate_now": 0.3878,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.3878,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 0,
+          "rate_ceiling": 0.3878,
+          "delta_upper_bound": 0.0
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "docs/docsets/Alamofire.docset/Contents/Resources/Documents/js/jquery.min.js",
+          "docs/js/jquery.min.js"
+        ]
+      },
+      "examples_in_primary_language": {},
+      "full_gap_list": [
+        "docs/docsets/Alamofire.docset/Contents/Resources/Documents/js/jquery.min.js",
+        "docs/js/jquery.min.js"
+      ]
+    },
+    {
+      "repo": "zod",
+      "language": "typescript",
+      "kind": "library",
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 481,
+        "our_symbol_files": 271,
+        "peer_symbol_files": {
+          "codegraph": 293,
+          "graphify": 436,
+          "code-review-graph": 321
+        },
+        "our_symbol_in_language_published": 269,
+        "our_covered_in_language_published": 37,
+        "gap_all_languages": 23,
+        "gap_in_primary_language": 23,
+        "gap_in_primary_language_union_of_peers": 135
+      },
+      "buckets": {
+        "parsed, yields no symbol": 19,
+        "excluded by the traverser": 4
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 19,
+        "excluded by the traverser": 4
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".ts": 19
+        },
+        "excluded by the traverser": {
+          ".ts": 3,
+          ".cts": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.1375,
+        "vs_head_peer": {
+          "gap": 23,
+          "rate_ceiling": 0.2055,
+          "delta_upper_bound": 0.0679
+        },
+        "vs_peer_union": {
+          "gap": 135,
+          "rate_ceiling": 0.4257,
+          "delta_upper_bound": 0.2882
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "packages/bench/object-setup.ts",
+          "packages/zod/src/v3/tests/catch.test.ts",
+          "packages/zod/src/v3/tests/default.test.ts",
+          "packages/zod/src/v3/tests/discriminated-unions.test.ts",
+          "packages/zod/src/v3/tests/generics.test.ts",
+          "packages/zod/src/v3/tests/instanceof.test.ts",
+          "packages/zod/src/v3/tests/nativeEnum.test.ts",
+          "packages/zod/src/v3/tests/object-in-es5-env.test.ts",
+          "packages/zod/src/v4/classic/tests/assignability.test.ts",
+          "packages/zod/src/v4/classic/tests/catch.test.ts",
+          "packages/zod/src/v4/classic/tests/discriminated-unions.test.ts",
+          "packages/zod/src/v4/classic/tests/enum.test.ts",
+          "packages/zod/src/v4/classic/tests/from-json-schema.test.ts",
+          "packages/zod/src/v4/classic/tests/index.test.ts",
+          "packages/zod/src/v4/classic/tests/instanceof.test.ts",
+          "packages/zod/src/v4/classic/tests/jitless-allows-eval.test.ts",
+          "packages/zod/src/v4/classic/tests/record.test.ts",
+          "packages/zod/src/v4/mini/tests/index.test.ts",
+          "packages/zod/src/v4/mini/tests/recursive-types.test.ts"
+        ],
+        "excluded by the traverser": [
+          "packages/integration/fixtures/ai-sdk/index.ts",
+          "packages/integration/fixtures/drizzle-zod/index.ts",
+          "packages/integration/fixtures/internal-types/cjs-test.cts",
+          "packages/integration/fixtures/internal-types/index.ts"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "packages/bench/object-setup.ts",
+          "packages/zod/src/v3/tests/catch.test.ts",
+          "packages/zod/src/v3/tests/default.test.ts",
+          "packages/zod/src/v3/tests/discriminated-unions.test.ts",
+          "packages/zod/src/v3/tests/generics.test.ts",
+          "packages/zod/src/v3/tests/instanceof.test.ts",
+          "packages/zod/src/v3/tests/nativeEnum.test.ts",
+          "packages/zod/src/v3/tests/object-in-es5-env.test.ts",
+          "packages/zod/src/v4/classic/tests/assignability.test.ts",
+          "packages/zod/src/v4/classic/tests/catch.test.ts",
+          "packages/zod/src/v4/classic/tests/discriminated-unions.test.ts",
+          "packages/zod/src/v4/classic/tests/enum.test.ts",
+          "packages/zod/src/v4/classic/tests/from-json-schema.test.ts",
+          "packages/zod/src/v4/classic/tests/index.test.ts",
+          "packages/zod/src/v4/classic/tests/instanceof.test.ts",
+          "packages/zod/src/v4/classic/tests/jitless-allows-eval.test.ts",
+          "packages/zod/src/v4/classic/tests/record.test.ts",
+          "packages/zod/src/v4/mini/tests/index.test.ts",
+          "packages/zod/src/v4/mini/tests/recursive-types.test.ts"
+        ],
+        "excluded by the traverser": [
+          "packages/integration/fixtures/ai-sdk/index.ts",
+          "packages/integration/fixtures/drizzle-zod/index.ts",
+          "packages/integration/fixtures/internal-types/cjs-test.cts",
+          "packages/integration/fixtures/internal-types/index.ts"
+        ]
+      },
+      "full_gap_list": [
+        "packages/bench/object-setup.ts",
+        "packages/integration/fixtures/ai-sdk/index.ts",
+        "packages/integration/fixtures/drizzle-zod/index.ts",
+        "packages/integration/fixtures/internal-types/cjs-test.cts",
+        "packages/integration/fixtures/internal-types/index.ts",
+        "packages/zod/src/v3/tests/catch.test.ts",
+        "packages/zod/src/v3/tests/default.test.ts",
+        "packages/zod/src/v3/tests/discriminated-unions.test.ts",
+        "packages/zod/src/v3/tests/generics.test.ts",
+        "packages/zod/src/v3/tests/instanceof.test.ts",
+        "packages/zod/src/v3/tests/nativeEnum.test.ts",
+        "packages/zod/src/v3/tests/object-in-es5-env.test.ts",
+        "packages/zod/src/v4/classic/tests/assignability.test.ts",
+        "packages/zod/src/v4/classic/tests/catch.test.ts",
+        "packages/zod/src/v4/classic/tests/discriminated-unions.test.ts",
+        "packages/zod/src/v4/classic/tests/enum.test.ts",
+        "packages/zod/src/v4/classic/tests/from-json-schema.test.ts",
+        "packages/zod/src/v4/classic/tests/index.test.ts",
+        "packages/zod/src/v4/classic/tests/instanceof.test.ts",
+        "packages/zod/src/v4/classic/tests/jitless-allows-eval.test.ts",
+        "packages/zod/src/v4/classic/tests/record.test.ts",
+        "packages/zod/src/v4/mini/tests/index.test.ts",
+        "packages/zod/src/v4/mini/tests/recursive-types.test.ts"
+      ]
+    },
+    {
+      "repo": "scrapy",
+      "language": "python",
+      "kind": "application",
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 476,
+        "our_symbol_files": 420,
+        "peer_symbol_files": {
+          "codegraph": 420,
+          "graphify": 444,
+          "code-review-graph": 410
+        },
+        "our_symbol_in_language_published": 420,
+        "our_covered_in_language_published": 148,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 22
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.3524,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.3524,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 22,
+          "rate_ceiling": 0.3846,
+          "delta_upper_bound": 0.0322
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "seastar",
+      "language": "cpp",
+      "kind": "framework",
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 326,
+        "our_symbol_files": 270,
+        "peer_symbol_files": {
+          "codegraph": 263,
+          "graphify": 281,
+          "code-review-graph": 521
+        },
+        "our_symbol_in_language_published": 244,
+        "our_covered_in_language_published": 97,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 253
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.3975,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.3975,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 253,
+          "rate_ceiling": 0.7042,
+          "delta_upper_bound": 0.3067
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "jekyll",
+      "language": "ruby",
+      "kind": "application",
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 637,
+        "our_symbol_files": 169,
+        "peer_symbol_files": {
+          "codegraph": 165,
+          "graphify": 202,
+          "code-review-graph": 166
+        },
+        "our_symbol_in_language_published": 166,
+        "our_covered_in_language_published": 56,
+        "gap_all_languages": 6,
+        "gap_in_primary_language": 4,
+        "gap_in_primary_language_union_of_peers": 16
+      },
+      "buckets": {
+        "extension never parsed": 3,
+        "excluded by the traverser": 2,
+        "parsed, yields no symbol": 1
+      },
+      "buckets_in_primary_language": {
+        "extension never parsed": 3,
+        "parsed, yields no symbol": 1
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".js": 2
+        },
+        "parsed, yields no symbol": {
+          ".rb": 1
+        },
+        "extension never parsed": {
+          ".rake": 3
+        }
+      },
+      "g2": {
+        "rate_now": 0.3373,
+        "vs_head_peer": {
+          "gap": 4,
+          "rate_ceiling": 0.3529,
+          "delta_upper_bound": 0.0156
+        },
+        "vs_peer_union": {
+          "gap": 16,
+          "rate_ceiling": 0.3956,
+          "delta_upper_bound": 0.0583
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "docs/js/html5shiv.min.js",
+          "docs/js/respond.min.js"
+        ],
+        "parsed, yields no symbol": [
+          "features/step_definitions.rb"
+        ],
+        "extension never parsed": [
+          "rake/profile.rake",
+          "rake/rubocop.rake",
+          "rake/site.rake"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "features/step_definitions.rb"
+        ],
+        "extension never parsed": [
+          "rake/profile.rake",
+          "rake/rubocop.rake",
+          "rake/site.rake"
+        ]
+      },
+      "full_gap_list": [
+        "docs/js/html5shiv.min.js",
+        "docs/js/respond.min.js",
+        "features/step_definitions.rb",
+        "rake/profile.rake",
+        "rake/rubocop.rake",
+        "rake/site.rake"
+      ]
+    },
+    {
+      "repo": "celery",
+      "language": "python",
+      "kind": "framework",
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 470,
+        "our_symbol_files": 379,
+        "peer_symbol_files": {
+          "codegraph": 372,
+          "graphify": 422,
+          "code-review-graph": 352
+        },
+        "our_symbol_in_language_published": 373,
+        "our_covered_in_language_published": 141,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 37
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.378,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.378,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 37,
+          "rate_ceiling": 0.4341,
+          "delta_upper_bound": 0.0561
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "caffeine",
+      "language": "java",
+      "kind": "library",
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 833,
+        "our_symbol_files": 567,
+        "peer_symbol_files": {
+          "codegraph": 694,
+          "graphify": 718,
+          "code-review-graph": 548
+        },
+        "our_symbol_in_language_published": 536,
+        "our_covered_in_language_published": 325,
+        "gap_all_languages": 128,
+        "gap_in_primary_language": 128,
+        "gap_in_primary_language_union_of_peers": 128
+      },
+      "buckets": {
+        "parsed, yields no symbol": 128
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 128
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".java": 128
+        }
+      },
+      "g2": {
+        "rate_now": 0.6063,
+        "vs_head_peer": {
+          "gap": 128,
+          "rate_ceiling": 0.6822,
+          "delta_upper_bound": 0.0759
+        },
+        "vs_peer_union": {
+          "gap": 128,
+          "rate_ceiling": 0.6822,
+          "delta_upper_bound": 0.0759
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "caffeine/src/apacheTest/java/com/github/benmanes/caffeine/apache/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/acceptance/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/mutable/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/package-info.java",
+          "caffeine/src/fuzzTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/stats/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/local/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/node/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jcstress/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jctoolsTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/impl/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/sketch/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/profiler/package-info.java",
+          "caffeine/src/jsr166Test/java/com/github/benmanes/caffeine/jsr166/package-info.java",
+          "caffeine/src/lincheckTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/main/java/com/github/benmanes/caffeine/cache/package-info.java"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "caffeine/src/apacheTest/java/com/github/benmanes/caffeine/apache/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/acceptance/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/mutable/package-info.java",
+          "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/package-info.java",
+          "caffeine/src/fuzzTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/stats/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/local/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/node/package-info.java",
+          "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jcstress/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jctoolsTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/impl/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/sketch/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/package-info.java",
+          "caffeine/src/jmh/java/com/github/benmanes/caffeine/profiler/package-info.java",
+          "caffeine/src/jsr166Test/java/com/github/benmanes/caffeine/jsr166/package-info.java",
+          "caffeine/src/lincheckTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+          "caffeine/src/main/java/com/github/benmanes/caffeine/cache/package-info.java"
+        ]
+      },
+      "full_gap_list": [
+        "caffeine/src/apacheTest/java/com/github/benmanes/caffeine/apache/package-info.java",
+        "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/acceptance/package-info.java",
+        "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/mutable/package-info.java",
+        "caffeine/src/eclipseTest/java/com/github/benmanes/caffeine/eclipse/package-info.java",
+        "caffeine/src/fuzzTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/googleTest/java/com/github/benmanes/caffeine/cache/stats/package-info.java",
+        "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/local/package-info.java",
+        "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/node/package-info.java",
+        "caffeine/src/javaPoet/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/jcstress/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/jctoolsTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/impl/package-info.java",
+        "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/jmh/java/com/github/benmanes/caffeine/cache/sketch/package-info.java",
+        "caffeine/src/jmh/java/com/github/benmanes/caffeine/package-info.java",
+        "caffeine/src/jmh/java/com/github/benmanes/caffeine/profiler/package-info.java",
+        "caffeine/src/jsr166Test/java/com/github/benmanes/caffeine/jsr166/package-info.java",
+        "caffeine/src/lincheckTest/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/main/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/main/java/com/github/benmanes/caffeine/cache/stats/package-info.java",
+        "caffeine/src/moduleTest/java/com/github/benmanes/caffeine/module/package-info.java",
+        "caffeine/src/openjdkTest/java/com/github/benmanes/caffeine/openjdk/collection/package-info.java",
+        "caffeine/src/openjdkTest/java/com/github/benmanes/caffeine/openjdk/concurrent/concurrenthashmap/package-info.java",
+        "caffeine/src/openjdkTest/java/com/github/benmanes/caffeine/openjdk/concurrent/concurrentmap/package-info.java",
+        "caffeine/src/openjdkTest/java/com/github/benmanes/caffeine/openjdk/map/package-info.java",
+        "caffeine/src/osgiTest/java/com/github/benmanes/caffeine/osgi/package-info.java",
+        "caffeine/src/test/java/com/github/benmanes/caffeine/cache/buffer/package-info.java",
+        "caffeine/src/test/java/com/github/benmanes/caffeine/cache/issues/package-info.java",
+        "caffeine/src/test/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/test/java/com/github/benmanes/caffeine/cache/stats/package-info.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/CheckMaxLogLevel.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/CheckNoEvictions.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/CheckNoStats.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/ExpireAfterAccess.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/ExpireAfterWrite.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/cache/package-info.java",
+        "caffeine/src/testFixtures/java/com/github/benmanes/caffeine/testing/package-info.java",
+        "guava/src/compatibilityTest/java/com/github/benmanes/caffeine/guava/package-info.java",
+        "guava/src/main/java/com/github/benmanes/caffeine/guava/package-info.java",
+        "guava/src/moduleTest/java/com/github/benmanes/caffeine/guava/module/package-info.java",
+        "guava/src/osgiTest/java/com/github/benmanes/caffeine/guava/package-info.java",
+        "guava/src/test/java/com/github/benmanes/caffeine/guava/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/configuration/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/copy/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/event/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/expiry/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/integration/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/management/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/processor/package-info.java",
+        "jcache/src/main/java/com/github/benmanes/caffeine/jcache/spi/package-info.java",
+        "jcache/src/osgiTest/java/com/github/benmanes/caffeine/jcache/package-info.java",
+        "jcache/src/tckTest/java/com/github/benmanes/caffeine/jcache/management/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/configuration/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/copy/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/event/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/expiry/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/guice/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/integration/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/issues/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/management/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/processor/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/size/package-info.java",
+        "jcache/src/test/java/com/github/benmanes/caffeine/jcache/spi/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/clairvoyant/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/countmin4/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/countmin64/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/perfect/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/table/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/admission/tinycache/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/membership/bloom/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/membership/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/adapt_size/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/address/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/address/penalties/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/arc/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/baleen/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/cache2k/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/cachelib/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/camelab/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/cloud_physics/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/corda/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/glcache/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/gradle/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/kaggle/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/libcachesim/csv/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/libcachesim/oracle/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/libcachesim/twitter/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/lirs/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/lrb/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/scarab/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/snia/cambridge/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/snia/enterprise/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/snia/keyvalue/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/snia/parallel/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/snia/systor/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/tragen/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/twitter/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/umass/network/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/umass/storage/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/parser/wikipedia/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/adaptive/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/greedy_dual/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/irr/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/linked/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/opt/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/product/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sampled/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/climbing/gradient/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/climbing/hill/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/climbing/inference/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/climbing/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/climbing/sim/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/feedback/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/segment/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/sketch/tinycache/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/policy/two_queue/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/report/csv/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/report/package-info.java",
+        "simulator/src/main/java/com/github/benmanes/caffeine/cache/simulator/report/table/package-info.java",
+        "simulator/src/test/java/com/github/benmanes/caffeine/cache/simulator/admission/bloom/package-info.java"
+      ]
+    },
+    {
+      "repo": "Ocelot",
+      "language": "csharp",
+      "kind": "framework",
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 874,
+        "our_symbol_files": 739,
+        "peer_symbol_files": {
+          "codegraph": 733,
+          "graphify": 819,
+          "code-review-graph": 731
+        },
+        "our_symbol_in_language_published": 732,
+        "our_covered_in_language_published": 307,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 15
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.4194,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.4194,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 15,
+          "rate_ceiling": 0.4311,
+          "delta_upper_bound": 0.0117
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "Polly",
+      "language": "csharp",
+      "kind": "library",
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 912,
+        "our_symbol_files": 786,
+        "peer_symbol_files": {
+          "codegraph": 787,
+          "graphify": 827,
+          "code-review-graph": 785
+        },
+        "our_symbol_in_language_published": 786,
+        "our_covered_in_language_published": 231,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 10
+      },
+      "buckets": {
+        "extension never parsed": 1
+      },
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {
+        "extension never parsed": {
+          ".vb": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.2939,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.2939,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 10,
+          "rate_ceiling": 0.3028,
+          "delta_upper_bound": 0.0089
+        }
+      },
+      "examples": {
+        "extension never parsed": [
+          "samples/Intro.VisualBasic/Program.vb"
+        ]
+      },
+      "examples_in_primary_language": {},
+      "full_gap_list": [
+        "samples/Intro.VisualBasic/Program.vb"
+      ]
+    },
+    {
+      "repo": "nlohmann-json",
+      "language": "cpp",
+      "kind": "library",
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 797,
+        "our_symbol_files": 457,
+        "peer_symbol_files": {
+          "codegraph": 471,
+          "graphify": 502,
+          "code-review-graph": 445
+        },
+        "our_symbol_in_language_published": 443,
+        "our_covered_in_language_published": 51,
+        "gap_all_languages": 37,
+        "gap_in_primary_language": 37,
+        "gap_in_primary_language_union_of_peers": 48
+      },
+      "buckets": {
+        "parsed, yields no symbol": 36,
+        "extension never parsed": 1
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 36,
+        "extension never parsed": 1
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".hpp": 27,
+          ".cpp": 9
+        },
+        "extension never parsed": {
+          ".cu": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.1151,
+        "vs_head_peer": {
+          "gap": 37,
+          "rate_ceiling": 0.1833,
+          "delta_upper_bound": 0.0682
+        },
+        "vs_peer_union": {
+          "gap": 48,
+          "rate_ceiling": 0.2016,
+          "delta_upper_bound": 0.0865
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "include/nlohmann/detail/conversions/from_json.hpp",
+          "include/nlohmann/detail/conversions/to_chars.hpp",
+          "include/nlohmann/detail/conversions/to_json.hpp",
+          "include/nlohmann/detail/hash.hpp",
+          "include/nlohmann/detail/input/input_adapters.hpp",
+          "include/nlohmann/detail/input/parser.hpp",
+          "include/nlohmann/detail/input/position_t.hpp",
+          "include/nlohmann/detail/iterators/internal_iterator.hpp",
+          "include/nlohmann/detail/iterators/iteration_proxy.hpp",
+          "include/nlohmann/detail/iterators/iterator_traits.hpp",
+          "include/nlohmann/detail/iterators/json_reverse_iterator.hpp",
+          "include/nlohmann/detail/iterators/primitive_iterator.hpp",
+          "include/nlohmann/detail/json_custom_base_class.hpp",
+          "include/nlohmann/detail/json_ref.hpp",
+          "include/nlohmann/detail/meta/cpp_future.hpp",
+          "include/nlohmann/detail/meta/detected.hpp",
+          "include/nlohmann/detail/meta/identity_tag.hpp",
+          "include/nlohmann/detail/meta/is_sax.hpp",
+          "include/nlohmann/detail/meta/logic.hpp",
+          "include/nlohmann/detail/meta/std_fs.hpp"
+        ],
+        "extension never parsed": [
+          "tests/cuda_example/json_cuda.cu"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "include/nlohmann/detail/conversions/from_json.hpp",
+          "include/nlohmann/detail/conversions/to_chars.hpp",
+          "include/nlohmann/detail/conversions/to_json.hpp",
+          "include/nlohmann/detail/hash.hpp",
+          "include/nlohmann/detail/input/input_adapters.hpp",
+          "include/nlohmann/detail/input/parser.hpp",
+          "include/nlohmann/detail/input/position_t.hpp",
+          "include/nlohmann/detail/iterators/internal_iterator.hpp",
+          "include/nlohmann/detail/iterators/iteration_proxy.hpp",
+          "include/nlohmann/detail/iterators/iterator_traits.hpp",
+          "include/nlohmann/detail/iterators/json_reverse_iterator.hpp",
+          "include/nlohmann/detail/iterators/primitive_iterator.hpp",
+          "include/nlohmann/detail/json_custom_base_class.hpp",
+          "include/nlohmann/detail/json_ref.hpp",
+          "include/nlohmann/detail/meta/cpp_future.hpp",
+          "include/nlohmann/detail/meta/detected.hpp",
+          "include/nlohmann/detail/meta/identity_tag.hpp",
+          "include/nlohmann/detail/meta/is_sax.hpp",
+          "include/nlohmann/detail/meta/logic.hpp",
+          "include/nlohmann/detail/meta/std_fs.hpp"
+        ],
+        "extension never parsed": [
+          "tests/cuda_example/json_cuda.cu"
+        ]
+      },
+      "full_gap_list": [
+        "include/nlohmann/detail/conversions/from_json.hpp",
+        "include/nlohmann/detail/conversions/to_chars.hpp",
+        "include/nlohmann/detail/conversions/to_json.hpp",
+        "include/nlohmann/detail/hash.hpp",
+        "include/nlohmann/detail/input/input_adapters.hpp",
+        "include/nlohmann/detail/input/parser.hpp",
+        "include/nlohmann/detail/input/position_t.hpp",
+        "include/nlohmann/detail/iterators/internal_iterator.hpp",
+        "include/nlohmann/detail/iterators/iteration_proxy.hpp",
+        "include/nlohmann/detail/iterators/iterator_traits.hpp",
+        "include/nlohmann/detail/iterators/json_reverse_iterator.hpp",
+        "include/nlohmann/detail/iterators/primitive_iterator.hpp",
+        "include/nlohmann/detail/json_custom_base_class.hpp",
+        "include/nlohmann/detail/json_ref.hpp",
+        "include/nlohmann/detail/meta/cpp_future.hpp",
+        "include/nlohmann/detail/meta/detected.hpp",
+        "include/nlohmann/detail/meta/identity_tag.hpp",
+        "include/nlohmann/detail/meta/is_sax.hpp",
+        "include/nlohmann/detail/meta/logic.hpp",
+        "include/nlohmann/detail/meta/std_fs.hpp",
+        "include/nlohmann/detail/meta/type_traits.hpp",
+        "include/nlohmann/detail/meta/void_t.hpp",
+        "include/nlohmann/detail/output/binary_writer.hpp",
+        "include/nlohmann/detail/output/output_adapters.hpp",
+        "include/nlohmann/detail/string_concat.hpp",
+        "include/nlohmann/detail/string_escape.hpp",
+        "include/nlohmann/detail/string_utils.hpp",
+        "tests/abi/inline_ns/use_current.cpp",
+        "tests/abi/inline_ns/use_v3_10_5.cpp",
+        "tests/cuda_example/json_cuda.cu",
+        "tests/src/unit-algorithms.cpp",
+        "tests/src/unit-concepts.cpp",
+        "tests/src/unit-items.cpp",
+        "tests/src/unit-iterators2.cpp",
+        "tests/src/unit-large_json.cpp",
+        "tests/src/unit-ordered_json.cpp",
+        "tests/src/unit-ordered_map.cpp"
+      ]
+    },
+    {
+      "repo": "Signal-Server",
+      "language": "java",
+      "kind": "application",
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 1320,
+        "our_symbol_files": 1242,
+        "peer_symbol_files": {
+          "codegraph": 1260,
+          "graphify": 1266,
+          "code-review-graph": 1117
+        },
+        "our_symbol_in_language_published": 1242,
+        "our_covered_in_language_published": 903,
+        "gap_all_languages": 18,
+        "gap_in_primary_language": 6,
+        "gap_in_primary_language_union_of_peers": 6
+      },
+      "buckets": {
+        "parsed, yields no symbol": 18
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 6
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".lua": 12,
+          ".java": 6
+        }
+      },
+      "g2": {
+        "rate_now": 0.7271,
+        "vs_head_peer": {
+          "gap": 6,
+          "rate_ceiling": 0.7284,
+          "delta_upper_bound": 0.0013
+        },
+        "vs_peer_union": {
+          "gap": 6,
+          "rate_ceiling": 0.7284,
+          "delta_upper_bound": 0.0013
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesLinkedDevices.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesPhoneNumber.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/limits/RateLimitedByIp.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/storage/foundationdb/package-info.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/util/ExactlySize.java",
+          "service/src/main/resources/lua/apn/schedule_background_notification.lua",
+          "service/src/main/resources/lua/get_delivery_attempt_count.lua",
+          "service/src/main/resources/lua/get_items.lua",
+          "service/src/main/resources/lua/insert_item.lua",
+          "service/src/main/resources/lua/insert_shared_multirecipient_message_data.lua",
+          "service/src/main/resources/lua/profile_set.lua",
+          "service/src/main/resources/lua/release_node_claim.lua",
+          "service/src/main/resources/lua/remove_item_by_guid.lua",
+          "service/src/main/resources/lua/remove_queue.lua",
+          "service/src/main/resources/lua/remove_recipient_view_from_mrm_data.lua",
+          "service/src/main/resources/lua/unlock_queue.lua",
+          "service/src/main/resources/lua/validate_rate_limit.lua",
+          "websocket-resources/src/main/java/org/whispersystems/websocket/session/WebSocketSession.java"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesLinkedDevices.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesPhoneNumber.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/limits/RateLimitedByIp.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/storage/foundationdb/package-info.java",
+          "service/src/main/java/org/whispersystems/textsecuregcm/util/ExactlySize.java",
+          "websocket-resources/src/main/java/org/whispersystems/websocket/session/WebSocketSession.java"
+        ]
+      },
+      "full_gap_list": [
+        "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesLinkedDevices.java",
+        "service/src/main/java/org/whispersystems/textsecuregcm/auth/ChangesPhoneNumber.java",
+        "service/src/main/java/org/whispersystems/textsecuregcm/limits/RateLimitedByIp.java",
+        "service/src/main/java/org/whispersystems/textsecuregcm/storage/foundationdb/package-info.java",
+        "service/src/main/java/org/whispersystems/textsecuregcm/util/ExactlySize.java",
+        "service/src/main/resources/lua/apn/schedule_background_notification.lua",
+        "service/src/main/resources/lua/get_delivery_attempt_count.lua",
+        "service/src/main/resources/lua/get_items.lua",
+        "service/src/main/resources/lua/insert_item.lua",
+        "service/src/main/resources/lua/insert_shared_multirecipient_message_data.lua",
+        "service/src/main/resources/lua/profile_set.lua",
+        "service/src/main/resources/lua/release_node_claim.lua",
+        "service/src/main/resources/lua/remove_item_by_guid.lua",
+        "service/src/main/resources/lua/remove_queue.lua",
+        "service/src/main/resources/lua/remove_recipient_view_from_mrm_data.lua",
+        "service/src/main/resources/lua/unlock_queue.lua",
+        "service/src/main/resources/lua/validate_rate_limit.lua",
+        "websocket-resources/src/main/java/org/whispersystems/websocket/session/WebSocketSession.java"
+      ]
+    },
+    {
+      "repo": "aria2",
+      "language": "cpp",
+      "kind": "application",
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 1209,
+        "our_symbol_files": 1197,
+        "peer_symbol_files": {
+          "codegraph": 1154,
+          "graphify": 1208,
+          "code-review-graph": 1172
+        },
+        "our_symbol_in_language_published": 1168,
+        "our_covered_in_language_published": 233,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 1
+      },
+      "buckets": {
+        "parsed, yields no symbol": 1
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 1
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".cc": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.1995,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.2002,
+          "delta_upper_bound": 0.0007
+        },
+        "vs_peer_union": {
+          "gap": 1,
+          "rate_ceiling": 0.2002,
+          "delta_upper_bound": 0.0007
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "src/OptionHandlerFactory.cc"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "src/OptionHandlerFactory.cc"
+        ]
+      },
+      "full_gap_list": [
+        "src/OptionHandlerFactory.cc"
+      ]
+    },
+    {
+      "repo": "monica",
+      "language": "php",
+      "kind": "application",
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 1985,
+        "our_symbol_files": 1663,
+        "peer_symbol_files": {
+          "codegraph": 1498,
+          "graphify": 1927,
+          "code-review-graph": 1555
+        },
+        "our_symbol_in_language_published": 1404,
+        "our_covered_in_language_published": 175,
+        "gap_all_languages": 0,
+        "gap_in_primary_language": 0,
+        "gap_in_primary_language_union_of_peers": 247
+      },
+      "buckets": {},
+      "buckets_in_primary_language": {},
+      "extensions_by_bucket": {},
+      "g2": {
+        "rate_now": 0.1246,
+        "vs_head_peer": {
+          "gap": 0,
+          "rate_ceiling": 0.1246,
+          "delta_upper_bound": 0.0
+        },
+        "vs_peer_union": {
+          "gap": 247,
+          "rate_ceiling": 0.2556,
+          "delta_upper_bound": 0.131
+        }
+      },
+      "examples": {},
+      "examples_in_primary_language": {},
+      "full_gap_list": []
+    },
+    {
+      "repo": "syft",
+      "language": "go",
+      "kind": "framework",
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 1690,
+        "our_symbol_files": 1237,
+        "peer_symbol_files": {
+          "codegraph": 1184,
+          "graphify": 1451,
+          "code-review-graph": 1196
+        },
+        "our_symbol_in_language_published": 1133,
+        "our_covered_in_language_published": 544,
+        "gap_all_languages": 9,
+        "gap_in_primary_language": 8,
+        "gap_in_primary_language_union_of_peers": 26
+      },
+      "buckets": {
+        "excluded by the traverser": 9
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 8
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".go": 8,
+          ".rb": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.4801,
+        "vs_head_peer": {
+          "gap": 8,
+          "rate_ceiling": 0.4838,
+          "delta_upper_bound": 0.0036
+        },
+        "vs_peer_union": {
+          "gap": 26,
+          "rate_ceiling": 0.4918,
+          "delta_upper_bound": 0.0117
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "internal/capabilities/generate/io.go",
+          "internal/capabilities/generate/merge.go",
+          "internal/packagemetadata/generated.go",
+          "internal/packagemetadata/names_test.go",
+          "internal/sourcemetadata/generated.go",
+          "internal/sourcemetadata/names_test.go",
+          "internal/spdxlicense/generate/generate_license_list.go",
+          "internal/spdxlicense/license_list.go",
+          "syft/pkg/cataloger/homebrew/testdata/formulas/syft/1.23.1/.brew/syft.rb"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "internal/capabilities/generate/io.go",
+          "internal/capabilities/generate/merge.go",
+          "internal/packagemetadata/generated.go",
+          "internal/packagemetadata/names_test.go",
+          "internal/sourcemetadata/generated.go",
+          "internal/sourcemetadata/names_test.go",
+          "internal/spdxlicense/generate/generate_license_list.go",
+          "internal/spdxlicense/license_list.go"
+        ]
+      },
+      "full_gap_list": [
+        "internal/capabilities/generate/io.go",
+        "internal/capabilities/generate/merge.go",
+        "internal/packagemetadata/generated.go",
+        "internal/packagemetadata/names_test.go",
+        "internal/sourcemetadata/generated.go",
+        "internal/sourcemetadata/names_test.go",
+        "internal/spdxlicense/generate/generate_license_list.go",
+        "internal/spdxlicense/license_list.go",
+        "syft/pkg/cataloger/homebrew/testdata/formulas/syft/1.23.1/.brew/syft.rb"
+      ]
+    },
+    {
+      "repo": "bevy",
+      "language": "rust",
+      "kind": "framework",
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 2054,
+        "our_symbol_files": 1789,
+        "peer_symbol_files": {
+          "codegraph": 1715,
+          "graphify": 1826,
+          "code-review-graph": 1709
+        },
+        "our_symbol_in_language_published": 1782,
+        "our_covered_in_language_published": 610,
+        "gap_all_languages": 1,
+        "gap_in_primary_language": 1,
+        "gap_in_primary_language_union_of_peers": 27
+      },
+      "buckets": {
+        "excluded by the traverser": 1
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 1
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".rs": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.3423,
+        "vs_head_peer": {
+          "gap": 1,
+          "rate_ceiling": 0.3427,
+          "delta_upper_bound": 0.0004
+        },
+        "vs_peer_union": {
+          "gap": 27,
+          "rate_ceiling": 0.3521,
+          "delta_upper_bound": 0.0098
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "crates/bevy_color/src/test_colors.rs"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "crates/bevy_color/src/test_colors.rs"
+        ]
+      },
+      "full_gap_list": [
+        "crates/bevy_color/src/test_colors.rs"
+      ]
+    },
+    {
+      "repo": "ktor",
+      "language": "kotlin",
+      "kind": "framework",
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 2600,
+        "our_symbol_files": 2361,
+        "peer_symbol_files": {
+          "codegraph": 2362,
+          "graphify": 2500,
+          "code-review-graph": 2261
+        },
+        "our_symbol_in_language_published": 2337,
+        "our_covered_in_language_published": 1025,
+        "gap_all_languages": 7,
+        "gap_in_primary_language": 6,
+        "gap_in_primary_language_union_of_peers": 137
+      },
+      "buckets": {
+        "parsed, yields no symbol": 7
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 6
+      },
+      "extensions_by_bucket": {
+        "parsed, yields no symbol": {
+          ".kt": 6,
+          ".js": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.4386,
+        "vs_head_peer": {
+          "gap": 6,
+          "rate_ceiling": 0.44,
+          "delta_upper_bound": 0.0014
+        },
+        "vs_peer_union": {
+          "gap": 137,
+          "rate_ceiling": 0.4697,
+          "delta_upper_bound": 0.0311
+        }
+      },
+      "examples": {
+        "parsed, yields no symbol": [
+          "build-logic/src/main/kotlin/ktorbuild/internal/Problems.kt",
+          "karma/chrome_bin.js",
+          "ktor-client/ktor-client-tests/jvm/src/io/ktor/client/tests/HttpClientTest.kt",
+          "ktor-compiler-plugin/src/io/ktor/openapi/routing/RouteCall.kt",
+          "ktor-server/ktor-server-plugins/ktor-server-velocity/jvm/test/io/ktor/tests/velocity/VelocityToolsTest.kt",
+          "ktor-shared/ktor-openapi-schema/common/src/io/ktor/openapi/JsonSchema.kt",
+          "ktor-test-server/src/main/kotlin/test/server/tests/ServerSentEvents.kt"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "build-logic/src/main/kotlin/ktorbuild/internal/Problems.kt",
+          "ktor-client/ktor-client-tests/jvm/src/io/ktor/client/tests/HttpClientTest.kt",
+          "ktor-compiler-plugin/src/io/ktor/openapi/routing/RouteCall.kt",
+          "ktor-server/ktor-server-plugins/ktor-server-velocity/jvm/test/io/ktor/tests/velocity/VelocityToolsTest.kt",
+          "ktor-shared/ktor-openapi-schema/common/src/io/ktor/openapi/JsonSchema.kt",
+          "ktor-test-server/src/main/kotlin/test/server/tests/ServerSentEvents.kt"
+        ]
+      },
+      "full_gap_list": [
+        "build-logic/src/main/kotlin/ktorbuild/internal/Problems.kt",
+        "karma/chrome_bin.js",
+        "ktor-client/ktor-client-tests/jvm/src/io/ktor/client/tests/HttpClientTest.kt",
+        "ktor-compiler-plugin/src/io/ktor/openapi/routing/RouteCall.kt",
+        "ktor-server/ktor-server-plugins/ktor-server-velocity/jvm/test/io/ktor/tests/velocity/VelocityToolsTest.kt",
+        "ktor-shared/ktor-openapi-schema/common/src/io/ktor/openapi/JsonSchema.kt",
+        "ktor-test-server/src/main/kotlin/test/server/tests/ServerSentEvents.kt"
+      ]
+    },
+    {
+      "repo": "laravel-framework",
+      "language": "php",
+      "kind": "framework",
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 3147,
+        "our_symbol_files": 2783,
+        "peer_symbol_files": {
+          "codegraph": 2793,
+          "graphify": 3041,
+          "code-review-graph": 2794
+        },
+        "our_symbol_in_language_published": 2781,
+        "our_covered_in_language_published": 929,
+        "gap_all_languages": 11,
+        "gap_in_primary_language": 11,
+        "gap_in_primary_language_union_of_peers": 213
+      },
+      "buckets": {
+        "excluded by the traverser": 11
+      },
+      "buckets_in_primary_language": {
+        "excluded by the traverser": 11
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".php": 11
+        }
+      },
+      "g2": {
+        "rate_now": 0.3341,
+        "vs_head_peer": {
+          "gap": 11,
+          "rate_ceiling": 0.3367,
+          "delta_upper_bound": 0.0026
+        },
+        "vs_peer_union": {
+          "gap": 213,
+          "rate_ceiling": 0.3814,
+          "delta_upper_bound": 0.0474
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "tests/Foundation/fixtures/process-failure-strategy.php",
+          "tests/Foundation/fixtures/process-interrupt-strategy.php",
+          "tests/Integration/Foundation/Fixtures/Logs/ThrowExceptionLogHandler.php",
+          "tests/Integration/Migration/fixtures/2014_10_12_000000_create_people_table.php",
+          "tests/Integration/Migration/fixtures/2015_10_04_000000_modify_people_table.php",
+          "tests/Integration/Migration/fixtures/2016_10_04_000000_modify_people_table.php",
+          "tests/Integration/Migration/fixtures/2017_10_04_000000_add_age_to_people.php",
+          "tests/Routing/fixtures/controller.php",
+          "tests/Routing/fixtures/except_controller.php",
+          "tests/Routing/fixtures/only_controller.php",
+          "tests/Validation/fixtures/Values.php"
+        ]
+      },
+      "examples_in_primary_language": {
+        "excluded by the traverser": [
+          "tests/Foundation/fixtures/process-failure-strategy.php",
+          "tests/Foundation/fixtures/process-interrupt-strategy.php",
+          "tests/Integration/Foundation/Fixtures/Logs/ThrowExceptionLogHandler.php",
+          "tests/Integration/Migration/fixtures/2014_10_12_000000_create_people_table.php",
+          "tests/Integration/Migration/fixtures/2015_10_04_000000_modify_people_table.php",
+          "tests/Integration/Migration/fixtures/2016_10_04_000000_modify_people_table.php",
+          "tests/Integration/Migration/fixtures/2017_10_04_000000_add_age_to_people.php",
+          "tests/Routing/fixtures/controller.php",
+          "tests/Routing/fixtures/except_controller.php",
+          "tests/Routing/fixtures/only_controller.php",
+          "tests/Validation/fixtures/Values.php"
+        ]
+      },
+      "full_gap_list": [
+        "tests/Foundation/fixtures/process-failure-strategy.php",
+        "tests/Foundation/fixtures/process-interrupt-strategy.php",
+        "tests/Integration/Foundation/Fixtures/Logs/ThrowExceptionLogHandler.php",
+        "tests/Integration/Migration/fixtures/2014_10_12_000000_create_people_table.php",
+        "tests/Integration/Migration/fixtures/2015_10_04_000000_modify_people_table.php",
+        "tests/Integration/Migration/fixtures/2016_10_04_000000_modify_people_table.php",
+        "tests/Integration/Migration/fixtures/2017_10_04_000000_add_age_to_people.php",
+        "tests/Routing/fixtures/controller.php",
+        "tests/Routing/fixtures/except_controller.php",
+        "tests/Routing/fixtures/only_controller.php",
+        "tests/Validation/fixtures/Values.php"
+      ]
+    },
+    {
+      "repo": "exposed",
+      "language": "kotlin",
+      "kind": "library",
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "peers": [
+        "codegraph",
+        "graphify",
+        "code-review-graph"
+      ],
+      "counts": {
+        "our_files_seen": 5123,
+        "our_symbol_files": 789,
+        "peer_symbol_files": {
+          "codegraph": 796,
+          "graphify": 826,
+          "code-review-graph": 800
+        },
+        "our_symbol_in_language_published": 777,
+        "our_covered_in_language_published": 322,
+        "gap_all_languages": 15,
+        "gap_in_primary_language": 8,
+        "gap_in_primary_language_union_of_peers": 30
+      },
+      "buckets": {
+        "parsed, yields no symbol": 10,
+        "excluded by the traverser": 3,
+        "extension never parsed": 2
+      },
+      "buckets_in_primary_language": {
+        "parsed, yields no symbol": 7,
+        "excluded by the traverser": 1
+      },
+      "extensions_by_bucket": {
+        "excluded by the traverser": {
+          ".js": 2,
+          ".kt": 1
+        },
+        "extension never parsed": {
+          ".properties": 2
+        },
+        "parsed, yields no symbol": {
+          ".kt": 7,
+          ".yaml": 2,
+          ".yml": 1
+        }
+      },
+      "g2": {
+        "rate_now": 0.4144,
+        "vs_head_peer": {
+          "gap": 8,
+          "rate_ceiling": 0.4204,
+          "delta_upper_bound": 0.006
+        },
+        "vs_peer_union": {
+          "gap": 30,
+          "rate_ceiling": 0.4362,
+          "delta_upper_bound": 0.0218
+        }
+      },
+      "examples": {
+        "excluded by the traverser": [
+          "docs/api/scripts/main.js",
+          "docs/api/ui-kit/ui-kit.min.js",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/dao/id/java/UUIDTable.kt"
+        ],
+        "extension never parsed": [
+          "documentation-website/Writerside/snippets/exposed-spring/src/main/resources/application.properties",
+          "samples/exposed-spring/src/main/resources/application.properties"
+        ],
+        "parsed, yields no symbol": [
+          "documentation-website/Writerside/snippets/get-started-with-exposed/src/main/kotlin/org/example/App.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Annotations.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Schema.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/java/UUIDColumnType.kt",
+          "exposed-json/src/test/kotlin/org/jetbrains/exposed/v1/json/JsonBColumnTests.kt",
+          "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/json/JsonBColumnTests.kt",
+          "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/mappers/DateTimeOracleTypeMapper.kt",
+          "samples/exposed-ktor-r2dbc/src/main/resources/application.yaml",
+          "samples/exposed-ktor/src/main/resources/application.yaml",
+          "samples/springboot3-exposed-r2dbc/src/main/resources/application.yml"
+        ]
+      },
+      "examples_in_primary_language": {
+        "parsed, yields no symbol": [
+          "documentation-website/Writerside/snippets/get-started-with-exposed/src/main/kotlin/org/example/App.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Annotations.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Schema.kt",
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/java/UUIDColumnType.kt",
+          "exposed-json/src/test/kotlin/org/jetbrains/exposed/v1/json/JsonBColumnTests.kt",
+          "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/json/JsonBColumnTests.kt",
+          "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/mappers/DateTimeOracleTypeMapper.kt"
+        ],
+        "excluded by the traverser": [
+          "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/dao/id/java/UUIDTable.kt"
+        ]
+      },
+      "full_gap_list": [
+        "docs/api/scripts/main.js",
+        "docs/api/ui-kit/ui-kit.min.js",
+        "documentation-website/Writerside/snippets/exposed-spring/src/main/resources/application.properties",
+        "documentation-website/Writerside/snippets/get-started-with-exposed/src/main/kotlin/org/example/App.kt",
+        "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Annotations.kt",
+        "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Schema.kt",
+        "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/dao/id/java/UUIDTable.kt",
+        "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/java/UUIDColumnType.kt",
+        "exposed-json/src/test/kotlin/org/jetbrains/exposed/v1/json/JsonBColumnTests.kt",
+        "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/json/JsonBColumnTests.kt",
+        "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/mappers/DateTimeOracleTypeMapper.kt",
+        "samples/exposed-ktor-r2dbc/src/main/resources/application.yaml",
+        "samples/exposed-ktor/src/main/resources/application.yaml",
+        "samples/exposed-spring/src/main/resources/application.properties",
+        "samples/springboot3-exposed-r2dbc/src/main/resources/application.yml"
+      ]
+    }
+  ]
+}
