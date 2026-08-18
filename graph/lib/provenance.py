@@ -147,7 +147,9 @@ def stamp(
         "bench": git_state(bench_repo),
         "tools": tool_versions(),
     }
-    if not publishable:
+    if not publishable and not (extra or {}).get("caveats"):
+        # A caller that listed its own reasons keeps them; this default fires
+        # only when the tree is the sole reason.
         block["not_publishable_because"] = (
             "run with --allow-dirty; the measured tree contains uncommitted "
             "changes, so this is a smoke test and not a result"

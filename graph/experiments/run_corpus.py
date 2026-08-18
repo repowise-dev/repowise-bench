@@ -9,6 +9,15 @@ answer two questions about one index is most of an hour for nothing.
 
     python graph/experiments/run_corpus.py --arms repowise,codegraph
     python graph/experiments/run_corpus.py --repos gitleaks --arms all --no-warmup
+    python graph/experiments/run_corpus.py --arms all --use-cache --dry-run
+
+## Which repositories
+
+Read from `graph/corpus/corpus.lock` through `graph/lib/corpus.py`, which
+`prebuild_artifacts.py` shares so the sweep cannot ask for a peer artifact the
+prebuild never built. Every row records its pin, kind and file count at the pin,
+and the result carries the selection and the per-language kind coverage, so a
+language sitting at n=1 is visible in the document rather than only in a plan.
 
 ## What gets written
 
@@ -54,23 +63,17 @@ GRAPH = BENCH / "graph"
 sys.path.insert(0, str(GRAPH / "lib"))
 
 import arms as arms_lib  # noqa: E402
+import corpus as corpus_lib  # noqa: E402
 import provenance  # noqa: E402
 import stats  # noqa: E402
 
 SCHEMA = "graph-result/1"
 
-# Repositories largest first. Everything measured so far is one small Go
-# repository and the ratios there will not hold on caffeine; if an arm is going
-# to fall over on a big repository it is cheaper to learn that in the first ten
-# minutes than in the last.
-CORPUS = [
-    ("dub", "typescript", 4066),
-    ("caffeine", "java", 786),
-    ("Ocelot", "csharp", 772),
-    ("celery", "python", 436),
-    ("zod", "typescript", 422),
-    ("gitleaks", "go", 226),
-]
+# The corpus is read from `graph/corpus/corpus.lock` via `corpus_lib.select`,
+# which `prebuild_artifacts.py` also uses so the two cannot disagree about what
+# exists. It used to be a hardcoded six -- typescript x2, java x1, csharp x1,
+# python x1, go x1 -- and that constant was the whole reason every per-language
+# claim on the published page rested on a single repository.
 
 # Language names differ between arms: we say `csharp`, and an arm that says
 # `c_sharp` or `cs` would silently produce an empty language-filtered
@@ -114,14 +117,42 @@ def covered_files(
     return {f for e in edges for f in e}
 
 
-def measure(arm, repo_path: Path, repo_name: str, language: str, warmup: bool) -> dict:
-    """Build once (after a discarded warmup) and read every protocol set off it."""
-    if warmup:
+def measure(
+    arm,
+    repo_path: Path,
+    repo_name: str,
+    language: str,
+    warmup: bool,
+    *,
+    pin: str | None = None,
+    use_cache: bool = False,
+) -> dict:
+    """Build once (after a discarded warmup) and read every protocol set off it.
+
+    With `use_cache`, an arm that stores an artifact on disk is restored from the
+    prebuild cache rather than rebuilt. That is the only way thirty-five
+    repositories times five arms fits in a session: the three competitor arms
+    cost the whole budget, and their artifacts depend on `(tool, version, repo,
+    pin)` and not at all on our commit.
+
+    Coverage is unaffected -- `artifact_cache` round-trips every protocol set
+    byte for byte, checked on cobra before the sweep that filled it -- but **the
+    cost row then belongs to the build that filled the cache**, not to this run.
+    It is passed through flagged `from_cache` and the run is stamped not
+    publishable, because a G6 table must not quote a restore. Our own arms hold
+    nothing on disk to cache and always build fresh.
+    """
+    cached = bool(use_cache and pin and hasattr(arm, "cache_payload"))
+
+    if warmup and not cached:
         art = arm.build(repo_path, repo_name=repo_name, fresh=True)
         arm.close(art)
 
     started = time.perf_counter()
-    art = arm.build(repo_path, repo_name=repo_name, fresh=True)
+    if cached:
+        art = arms_lib.build_cached(arm, repo_path, repo_name=repo_name, pin=pin, fresh=False)
+    else:
+        art = arm.build(repo_path, repo_name=repo_name, fresh=True)
     wall = time.perf_counter() - started
     try:
         langs = {p: norm_lang(l) for p, l in arm.file_languages(art).items()}
@@ -154,7 +185,11 @@ def measure(arm, repo_path: Path, repo_name: str, language: str, warmup: bool) -
             "cost": {
                 **art.cost_row(),
                 "harness_wall_sec": round(wall, 3),
-                "warmup_discarded": warmup,
+                "warmup_discarded": warmup and not cached,
+                # True means the seconds and RSS above were measured on an
+                # earlier real build and restored here, never on this run.
+                "from_cache": bool(art.extra.get("from_cache")),
+                "cost_measured_at": art.extra.get("cost_measured_at"),
             },
             "counts": {
                 "files_seen": len(seen),
@@ -222,16 +257,50 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--arms", default="repowise,codegraph", help="comma-separated, or 'all'")
     ap.add_argument("--repos", default="all", help="comma-separated, or 'all'")
+    ap.add_argument("--kinds", default="", help="library,application,framework")
+    ap.add_argument("--languages", default="", help="comma-separated")
+    ap.add_argument("--lock", default=str(corpus_lib.LOCK))
+    ap.add_argument(
+        "--max-files", type=int, default=corpus_lib.DEFAULT_MAX_FILES,
+        help="size cap; never drops a (language, kind) slot's only member",
+    )
     ap.add_argument("--test-repos", default=str(BENCH.parent / "test-repos"))
+    ap.add_argument(
+        "--use-cache", action="store_true",
+        help="restore competitor artifacts from the prebuild cache instead of "
+             "rebuilding them. Coverage is unaffected -- a restore reproduces "
+             "every protocol set byte for byte -- but the cost row is then the "
+             "one measured at build time, so G6 is stamped not publishable.",
+    )
     ap.add_argument("--no-warmup", action="store_true", help="dev only; not publishable")
     ap.add_argument("--allow-dirty", action="store_true")
+    ap.add_argument(
+        "--dry-run", action="store_true",
+        help="print the selection and the per-language coverage, build nothing",
+    )
     ap.add_argument("--out-root", default=str(BENCH / "results/graph/g2g6"))
     args = ap.parse_args()
 
     arm_names = arms_lib.arm_names() if args.arms == "all" else args.arms.split(",")
-    selected = (
-        CORPUS if args.repos == "all" else [c for c in CORPUS if c[0] in args.repos.split(",")]
+    selection = corpus_lib.select(
+        lock=args.lock,
+        repos=args.repos,
+        kinds=args.kinds,
+        languages=args.languages,
+        max_files=args.max_files,
     )
+    for line in selection.describe():
+        print(line)
+    coverage = corpus_lib.language_coverage(selection.rows)
+    for lang in sorted(coverage):
+        c = coverage[lang]
+        flag = "" if c["three_kinds"] else "   <- not three kinds, no language claim"
+        print(f"  {lang:12s} n={c['n']}  {','.join(k or '?' for k in c['kinds'])}{flag}")
+    if args.dry_run:
+        for r in selection.rows:
+            print(f"  {r['name']:24s} {r['language'] or '?':12s} "
+                  f"{r['kind'] or '?':12s} {r['files']:6d} files  {r['pin'][:8]}")
+        return 0
     test_repos = Path(args.test_repos).resolve()
 
     # The measured tree is whichever checkout `repowise.core` imports from --
@@ -257,8 +326,22 @@ def main() -> int:
             "a measurement whose source tree cannot be identified"
         )
     publishable = provenance.require_clean(measured_tree, allow_dirty=args.allow_dirty)
+    reasons: list[str] = []
+    if not publishable:
+        reasons.append("--allow-dirty: the measured tree has uncommitted changes")
     if args.no_warmup:
         publishable = False
+        reasons.append("--no-warmup: the first build on a repository is cold, and "
+                       "gitleaks measured 6.92s cold against 1.90s warm")
+    # Coverage survives a restored artifact -- every protocol set round-trips
+    # byte for byte -- but the cost row does not, so the whole document is
+    # stamped rather than half of it. G6 re-runs with --use-cache off.
+    cost_from_cache = args.use_cache
+    if cost_from_cache:
+        publishable = False
+        reasons.append("--use-cache: competitor cost rows were measured when the "
+                       "artifact cache was filled, not on this run. Coverage is "
+                       "unaffected; G6 needs a run without it")
 
     result: dict = {
         "schema": SCHEMA,
@@ -272,24 +355,42 @@ def main() -> int:
                 "warmup": not args.no_warmup,
                 "arms_requested": arm_names,
                 "measured_tree": str(measured_tree),
+                "cost_from_cache": cost_from_cache,
+                "caveats": reasons,
+                "corpus": {
+                    "lock": str(args.lock),
+                    "selected": selection.names(),
+                    "skipped_oversize": [r["name"] for r in selection.oversize],
+                    "kept_oversize": [r["name"] for r in selection.kept_oversize],
+                    "max_files": args.max_files,
+                    # Printed beside G7 so a one-repository language cannot be
+                    # read with the weight of one measured three ways.
+                    "language_coverage": corpus_lib.language_coverage(selection.rows),
+                },
             },
         ),
         "repos": {},
     }
 
-    for repo_name, language, _size in selected:
+    for entry in selection.rows:
+        repo_name = entry["name"]
+        language = norm_lang(entry.get("language")) or "unknown"
         repo_path = test_repos / repo_name
         if not repo_path.is_dir():
             print(f"  !! no checkout at {repo_path}, skipping", file=sys.stderr)
             continue
-        print(f"\n=== {repo_name} ({language}) ===", flush=True)
+        print(f"\n=== {repo_name} ({language}/{entry.get('kind')}, "
+              f"{entry['files']} files) ===", flush=True)
         rows: dict[str, dict] = {}
         for arm_name in arm_names:
             arm = arms_lib.get_arm(arm_name)
             print(f"  {arm_name} ...", end="", flush=True)
             try:
                 rows[arm_name] = measure(
-                    arm, repo_path, repo_name, language, warmup=not args.no_warmup
+                    arm, repo_path, repo_name, language,
+                    warmup=not args.no_warmup,
+                    pin=entry.get("pin"),
+                    use_cache=args.use_cache,
                 )
                 c = rows[arm_name]
                 print(
@@ -305,6 +406,9 @@ def main() -> int:
         ok = {a: r for a, r in rows.items() if "error" not in r}
         result["repos"][repo_name] = {
             "language": language,
+            "kind": entry.get("kind"),
+            "pin": entry.get("pin"),
+            "files_at_pin": entry.get("files"),
             "shared": shared_denominator(ok, language),
             "arms": {a: {k: v for k, v in r.items() if k != "_sets"} for a, r in rows.items()},
         }
@@ -316,7 +420,9 @@ def main() -> int:
     out.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(f"\nwrote {out}")
     if not publishable:
-        print("STAMPED NOT PUBLISHABLE (dirty tree and/or --no-warmup)")
+        print("STAMPED NOT PUBLISHABLE")
+        for r in reasons:
+            print(f"  - {r}")
     return 0
 
 

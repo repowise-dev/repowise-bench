@@ -35,8 +35,9 @@ sys.path.insert(0, str(GRAPH / "lib"))
 
 import arms as arms_lib  # noqa: E402
 import artifact_cache  # noqa: E402
+import corpus as corpus_lib  # noqa: E402
 
-LOCK = GRAPH / "corpus" / "corpus.lock"
+LOCK = corpus_lib.LOCK
 DEFAULT_ARMS = "codegraph,graphify,code-review-graph"
 
 
@@ -57,54 +58,23 @@ def main() -> int:
     ap.add_argument("--out-root", default=str(BENCH / "results/graph/prebuild"))
     args = ap.parse_args()
 
-    doc = json.loads(Path(args.lock).read_text(encoding="utf-8"))
-    rows = [r for r in doc["repos"] if r.get("usable", True)]
-    if args.repos:
-        want = set(args.repos.split(","))
-        rows = [r for r in rows if r["name"] in want]
-    elif args.kinds:
-        want = set(args.kinds.split(","))
-        rows = [r for r in rows if r.get("kind") in want]
-    else:
-        # Without a filter this is the pinned corpus, not all 88 checkouts.
-        rows = [r for r in rows if r.get("kind")]
-    if args.languages:
-        want = set(args.languages.split(","))
-        rows = [r for r in rows if r.get("language") in want]
-
-    # The size cap exists to stop spares costing an hour each. It must not
-    # delete a per-language claim: if a (language, kind) slot has no
-    # under-cap repository at all, its smallest repository is kept however
-    # large, because the alternative is a G7 table that quietly has no Rust
-    # framework row and no PHP framework row and looks complete.
-    under = {r["name"] for r in rows if r["files"] <= args.max_files}
-    covered = {
-        (r["language"], r["kind"]) for r in rows if r["name"] in under
-    }
-    kept_oversize: list[dict] = []
-    for slot in sorted({(r["language"], r["kind"]) for r in rows} - covered):
-        candidates = [r for r in rows if (r["language"], r["kind"]) == slot]
-        kept_oversize.append(min(candidates, key=lambda r: r["files"]))
-    keep = under | {r["name"] for r in kept_oversize}
-
-    oversize = [r for r in rows if r["name"] not in keep]
-    rows = [r for r in rows if r["name"] in keep]
-    if kept_oversize:
-        print(
-            "kept over the cap as the only repository in its (language, kind): "
-            + ", ".join(f"{r['name']}({r['files']}, {r['language']}/{r['kind']})"
-                        for r in sorted(kept_oversize, key=lambda r: r["files"]))
-        )
-    rows.sort(key=lambda r: r["files"])  # cheapest first, so a broken arm shows early
+    # Selection is shared with run_corpus.py: if the two disagree about which
+    # repositories exist, the sweep asks for an artifact this never built and a
+    # cache miss reads as a slow run rather than as a mismatch.
+    selection = corpus_lib.select(
+        lock=args.lock,
+        repos=args.repos,
+        kinds=args.kinds,
+        languages=args.languages,
+        max_files=args.max_files,
+    )
+    rows = selection.rows
+    for line in selection.describe():
+        print(line)
 
     test_repos = Path(args.test_repos).resolve()
     arm_names = args.arms.split(",")
     print(f"{len(rows)} repositories x {len(arm_names)} arms")
-    if oversize:
-        # Never a silent cap. A sweep that quietly dropped the big repositories
-        # reads as "we covered the corpus" when it did not.
-        print(f"skipped over --max-files={args.max_files}: "
-              + ", ".join(f"{r['name']}({r['files']})" for r in oversize))
     if args.dry_run:
         for r in rows:
             print(f"  {r['name']:24s} {r['language'] or '?':12s} {r['files']:6d} files")
@@ -165,7 +135,9 @@ def main() -> int:
                 "schema": "prebuild/1",
                 "arms": arm_names,
                 "max_files": args.max_files,
-                "skipped_oversize": [r["name"] for r in oversize],
+                "skipped_oversize": [r["name"] for r in selection.oversize],
+                "kept_oversize": [r["name"] for r in selection.kept_oversize],
+                "selected": selection.names(),
                 "log": log,
             },
             indent=2,
