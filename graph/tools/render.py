@@ -47,6 +47,9 @@ def load(run: str | None) -> tuple[Path, dict]:
     return path, json.loads(path.read_text(encoding="utf-8"))
 
 
+NEWLINE = chr(10)
+
+
 def _fmt(rate, low=None, high=None) -> str:
     if rate is None:
         return "-"
@@ -373,6 +376,113 @@ def _g7_spread(doc: dict) -> list[str]:
     return out + [""]
 
 
+def render_shared(doc: dict, peer: str = "codegraph", ours: str = "repowise") -> str:
+    """Coverage on the denominator both arms agree on, per language.
+
+    The own-denominator columns in G2 are not a comparison. Two arms disagree
+    about which files can carry an edge at all, so each is answering the same
+    question about a different population, and the difference between the two
+    populations has already been large enough to reverse a headline: on
+    caffeine, 123 `package-info.java` files padded the peer's denominator and a
+    shared recount turned a 0.608-to-0.517 win into a 0.640-to-0.608 loss.
+
+    Pooled across each language's repositories, with a Wilson interval, and a
+    verdict of `tie` whenever the intervals overlap. Pooling weights by
+    repository size, which is what a pooled estimate means; the per-repository
+    median is printed beside it so a language carried by one large repository
+    is visible rather than hidden.
+    """
+    import statistics as _st
+
+    key = "calls_only__incoming"
+    pair_a, pair_b = sorted((ours, peer))
+    pair = f"{pair_a}__vs__{pair_b}"
+
+    per: dict[str, dict] = {}
+    for name, repo in doc["repos"].items():
+        cell = (repo.get("shared") or {}).get("pairwise", {}).get(pair)
+        if not cell or not cell.get("denominator") or ours not in cell:
+            continue
+        slot = per.setdefault(repo["language"], {
+            "denom": 0, "ours": 0, "peer": 0, "ours_rates": [], "peer_rates": [], "repos": 0,
+        })
+        slot["denom"] += cell["denominator"]
+        slot["ours"] += cell[ours][key]["covered"]
+        slot["peer"] += cell[peer][key]["covered"]
+        slot["ours_rates"].append(cell[ours][key]["rate"])
+        slot["peer_rates"].append(cell[peer][key]["rate"])
+        slot["repos"] += 1
+
+    if not per:
+        # Vacuity is not a pass. An empty table under a heading reads as "no
+        # differences were found"; the truth is that this run predates the
+        # pairwise block, or names arms it does not contain.
+        have = sorted({a for r in doc["repos"].values() for a in r.get("arms", {})})
+        return NEWLINE.join([
+            f"## Shared-denominator coverage: {ours} vs {peer}",
+            "",
+            _provenance_line(doc),
+            "",
+            f"**Not available from this run.** No `shared.pairwise` block scored "
+            f"for `{ours}` against `{peer}`. Either the result predates "
+            "shared-denominator scoring, or one of those arms did not run "
+            f"(this run has: {', '.join(have) or 'none'}). Re-run "
+            "`run_corpus.py` rather than reading the absence as a null result.",
+        ])
+
+    out = [
+        f"## Shared-denominator coverage: {ours} vs {peer}",
+        "",
+        _provenance_line(doc),
+        "",
+        "Incoming cross-file `calls`, over the files **both** arms call "
+        "symbol-bearing within the walk they share. This is the fair reading; "
+        "the own-denominator table is each tool's own metric on its own "
+        "population.",
+        "",
+        "| language | repos | shared denom | ours | 95% CI | theirs | 95% CI | verdict |",
+        "|---|---:|---:|---:|---|---:|---|---|",
+    ]
+    tally = {"ours": 0, "theirs": 0, "tie": 0}
+    for lang in sorted(per):
+        v = per[lang]
+        n = v["denom"]
+        ro, rp = v["ours"] / n, v["peer"] / n
+        io, ip = stats.wilson(v["ours"], n), stats.wilson(v["peer"], n)
+        overlap = io.low <= ip.high and ip.low <= io.high
+        if overlap:
+            verdict, k = "tie", "tie"
+        elif ro > rp:
+            verdict, k = "**ours**", "ours"
+        else:
+            verdict, k = "theirs", "theirs"
+        tally[k] += 1
+        out.append(
+            f"| {lang} | {v['repos']} | {n} | {ro:.3f} | [{io.low:.3f}, {io.high:.3f}] | "
+            f"{rp:.3f} | [{ip.low:.3f}, {ip.high:.3f}] | {verdict} |"
+        )
+    out += [
+        "",
+        f"**{tally['ours']} languages ours, {tally['theirs']} theirs, "
+        f"{tally['tie']} tied** on non-overlapping 95% Wilson intervals. A tie is "
+        "reported as a tie: overlapping intervals are not a win for whoever has "
+        "the larger point estimate.",
+        "",
+        "Per-repository medians, for the languages a pooled figure could be "
+        "carrying on one large repository:",
+        "",
+        "| language | ours (median) | theirs (median) |",
+        "|---|---:|---:|",
+    ]
+    for lang in sorted(per):
+        v = per[lang]
+        out.append(
+            f"| {lang} | {_st.median(v['ours_rates']):.3f} | "
+            f"{_st.median(v['peer_rates']):.3f} |"
+        )
+    return NEWLINE.join(out)
+
+
 def render_compare(base: dict, head: dict) -> str:
     """What moved between two runs, per repo per arm.
 
@@ -437,7 +547,8 @@ def main() -> int:
     ap.add_argument("--run", help="a run directory name, e.g. 2026-08-18-3594ba75")
     ap.add_argument("--compare-to", help="a base run directory name; prints the delta table")
     ap.add_argument("--list", action="store_true")
-    ap.add_argument("--only", choices=["g2", "g6", "g7"])
+    ap.add_argument("--only", choices=["g2", "g6", "g7", "shared"])
+    ap.add_argument("--peer", default="codegraph", help="the arm to compare against")
     args = ap.parse_args()
 
     if args.list:
@@ -461,6 +572,8 @@ def main() -> int:
         print()
     if args.only in (None, "g7"):
         print(render_g7(doc))
+    if args.only in (None, "shared"):
+        print(render_shared(doc, peer=args.peer))
     return 0
 
 
