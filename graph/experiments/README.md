@@ -18,8 +18,11 @@ ambiguous, and ambiguous is an honest answer.
 
 **Measured and published: [g1-edge-precision](g1-edge-precision/)**, nine
 languages, 270 rows per side, 540 in total. Ours 84.8%, CodeGraph 57.0%,
-disjoint. The graded rows themselves are not yet in the repository; only the
-tables are, and porting them is the remaining work here.
+disjoint. **The 540 graded rows are in
+[g1-edge-precision/rows](g1-edge-precision/rows/)**, one file per cell, each row
+with its verdict and the reason it was given; `verify_rows.py` rebuilds every
+published table from them. One cell of the eighteen, rust on our side, ships its
+draw without its grading and says so.
 
 The claim it supports is **precision per edge**, not "more edges". Raw counts put
 us behind on three of five languages. That distinction is the whole result and
@@ -45,6 +48,13 @@ fold to distinct `(file, line, target)` first.
 The instrument exists (`measure_g1_headtohead.py`). What it needs is the file-set
 intersection, because a tool that skips a directory must not be credited with
 perfect recall on the part it read.
+
+**Not written up, and it will not be.** G3 has results and no page. Publishing
+the numbers would need the file-set intersection built and the page written to
+the standard the other experiments hold, and that work stopped when the oracle
+made a shared denominator obtainable a better way: G4 compares both tools against
+a denominator the compiler owns, which is what G3 was trying to approximate. The
+results stay unlinked rather than half-cited.
 
 ## G6: graph build cost
 
@@ -80,6 +90,13 @@ that distinction into a column.
 Run over the 91 repository pool. Expect this to be unflattering somewhere on our
 side too, and report where.
 
+**Not written up, and it will not be.** Like G3 it has results and no page. What
+it was for is partly answered elsewhere: the coverage rows on the main page carry
+the per-language shares over 35 repositories, with a precision number beside
+them. The remainder, a breadth column for tools claiming twenty to forty
+languages, is real and unbuilt, and stating that is better than shipping a page
+at the end of a session.
+
 ---
 
 ## Experiments with their own directory
@@ -95,8 +112,9 @@ side too, and report where.
 
 ## Sequencing, and what changed
 
-G2, G1, G5 and G6 are measured. G3 and G7 have results but no page, so they are
-unlinked rather than cited. G4 is measured on Go and TypeScript.
+G2, G1, G5 and G6 are measured. **G3 and G7 have results and no page, and are
+now closed rather than pending**; each section above says why. They stay unlinked
+rather than cited. G4 is measured on Go and TypeScript.
 
 **The plan said G4 would consume a session on symbol identity alone. That was
 right, and an early version of this paragraph said otherwise.** Keying on
@@ -109,6 +127,5 @@ twenty identities against source is what caught it, on each language in turn.
 
 **The order to extend in is set by which languages admit an oracle at all**, not
 by which experiment is next. Go and TypeScript are done. C#, Java and Kotlin
-need an SDK each. Python, Ruby
-and PHP admit no oracle even in principle, because what a call resolves to can
+need an SDK each. Python, Ruby and PHP admit no oracle even in principle, because what a call resolves to can
 change at runtime, so those languages stay with G1 permanently.

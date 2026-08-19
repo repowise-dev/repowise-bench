@@ -150,8 +150,15 @@ is past that line, so **neither with-tests cell is quoted anywhere on this
 page**. hono with tests was stopped at the oracle, since a third of its call
 sites being unresolvable settles it without computing a rate nobody should read.
 
-Installing each repository's dependency tree would fix this. It has not been
-done, and it is the obvious next move for this cell.
+Installing each repository's dependency tree would fix this. **It has not been
+done and this programme will not do it**, so the two with-tests cells are closed
+as void rather than left open as pending. The reason for not doing it is worth
+recording, because it is not laziness: `node_modules/` inside `test-repos/zod`
+changes what every arm walks, so an install has to go to a scratch copy of the
+tree and the corpus pin has to stay untouched. That is a corpus change, not a
+cell, and it belongs to whoever extends this rather than to the session that
+closed it. Anyone doing it should expect it to shrink the no-tests unjudged
+bucket too.
 
 ## What the oracle declines to judge
 
