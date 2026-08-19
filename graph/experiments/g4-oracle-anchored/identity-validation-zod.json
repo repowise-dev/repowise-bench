@@ -1,0 +1,590 @@
+{
+  "repo": "zod",
+  "seed": 20260819,
+  "oracle": "C:/Users/ragha/AppData/Local/Temp/claude/c--Users-ragha-Desktop-repowise/85b37928-797f-4bce-a459-1ddac523f725/scratchpad/zod-notests.jsonl",
+  "pool_size": 885,
+  "rows": [
+    {
+      "n": 1,
+      "file": "packages/zod/src/v4/core/api.ts",
+      "line": 787,
+      "oracle_names": [
+        "_any"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "   786  // @__NO_SIDE_EFFECTS__",
+        "   787> export function _any<T extends schemas.$ZodAny>(Class: util.SchemaClass<T>): T {",
+        "   788    return new Class({"
+      ],
+      "arms": {
+        "repowise": [
+          "_any"
+        ],
+        "codegraph": [
+          "_any"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.core.api._any"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 2,
+      "file": "packages/zod/src/v4/classic/schemas.ts",
+      "line": 2487,
+      "oracle_names": [
+        "templateLiteral"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  2486  ",
+        "  2487> export function templateLiteral<const Parts extends core.$ZodTemplateLiteralPart[]>(",
+        "  2488    parts: Parts,"
+      ],
+      "arms": {
+        "repowise": [
+          "templateLiteral"
+        ],
+        "codegraph": [
+          "templateLiteral"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.classic.schemas.templateLiteral"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 3,
+      "file": "packages/zod/src/v4/core/api.ts",
+      "line": 1420,
+      "oracle_names": [
+        "_file"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "  1419  // @__NO_SIDE_EFFECTS__",
+        "  1420> export function _file(Class: util.SchemaClass<schemas.$ZodFile>, params?: string | $ZodFileParams): schemas.$ZodFile {",
+        "  1421    return new Class({"
+      ],
+      "arms": {
+        "repowise": [
+          "_file"
+        ],
+        "codegraph": [
+          "_file"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.core.api._file"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 4,
+      "file": "packages/zod/src/v4/core/to-json-schema.ts",
+      "line": 279,
+      "oracle_names": [
+        "extractToDef"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "   278    // remove all properties, set $ref",
+        "   279>   const extractToDef = (entry: [schemas.$ZodType<unknown, unknown>, Seen]): void => {",
+        "   280      // if the schema is already a reference, do not extract it"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.core.to-json-schema.extractToDef"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `const` arrow declared inside a function body; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 5,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 2060,
+      "oracle_names": [
+        "create"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  2059  ",
+        "  2060>   static create = (params?: RawCreateParams): ZodUndefined => {",
+        "  2061      return new ZodUndefined({"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "ZodUndefined::create"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.ZodUndefined.create"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `static create = (...) => {}` class property; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 6,
+      "file": "packages/zod/src/v4/classic/schemas.ts",
+      "line": 315,
+      "oracle_names": [
+        "transform"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "   314      },",
+        "   315>     transform(tx) {",
+        "   316        return pipe(this, transform(tx));"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [],
+        "codebase-memory-mcp": []
+      },
+      "verdict": "oracle only",
+      "note": "a method on an object literal built inline in a return; no arm models it, so it can never match for anyone",
+      "decl_line_correct": true
+    },
+    {
+      "n": 7,
+      "file": "packages/zod/src/v4/locales/de.ts",
+      "line": 13,
+      "oracle_names": [
+        "getSizing"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "    12  ",
+        "    13>   function getSizing(origin: string): { unit: string; verb: string } | null {",
+        "    14      return Sizable[origin] ?? null;"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "error::getSizing"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.locales.de.getSizing"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `function` declaration nested inside an arrow; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 8,
+      "file": "packages/zod/src/v4/classic/schemas.ts",
+      "line": 1600,
+      "oracle_names": [
+        "looseObject"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  1599  ",
+        "  1600> export function looseObject<T extends core.$ZodLooseShape>(",
+        "  1601    shape: T,"
+      ],
+      "arms": {
+        "repowise": [
+          "looseObject"
+        ],
+        "codegraph": [
+          "looseObject"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.classic.schemas.looseObject"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 9,
+      "file": "packages/zod/src/v4/mini/schemas.ts",
+      "line": 243,
+      "oracle_names": [
+        "nanoid"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "   242  // @__NO_SIDE_EFFECTS__",
+        "   243> export function nanoid(params?: string | core.$ZodNanoIDParams): ZodMiniNanoID {",
+        "   244    return core._nanoid(ZodMiniNanoID, params);"
+      ],
+      "arms": {
+        "repowise": [
+          "nanoid"
+        ],
+        "codegraph": [
+          "nanoid"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.mini.schemas.nanoid"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 10,
+      "file": "packages/zod/src/v4/locales/hu.ts",
+      "line": 13,
+      "oracle_names": [
+        "getSizing"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "    12  ",
+        "    13>   function getSizing(origin: string): { unit: string; verb: string } | null {",
+        "    14      return Sizable[origin] ?? null;"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "error::getSizing"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.locales.hu.getSizing"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `function` declaration nested inside an arrow; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 11,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 2574,
+      "oracle_names": [
+        "strict"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  2573  ",
+        "  2574>   strict(message?: errorUtil.ErrMessage): ZodObject<T, \"strict\", Catchall> {",
+        "  2575      errorUtil.errToObj;"
+      ],
+      "arms": {
+        "repowise": [
+          "strict"
+        ],
+        "codegraph": [
+          "ZodObject::strict"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.ZodObject.strict"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 12,
+      "file": "packages/zod/src/v4/classic/schemas.ts",
+      "line": 1152,
+      "oracle_names": [
+        "float32"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  1151  export interface ZodFloat32 extends ZodNumberFormat {}",
+        "  1152> export function float32(params?: string | core.$ZodCheckNumberFormatParams): ZodFloat32 {",
+        "  1153    return core._float32(ZodNumberFormat, params);"
+      ],
+      "arms": {
+        "repowise": [
+          "float32"
+        ],
+        "codegraph": [
+          "float32"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.classic.schemas.float32"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 13,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 1072,
+      "oracle_names": [
+        "nanoid"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  1071    }",
+        "  1072>   nanoid(message?: errorUtil.ErrMessage) {",
+        "  1073      return this._addCheck({ kind: \"nanoid\", ...errorUtil.errToObj(message) });"
+      ],
+      "arms": {
+        "repowise": [
+          "nanoid"
+        ],
+        "codegraph": [
+          "ZodString::nanoid"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.ZodString.nanoid"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 14,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 87,
+      "oracle_names": [
+        "handleResult"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    86  ",
+        "    87> const handleResult = <Input, Output>(",
+        "    88    ctx: ParseContext,"
+      ],
+      "arms": {
+        "repowise": [
+          "handleResult"
+        ],
+        "codegraph": [
+          "handleResult"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.handleResult"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "an arrow bound to a module-level `const`, keyed at the declaring statement; all three arms agree",
+      "decl_line_correct": true
+    },
+    {
+      "n": 15,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 1529,
+      "oracle_names": [
+        "nonpositive"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  1528  ",
+        "  1529>   nonpositive(message?: errorUtil.ErrMessage) {",
+        "  1530      return this._addCheck({"
+      ],
+      "arms": {
+        "repowise": [
+          "nonpositive"
+        ],
+        "codegraph": [
+          "ZodNumber::nonpositive"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.ZodNumber.nonpositive"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 16,
+      "file": "packages/zod/src/v4/locales/mk.ts",
+      "line": 13,
+      "oracle_names": [
+        "getSizing"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "    12  ",
+        "    13>   function getSizing(origin: string): { unit: string; verb: string } | null {",
+        "    14      return Sizable[origin] ?? null;"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "error::getSizing"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.locales.mk.getSizing"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `function` declaration nested inside an arrow; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 17,
+      "file": "packages/zod/src/v4/mini/schemas.ts",
+      "line": 342,
+      "oracle_names": [
+        "ksuid"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "   341  // @__NO_SIDE_EFFECTS__",
+        "   342> export function ksuid(params?: string | core.$ZodKSUIDParams): ZodMiniKSUID {",
+        "   343    return core._ksuid(ZodMiniKSUID, params);"
+      ],
+      "arms": {
+        "repowise": [
+          "ksuid"
+        ],
+        "codegraph": [
+          "ksuid"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.mini.schemas.ksuid"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 18,
+      "file": "packages/zod/src/v3/types.ts",
+      "line": 2207,
+      "oracle_names": [
+        "create"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "  2206  ",
+        "  2207>   static create = (params?: RawCreateParams): ZodVoid => {",
+        "  2208      return new ZodVoid({"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "ZodVoid::create"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v3.types.ZodVoid.create"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `static create = (...) => {}` class property; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 19,
+      "file": "packages/zod/src/v4/core/core.ts",
+      "line": 22,
+      "oracle_names": [
+        "init"
+      ],
+      "roles": [
+        "callee"
+      ],
+      "source": [
+        "    21  ): $constructor<T, D> {",
+        "    22>   function init(inst: T, def: D) {",
+        "    23      if (!inst._zod) {"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [
+          "$constructor::init"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.core.core.init"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "a `function` declaration nested inside an arrow; both peers carry a symbol here and we do not",
+      "decl_line_correct": true
+    },
+    {
+      "n": 20,
+      "file": "packages/zod/src/v4/classic/iso.ts",
+      "line": 14,
+      "oracle_names": [
+        "time"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    13  ",
+        "    14> export function time(params?: string | core.$ZodISOTimeParams): ZodISOTime {",
+        "    15    return core._isoTime(ZodISOTime, params);"
+      ],
+      "arms": {
+        "repowise": [
+          "time"
+        ],
+        "codegraph": [
+          "time"
+        ],
+        "codebase-memory-mcp": [
+          "packages.zod.src.v4.classic.iso.time"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    }
+  ],
+  "edge_rows": []
+}

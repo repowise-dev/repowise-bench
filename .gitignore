@@ -188,3 +188,7 @@ mcp_configs/
 # every published rate without the raw answer key.
 /graph/experiments/g4-oracle-anchored/*.jsonl
 /graph/experiments/g4-oracle-anchored/oracle/oracle.exe
+
+# G4 TypeScript oracle dependencies. `package.json` pins the compiler version
+# and `package-lock.json` is committed, so `npm install` reproduces it exactly.
+/graph/experiments/g4-oracle-anchored/oracle-ts/node_modules/

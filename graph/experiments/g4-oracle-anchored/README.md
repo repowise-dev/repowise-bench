@@ -141,10 +141,22 @@ within about a point on both arms. That is evidence the 540-row hand-graded
 audit is accurate rather than self-serving, which is worth more than any row
 above.
 
+## TypeScript
+
+A second language now has an oracle: the `tsc` type checker, on zod and hono.
+**We are the most precise arm in both cells and separate from neither**, because
+codebase-memory-mcp ties us there. Written up, with the two defects the identity
+validation caught before any rate was quoted, in
+[`TYPESCRIPT.md`](TYPESCRIPT.md).
+
+Read the two languages together. That tool is the least precise arm in all five
+Go cells and our equal in both TypeScript cells.
+
 ## Limits, stated plainly
 
-* **Go only.** Three repositories. This is not a nine-language claim and must
-  not be quoted as one.
+* **Go and TypeScript only**, five Go cells over three repositories and two
+  TypeScript cells over two. This is not a nine-language claim and must not be
+  quoted as one.
 * **A library has no `main`, so RTA has no roots.** cobra can only be analysed
   through its test binaries, which is why it has no "no tests" cell. This is a
   limit of oracle-anchoring, not a property of cobra.

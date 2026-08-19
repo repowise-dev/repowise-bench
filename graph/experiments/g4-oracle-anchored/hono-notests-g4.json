@@ -1,0 +1,173 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "typescript 5.9.3 checker",
+    "algorithm": "tsc-resolved-signature",
+    "tests_included": false,
+    "tsconfig": null,
+    "config_errors": 0,
+    "subdirs": [
+      "src"
+    ],
+    "analysed_file_count": 185,
+    "root_count": null,
+    "load_errors": 0,
+    "counts": {
+      "call_sites": 3199,
+      "resolved": 3132,
+      "unresolved": 67,
+      "top_level": 25,
+      "external_target": 1835,
+      "abstract_target": 385,
+      "emitted": 706,
+      "jsx_skipped": 0,
+      "functions": 658,
+      "functions_withheld": 178,
+      "functions_judged": 480
+    }
+  },
+  "repo": "hono",
+  "arms": {
+    "repowise": {
+      "version": "13cc339a",
+      "edges_in_scope": 626,
+      "oracle_edges": 706,
+      "matched": 516,
+      "recall": 0.7309,
+      "recall_ci": [
+        0.697,
+        0.7623
+      ],
+      "outside_oracle": 110,
+      "outside_share": 0.1757,
+      "contradicted": 12,
+      "unjudged": 98,
+      "precision_vs_oracle": 0.9773,
+      "precision_ci": [
+        0.9607,
+        0.987
+      ],
+      "unjudged_share": 0.1565,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          516
+        ],
+        [
+          "no_file_pair",
+          61
+        ],
+        [
+          "(20, 0)",
+          3
+        ],
+        [
+          "(110, 0)",
+          2
+        ],
+        [
+          "(0, 117)",
+          2
+        ],
+        [
+          "(1, 0)",
+          2
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 954,
+      "oracle_edges": 706,
+      "matched": 483,
+      "recall": 0.6841,
+      "recall_ci": [
+        0.6489,
+        0.7174
+      ],
+      "outside_oracle": 471,
+      "outside_share": 0.4937,
+      "contradicted": 117,
+      "unjudged": 354,
+      "precision_vs_oracle": 0.805,
+      "precision_ci": [
+        0.7714,
+        0.8347
+      ],
+      "unjudged_share": 0.3711,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          483
+        ],
+        [
+          "no_file_pair",
+          326
+        ],
+        [
+          "(-1, 0)",
+          14
+        ],
+        [
+          "(-6, 0)",
+          9
+        ],
+        [
+          "(-4, 0)",
+          9
+        ],
+        [
+          "(-3, 0)",
+          4
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 755,
+      "oracle_edges": 706,
+      "matched": 484,
+      "recall": 0.6856,
+      "recall_ci": [
+        0.6504,
+        0.7187
+      ],
+      "outside_oracle": 271,
+      "outside_share": 0.3589,
+      "contradicted": 26,
+      "unjudged": 245,
+      "precision_vs_oracle": 0.949,
+      "precision_ci": [
+        0.9264,
+        0.965
+      ],
+      "unjudged_share": 0.3245,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          484
+        ],
+        [
+          "no_file_pair",
+          79
+        ],
+        [
+          "(-6, 0)",
+          13
+        ],
+        [
+          "(-1, 0)",
+          12
+        ],
+        [
+          "(-4, 0)",
+          10
+        ],
+        [
+          "(-36, 0)",
+          6
+        ]
+      ]
+    }
+  }
+}
