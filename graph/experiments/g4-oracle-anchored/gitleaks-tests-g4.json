@@ -3,6 +3,9 @@
     "_header": true,
     "algorithm": "rta",
     "analysed_file_count": 203,
+    "caller_key": "outermost-enclosing-function",
+    "functions_judged": 480,
+    "functions_withheld": 0,
     "go_version": "",
     "load_errors": 0,
     "oracle": "golang.org/x/tools/go/callgraph/rta",
@@ -10,14 +13,14 @@
     "root_count": 18,
     "roots": [
       "github.com/zricethezav/gitleaks/v8/detect.test",
-      "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.test",
-      "github.com/zricethezav/gitleaks/v8/config.test",
-      "github.com/zricethezav/gitleaks/v8/report.test",
-      "github.com/zricethezav/gitleaks/v8/detect/codec.test",
-      "github.com/zricethezav/gitleaks/v8/sources.test",
       "github.com/zricethezav/gitleaks/v8/cmd/generate/config/utils.test",
+      "github.com/zricethezav/gitleaks/v8/report.test",
+      "github.com/zricethezav/gitleaks/v8/sources.test",
+      "github.com/zricethezav/gitleaks/v8/config.test",
       "github.com/zricethezav/gitleaks/v8/cmd/generate/config",
-      "github.com/zricethezav/gitleaks/v8"
+      "github.com/zricethezav/gitleaks/v8/detect/codec.test",
+      "github.com/zricethezav/gitleaks/v8",
+      "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.test"
     ],
     "tests": true
   },
@@ -26,27 +29,27 @@
     "repowise": {
       "version": "13cc339a",
       "edges_in_scope": 1666,
-      "oracle_edges": 1778,
-      "matched": 1539,
-      "recall": 0.8656,
+      "oracle_edges": 1747,
+      "matched": 1597,
+      "recall": 0.9141,
       "recall_ci": [
-        0.8489,
-        0.8806
+        0.9001,
+        0.9264
       ],
-      "outside_oracle": 127,
-      "outside_share": 0.0762,
-      "contradicted": 106,
-      "unjudged": 21,
-      "precision_vs_oracle": 0.9356,
+      "outside_oracle": 69,
+      "outside_share": 0.0414,
+      "contradicted": 43,
+      "unjudged": 26,
+      "precision_vs_oracle": 0.9738,
       "precision_ci": [
-        0.9227,
-        0.9464
+        0.9649,
+        0.9805
       ],
-      "unjudged_share": 0.0126,
+      "unjudged_share": 0.0156,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1539
+          1597
         ],
         [
           "no_file_pair",
@@ -54,46 +57,46 @@
         ],
         [
           "(0, 4)",
-          15
-        ],
-        [
-          "(1, 0)",
-          7
-        ],
-        [
-          "(9, 0)",
-          6
+          13
         ],
         [
           "(0, -4)",
-          6
+          10
+        ],
+        [
+          "(-22, 0)",
+          4
+        ],
+        [
+          "(0, 9)",
+          4
         ]
       ]
     },
     "codegraph": {
       "version": "1.5.0",
       "edges_in_scope": 1632,
-      "oracle_edges": 1778,
-      "matched": 1484,
-      "recall": 0.8346,
+      "oracle_edges": 1747,
+      "matched": 1564,
+      "recall": 0.8952,
       "recall_ci": [
-        0.8167,
-        0.8512
+        0.88,
+        0.9088
       ],
-      "outside_oracle": 148,
-      "outside_share": 0.0907,
-      "contradicted": 130,
-      "unjudged": 18,
-      "precision_vs_oracle": 0.9195,
+      "outside_oracle": 68,
+      "outside_share": 0.0417,
+      "contradicted": 47,
+      "unjudged": 21,
+      "precision_vs_oracle": 0.9708,
       "precision_ci": [
-        0.9052,
-        0.9318
+        0.9614,
+        0.978
       ],
-      "unjudged_share": 0.011,
+      "unjudged_share": 0.0129,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1484
+          1564
         ],
         [
           "no_file_pair",
@@ -101,46 +104,46 @@
         ],
         [
           "(0, 4)",
-          15
-        ],
-        [
-          "(1, 0)",
-          9
+          13
         ],
         [
           "(0, -4)",
-          6
+          10
         ],
         [
-          "(654, 0)",
-          6
+          "(-22, 0)",
+          4
+        ],
+        [
+          "(0, 9)",
+          4
         ]
       ]
     },
     "codebase-memory-mcp": {
       "version": "0.10.8",
       "edges_in_scope": 1808,
-      "oracle_edges": 1778,
-      "matched": 1575,
-      "recall": 0.8858,
+      "oracle_edges": 1747,
+      "matched": 1650,
+      "recall": 0.9445,
       "recall_ci": [
-        0.8702,
-        0.8998
+        0.9327,
+        0.9543
       ],
-      "outside_oracle": 233,
-      "outside_share": 0.1289,
-      "contradicted": 214,
+      "outside_oracle": 158,
+      "outside_share": 0.0874,
+      "contradicted": 139,
       "unjudged": 19,
-      "precision_vs_oracle": 0.8804,
+      "precision_vs_oracle": 0.9223,
       "precision_ci": [
-        0.8645,
-        0.8946
+        0.909,
+        0.9338
       ],
       "unjudged_share": 0.0105,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1575
+          1650
         ],
         [
           "no_file_pair",
@@ -148,18 +151,18 @@
         ],
         [
           "(0, 4)",
-          17
+          15
         ],
         [
           "(0, -4)",
-          9
+          15
         ],
         [
-          "(1, 0)",
-          6
+          "(0, -8)",
+          7
         ],
         [
-          "(654, 0)",
+          "(0, 9)",
           6
         ]
       ]

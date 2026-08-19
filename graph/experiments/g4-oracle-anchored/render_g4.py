@@ -26,7 +26,11 @@ LABEL = {
 
 def cell_label(path: Path, payload: dict) -> str:
     name = payload.get("repo", path.stem)
-    tests = payload.get("oracle", {}).get("tests_included")
+    o = payload.get("oracle", {})
+    # The two oracles spell the same flag differently: the Go one records
+    # `tests`, the TypeScript one `tests_included`. Reading both here keeps the
+    # Go rows generated rather than hand-labelled.
+    tests = o.get("tests_included", o.get("tests"))
     if tests is None:
         return name
     return f"{name} ({'with tests' if tests else 'no tests'})"
@@ -68,7 +72,7 @@ def scope(cells: list[tuple[str, dict]]) -> str:
            "|---|---:|---:|---:|---|"]
     for label, payload in cells:
         o, arms = payload["oracle"], payload["arms"]
-        counts = o.get("counts", {})
+        counts = o.get("counts", o)
         shares = ", ".join(
             f"{LABEL[a]} {arms[a]['unjudged_share']:.0%}" for a in ARM_ORDER if a in arms
         )

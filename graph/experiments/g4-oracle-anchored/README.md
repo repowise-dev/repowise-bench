@@ -1,8 +1,14 @@
 # G4: precision and recall against an oracle neither tool produced
 
-**Status: measured on Go, three repositories, five cells, three arms.**
-Predictions were written in [`PREREGISTRATION.md`](PREREGISTRATION.md) before any
-run and are graded at the bottom of this page, including the one that missed.
+**Status: measured on Go and TypeScript, five repositories, seven cells, three
+arms.** Predictions were written in [`PREREGISTRATION.md`](PREREGISTRATION.md)
+before any run and are graded at the bottom of this page, including the ones
+that missed.
+
+The five Go cells below were recomputed after the caller key was corrected to
+match the TypeScript oracle's. Any earlier Go figure on this page is superseded
+and should not be quoted; [the method section](#the-method-and-the-one-idea-that-makes-it-work)
+says what changed and why.
 
 ## Why this experiment exists
 
@@ -25,41 +31,54 @@ the size of the repository.
 
 Of the call edges a tool emits, the share the compiler confirms.
 
-| cell | repowise | CodeGraph 1.5.0 | codebase-memory-mcp 0.10.8 |
-|---|---:|---:|---:|
-| cobra (via tests) | **0.890** [0.872, 0.905] | 0.852 [0.834, 0.868] | 0.834 [0.815, 0.851] |
-| gitleaks (no tests) | **0.965** [0.954, 0.973] | 0.958 [0.947, 0.967] | 0.927 [0.913, 0.939] |
-| gitleaks (with tests) | **0.936** [0.923, 0.946] | 0.920 [0.905, 0.932] | 0.880 [0.865, 0.895] |
-| syft (no tests) | **0.895** [0.885, 0.904] | 0.831 [0.820, 0.842] | 0.603 [0.592, 0.615] |
-| syft (with tests) | **0.752** [0.742, 0.761] | 0.680 [0.670, 0.690] | 0.524 [0.515, 0.533] |
+| cell | repowise | CodeGraph | codebase-memory-mcp |
+|---|---|---|---|
+| cobra (with tests) | **0.972 [0.963, 0.980]** | 0.929 [0.916, 0.940] | 0.912 [0.898, 0.925] |
+| gitleaks (no tests) | 0.976 [0.967, 0.982] | 0.972 [0.962, 0.979] | 0.934 [0.921, 0.945] |
+| gitleaks (with tests) | 0.974 [0.965, 0.981] | 0.971 [0.961, 0.978] | 0.922 [0.909, 0.934] |
+| syft (no tests) | **0.943 [0.935, 0.949]** | 0.872 [0.862, 0.881] | 0.635 [0.623, 0.646] |
+| syft (with tests) | **0.950 [0.945, 0.955]** | 0.864 [0.857, 0.871] | 0.673 [0.665, 0.682] |
 
 **We are the most precise arm in all five cells.** Against
 codebase-memory-mcp: five separations, no ties, no losses. Against CodeGraph:
 three separations and two ties (both gitleaks cells), no losses.
 
-On syft, roughly half of what codebase-memory-mcp emits is a call the Go
+On syft, more than a third of what codebase-memory-mcp emits is a call the Go
 compiler says does not exist.
+
+Arm versions: CodeGraph 1.5.0, codebase-memory-mcp 0.10.8.
 
 ## Recall, which runs the other way
 
 Of the edges the oracle has, the share the tool found.
 
-| cell | oracle edges | repowise | CodeGraph | codebase-memory-mcp |
-|---|---:|---:|---:|---:|
-| cobra (via tests) | 2,150 | 0.600 | **0.670** | 0.650 |
-| gitleaks (no tests) | 1,593 | 0.939 | 0.902 | **0.954** |
-| gitleaks (with tests) | 1,778 | 0.866 | 0.835 | **0.886** |
-| syft (no tests) | 8,003 | 0.480 | 0.477 | **0.508** |
-| syft (with tests) | 23,117 | 0.249 | 0.260 | **0.274** |
+| cell | repowise | CodeGraph | codebase-memory-mcp |
+|---|---|---|---|
+| cobra (with tests) | 0.684 [0.664, 0.704] | 0.763 [0.745, 0.781] | 0.743 [0.724, 0.761] |
+| gitleaks (no tests) | 0.955 [0.943, 0.964] | 0.920 [0.906, 0.933] | 0.967 [0.957, 0.975] |
+| gitleaks (with tests) | 0.914 [0.900, 0.926] | 0.895 [0.880, 0.909] | **0.945 [0.933, 0.954]** |
+| syft (no tests) | 0.513 [0.502, 0.524] | 0.508 [0.497, 0.519] | **0.542 [0.531, 0.553]** |
+| syft (with tests) | 0.322 [0.316, 0.328] | 0.338 [0.332, 0.344] | **0.361 [0.355, 0.367]** |
 
 codebase-memory-mcp has the highest recall in four of five cells and CodeGraph
-in the fifth. **We lead in none.**
+in the fifth. **We lead in none**, though we are ahead of CodeGraph in three of
+the five.
 
-**Do not compare recall across rows.** It swings from 0.25 to 0.95, and that is
+**Do not compare recall across rows.** It swings from 0.32 to 0.97, and that is
 driven by how many entry points RTA had (4 on gitleaks, 268 on syft-with-tests),
 not by tool quality. A larger oracle mechanically lowers every arm's recall.
 Only within-row comparisons carry meaning, and a pooled recall over these cells
 would be meaningless.
+
+### What the oracle analysed
+
+| cell | files | oracle edges | functions judged | unjudged share, per arm |
+|---|---:|---:|---:|---|
+| cobra (with tests) | 35 | 2059 | 584 | repowise 0%, CodeGraph 0%, codebase-memory-mcp 0% |
+| gitleaks (no tests) | 184 | 1584 | 415 | repowise 3%, CodeGraph 3%, codebase-memory-mcp 3% |
+| gitleaks (with tests) | 203 | 1747 | 480 | repowise 2%, CodeGraph 1%, codebase-memory-mcp 1% |
+| syft (no tests) | 663 | 7898 | 2979 | repowise 6%, CodeGraph 11%, codebase-memory-mcp 6% |
+| syft (with tests) | 1107 | 22590 | 4632 | repowise 2%, CodeGraph 5%, codebase-memory-mcp 3% |
 
 ## What the two tables say together
 
@@ -77,6 +96,18 @@ beside it.
 
 **Key: `(caller_decl_file, caller_decl_line) -> (callee_decl_file,
 callee_decl_line)`.** Function granularity, declaration locations only.
+
+**A caller is keyed at the outermost function the call is written inside.** A
+`func` literal is a function to the compiler and gets its own SSA node, but no
+arm in this comparison stores a symbol for one: all three attribute a call made
+inside a closure to the function the closure is written in. Keying the caller at
+the literal would therefore mark the edge wrong for every arm at once, which
+measures the oracle's key rather than any resolver. The TypeScript oracle
+[found this first](TYPESCRIPT.md), where correcting it moved every arm by more
+than twenty points; the Go oracle now uses the same rule. The callee side stays
+at its own declaration, because a closure that is genuinely called is a real
+target the arms do not carry and hiding it would turn a measured recall gap into
+a silent one.
 
 **No name is ever compared.** A name-matched join is the failure this experiment
 exists to remove, and it would quietly favour whichever tool spells identifiers
@@ -103,6 +134,14 @@ site inside a function it reaches.** So:
 `precision = matched / (matched + contradicted)`. The unjudged bucket is
 reported at full size and charged to nobody.
 
+One refinement follows from the caller key. RTA reaches a `func` literal only if
+something calls it, so a callback it never sees invoked is analysed nowhere. A
+function is therefore judgeable only if RTA reached it **and** reached every
+closure written inside it; otherwise it is withheld and its edges fall to
+unjudged. Without that, an arm would be contradicted over the oracle's own blind
+spot. On the cells here the withheld count is nil to small, so the correction
+costs almost nothing and removes the objection entirely.
+
 The unjudged share is small in every cell, 0.4% to 11.1% and mostly under 6%, so
 these rates cover nearly all of each tool's output rather than leaving a large
 unknown.
@@ -113,20 +152,26 @@ a number that looks decisive.
 
 ### Validation
 
-The preregistration names the identity mapping as where this breaks. It did not
-break here: **the modal declaration-line offset is `(0,0)` for all three arms**,
-at 1,495 / 1,437 / 1,520 exact matches on gitleaks. A broken mapping cannot
-produce that.
+The preregistration names the identity mapping as where this breaks. **The modal
+declaration-line offset is `(0,0)` for all three arms**, at 1,512 / 1,458 /
+1,532 exact matches on gitleaks. A broken mapping cannot produce that.
+
+That is necessary and not sufficient, and this experiment has the receipt for
+why: a modal offset is computed over matched edges, and matched edges are by
+construction the ones that agree, so a defect touching only unmatched edges is
+invisible to it. The caller-granularity defect corrected above was exactly that
+shape. It was caught by reading source, not by any aggregate.
 
 Protocol step 2 also asks for **20 randomly drawn identities confirmed by
 hand**, because the offset distribution is a fact about a join that already
 happened: it says the two sides agree with each other, not that either is right.
-That check is now done and is written up in
+That check is done, and was taken again after the caller key changed, in
 [`identity-validation.md`](identity-validation.md). **20 of 20 declaration
 positions are correct**, and a second draw of five whole edges confirms the
 direction of the join against source. Two rows are worth reading rather than
-counting: an immediately invoked function literal that no arm models as a
-symbol, and a `func init()` that codebase-memory-mcp does not store.
+counting, both function literals in the callee role: real targets that no arm
+models as a symbol, which cost all three arms recall equally and can never
+produce a contradicted edge for anyone.
 
 ## The result that matters most is not competitive
 
@@ -134,7 +179,7 @@ symbol, and a `func init()` that codebase-memory-mcp does not store.
 
 [G1](../g1-edge-precision/) graded Go by hand at 30 rows per side: repowise
 29/30 = 96.7%, CodeGraph 29/30 = 96.7%. The Go compiler, over roughly 1,600
-edges on the same repository, says **96.5% and 95.8%**.
+edges on the same repository, says **97.6% and 97.2%**.
 
 Two unrelated methods, one person reading source and one type checker, agree to
 within about a point on both arms. That is evidence the 540-row hand-graded
@@ -151,6 +196,13 @@ validation caught before any rate was quoted, in
 
 Read the two languages together. That tool is the least precise arm in all five
 Go cells and our equal in both TypeScript cells.
+
+Across all seven cells: **the most precise arm in seven of seven.** Separation
+is the stricter reading and is reported separately, because a tie is a tie.
+Against codebase-memory-mcp we separate in five of seven, all five Go cells,
+tying on both TypeScript cells. Against CodeGraph we separate in five of seven,
+tying on the two gitleaks cells. Cells where we clear both other arms at once:
+three, cobra and both syft variants.
 
 ## Limits, stated plainly
 
@@ -174,9 +226,10 @@ Go cells and our equal in both TypeScript cells.
 
 ```bash
 cd graph/experiments/g4-oracle-anchored
-go build -o oracle/oracle.exe ./oracle/
+(cd oracle && go build -o oracle.exe .)
 ./oracle/oracle.exe -repo <path-to-repo> [-tests] -out cell.jsonl
 python compare.py --oracle cell.jsonl --repo <path-to-repo> --out cell-g4.json
+python render_g4.py <cell>-g4.json ...   # every table on this page
 ```
 
 ```bash
@@ -200,32 +253,39 @@ the design.
 
 **"Recall against RTA: ours 0.45 to 0.60, peer 0.40 to 0.55."** Partially right,
 for a reason it did not anticipate: recall depends so heavily on root count that
-a single predicted band cannot hold across cells. Ours ranges 0.25 to 0.94. On
-syft-no-tests, the cell closest in spirit to what was predicted, ours is 0.480
-and CodeGraph 0.477. Both sit inside or adjacent to the predicted bands, and the
-cell is a tie, which was also predicted.
+a single predicted band cannot hold across cells. Ours ranges 0.32 to 0.96. On
+syft-no-tests, the cell closest in spirit to what was predicted, ours is 0.513
+and CodeGraph 0.508. Both sit inside the predicted bands, and the cell is a tie,
+which was also predicted.
 
 **"The outside-oracle bucket will be large on both sides, at least 25% of
 emitted edges. If the bucket is under 10%, the normalisation in step 2 is wrong
-and the run is void."** **Missed.** Actual buckets span 6.2% to 49.4%. The
-gitleaks cells fall under the void threshold.
+and the run is void."** **Missed.** Actual buckets span 3.2% to 40.3%. The
+cobra and gitleaks cells fall under the void threshold.
 
 The mechanism is visible and is not a broken normalisation. The prediction
 expected a large bucket because RTA has no entry points for test-only code. But
 the analysed file set excludes `_test.go` under the default variant, and step 3
 then restricts **both sides** to that set. The population expected to inflate
 the bucket was scoped out of both columns before counting. On syft, where much
-code is genuinely unreachable from 30 entry points, the bucket is 15.9% to
-43.3%, in line with the prediction.
+code is genuinely unreachable from 30 entry points, the bucket runs to 40.3% for
+the loosest arm, in line with the prediction.
 
-So the rule correctly flags the gitleaks cells as too tight to lean on, and does
+So the rule correctly flags the tight cells as too tight to lean on, and does
 not void the experiment. The syft cells carry the weight.
 
-**"Step 2 fails at least once."** **Missed, and this is the good kind.** The
-identity mapping worked on the first attempt, at `(0,0)` modal offset across all
-three arms, and the hand check that followed found 20 correct positions out
-of 20. What failed instead was reading the oracle's own output: an early
-run conflated "no call site" with "call site outside the repository" in one
-counter, and `packages.NeedCompiledGoFiles` turned out to be a separate mode bit
-from `NeedFiles`, so the analysed file set silently came back empty. Both were
-caught before any rate was computed.
+**"Step 2 fails at least once."** **Hit, on the second language, and the first
+write-up of this page got it wrong.** It was first graded as missed, on the
+grounds that the identity mapping worked immediately at `(0,0)` modal offset and
+the hand check found 20 correct positions out of 20. Both of those statements
+were true and the grade was still wrong: the caller was being keyed at a `func`
+literal, which no arm symbolises, and neither the offset nor a draw dominated by
+top-level functions could see it. The TypeScript oracle surfaced it, this one
+inherited the same defect, and every Go rate on this page has been recomputed
+since. That is step 2 doing precisely what the preregistration expected of it.
+
+Two further failures were of the reading-your-own-output kind: an early run
+conflated "no call site" with "call site outside the repository" in one counter,
+and `packages.NeedCompiledGoFiles` turned out to be a separate mode bit from
+`NeedFiles`, so the analysed file set silently came back empty. Both were caught
+before any rate was computed.

@@ -41,12 +41,41 @@ def render(d: dict) -> str:
     return "\n".join(out) + "\n"
 
 
+def render_edges(d: dict) -> str:
+    """The whole-edge draw, which checks the join's direction and not its ends."""
+    out = [
+        "| caller | callee | site | source at the site |",
+        "|---|---|---|---|",
+    ]
+    for e in d["edge_rows"]:
+        src = e["site_source"].strip()
+        if len(src) > 88:
+            src = src[:85].rstrip() + "..."
+        # A pipe would split the cell it sits in, and a Go raw string literal puts a
+        # backtick inside one, which ends the span early.
+        src = src.replace("|", "\\|")
+        fence = "``" if chr(96) in src else "`"
+        pad = " " if src.startswith(chr(96)) or src.endswith(chr(96)) else ""
+        f, ln = e["call_site"]
+        out.append(
+            f"| `{_PKG_PATH.sub('', e['caller'])}` | `{_PKG_PATH.sub('', e['callee'])}` "
+            f"| `{f}:{ln}` | {fence}{pad}{src}{pad}{fence} |"
+        )
+    return "\n".join(out) + "\n"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--graded", default="identity-validation-gitleaks.json")
     ap.add_argument("--out", default=None)
+    ap.add_argument(
+        "--edges",
+        action="store_true",
+        help="render the whole-edge draw instead of the identity draw",
+    )
     args = ap.parse_args()
-    text = render(json.loads(Path(args.graded).read_text(encoding="utf-8")))
+    payload = json.loads(Path(args.graded).read_text(encoding="utf-8"))
+    text = render_edges(payload) if args.edges else render(payload)
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
         print(f"wrote {args.out}")

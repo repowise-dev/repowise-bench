@@ -2,7 +2,7 @@
   "repo": "gitleaks",
   "seed": 20260819,
   "oracle": "gitleaks-notests.jsonl",
-  "pool_size": 428,
+  "pool_size": 422,
   "rows": [
     {
       "n": 1,
@@ -32,8 +32,8 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 2,
@@ -63,70 +63,70 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 3,
       "file": "cmd/root.go",
-      "line": 502,
+      "line": 517,
       "oracle_names": [
-        "github.com/zricethezav/gitleaks/v8/cmd.fileExists"
+        "github.com/zricethezav/gitleaks/v8/cmd.FormatDuration"
       ],
       "roles": [
         "callee",
         "caller"
       ],
       "source": [
-        "   501  ",
-        "   502> func fileExists(fileName string) bool {",
-        "   503  \t// check for a .gitleaksignore file"
+        "   516  ",
+        "   517> func FormatDuration(d time.Duration) string {",
+        "   518  \tscale := 100 * time.Second"
       ],
       "arms": {
         "repowise": [
-          "fileExists"
+          "FormatDuration"
         ],
         "codegraph": [
-          "fileExists"
+          "FormatDuration"
         ],
         "codebase-memory-mcp": [
-          "cmd.fileExists"
+          "cmd.FormatDuration"
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 4,
       "file": "detect/codec/segment.go",
-      "line": 35,
+      "line": 64,
       "oracle_names": [
-        "github.com/zricethezav/gitleaks/v8/detect/codec.Tags"
+        "github.com/zricethezav/gitleaks/v8/detect/codec.CurrentLine"
       ],
       "roles": [
         "callee",
         "caller"
       ],
       "source": [
-        "    34  // Tags returns additional meta data tags related to the types of segments",
-        "    35> func Tags(segments []*EncodedSegment) []string {",
-        "    36  \t// Return an empty list if we don't have any segments"
+        "    63  // to the end of the line where the segment ends.",
+        "    64> func CurrentLine(segments []*EncodedSegment, currentRaw string) string {",
+        "    65  \t// Return the whole thing if no segments are provided"
       ],
       "arms": {
         "repowise": [
-          "Tags"
+          "CurrentLine"
         ],
         "codegraph": [
-          "Tags"
+          "CurrentLine"
         ],
         "codebase-memory-mcp": [
-          "detect.codec.Tags"
+          "detect.codec.CurrentLine"
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 5,
@@ -156,8 +156,8 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 6,
@@ -187,24 +187,23 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 7,
       "file": "detect/detect.go",
-      "line": 284,
+      "line": 374,
       "oracle_names": [
-        "(*github.com/zricethezav/gitleaks/v8/detect.Detector).DetectContext$1"
+        "(*github.com/zricethezav/gitleaks/v8/detect.Detector).detectRule$1"
       ],
       "roles": [
-        "callee",
-        "caller"
+        "callee"
       ],
       "source": [
-        "   283  \t\tfindings []report.Finding",
-        "   284> \t\tlogger   = func() zerolog.Logger {",
-        "   285  \t\t\tl := logging.With().Str(\"path\", fragment.FilePath)"
+        "   373  \t\tfindings []report.Finding",
+        "   374> \t\tlogger   = func() zerolog.Logger {",
+        "   375  \t\t\tl := logging.With().Str(\"rule-id\", r.RuleID).Str(\"path\", fragment.FilePath)"
       ],
       "arms": {
         "repowise": [],
@@ -212,8 +211,8 @@
         "codebase-memory-mcp": []
       },
       "verdict": "oracle only",
-      "note": "an immediately invoked func literal inside DetectContext; no arm models a closure as a symbol, so this identity can never match for anyone",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": "The `func` literal bound to `logger` inside `detectRule`. It is drawn in the callee role only, and that is the re-key working: under the outermost-enclosing key a closure is never a caller position. As a callee it is a real target no arm carries a symbol for, which is a measured recall hole and not a mapping defect."
     },
     {
       "n": 8,
@@ -243,70 +242,71 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 9,
-      "file": "sources/file.go",
-      "line": 150,
+      "file": "sources/files.go",
+      "line": 60,
       "oracle_names": [
-        "(*github.com/zricethezav/gitleaks/v8/sources.File).decompressorFragments"
+        "(*github.com/zricethezav/gitleaks/v8/sources.Files).scanTargets",
+        "(*github.com/zricethezav/gitleaks/v8/sources.Files).scanTargets$1"
       ],
       "roles": [
         "callee",
         "caller"
       ],
       "source": [
-        "   149  // decompressorFragments recursively crawls archives and yields fragments",
-        "   150> func (s *File) decompressorFragments(ctx context.Context, decompressor archives.Decompressor, reader io.Reader, yield FragmentsFunc) error {",
-        "   151  \tinnerReader, err := decompressor.OpenReader(reader)"
+        "    59  // scanTargets yields scan targets to a callback func",
+        "    60> func (s *Files) scanTargets(ctx context.Context, yield func(ScanTarget, error) error) error {",
+        "    61  \treturn filepath.WalkDir(s.Path, func(path string, d fs.DirEntry, err error) error {"
       ],
       "arms": {
         "repowise": [
-          "decompressorFragments"
+          "scanTargets"
         ],
         "codegraph": [
-          "File::decompressorFragments"
+          "Files::scanTargets"
         ],
         "codebase-memory-mcp": [
-          "sources.decompressorFragments"
+          "sources.scanTargets"
         ]
       },
       "verdict": "confirmed",
-      "note": "three spellings of one method: decompressorFragments, File::decompressorFragments, sources.decompressorFragments",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": "The oracle names two functions at this one position, `scanTargets` and `scanTargets$1`. The closure handed to `filepath.WalkDir` on the next line now keys at the method it is written in, which is where all three arms put it. This row is the caller re-key visible in a single draw."
     },
     {
       "n": 10,
-      "file": "detect/git.go",
-      "line": 19,
+      "file": "detect/utils.go",
+      "line": 23,
       "oracle_names": [
-        "(*github.com/zricethezav/gitleaks/v8/detect.Detector).DetectGit"
+        "github.com/zricethezav/gitleaks/v8/detect.createScmLink"
       ],
       "roles": [
         "callee",
         "caller"
       ],
       "source": [
-        "    18  // Deprecated: Use sources.Git and detector.DetectSource instead",
-        "    19> func (d *Detector) DetectGit(cmd *sources.GitCmd, remote *RemoteInfo) ([]report.Finding, error) {",
-        "    20  \treturn d.DetectSource("
+        "    22  ",
+        "    23> func createScmLink(remote *sources.RemoteInfo, finding report.Finding) string {",
+        "    24  \tif remote.Platform == scm.UnknownPlatform ||"
       ],
       "arms": {
         "repowise": [
-          "DetectGit"
+          "createScmLink"
         ],
         "codegraph": [
-          "Detector::DetectGit"
+          "createScmLink"
         ],
         "codebase-memory-mcp": [
-          "detect.DetectGit"
+          "detect.createScmLink"
         ]
       },
       "verdict": "confirmed",
-      "note": "three spellings again: DetectGit, Detector::DetectGit, detect.DetectGit",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 11,
@@ -336,8 +336,8 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 12,
@@ -367,8 +367,8 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 13,
@@ -398,15 +398,16 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 14,
       "file": "cmd/generate/config/base/config.go",
       "line": 11,
       "oracle_names": [
-        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.CreateGlobalConfig"
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.CreateGlobalConfig",
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.CreateGlobalConfig$1"
       ],
       "roles": [
         "callee",
@@ -429,8 +430,8 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": "Same shape as row 9: `CreateGlobalConfig` and `CreateGlobalConfig$1` share the position, because the literal inside the returned struct is attributed to the function that writes it."
     },
     {
       "n": 15,
@@ -460,70 +461,63 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 16,
-      "file": "logging/log.go",
-      "line": 44,
+      "file": "main.go",
+      "line": 21,
       "oracle_names": [
-        "github.com/zricethezav/gitleaks/v8/logging.Fatal"
+        "github.com/zricethezav/gitleaks/v8.listenForInterrupt"
       ],
       "roles": [
         "callee",
         "caller"
       ],
       "source": [
-        "    43  ",
-        "    44> func Fatal() *zerolog.Event {",
-        "    45  \treturn Logger.Fatal()"
+        "    20  ",
+        "    21> func listenForInterrupt(stopScan chan os.Signal) {",
+        "    22  \t<-stopScan"
       ],
       "arms": {
         "repowise": [
-          "Fatal"
+          "listenForInterrupt"
         ],
         "codegraph": [
-          "Fatal"
+          "listenForInterrupt"
         ],
         "codebase-memory-mcp": [
-          "logging.Fatal"
+          "listenForInterrupt"
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 17,
-      "file": "sources/file.go",
-      "line": 254,
+      "file": "sources/files.go",
+      "line": 145,
       "oracle_names": [
-        "(*github.com/zricethezav/gitleaks/v8/sources.File).FullPath"
+        "(*github.com/zricethezav/gitleaks/v8/sources.Files).Fragments$1"
       ],
       "roles": [
-        "callee",
-        "caller"
+        "callee"
       ],
       "source": [
-        "   253  // FullPath returns the File.Path with any preceding outer paths",
-        "   254> func (s *File) FullPath() string {",
-        "   255  \tif len(s.outerPaths) > 0 {"
+        "   144  ",
+        "   145> \terr := s.scanTargets(ctx, func(scanTarget ScanTarget, err error) error {",
+        "   146  \t\tselect {"
       ],
       "arms": {
-        "repowise": [
-          "FullPath"
-        ],
-        "codegraph": [
-          "File::FullPath"
-        ],
-        "codebase-memory-mcp": [
-          "sources.FullPath"
-        ]
+        "repowise": [],
+        "codegraph": [],
+        "codebase-memory-mcp": []
       },
-      "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "verdict": "oracle only",
+      "decl_line_correct": true,
+      "note": "The callback passed to `scanTargets` from `Fragments`, in the callee role only. Same category as row 7."
     },
     {
       "n": 18,
@@ -553,36 +547,38 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 19,
       "file": "cmd/stdin.go",
-      "line": 13,
+      "line": 23,
       "oracle_names": [
-        "github.com/zricethezav/gitleaks/v8/cmd.init#6"
+        "github.com/zricethezav/gitleaks/v8/cmd.runStdIn"
       ],
       "roles": [
         "caller"
       ],
       "source": [
-        "    12  ",
-        "    13> func init() {",
-        "    14  \trootCmd.AddCommand(stdInCmd)"
+        "    22  ",
+        "    23> func runStdIn(cmd *cobra.Command, _ []string) {",
+        "    24  \t// start timer"
       ],
       "arms": {
         "repowise": [
-          "init"
+          "runStdIn"
         ],
         "codegraph": [
-          "init"
+          "runStdIn"
         ],
-        "codebase-memory-mcp": []
+        "codebase-memory-mcp": [
+          "cmd.runStdIn"
+        ]
       },
       "verdict": "confirmed",
-      "note": "the sixth package-level init in package cmd; codebase-memory-mcp stores no symbol at this position",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     },
     {
       "n": 20,
@@ -612,8 +608,9 @@
         ]
       },
       "verdict": "confirmed",
-      "note": "",
-      "decl_line_correct": true
+      "decl_line_correct": true,
+      "note": ""
     }
-  ]
+  ],
+  "edge_rows": []
 }

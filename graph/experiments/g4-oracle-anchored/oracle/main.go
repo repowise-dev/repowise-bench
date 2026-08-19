@@ -139,8 +139,82 @@ func main() {
 	}
 	sort.Strings(files)
 
+	// The functions RTA actually reached, by declaration position.
+	//
+	// This is what makes an automated precision reading possible. RTA analyses
+	// every call site inside a function it reaches, so if a caller is in this
+	// set and the oracle has no edge for a call a tool claims from it, the
+	// oracle is positively asserting that call does not exist -- a
+	// contradiction rather than an absence. A caller outside this set is one
+	// the oracle never looked at, and an edge from it can only be reported as
+	// unjudged, never counted against the tool.
+	reached := make(map[*ssa.Function]bool, len(res.CallGraph.Nodes))
+	for fn := range res.CallGraph.Nodes {
+		if fn != nil {
+			reached[fn] = true
+		}
+	}
+
+	// A function is judgeable only if RTA reached it *and* reached every
+	// closure written inside it. RTA reaches a `func` literal only when
+	// something calls it, so a callback it never sees invoked is analysed
+	// nowhere -- and under the outermost key an arm that attributed that
+	// closure's calls to the enclosing function would be contradicted over the
+	// oracle's own blind spot. Withholding is the device the TypeScript oracle
+	// uses for a call site its checker cannot resolve, for the same reason: an
+	// oracle that cannot see a region declines to speak about it rather than
+	// charging a tool that could.
+	var anonsReached func(fn *ssa.Function) bool
+	anonsReached = func(fn *ssa.Function) bool {
+		for _, a := range fn.AnonFuncs {
+			if !reached[a] || !anonsReached(a) {
+				return false
+			}
+		}
+		return true
+	}
+
+	type fnPos struct {
+		file string
+		line int
+	}
+	// Generic instantiation gives several ssa.Functions one source position, so
+	// a position is withheld if any instantiation at it is withheld.
+	judged := map[fnPos]bool{}
+	held := map[fnPos]bool{}
+	for fn := range reached {
+		top := outermost(fn)
+		rf, rl := pos(prog.Fset, top.Pos(), root)
+		if rf == "" {
+			continue
+		}
+		if anonsReached(top) {
+			judged[fnPos{rf, rl}] = true
+		} else {
+			held[fnPos{rf, rl}] = true
+		}
+	}
+	reach := make([][]any, 0, len(judged))
+	for k := range judged {
+		if held[k] {
+			continue
+		}
+		reach = append(reach, []any{k.file, k.line})
+	}
+	sort.Slice(reach, func(i, j int) bool {
+		a, b := reach[i], reach[j]
+		if a[0].(string) != b[0].(string) {
+			return a[0].(string) < b[0].(string)
+		}
+		return a[1].(int) < b[1].(int)
+	})
+	nWithheld := len(held)
+
 	hdr := map[string]any{
 		"_header":             true,
+		"caller_key":          "outermost-enclosing-function",
+		"functions_judged":    len(reach),
+		"functions_withheld":  nWithheld,
 		"oracle":              "golang.org/x/tools/go/callgraph/rta",
 		"algorithm":           "rta",
 		"roots":               mains,
@@ -154,25 +228,6 @@ func main() {
 	}
 	if err := enc.Encode(hdr); err != nil {
 		die(err)
-	}
-
-	// The functions RTA actually reached, by declaration position.
-	//
-	// This is what makes an automated precision reading possible. RTA analyses
-	// every call site inside a function it reaches, so if a caller is in this
-	// set and the oracle has no edge for a call a tool claims from it, the
-	// oracle is positively asserting that call does not exist -- a
-	// contradiction rather than an absence. A caller outside this set is one
-	// the oracle never looked at, and an edge from it can only be reported as
-	// unjudged, never counted against the tool.
-	reach := make([][]any, 0, len(res.CallGraph.Nodes))
-	for fn := range res.CallGraph.Nodes {
-		if fn == nil {
-			continue
-		}
-		if rf, rl := pos(prog.Fset, fn.Pos(), root); rf != "" {
-			reach = append(reach, []any{rf, rl})
-		}
 	}
 	if err := enc.Encode(map[string]any{"_reachable": true, "funcs": reach}); err != nil {
 		die(err)
@@ -196,7 +251,7 @@ func main() {
 			outside++
 			return nil
 		}
-		df, dl := pos(prog.Fset, e.Caller.Func.Pos(), root)
+		df, dl := pos(prog.Fset, outermost(e.Caller.Func).Pos(), root)
 		tf, tl := pos(prog.Fset, e.Callee.Func.Pos(), root)
 		n++
 		return enc.Encode(edgeOut{
@@ -214,6 +269,26 @@ func main() {
 	fmt.Fprintf(os.Stderr,
 		"edges_in_repo=%d no_call_site=%d outside_repo=%d analysed_files=%d load_errors=%d roots=%d\n",
 		n, noSite, outside, len(files), nErr, len(roots))
+}
+
+// outermost walks an SSA function to the outermost function it is written
+// inside. Only a `func` literal has a parent, so this is the Go spelling of the
+// TypeScript oracle's `namedEnclosing`, and it exists for the same reason: no
+// arm in this comparison symbolises a closure. Every arm attributes a call made
+// inside one to the function the closure is written in, so keying the caller at
+// the literal marks the edge wrong for all three arms at once. That is a fact
+// about the oracle's key, not about any resolver, and on TypeScript correcting
+// it moved every arm by more than twenty points.
+//
+// The callee side is deliberately left at its own declaration. A closure that
+// is *called* is a real target the arms genuinely do not carry, and hiding that
+// behind the enclosing function would convert a measured recall gap into a
+// silent one.
+func outermost(fn *ssa.Function) *ssa.Function {
+	for fn.Parent() != nil {
+		fn = fn.Parent()
+	}
+	return fn
 }
 
 // pos renders a token.Pos as a repo-relative slash path and a 1-based line.

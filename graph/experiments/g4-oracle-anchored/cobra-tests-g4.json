@@ -3,14 +3,17 @@
     "_header": true,
     "algorithm": "rta",
     "analysed_file_count": 35,
+    "caller_key": "outermost-enclosing-function",
+    "functions_judged": 584,
+    "functions_withheld": 0,
     "go_version": "",
     "load_errors": 0,
     "oracle": "golang.org/x/tools/go/callgraph/rta",
     "repo": "C:/Users/ragha/Desktop/repowise/test-repos/cobra",
     "root_count": 4,
     "roots": [
-      "github.com/spf13/cobra/doc.test",
-      "github.com/spf13/cobra.test"
+      "github.com/spf13/cobra.test",
+      "github.com/spf13/cobra/doc.test"
     ],
     "tests": true
   },
@@ -19,141 +22,141 @@
     "repowise": {
       "version": "13cc339a",
       "edges_in_scope": 1455,
-      "oracle_edges": 2150,
-      "matched": 1289,
-      "recall": 0.5995,
+      "oracle_edges": 2059,
+      "matched": 1409,
+      "recall": 0.6843,
       "recall_ci": [
-        0.5787,
-        0.6201
+        0.6639,
+        0.704
       ],
-      "outside_oracle": 166,
-      "outside_share": 0.1141,
-      "contradicted": 160,
+      "outside_oracle": 46,
+      "outside_share": 0.0316,
+      "contradicted": 40,
       "unjudged": 6,
-      "precision_vs_oracle": 0.8896,
+      "precision_vs_oracle": 0.9724,
       "precision_ci": [
-        0.8724,
-        0.9047
+        0.9626,
+        0.9797
       ],
       "unjudged_share": 0.0041,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1289
-        ],
-        [
-          "(1, 0)",
-          21
+          1409
         ],
         [
           "no_file_pair",
           18
         ],
         [
-          "(3, 0)",
-          15
+          "(0, -22)",
+          3
         ],
         [
-          "(11, 0)",
-          10
+          "(-66, 1466)",
+          1
         ],
         [
-          "(5, 0)",
-          7
+          "(300, 1466)",
+          1
+        ],
+        [
+          "(490, 172)",
+          1
         ]
       ]
     },
     "codegraph": {
       "version": "1.5.0",
       "edges_in_scope": 1699,
-      "oracle_edges": 2150,
-      "matched": 1441,
-      "recall": 0.6702,
+      "oracle_edges": 2059,
+      "matched": 1572,
+      "recall": 0.7635,
       "recall_ci": [
-        0.6501,
-        0.6898
+        0.7446,
+        0.7813
       ],
-      "outside_oracle": 258,
-      "outside_share": 0.1519,
-      "contradicted": 251,
+      "outside_oracle": 127,
+      "outside_share": 0.0747,
+      "contradicted": 120,
       "unjudged": 7,
-      "precision_vs_oracle": 0.8517,
+      "precision_vs_oracle": 0.9291,
       "precision_ci": [
-        0.8339,
-        0.8678
+        0.9159,
+        0.9404
       ],
       "unjudged_share": 0.0041,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1441
+          1572
         ],
         [
           "no_file_pair",
           51
         ],
         [
-          "(1, 0)",
-          21
+          "(0, -52)",
+          3
         ],
         [
-          "(11, 0)",
-          15
+          "(0, -22)",
+          3
         ],
         [
-          "(3, 0)",
-          15
+          "(-217, 0)",
+          1
         ],
         [
-          "(5, 0)",
-          7
+          "(-66, 1466)",
+          1
         ]
       ]
     },
     "codebase-memory-mcp": {
       "version": "0.10.8",
       "edges_in_scope": 1684,
-      "oracle_edges": 2150,
-      "matched": 1398,
-      "recall": 0.6502,
+      "oracle_edges": 2059,
+      "matched": 1530,
+      "recall": 0.7431,
       "recall_ci": [
-        0.6298,
-        0.6701
+        0.7238,
+        0.7615
       ],
-      "outside_oracle": 286,
-      "outside_share": 0.1698,
-      "contradicted": 279,
+      "outside_oracle": 154,
+      "outside_share": 0.0914,
+      "contradicted": 147,
       "unjudged": 7,
-      "precision_vs_oracle": 0.8336,
+      "precision_vs_oracle": 0.9123,
       "precision_ci": [
-        0.815,
-        0.8507
+        0.8978,
+        0.925
       ],
       "unjudged_share": 0.0042,
       "line_offsets_top": [
         [
           "(0, 0)",
-          1398
+          1530
         ],
         [
           "no_file_pair",
           55
         ],
         [
-          "(1, 0)",
-          21
+          "(0, -52)",
+          3
         ],
         [
-          "(3, 0)",
-          16
+          "(0, -14)",
+          3
         ],
         [
-          "(11, 0)",
-          14
+          "(0, -7)",
+          3
         ],
         [
-          "(5, 0)",
-          7
+          "(0, -22)",
+          3
         ]
       ]
     }
