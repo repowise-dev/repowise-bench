@@ -22,7 +22,7 @@ themselves rather than leaving it to be found. From the docstring of
 `code_review_graph/eval/benchmarks/impact_accuracy.py`, in the installed
 package:
 
-> **graph-derived (circular — upper bound)** — the historical mode. Ground
+> **graph-derived (circular, an upper bound)**, the historical mode. Ground
 > truth is the changed files plus files with CALLS/IMPORTS_FROM edges into
 > them, i.e. derived from the same graph the predictor traverses. Recall in
 > this mode is an upper bound by construction, not independent evidence.
@@ -30,7 +30,7 @@ package:
 And from the shipped README:
 
 > Blast-radius analysis recovers every file in the ground truth on all 13
-> evaluation commits — **but read that as an upper bound, not as "100% recall"**:
+> evaluation commits, **but read that as an upper bound, not as "100% recall"**:
 > in this mode the ground truth [...] is derived from the same graph the
 > predictor traverses, so it is circular by construction.
 
@@ -41,8 +41,8 @@ scheme.
 
 **What we will say about it.** That the headline is a self-consistency
 measurement, that self-consistency is a real property and not the same thing as
-accuracy, and that **the authors disclose this in their own words** — "circular
-by construction", "not independent evidence" — in both their code and their
+accuracy, and that **the authors disclose this in their own words**, "circular
+by construction" and "not independent evidence", in both their code and their
 documentation. They also ship a genuinely non-circular mode, grading against
 files a human actually co-changed in the same commit, and explicitly decline to
 quote its numbers before measuring them. That is more candour than the field
@@ -65,7 +65,7 @@ Schema version 9. No `files` table; a file is a `nodes` row with `kind='File'`.
 | `flows`, `risk_index`, `communities` | derived analysis, not read by this benchmark |
 
 On gitleaks: 781 nodes (459 `Function`, 216 `File`, 65 `Class`, 41 `Test`) and
-6,299 edges — `CALLS` 4,367, `IMPORTS_FROM` 797, `TESTED_BY` 568, `CONTAINS`
+6,299 edges: `CALLS` 4,367, `IMPORTS_FROM` 797, `TESTED_BY` 568, `CONTAINS`
 565, `REFERENCES` 2.
 
 ---
@@ -73,7 +73,7 @@ On gitleaks: 781 nodes (459 `Function`, 216 `File`, 65 `Class`, 41 `Test`) and
 ## Three things the adapter has to correct for
 
 **1. Unresolved calls sit in the same table as resolved ones.** When it cannot
-resolve a callee it stores the bare identifier — `make`, `Notify`, `Flags` —
+resolve a callee it stores the bare identifier (`make`, `Notify`, `Flags`)
 in `target_qualified` rather than dropping the row. Both other arms emit an
 edge only when they bound it to a declaration, so `call_edges` joins to `nodes`
 and keeps only rows that resolve. Without that join this arm would be credited
@@ -118,12 +118,12 @@ head-to-head found it served the fewest files at the highest precision, and the
 design notes predicted "a small, tight, high-precision edge set" that would be
 the natural high-precision end of the G1 table. It is small, but it is small
 because it is almost entirely intra-file, and an intra-file call graph is not a
-high-precision version of a cross-file one — it is answering a different
+high-precision version of a cross-file one. It is answering a different
 question. G1 rows drawn from this arm must say so.
 
 **One fairness caveat we should keep making.** `TESTED_BY` (568 rows) does link
 files across the tree, and it is excluded from the dependency reading here on
-the grounds that test coverage is not a code dependency — the same grounds on
+the grounds that test coverage is not a code dependency, the same grounds on
 which we exclude our own `co_changes`. A reader who thinks that is the wrong
 call should know the number, so it is recorded in every result.
 
@@ -152,6 +152,6 @@ recomputed.
 
 A cached artifact therefore has to restore `build_root` out of its stored
 metadata. Guessing it, or deriving it from the repository path, leaves every
-row absolute — which does not raise, it just makes every cross-arm intersection
+row absolute, which does not raise, it just makes every cross-arm intersection
 empty, and an empty intersection reads like a finding. `open_cached` refuses to
 build an artifact when the metadata carries no root.

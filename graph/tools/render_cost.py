@@ -90,7 +90,7 @@ def provenance_line(doc: dict, path: Path) -> str:
     tagged = describe == f"v{ver}"
     ver_str = f"repowise {ver}" if tagged else f"repowise {ver}+dev"
     bits = [
-        f"Measured at **`{head}`** — `{ver_str}`",
+        f"Measured at **`{head}`**, `{ver_str}`",
         f"{pv.get('runs_per_cell')} timed builds per cell, median reported",
         f"warmup {'discarded' if pv.get('warmup') else '**skipped**'}",
         "nothing restored from cache",
@@ -144,9 +144,9 @@ def render_summary(doc: dict) -> str:
         )
         m = statistics.median(mem) if mem else None
         t = statistics.median(sec) if sec else None
-        ratio = f"{m / bm:.1f}x memory" if (m and bm) else "—"
+        ratio = f"{m / bm:.1f}x memory" if (m and bm) else "n/a"
         if a == base:
-            ratio = "—"
+            ratio = "n/a"
         out.append(
             f"| {LABEL.get(a, a)} | {t:.2f}s | {m:.0f} MB | {ratio} | {n_ok} |"
             if (m and t) else
@@ -183,12 +183,12 @@ def render_memory_table(doc: dict) -> str:
         for a in arms:
             c = r["arms"].get(a)
             if not c:
-                cells.append("—")
+                cells.append("n/a")
             elif "error" in c:
                 cells.append("**fail**")
             else:
                 v = c.get("median_peak_rss_mb")
-                cells.append(f"{v:.0f}" if v is not None else "—")
+                cells.append(f"{v:.0f}" if v is not None else "n/a")
         out.append(
             f"| {name} | {r.get('language') or '?'} | {r.get('files_at_pin') or '?'} | "
             + " | ".join(cells) + " |"
@@ -211,12 +211,12 @@ def render_time_table(doc: dict) -> str:
         for a in arms:
             c = r["arms"].get(a)
             if not c:
-                cells.append("—")
+                cells.append("n/a")
             elif "error" in c:
                 cells.append("**fail**")
             else:
                 v = c.get("median_seconds")
-                cells.append(f"{v:.2f}" if v is not None else "—")
+                cells.append(f"{v:.2f}" if v is not None else "n/a")
         out.append(
             f"| {name} | {r.get('language') or '?'} | {r.get('files_at_pin') or '?'} | "
             + " | ".join(cells) + " |"

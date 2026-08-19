@@ -64,7 +64,7 @@ a reader far less than one figure per tier does, and the two are very likely to
 differ. `call_edges(confidence=...)` exists for exactly that.
 
 It is also the fair way to read this arm's size. Its 1,476 call edges are not
-comparable, one for one, with a set that only contains resolved edges — most of
+comparable, one for one, with a set that only contains resolved edges. Most of
 them are the tool's own guesses, and it says so.
 
 ---
@@ -83,7 +83,7 @@ is told from its file node only by shape: a file node's `label` equals its
 `source_file`. `symbol_files` uses that test, and languages are inferred from
 the extension, which is what any consumer of this format has to do.
 
-Its output is also not deduplicated — `graphify diagnose multigraph` exists
+Its output is also not deduplicated, and `graphify diagnose multigraph` exists
 because several edges can join one pair with different `relation`/`context`.
 The protocol folds to distinct sets, so this is handled, but do not assume one
 edge per pair when reading the raw file.
@@ -110,8 +110,8 @@ the survey.
 `graph.json` and `manifest.json` are the only two files this adapter reads back;
 `graphify-out/cache/` is graphify's own AST cache and is megabytes of nothing we
 use. Both are copied out of the scratch tree before it is removed, which the
-adapter did not previously do — it parsed `graph.json` into memory and dropped
-the file — so a cached entry holds those two files and nothing else.
+adapter did not previously do: it parsed `graph.json` into memory and dropped
+the file, so a cached entry holds those two files and nothing else.
 
 `index_size_mb` still reports the size of the whole output directory as built,
 cache included, because that is what the tool wrote to disk. It is not the size

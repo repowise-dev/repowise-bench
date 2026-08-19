@@ -28,7 +28,7 @@ cell after a discarded warmup.
 
 | arm | median build | median peak memory | vs repowise | repos where fastest |
 |---|---:|---:|---:|---:|
-| **repowise** | **2.77s** | **75 MB** | — | 14 |
+| **repowise** | **2.77s** | **75 MB** | n/a | 14 |
 | CodeGraph 1.5.0 | 3.65s | 757 MB | 10.1x memory | **16** |
 | Graphify 0.9.31 | 12.23s | 860 MB | 11.4x memory | 0 |
 | code-review-graph 2.3.7 | 9.97s | 361 MB | 4.8x memory | 0 |
@@ -49,8 +49,8 @@ codebase-memory-mcp's 1,113 MB, and the gap widens with size rather than closing
 | codebase-memory-mcp | 842 MB | 2,829 MB |
 
 Our worst cell in the whole corpus is **bevy at 468 MB**; four arms exceed that
-on repositories a tenth the size. codebase-memory-mcp is the other end —
-**5,523 MB on bevy and 4,646 MB on syft** — which on a 16 GB developer laptop
+on repositories a tenth the size. codebase-memory-mcp is the other end at
+**5,523 MB on bevy and 4,646 MB on syft**, which on a 16 GB developer laptop
 running an editor is a real constraint rather than a table entry.
 
 ### Build time is not a win, and the median hides why
@@ -64,7 +64,7 @@ fastest on 16 repositories to our 14. Both are true, and the split is size:
 | CodeGraph | 2.37s | **8.86s** |
 
 **We win the middle and lose the tail.** The two worst cells are `exposed`
-(36.65s against 8.82s) and `bevy` (34.19s against 15.14s) — the two largest
+(36.65s against 8.82s) and `bevy` (34.19s against 15.14s), the two largest
 Kotlin and Rust repositories in the corpus. Our resolution does more work per
 file and that cost grows, which is the trade the precision reading
 ([G1](../g1-edge-precision/)) is the other half of. Anyone quoting our median
@@ -88,7 +88,7 @@ percentage of that cell's median:
 
 A single build can land 13% off its own cell's median. Several of the
 per-repository differences above are smaller than that, so a single-run timing
-column would have been noise presented as a result — and it would have sat on
+column would have been noise presented as a result, and it would have sat on
 the same page as a hand-graded precision figure, which is the pairing that makes
 a reader distrust both.
 
@@ -103,7 +103,7 @@ matters.
   the frozen peer indexes there are baselines every published number reconciles
   against.
 * **One warmup build per cell, discarded.** Measured cold, gitleaks took 6.92s
-  against 1.90s warm — a 3.6x spread that would otherwise land entirely on
+  against 1.90s warm, a 3.6x spread that would otherwise land entirely on
   whichever arm ran first.
 * **Nothing is restored from the artifact cache.** A restored artifact carries
   the cost of the build that filled it, on some other day. The earlier 35-repo
@@ -141,7 +141,7 @@ to `publishable: false` rather than lying about it.
 
 ## Provenance
 
-Measured at **`13cc339a`** — `repowise 0.44.0+dev`. `git describe` reads
+Measured at **`13cc339a`**, `repowise 0.44.0+dev`. `git describe` reads
 `v0.44.0-1-g13cc339a`: this is one commit past the `v0.44.0` tag, so **no figure
 on this page may be quoted as a 0.44.0 result**.
 
@@ -159,7 +159,7 @@ Full data, including every individual build: `results/graph/g6-corpus/2026-08-19
   the tail behaviour above is measured on the largest 10 of 35 rather than on
   genuinely large repositories.
 * **codebase-memory-mcp is a cost row only.** Its adapter does not yet produce
-  comparable edge sets — see [its page](../../arms/codebase-memory-mcp.md) — so
+  comparable edge sets (see [its page](../../arms/codebase-memory-mcp.md)), so
   it appears here and in no coverage or precision table.
 * Build time is one of two costs and the less interesting one. What the graph is
   worth once built is [G1](../g1-edge-precision/) and G2.

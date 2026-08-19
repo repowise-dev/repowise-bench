@@ -30,7 +30,7 @@ proportion to population.
 | **CodeGraph 1.5.0** | **154/270 = 57.0%** | [51.1, 62.8] |
 
 The intervals are disjoint. Both sides have now been read on all nine languages
-by the same method, at the same seed, on the same repositories — no cell in
+by the same method, at the same seed, on the same repositories. No cell in
 either column is unmatched in the other.
 
 **Roughly fifteen percent of our call edges are wrong.** That is the honest
@@ -76,14 +76,14 @@ repository whose C++ file-extension registration shipped knowingly below the bar
 we hold other language work to.
 
 Our seastar failures are dominated by one shape the peer does not have at all: a
-chained call on an untyped receiver — `something(...).get()` on a `future<T>`
-— bound to an unrelated `get`. CodeGraph infers the callee's declared return
+chained call on an untyped receiver, `something(...).get()` on a `future<T>`,
+bound to an unrelated `get`. CodeGraph infers the callee's declared return
 type and **validates** the method against it, so a failed inference costs it an
 edge rather than buying it a wrong one. That is a better trade than ours on this
 shape, and it is worth saying plainly.
 
 `aria2` is the other row worth more than the cell: 10/10 against 10/10, and they
-resolve **24,950 distinct call edges to our 9,486** — same precision, 2.6x the
+resolve **24,950 distinct call edges to our 9,486**: same precision, 2.6x the
 edges, on a quarter of the corpus's C++ files. Precision is not the only reading
 and this row is where that shows.
 
@@ -106,7 +106,7 @@ the gap between the rates.
 
 Bare-name fallback into a same-named declaration the call site cannot reach.
 It accounts for the large majority of its wrong rows across zod, Ocelot, celery,
-ktor, ripgrep and the C++ set, and shows up as two buckets — cross-module
+ktor, ripgrep and the C++ set, and shows up as two buckets: cross-module
 same-name collision, and wrong class with the same method name.
 
 Its worst cell, javalin at 2/10, is a Kotlin web framework whose tests statically
@@ -132,16 +132,16 @@ exempt from it.
 The bucket that is ours alone is the **chained call on an untyped receiver**
 described under seastar above. Counted over the n=50 C++ depth read, where we
 take 11 wrong rows and they take 20, that shape is **3 of ours against 0 of
-theirs** — the only bucket in the audit that is one-sided in their favour.
+theirs**, the only bucket in the audit that is one-sided in their favour.
 
 Two residual classes are named rather than quietly counted as losses:
 
-* **Rust macro invocations graded as calls** — 4 of the 8 remaining wrong rows
+* **Rust macro invocations graded as calls**, 4 of the 8 remaining wrong rows
   in the rust cell. They bind to the repository's own `macro_rules!` definition,
   so the *target* is right and only the *type* is wrong. Removing them would
   delete a real dependency in order to raise a precision number, which is the
   wrong trade; reclassifying them off `calls` is a separate change.
-* **Swift property and subscript reads graded as calls** — the declaration named
+* **Swift property and subscript reads graded as calls**. The declaration named
   is right, the claim that it is a call is not.
 
 Both are counted as wrong in every figure on this page.
@@ -151,7 +151,7 @@ Both are counted as wrong in every figure on this page.
 **Denominator.** Distinct resolved call edges.
 
 * *repowise*: resolver records folded to one row per distinct `(file, line,
-  target)` — a call site as the source text spells it, not as the grammar query
+  target)`, a call site as the source text spells it, not as the grammar query
   happens to match it.
 * *CodeGraph*: `SELECT DISTINCT source, target, line FROM edges WHERE
   kind='calls'`, restricted to callers of the language under audit.
@@ -189,8 +189,8 @@ CodeGraph is `@colbymchenry/codegraph@1.5.0`, extraction version 24, for every
 cell.
 
 **Cell staleness runs conservative, and this is worth stating precisely.** Every
-resolver change landed between the earliest cell and `13cc339a` — #1690, #1692,
-#1708 — only *removes* wrong edges. Each was measured at the time: #1690 removed
+resolver change landed between the earliest cell and `13cc339a` (#1690, #1692,
+#1708) only *removes* wrong edges. Each was measured at the time: #1690 removed
 16,122 edges and gained 0, #1692 removed 1,369 on one repository and 30 on
 another and gained 0, #1708 removed only. None of them adds a call edge. So an
 older cell can only understate our current precision, never overstate it: **84.8%
@@ -201,7 +201,7 @@ is a floor, not a flattered number.**
 * Nine repository sets, several of them a single repository. Not a random sample
   of software. Swift is one repository and is labelled as such everywhere.
 * n=30 per cell. Five of the nine cells are statistical ties and must not be
-  reported as wins — including C++, whose intervals overlap at both n=30 and
+  reported as wins, including C++, whose intervals overlap at both n=30 and
   n=50.
 * The peer's overload-level errors are graded `wrong` alongside its class-level
   errors. Grading them separately would move its Ocelot cell up by 3 rows and
