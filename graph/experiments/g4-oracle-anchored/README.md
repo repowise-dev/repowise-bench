@@ -92,6 +92,41 @@ ask whether they are real.
 This is why no page here publishes a coverage number without a precision number
 beside it.
 
+## Where our own recall goes
+
+Recall is the column we lose, so it gets a decomposition rather than a
+disclaimer. On syft-no-tests we miss 3,846 of 7,898 oracle edges. Two properties
+the oracle records directly, dynamic dispatch and a `func` literal at either
+endpoint, account for most of it:
+
+| bucket | share of the miss |
+|---|---|
+| dynamic dispatch only | 1,691 (44.0%) |
+| dispatch **and** a closure endpoint | 1,511 (39.3%) |
+| closure endpoint only | 80 (2.1%) |
+| neither | 564 (14.7%) |
+
+**The buckets overlap and neither may be quoted as the whole gap.** Adding the
+first two is how an earlier reading of this data reached "dispatch is 79% of the
+miss".
+
+The overlap is the useful part. Closures look like a large hole, 1,309 missed
+edges have a literal as the callee, and the obvious fix is to give a `func`
+literal a symbol. Filter for the calls that fix alone would recover, that is the
+static ones, and the number is **50**. The other 1,259 are dynamic dispatches
+that would still need the dispatch ceiling cleared. On gitleaks the same figure
+is 8 of 72.
+
+Interface dispatch is that ceiling and nobody in this comparison has cleared it:
+of 3,303 dispatch edges on syft we match 12, CodeGraph 35, codebase-memory-mcp
+81. Fan-out is 6.5 distinct targets per site on syft and 12.1 on syft-with-tests.
+Matching RTA's recall there means adopting RTA's over-approximation, which is
+the behaviour the precision table charges codebase-memory-mcp for.
+
+```bash
+python decompose_miss.py --oracle syft-notests.jsonl --repo <path-to-syft>     --repo-name syft --out syft-notests-miss.json
+```
+
 ## The method, and the one idea that makes it work
 
 **Key: `(caller_decl_file, caller_decl_line) -> (callee_decl_file,
