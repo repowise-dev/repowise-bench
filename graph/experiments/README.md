@@ -16,18 +16,20 @@ edges, every row read from source by hand: the call site with its imports and
 enclosing scope, then the target declaration. Verdicts are right / wrong /
 ambiguous, and ambiguous is an honest answer.
 
-This already exists at n=300, 30 rows per side per language across five
-languages, and has never been published. Porting it means moving the two sampling
-instruments and the graded rows into this repository, not rerunning the audit.
+**Measured and published: [g1-edge-precision](g1-edge-precision/)**, nine
+languages, 270 rows per side, 540 in total. Ours 84.8%, CodeGraph 57.0%,
+disjoint. The graded rows themselves are not yet in the repository; only the
+tables are, and porting them is the remaining work here.
 
 The claim it supports is **precision per edge**, not "more edges". Raw counts put
 us behind on three of five languages. That distinction is the whole result and
 collapsing it into "we have more edges" would be a misrepresentation of our own
 data.
 
-Blocked on one thing: Python resolution is changing in the main tree, so the
-Python cell describes a population that no longer exists. Port the instrument
-first, redraw that cell after the Python work settles.
+G4 has since reproduced this audit's Go cell from the Go compiler, at 96.5%
+against the hand-graded 96.7%. Two unrelated methods agreeing to within a point
+is the strongest evidence available that the hand-grading is accurate rather
+than self-serving.
 
 ## G3: recall on a denominator both tools share
 
@@ -82,20 +84,26 @@ side too, and report where.
 
 ## Experiments with their own directory
 
-* [g2-cross-file-coverage](g2-cross-file-coverage/) — CodeGraph's published
+* [g2-cross-file-coverage](g2-cross-file-coverage/): CodeGraph's published
   metric, reproduced. Has the first numbers.
-* [g4-oracle-anchored](g4-oracle-anchored/) — precision and recall against a gold
-  graph neither tool produced.
-* [g5-invariance](g5-invariance/) — mutations that separate a resolver from a
+* [g4-oracle-anchored](g4-oracle-anchored/): precision and recall against a gold
+  graph neither tool produced. **Measured on Go.** The strongest evidence in
+  this directory, because a reader can regenerate the answer key.
+* [g5-invariance](g5-invariance/): mutations that separate a resolver from a
   name-matcher.
 
-## Sequencing
+## Sequencing, and what changed
 
-G2 is nearly done and is what a reader asks for first. G1 is a port and unlocks
-the strongest claim we already own. G5 is cheap, needs no oracle, and is the one
-that produces a finding nobody else can produce. G4 is the most valuable and the
-most likely to consume a session on symbol identity alone, so it goes after G5
-proves the harness shape works. G6 and G7 are mechanical and can run whenever.
+G2, G1, G5 and G6 are measured. G3 and G7 have results but no page, so they are
+unlinked rather than cited. G4 is measured on Go.
 
-**G5 before G4.** G5 needs no gold standard, and if the mutation harness cannot
-rebuild a byte-identical baseline, G4 was never going to work either.
+**The plan said G4 would consume a session on symbol identity alone. It did
+not.** Keying on declaration locations rather than on names made the mapping
+land on the first attempt, at a modal offset of `(0,0)` across all three arms.
+What actually cost time was reading the oracle's own output correctly.
+
+**The order to extend in is set by which languages admit an oracle at all**, not
+by which experiment is next. Go is done. TypeScript is reachable with the
+toolchain already installed. C#, Java and Kotlin need an SDK each. Python, Ruby
+and PHP admit no oracle even in principle, because what a call resolves to can
+change at runtime, so those languages stay with G1 permanently.

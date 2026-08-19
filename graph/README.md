@@ -11,7 +11,7 @@ neighbourhood does not require the arrows between the houses to be correct.
 **Nobody in this field publishes a graph-correctness number against an outside
 oracle.** We checked every comparable tool (see [arms/](arms/)). CodeGraph
 publishes agent-efficiency deltas and a coverage table. Graphify publishes memory
-and QA scores. code-review-graph publishes an F1 — 0.714, with precision 0.578 —
+and QA scores. code-review-graph publishes an F1 of 0.714, with precision 0.578,
 graded against ground truth derived from the same graph its predictor walks,
 which measures self-consistency rather than correctness. To their credit **they
 say so themselves**, calling it "circular by construction" in both their README
@@ -30,9 +30,9 @@ no run behind them.
 | | Experiment | What it settles | Status |
 |---|---|---|---|
 | **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | **both sides, nine languages, 540 graded rows** |
-| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **four arms, 35 repos, 11 languages** |
+| **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **five arms, 35 repos, 11 languages** |
 | **G3** | Shared-denominator recall *(no page yet)* | Of the calls that exist in the source, what share does each tool resolve? | denominators built, recall next |
-| **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | designed |
+| **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | **three arms, Go, five cells** |
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
 | **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **five arms, 35 repos, 175 cells, 0 failed** |
 | **G7** | Language breadth *(no page yet; results below)* | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
@@ -43,18 +43,24 @@ an experiment takes an arm name and stops caring what the tool is. All four
 rebuild byte-identically on a repeat run, so none of them is non-deterministic
 and a mutation's effect can be separated from drift.
 
-A fifth, **codebase-memory-mcp 0.10.6**, has [an adapter and a
-page](arms/codebase-memory-mcp.md) and now **builds**, so it carries cost and
-memory rows. Reading its adapter against an index it produced, rather than
-against the schema in its source, falsified three of its queries; two are fixed
-— it now rebuilds identically, where two builds of one repository previously
-shared no callee identities at all, because the tool derives its project name
-from the absolute path it indexed and that path leaked into every qualified
-name. The third is open: **the tool records no language for a file**, and
-deriving one from the file extension would mean this adapter inventing a
-language-attribution scheme and applying it to another tool's index. So it is
-**included in cost and memory and excluded from every coverage and precision
-table** until that is settled.
+A fifth, **codebase-memory-mcp**, has [an adapter and a
+page](arms/codebase-memory-mcp.md) and carries **coverage, precision and cost
+rows**. Coverage and precision are measured at **0.10.8**; the cost table stays
+at **0.10.6**, the release it was swept on, and says so.
+
+Reading its adapter against an index it produced, rather than against the schema
+in its source, falsified three of its queries. Two were plain defects: two
+builds of one repository shared no callee identities at all, because the tool
+derives its project name from the absolute path it indexed and that path leaked
+into every qualified name; and a synthetic pseudo-file broke the
+`symbol_files` subset invariant. The third looked like a defect and was not.
+**The tool records no language because it does not store one: it derives one**,
+from the file extension at read time, against a 44-entry table in its store
+layer, and that derivation is what backs the language breakdown its own output
+prints. The adapter now reproduces that table, so the attribution is the tool's
+published answer about itself rather than ours imposed on it. Checked against
+our own arm on gitleaks it gives an identical 214-file Go set, with one
+naming-only disagreement across 275 files.
 
 Getting it to run at all is itself a portability finding worth one line. It
 validates the ACL of every ancestor of both its coordination directory and its
@@ -64,10 +70,12 @@ second account that is two independent refusals, its own default cache location
 is one of them, it fails closed, and a release build offers no override. It is
 the only arm of five with that property.
 
-G4 and G5 are the two that do not exist anywhere in this field. G1 is the one
-that took the most human time and is the only reading here that asks whether an
-edge is true. G2 is the one a reader will ask for first, because it is the
-number our largest competitor puts on its front page.
+G4 and G5 are the two that do not exist anywhere in this field. **G4 is now the
+strongest thing on this page**, because its answer key comes from the Go
+compiler rather than from us, and anyone with the Go toolchain can regenerate
+it. G1 took the most human time and was, until G4, the only reading here that
+asked whether an edge is true. G2 is the one a reader will ask for first,
+because it is the number our largest competitor puts on its front page.
 
 Numbers on this page were measured at **`3594ba75`** unless the section says
 otherwise; the 35-repository corpus below was measured at **`58576af0`**. Both
@@ -88,6 +96,90 @@ python graph/smoke.py          # 16 checks, exit code is the failure count
 Note it needs an interpreter that can import `repowise.core`. Run under one
 that cannot and it used to report six passes and two skips, having never
 touched our graph; it now fails loudly instead.
+
+---
+
+## Headline: precision against an oracle neither tool produced
+
+Every other number on this page, including ours, is scored against something the
+publisher controls. [G4](experiments/g4-oracle-anchored/) is not. Its answer key
+is the Go team's own RTA call graph, computed over the type-checked program by
+`golang.org/x/tools`. We cannot tune it and anyone with the Go toolchain can
+regenerate it.
+
+Of the call edges each tool emits, the share the compiler confirms:
+
+| cell | repowise | CodeGraph | codebase-memory-mcp |
+|---|---:|---:|---:|
+| cobra (via tests) | **0.890** | 0.852 | 0.834 |
+| gitleaks (no tests) | **0.965** | 0.958 | 0.927 |
+| gitleaks (with tests) | **0.936** | 0.920 | 0.880 |
+| syft (no tests) | **0.895** | 0.831 | 0.603 |
+| syft (with tests) | **0.752** | 0.680 | 0.524 |
+
+**Most precise in all five cells.** Five separations against
+codebase-memory-mcp, three separations and two ties against CodeGraph, no
+losses. On syft roughly half of what codebase-memory-mcp emits is a call the Go
+compiler says does not exist.
+
+**Recall runs the other way and we lead in none of the five cells.** That is the
+finding, not a footnote: codebase-memory-mcp recovers more of the true call
+graph and invents far more that is not in it. Both halves are on
+[the G4 page](experiments/g4-oracle-anchored/), and recall there must not be
+compared across repositories, because it scales with how many entry points the
+oracle had rather than with tool quality.
+
+### The result that matters most is not competitive
+
+**The oracle reproduced the hand-graded audit.** G1 read Go by hand at 30 rows
+per side and got 96.7% for us and 96.7% for CodeGraph. The Go compiler, over
+roughly 1,600 edges on the same repository, says **96.5% and 95.8%**.
+
+A person reading source and a type checker agreeing to within about a point is
+the strongest evidence available that the 540-row hand-graded audit is accurate
+rather than self-serving. It is worth more than any competitive row here.
+
+### Where this can and cannot go
+
+An oracle needs a compiler that can produce a ground-truth call graph. Go is
+done. TypeScript is reachable. C#, Java and Kotlin need a toolchain installed.
+**Python, Ruby and PHP admit no oracle even in principle**, because what a call
+resolves to can change at runtime, so those languages stay hand-graded
+permanently. This is a fact about those languages, not a gap in the harness.
+
+---
+
+## The coverage result, and why it is reported beside precision
+
+codebase-memory-mcp beats us on cross-file `calls` coverage, on the fair shared
+denominator, across the whole corpus:
+
+| language | repos | denominator | repowise | codebase-memory-mcp |
+|---|---:|---:|---:|---:|
+| cpp | 6 | 1401 | 0.201 | **0.331** |
+| csharp | 4 | 2099 | 0.334 | **0.473** |
+| go | 3 | 1306 | 0.556 | 0.585 |
+| java | 3 | 1820 | 0.685 | 0.710 |
+| kotlin | 3 | 3384 | 0.447 | **0.548** |
+| php | 3 | 4316 | 0.271 | **0.426** |
+| python | 3 | 824 | 0.373 | **0.460** |
+| ruby | 3 | 322 | 0.332 | **0.484** |
+| rust | 3 | 2089 | 0.331 | **0.485** |
+| swift | 1 | 98 | 0.388 | **0.602** |
+| typescript | 3 | 626 | 0.377 | 0.363 |
+
+**Per repository across all 35: we separate on none, they separate on 15, and 20
+are ties.** That is a comprehensive loss on this metric and it is printed here at
+full size.
+
+G4 explains it. Coverage counts the files an edge reaches and never asks whether
+the edge is real, so a tool that emits more edges wins it whether or not they
+exist. The same tool that leads every row above is the one the Go compiler
+contradicts on roughly half its output.
+
+This is why **rule 1 of the [methodology](METHODOLOGY.md) says a coverage
+percentage is never the result**, and why no table here prints one without a
+precision number beside it. Generated by `tools/render_coverage.py`.
 
 ---
 
@@ -163,8 +255,8 @@ numerators. The denominator turned out to be where our best-looking cell came
 from.
 
 caffeine has 668 java files. We call 536 of them symbol-bearing; CodeGraph
-calls 664. Session 1 read that as our gap — 128 java files, 19% of the
-repository, producing no symbol at all — and called it the largest concrete
+calls 664. Session 1 read that as our gap, 128 java files or 19% of the
+repository, repository producing no symbol at all, and called it the largest concrete
 finding the bench had surfaced.
 
 Adding two more arms settled it. **code-review-graph independently counts 536,
@@ -174,8 +266,8 @@ exactly as we do**; Graphify counts 664, as CodeGraph does. All four agree on
 
 | what the 128 files are | count |
 |---|---:|
-| `package-info.java` — declares a package, no type | 123 |
-| `public @interface X {}` — annotation declarations | 5 |
+| `package-info.java`, declares a package, no type | 123 |
+| `public @interface X {}`, annotation declarations | 5 |
 
 So it is a definitional disagreement about `package-info.java`, plus five real
 misses of ours.
@@ -191,7 +283,7 @@ They are pure denominator padding:
 
 On its own denominator we lead by 9 points. On a fair one **CodeGraph leads by
 3**. The intervals overlap, [56.6, 64.9] against [59.8, 67.9], and a
-two-proportion test is not significant, so the honest answer is a tie — but the
+two-proportion test is not significant, so the honest answer is a tie. But the
 0.608-against-0.517 row is retired, and it was ours.
 
 This is why every arm implements `files_seen()` and why every cross-arm
@@ -242,19 +334,19 @@ This page previously said we lose on build cost and expect to keep losing. That
 was carried over from the full-index comparison in
 [docs/BENCHMARKS.md §6](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md),
 which is a different denominator. Measured on graph construction alone, now
-across **all 35 corpus repositories on five arms** — 175 cells, 0 failed, three
+across **all 35 corpus repositories on five arms**: 175 cells, 0 failed, three
 timed builds each after a discarded warmup, nothing restored from cache:
 
 | arm | median build | median peak memory | vs repowise | repos where fastest |
 |---|---:|---:|---:|---:|
-| **repowise** | **2.77s** | **75 MB** | — | 14 |
+| **repowise** | **2.77s** | **75 MB** | n/a | 14 |
 | CodeGraph | 3.65s | 757 MB | 10.1x memory | **16** |
 | Graphify | 12.23s | 860 MB | 11.4x memory | 0 |
 | code-review-graph | 9.97s | 361 MB | 4.8x memory | 0 |
 | codebase-memory-mcp | 6.21s | 1,113 MB | 14.8x memory | 5 |
 
 **Memory is the result, and it is unambiguous: we are the lowest-memory arm on
-35 of 35 repositories.** No exceptions, and the gap widens with size — 64 MB
+35 of 35 repositories.** No exceptions, and the gap widens with size: 64 MB
 against CodeGraph's 749 MB on repositories under 1,000 files, 152 MB against
 1,164 MB above it. Our worst cell in the corpus is bevy at 468 MB; three arms
 exceed that on repositories a tenth the size, and codebase-memory-mcp reaches
@@ -265,12 +357,12 @@ we were fastest on four including both largest. At n=35 CodeGraph is fastest on
 16 to our 14, and the split is size: we lead 2.04s to 2.37s under 1,000 files
 and trail 10.63s to 8.86s above it. The two worst cells are `exposed` (36.65s
 against 8.82s) and `bevy` (34.19s against 15.14s). **We win the middle and lose
-the tail**, and our resolution doing more work per file is why — the other half
+the tail**, and our resolution doing more work per file is why. The other half
 of that trade is [G1](experiments/g1-edge-precision/).
 
 Our figures come from the `repowise-subprocess` arm, which builds the same graph
 in a child process precisely so it can be measured the way every competitor
-already was — in process there is no child to attach a job object to, and this
+already was: in process there is no child to attach a job object to, and this
 column was empty until now.
 
 Two things to keep saying anyway. This is graph construction only: no
@@ -286,8 +378,8 @@ Partly, and it matters less than the framing suggests. Their README leads with
 "Kernel powered by Rust" and "the fastest complete code graph", and we are a
 Python program that is within a rounding distance of it on build time and an
 order of magnitude below it on memory. That deserves an explanation rather than
-a victory lap, because the obvious reading — that a scripting language beat
-compiled code — is not what happened, and on the largest repositories they are
+a victory lap, because the obvious reading, that a scripting language beat
+compiled code, is not what happened, and on the largest repositories they are
 comfortably faster than us.
 
 **The Rust is in the parser, and their own README scopes it that way**: parsing
@@ -311,7 +403,7 @@ a V8 heap plus a bundled runtime plus holding a graph in memory to write it out,
 against a build that streams.
 
 **Their headline claim is about a number we have not measured.** The speed
-CodeGraph advertises is mostly *incremental re-sync* — roughly 0.3s to fold one
+CodeGraph advertises is mostly *incremental re-sync*, roughly 0.3s to fold one
 saved file into a 4,400-file project, never re-scanning the tree. That is a real
 capability, it is a different measurement from a cold build, and **we expect to
 lose it**. It is listed as unmeasured in G6 rather than quietly omitted.
@@ -322,7 +414,7 @@ lose it**. It is listed as unmeasured in G6 rather than quietly omitted.
 
 Every per-language number this page carried before was a fact about one
 repository wearing a language's name. The six head-to-head repositories are
-typescript x2, java x1, csharp x1, python x1, go x1 — four of five languages
+typescript x2, java x1, csharp x1, python x1, go x1. Four of five languages
 resting on a single repository, which is precisely what
 [rule 13](METHODOLOGY.md) forbids.
 
@@ -352,7 +444,7 @@ strongest competitor:
 **On this reading we win one language, tie four and lose six.** That is the
 opposite of the impression six repositories gave, and it is published because a
 benchmark that only reports the corpus where it wins is an advertisement. On the
-shared denominator below — the fair comparison — it becomes **one ours, six
+shared denominator below, which is the fair comparison, it becomes **one ours, six
 tied, four theirs**, and the four that survive are the real finding.
 
 ### On the denominator both tools agree on
@@ -361,7 +453,7 @@ The table above is each arm's own metric on its own population, which is what
 CodeGraph's published metric is and why it is reproduced that way. It is **not a
 comparison**: two arms disagree about which files can carry an edge at all. Our
 denominator is smaller than theirs in 8 of 11 languages and larger in exactly
-two — cpp and rust — and that asymmetry has already reversed one headline on
+two, cpp and rust, and that asymmetry has already reversed one headline on
 this page, when 123 `package-info.java` files padded the peer's caffeine
 denominator.
 
@@ -382,7 +474,7 @@ share, pooled per language with 95% Wilson intervals:
 | rust | 3 | 1,995 | 0.341 | **0.489** | theirs |
 | cpp | 6 | 2,035 | 0.226 | **0.419** | theirs |
 
-**One ours, four theirs, six tied** on non-overlapping intervals — against one
+**One ours, four theirs, six tied** on non-overlapping intervals, against one
 win, four ties and six losses on the own-denominator reading. TypeScript and
 Swift move from loss to tie once the populations match and the intervals are
 honoured.
@@ -397,7 +489,7 @@ Two things the pooled figures hide, printed rather than left in the data:
 * **cpp's pooled 0.226 against a per-repository median of 0.357** is one
   repository doing the work: `aria2` carries 1,118 of the 2,035 shared files at
   0.200. Weighting by size is what pooling means, but a reader should see it.
-* **`nlohmann-json` is hard for everyone** — 0.108 us, 0.143 them. A
+* **`nlohmann-json` is hard for everyone**: 0.108 us, 0.143 them. A
   header-only template library is close to the worst case for file-granular
   call resolution on both sides.
 
@@ -423,7 +515,7 @@ them ones where we are strong. Read the 84.8% the other way round and it says
 **roughly fifteen percent of our call edges are wrong**, which is the number to
 plan against.
 
-**Four of the nine cells separate; five are ties and are reported as ties** —
+**Four of the nine cells separate; five are ties and are reported as ties**.
 go, java, swift, rust and cpp. C++ is a tie in particular: a 23-point
 point-estimate gap that sits inside two overlapping intervals is not a win, at
 either n=30 or the n=50 depth read.
@@ -436,7 +528,7 @@ precision usually trade against each other, so a language losing both is a
 genuine resolution gap rather than a metric artifact.
 
 **One cell goes clearly to the peer, and it is worth publishing unprompted.** On
-`seastar` they read **6/10 against our 4/10** — the only repository in the audit,
+`seastar` they read **6/10 against our 4/10**, the only repository in the audit
 on any language, where they beat us on a clear margin. Our failures there are
 chained calls on an untyped receiver bound to an unrelated method; they infer the
 callee's declared return type and validate against it, so a failed inference
@@ -454,7 +546,7 @@ gap, receiver typing and symbol extraction, have each been measured and refused.
 
 The spread across three kinds is reported instead of a mean, because the
 disagreement is the finding. On our arm TypeScript reads **0.138 on zod and
-0.589 on hono** — a 0.451 spread. Rust reads 0.175 on serde and 0.490 on
+0.589 on hono**, a 0.451 spread. Rust reads 0.175 on serde and 0.490 on
 ripgrep. Quoting either end as "the TypeScript number" is the mistake the
 three-kinds rule was written to prevent, and we nearly made it.
 
@@ -463,7 +555,7 @@ three-kinds rule was written to prevent, and we nearly made it.
 code-review-graph **walks the language and resolves zero cross-file call edges**
 on 17 of the 35 repositories: all 6 cpp, all 4 csharp, all 3 go, all 3 ruby and
 Alamofire. It resolves 12,395 on TypeScript. That is a per-language capability
-gap rather than a broken run, and printing the zero is the entire point of G7 —
+gap rather than a broken run, and printing the zero is the entire point of G7:
 every tool in this field claims 20 to 40 languages and none says what a claimed
 language actually produces.
 
@@ -474,7 +566,7 @@ repositories is unreachable before edge resolution is even attempted.
 
 ### Provenance
 
-Measured at **`58576af0`** — `repowise 0.43.0+dev`.
+Measured at **`58576af0`**, `repowise 0.43.0+dev`.
 
 **`v0.44.0` exists and is `7f44232e`.** An earlier version of this line said it
 did not, which was wrong. What is true is narrower and matters more: **`#1708`
@@ -485,8 +577,8 @@ commit it was taken at, and [G1](experiments/g1-edge-precision/) pins a commit
 per cell.
 
 Where cells were taken at different commits, the staleness runs **conservative**.
-Every resolver change between the earliest cell and `13cc339a` — `#1690`,
-`#1692`, `#1708` — only removes wrong edges: measured at the time, they removed
+Every resolver change between the earliest cell and `13cc339a` (`#1690`,
+`#1692`, `#1708`) only removes wrong edges: measured at the time, they removed
 16,122, 1,399 and a further set respectively, and **gained 0** between them. An
 older cell can therefore only understate our precision, never overstate it.
 
@@ -507,6 +599,7 @@ graph/
   arms/                one page per tool: version, how it is built, what it emits
   lib/                 shared readers and statistics, no experiment logic
   experiments/<id>/    PREREGISTRATION.md, README.md with the result, run scripts
+  tools/               table renderers; every table on these pages is generated
 results/graph/<id>/    raw output, one directory per run
 ```
 
@@ -524,8 +617,13 @@ have a path under `results/graph/` behind it.
 * **Ten languages at n=3 is still n=3.** Three repositories bound the spread;
   they do not estimate a language. Swift is n=1 and says so.
 * **Every tool is held to a metric one of them designed.** G2 is CodeGraph's
-  metric and we are reproducing it. G1, G4 and G5 are ours, and a reader should
-  discount them the same way.
+  metric and we are reproducing it. G1 and G5 are ours, and a reader should
+  discount them the same way. G4 is the exception and is why it now leads this
+  page: the Go team wrote the oracle, not us.
+* **G4 is one language.** Go, three repositories. It is not a nine-language
+  claim and the page says so. Its `contradicted` bucket is strong evidence
+  rather than proof: RTA is unsound under reflection and `go:linkname`, which is
+  why the metric is named precision *against the oracle*.
 * **Our worst cell is Java**, at roughly 67% edge precision, and it is also our
   largest edge count. [METHODOLOGY.md](METHODOLOGY.md) explains why it stands.
 * **Two arms are being read through an adapter we wrote.** Graphify's call
@@ -534,7 +632,11 @@ have a path under `results/graph/` behind it.
   ones that resolve. Both choices are argued in [arms/](arms/) and both change
   those tools' numbers substantially. A reader who disagrees with either should
   say so; the counts either way are recorded in every result file.
-* **Three of our own results have moved against us** — the caffeine coverage
-  cell, the build-cost claim, and now the per-language coverage picture, which
-  at 35 repositories has us losing six languages and winning one. All three are
-  above rather than in a changelog.
+* **Four of our own results have moved against us**: the caffeine coverage
+  cell, the build-cost claim, the per-language coverage picture, and the arrival
+  of a fifth arm that beats us on coverage in every language and on recall in
+  every G4 cell. All four are above rather than in a changelog.
+* **We lose coverage and win precision, and we are the ones who decided which
+  of those is the result.** That choice is argued in
+  [METHODOLOGY.md](METHODOLOGY.md) rule 1 and was written down before this arm
+  existed, but a reader is entitled to weigh the two differently.
