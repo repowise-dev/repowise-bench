@@ -1,4 +1,4 @@
-"""codebase-memory-mcp (DeusData) 0.10.6, on the arms protocol.
+"""codebase-memory-mcp (DeusData) 0.10.8, on the arms protocol.
 
 A single native executable -- no language runtime -- that indexes a repository
 into SQLite. `cli index_repository --repo-path <path>` writes
@@ -109,18 +109,82 @@ _KIND_ALIASES = {
     "method_implements": ("IMPLEMENTS",),
 }
 
+# Their extension-to-language table, reproduced verbatim from the one the tool
+# carries in its store layer, including its casing and its choices.
+#
+# This exists because the tool stores no language on a node -- it derives one
+# from the extension at read time, and this is the table it derives it with. The
+# table backs the `languages` breakdown its own `get_architecture` output
+# prints, so reproducing it is reading their index the way they read it rather
+# than imposing a scheme of ours. See `file_languages` for the two places this
+# adapter deliberately departs from their query.
+#
+# Two of their choices to notice before quoting a number scoped by this:
+#   * `.h` is C, not C++. Every C++ repository in the corpus with headers is
+#     therefore split between `c` and `cpp` by their rule, not ours. `graphify`,
+#     the other arm with no language field, happens to map `.h` the same way.
+#   * `.sh`/`.bash` are "Bash" where `graphify` says "shell". Neither is a
+#     corpus primary language, so nothing published turns on it.
+#
+# An extension absent from this table yields no entry at all, which is their
+# behaviour: their lookup returns NULL and their loop skips the row. That is
+# what keeps `.md`, `.json`, `.txt` and the rest out of a language denominator.
+_THEIR_EXT_LANG = {
+    ".py": "Python", ".go": "Go", ".js": "JavaScript", ".jsx": "JavaScript",
+    ".ts": "TypeScript", ".tsx": "TypeScript", ".rs": "Rust", ".java": "Java",
+    ".cpp": "C++", ".cc": "C++", ".cxx": "C++", ".c": "C",
+    ".h": "C", ".cs": "C#", ".php": "PHP", ".lua": "Lua",
+    ".scala": "Scala", ".kt": "Kotlin", ".rb": "Ruby", ".sh": "Bash",
+    ".bash": "Bash", ".zig": "Zig", ".ex": "Elixir", ".exs": "Elixir",
+    ".hs": "Haskell", ".ml": "OCaml", ".mli": "OCaml", ".html": "HTML",
+    ".css": "CSS", ".yaml": "YAML", ".yml": "YAML", ".toml": "TOML",
+    ".hcl": "HCL", ".tf": "HCL", ".sql": "SQL", ".erl": "Erlang",
+    ".swift": "Swift", ".dart": "Dart", ".groovy": "Groovy", ".pl": "Perl",
+    ".r": "R", ".scss": "SCSS", ".vue": "Vue", ".svelte": "Svelte",
+}
+
+
+def _suffix(path: str) -> str:
+    """The lowercased final extension, matching how they take one.
+
+    They scan for the last `.` in the whole path and lowercase what follows, so
+    a dotless path yields nothing and `.TS` and `.ts` agree. `Path.suffix` gives
+    the same answer for every path in this corpus and is used instead of a
+    hand-rolled `rfind`, with one difference that cannot bite: theirs would read
+    an extension out of a dotless filename inside a dotted directory, and both
+    then miss the table and yield no language either way.
+    """
+    return Path(path).suffix.lower()
+
+
 # Where a bench machine keeps the extracted release. Kept off %LOCALAPPDATA%
 # deliberately; see the precondition note in the module docstring.
 _DEFAULT_HOME = Path("C:/Users/ragha/Desktop/bench-worktrees/cbm")
 
 
+# The release the coverage and precision reads are taken on. Pinned in code
+# rather than left to whatever is on PATH: this tool ships often -- three
+# releases in the nine days around this measurement -- and v0.10.8 is a graph
+# correctness release, so a number read off a neighbouring build is a different
+# number. The G6 cost and memory tables were measured on 0.10.6 and stay there;
+# they are labelled with it, and a re-sweep for a patch release is 158 minutes
+# to move a figure that is about the process rather than the graph.
+_PINNED_VERSION = "0.10.8"
+
+
 def _find_executable() -> str | None:
+    """`CBM_BIN`, else the pinned release, else whatever is on PATH.
+
+    The pinned directory is tried before the unversioned `bin/`, which still
+    holds 0.10.6 so the cost sweep stays reproducible against its own tables.
+    """
     explicit = os.environ.get("CBM_BIN")
     if explicit and Path(explicit).is_file():
         return explicit
-    local = _DEFAULT_HOME / "bin" / "codebase-memory-mcp.exe"
-    if local.is_file():
-        return str(local)
+    for sub in (f"bin-{_PINNED_VERSION}", "bin"):
+        local = _DEFAULT_HOME / sub / "codebase-memory-mcp.exe"
+        if local.is_file():
+            return str(local)
     return shutil.which("codebase-memory-mcp")
 
 
@@ -409,21 +473,42 @@ class CodebaseMemoryMcpArm:
         }
 
     def file_languages(self, art: arms.Artifact) -> dict[str, str]:
-        """`language` off the node's JSON `properties`.
+        """Their own extension table, applied the way their own query applies it.
 
-        Read with `json_extract` rather than as a column: `nodes.properties` is
-        a TEXT blob and the key is absent on nodes that have no language, which
-        `json_extract` returns as NULL rather than raising.
+        This tool stores no language on a node. It does not need to: it derives
+        one from the file extension at read time, in `arch_languages`, which is
+        what backs the `languages` table its MCP `get_architecture` surface
+        prints. `_THEIR_EXT_LANG` below is that table, and an extension the
+        table does not carry yields no entry -- their lookup returns NULL and
+        their loop skips the row.
+
+        So this is not a classification scheme invented here and applied to
+        somebody else's index. It is the derivation the tool publishes about
+        itself, reproduced so a reader can disagree with a specific 44-entry
+        table rather than with a hidden choice. The precedent in this benchmark
+        is `graphify`, which records no language field either and is scoped the
+        same way.
+
+        Two deliberate departures from their query, both stated because both
+        move numbers:
+
+        1. **Population.** Theirs reads `nodes WHERE label='File'`; this reads
+           `files_seen`, which comes from `file_hashes` and is the protocol's
+           denominator for every arm. `file_hashes` is the wider set -- it has a
+           row per file the indexer hashed, including files that produced no
+           node -- so scoping to their `File` nodes would silently shrink the
+           denominator against every other arm.
+        2. **Case.** Their names are returned verbatim (`"Go"`, `"C++"`), and
+           `run_corpus.norm_lang` folds them, so this adapter stays a mirror and
+           normalisation lives in the one place that already does it for all
+           five arms.
         """
-        out: dict[str, str] = {}
-        sql = (
-            "SELECT file_path, json_extract(properties, '$.language') FROM nodes "
-            "WHERE file_path <> '' AND json_extract(properties, '$.language') IS NOT NULL"
-        )
-        for path, lang in art.handle["conn"].execute(sql):
-            if path and lang:
-                out.setdefault(self._n(art, path), str(lang).lower())
-        return out
+        return {
+            path: lang
+            for path in self.files_seen(art)
+            for lang in (_THEIR_EXT_LANG.get(_suffix(path)),)
+            if lang
+        }
 
 
 def _probe(exe: str) -> str | None:

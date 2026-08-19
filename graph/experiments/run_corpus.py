@@ -81,6 +81,11 @@ SCHEMA = "graph-result/1"
 # arm's names are normalised through this before filtering, and an unmapped
 # name passes through unchanged rather than being dropped.
 _LANG_ALIASES = {
+    # codebase-memory-mcp reports C++ as their own table spells it, "C++", and
+    # the corpus spells it "cpp". Folded here rather than in that adapter, so
+    # the adapter stays a mirror of their table and every arm is normalised in
+    # one place.
+    "c++": "cpp",
     "c#": "csharp",
     "c_sharp": "csharp",
     "cs": "csharp",
