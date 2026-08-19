@@ -176,6 +176,13 @@ arm and cell. It is reported at full size and charged to nobody.
   install produces unresolvable sites that withhold callers wholesale. Both
   sides are restricted to the same set, so no arm is charged for what is outside
   it.
+  The obvious objection is that scoping is a knob, and a knob can be turned
+  until the answer is flattering. It was not: the same zod cell run over the
+  whole monorepo, in
+  [`zod-notests-wide-g4.json`](zod-notests-wide-g4.json), reads 0.983 / 0.722 /
+  0.973 against the scoped 0.992 / 0.729 / 0.987. Every arm moves up by about a
+  point, the ordering is unchanged, and every tie stays a tie. What scoping buys
+  is a smaller withheld set, not a better rank.
 * **`contradicted` is strong evidence, not proof**, exactly as in Go.
 * **Recall is not comparable across rows** here either.
 * The oracle skips JSX element instantiation, which no arm emits as a call
