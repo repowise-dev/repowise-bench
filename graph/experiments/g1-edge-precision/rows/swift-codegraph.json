@@ -1,0 +1,319 @@
+{
+ "experiment": "G1",
+ "language": "swift",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "Alamofire"
+ ],
+ "repowise_commit": "58576af0",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 19,
+  "wrong": 11,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "Alamofire",
+   "file": "Example/Source/DetailViewController.swift",
+   "line": 190,
+   "target": "DetailViewController::Sections",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "Sections(rawValue: section)` -> the nested `DetailViewController.Sections` enum it initializes"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Core/DataStreamRequest.swift",
+   "line": 309,
+   "target": "DataStreamRequest::enqueueCompletion",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "self.enqueueCompletion(on:stream:)` -> `DataStreamRequest::enqueueCompletion`, same file"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Core/WebSocketRequest.swift",
+   "line": 434,
+   "target": "WebSocketRequest::forIncomingEvent",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "forIncomingEvent(on:handler:)` -> `WebSocketRequest::forIncomingEvent`, same file"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/Concurrency.swift",
+   "line": 178,
+   "target": "DataRequest::onHTTPResponse",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "overload",
+   "reason": "onHTTPResponse(on: underlyingQueue) { .. }` -> `DataRequest::onHTTPResponse`, right type but the `perform handler:` overload, which has no `on:` label"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/Concurrency.swift",
+   "line": 553,
+   "target": "DownloadTask::response",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "response(queue:responseSerializer:completionHandler:)` on a `DownloadRequest`; bound to `DownloadTask::response`, a computed property on a different struct"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/EventMonitor.swift",
+   "line": 231,
+   "target": "ClosureEventMonitor::urlSession",
+   "origin": "<none>",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "the site is the declaration `public func urlSession(_:didBecomeInvalidWithError:) {}` at EventMonitor.swift:231, not a call"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/EventMonitor.swift",
+   "line": 232,
+   "target": "ClosureEventMonitor::urlSession",
+   "origin": "<none>",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "same: the declaration at EventMonitor.swift:232, bound to a `ClosureEventMonitor` overload"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/EventMonitor.swift",
+   "line": 446,
+   "target": "CompositeEventMonitor::performEvent",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "performEvent { .. }` inside `CompositeEventMonitor` -> its own `performEvent"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CacheTests.swift",
+   "line": 119,
+   "target": "CacheTestCase::startRequest",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "startRequest(cacheControl:queue:completion:)` -> `CacheTestCase::startRequest`, same class"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CombineTests.swift",
+   "line": 66,
+   "target": "CombineTestCase::store",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "store { .. }` -> `CombineTestCase::store`, same class"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CombineTests.swift",
+   "line": 577,
+   "target": "Session::streamRequest",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "session.streamRequest(.default)` with `session: Session` -> `Session::streamRequest"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ConcurrencyTests.swift",
+   "line": 345,
+   "target": "BaseTestCase::stored",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "stored(Session())` -> `BaseTestCase::stored`, the superclass helper"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ConcurrencyTests.swift",
+   "line": 361,
+   "target": "Session::download",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "session.download(.get)` -> `Session::download"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/DownloadTests.swift",
+   "line": 682,
+   "target": "Request::downloadProgress",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "download.downloadProgress(queue:closure:)` with a `DownloadRequest` receiver -> `Request::downloadProgress`, inherited"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/MultipartFormDataTests.swift",
+   "line": 259,
+   "target": "MultipartFormData::append",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "overload",
+   "reason": "multipartFormData.append(unicornStream, withLength:name:fileName:mimeType:)` -> the `append(_ data: Data, withName:..)` overload; right type, wrong overload"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/MultipartFormDataTests.swift",
+   "line": 343,
+   "target": "MultipartFormData::append",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "expectedData.append(..)`: `expectedData` is a Foundation `Data`; bound to `MultipartFormData::append"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/MultipartFormDataTests.swift",
+   "line": 564,
+   "target": "MultipartFormData::append",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "same Foundation `Data.append` shape at MultipartFormDataTests.swift:564"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/MultipartFormDataTests.swift",
+   "line": 773,
+   "target": "MultipartFormData::append",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "same Foundation `Data.append` shape at MultipartFormDataTests.swift:773"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ParameterEncodingTests.swift",
+   "line": 55,
+   "target": "URLEncoding::ArrayEncoding::encode",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "encoding.encode(urlRequest, with: parameters)` with `encoding: URLEncoding`; bound to `URLEncoding.ArrayEncoding::encode(key:atIndex:)`, a nested enum's method"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestTests.swift",
+   "line": 1629,
+   "target": "DataStreamIntegrationTests::testThatDataStreamsCanBeRetried::GoodRetry::retry",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": ".retry(using: firstRetrier)` on a `DataRequest`; bound to `GoodRetry::retry`, a type nested inside a test function in another test file"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseTests.swift",
+   "line": 653,
+   "target": "TransformationError::alwaysFails",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "TransformationError.error.alwaysFails()` -> `TransformationError::alwaysFails`, same file"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RetryPolicyTests.swift",
+   "line": 414,
+   "target": "ProtectedHighContentionTests::StringContainerWriteState::results",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "results[2]?.error` is a subscript read, not a call; bound to `StringContainerWriteState::results`, a field in a different test file"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ServerTrustEvaluatorTests.swift",
+   "line": 1242,
+   "target": "PublicKeysTrustEvaluator::evaluate",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "serverTrustPolicy.evaluate(_:forHost:)` with a `PublicKeysTrustEvaluator` receiver -> its own `evaluate"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/SessionDelegateTests.swift",
+   "line": 130,
+   "target": "Session::request",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "session.request(.default)` -> `Session::request"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/TLSEvaluationTests.swift",
+   "line": 129,
+   "target": "BaseTestCase::stored",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "stored(Session(configuration:serverTrustManager:))` -> `BaseTestCase::stored"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 39,
+   "target": "DataRequest::response",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": ".response { _ in }` on an `UploadRequest` -> `DataRequest::response(queue:completionHandler:)`, inherited"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 552,
+   "target": "BaseTestCase::stored",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "stored(Session())` -> `BaseTestCase::stored"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 603,
+   "target": "Endpoint::method",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "Endpoint.method(.post)` -> the static `Endpoint::method` in TestHelpers.swift"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 630,
+   "target": "MultipartFormData::append",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "multipartFormData.append(frenchData, withName: 'french')` -> exactly that `MultipartFormData::append` overload"
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/WebSocketTests.swift",
+   "line": 500,
+   "target": "WebSocketRequest::streamMessageEvents",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": ".streamMessageEvents { .. }` on a `WebSocketRequest` -> `WebSocketRequest::streamMessageEvents"
+  }
+ ]
+}

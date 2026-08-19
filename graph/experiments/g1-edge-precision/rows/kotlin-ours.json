@@ -1,0 +1,291 @@
+{
+ "experiment": "G1",
+ "language": "kotlin",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "javalin",
+  "ktor",
+  "exposed"
+ ],
+ "repowise_commit": "58576af0",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 27,
+  "wrong": 3,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "javalin",
+   "file": "javalin/src/main/java/io/javalin/http/Context.kt",
+   "line": 498,
+   "target": "contentType",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "jsonStream(obj,type) at line 498 calls contentType(APPLICATION_JSON), a member overload declared in the same Context class (line 438)."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/main/java/io/javalin/http/servlet/JavalinServletContext.kt",
+   "line": 272,
+   "target": "req",
+   "origin": "receiver_typed_import",
+   "verdict": "correct",
+   "reason": "ctx.req() where ctx: Context param; Context.kt:61 declares fun req(): HttpServletRequest."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestApiBuilder.kt",
+   "line": 70,
+   "target": "path",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "explicit import io.javalin.apibuilder.ApiBuilder.path; call path(\"api\"){...} matches ApiBuilder.java:55 static overload."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestCompression.kt",
+   "line": 633,
+   "target": "getResponse",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "getResponse(...) unqualified call resolves to the private member fun getResponse declared at line 712 of the same class."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestCors.kt",
+   "line": 642,
+   "target": "checkHappyPath",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "checkHappyPath(http,\"images\") calls the private fun checkHappyPath declared at line 650 in the same nested class."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestExceptionMapper.kt",
+   "line": 132,
+   "target": "forStatus",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "HttpStatus.forStatus(408) matches companion fun forStatus(status: Int) at HttpStatus.kt:157."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestFuture.kt",
+   "line": 86,
+   "target": "NotFoundResponse",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "throw NotFoundResponse() is a constructor call; import io.javalin.http.NotFoundResponse and class declared at HttpResponseException.kt:221."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestUnsafeStateAccess.kt",
+   "line": 39,
+   "target": "create",
+   "origin": "receiver_same_package",
+   "verdict": "correct",
+   "reason": "Javalin.create() zero-arg call matches Javalin.java:50 static overload."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/websocket/TestWsLogging.kt",
+   "line": 77,
+   "target": "test",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "TestUtil.test(Javalin.create{...}){...} matches TestUtil.java:28 static overload taking a ThrowingBiConsumer."
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/websocket/TestWsRouting.kt",
+   "line": 35,
+   "target": "WsTestClient",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "WsTestClient(app, \"/params/one\") constructor call matches open class WsTestClient declared in WebSocketTestHelpers.kt:23, same package."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-client/ktor-client-curl/desktop/src/io/ktor/client/engine/curl/CurlProcessor.kt",
+   "line": 29,
+   "target": "Channel",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "Channel(Channel.UNLIMITED) resolves via explicit import kotlinx.coroutines.channels.Channel, an external library call; resolved_to instead points at an unrelated private fun Channel(options: DataChannelReceiveOptions) in ktor-client-webrtc's WebRtcDataChannel.kt line 184, a different module entirely and not even visible outside its own file."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-client/ktor-client-plugins/ktor-client-auth/common/test/io/ktor/client/plugins/auth/BasicProviderTest.kt",
+   "line": 60,
+   "target": "HttpRequestBuilder",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "HttpRequestBuilder() constructor call via wildcard import io.ktor.client.request.*; class declared at HttpRequest.kt line 75."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-http/common/src/io/ktor/http/URLProtocol.kt",
+   "line": 45,
+   "target": "URLProtocol",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "URLProtocol(\"ws\", 80) constructor call for companion val WS matches the data class URLProtocol declared at line 18 of the same file."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-core/common/src/io/ktor/server/routing/RouteSelector.kt",
+   "line": 555,
+   "target": "parametersOf",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "parametersOf(...) call via wildcard import io.ktor.http.*, matches top-level overload group in Parameters.kt starting line 54."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-plugins/ktor-server-pebble/jvm/src/io/ktor/server/pebble/RespondTemplate.kt",
+   "line": 28,
+   "target": "PebbleContent",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "respond(PebbleContent(...)) constructor call matches class PebbleContent declared at Pebble.kt line 46, same package."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-test-host/common/test/TestApplicationTest.kt",
+   "line": 80,
+   "target": "get",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "get(\"a\"){ call.respond(\"OK\") } is inside routing{...} inside application{...}: it is the server routing DSL fun Route.get(path, body) at RoutingBuilder.kt line 139, not the HttpClient.get extension in ktor-client-core/request/builders.kt that resolved_to names; both io.ktor.client.request.* and io.ktor.server.routing.* are wildcard-imported and the wrong overload was picked."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-test-suites/jvm/src/io/ktor/server/testing/suites/ConfigTestSuite.kt",
+   "line": 19,
+   "target": "embeddedServer",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "embeddedServer(engine){...} via wildcard import io.ktor.server.engine.*, matches top-level embeddedServer overload group in EmbeddedServer.kt starting line 91."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-tests/common/test/io/ktor/tests/server/sessions/SessionTest.kt",
+   "line": 763,
+   "target": "TestUserSession",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "TestUserSession(\"user123\", listOf(\"item1\")) constructor call matches the data class TestUserSession declared elsewhere in this same test file."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-tests/jvm/test/io/ktor/server/plugins/CompressionTest.kt",
+   "line": 826,
+   "target": "header",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "header(HttpHeaders.ContentEncoding, \"zstd\") inside client.post block (HttpRequestBuilder receiver) matches HttpMessageBuilder.header extension in ktor-client-core/request/utils.kt line 38."
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-shared/ktor-websockets/common/src/io/ktor/websocket/PingPong.kt",
+   "line": 96,
+   "target": "CloseReason",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "CloseReason(CloseReason.Codes.INTERNAL_ERROR, \"Ping timeout\") constructor call matches data class CloseReason declared at CloseReason.kt line 19, same package."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-kotlin-datetime/src/test/kotlin/org/jetbrains/exposed/v1/datetime/DateTimeLiteralTest.kt",
+   "line": 72,
+   "target": "withTables",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "class DateTimeLiteralTest extends DatabaseTestsBase; withTables(...) is the inherited member fun declared at DatabaseTestsBase.kt line 136."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/UserCreatedTransactionsTests.kt",
+   "line": 136,
+   "target": "create",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "SchemaUtils.create(TestTable), explicit import org.jetbrains.exposed.v1.r2dbc.SchemaUtils, object SchemaUtils declared at SchemaUtils.kt line 14."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/ddl/ColumnDefinitionTests.kt",
+   "line": 39,
+   "target": "stringLiteral",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "explicit import org.jetbrains.exposed.v1.core.stringLiteral; call stringLiteral(comment) matches top-level fun at LiteralOp.kt line 50."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/functions/FunctionsTests.kt",
+   "line": 82,
+   "target": "withTables",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "class FunctionsTests extends R2dbcDatabaseTestsBase; withTables(table){...} is the inherited member declared at R2dbcDatabaseTestsBase.kt line 137/201."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/h2/EntityReferenceCacheTest.kt",
+   "line": 255,
+   "target": "executeOnH2",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "executeOnH2(Cities, Users){...} matches private fun executeOnH2 declared at line 52 of the same file."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/DDLTests.kt",
+   "line": 733,
+   "target": "assertEquals",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "call is inside withDb(...){...} whose statement param is typed JdbcTransaction.(TestDB)->Unit, so the implicit-receiver extension fun JdbcTransaction.assertEquals(exp,act) in Assert.kt correctly outranks the imported kotlin.test.assertEquals for this 2-arg call."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/dml/UpsertTests.kt",
+   "line": 426,
+   "target": "integer",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "integer(\"gains\") inside object : Table(\"tester\") {...} body resolves to member fun Table.integer at Table.kt line 842."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/ImmutableEntityTest.kt",
+   "line": 109,
+   "target": "text",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "val name = text(\"name\") inside object ImmutableCacheTable : IntIdTable(...) calls the member fun Table.text(...) at Table.kt line 922; resolved_to instead points at an unrelated delegated property (var text by Notes.text) on class Note in EntityTests.kt line 798, a same-named but unconnected declaration in a different class/file."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/EntityCacheRefreshTests.kt",
+   "line": 183,
+   "target": "commit",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "commit() inside withTables(...){...} (JdbcTransaction receiver) matches override fun commit() at JdbcTransaction.kt line 87."
+  },
+  {
+   "repo": "exposed",
+   "file": "spring7-transaction/src/test/kotlin/org/jetbrains/exposed/v1/spring7/transaction/TransactionSynchronizationTest.kt",
+   "line": 12,
+   "target": "TestSynchronization",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "TestSynchronization() constructor call matches nested class TestSynchronization declared at line 86 of the same file."
+  }
+ ]
+}

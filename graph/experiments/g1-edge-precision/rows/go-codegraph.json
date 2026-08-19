@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "go",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "gitleaks"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 29,
+  "wrong": 1,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "gitleaks",
+   "file": "cmd/detect.go",
+   "line": 116,
+   "source_line": "logging.Fatal().Err(err).Send()",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go:44 Fatal",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "head-of-chain `logging.Fatal()` call"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/base/config_test.go",
+   "line": 101,
+   "source_line": "cfg := CreateGlobalConfig()",
+   "receiver": "—",
+   "target": ".../base/config.go:11 CreateGlobalConfig",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "free function, same package"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/main.go",
+   "line": 169,
+   "source_line": "rules.NewRelicUserID(),",
+   "receiver": "rules (pkg)",
+   "target": ".../rules/newrelic.go:9",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/main.go",
+   "line": 214,
+   "source_line": "rules.SidekiqSecret(),",
+   "receiver": "rules (pkg)",
+   "target": ".../rules/sidekiq.go:10",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/main.go",
+   "line": 230,
+   "source_line": "rules.SquareSpaceAccessToken(),",
+   "receiver": "rules (pkg)",
+   "target": ".../rules/squarespace.go:9",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/coinbase.go",
+   "line": 22,
+   "source_line": "secrets.NewSecret(utils.AlphaNumericExtendedShort(\"64\"))",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go:23",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/datadog.go",
+   "line": 23,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go:16",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/jfrog.go",
+   "line": 62,
+   "source_line": "secrets.NewSecret(utils.AlphaNumeric(\"64\"))",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go:19",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/linear.go",
+   "line": 37,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go:16",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/newrelic.go",
+   "line": 35,
+   "source_line": "Regex: utils.GenerateSemiGenericRegex([]string{...",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go:34",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/openshift.go",
+   "line": 25,
+   "source_line": "utils.GenerateSampleSecrets(\"oc\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go:85",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/pulumi.go",
+   "line": 14,
+   "source_line": "Regex: utils.GenerateUniqueTokenRegex(\\`pul-...\\`, false)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go:69",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/readme.go",
+   "line": 22,
+   "source_line": "secrets.NewSecret(utils.AlphaNumeric(\"70\"))",
+   "receiver": "secrets (pkg)",
+   "target": "cmd/generate/secrets/regen.go:9",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/sendinblue.go",
+   "line": 22,
+   "source_line": "secrets.NewSecret(utils.Hex(\"64\"))",
+   "receiver": "secrets (pkg)",
+   "target": "cmd/generate/secrets/regen.go:9",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/settlemint.go",
+   "line": 25,
+   "source_line": "secrets.NewSecret(utils.AlphaNumeric(\"10\"))",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go:19",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/shopify.go",
+   "line": 21,
+   "source_line": "utils.GenerateSampleSecrets(\"shopify\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go:85",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/slack.go",
+   "line": 41,
+   "source_line": "return utils.Validate(r, tps, fps)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go:16",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/slack.go",
+   "line": 124,
+   "source_line": "secrets.NewSecret(utils.AlphaNumeric(\"165\"))",
+   "receiver": "secrets (pkg)",
+   "target": "cmd/generate/secrets/regen.go:9",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/sonar.go",
+   "line": 30,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go:16",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/git.go",
+   "line": 66,
+   "source_line": "logging.Fatal().Err(err).Msg(\"could not create Git diff cmd\")",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go:44 Fatal",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "head-of-chain `logging.Fatal()` call"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/git.go",
+   "line": 79,
+   "source_line": "detector.DetectSource(cmd.Context(), &sources.Git{...",
+   "receiver": "detector (*Detector)",
+   "target": "detect/detect.go:208 Detector::DetectSource",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "detector := Detector(cmd, cfg, source)` (git.go:49) returns repo's `*Detector"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/root.go",
+   "line": 201,
+   "source_line": "logging.Fatal().Err(err).Msg(\"Error getting diagnostics flag\")",
+   "receiver": "(chained, none)",
+   "target": "logging/log.go:40 Err",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": ".Err(err)` chained off the `*zerolog.Event` from `logging.Fatal()`, not a call to package `logging.Err`; that wrapper is never invoked as `logging.Err(...)` in the repo"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/root.go",
+   "line": 293,
+   "source_line": "logging.Fatal().Err(err).Send()",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go:44 Fatal",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "head-of-chain `logging.Fatal()` call"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "config/config.go",
+   "line": 443,
+   "source_line": "logging.Debug().Str(\"rule-id\", ruleID)...",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go:26 Debug",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "head-of-chain `logging.Debug()` call"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "config/config_test.go",
+   "line": 574,
+   "source_line": "testTranslate(t, tt)",
+   "receiver": "—",
+   "target": "config/config_test.go:579 testTranslate",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "free function, same file"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "detect/detect.go",
+   "line": 221,
+   "source_line": "d.addCommit(fragment.CommitSHA)",
+   "receiver": "d (*Detector)",
+   "target": "detect/detect.go:757 Detector::addCommit",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "d` is the `*Detector` receiver of enclosing `DetectSource` (detect.go:208)"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "detect/detect.go",
+   "line": 311,
+   "source_line": "decoder := codec.NewDecoder()",
+   "receiver": "codec (pkg)",
+   "target": "detect/codec/decoder.go:15 NewDecoder",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "detect/codec` imported at detect.go:14"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "detect/detect_test.go",
+   "line": 1313,
+   "source_line": "gitCmd, err := sources.NewGitLogCmd(tt.source, tt.logOpts)",
+   "receiver": "sources (pkg)",
+   "target": "sources/git.go:65 NewGitLogCmd",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "func declared there"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "sources/file.go",
+   "line": 96,
+   "source_line": "logging.Error().Str(\"path\", s.FullPath())...",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go:36 Error",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "head-of-chain `logging.Error()` call"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "sources/git.go",
+   "line": 435,
+   "source_line": "return NewRemoteInfoContext(context.Background(), platform, source)",
+   "receiver": "—",
+   "target": "sources/git.go:440 NewRemoteInfoContext",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "called from sibling `NewRemoteInfo` (git.go:433) in same file"
+  }
+ ]
+}

@@ -1,0 +1,292 @@
+{
+ "experiment": "G1",
+ "language": "rust",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "ripgrep",
+  "serde",
+  "bevy"
+ ],
+ "repowise_commit": "13cc339a",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 22,
+  "wrong": 8,
+  "ambiguous": 0
+ },
+ "note": "The draw, not the grading. This cell was re-read on a fresh draw after #1708 stopped the bare-name tier answering for the standard library, and the per-row verdicts of that read were not written down. What survives is the cell total, 22 of 30, and the composition of the 8 wrong rows: 4 macro invocations graded as calls, 3 cross-module or overload collisions, and 1 standard-library type constructor. The rows below are the sites that were read, so the sample is auditable even though the verdicts are not. This is the one cell of the nine whose rows this directory cannot supply.",
+ "rows": [
+  {
+   "repo": "ripgrep",
+   "file": "crates/core/flags/defs.rs",
+   "line": 7228,
+   "target": "crates/core/flags/parse.rs::parse_low_raw",
+   "origin": "import_scoped",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/globset/src/glob.rs",
+   "line": 1669,
+   "target": "crates/globset/src/glob.rs::tests::prefix",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/ignore/examples/walk.rs",
+   "line": 27,
+   "target": "crates/ignore/src/walk.rs::WalkParallel::threads",
+   "origin": "import_merged",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/ignore/src/incremental.rs",
+   "line": 1199,
+   "target": "crates/ignore/src/incremental.rs::tests::wfile",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/ignore/src/walk.rs",
+   "line": 1632,
+   "target": "crates/ignore/src/lib.rs::Error::with_depth",
+   "origin": "global_unique",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 2907,
+   "target": "crates/printer/src/standard.rs::StandardBuilder::new",
+   "origin": "receiver_same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 3496,
+   "target": "crates/printer/src/standard.rs::StandardBuilder::build",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 3902,
+   "target": "crates/pcre2/src/matcher.rs::RegexMatcherBuilder::new",
+   "origin": "receiver_global",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/searcher/src/line_buffer.rs",
+   "line": 816,
+   "target": "crates/searcher/src/line_buffer.rs::LineBufferBuilder::binary_detection",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/searcher/src/searcher/core.rs",
+   "line": 404,
+   "target": "crates/searcher/src/searcher/core.rs::Core::after_context_by_line",
+   "origin": "self_scope",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "serde_core/src/ser/impls.rs",
+   "line": 24,
+   "target": "serde_core/src/ser/impls.rs::primitive_impl",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/de/tuple.rs",
+   "line": 105,
+   "target": "serde_derive/src/fragment.rs::quote_block",
+   "origin": "import_merged",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/internals/attr.rs",
+   "line": 1029,
+   "target": "serde_derive/src/internals/attr.rs::Attr::none",
+   "origin": "receiver_same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/internals/receiver.rs",
+   "line": 126,
+   "target": "serde_derive/src/internals/receiver.rs::ReplaceReceiver::visit_macro_mut",
+   "origin": "self_scope",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/ser.rs",
+   "line": 492,
+   "target": "serde_derive/src/ser.rs::serialize_untagged_variant",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 739,
+   "target": "test_suite/tests/test_de.rs::test",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 1699,
+   "target": "test_suite/tests/test_de.rs::test",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 2050,
+   "target": "test_suite/tests/test_de.rs::test",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 2086,
+   "target": "serde_core/src/ser/impls.rs::Saturating",
+   "origin": "global_unique",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_ignored_any.rs",
+   "line": 105,
+   "target": "test_suite/tests/test_ignored_any.rs::Enum",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/query/mod.rs",
+   "line": 767,
+   "target": "crates/bevy_ecs/src/query/access.rs::ComponentIdIter::next",
+   "origin": "import_merged",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/relationship/mod.rs",
+   "line": 446,
+   "target": "crates/bevy_ecs/src/component/clone.rs::ComponentCloneBehavior::reflect",
+   "origin": "receiver_global",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/world/deferred_world.rs",
+   "line": 666,
+   "target": "crates/bevy_ecs/src/component/info.rs::Components::get_info_unchecked",
+   "origin": "global_unique",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_pbr/src/render/gpu_preprocess.rs",
+   "line": 1322,
+   "target": "crates/bevy_material/src/descriptor.rs::BindGroupLayoutDescriptor::new",
+   "origin": "receiver_global",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_pbr/src/render/light.rs",
+   "line": 1936,
+   "target": "crates/bevy_pbr/src/render/light.rs::despawn_entities",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_reflect/src/func/args/count.rs",
+   "line": 268,
+   "target": "crates/bevy_reflect/src/func/args/count.rs::ArgCount::default",
+   "origin": "receiver_same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_state/src/state/resources.rs",
+   "line": 82,
+   "target": "crates/bevy_state/src/state/resources.rs::State::get",
+   "origin": "self_scope",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "examples/3d/light_probe_blending.rs",
+   "line": 219,
+   "target": "examples/3d/light_probe_blending.rs::spawn_buttons",
+   "origin": "same_file",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "examples/animation/eased_motion.rs",
+   "line": 135,
+   "target": "crates/bevy_animation/src/animation_curves.rs::animated_field",
+   "origin": "import_scoped",
+   "verdict": null,
+   "reason": null
+  },
+  {
+   "repo": "bevy",
+   "file": "examples/testbed/ui.rs",
+   "line": 1955,
+   "target": "crates/bevy_ui/src/ui_node.rs::BorderColor::all",
+   "origin": "receiver_global",
+   "verdict": null,
+   "reason": null
+  }
+ ]
+}

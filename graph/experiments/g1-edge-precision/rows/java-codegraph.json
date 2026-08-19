@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "java",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "caffeine"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 18,
+  "wrong": 12,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "caffeine",
+   "file": "UnifiedMapAcceptanceTest.java",
+   "line": 509,
+   "source_line": "assertFalse(keySet.removeAll(toRemove));",
+   "receiver": "keySet` = `map.keySet()` (`Set<CollidingInt>`)",
+   "target": "LocalAsyncCache.AsMapView.KeySet::removeAll",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "keySet` is a plain `java.util.Set` from an Eclipse-Collections `UnifiedMap`; bound instead to an unrelated internal caffeine cache class in a different module. Falsifies the \"infers declared type\" claim."
+  },
+  {
+   "repo": "caffeine",
+   "file": "MapIterableTestCase.java",
+   "line": 756,
+   "source_line": "Verify.assertContainsAll(map.collect(Functions.getToString()).toSet(), ...)",
+   "receiver": "map` (`MapIterable<String,Integer>`, Eclipse Collections)",
+   "target": "MapIterableTestCase::collect",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": ".collect(...)` is Eclipse Collections' `RichIterable.collect`; bound instead to an unrelated `@Test` method of the same name in the same file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ConcurrentHashMapTest.java",
+   "line": 78,
+   "source_line": "ConcurrentMap<Item, String> map = bounded();",
+   "receiver": "null (same file)",
+   "target": "ConcurrentHashMapTest::bounded",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Private static method declared in the same file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "MapTest.java",
+   "line": 44,
+   "source_line": "return newTestSuite(parameterizedTestSuite(...));",
+   "receiver": "null",
+   "target": "JSR166TestCase::newTestSuite",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "MapTest extends JSR166TestCase`, which declares `newTestSuite`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCache.java",
+   "line": 3634,
+   "source_line": "action.accept(key);",
+   "receiver": "action` (`Consumer<? super K>`, JDK)",
+   "target": "WriteBehindCacheWriter::accept",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "action` is a JDK `Consumer`; bound instead to an unrelated example module's `accept` method by bare name."
+  },
+  {
+   "repo": "caffeine",
+   "file": "TimerWheel.java",
+   "line": 157,
+   "source_line": "node.setNextInVariableOrder(next);",
+   "receiver": "node` (`Node<K,V>`)",
+   "target": "Node::setNextInVariableOrder",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Direct field/local of type `Node`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "MOAT.java",
+   "line": 908,
+   "source_line": "equal(new HashSet<Integer>(c), new HashSet<Integer>(serialClone(c)));",
+   "receiver": "null (same file)",
+   "target": "MOAT::equal",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Static method declared in the same file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "Collisions.java",
+   "line": 144,
+   "source_line": "assertTrue(map.size() == 0 && map.isEmpty(), ...)",
+   "receiver": "map` (`Map<Object,Object>`, JDK)",
+   "target": "ConcurrentHashMapAcceptanceTest::size",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "map.size()` is plain JDK `Map.size()`; bound instead to an unrelated eclipse-test class's `size` method."
+  },
+  {
+   "repo": "caffeine",
+   "file": "AsyncLoadingCacheTest.java",
+   "line": 343,
+   "source_line": ".putAll(Maps.toMap(context.firstMiddleLastKeys(), Int::negate))",
+   "receiver": "Maps` (Guava, qualified)",
+   "target": "MapIterableTestCase::toMap",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "Maps.toMap` is Guava's `com.google.common.collect.Maps`; bound instead to an unrelated eclipse-test class despite the explicit qualifier."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCacheTest.java",
+   "line": 2519,
+   "source_line": "cache.setStepSize(Math.copySign(...));",
+   "receiver": "cache` (`BoundedLocalCache<Int,Int>` param)",
+   "target": "BoundedLocalCache::setStepSize",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Directly typed method parameter."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCacheTest.java",
+   "line": 3585,
+   "source_line": "cache.refreshes().put(keyRef, future);",
+   "receiver": "cache` (`BoundedLocalCache<Int,Int>` param)",
+   "target": "BoundedLocalCache::refreshes",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Directly typed method parameter."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CaffeineSpecTest.java",
+   "line": 183,
+   "source_line": "() -> Caffeine.from(CaffeineSpec.parse(\"maximumWeight=-52\")))",
+   "receiver": "qualified static",
+   "target": "CaffeineSpec::parse",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "reason": "Explicit `CaffeineSpec.` qualifier."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CaffeineSpecTest.java",
+   "line": 380,
+   "source_line": "assertThat(spec.initialCapacity).isEqualTo(context.initialCapacity().size());",
+   "receiver": "context` (`CacheContext` param)",
+   "target": "CacheContext::initialCapacity",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Directly typed method parameter."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CaffeineTest.java",
+   "line": 912,
+   "source_line": "assertThat(builder.build()).isNotNull();",
+   "receiver": "builder.build()",
+   "target": "Issue30Test::assertThat",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "File only statically imports `Truth.assertThat`; bound to an unrelated test class's `assertThat` never imported here."
+  },
+  {
+   "repo": "caffeine",
+   "file": "EvictionTest.java",
+   "line": 705,
+   "source_line": "cache.putAll(Map.of(\"a\", intern(Int.listOf(1, 2, 3)), ...));",
+   "receiver": "qualified static",
+   "target": "Int::listOf",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "Explicit `Int.` qualifier, matches static import."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ExpirationTest.java",
+   "line": 357,
+   "source_line": "var value = cache.get(context.absentKey(), k -> {...",
+   "receiver": "context` (`CacheContext` param)",
+   "target": "CacheContext::absentKey",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Directly typed method parameter."
+  },
+  {
+   "repo": "caffeine",
+   "file": "LinkedDequeTest.java",
+   "line": 71,
+   "source_line": "assertThat(deque.isEmpty()).isTrue();",
+   "receiver": "deque.isEmpty()` (primitive `boolean`)",
+   "target": "CollectionSubject::assertThat",
+   "origin": "import",
+   "verdict": "wrong",
+   "reason": "CollectionSubject.assertThat` takes a `Collection`; a `boolean` argument must resolve to `Truth.assertThat(boolean)`, a third-party overload."
+  },
+  {
+   "repo": "caffeine",
+   "file": "LinkedDequeTest.java",
+   "line": 875,
+   "source_line": "assertThat(right.peek()).isEqualTo(deque.getFirst());",
+   "receiver": "right.peek()` (`LinkedValue`)",
+   "target": "CollectionSubject::assertThat",
+   "origin": "import",
+   "verdict": "wrong",
+   "reason": "LinkedValue` isn't a `Collection`; must resolve to `Truth.assertThat(Object)`, not `CollectionSubject`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "LinkedDequeTest.java",
+   "line": 935,
+   "source_line": "assertThat(b.getPreviousInAccessOrder()).isNull();",
+   "receiver": "b` (`LinkedValue`)",
+   "target": "LinkedDequeTest.LinkedValue::getPreviousInAccessOrder",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "b` declared as `new LinkedValue(2)`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "RefreshAfterWriteTest.java",
+   "line": 762,
+   "source_line": "assertThat(cache.getIfPresent(context.middleKey()))...",
+   "receiver": "cache` (`AsyncLoadingCache<Int,Int>` param)",
+   "target": "Cache::getIfPresent",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "getIfPresent` on an `AsyncLoadingCache`/`AsyncCache` returns `CompletableFuture<V>` (declared in `AsyncCache`, line 56); bound instead to the sync `Cache` interface's same-named method one line above (line 55) — an interface mix-up, not the claimed declared-type inference."
+  },
+  {
+   "repo": "caffeine",
+   "file": "SchedulerTest.java",
+   "line": 110,
+   "source_line": "assertThat(DisabledFuture.instance().cancel(false)).isFalse();",
+   "receiver": "qualified static",
+   "target": "Scheduler.DisabledFuture::instance",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Explicit `DisabledFuture.` qualifier; `DisabledFuture` is a nested enum in `Scheduler.java` with `static instance()`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheBuilderGwtTest.java",
+   "line": 469,
+   "source_line": "for (Integer current : cache.asMap().keySet()) {",
+   "receiver": "cache` (`Cache<Integer,Integer>`, **Guava** import)",
+   "target": "(caffeine) Cache::asMap",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "File imports `com.google.common.cache.Cache` (Guava), not caffeine's `Cache`; bound to caffeine's class anyway — the exact guava/caffeine name-collision trap."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheBuilderTest.java",
+   "line": 83,
+   "source_line": "assertEquals(Integer.valueOf(1), cache.getUnchecked(\"one\"));",
+   "receiver": "cache` (Guava `LoadingCache<String,Integer>`)",
+   "target": "CaffeinatedGuavaLoadingCache::getUnchecked",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "CaffeinatedGuava.build(...)` always returns a `CaffeinatedGuavaLoadingCache`, which overrides `getUnchecked`; matches actual runtime dispatch even though the static type is Guava's interface."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheLoadingTest.java",
+   "line": 1399,
+   "source_line": "Caffeine.newBuilder().recordStats().executor(...)",
+   "receiver": "qualified static",
+   "target": "Caffeine::newBuilder",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "Explicit `Caffeine.` qualifier."
+  },
+  {
+   "repo": "caffeine",
+   "file": "JCacheUpdateExpiryTest.java",
+   "line": 73,
+   "source_line": "assertThat(getExpirable(fixture.jcache(), KEY_1)).isNull();",
+   "receiver": "fixture` (`JCacheFixture`)",
+   "target": "JCacheFixture::jcache",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "fixture = jcacheFixture()` typed to `JCacheFixture`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "EntryProcessorTest.java",
+   "line": 56,
+   "source_line": "return JCacheFixture.builder().loading(...)",
+   "receiver": "qualified static",
+   "target": "JCacheFixture::builder",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "Explicit `JCacheFixture.` qualifier."
+  },
+  {
+   "repo": "caffeine",
+   "file": "EntryProcessorTest.java",
+   "line": 75,
+   "source_line": "assertThat(value1).isNull();",
+   "receiver": "value1",
+   "target": "Issue30Test::assertThat",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "This jcache-module file only statically imports `Truth.assertThat`; bound to a caffeine-module test class never imported here."
+  },
+  {
+   "repo": "caffeine",
+   "file": "Admitter.java",
+   "line": 57,
+   "source_line": "return admit(AccessEvent.forKey(candidateKey), AccessEvent.forKey(victimKey));",
+   "receiver": "null (interface default method)",
+   "target": "Admitter::admit (line 56, itself)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "The call passes two `AccessEvent` args and should bind to the `admit(AccessEvent, AccessEvent)` overload at line 46; instead it's bound back to the enclosing `admit(long,long)` declaration at line 56 — an overload-resolution error."
+  },
+  {
+   "repo": "caffeine",
+   "file": "DClockPolicy.java",
+   "line": 195,
+   "source_line": "policyStats.recordMiss();",
+   "receiver": "policyStats` field (PolicyStats)",
+   "target": "PolicyStats::recordMiss",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Field type matches."
+  },
+  {
+   "repo": "caffeine",
+   "file": "S4LruPolicy.java",
+   "line": 92,
+   "source_line": "onHit(node);",
+   "receiver": "null (same class)",
+   "target": "S4LruPolicy::onHit",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Private method declared in the same file."
+  }
+ ]
+}

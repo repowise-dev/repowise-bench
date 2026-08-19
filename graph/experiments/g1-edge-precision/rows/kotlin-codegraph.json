@@ -1,0 +1,321 @@
+{
+ "experiment": "G1",
+ "language": "kotlin",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "javalin",
+  "ktor",
+  "exposed"
+ ],
+ "repowise_commit": "58576af0",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 13,
+  "wrong": 17,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "javalin",
+   "file": "javalin-utils/javalin-rendering/javalin-rendering-pebble/src/test/java/io/javalin/TestPebble.kt",
+   "line": 37,
+   "target": "io.javalin.config::JavalinConfig::fileRenderer",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "config.fileRenderer(..)`: `config` is the `JavalinConfig` lambda parameter of `Javalin.create` -> `JavalinConfig::fileRenderer"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/main/java/io/javalin/config/SpaRootConfig.kt",
+   "line": 26,
+   "target": "io.javalin.config::StaticFilesConfig::add",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "cfg.singlePageHandler.add(..)`: receiver is `SinglePageHandler`; bound to `StaticFilesConfig::add"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestApiBuilder.kt",
+   "line": 431,
+   "target": "io.javalin.http::Context::path",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "path('/1') { put { } }` is the statically imported `ApiBuilder.path`; bound to `Context::path()`, a no-arg request-path getter"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestBeforeAfterMatched.kt",
+   "line": 214,
+   "target": "OkHttpClient::getBody",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "http.getBody(..)`: `http` is `HttpUtil`, which declares `getBody`; bound to a private `OkHttpClient.getBody` extension in a different test file"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestFuture.kt",
+   "line": 198,
+   "target": "io.javalin.testing::HttpUtil::get",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "app.unsafe.routes.get(path) { handler }` is the router's `get`; bound to `HttpUtil::get(path)`, the test HTTP client"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestFuture.kt",
+   "line": 396,
+   "target": "io.javalin.testing::HttpUtil::get",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "same router-vs-test-client `get` collision"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestRequest.kt",
+   "line": 408,
+   "target": "io.javalin.javalinvue::VueTestUtil::test",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "TestUtil.test { .. }` with `import io.javalin.testing.TestUtil`; bound to `VueTestUtil::test` in another package"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestRoutesConfig.kt",
+   "line": 83,
+   "target": "io.javalin.testing::HttpUtil::get",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "config.routes.get(..)` is the router's `get`; bound to `HttpUtil::get"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestRouting.kt",
+   "line": 362,
+   "target": "io.javalin.mock::ContextMock::create",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "Javalin.create { .. }`; bound to `ContextMock::create` in the javalin-context-mock module"
+  },
+  {
+   "repo": "javalin",
+   "file": "javalin/src/test/java/io/javalin/TestSse.kt",
+   "line": 98,
+   "target": "io.javalin.http.sse::SseClient::ctx",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "it.ctx()` with `it: SseClient` -> `SseClient::ctx"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-client/ktor-client-tests/common/test/io/ktor/client/tests/BodyProgressTest.kt",
+   "line": 167,
+   "target": "io.ktor.client.engine.okhttp::StreamRequestBody::contentType",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "contentType(ContentType.Application.Json)` inside a request builder is the builder extension; bound to `StreamRequestBody::contentType()`, a no-arg okhttp override"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-http/common/src/io/ktor/http/content/OutgoingContent.kt",
+   "line": 65,
+   "target": "io.ktor.server.http.content::PreCompressedResponse::getProperty",
+   "origin": "<none>",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "the site is the declaration `public open fun <T> getProperty(..)` at OutgoingContent.kt:65, not a call; an override link emitted as a `calls` edge"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-io/common/test/ByteReadChannelOperationsTest.kt",
+   "line": 315,
+   "target": "CoroutineScope::writer",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "writer { .. }` inside `runTest` -> `CoroutineScope.writer` in ByteWriteChannelOperations.kt"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-netty/jvm/src/io/ktor/server/netty/NettyChannelInitializer.kt",
+   "line": 138,
+   "target": "EngineSSLConnectorConfig::trustManagerFactory",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "connector.trustManagerFactory()` with `connector: EngineSSLConnectorConfig` -> the private extension in the same file at :308"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-netty/jvm/test/io/ktor/tests/server/netty/NettySpecificTest.kt",
+   "line": 382,
+   "target": "io.ktor.server.engine::embeddedServer",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "embeddedServer(factory=.., rootConfig=..)` -> `io.ktor.server.engine::embeddedServer"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-plugins/ktor-server-sessions/common/src/io/ktor/server/sessions/serialization/SessionsBackwardCompatibleEncoder.kt",
+   "line": 86,
+   "target": "io.ktor.http::UrlDecodedParametersBuilder::append",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "parametersBuilder.append(..)`: declared `ParametersBuilder()`; bound to `UrlDecodedParametersBuilder::append`, a different implementation"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-tests/common/test/io/ktor/tests/server/plugins/CookiesTest.kt",
+   "line": 25,
+   "target": "io.ktor.tests.auth::CryptoTest::assertEquals",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "assertEquals(..)` is `kotlin.test.assertEquals` via `import kotlin.test.*`; bound to a private `CryptoTest::assertEquals(ByteArray, ByteArray)` in another module's tests"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-server/ktor-server-tests/common/test/io/ktor/tests/server/plugins/OriginConnectionPointTest.kt",
+   "line": 828,
+   "target": "io.ktor.server.testing::TestApplicationBuilder::application",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "overload",
+   "reason": "application { .. }` inside `testApplication` -> `TestApplicationBuilder::application`, right class but the `@Deprecated(HIDDEN)` non-suspend overload, which callers cannot reach"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-test-server/src/main/kotlin/test/server/tests/ServerSentEvents.kt",
+   "line": 212,
+   "target": "ByteWriteChannel::writeSseEvent",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "writeSseEvent(it)` inside `ByteWriteChannel.writeSseEvents` -> `ByteWriteChannel.writeSseEvent`, same file"
+  },
+  {
+   "repo": "ktor",
+   "file": "ktor-utils/wasmJs/src/io/ktor/util/date/DateWasm.kt",
+   "line": 25,
+   "target": "io.ktor.util.date::GMTDate",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "return GMTDate(seconds, minutes, hours, dayOfWeek, ..)` constructs the `GMTDate` class; bound to the single-arg `fun GMTDate(timestamp: Long?)` whose own body this is"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-java-time/src/test/kotlin/org/jetbrains/exposed/v1/javatime/sqlserver/SQLServerDefaultsTest.kt",
+   "line": 38,
+   "target": "org.jetbrains.exposed.v1.r2dbc.tests::withDb",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "withDb(TestDB.SQLSERVER)`: the test extends `DatabaseTestsBase`; bound to `withDb` on `R2dbcDatabaseTestsBase` in the r2dbc test module"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-jodatime/src/main/kotlin/org/jetbrains/exposed/v1/jodatime/DateFunctions.kt",
+   "line": 90,
+   "target": "org.jetbrains.exposed.v1.core::IExpressionAlias::queryBuilder",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "queryBuilder { .. }` invokes the `QueryBuilder` parameter through an operator extension; bound to `IExpressionAlias::queryBuilder(QueryBuilder)` on an unrelated interface"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/javatime/DefaultsTest.kt",
+   "line": 190,
+   "target": "Column::constraintNamePart",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "testTable.l.constraintNamePart()` with a `Column<Long>` receiver -> the `Column<T>.constraintNamePart()` extension in the same module's TestUtils.kt"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/ddl/CreateMissingTablesAndColumnsTests.kt",
+   "line": 114,
+   "target": "org.jetbrains.exposed.v1.core::Table::integer",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "integer('idcol')` inside `object : Table(..)` -> `Table::integer"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/transactions/TransactionManager.kt",
+   "line": 104,
+   "target": "org.jetbrains.exposed.v1.core.transactions::DatabasesManager::setDefaultDatabase",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "databases.setDefaultDatabase(value)` with `databases: DatabasesManagerImpl<R2dbcDatabase>` -> the `DatabasesManager::setDefaultDatabase` interface declaration, the honest target of a virtual call"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/h2/MultiDatabaseTest.kt",
+   "line": 51,
+   "target": "org.jetbrains.exposed.v1.jdbc.transactions::TransactionManager::currentOrNull",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "TransactionManager.currentOrNull()` -> the jdbc `TransactionManager::currentOrNull` named by the explicit import"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/DDLTests.kt",
+   "line": 1055,
+   "target": "org.jetbrains.exposed.v1.tests.shared::DDLTests::TableFromSchemeTwo::reference",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "reference('user', users)` inside `object : LongIdTable()` is `Table.reference`; bound to `TableFromSchemeTwo::reference`, a val in an unrelated test object and not a function"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/StatementInterceptorTests.kt",
+   "line": 80,
+   "target": "JdbcTransaction::assertTrue",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "assertTrue(it)` in a `JdbcTransaction` receiver scope -> the `JdbcTransaction.assertTrue(Boolean)` extension in the same package"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/dml/UpsertTests.kt",
+   "line": 805,
+   "target": "org.jetbrains.exposed.v1.core::Table::integer",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "integer('databaseGenerated')` inside `object : UuidTable(..)` -> `Table::integer"
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/functions/TrigonometricalFunctionTests.kt",
+   "line": 18,
+   "target": "org.jetbrains.exposed.v1.core::doubleLiteral",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "doubleLiteral(0.25)` -> `doubleLiteral` in LiteralOp.kt, matching the explicit import"
+  }
+ ]
+}

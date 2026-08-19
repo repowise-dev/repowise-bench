@@ -220,6 +220,19 @@ The sampling harnesses are `sample_symmetric_ours.py` and
 `test-repos/<repo>/.codegraph/codegraph.db`, which are read-only baselines and
 are never regenerated in place.
 
-The 540 graded rows, with their per-row reasons, are not yet in this repository.
-Porting them is the remaining work on this experiment, and until that lands the
-tables above are the auditable artifact rather than the rows behind them.
+**The 540 graded rows are in [`rows/`](rows/)**, one file per cell, each row
+carrying its verdict and the reason written when it was read. `verify_rows.py`
+rebuilds every table on this page from them and exits non-zero if it disagrees
+with the headline; it agrees at 229/270 and 154/270.
+
+```bash
+python verify_rows.py            # every table above, recomputed from the rows
+python verify_rows.py --rows go  # one language, both sides, with the reasons
+```
+
+One cell of the eighteen ships its draw without its grading. The rust cell for
+our side was re-read on a fresh draw after #1708 and those per-row verdicts were
+never written down, so `rust-ours.json` carries the 30 sites that were read with
+`verdict: null` on each, and the cell total stands on the composition recorded at
+the time rather than on rows. [`rows/README.md`](rows/README.md) says which eight
+rows were wrong and why.

@@ -1,0 +1,530 @@
+{
+ "experiment": "G1",
+ "language": "cpp",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "fmt",
+  "Crow",
+  "leveldb",
+  "seastar",
+  "aria2"
+ ],
+ "repowise_commit": "13cc339a",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 23,
+  "wrong": 7,
+  "ambiguous": 0
+ },
+ "depth_read": {
+  "n": 50,
+  "correct": 39,
+  "wrong": 11,
+  "ambiguous": 0
+ },
+ "note": "Graded at 10 rows per repository, 50 in total. The pooled cross-language cell is the seeded 6 of each 10 flagged in_pooled_30, drawn with random.Random(2026).sample(range(10), 6) per repository, so C++ carries the same 30 rows every other language carries.",
+ "rows": [
+  {
+   "repo": "fmt",
+   "file": "test/base-test.cc",
+   "line": 430,
+   "target": "test/gtest/gmock/gmock.h::EXPECT_CALL",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "gmock.h:10250 `#define EXPECT_CALL(obj, call)` is the real macro definition used by the EXPECT_CALL(v, visit(_)) call at base-test.cc:430.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/chrono-test.cc",
+   "line": 728,
+   "target": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "gtest.h:11947 `#define EXPECT_EQ(val1, val2)` is the real macro definition used by chrono-test.cc:728.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/color-test.cc",
+   "line": 23,
+   "target": "include/fmt/color.h::rgb::rgb",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "fmt::rgb(0) at color-test.cc:23 passes an int literal; color.h:16 shows `color` is a scoped `enum class`, so 0 cannot implicitly convert to it, and overload resolution actually picks `rgb(uint32_t hex)` at color.h:195, not the `rgb(color hex)` overload at line 197 that was resolved to.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/format-test.cc",
+   "line": 1149,
+   "target": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "gtest.h:11947 EXPECT_EQ macro definition matches the EXPECT_EQ(...) call at format-test.cc:1149.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock-gtest-all.cc",
+   "line": 7324,
+   "target": "test/gtest/gmock-gtest-all.cc::ForEach",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "gmock-gtest-all.cc:690 `template <...> void ForEach(const Container&, Functor)` is the only ForEach in the file and matches the free-function call at line 7324.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock-gtest-all.cc",
+   "line": 9386,
+   "target": "test/gtest/gmock-gtest-all.cc::DeathTestImpl::set_read_fd",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "NoExecDeathTest (line 9340) extends ForkingDeathTest (9303) which extends DeathTestImpl (8629), whose set_read_fd is declared at gmock-gtest-all.cc:8654, matching the implicit-this call at line 9386.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock-gtest-all.cc",
+   "line": 11111,
+   "target": "test/gtest/gmock-gtest-all.cc::IsInSet",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "gmock-gtest-all.cc:11102 `bool IsInSet(char ch, const char* str)` is the only IsInSet in the file and matches the call inside IsAsciiPunct at line 11111.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/os-test.cc",
+   "line": 506,
+   "target": "test/gtest-extra.h::SUPPRESS_ASSERT",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "gtest-extra.h:146 `#define SUPPRESS_ASSERT(statement) statement` (the non-_MSC_VER branch, the active one for this Linux/mac checkout) is the macro used at os-test.cc:506.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/posix-mock-test.cc",
+   "line": 441,
+   "target": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "gtest.h:11947 EXPECT_EQ macro definition matches the EXPECT_EQ(...) call at posix-mock-test.cc:441.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/scan.h",
+   "line": 695,
+   "target": "test/scan.h::vscan",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "scan.h:684 `auto vscan(string_view, string_view, scan_args)` matches the call `vscan(input, fmt, make_scan_args(args...))` at scan.h:695, distinct from the detail::vscan call on line 687.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/http_parser_merged.h",
+   "line": 1383,
+   "target": "include/crow/http_parser_merged.h::CROW_SET_ERRNO",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "include/crow/http_parser_merged.h:1383 invokes macro CROW_SET_ERRNO, resolved to its own #define at include/crow/http_parser_merged.h:215 in the same file.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/json.h",
+   "line": 980,
+   "target": "include/crow/utility.h::CROW_UNLIKELY",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "include/crow/json.h:980 invokes macro CROW_UNLIKELY, resolved to its own #define at include/crow/utility.h:27, which json.h includes.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/middlewares/cors.h",
+   "line": 147,
+   "target": "include/crow/middlewares/cors.h::CORSRules::set_header_no_override",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "include/crow/middlewares/cors.h:147 calls set_header_no_override, a private member of the same CORSRules class defined at cors.h:114.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/multipart.h",
+   "line": 148,
+   "target": "include/crow/multipart.h::message::get_boundary",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "include/crow/multipart.h:148 calls get_boundary, a private member of message defined at multipart.h:162, called from the constructor's init list of the same class.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/mustache.h",
+   "line": 299,
+   "target": "include/crow/mustache.h::template_t::tag_name",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "include/crow/mustache.h:299 calls tag_name, a private member of template_t defined at mustache.h:167, invoked from render_internal of the same class.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/routing.h",
+   "line": 779,
+   "target": "include/crow/middlewares/session.h::ExpirationTracker::begin",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "routing.h:779 calls std::begin(children) (verified via grep: 'std::all_of(std::begin(children), std::end(children), ...)'), an unrelated std library call bound to include/crow/middlewares/session.h::ExpirationTracker::begin.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unit_tests/test_utility.cpp",
+   "line": 77,
+   "target": "include/crow/utility.h::sanitize_filename",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "test_utility.cpp:77's sanitize_filename(\"/abc/\") actually calls the local lambda `auto sanitize_filename = [](string s) {...}` declared at test_utility.cpp:53, which shadows the name for the whole TEST_CASE body; the tool bound it to the real include/crow/utility.h:705 function that the lambda merely wraps, not the symbol the call site itself invokes.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unittest.cpp",
+   "line": 1175,
+   "target": "tests/unittest.cpp::Cookie",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "tests/unittest.cpp:1175 constructs Cookie(...) using the local type alias `using Cookie = CookieParser::Cookie;` declared at unittest.cpp:1167 (confirmed CookieParser::Cookie exists at include/crow/middlewares/cookie_parser.h:36), so the aliased-name resolution is correct.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unittest.cpp",
+   "line": 1280,
+   "target": "tests/unittest.cpp::HttpClient::request",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "tests/unittest.cpp:1280 explicitly calls HttpClient::request(...), matching the static method HttpClient::request defined at unittest.cpp:71 (class HttpClient at unittest.cpp:31).",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unittest.cpp",
+   "line": 2637,
+   "target": "include/crow/middlewares/session.h::context::string",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "unittest.cpp:2637 calls std::string(buf + received - 5, buf + received), an explicit std::string constructor, bound instead to the unrelated context::string member method at include/crow/middlewares/session.h:267.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/corruption_test.cc",
+   "line": 356,
+   "target": "db/corruption_test.cc::CorruptionTest::Value",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "TEST_F(CorruptionTest,...) expands into a method of the CorruptionTest fixture, so unqualified Value(...) at corruption_test.cc:356 binds to CorruptionTest::Value at corruption_test.cc:179.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/db_test.cc",
+   "line": 732,
+   "target": "util/testutil.h::ASSERT_LEVELDB_OK",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "ASSERT_LEVELDB_OK(...) at db_test.cc:732 is the macro defined at util/testutil.h:24, included via util/testutil.h.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/db_test.cc",
+   "line": 2047,
+   "target": "include/leveldb/db.h::WriteOptions",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "WriteOptions() at db_test.cc:2047 constructs the struct forward-declared at include/leveldb/db.h:23; same type as the full definition in options.h, so identity matches (declares vs defines is allowed).",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/filename.cc",
+   "line": 93,
+   "target": "util/logging.cc::ConsumeDecimalNumber",
+   "origin": "same_target",
+   "verdict": "correct",
+   "reason": "ConsumeDecimalNumber(&rest,&num) at filename.cc:93 matches the free function defined at util/logging.cc:49, declared via included util/logging.h.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/log_test.cc",
+   "line": 303,
+   "target": "db/log_test.cc::StringSource::Read",
+   "origin": "same_file",
+   "verdict": "wrong",
+   "reason": "Read() at log_test.cc:303 is a zero-arg call resolving lexically to LogTest fixture's own std::string Read() at log_test.cc:64, not StringSource::Read(size_t,Slice*,char*) at line 179 which takes 3 args and lives in an unrelated nested class.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/log_test.cc",
+   "line": 328,
+   "target": "db/log_test.cc::BigString",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "BigString(\"foo\", n) at log_test.cc:328 matches the static free function BigString defined at log_test.cc:18 in the same file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/skiplist_test.cc",
+   "line": 221,
+   "target": "db/skiplist_test.cc::ConcurrentTest::MakeKey",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "MakeKey(k,g) at skiplist_test.cc:221 is called inside ConcurrentTest::WriteStep and resolves to the static ConcurrentTest::MakeKey at skiplist_test.cc:165, same class.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "util/cache.cc",
+   "line": 264,
+   "target": "util/cache.cc::LRUCache::Unref",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Unref(...) at cache.cc:264 inside LRUCache::Release resolves to LRUCache::Unref at cache.cc:226, same class.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "util/env_windows.cc",
+   "line": 640,
+   "target": "util/env_windows.cc::WindowsEnv::CreateDir",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "CreateDir(*result) at env_windows.cc:640 inside WindowsEnv::GetTestDirectory resolves to WindowsEnv::CreateDir at env_windows.cc:531; both lines fall within class WindowsEnv (383-701).",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "util/env_windows.cc",
+   "line": 810,
+   "target": "util/env_windows.cc::SingletonEnv::AssertEnvNotInitialized",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "WindowsDefaultEnv::AssertEnvNotInitialized() at env_windows.cc:810, where WindowsDefaultEnv=SingletonEnv<WindowsEnv>, matches the static SingletonEnv::AssertEnvNotInitialized at env_windows.cc:787.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "include/seastar/core/sharded.hh",
+   "line": 881,
+   "target": "include/seastar/core/shard_id.hh::this_shard_id",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "this_shard_id() at sharded.hh:881 is unqualified and free; shard_id.hh:48 `inline shard_id this_shard_id() noexcept` is the only such symbol, matches.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "src/core/io_queue.cc",
+   "line": 616,
+   "target": "src/core/reactor.cc::cpu_stall_detector::get_config",
+   "origin": "same_target",
+   "verdict": "wrong",
+   "reason": "call is inside io_queue::update_flow_ratio (io_queue.cc:616), unqualified get_config() resolves to io_queue::get_config declared io_queue.hh:236 and defined reactor.hh:434; tool bound it to the unrelated cpu_stall_detector::get_config at reactor.cc:1277.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "src/core/memory.cc",
+   "line": 1193,
+   "target": "src/core/memory.cc::object_cpu_id",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "object_cpu_id(ptr) at memory.cc:1193 is same-file free function, matches memory.cc:303-304 declaration exactly.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "src/core/prometheus.cc",
+   "line": 164,
+   "target": "include/seastar/core/iostream.hh::copy",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "prometheus.cc:164 calls `std::copy(str.begin(), str.end(), _current)`, an explicit std:: call; tool bound it to seastar::copy declared iostream.hh:600 which is a different, differently-typed function.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/content_source_test.cc",
+   "line": 67,
+   "target": "tests/unit/content_source_test.cc::single_bytes_source_impl::get",
+   "origin": "same_file",
+   "verdict": "wrong",
+   "reason": "content_source_test.cc:67 is `content_strm.read().get()`; read() returns future<temporary_buffer<char>> (iostream.hh:389) so .get() is seastar::future::get (future.hh:1558/747), not the unrelated single_bytes_source_impl::get at line 125 in the same file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/futures_test.cc",
+   "line": 1857,
+   "target": "tests/unit/futures_test.cc::check_aborted",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "check_aborted(std::move(f2)) at futures_test.cc:1857 is a plain unqualified call matching the static template function declared at futures_test.cc:1803 in the same file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/generator_test.cc",
+   "line": 270,
+   "target": "include/seastar/util/bool_class.hh::fmt::formatter<seastar::bool_class<Tag>>::format",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "generator_test.cc:270 calls `fmt::format(\"fibonacci[...]\", i)`, the external fmt library's free format function; tool bound it to seastar's fmt::formatter<bool_class<Tag>>::format method at bool_class.hh:114, a different symbol entirely.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/sharded_test.cc",
+   "line": 252,
+   "target": "tests/unit/sharded_test.cc::argument::get",
+   "origin": "same_file",
+   "verdict": "wrong",
+   "reason": "sharded_test.cc:252 is `s.start(coordinator_id).get()`; sharded<Service>::start returns future<> (sharded.hh:234/616) so .get() is seastar::future::get, not the unrelated argument::get at sharded_test.cc:178.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/tls_test.cc",
+   "line": 392,
+   "target": "include/seastar/core/loop.hh::do_for_each",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "do_for_each(prios, lambda) at tls_test.cc:392 is an unqualified free-function call matching the seastar::do_for_each declared loop.hh:496-497 (imported via loop.hh include).",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/tls_test.cc",
+   "line": 1215,
+   "target": "include/seastar/core/iostream.hh::data_source::get",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": "tls_test.cc:1215 is `with_timeout(..., p.get_future()).get()`; with_timeout returns future<T...> (with_timeout.hh:50) so .get() is seastar::future::get, not the unrelated data_source::get at iostream.hh:84.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/DefaultPeerStorage.cc",
+   "line": 127,
+   "target": "src/LogFactory.h::A2_LOG_DEBUG",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "A2_LOG_DEBUG at DefaultPeerStorage.cc:127 is the macro defined at LogFactory.h:135, included via LogFactory.h.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "src/DownloadCommand.cc",
+   "line": 196,
+   "target": "src/SocketRecvBuffer.cc::SocketRecvBuffer::drain",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "getSocketRecvBuffer()->drain(bufSize) at DownloadCommand.cc:196 invokes SocketRecvBuffer::drain defined at SocketRecvBuffer.cc:64, matching the receiver's declared return type.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/RequestGroup.cc",
+   "line": 575,
+   "target": "src/LogFactory.h::A2_LOG_DEBUG",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "A2_LOG_DEBUG at RequestGroup.cc:575 is the same macro defined at LogFactory.h:135.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "src/bittorrent_helper.cc",
+   "line": 277,
+   "target": "src/fmt.h::fmt",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "fmt(MSG_DIR_TRAVERSAL_DETECTED, ...) at bittorrent_helper.cc:277 matches the variadic aria2::fmt declared at fmt.h:45, included via fmt.h.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "src/cookie_helper.cc",
+   "line": 183,
+   "target": "src/a2functional.h::in",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "in(year, 0, 69) at cookie_helper.cc:183 matches the template bool in(T,S,S) at a2functional.h:119, included via a2functional.h.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/crypto_hash.cc",
+   "line": 465,
+   "target": "src/crypto_hash.cc::rol",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "rol(...) at crypto_hash.cc:465 is the static uint32_t rol(uint32_t,uint32_t) defined in the same file at line 23.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/util_security.h",
+   "line": 255,
+   "target": "src/util_security.h::HMAC::reset",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "reset() at util_security.h:255 inside HMAC::getResult calls HMAC's own void reset() defined at line 193 of the same class.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "test/FtpConnectionTest.cc",
+   "line": 123,
+   "target": "test/FtpConnectionTest.cc::waitRead",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "waitRead(clientSocket_) at FtpConnectionTest.cc:123 calls the anonymous-namespace helper waitRead defined at line 97 of the same file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/TimeTest.cc",
+   "line": 90,
+   "target": "src/TimeA2.cc::Time::Time",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "Time(1) at TimeTest.cc:90 is a single-arg call matching the Time::Time(time_t t) constructor at TimeA2.cc:47, not the default Time::Time() at line 45.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/UTPexExtensionMessageTest.cc",
+   "line": 195,
+   "target": "src/bittorrent_helper.cc::packcompact",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "bittorrent::packcompact(c6, ...) at UTPexExtensionMessageTest.cc:195 matches size_t packcompact(unsigned char*, const std::string&, uint16_t) declared inside namespace bittorrent at bittorrent_helper.cc:847.",
+   "in_pooled_30": true
+  }
+ ]
+}

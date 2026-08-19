@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "typescript",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "zod"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 7,
+  "wrong": 23,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "zod",
+   "file": "packages/bench/discriminated-union.ts",
+   "line": 124,
+   "source_line": "console.dir(z4LibDiscUnion.parse(DATA[0]), {depth:null});",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z4LibDiscUnion` is built from `z4lib`, `import * as z4lib from \"zod4/v4\"`, where `zod4` is `package.json`'s `\"npm:zod@4.0.8\"` — an external published package, not this repo's source; the local v3 binding is unrelated code"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/bench/object-moltar-jitless.ts",
+   "line": 43,
+   "source_line": "number: z4.number(),",
+   "receiver": "null",
+   "target": "Mocker::number (v3/tests/Mocker.ts:15)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z4` = `import * as z4 from \"zod/v4\"` (local classic); real target is `v4/classic/schemas.ts::number`, not the unrelated `Mocker` test double"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/coerce.test.ts",
+   "line": 18,
+   "source_line": "expect(schema.parse(\"sup\")).toEqual(\"sup\");",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "schema = z.coerce.string()` with `z` from `\"zod/v3\"`, so `.parse` is the v3 `ZodType` method"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/default.test.ts",
+   "line": 78,
+   "source_line": "expect(outer.parse(undefined)).toEqual({inner:\"asdf\"});",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "outer` built from v3 `z.object(...).default(...)"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/error.test.ts",
+   "line": 281,
+   "source_line": "const result1 = schema.safeParse(invalidItem);",
+   "receiver": "null",
+   "target": "ZodType::safeParse (v3/types.ts:229)",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "file imports `z` from `\"zod/v3\"`; consistent v3 chain"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/readonly.test.ts",
+   "line": 27,
+   "source_line": "z.tuple([z.string(), z.number()]).readonly(),",
+   "receiver": "null",
+   "target": "ZodType::readonly (v3/types.ts:525)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v3\"`; `.readonly()` method exists at that line"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/string.test.ts",
+   "line": 184,
+   "source_line": "expect(z.string().base64().safeParse(str).success).toBe(true);",
+   "receiver": "null",
+   "target": "Mocker::string (v3/tests/Mocker.ts:12)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v3\"`; real target is v3's `string` export, not `Mocker"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/string.test.ts",
+   "line": 421,
+   "source_line": "const ulid = z.string().ulid();",
+   "receiver": "null",
+   "target": "ZodString::ulid (v3/types.ts:1082)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v3\"`; `.ulid()` is a `ZodString` method there"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/string.test.ts",
+   "line": 678,
+   "source_line": "date.parse(\"1970-01-01\");",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "date = z.string().date()`, v3 chain"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/transformer.test.ts",
+   "line": 11,
+   "source_line": "const asyncNumberToString = z.number().transform(async(n)=>String(n));",
+   "receiver": "null",
+   "target": "Mocker::number (v3/tests/Mocker.ts:15)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v3\"`; real target is v3's `number` export, not `Mocker"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/array.test.ts",
+   "line": 10,
+   "source_line": "const schema = z.string().array();",
+   "receiver": "null",
+   "target": "Mocker::string (v3/tests/Mocker.ts:12)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v4\"` (classic); should be `v4/classic/schemas.ts::string`, not `Mocker"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/async-parsing.test.ts",
+   "line": 347,
+   "source_line": "const result2 = base(true).safeParseAsync(testval);",
+   "receiver": "null",
+   "target": "safeParseAsync (v4/classic/parse.ts:29, constant)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "call is on a schema instance; the actual dispatched method is `ZodType.safeParseAsync` (interface at schemas.ts:118, impl assigned at schemas.ts:237), a distinct symbol from the free exported `parse.ts::safeParseAsync` it internally delegates to"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/bigint.test.ts",
+   "line": 39,
+   "source_line": "expect(() => positive.parse(BigInt(0))).toThrow();",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "positive = z.bigint().positive()` with `z` from `\"zod/v4\"`; should resolve to v4 classic `ZodType.parse` (schemas.ts:115), not v3/types.ts"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/enum.test.ts",
+   "line": 20,
+   "source_line": "fruitEnum.parse(\"apple\");",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "fruitEnum = z.nativeEnum(Fruits)` with `z` from `\"zod/v4\"`; same v3/v4 cross-bind as row 13"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/index.test.ts",
+   "line": 169,
+   "source_line": "const a = z.undefined();",
+   "receiver": "null",
+   "target": "Mocker::undefined (v3/tests/Mocker.ts:33)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v4\"`; real target is `v4/classic/schemas.ts::undefined`, not `Mocker"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/intersection.test.ts",
+   "line": 147,
+   "source_line": "z.string().array(),` (inside `z.intersection(z.string().array(), ...)`)",
+   "receiver": "null",
+   "target": "Mocker::string (v3/tests/Mocker.ts:12)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v4\"`; Mocker mismatch"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/object.test.ts",
+   "line": 374,
+   "source_line": "opt: z.number().optional(),",
+   "receiver": "null",
+   "target": "optional (v4/classic/schemas.ts:2140, function)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "this is a method call `.optional()` on a `ZodNumber` instance (interface method at schemas.ts:161); the peer bound it to the unrelated free factory function `optional()"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/record.test.ts",
+   "line": 560,
+   "source_line": "expect(schema.parse({})).toEqual({});",
+   "receiver": "null",
+   "target": "ZodType::parse (v3/types.ts:223)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "schema = z.partialRecord(...)` with `z` from `\"zod/v4\"`; same v3/v4 cross-bind"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/string.test.ts",
+   "line": 819,
+   "source_line": "expect(z.string().cuid2().format).toEqual(\"cuid2\");",
+   "receiver": "null",
+   "target": "Mocker::string (v3/tests/Mocker.ts:12)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/v4\"`; Mocker mismatch"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/string.test.ts",
+   "line": 926,
+   "source_line": "expect(ipv4.safeParse(\"114.71.82.94\").success).toBe(true);",
+   "receiver": "null",
+   "target": "ZodType::safeParse (v3/types.ts:229)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "ipv4 = z.string().ipv4()` with `z` from `\"zod/v4\"`; should be v4 classic `ZodType.safeParse`, not v3/types.ts"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/to-json-schema.test.ts",
+   "line": 627,
+   "source_line": "expect(z.toJSONSchema(z.number().nonpositive()))...",
+   "receiver": "null",
+   "target": "nonpositive (packages/zod/src/v4/classic/tests/bigint.test.ts:12, constant)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "the call is the `.nonpositive()` method on a `ZodNumber`; bound instead to an unrelated local `const nonpositive = z.bigint().nonpositive();` declared in a different test file"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/tuple.test.ts",
+   "line": 233,
+   "source_line": "z.tuple([z.string(), z.undefined()]).parse([\"alpha\", undefined])",
+   "receiver": "null",
+   "target": "parse (v4/classic/parse.ts:8, constant)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "this is `.parse()` called as an instance method on a `ZodTuple`; bound to the unrelated free exported `parse` constant instead of the `ZodType.parse` instance method"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/schemas.ts",
+   "line": 1874,
+   "source_line": "if (keySet.has(key)) continue;",
+   "receiver": "null",
+   "target": "$ZodRegistry::has (v4/core/registries.ts:74)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "keySet = def.keySet = new Set(keys)` (schemas.ts:1850); `.has` is `Set.prototype.has`, a builtin, not `$ZodRegistry::has"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/schemas.ts",
+   "line": 2900,
+   "source_line": "recordKeys.add(typeof key === \"number\" ? key.toString() : key);",
+   "receiver": "null",
+   "target": "ZodError::toString (v3/ZodError.ts:277)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "guarded by `typeof key === \"number\"`; `.toString()` is `Number.prototype.toString`, a builtin, not `ZodError::toString"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/tests/locales/he.test.ts",
+   "line": 151,
+   "source_line": "{ schema: z.number().min(10), input: 5 },",
+   "receiver": "null",
+   "target": "ZodString::min (v3/types.ts:1200)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "z` is the root `zod` classic export; `.min()` here is `ZodNumber.min` (v4/classic/schemas.ts:1032) — wrong version and wrong class"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/tests/locales/uz.test.ts",
+   "line": 73,
+   "source_line": "const invalidFormatUrl = z.string().url().safeParse(\"invalid-url\");",
+   "receiver": "null",
+   "target": "safeParse (v4/core/parse.ts:73, constant)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "call is `.safeParse()` on a v4-classic `ZodString` instance; bound to the unrelated free `core/parse.ts::safeParse` export instead of the classic `ZodType.safeParse` instance method"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/util.ts",
+   "line": 688,
+   "source_line": "if (!isPlainObject(shape)) { throw ... }",
+   "receiver": "null",
+   "target": "isPlainObject (v4/core/util.ts:385, function)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "same-file free function call"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/locales/ro.ts",
+   "line": 87,
+   "source_line": "...${issue.maximum.toString()}...",
+   "receiver": "null",
+   "target": "toString (v3/helpers/errorUtil.ts:6)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "issue.maximum` is a number; `.toString()` is `Number.prototype.toString`, a builtin, not `errorUtil.toString"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/locales/vi.ts",
+   "line": 77,
+   "source_line": "...${issue.maximum.toString()}...",
+   "receiver": "null",
+   "target": "toString (v3/helpers/errorUtil.ts:6)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "same builtin-method mismatch as row 28"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/tests/index.test.ts",
+   "line": 149,
+   "source_line": "const c = z.string().check(z.iso.time());",
+   "receiver": "null",
+   "target": "Mocker::string (v3/tests/Mocker.ts:12)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "z` = `\"zod/mini\"`; real target is `v4/mini/schemas.ts::string`, not `Mocker"
+  }
+ ]
+}

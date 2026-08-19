@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "csharp",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "Ocelot"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 20,
+  "wrong": 10,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/AggregateTests.cs",
+   "line": 54,
+   "source_line": ".When(x => WhenIGetUrlOnTheApiGateway(\"/EmpDetail/US/1\"))",
+   "receiver": "(implicit `this`)",
+   "target": "AcceptanceSteps::WhenIGetUrlOnTheApiGateway (target_line 332)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "Single-string-arg call resolves in C# to the 1-arg overload at AcceptanceSteps.cs:390, not the bound 3-arg overload (`string,string,string`) at line 332. Right class, wrong overload."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/Core/LoadTests.cs",
+   "line": 93,
+   "source_line": "handler.GivenThereIsAServiceRunningOn(port, basePath, MapGet);",
+   "receiver": "handler` field",
+   "target": "ServiceHandler::GivenThereIsAServiceRunningOn (target_line 96)",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "Call passes `(int, string, RequestDelegate)`, matching the 3-arg `(int port, string path, RequestDelegate handler)` overload; target_line 96 is the 2-arg `(string baseUrl, RequestDelegate handler)` overload. Right class, wrong overload."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/HttpDelegatingHandlersTests.cs",
+   "line": 15,
+   "source_line": "var route = GivenRoute(port);",
+   "receiver": "(implicit `this`)",
+   "target": "Ocelot.AcceptanceTests.Administration::CacheManagerTests::GivenRoute",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "HttpDelegatingHandlersTests : Steps : AcceptanceSteps`, and `AcceptanceSteps.GivenRoute(int,string?,string?)` (line 80) is the correct virtual target. Bound instead to an unrelated sibling test class's private `GivenRoute` in a different file — bare-name collision across many same-named test helpers."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/LoadBalancer/LoadBalancerTests.cs",
+   "line": 174,
+   "source_line": "var ports3 = PortFinder.GetPorts(2);",
+   "receiver": "PortFinder` (static type)",
+   "target": "testing/PortFinder.cs::PortFinder::GetPorts",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "reason": "Static call to `PortFinder.GetPorts(int)`, correctly qualified and matched."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/Routing/RoutingBasedOnHeadersTests.cs",
+   "line": 384,
+   "source_line": ".And(x => ThenTheResponseBodyShouldBe(Hello()))",
+   "receiver": "(implicit `this`)",
+   "target": "AcceptanceSteps::ThenTheResponseBodyShouldBe (target_line 480)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Single-string overload at line 480 exactly matches the single-arg call `ThenTheResponseBodyShouldBe(Hello())`."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/Routing/RoutingTests.cs",
+   "line": 322,
+   "source_line": ".And(x => GivenThereIsAConfiguration(configuration))",
+   "receiver": "(implicit `this`)",
+   "target": "AcceptanceSteps::GivenThereIsAConfiguration (target_line 108)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Matches the single `FileConfiguration` overload exactly."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "src/Authentication/AuthenticationMiddleware.cs",
+   "line": 57,
+   "source_line": "Logger.LogWarning(() => $\"Client has NOT been authenticated...\")",
+   "receiver": "Logger` (base property)",
+   "target": "Ocelot.Logging::IOcelotLogger::LogWarning",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Logger` is inherited from `OcelotMiddleware`, typed `IOcelotLogger`; `LogWarning` is declared on that interface."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "src/Configuration/Creator/ConfigurationCreator.cs",
+   "line": 55,
+   "source_line": "var httpHandlerOptions = _httpHandlerOptionsCreator.Create(...)",
+   "receiver": "_httpHandlerOptionsCreator` field (`IHttpHandlerOptionsCreator`)",
+   "target": "Ocelot.Configuration.Creator::HttpHandlerOptionsCreator::Create",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Field is interface-typed; bound to `HttpHandlerOptionsCreator`, the sole/expected implementation with a matching single-arg `Create`."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "src/Configuration/Creator/IInternalConfigurationCreator.cs",
+   "line": 8,
+   "source_line": "Task<Response<IInternalConfiguration>> Create(FileConfiguration fileConfiguration);` (interface decl, not a call)",
+   "receiver": "n/a",
+   "target": "src/Configuration/Creator/FileInternalConfigurationCreator.cs::FileInternalConfigurationCreator::Create",
+   "origin": "<none>",
+   "verdict": "correct",
+   "reason": "Synthetic interface→implementation edge, not a real call site. `FileInternalConfigurationCreator : IInternalConfigurationCreator` declares the single matching `Create(FileConfiguration)` overload — correctly linked."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "src/Configuration/Creator/UpstreamHeaderTemplatePatternCreator.cs",
+   "line": 24,
+   "source_line": "h.Value.ToString()` inside `.ToDictionary(h => h.Key, h => h.Value.ToString())",
+   "receiver": "h.Value` (`StringValues`, from `IHeaderDictionary`)",
+   "target": "Ocelot.DownstreamRouteFinder.UrlMatcher::PlaceholderNameAndValue::ToString",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "h` iterates an `IHeaderDictionary` (`IDictionary<string, StringValues>`); `h.Value` is `Microsoft.Extensions.Primitives.StringValues`, a third-party BCL-adjacent type. `.ToString()` is bound to an unrelated repo class `PlaceholderNameAndValue` that happens to override `ToString()` — bare-name collision."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "src/DependencyInjection/IOcelotBuilder.cs",
+   "line": 97,
+   "source_line": "IOcelotBuilder AddCustomLoadBalancer<T>(Func<IServiceProvider, T> loadBalancerFactoryFunc)` (interface decl, not a call)",
+   "receiver": "n/a",
+   "target": "Ocelot.DependencyInjection::OcelotBuilder::AddCustomLoadBalancer (target_line 256)",
+   "origin": "<none>",
+   "verdict": "wrong",
+   "reason": "IOcelotBuilder` declares 5 `AddCustomLoadBalancer` overloads; the `Func<IServiceProvider,T>` signature at line 97 is implemented at `OcelotBuilder.cs:240`, not the bound line 256 (which implements the 4-param `Func<IServiceProvider,DownstreamRoute,IServiceDiscoveryProvider,T>` overload). Interface→impl edge matched the wrong overload."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Cache/CacheOptionsCreatorTests.cs",
+   "line": 77,
+   "source_line": "var route = GivenRoute(options);",
+   "receiver": "(implicit `this`)",
+   "target": "CacheOptionsCreatorTests::GivenRoute (target_line 430)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "private static FileRoute GivenRoute(FileCacheOptions options)` declared at line 430 of the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Configuration/DynamicRoutesCreatorTests.cs",
+   "line": 161,
+   "source_line": "_rloCreator.Verify(x => x.Create(dynamicRoute, _fileConfig.GlobalConfiguration), Times.Once);",
+   "receiver": "_rloCreator` (`Mock<IRateLimitOptionsCreator>`)",
+   "target": "Ocelot.AcceptanceTests::ReturnsErrorTests::MockLoggerFactory::Verify",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "_rloCreator` is a Moq `Mock<T>`; `.Verify(...)` is Moq's own method, not a repo call. Bound to an unrelated nested `MockLoggerFactory.Verify` — the flagged bare-name fan-in failure mode."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Configuration/FileModels/FileRouteTests.cs",
+   "line": 64,
+   "source_line": "var route = GivenFileRoute();",
+   "receiver": "(implicit `this`)",
+   "target": "FileRouteTests::GivenFileRoute (target_line 112)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Configuration/Repository/FileConfigurationPollerTests.cs",
+   "line": 275,
+   "source_line": "await _poller.StartAsync(CancelMe);",
+   "receiver": "_poller` field (`FileConfigurationPoller`)",
+   "target": "src/Configuration/Repository/FileConfigurationPoller.cs::FileConfigurationPoller::StartAsync",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Field is repo-typed `FileConfigurationPoller`, which declares `StartAsync` at line 50."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Configuration/Validation/FileConfigurationFluentValidatorTests.cs",
+   "line": 983,
+   "source_line": "ThenTheResultIsNotValid();",
+   "receiver": "(implicit `this`)",
+   "target": "FileConfigurationFluentValidatorTests::ThenTheResultIsNotValid (target_line 1129)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DependencyInjection/ConfigurationBuilderExtensionsTests.cs",
+   "line": 439,
+   "source_line": "primaryConfigFileName = CreateConfigFile(TestID, string.Empty, configuration, ...)",
+   "receiver": "(implicit `this`)",
+   "target": "ConfigurationBuilderExtensionsTestsBase::CreateConfigFile",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "ConfigurationBuilderExtensionsTests : ConfigurationBuilderExtensionsTestsBase`; `CreateConfigFile` declared `protected` in the base (same file, line 2191)."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DependencyInjection/ConfigurationBuilderExtensionsTests.cs",
+   "line": 2202,
+   "source_line": "_routeA = new() { Routes = GetServiceARoutes() };",
+   "receiver": "(implicit `this`)",
+   "target": "ConfigurationBuilderExtensionsTestsBase::GetServiceARoutes",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Call is inside the base class itself (line 2199 method body), which declares `GetServiceARoutes` at line 2242."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DependencyInjection/OcelotBuilderTests.cs",
+   "line": 617,
+   "source_line": "loggerFactoryMock.Setup(x => x.CreateLogger<CircuitBreakerDelegatingHandler>())...",
+   "receiver": "loggerFactoryMock` (`Mock<IOcelotLoggerFactory>`)",
+   "target": "Ocelot.AcceptanceTests.Authentication::MultipleAuthSchemesFeatureTests::Setup",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "Moq `Mock<T>.Setup(...)` bound to an unrelated `MultipleAuthSchemesFeatureTests.Setup` — the flagged Moq-Setup singleton-fan-in failure mode."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamRouteFinder/UrlMatcher/RegExUrlMatcherTests.cs",
+   "line": 237,
+   "source_line": "var upt = GivenUpstreamPathTemplate(downstreamPathTemplate);",
+   "receiver": "(implicit `this`)",
+   "target": "RegExUrlMatcherTests::GivenUpstreamPathTemplate (target_line 351)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamUrlCreator/DownstreamUrlCreatorMiddlewareTests.cs",
+   "line": 145,
+   "source_line": "GivenTheUrlReplacerWillReturn(\"api/units/1/2/updates\");",
+   "receiver": "(implicit `this`)",
+   "target": "DownstreamUrlCreatorMiddlewareTests::GivenTheUrlReplacerWillReturn (target_line 819)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamUrlCreator/DownstreamUrlCreatorMiddlewareTests.cs",
+   "line": 694,
+   "source_line": "await _middleware.Invoke(_httpContext);",
+   "receiver": "_middleware` field (`DownstreamUrlCreatorMiddleware`)",
+   "target": "Ocelot.AcceptanceTests::CustomMiddlewareTests::FakeMiddleware::Invoke",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "_middleware` is declared `private readonly DownstreamUrlCreatorMiddleware _middleware;`, and that class itself declares `public async Task Invoke(HttpContext context)`. Bound instead to an unrelated `FakeMiddleware.Invoke` from a different acceptance-test file — bare-name collision despite a statically-known receiver type."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Headers/HttpHeadersTransformationMiddlewareTests.cs",
+   "line": 46,
+   "source_line": "GivenTheDownstreamRequestIs();",
+   "receiver": "(implicit `this`)",
+   "target": "HttpHeadersTransformationMiddlewareTests::GivenTheDownstreamRequestIs (target_line 72)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Logging/OcelotLoggerTests.cs",
+   "line": 92,
+   "source_line": "ThenLevelIsLogged(...LogLevel.Information, Times.Exactly(2));",
+   "receiver": "(implicit `this`)",
+   "target": "OcelotLoggerTests::ThenLevelIsLogged (target_line 454)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Matches the `(string, LogLevel, Times, Exception)` overload at line 454 of the same class (there's a second, static, `Mock<ILogger<object>>`-based overload at line 461 that this call doesn't match)."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Multiplexing/MultiplexingMiddlewareTests.cs",
+   "line": 44,
+   "source_line": "var route = GivenDefaultRoute(2);",
+   "receiver": "(implicit `this`)",
+   "target": "MultiplexingMiddlewareTests::GivenDefaultRoute (target_line 487)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "private static Route GivenDefaultRoute(int count)` declared at line 487 of the same file."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/QualityOfService/CircuitBreakerDelegatingHandlerTests.cs",
+   "line": 481,
+   "source_line": "using var handler = CreateHandler(opts, new FakeInnerHandler(HttpStatusCode.OK));",
+   "receiver": "(implicit `this`)",
+   "target": "CircuitBreakerDelegatingHandlerTests::CreateHandler (target_line 25)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/QueryStrings/ClaimsToQueryStringMiddlewareTests.cs",
+   "line": 33,
+   "source_line": "_loggerFactory.Setup(x => x.CreateLogger<ClaimsToQueryStringMiddleware>())...",
+   "receiver": "_loggerFactory` (`Mock<IOcelotLoggerFactory>`)",
+   "target": "Ocelot.AcceptanceTests.Authentication::MultipleAuthSchemesFeatureTests::Setup",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "Same Moq `Setup` collision as row 19."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/RateLimiting/FileGlobalRateLimitingTests.cs",
+   "line": 14,
+   "source_line": "Assert.Null(actual.Name);",
+   "receiver": "Assert` (xunit static class)",
+   "target": "Ocelot.UnitTests.LoadBalancer::LeaseTests::Null",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "Assert.Null` is xunit's static assertion helper, not a repo call. Bound to an unrelated `LeaseTests.Null` — bare-name fan-in on a common assertion-adjacent identifier, same family as the flagged `NotNull`/`Setup`/`Verify` collisions."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/RateLimiting/RateLimitingMiddlewareTests.cs",
+   "line": 272,
+   "source_line": ".WithRateLimitOptions(options ?? GivenRateLimitOptions(rule))",
+   "receiver": "(implicit `this`)",
+   "target": "RateLimitingMiddlewareTests::GivenRateLimitOptions (target_line 260)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class (called from `GivenDownstreamRoute`)."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Responder/ErrorsToHttpStatusCodeMapperTests.cs",
+   "line": 147,
+   "source_line": "ShouldMapErrorsToStatusCode(new List<OcelotErrorCode> { errorCode }, expectedHttpStatusCode);",
+   "receiver": "(implicit `this`)",
+   "target": "ErrorsToHttpStatusCodeMapperTests::ShouldMapErrorsToStatusCode (target_line 150)",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Declared in the same file/class, called from the singular wrapper `ShouldMapErrorToStatusCode`."
+  }
+ ]
+}

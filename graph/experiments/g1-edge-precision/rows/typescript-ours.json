@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "typescript",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "zod"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 29,
+  "wrong": 1,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "zod",
+   "file": "packages/bench/jit-union.ts",
+   "line": 13,
+   "source_line": "data1: z4.string(),",
+   "receiver": "z4",
+   "target": "v4/mini/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z4` = `import * as z4 from \"zod/mini\"` → mini/index.ts → external.ts → schemas.ts exports `string()"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/resolution/src/index.ts",
+   "line": 16,
+   "source_line": "console.log(z6.string().parse(...))",
+   "receiver": "z6",
+   "target": "v4/mini/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z6` = `import * as z6 from \"zod/v4/mini\"`, same export chain as above"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v3/tests/default.test.ts",
+   "line": 100,
+   "source_line": "fruit: z.nativeEnum(Fruits).default(Fruits.apple),",
+   "receiver": "null",
+   "target": "v3/types.ts::ZodType::default",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "file imports `z` from `\"zod/v3\"`; `.default` is the v3 `ZodType` method (line 481)"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/schemas.ts",
+   "line": 2053,
+   "source_line": "processJSONSchema = (ctx,json,params)=>processors.fileProcessor(inst,ctx,json,params);",
+   "receiver": "processors",
+   "target": "v4/core/json-schema-processors.ts::fileProcessor",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "import * as processors from \"../core/json-schema-processors.js\"`; `fileProcessor` exported there"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/schemas.ts",
+   "line": 2603,
+   "source_line": "output: params?.output ?? unknown(),",
+   "receiver": "null",
+   "target": "v4/classic/schemas.ts::unknown",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "unknown()` defined in the same file at line 1322"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/assignability.test.ts",
+   "line": 102,
+   "source_line": "z.promise(z.string()) satisfies z.core.$ZodPromise;",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `import * as z from \"zod/v4\"` → classic; `string()` at schemas.ts:567"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/assignability.test.ts",
+   "line": 116,
+   "source_line": "z.string().default(\"default\") satisfies z.core.$ZodDefault;",
+   "receiver": "null",
+   "target": "v3/types.ts::ZodType::default",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "z` is `\"zod/v4\"` (classic); `.default` should resolve to the v4 classic `ZodType.default` (schemas.ts:318, delegating to `_default`), not v3/types.ts"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/assignability.test.ts",
+   "line": 153,
+   "source_line": "z.success(z.string()) satisfies z.core.$ZodSuccess;",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "same v4 classic chain as row 6"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/async-parsing.test.ts",
+   "line": 356,
+   "source_line": "const base = z.object({ hello: z.string(), foo: z.number()...",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::object",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v4\"`; `object()` defined at schemas.ts:1572"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/from-json-schema.test.ts",
+   "line": 231,
+   "source_line": "const schema = fromJSONSchema({ type: \"string\", oneOf: [...",
+   "receiver": "null",
+   "target": "v4/classic/from-json-schema.ts::fromJSONSchema",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "import { fromJSONSchema } from \"../from-json-schema.js\""
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/from-json-schema.test.ts",
+   "line": 286,
+   "source_line": "const schema = fromJSONSchema({ $defs: { User: {...",
+   "receiver": "null",
+   "target": "v4/classic/from-json-schema.ts::fromJSONSchema",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "same import as row 10"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/index.test.ts",
+   "line": 261,
+   "source_line": "expect(z.parse(b, data)).toEqual(data);",
+   "receiver": "z",
+   "target": "v4/classic/parse.ts::parse",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v4\"`; classic external.ts does `export * from \"./parse.js\"`, exposing free `z.parse"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/index.test.ts",
+   "line": 566,
+   "source_line": "expect(z.parse(a, Number.NaN)).toEqual(Number.NaN);",
+   "receiver": "z",
+   "target": "v4/classic/parse.ts::parse",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "same as row 12"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/object.test.ts",
+   "line": 8,
+   "source_line": "f2: z.string().optional(),",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v4\""
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/template-literal.test.ts",
+   "line": 86,
+   "source_line": ".templateLiteral([\"/\", z.string().regex(...",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::templateLiteral",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "templateLiteral()` defined at schemas.ts:2487"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/to-json-schema-methods.test.ts",
+   "line": 317,
+   "source_line": "expectMethodMatch(z.string().default(() => \"hello\"));",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v4\""
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/to-json-schema.test.ts",
+   "line": 202,
+   "source_line": "expect(z.toJSONSchema(z.base64())).toMatchInlineSnapshot(...",
+   "receiver": "z",
+   "target": "v4/core/json-schema-processors.ts::toJSONSchema",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = bare `\"zod\"` → src/index.ts → classic/external.ts `export { toJSONSchema } from \"../core/json-schema-processors.js\""
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/classic/tests/to-json-schema.test.ts",
+   "line": 2190,
+   "source_line": "z.toJSONSchema(z.object({ a: inner, b: inner }), {target:\"draft-04\"})",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::object",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "same root `zod` → classic chain"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/regexes.ts",
+   "line": 170,
+   "source_line": "export const md5_base64url = fixedBase64url(22);",
+   "receiver": "null",
+   "target": "v4/core/regexes.ts::fixedBase64url",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "fixedBase64url` defined a few lines above in the same file"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/schemas.ts",
+   "line": 228,
+   "source_line": "if (util.explicitlyAborted(payload)) continue;",
+   "receiver": "util",
+   "target": "v4/core/util.ts::explicitlyAborted",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "import * as util from \"./util.js\"`; function defined there"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/schemas.ts",
+   "line": 2270,
+   "source_line": "errors: results.map(r=>r.issues.map(iss=>util.finalizeIssue(iss,ctx,core.config())))",
+   "receiver": "core",
+   "target": "v4/core/core.ts::config",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "import * as core from \"./core.js\"`; `config()` defined at core.ts:150"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/core/tests/locales/uz.test.ts",
+   "line": 43,
+   "source_line": "const invalidUnion = z.union([z.string(), z.number()]).safeParse(true);",
+   "receiver": "z",
+   "target": "v4/classic/schemas.ts::union",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/v4\"`; `union()` at schemas.ts:1626"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/locales/fr.ts",
+   "line": 89,
+   "source_line": "return `Option invalide : ... ${util.joinValues(issue.values,\" | \")} attendue`;",
+   "receiver": "util",
+   "target": "v4/core/util.ts::joinValues",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "import * as util from \"../core/util.js\"`; `joinValues` at util.ts:215"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/locales/uz.ts",
+   "line": 72,
+   "source_line": "...${util.stringifyPrimitive(issue.values[0])}`",
+   "receiver": "util",
+   "target": "v4/core/util.ts::stringifyPrimitive",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "same pattern; `stringifyPrimitive` at util.ts:568"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/schemas.ts",
+   "line": 689,
+   "source_line": "core.$constructor(\"ZodMiniUndefined\", (inst,def)=>{...",
+   "receiver": "core",
+   "target": "v4/core/core.ts::$constructor",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "import * as core from \"../core/index.js\"`, which re-exports `core.ts`'s `$constructor"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/schemas.ts",
+   "line": 1116,
+   "source_line": "export function intersection(left,right){ return new ZodMiniIntersection({...",
+   "receiver": "null",
+   "target": "v4/mini/schemas.ts::ZodMiniIntersection",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "class defined earlier in the same file"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/schemas.ts",
+   "line": 1493,
+   "source_line": "core.$constructor(\"ZodMiniPrefault\", (inst,def)=>{...",
+   "receiver": "core",
+   "target": "v4/core/core.ts::$constructor",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "same as row 25"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/tests/codec.test.ts",
+   "line": 239,
+   "source_line": "const encodedWaypoint = z.encode(waypointSchema, decodedWaypoint);",
+   "receiver": "z",
+   "target": "v4/core/parse.ts::encode",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/mini\"` → mini/parse.ts re-exports `encode` from `../core/index.js`, which comes from `core/parse.ts:108"
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/tests/index.test.ts",
+   "line": 497,
+   "source_line": "const a = z.pipe(z.string(), z.transform(v=>v.toUpperCase()));",
+   "receiver": "z",
+   "target": "v4/mini/schemas.ts::string",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "z` = `\"zod/mini\""
+  },
+  {
+   "repo": "zod",
+   "file": "packages/zod/src/v4/mini/tests/object.test.ts",
+   "line": 185,
+   "source_line": "z.parse(z.required(schema, {name:true, asdf:true}), {})",
+   "receiver": "z",
+   "target": "v4/mini/schemas.ts::required",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "required()` defined at mini/schemas.ts:1007"
+  }
+ ]
+}

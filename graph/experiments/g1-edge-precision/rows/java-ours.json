@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "java",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "caffeine"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 20,
+  "wrong": 9,
+  "ambiguous": 1
+ },
+ "rows": [
+  {
+   "repo": "caffeine",
+   "file": "UnifiedMapAcceptanceTest.java",
+   "line": 666,
+   "source_line": "Verify.assertContainsKeyValue(new CollidingInt(i, shift), ...)",
+   "receiver": "null (ctor)",
+   "target": "CollidingInt::CollidingInt",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "new CollidingInt(...)` is a constructor of the repo class in the same file's package."
+  },
+  {
+   "repo": "caffeine",
+   "file": "MapIterableTestCase.java",
+   "line": 531,
+   "source_line": "MapIterable<...> map = newMapWithKeysValues(...)",
+   "receiver": "null",
+   "target": "CaffeineMutableMapTestCase::newMapWithKeysValues",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "MapIterableTestCase extends CaffeineMutableMapTestCase`, which declares this overload concretely (not abstract)."
+  },
+  {
+   "repo": "caffeine",
+   "file": "NBHM_Tester2.java",
+   "line": 154,
+   "source_line": "checkSizes(\"entrySet()\", ents.size(), ents.iterator(), expectedSize);",
+   "receiver": "ents` (java.util.Set)",
+   "target": "AbstractLinkedDeque::iterator",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "ents` is `Set<Map.Entry<String,String>>` from `_nbhm.entrySet()` — JDK `Set.iterator()`, not caffeine's deque iterator."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ConcurrentHashMap8Test.java",
+   "line": 215,
+   "source_line": "mustEqual(\"Z\", map.get(five));",
+   "receiver": "null",
+   "target": "JSR166TestCase::mustEqual",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "ConcurrentHashMap8Test extends JSR166TestCase`, which declares `mustEqual`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCache.java",
+   "line": 1191,
+   "source_line": "if (frequencySketch().isNotInitialized()) {",
+   "receiver": "frequencySketch()` returns `FrequencySketch",
+   "target": "FrequencySketch::isNotInitialized",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "frequencySketch()` is declared `protected FrequencySketch frequencySketch()` in the same class; chained call types correctly."
+  },
+  {
+   "repo": "caffeine",
+   "file": "AsMapTest.java",
+   "line": 3667,
+   "source_line": "boolean hasEven = map.entrySet().stream().anyMatch(isEven);",
+   "receiver": "map.entrySet()` (java.util.Set)",
+   "target": "MapIterableTestCase::stream",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": ".stream()` is JDK `Collection.stream()`; bound instead to an unrelated eclipse-test class's `stream` method."
+  },
+  {
+   "repo": "caffeine",
+   "file": "AsyncAsMapTest.java",
+   "line": 894,
+   "source_line": "assertThat(context).removalNotifications()...",
+   "receiver": "context` (CacheContext)",
+   "target": "AsyncCacheSubject::assertThat",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "Only `CacheContextSubject.assertThat(CacheContext)` type-matches `context`; file statically imports both."
+  },
+  {
+   "repo": "caffeine",
+   "file": "AsyncAsMapTest.java",
+   "line": 1143,
+   "source_line": "cache.asMap().replaceAll((k, v) -> context.absentValue().toFuture());",
+   "receiver": "context.absentValue()` returns `Int",
+   "target": "Int::toFuture",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "absentValue()` returns caffeine's `Int`, which declares `toFuture()`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "AsyncAsMapTest.java",
+   "line": 2926,
+   "source_line": "assertThat(advanced).isEqualTo(context.initialSize());",
+   "receiver": "advanced` (primitive `int`)",
+   "target": "AsyncCacheSubject::assertThat",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "advanced` is declared `@Var int`; `IntSubject.assertThat` takes caffeine's `Int` (not primitive), so this must bind to `Truth.assertThat(int)`, a third-party method — not a caffeine declaration."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCacheTest.java",
+   "line": 4564,
+   "source_line": "assertThat(localCache.refreshIfNeeded(node, ...)).isNull();",
+   "receiver": "localCache` (BoundedLocalCache)",
+   "target": "BoundedLocalCache::refreshIfNeeded",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "localCache = asBoundedLocalCache(cache)`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "BoundedLocalCacheTest.java",
+   "line": 4915,
+   "source_line": "cache.put(context.absentKey(), context.absentValue());",
+   "receiver": "context` (CacheContext)",
+   "target": "CacheContext::absentKey",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "Direct field/param of type `CacheContext`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheTest.java",
+   "line": 249,
+   "source_line": "cache.getAllPresent(nullCollection())",
+   "receiver": "null (static import)",
+   "target": "Nullness::nullCollection",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Matches the static import."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CaffeineSpecTest.java",
+   "line": 441,
+   "source_line": "assertThat(builder.valueStrength).isEqualTo(Strength.SOFT);",
+   "receiver": "builder.valueStrength` (Strength enum)",
+   "target": "AsyncCacheSubject::assertThat",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "File only statically imports `Truth.assertThat`; `AsyncCacheSubject` isn't even imported here."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ExpirationTest.java",
+   "line": 2065,
+   "source_line": "assertThat(map.entrySet().equals(context.absent().entrySet())))...",
+   "receiver": "context` (CacheContext)",
+   "target": "CacheContext::absent",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "context.absent()` matches the declared method."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ExpireAfterVarTest.java",
+   "line": 478,
+   "source_line": "context.ticker().advance(Duration.ofSeconds(2));",
+   "receiver": "context` (CacheContext)",
+   "target": "Caffeine::ticker",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "context.ticker()` should be `CacheContext::ticker` (returns `FakeTicker`); bound instead to the unrelated `Caffeine` builder's `ticker` method."
+  },
+  {
+   "repo": "caffeine",
+   "file": "LinkedDequeTest.java",
+   "line": 76,
+   "source_line": "assertThat(deque.isEmpty()).isFalse();",
+   "receiver": "deque` (`Deque<?>`, JDK interface param)",
+   "target": "AbstractLinkedDeque::isEmpty",
+   "origin": "same_package",
+   "verdict": "ambiguous",
+   "reason": "Declared param type is JDK `Deque<?>`; every `@MethodSource` supplier actually returns caffeine `LinkedDeque` instances backed by `AbstractLinkedDeque`, so the binding matches real runtime dispatch even though the static type is JDK."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ReferenceTest.java",
+   "line": 170,
+   "source_line": "assertThat(cache).whenCleanedUp().hasSize(1);",
+   "receiver": "chained off `CacheSubject",
+   "target": "CacheSubject::whenCleanedUp",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "assertThat(cache)` returns `CacheSubject`, which declares `whenCleanedUp()`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ReferenceTest.java",
+   "line": 1263,
+   "source_line": "assertThat(context).removalNotifications().withCause(REPLACED)...",
+   "receiver": "context` (CacheContext)",
+   "target": "AsyncCacheSubject::assertThat",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "Same overload-confusion as row 7/9/13; should be `CacheContextSubject::assertThat`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "Snippets.java",
+   "line": 147,
+   "source_line": "Expiry<Key, Graph> expiry = Expiry.writing((key, graph) -> ...);",
+   "receiver": "qualified static",
+   "target": "Expiry::writing",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "Explicit `Expiry.` qualifier."
+  },
+  {
+   "repo": "caffeine",
+   "file": "Stresser.java",
+   "line": 102,
+   "source_line": "cache = Caffeine.newBuilder().maximumSize(workload.maxEntries)...",
+   "receiver": "chained off `Caffeine` builder",
+   "target": "MemoryBenchmark::maximumSize",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": ".maximumSize(...)` chains on the `Caffeine` builder returned by `newBuilder()`; bound instead to an unrelated jmh benchmark class."
+  },
+  {
+   "repo": "caffeine",
+   "file": "TimerWheelTest.java",
+   "line": 686,
+   "source_line": "assertThrows(UnsupportedOperationException.class, node::getKeyReference);",
+   "receiver": "null (static import)",
+   "target": "JSR166TestCase::assertThrows",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "File statically imports `org.junit.jupiter.api.Assertions.assertThrows`; bound instead to an unrelated caffeine test-harness method (the `global_unique` fan-in hazard)."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheContext.java",
+   "line": 382,
+   "source_line": "initialSize(); // lazy initialize",
+   "receiver": "null (same class)",
+   "target": "CacheContext::initialSize",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Self-call within the same file/class."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CacheLoadingTest.java",
+   "line": 1611,
+   "source_line": "CaffeinatedGuava.build(Caffeine.newBuilder().recordStats(), bulkLoader(loader));",
+   "receiver": "null (static import)",
+   "target": "TestingCacheLoaders::bulkLoader",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "Matches the static import at the top of the file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "JCacheAccessExpiryTest.java",
+   "line": 204,
+   "source_line": "try (var fixture = jcacheFixture()) {",
+   "receiver": "null (same class)",
+   "target": "JCacheAccessExpiryTest::jcacheFixture",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Private static method declared in the same file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "PolicyActor.java",
+   "line": 49,
+   "source_line": "this.semaphore = new Semaphore(settings.actor().mailboxSize());",
+   "receiver": "settings.actor()` returns `ActorSettings",
+   "target": "ActorSettings::mailboxSize",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "BasicSettings.actor()` returns `ActorSettings`, which declares `mailboxSize()`."
+  },
+  {
+   "repo": "caffeine",
+   "file": "CampPolicy.java",
+   "line": 179,
+   "source_line": "policyStats.recordEviction();",
+   "receiver": "policyStats` field (PolicyStats)",
+   "target": "PolicyStats::recordEviction",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "Field type matches."
+  },
+  {
+   "repo": "caffeine",
+   "file": "ClockProPolicy.java",
+   "line": 589,
+   "source_line": "return isResidentCold() |  | status == Status.COLD_NON_RES;",
+   "receiver": "null (same class)",
+   "target": "ClockProPolicy.Node::isResidentCold",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Self-call within nested `Node` class."
+  },
+  {
+   "repo": "caffeine",
+   "file": "IndicatorFrdPolicy.java",
+   "line": 65,
+   "source_line": "this.headFilter = new Node();",
+   "receiver": "null (ctor)",
+   "target": "IndicatorFrdPolicy.Node::Node",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Constructor of nested `Node` class in the same file."
+  },
+  {
+   "repo": "caffeine",
+   "file": "HazelcastPolicy.java",
+   "line": 79,
+   "source_line": ".map(policy -> new HazelcastPolicy(settings, policy))",
+   "receiver": "null (ctor)",
+   "target": "HazelcastPolicy::HazelcastPolicy",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Constructor of the enclosing class."
+  },
+  {
+   "repo": "caffeine",
+   "file": "PlotCsv.java",
+   "line": 253,
+   "source_line": "return ChartStyle.forColors(background, content, grid);",
+   "receiver": "qualified static",
+   "target": "ChartStyle::forColors",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Explicit `ChartStyle.` qualifier."
+  }
+ ]
+}

@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "python",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "celery"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 19,
+  "wrong": 11,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "celery",
+   "file": "celery/app/amqp.py",
+   "line": 362,
+   "source_line": "argsrepr = saferepr(args, self.argsrepr_maxsize)",
+   "receiver": "null",
+   "target": "celery/utils/saferepr.py:66 saferepr",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Imported `from celery.utils.saferepr import saferepr` at top of file."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/app/base.py",
+   "line": 1608,
+   "source_line": "self.finalize(auto=True)",
+   "receiver": "self",
+   "target": "celery/app/base.py:657 Celery.finalize",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same `Celery` class, `tasks` property auto-finalizing."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/beat.py",
+   "line": 339,
+   "source_line": "self.schedules_equal(self.old_schedulers, self.schedule)",
+   "receiver": "self",
+   "target": "celery/beat.py:366 Scheduler.schedules_equal",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same `Scheduler` class."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/bin/multi.py",
+   "line": 411,
+   "source_line": "self.note('.', newline=False)",
+   "receiver": "self",
+   "target": "celery/bin/multi.py:208 TermLogger.note",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same `TermLogger` class."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/bootsteps.py",
+   "line": 199,
+   "source_line": "self._debug('Preparing bootsteps.')",
+   "receiver": "self",
+   "target": "celery/bootsteps.py:258 Blueprint._debug",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same `Blueprint` class."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/canvas.py",
+   "line": 1465,
+   "source_line": "task, it, n = self._unpack_args(self.kwargs)",
+   "receiver": "self",
+   "target": "celery/canvas.py:2059 _chord._unpack_args",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "self` is a `chunks` instance; `chunks` itself declares `_unpack_args = itemgetter('task','it','n')` as a class attribute (canvas.py:1440), unrelated to `_chord`'s method of the same name. Part of the already-established `chunks::group` wrong-edge class."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/concurrency/asynpool.py",
+   "line": 786,
+   "source_line": "iterate_file_descriptors_safely(inactive, all_inqueues, hub_add, ...)",
+   "receiver": "null",
+   "target": "celery/concurrency/asynpool.py:198",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same-file function."
+  },
+  {
+   "repo": "celery",
+   "file": "examples/django/proj/celery.py",
+   "line": 6,
+   "source_line": "os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj.settings')",
+   "receiver": "os.environ",
+   "target": "celery/app/base.py:232 PendingConfiguration.setdefault",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "Receiver is stdlib `os.environ`, not any celery config object; bare-name collision with `PendingConfiguration.setdefault`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/integration/test_canvas.py",
+   "line": 513,
+   "source_line": "c = group(add.s(1, 1), add.s(1, 1))",
+   "receiver": "null",
+   "target": "celery/canvas.py:1463 chunks.group",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "group` is the imported free function `celery.canvas.group` (`from celery import chain, chord, group, signature`), not `chunks.group`. Established `chunks::group` class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/integration/test_canvas.py",
+   "line": 2448,
+   "source_line": "with subtests.test(msg=\"Error propagates...\")",
+   "receiver": "subtests",
+   "target": "t/unit/utils/test_objects.py:6 test_Bunch.test",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "subtests` is the pytest-subtests fixture (third-party); established `test_Bunch::test` class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/smoke/tests/quorum_queues/test_cycle_detection.py",
+   "line": 19,
+   "source_line": "sig = countdown_task_with_retry.s().set(queue=queue)",
+   "receiver": "countdown_task_with_retry",
+   "target": "celery/app/task.py:974 Task.s",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "countdown_task_with_retry` is a `@task`-decorated function, i.e. a `Task` instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/smoke/tests/quorum_queues/test_quorum_queues.py",
+   "line": 33,
+   "source_line": "group(group(add.si(1, 1), add.si(2, 2)), ...)",
+   "receiver": "add",
+   "target": "celery/app/task.py:981 Task.si",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "add` is a `Task` instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/smoke/tests/test_dedup_chain_dispatch.py",
+   "line": 55,
+   "source_line": "sig = store_success_then_reject.s().set(queue=queue)",
+   "receiver": "store_success_then_reject",
+   "target": "celery/app/task.py:974 Task.s",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "Task instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_amqp.py",
+   "line": 327,
+   "source_line": "self.app.amqp.send_task_message(prod, 'foo', ...)",
+   "receiver": "self.app.amqp",
+   "target": "celery/app/amqp.py:269 AMQP.send_task_message",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "send_task_message` is a `@cached_property` on `AMQP` that returns the sender closure; the property itself is the genuine attribute owner being invoked."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_app.py",
+   "line": 2013,
+   "source_line": "with patch.object(type(self.app), 'producer_pool', ...)",
+   "receiver": "patch",
+   "target": "t/unit/conftest.py:570 _patching.object",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "patch` is `unittest.mock.patch`; established `_patching::object` class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_app.py",
+   "line": 2159,
+   "source_line": "with conftest.platform_pyimp():",
+   "receiver": "conftest",
+   "target": "t/unit/conftest.py:444 platform_pyimp",
+   "origin": "import",
+   "verdict": "correct",
+   "reason": "conftest` module imported; function defined there."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_control.py",
+   "line": 375,
+   "source_line": "self.app.control.terminate('124')",
+   "receiver": "self.app.control",
+   "target": "t/unit/app/test_beat.py:911 (_Popen.terminate, nested in test_EmbeddedService)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "Receiver is a `celery.app.control.Control` instance; the real target is `Control.terminate` (celery/app/control.py:548). Bound instead to an unrelated mock-subprocess method sharing the name in a different test file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_log.py",
+   "line": 57,
+   "source_line": "assert logger_isa(y, x)",
+   "receiver": "null",
+   "target": "celery/utils/log.py:72 logger_isa",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Function defined there and used directly."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/backends/test_gcs.py",
+   "line": 223,
+   "source_line": "@patch.object(GCSBackend, '_is_firestore_ttl_policy_enabled')",
+   "receiver": "patch",
+   "target": "t/unit/conftest.py:570 _patching.object",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "unittest.mock.patch.object`; established `_patching::object` class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 599,
+   "source_line": "g = group(signature('t'))",
+   "receiver": "null",
+   "target": "celery/app/base.py:1290 Celery.signature",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "signature` is imported `from celery.canvas import (..., signature, ...)` (a module-level function at canvas.py:2395), not the `Celery.signature` method — bare-name collision."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 1695,
+   "source_line": "assert not x.options.get('link_error')",
+   "receiver": "x.options",
+   "target": "t/unit/tasks/test_result.py:634 MockAsyncResultFailure.get",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "x.options` is a plain dict; `.get` is `dict.get`, unrelated to any repo class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_result.py",
+   "line": 50,
+   "source_line": "[save_result(app, task) for task in tasks]",
+   "receiver": "null",
+   "target": "t/unit/tasks/test_result.py:34 save_result",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same-file function."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_tasks.py",
+   "line": 587,
+   "source_line": "result = self.retry_task.apply([...], {...})",
+   "receiver": "self.retry_task",
+   "target": "celery/app/task.py:869 Task.apply",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "retry_task` is a `Task` instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_tasks.py",
+   "line": 698,
+   "source_line": "self.autoretry_for_from_base_task.apply((1, \"a\"))",
+   "receiver": "self.autoretry_for_from_base_task",
+   "target": "celery/app/task.py:869 Task.apply",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Task instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_trace.py",
+   "line": 302,
+   "source_line": "retval, info = self.trace(rejecting, (), {})",
+   "receiver": "self",
+   "target": "t/unit/tasks/test_trace.py:22 trace (module function)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "self.trace` resolves through `TraceCase.trace` (line 51), a method that wraps and calls the module `trace()`; bound to the wrong same-named declaration."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/utils/test_collections.py",
+   "line": 365,
+   "source_line": "self.assert_size_and_first(b, 20, 0)",
+   "receiver": "self",
+   "target": "t/unit/utils/test_collections.py:341 test_Messagebuffer.assert_size_and_first",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Same `test_Messagebuffer` class (a second same-named method exists in another class at line 416, but this resolves to the right one)."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_consumer.py",
+   "line": 1667,
+   "source_line": "g.on_elect_ack(e1)",
+   "receiver": "g",
+   "target": "celery/worker/consumer/gossip.py:110 Gossip.on_elect_ack",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "g` is a `Gossip(c)` instance passed into `setup_election`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_control.py",
+   "line": 881,
+   "source_line": "worker_state.active_requests.add(request)",
+   "receiver": "worker_state.active_requests",
+   "target": "t/integration/tasks.py:38 add (function)",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "active_requests` is `weakref.WeakSet()` (celery/worker/state.py:55); `.add` is the stdlib set method, unrelated to the `add` task fixture."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_request.py",
+   "line": 254,
+   "source_line": "self.get_request(self.add.s(2, 2).set(eta='12345'))",
+   "receiver": "self.add",
+   "target": "celery/app/task.py:974 Task.s",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "self.add` is a `Task` instance — established-correct pattern."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_strategy.py",
+   "line": 135,
+   "source_line": "bucket = TokenBucket(rate(limit), capacity=1)",
+   "receiver": "null",
+   "target": "celery/utils/time.py:253 rate",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Imported `from celery.utils.time import rate` at top of file."
+  }
+ ]
+}

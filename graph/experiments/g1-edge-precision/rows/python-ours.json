@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "python",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "celery"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 28,
+  "wrong": 2,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "celery",
+   "file": "celery/_state.py",
+   "line": 116,
+   "source_line": "return _get_current_app()",
+   "receiver": "null",
+   "target": "celery/_state.py::_get_current_app",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "_get_current_app` is a module-level function (line 92); this is the `C_WARN_APP` fallback branch calling it directly."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/app/base.py",
+   "line": 398,
+   "source_line": "self.__autoset('include', include)",
+   "receiver": "self",
+   "target": "Celery::__autoset",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "__autoset` defined in the same `Celery` class (base.py:447), called inside `__init__`."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/app/defaults.py",
+   "line": 239,
+   "source_line": "security=Namespace(__old__=old_ns(...), ...)",
+   "receiver": "null",
+   "target": "celery/app/defaults.py::Namespace",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Namespace` is a module-level function (defaults.py:30) used to build the config tree."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/app/defaults.py",
+   "line": 336,
+   "source_line": "direct=Option(False, type='bool', ...)",
+   "receiver": "null",
+   "target": "celery/app/defaults.py::Option",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Option` class defined in the same file (defaults.py:42)."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/backends/mongodb.py",
+   "line": 203,
+   "source_line": "return self.meta_from_decoded({...})",
+   "receiver": "self",
+   "target": "celery/backends/base.py::Backend::meta_from_decoded",
+   "origin": "self_inherited",
+   "verdict": "correct",
+   "reason": "MongoBackend(BaseBackend)`, `BaseBackend(Backend, SyncBackendMixin)`; `meta_from_decoded` is defined on `Backend` (base.py:531)."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/canvas.py",
+   "line": 658,
+   "source_line": "link = maybe_signature(link, app=self.app)",
+   "receiver": "null",
+   "target": "celery/canvas.py::maybe_signature",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "maybe_signature` is a module-level function in the same file."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/contrib/rdb.py",
+   "line": 186,
+   "source_line": "frame = _frame().f_back",
+   "receiver": "null",
+   "target": "celery/contrib/rdb.py::_frame",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "_frame = getattr(sys, '_getframe')` is a module-level alias (rdb.py:64) in the same file."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/events/receiver.py",
+   "line": 59,
+   "source_line": "raise ImproperlyConfigured('Queue cannot be...')",
+   "receiver": "null",
+   "target": "celery/exceptions.py::ImproperlyConfigured",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported `from celery.exceptions import ImproperlyConfigured` at the top of the file."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/utils/dispatch/signal.py",
+   "line": 163,
+   "source_line": "return retry_over_time(retry_fun, Exception, args, kwargs, on_error)",
+   "receiver": "null",
+   "target": "celery/contrib/testing/manager.py::ManagerMixin::retry_over_time",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "File imports `from kombu.utils.functional import retry_over_time` (signal.py:8) — a third-party function — but OURS bound the bare name to an unrelated same-named test-harness method."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/utils/term.py",
+   "line": 119,
+   "source_line": "return self.node(s, fg(30 + WHITE))",
+   "receiver": "self",
+   "target": "celery/utils/term.py::colored::node",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "node` defined in the same `colored` class."
+  },
+  {
+   "repo": "celery",
+   "file": "celery/worker/consumer/mingle.py",
+   "line": 68,
+   "source_line": "self.on_clock_event(c, clock)",
+   "receiver": "self",
+   "target": "Mingle::on_clock_event",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "Defined at line 71 in the same `Mingle` class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/integration/test_canvas.py",
+   "line": 1288,
+   "source_line": "group_sig = group((child_chord,))",
+   "receiver": "null",
+   "target": "celery/canvas.py::group",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "group` imported `from celery import chain, chord, group, signature` (re-exports canvas.py)."
+  },
+  {
+   "repo": "celery",
+   "file": "t/integration/test_canvas.py",
+   "line": 1751,
+   "source_line": "chord_add.apply_async(args=(4, 8), throw=True).get()",
+   "receiver": "null (chained)",
+   "target": "celery/backends/base.py::BaseKeyValueStoreBackend::get",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": ".get()` here is called on the `AsyncResult` returned by `apply_async`, i.e. `celery/result.py`'s `AsyncResult.get`, not any backend's `get`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_schedules.py",
+   "line": 180,
+   "source_line": "crontab_parser(min_=1).parse('55-5/3')",
+   "receiver": "null",
+   "target": "celery/schedules.py::crontab_parser::parse",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "crontab_parser` imported; `.parse` defined on that class at schedules.py:260."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/app/test_schedules.py",
+   "line": 804,
+   "source_line": "with patch_crontab_nowfun(self.weekly, ...)",
+   "receiver": "null",
+   "target": "t/unit/app/test_schedules.py::patch_crontab_nowfun",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "Defined at line 23 in the same test file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/backends/test_gcs.py",
+   "line": 191,
+   "source_line": "backend = GCSBackend(app=self.app)",
+   "receiver": "null",
+   "target": "celery/backends/gcs.py::GCSBackend",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "GCSBackend` imported at top of file; this is the constructor call."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/backends/test_redis.py",
+   "line": 332,
+   "source_line": "consumer = self.get_consumer()",
+   "receiver": "self",
+   "target": "test_RedisResultConsumer::get_consumer",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "Defined at line 206 in the same test class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/backends/test_rpc.py",
+   "line": 20,
+   "source_line": "consumer = self.get_consumer()",
+   "receiver": "self",
+   "target": "test_RPCResultConsumer::get_consumer",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "Defined at line 16 in the same test class."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 506,
+   "source_line": "group(tasks(), app=self.app)",
+   "receiver": "null",
+   "target": "celery/canvas.py::group",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "group` imported from `celery.canvas` at the top of the file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 1452,
+   "source_line": "assert isinstance(signature(x), chord_type)",
+   "receiver": "null",
+   "target": "celery/canvas.py::signature",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "signature` imported from `celery.canvas`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 1579,
+   "source_line": "sig = chord(chord(tuple(), [self.add.s()]))",
+   "receiver": "null",
+   "target": "celery/canvas.py::chord",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "chord` imported from `celery.canvas`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_canvas.py",
+   "line": 1996,
+   "source_line": "header = group([self.add.s(1, 1), self.add.s(2, 2)])",
+   "receiver": "null",
+   "target": "celery/canvas.py::group",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Same import as above."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_stamping.py",
+   "line": 501,
+   "source_line": "chord((signature(f\"sig{i}\") for i in range(4, 6)), ...)",
+   "receiver": "null",
+   "target": "celery/canvas.py::chord",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Module-level literal built from imported `chord`."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_stamping.py",
+   "line": 569,
+   "source_line": "group(signature(\"sig1\"), group(signature(\"sig2\")), ...)",
+   "receiver": "null",
+   "target": "celery/canvas.py::group",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported `group` used in a nested literal."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/tasks/test_trace.py",
+   "line": 418,
+   "source_line": "trace_task_ret(self.add.name, 'id1', {}, ...)",
+   "receiver": "null",
+   "target": "celery/app/trace.py::trace_task_ret",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported from `celery.app.trace` at top of file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/utils/test_platforms.py",
+   "line": 561,
+   "source_line": "assert p.is_locked()",
+   "receiver": "p",
+   "target": "celery/platforms.py::Pidfile::is_locked",
+   "origin": "receiver_typed_import",
+   "verdict": "correct",
+   "reason": "p = Pidfile('/var/pid')`; `Pidfile` imported and `is_locked` defined on it."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/utils/test_platforms.py",
+   "line": 1013,
+   "source_line": "check_privileges(accept_content)",
+   "receiver": "null",
+   "target": "celery/platforms.py::check_privileges",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported at top of file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_consumer.py",
+   "line": 1361,
+   "source_line": "tasks.start(c)",
+   "receiver": "tasks",
+   "target": "celery/worker/consumer/tasks.py::Tasks::start",
+   "origin": "receiver_typed_import",
+   "verdict": "correct",
+   "reason": "tasks = Tasks(c)`; `Tasks` imported, `start` defined on it."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_loops.py",
+   "line": 408,
+   "source_line": "asynloop(*x.args)",
+   "receiver": "null",
+   "target": "celery/worker/loops.py::asynloop",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported at top of file."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/worker/test_request.py",
+   "line": 721,
+   "source_line": "job = self.get_request(self.mytask.s(1, f='x'))",
+   "receiver": "self",
+   "target": "test_Request::get_request",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "Defined at line 187 in the same test class."
+  }
+ ]
+}

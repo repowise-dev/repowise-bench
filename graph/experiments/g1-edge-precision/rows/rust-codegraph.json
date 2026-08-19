@@ -1,0 +1,321 @@
+{
+ "experiment": "G1",
+ "language": "rust",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "ripgrep",
+  "serde",
+  "bevy"
+ ],
+ "repowise_commit": "13cc339a",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 13,
+  "wrong": 15,
+  "ambiguous": 2
+ },
+ "rows": [
+  {
+   "repo": "ripgrep",
+   "file": "crates/core/flags/defs.rs",
+   "line": 4017,
+   "target": "GramQuery::unwrap",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "parse_low_raw(..).unwrap()` is `Result::unwrap` (std); bound to `GramQuery::unwrap`, a private method on an unrelated enum in another crate"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/core/flags/defs.rs",
+   "line": 4805,
+   "target": "GramQuery::unwrap",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "same shape as row 1 on a different line"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/core/flags/parse.rs",
+   "line": 431,
+   "target": "jaccard_index",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "jaccard_index(..)` -> the free fn at parse.rs:454, same file"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/ignore/src/incremental.rs",
+   "line": 700,
+   "target": "tmpdir",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "tmpdir()` -> the fn at incremental.rs:581, same test module"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 1196,
+   "target": "Matcher::line_terminator",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "self.searcher.line_terminator()`: receiver is `grep_searcher::Searcher`, which has its own method at searcher/mod.rs:836; bound to `Matcher::line_terminator"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 1397,
+   "target": "StandardImpl::write",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "self.write(b': ')` inside `impl StandardImpl` -> `StandardImpl::write`, same file"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 3329,
+   "target": "SearcherBuilder::multi_line",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "SearcherBuilder::new().multi_line(true)` -> `SearcherBuilder::multi_line`; receiver typed from the constructor"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/printer/src/standard.rs",
+   "line": 3705,
+   "target": "NoCaptures::new",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "NoColor::new(vec![])` is termcolor's `NoColor` (external); bound to `NoCaptures::new` in crates/matcher"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/regex/src/strip.rs",
+   "line": 64,
+   "target": "FlagMap::find",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "lit.iter().find(..)` is `Iterator::find` (std); bound to `FlagMap::find"
+  },
+  {
+   "repo": "ripgrep",
+   "file": "crates/searcher/src/searcher/glue.rs",
+   "line": 1469,
+   "target": "SearcherTester::new",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "SearcherTester::new(..)` -> `SearcherTester::new` in testutil.rs"
+  },
+  {
+   "repo": "serde",
+   "file": "serde/src/private/ser.rs",
+   "line": 877,
+   "target": "Ok",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "Ok(Content::TupleVariant(..))` is `Result::Ok` (std); bound to `type Ok = Content`, an associated type alias, which is not callable"
+  },
+  {
+   "repo": "serde",
+   "file": "serde_core/src/de/impls.rs",
+   "line": 596,
+   "target": "deserialize::Field::Ok",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "Ok(v.to_owned())` is `Result::Ok`; bound to `Field::Ok`, a variant of a local enum declared inside an unrelated fn"
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/de.rs",
+   "line": 28,
+   "target": "Ctxt::new",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "Ctxt::new()` -> `Ctxt::new` in internals/ctxt.rs, matching the explicit `use"
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/de.rs",
+   "line": 863,
+   "target": "BorrowedLifetimes::de_lifetime_param",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "self.0.borrowed.de_lifetime_param()`: receiver is `BorrowedLifetimes` -> its own method at de.rs:270"
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/internals/attr.rs",
+   "line": 1679,
+   "target": "Default::is_none",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "ty.mutability.is_none()` is `Option::is_none` (std); bound to serde_derive's own `Default::is_none"
+  },
+  {
+   "repo": "serde",
+   "file": "serde_derive/src/ser.rs",
+   "line": 163,
+   "target": "Field::ser_bound",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "field.ser_bound()` with `field: &attr::Field` -> `Field::ser_bound` in internals/attr.rs"
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 740,
+   "target": "test",
+   "origin": "exact-match",
+   "verdict": "ambiguous",
+   "error_class": "ambiguous",
+   "reason": "test(..)` at :740 invokes the closure `let test = | value, tokens | test(NonZeroU32::new(value)..)` at :721, which shadows the free fn; the named free fn is reached one hop later"
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_de.rs",
+   "line": 800,
+   "target": "test",
+   "origin": "exact-match",
+   "verdict": "ambiguous",
+   "error_class": "ambiguous",
+   "reason": "same shadowing-closure shape, closure declared at :796"
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_enum_untagged.rs",
+   "line": 502,
+   "target": "Content::Some",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "Token::Seq { len: Some(1) }` is `Option::Some` (std prelude); bound to `Content::Some` in serde's private ser module"
+  },
+  {
+   "repo": "serde",
+   "file": "test_suite/tests/test_ignored_any.rs",
+   "line": 46,
+   "target": "DeserializeSeed::deserialize",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "seed.deserialize(..)` is a trait-generic call on `V: DeserializeSeed`; bound to one unrelated impl in serde's private de module rather than the trait method"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/component/info.rs",
+   "line": 392,
+   "target": "Components::len",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "self.components.len()`: the field is `Vec<Option<ComponentInfo>>`, so this is `Vec::len`; bound to the outer `Components::len`, which returns queued+registered"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/entity/unique_slice.rs",
+   "line": 1380,
+   "target": "Index::index",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "self.0.index(key)` on the inner slice is `<[T] as Index>::index` (std); bound to the enclosing fn itself, a self-recursion that does not exist"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ecs/src/schedule/stepping.rs",
+   "line": 718,
+   "target": "Schedule::systems",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "schedule.systems()` with `schedule: &Schedule` -> `Schedule::systems"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_pbr/src/meshlet/instance_manager.rs",
+   "line": 60,
+   "target": "Entry::Some",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "buffer.set_label(Some(..))`: `Some` is `Option::Some` (std); bound to `Entry::Some` in bevy_asset"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_pbr/src/ssao/mod.rs",
+   "line": 712,
+   "target": "BindGroupEntries::sequential",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "BindGroupEntries::sequential(..)` -> the fn at bind_group_entries.rs:101"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ui/src/geometry.rs",
+   "line": 368,
+   "target": "Val::Percent",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "Val::Percent(value * rhs)` -> the `Val::Percent` variant at geometry.rs:49; a Rust tuple-variant constructor is a fn item and the variant named is the one constructed"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_ui_widgets/src/list.rs",
+   "line": 220,
+   "target": "ParallelIterator::filter_map",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": ".filter_map(..)` on the `Iterator` returned by `iter_descendants`; bound to `ParallelIterator::filter_map` in bevy_tasks"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_winit/src/winit_windows.rs",
+   "line": 104,
+   "target": "Window::height",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "window.height()` with `window: &Window` -> `Window::height"
+  },
+  {
+   "repo": "bevy",
+   "file": "crates/bevy_winit/src/winit_windows.rs",
+   "line": 355,
+   "target": "AssetChanges::remove",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "error_class": "wrong",
+   "reason": "self.winit_to_entity.remove(..)` is `HashMap::remove`; bound to `AssetChanges::remove` in bevy_asset"
+  },
+  {
+   "repo": "bevy",
+   "file": "examples/2d/tilemap_chunk.rs",
+   "line": 104,
+   "target": "TilemapChunk::calculate_tile_transform",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "error_class": "correct",
+   "reason": "chunk.calculate_tile_transform(..)` with `chunk: Single<&TilemapChunk>` -> `TilemapChunk::calculate_tile_transform"
+  }
+ ]
+}

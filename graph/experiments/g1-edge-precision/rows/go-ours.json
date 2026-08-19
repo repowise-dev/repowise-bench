@@ -1,0 +1,349 @@
+{
+ "experiment": "G1",
+ "language": "go",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "gitleaks"
+ ],
+ "repowise_commit": "2017de7c",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 29,
+  "wrong": 1,
+  "ambiguous": 0
+ },
+ "rows": [
+  {
+   "repo": "gitleaks",
+   "file": "cmd/detect.go",
+   "line": 115,
+   "source_line": "logOpts := mustGetStringFlag(cmd, \"log-opts\")",
+   "receiver": "—",
+   "target": "cmd/root.go::mustGetStringFlag",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "free function declared cmd/root.go:542, same package"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/diagnostics.go",
+   "line": 90,
+   "source_line": "if err = dm.StartCPUProfile(); err != nil {",
+   "receiver": "dm (*DiagnosticsManager)",
+   "target": "cmd/diagnostics.go::DiagnosticsManager::StartCPUProfile",
+   "origin": "receiver_typed_same_file",
+   "verdict": "correct",
+   "reason": "method declared same file line 150 on *DiagnosticsManager"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/directory.go",
+   "line": 70,
+   "source_line": "logging.Error().Err(err).Msg(\"failed scan directory\")",
+   "receiver": "(chained, none)",
+   "target": "logging/log.go::Err",
+   "origin": "import_merged",
+   "verdict": "wrong",
+   "reason": ".Err(err)` is chained off the `*zerolog.Event` returned by `logging.Error()` (third-party method), not a call to package-level `logging.Err`; that free function is never invoked as `logging.Err(...)` anywhere in the repo"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/main.go",
+   "line": 176,
+   "source_line": "rules.NytimesAccessToken(),",
+   "receiver": "rules (pkg)",
+   "target": ".../rules/nytimes.go::NytimesAccessToken",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared nytimes.go:9, imported as `rules"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/bittrex.go",
+   "line": 19,
+   "source_line": "utils.AlphaNumeric(\"32\")` (nested in GenerateSampleSecrets)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go::AlphaNumeric",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared patterns.go:19"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/fastly.go",
+   "line": 14,
+   "source_line": "utils.GenerateSemiGenericRegex([]string{\"fastly\"}, ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSemiGenericRegex",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared generate.go:34"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/gitlab.go",
+   "line": 220,
+   "source_line": "utils.GenerateSampleSecrets(\"gitlab\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared generate.go:85"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/hashicorp.go",
+   "line": 23,
+   "source_line": "secrets.NewSecret(utils.AlphaNumericExtended(\"60,70\"))",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go::AlphaNumericExtended",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared patterns.go:27"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/kucoin.go",
+   "line": 22,
+   "source_line": "utils.GenerateSampleSecrets(\"kucoin\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #7"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/linear.go",
+   "line": 36,
+   "source_line": "secrets.NewSecret(utils.Hex(\"32\"))",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/patterns.go::Hex",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared patterns.go:15"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/lob.go",
+   "line": 25,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go::Validate",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared validate.go:16"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/messagebird.go",
+   "line": 49,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go::Validate",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #11"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/newrelic.go",
+   "line": 58,
+   "source_line": "Regex: utils.GenerateSemiGenericRegex([]string{...",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSemiGenericRegex",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #6"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/okta.go",
+   "line": 14,
+   "source_line": "Regex: utils.GenerateSemiGenericRegex(...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSemiGenericRegex",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #6"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/plaid.go",
+   "line": 59,
+   "source_line": "utils.GenerateSampleSecrets(\"plaid\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #7"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/planetscale.go",
+   "line": 60,
+   "source_line": "secrets.NewSecret(utils.AlphaNumericExtended(\"32\"))",
+   "receiver": "secrets (pkg)",
+   "target": "cmd/generate/secrets/regen.go::NewSecret",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "func declared regen.go:9"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/rapidapi.go",
+   "line": 24,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go::Validate",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #11"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/sentry.go",
+   "line": 77,
+   "source_line": "return utils.Validate(r, tps, fps)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go::Validate",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #11"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/stripe.go",
+   "line": 27,
+   "source_line": "utils.GenerateSampleSecrets(\"stripe\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #7"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/telegram.go",
+   "line": 51,
+   "source_line": "secrets.NewSecret(\\`token:\"clm\\` + ...)",
+   "receiver": "secrets (pkg)",
+   "target": "cmd/generate/secrets/regen.go::NewSecret",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #16"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/travisci.go",
+   "line": 14,
+   "source_line": "utils.GenerateSemiGenericRegex([]string{\"travis\"}, ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSemiGenericRegex",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #6"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/twilio.go",
+   "line": 21,
+   "source_line": "utils.GenerateSampleSecrets(\"twilio\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #7"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/twitch.go",
+   "line": 21,
+   "source_line": "utils.GenerateSampleSecrets(\"twitch\", ...)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/generate.go::GenerateSampleSecrets",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #7"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/generate/config/rules/twitter.go",
+   "line": 34,
+   "source_line": "return utils.Validate(r, tps, nil)",
+   "receiver": "utils (pkg)",
+   "target": ".../utils/validate.go::Validate",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #11"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "cmd/root.go",
+   "line": 545,
+   "source_line": "logging.Fatal().Err(err).Msgf(\"could not get flag: %s\", name)",
+   "receiver": "logging (pkg)",
+   "target": "logging/log.go::Fatal",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "this is the head-of-chain call `logging.Fatal()` itself, declared log.go:44"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "config/allowlist_test.go",
+   "line": 343,
+   "source_line": "regexp.MustCompile(\\`(^\\ | /)vendor/modules\\.txt$\\`)",
+   "receiver": "regexp (pkg)",
+   "target": "regexp/stdlib_regex.go::MustCompile",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "file imports gitleaks's own `.../v8/regexp` wrapper package (not stdlib), which declares `MustCompile` at stdlib_regex.go:13"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "config/config_test.go",
+   "line": 258,
+   "source_line": "regexp.MustCompile(\"AKIALALEMEL33243OLIA\")",
+   "receiver": "regexp (pkg)",
+   "target": "regexp/stdlib_regex.go::MustCompile",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same repo-owned `regexp` wrapper, imported explicitly"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "config/config_test.go",
+   "line": 543,
+   "source_line": "Regex: regexp.MustCompile(\\`(?i)aws_...\\`)",
+   "receiver": "regexp (pkg)",
+   "target": "regexp/stdlib_regex.go::MustCompile",
+   "origin": "package_alias",
+   "verdict": "correct",
+   "reason": "same as #27"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "detect/detect_test.go",
+   "line": 2088,
+   "source_line": "cfg, _ := vc.Translate()",
+   "receiver": "vc (config.ViperConfig)",
+   "target": "config/config.go::ViperConfig::Translate",
+   "origin": "receiver_typed_import",
+   "verdict": "correct",
+   "reason": "var vc config.ViperConfig` declared just above; method at config.go:109"
+  },
+  {
+   "repo": "gitleaks",
+   "file": "sources/git.go",
+   "line": 66,
+   "source_line": "return NewGitLogCmdContext(context.Background(), source, logOpts)",
+   "receiver": "—",
+   "target": "sources/git.go::NewGitLogCmdContext",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "called from `NewGitLogCmd` (git.go:65) into sibling func at git.go:71"
+  }
+ ]
+}

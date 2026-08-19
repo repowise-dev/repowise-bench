@@ -1,0 +1,289 @@
+{
+ "experiment": "G1",
+ "language": "swift",
+ "side": "ours",
+ "arm": "repowise",
+ "repositories": [
+  "Alamofire"
+ ],
+ "repowise_commit": "58576af0",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 23,
+  "wrong": 6,
+  "ambiguous": 1
+ },
+ "rows": [
+  {
+   "repo": "Alamofire",
+   "file": "Example/Source/DetailViewController.swift",
+   "line": 159,
+   "target": "Sections",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 159 is `switch Sections(rawValue: indexPath.section)!`, an enum init call; DetailViewController.swift:29 declares `enum Sections: Int` nested in DetailViewController."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Core/Request.swift",
+   "line": 419,
+   "target": "didCancelTask",
+   "origin": "self_scope",
+   "verdict": "correct",
+   "reason": "line 419 is `underlyingQueue.async { self.didCancelTask(task) }`; `func didCancelTask(_ task:)` is declared at Request.swift:470."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/Concurrency.swift",
+   "line": 444,
+   "target": "serializingDownload",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 444 calls `serializingDownload(using:automaticallyCancelling:)` inside `DownloadRequest.serializingData`; matching overloads of `serializingDownload` are declared on DownloadRequest at lines 528/549 of the same file."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/ServerTrustEvaluation.swift",
+   "line": 477,
+   "target": "Data",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "line 477 is `Data(contentsOf: URL(fileURLWithPath: path))`, Foundation's Data initializer; resolved_to points at `Tests/TestHelpers.swift::Data`, which is only `extension Data { var asString; func asJSONObject() }` -- no initializer at all, and it's an unrelated test-only extension, not the type actually invoked."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/URLEncodedFormEncoder.swift",
+   "line": 719,
+   "target": "_encodeIfPresent",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 719 `try _encodeIfPresent(value, forKey: key)` inside `encodeIfPresent(_:Int?...)`; `_encodeIfPresent<Value>` is declared in the same KeyedContainer at line 754."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Source/Features/Validation.swift",
+   "line": 114,
+   "target": "MIMEType",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 114 `MIMEType(contentType)` inside `Request.validate(contentType:response:)`; `struct MIMEType` is nested in the same `extension Request` at line 35."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/AuthenticationInterceptorTests.swift",
+   "line": 272,
+   "target": "stored",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 272 `stored(Session())` inside `AuthenticationInterceptorTestCase: BaseTestCase`; `func stored(_ session:)` is declared on BaseTestCase.swift:108 and is inherited."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CacheTests.swift",
+   "line": 202,
+   "target": "requests",
+   "origin": "same_file",
+   "verdict": "wrong",
+   "reason": "line 202 `requests[.noStore]!` is a dictionary subscript read on the `var requests: [CacheControl: URLRequest]` property (CacheTests.swift:60) -- it is not a call at all, even though `requests` names the right property."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CachedResponseHandlerTests.swift",
+   "line": 35,
+   "target": "session",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 35 `session()` calls the private helper `func session(using: ... = nil) -> Session` declared at line 201 of the same file."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/CombineTests.swift",
+   "line": 1154,
+   "target": "stored",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 1154 `stored(Session())` inside `DownloadRequestCombineTests: CombineTestCase`, and `CombineTestCase: BaseTestCase` (CombineTests.swift:1506), so `stored` resolves to the inherited BaseTestCase method."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/DownloadTests.swift",
+   "line": 326,
+   "target": "stored",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 326 `stored(Session())` inside `DownloadResponseTests: BaseTestCase` (DownloadTests.swift:77), resolving to BaseTestCase.stored."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/NetworkReachabilityManagerTests.swift",
+   "line": 293,
+   "target": "NetworkReachabilityStatus",
+   "origin": "receiver_global",
+   "verdict": "correct",
+   "reason": "line 293 `NetworkReachabilityManager.NetworkReachabilityStatus(flags)` is a nested-enum init call; `enum NetworkReachabilityStatus` with `init(_ flags:)` is declared inside NetworkReachabilityManager at lines 43/51."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ParameterEncoderTests.swift",
+   "line": 1033,
+   "target": "encode",
+   "origin": "receiver_typed_global",
+   "verdict": "correct",
+   "reason": "line 1033 `encoder.encode(parameters)` where `encoder` is a locally declared `URLEncodedFormEncoder()`; matching `func encode(_ value: any Encodable) throws -> String` is declared on that class at line 450."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ParameterEncodingTests.swift",
+   "line": 252,
+   "target": "URLEncoding",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 252 `URLEncoding(boolEncoding: .literal)` is a struct init call; `public struct URLEncoding: ParameterEncoding` is declared at ParameterEncoding.swift:59."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestInterceptorTests.swift",
+   "line": 364,
+   "target": "Interceptor",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 364 `Interceptor(adapters: [...])` is a class init call; `open class Interceptor` is declared at RequestInterceptor.swift:221."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestInterceptorTests.swift",
+   "line": 683,
+   "target": "onAdaptation",
+   "origin": "same_file",
+   "verdict": "ambiguous",
+   "reason": "line 683 `onAdaptation?(result)` invokes a local closure-typed variable captured from `state.write { ... return state.onAdaptation }`; resolved_to names the originating `State.onAdaptation` closure property, but the actual code executed depends on whichever closure the enclosing InspectorInterceptor was constructed with, which is not visible statically at this site."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestTests.swift",
+   "line": 1503,
+   "target": "request",
+   "origin": "receiver_typed_global",
+   "verdict": "correct",
+   "reason": "line 1503 `session.request(.get)` chained on a locally declared `Session()`; matching `open func request(...)` overloads are declared on Session.swift:318/393."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestTests.swift",
+   "line": 1657,
+   "target": "retries",
+   "origin": "receiver_typed_global",
+   "verdict": "wrong",
+   "reason": "line 1657 `sessionRetrier.retries[0].date` is a property access + subscript on the computed `var retries: [Retry]` (RequestInterceptorTests.swift:661), not a call, even though `retries` is the right declaration name."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/RequestTests.swift",
+   "line": 1664,
+   "target": "InspectorEventMonitor",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 1664 `InspectorEventMonitor(queue: queue)` is a class init call; `final class InspectorEventMonitor: EventMonitor` is declared at InspectorEventMonitor.swift:28."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseSerializationTests.swift",
+   "line": 483,
+   "target": "consumeDownloadResponseSerializer",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 483 `consumeDownloadResponseSerializer(.url)` matches `func consumeDownloadResponseSerializer<Serializer: DownloadResponseSerializerProtocol>(_:)` declared at line 469 of the same file."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseSerializationTests.swift",
+   "line": 522,
+   "target": "URLResponseSerializer",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 522 `URLResponseSerializer()` is a struct init call; `public struct URLResponseSerializer: DownloadResponseSerializerProtocol` is declared at ResponseSerialization.swift:182."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseSerializationTests.swift",
+   "line": 753,
+   "target": "HTTPURLResponse",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 753 `HTTPURLResponse(statusCode: 204)` matches the file-local `extension HTTPURLResponse { convenience init(statusCode:headers:) }` at line 1402/1403 of the same file."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseSerializationTests.swift",
+   "line": 791,
+   "target": "url",
+   "origin": "same_file",
+   "verdict": "wrong",
+   "reason": "line 791 is `url(forResource: \"empty_string\", withExtension: \"txt\")`, calling BaseTestCase's `func url(forResource:withExtension:)` (inherited); resolved_to instead points at `let url = Endpoint().url`, a local variable name inside the unrelated `HTTPURLResponse.init(statusCode:headers:)` extension in the same file -- a name collision, not the real target."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ResponseSerializationTests.swift",
+   "line": 886,
+   "target": "HTTPURLResponse",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "line 886 `HTTPURLResponse(statusCode: 205)`, same file-local convenience init as row for line 753."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/ServerTrustEvaluatorTests.swift",
+   "line": 103,
+   "target": "trustWithCertificates",
+   "origin": "receiver_same_file",
+   "verdict": "correct",
+   "reason": "line 103 `TestTrusts.trustWithCertificates([...])`; `static func trustWithCertificates(_:)` is declared on `private enum TestTrusts` at line 128 of the same file."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/SessionDelegateTests.swift",
+   "line": 43,
+   "target": "request",
+   "origin": "receiver_typed_global",
+   "verdict": "correct",
+   "reason": "line 43 `session.request(.redirectTo(...))` on a locally declared `Session(configuration: .ephemeral)`; matches Session.request declared in Session.swift."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/SessionTests.swift",
+   "line": 993,
+   "target": "download",
+   "origin": "receiver_typed_global",
+   "verdict": "correct",
+   "reason": "line 993 `session.download(.basicAuth(), interceptor:to:)` where `session` is `Alamofire.Session`; matches the `extension Session { func download(...) }` overloads declared at TestHelpers.swift:355+."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/TLSEvaluationTests.swift",
+   "line": 552,
+   "target": "DisabledTrustEvaluator",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "line 552 `DisabledTrustEvaluator()` is a class init call; `public final class DisabledTrustEvaluator: ServerTrustEvaluating` is declared at ServerTrustEvaluation.swift:443."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 447,
+   "target": "Data",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "line 447 `Data(String(repeating: ..., count: ...).utf8)` is Foundation's Data initializer; resolved_to again points at `Tests/TestHelpers.swift::Data`, an extension with no initializer -- same wrong pattern as line 477 of ServerTrustEvaluation.swift."
+  },
+  {
+   "repo": "Alamofire",
+   "file": "Tests/UploadTests.swift",
+   "line": 629,
+   "target": "Data",
+   "origin": "global_unique",
+   "verdict": "wrong",
+   "reason": "line 629 `Data(\"français\".utf8)`, same Foundation Data init mis-resolved to the unrelated Tests/TestHelpers.swift `extension Data` block."
+  }
+ ]
+}

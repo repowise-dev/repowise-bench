@@ -1,0 +1,530 @@
+{
+ "experiment": "G1",
+ "language": "cpp",
+ "side": "codegraph",
+ "arm": "CodeGraph 1.5.0",
+ "repositories": [
+  "fmt",
+  "Crow",
+  "leveldb",
+  "seastar",
+  "aria2"
+ ],
+ "repowise_commit": "13cc339a",
+ "seed": 2026,
+ "pooled_cell": {
+  "n": 30,
+  "correct": 16,
+  "wrong": 13,
+  "ambiguous": 1
+ },
+ "depth_read": {
+  "n": 50,
+  "correct": 27,
+  "wrong": 20,
+  "ambiguous": 3
+ },
+ "note": "Graded at 10 rows per repository, 50 in total. The pooled cross-language cell is the seeded 6 of each 10 flagged in_pooled_30, drawn with random.Random(2026).sample(range(10), 6) per repository, so C++ carries the same 30 rows every other language carries.",
+ "rows": [
+  {
+   "repo": "fmt",
+   "file": "include/fmt/format.h",
+   "line": 1942,
+   "target": "detail::digit_grouping::next",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "apply() and next() are both members of the same class template digit_grouping<Char> (include/fmt/format.h:1894-1946); next(state) inside apply() correctly resolves to digit_grouping::next at line 1907.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "include/fmt/format.h",
+   "line": 2626,
+   "target": "detail::reserve",
+   "origin": "exact-match",
+   "verdict": "ambiguous",
+   "reason": "detail::reserve is overloaded three times in format.h (lines 479, 488, 496) selected by SFINAE on the OutputIt template parameter; which overload do_write_float's reserve(out, usize) binds to depends on the concrete type OutputIt is instantiated with, which is not fixed at this call site.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/chrono-test.cc",
+   "line": 912,
+   "target": "fmt::formatter::format",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "fmt::format(\"{:%OI,...}\", d) is the library's free-function template in fmt/format.h; the tool bound it to fmt::formatter<incomplete_type>::format, a member function defined in the unrelated test/format-test.cc:2638 that chrono-test.cc does not even include.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/format-test.cc",
+   "line": 1144,
+   "target": "testing::Contains",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "reason": "testing::Contains(fmt::format(...)) matches the template testing::Contains(M matcher) declared at test/gtest/gmock/gmock.h:7506, which is included via gtest-extra.h/gmock.h.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock-gtest-all.cc",
+   "line": 5800,
+   "target": "testing::internal::XmlUnitTestResultPrinter::OutputXmlAttribute",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "PrintXmlTestSuite is defined as XmlUnitTestResultPrinter::PrintXmlTestSuite (gmock-gtest-all.cc:5782); its OutputXmlAttribute(...) call at line 5800 correctly resolves to the same class's OutputXmlAttribute at line 5635.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock-gtest-all.cc",
+   "line": 7531,
+   "target": "testing::TestSuite::test_info_list",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "test_suite is a non-const TestSuite* from iterating test_suites_ (a vector<TestSuite*>); test_suite->test_info_list() resolves to the non-const overload TestSuite::test_info_list at gtest.h:10832.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock/gmock.h",
+   "line": 3306,
+   "target": "testing::internal::AnythingMatcher::DescribeTo",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "source_matcher_ is of type Matcher<U> (gmock.h:3267-3306); calling .DescribeTo(os) on it invokes Matcher<U>::DescribeTo (gmock.h:2724, which forwards via impl_->DescribeTo()), not AnythingMatcher::DescribeTo -- AnythingMatcher is just one of many possible MatcherInterface implementations reachable only through that virtual forward.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "fmt",
+   "file": "test/gtest/gmock/gmock.h",
+   "line": 5761,
+   "target": "testing::internal::AnythingMatcher::DescribeTo",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "first_matcher_ is a Matcher<FirstType> member of PairMatcherImpl (gmock.h:3742-3765); first_matcher_.DescribeTo(os) invokes Matcher<FirstType>::DescribeTo (gmock.h:2724), not AnythingMatcher::DescribeTo, which is an unrelated concrete matcher implementation only reachable via virtual dispatch.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/os-test.cc",
+   "line": 554,
+   "target": "test::fdopen",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "pipe.write_end is an fmt::file (include/fmt/os.h); .fdopen(\"w\") calls fmt::file::fdopen declared at os.h:295. The tool bound it to test::fdopen, an unrelated mock free function defined in test/posix-mock-test.cc, a file os-test.cc does not include.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "fmt",
+   "file": "test/printf-test.cc",
+   "line": 100,
+   "target": "<anonymous>::format",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "printf-test.cc has `using fmt::format;` (line 17), so format(...) is fmt::format; the tool bound it to an unrelated formatter<custom_type>::format member in an anonymous namespace of test/args-test.cc, a file printf-test.cc does not include.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/http_connection.h",
+   "line": 158,
+   "target": "crow::SocketAdaptor::get_io_context",
+   "origin": "instance-method",
+   "verdict": "ambiguous",
+   "reason": "http_connection.h:158 adaptor_.get_io_context() is called on a template parameter 'Adaptor adaptor_' (line 514); socket_adaptors.h defines get_io_context() identically at lines 46, 119 and 253 (SocketAdaptor and other adaptor types), so which one is invoked depends on the template instantiation and cannot be determined from this source alone.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/http_request.h",
+   "line": 97,
+   "target": "crow::query_string::query_string",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "http_request.h:97 query_string(body, false) passes 2 args, matching the (std::string, bool) constructor at query_string.h:345, but the tool resolved to the 0-arg default constructor 'query_string() = default;' at line 310 -- wrong overload.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/json.h",
+   "line": 1432,
+   "target": "crow::json::rvalue::emplace_back",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "json.h:1432 l->emplace_back(*it) calls emplace_back on l, a std::unique_ptr<list> where 'using list = std::vector<wvalue>' (json.h:1303) -- this is std::vector::emplace_back, not crow::json::rvalue::emplace_back (which takes rvalue&&, an unrelated class).",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/middlewares/cors.h",
+   "line": 51,
+   "target": "crow::CORSRules::headers",
+   "origin": "exact-match",
+   "verdict": "ambiguous",
+   "reason": "cors.h:51 headers(header_list...) is the variadic-template recursive tail call inside CORSRules::headers itself; depending on how many args remain in the pack it binds either to the single-arg overload at line 40 or recurses into the same variadic overload at line 48 that the tool chose -- genuinely template-arity-dependent.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/routing.h",
+   "line": 1091,
+   "target": "crow::json::detail::r_string::size",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "routing.h:1091 x.name.size() -- 'name' is declared 'std::string name;' (routing.h:1069), so this is std::string::size(), not the unrelated crow::json::detail::r_string::size at json.h:168.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/routing.h",
+   "line": 1362,
+   "target": "DynamicRule::Blueprint::prefix",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "routing.h:1362 blueprints[BP_index]->prefix() operates on std::vector<Blueprint*>& blueprints (parameter declared at routing.h:1346), so this calls Blueprint::prefix() at routing.h:1206 -- the resolved line is exactly right even though the printed qualifier 'DynamicRule::Blueprint' misnames the enclosing scope (Blueprint is actually a top-level class at line 1149).",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "include/crow/websocket.h",
+   "line": 622,
+   "target": "crow::websocket::Connection::opcode",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "websocket.h:622 switch(opcode()) is an unqualified 0-arg call inside Connection::handle_fragment; Connection::opcode() at websocket.h:604 is the only such member and matches exactly.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unit_tests/test_utility.cpp",
+   "line": 29,
+   "target": "crow::utility::base64encode",
+   "origin": "qualified-name",
+   "verdict": "wrong",
+   "reason": "test_utility.cpp:29 crow::utility::base64encode(sample_text, sample_text.length()) passes a std::string first arg, matching the (std::string, size_t, ...) overload at utility.h:596, but the tool resolved to the (const unsigned char*, size_t, ...) overload at utility.h:560 -- wrong overload.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unit_tests/test_websocket.cpp",
+   "line": 588,
+   "target": "HttpClient::receive",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "test_websocket.cpp:588 c.receive(asio::buffer(buf,2048)) -- c is declared 'asio::ip::tcp::socket c(ic);' (line 576), so this is asio's socket::receive, not the unrelated HttpClient::receive() in unittest.cpp.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "Crow",
+   "file": "tests/unittest.cpp",
+   "line": 330,
+   "target": "crow::request::add_header",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "unittest.cpp:330 req.add_header(\"TestHeader\",\"Value\") where req is 'request req;' (crow::request, line 326); matches crow::request::add_header(std::string,std::string) at http_request.h:74 exactly.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/db_impl.cc",
+   "line": 108,
+   "target": "leveldb::FaultInjectionTestEnv::RenameFile",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "src.env->RenameFile(...) at db/db_impl.cc:108 is a virtual call through Env* (src.env), which should bind to the base virtual leveldb::Env::RenameFile declared include/leveldb/env.h:168; the tool instead points to an unrelated derived test double, leveldb::FaultInjectionTestEnv::RenameFile in db/fault_injection_test.cc:310, which db_impl.cc does not even include.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/db_impl.cc",
+   "line": 872,
+   "target": "leveldb::Compaction::level",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "compact->compaction->level() at db/db_impl.cc:872 calls level() on a Compaction* (db_impl.cc:71 declares 'Compaction* const compaction'), matching leveldb::Compaction::level() at db/version_set.h:325.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/db_test.cc",
+   "line": 2335,
+   "target": "leveldb::WriteOptions::WriteOptions",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "WriteOptions() at db_test.cc:2335 correctly resolves to the WriteOptions() = default constructor declared include/leveldb/options.h:169.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/fault_injection_test.cc",
+   "line": 468,
+   "target": "leveldb::SkipList::Iterator::key",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "iter->key() at db/fault_injection_test.cc:468 is called on an Iterator* obtained from db_->NewIterator(ReadOptions()) (line 466), i.e. the public leveldb::Iterator interface (virtual Slice key() const = 0 at include/leveldb/iterator.h:64), not the internal template class SkipList<Key,Comparator>::Iterator that the tool resolved to (db/skiplist.h:199).",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/version_set.cc",
+   "line": 287,
+   "target": "leveldb::Slice::size",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "files_[0].size() at db/version_set.cc:287 calls std::vector<FileMetaData*>::size() (files_ is declared 'std::vector<FileMetaData*> files_[config::kNumLevels]' at db/version_set.h:154), but the tool bound it to the repo's own leveldb::Slice::size() at include/leveldb/slice.h:49.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "db/version_set.cc",
+   "line": 724,
+   "target": "leveldb_comparator_t::Compare",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "vset_->icmp_.Compare(...) at db/version_set.cc:724 is called on an InternalKeyComparator with InternalKey arguments, matching InternalKeyComparator::Compare(const InternalKey&, const InternalKey&) at db/dbformat.h:116; the tool instead resolved to the unrelated C-API wrapper leveldb_comparator_t::Compare in db/c.cc:92, which db/version_set.cc does not include.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "table/table_test.cc",
+   "line": 191,
+   "target": "leveldb::Slice::ToString",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "builder.Finish().ToString() at table/table_test.cc:191: BlockBuilder::Finish() returns Slice (table/block_builder.h:34), so .ToString() correctly resolves to leveldb::Slice::ToString at include/leveldb/slice.h:78.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "leveldb",
+   "file": "table/table_test.cc",
+   "line": 656,
+   "target": "leveldb::Constructor::Add",
+   "origin": "exact-match",
+   "verdict": "wrong",
+   "reason": "Add(\"abc\",\"v\") at table/table_test.cc:656 is called with no receiver inside TEST_F(Harness, ...), so it invokes Harness::Add (table_test.cc:441-442), which itself forwards to constructor_->Add(...); the tool skipped the wrapper and pointed straight at leveldb::Constructor::Add (table_test.cc:145), a different class.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "table/table_test.cc",
+   "line": 739,
+   "target": "leveldb::SkipList::Iterator::Valid",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "iter->Valid() at table/table_test.cc:739 is called on an Iterator* from memtable->NewIterator() (line 737), i.e. the public leveldb::Iterator interface (virtual bool Valid() const = 0 at include/leveldb/iterator.h:35), not the internal SkipList<Key,Comparator>::Iterator::Valid the tool resolved to (db/skiplist.h:194).",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "leveldb",
+   "file": "util/env_test.cc",
+   "line": 64,
+   "target": "leveldb::Slice::size",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "read.size() at util/env_test.cc:64 is called on a Slice named 'read' populated by sequential_file->Read(len, &read, &scratch[0]); correctly resolves to leveldb::Slice::size at include/leveldb/slice.h:49.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "demos/rpc_demo.cc",
+   "line": 267,
+   "target": "seastar::internal::task_histogram::print",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "fmt::print(...) at rpc_demo.cc:267 is the fmt library call; resolved instead to seastar::internal::task_histogram::print (reactor.cc:620), an unrelated member function.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "src/core/memory.cc",
+   "line": 2075,
+   "target": "seastar::memory::to_hr_size",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "to_hr_size(1ull << 60) at memory.cc:2075 matches the same-file static constexpr function to_hr_size at memory.cc:2064.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "src/core/reactor.cc",
+   "line": 3057,
+   "target": "seastar::internal::try_systemwide_memory_barrier",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "reason": "internal::try_systemwide_memory_barrier() at reactor.cc:3057 is an explicitly qualified call matching seastar::internal::try_systemwide_memory_barrier defined in systemwide_memory_barrier.cc:122.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "src/net/tls_gnutls.cc",
+   "line": 935,
+   "target": "seastar::tls::session::handshake",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "handshake() at tls_gnutls.cc:935 is called with no receiver inside session::put (session class spans lines 476-1365, put at line 923, both inside the same class), matching session::handshake at tls_gnutls.cc:689.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/file_utils_test.cc",
+   "line": 247,
+   "target": "seastar::set_default_tmpdir",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "set_default_tmpdir(outer_path.c_str()) at file_utils_test.cc:247 matches the free function seastar::set_default_tmpdir defined at tmp_file.cc:74.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/fstream_test.cc",
+   "line": 298,
+   "target": "seastar::make_file_output_stream",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "make_file_output_stream(f) at fstream_test.cc:298 is a single-argument call matching the one-arg overload seastar::make_file_output_stream(file, size_t) at fstream.cc:521, which is distinct from but correctly selected over the two-arg options overload.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/scheduling_group_test.cc",
+   "line": 139,
+   "target": "rpc_test_env::invoke_on_all",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "smp::invoke_on_all(...) at scheduling_group_test.cc:139 is explicitly qualified to the smp class/namespace, but resolved to rpc_test_env::invoke_on_all in an unrelated test file (rpc_test.cc:307), a different class entirely.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/socket_test.cc",
+   "line": 151,
+   "target": "seastar::internal::task_histogram::print",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "fmt::print(\"Client: server eof\\n\") at socket_test.cc:151 is the fmt library call; resolved instead to seastar::internal::task_histogram::print (reactor.cc:620), an unrelated member function.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/tls_test.cc",
+   "line": 847,
+   "target": "run_echo_test",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "run_echo_test(...) at tls_test.cc:847 matches the same-file static function run_echo_test declared at tls_test.cc:632.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "seastar",
+   "file": "tests/unit/tls_test.cc",
+   "line": 2117,
+   "target": "fmt::formatter::format",
+   "origin": "instance-method",
+   "verdict": "wrong",
+   "reason": "fmt::format(\"Did {} loops\", i) at tls_test.cc:2117 is the fmt library free function producing a string; resolved instead to fmt::formatter<seastar::tls::openssl_session>::format (tls_openssl.cc:2359), an unrelated formatter specialization's method in a different file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/DefaultBtMessageDispatcher.cc",
+   "line": 94,
+   "target": "aria2::RequestGroup::doesUploadSpeedExceed",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "downloadContext_->getOwnerRequestGroup() returns RequestGroup* (DownloadContext.h:175), so ->doesUploadSpeedExceed() correctly binds to RequestGroup::doesUploadSpeedExceed at RequestGroup.cc:1285.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "src/DownloadEngine.cc",
+   "line": 321,
+   "target": "aria2::DownloadEngine::SocketPoolEntry::isTimeout",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "elem.second in the loop over socketPool_ (std::multimap<std::string, SocketPoolEntry>, DownloadEngine.h:123) is a SocketPoolEntry, so isTimeout() correctly binds to DownloadEngine::SocketPoolEntry::isTimeout at DownloadEngine.cc:524.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "src/MultiDiskAdaptor.cc",
+   "line": 485,
+   "target": "aria2::FileEntry::isRequested",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "fe in for(auto& fe : getFileEntries()) is a FileEntry pointer, so isRequested() correctly binds to FileEntry::isRequested at FileEntry.h:132.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "src/TimeA2.cc",
+   "line": 106,
+   "target": "aria2::Time::parse",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "parse(...) called unqualified inside Time::parseRFC850 correctly binds to the sibling static method Time::parse in the same class, TimeA2.cc:77.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "test/HttpHeaderTest.cc",
+   "line": 109,
+   "target": "aria2::HttpHeader::put",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "httpHeader.put(...) at HttpHeaderTest.cc:109 with httpHeader declared as HttpHeader correctly binds to HttpHeader::put at HttpHeader.cc:48.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/HttpResponseTest.cc",
+   "line": 243,
+   "target": "aria2::HttpHeader::setStatusCode",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "httpResponse.getHttpHeader()->setStatusCode(305) resolves through getHttpHeader() (HttpResponse.h:107, returns unique_ptr<HttpHeader>) to HttpHeader::setStatusCode at HttpHeader.cc:180.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/LongestSequencePieceSelectorTest.cc",
+   "line": 32,
+   "target": "aria2::BitfieldMan::setBit",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "bf.setBit(A[i]) with bf declared as BitfieldMan correctly binds to BitfieldMan::setBit at BitfieldMan.cc:586.",
+   "in_pooled_30": false
+  },
+  {
+   "repo": "aria2",
+   "file": "test/RpcMethodTest.cc",
+   "line": 303,
+   "target": "aria2::Integer::g",
+   "origin": "qualified-name",
+   "verdict": "correct",
+   "reason": "Integer::g(0) is an explicitly qualified static factory call matching the single-int-arg overload declared in ValueBase.h:140 and defined at ValueBase.cc:87.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/RpcMethodTest.cc",
+   "line": 1257,
+   "target": "aria2::rpc::createChangeUriEmptyReq",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "createChangeUriEmptyReq(...) at RpcMethodTest.cc:1257 is the file-local anonymous-namespace helper defined at line 1213 in the same file.",
+   "in_pooled_30": true
+  },
+  {
+   "repo": "aria2",
+   "file": "test/UTMetadataRequestExtensionMessageTest.cc",
+   "line": 43,
+   "target": "aria2::make_unique",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "make_unique<MockBtMessageDispatcher>() at line 43 resolves to aria2::make_unique template in a2functional.h:156, the standard project-wide C++11 polyfill used throughout the codebase.",
+   "in_pooled_30": true
+  }
+ ]
+}
