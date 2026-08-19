@@ -46,7 +46,8 @@ score above us here, and both do it by drawing far less of the graph. On cobra,
 code-review-graph is the most precise arm on the page at 0.997, from **360 edges
 against our 1,455**, and it recovers 17% of the call graph where we recover 68%.
 On gitleaks, Graphify takes both cells at 0.995 and above, from a graph that
-misses about one edge in eight that we find.
+finds 89% of the calls where we find 95%. That is the narrowest of these trades
+and the one worth taking seriously: Graphify is not a vacuous arm on gitleaks.
 
 Precision on its own is as gameable as coverage on its own, in the opposite
 direction. A tool that resolves one call and gets it right scores 1.000. That is

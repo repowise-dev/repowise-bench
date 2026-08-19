@@ -164,7 +164,8 @@ Of the call edges each tool emits, the share the compiler confirms:
 
 **Two arms beat us on precision and both draw a much smaller graph.** On cobra,
 code-review-graph scores 0.997 from 360 edges against our 1,455, recovering 17%
-of the call graph to our 68%. Graphify takes both gitleaks cells the same way.
+of the call graph to our 68%. Graphify takes both gitleaks cells by a
+narrower version of the same trade, at 89% recall against our 95%.
 Precision on its own is exactly as gameable as coverage on its own, in the
 opposite direction: resolve one call correctly and you score 1.000.
 
