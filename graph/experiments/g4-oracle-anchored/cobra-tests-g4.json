@@ -1,0 +1,161 @@
+{
+  "oracle": {
+    "_header": true,
+    "algorithm": "rta",
+    "analysed_file_count": 35,
+    "go_version": "",
+    "load_errors": 0,
+    "oracle": "golang.org/x/tools/go/callgraph/rta",
+    "repo": "C:/Users/ragha/Desktop/repowise/test-repos/cobra",
+    "root_count": 4,
+    "roots": [
+      "github.com/spf13/cobra/doc.test",
+      "github.com/spf13/cobra.test"
+    ],
+    "tests": true
+  },
+  "repo": "cobra",
+  "arms": {
+    "repowise": {
+      "version": "13cc339a",
+      "edges_in_scope": 1455,
+      "oracle_edges": 2150,
+      "matched": 1289,
+      "recall": 0.5995,
+      "recall_ci": [
+        0.5787,
+        0.6201
+      ],
+      "outside_oracle": 166,
+      "outside_share": 0.1141,
+      "contradicted": 160,
+      "unjudged": 6,
+      "precision_vs_oracle": 0.8896,
+      "precision_ci": [
+        0.8724,
+        0.9047
+      ],
+      "unjudged_share": 0.0041,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1289
+        ],
+        [
+          "(1, 0)",
+          21
+        ],
+        [
+          "no_file_pair",
+          18
+        ],
+        [
+          "(3, 0)",
+          15
+        ],
+        [
+          "(11, 0)",
+          10
+        ],
+        [
+          "(5, 0)",
+          7
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 1699,
+      "oracle_edges": 2150,
+      "matched": 1441,
+      "recall": 0.6702,
+      "recall_ci": [
+        0.6501,
+        0.6898
+      ],
+      "outside_oracle": 258,
+      "outside_share": 0.1519,
+      "contradicted": 251,
+      "unjudged": 7,
+      "precision_vs_oracle": 0.8517,
+      "precision_ci": [
+        0.8339,
+        0.8678
+      ],
+      "unjudged_share": 0.0041,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1441
+        ],
+        [
+          "no_file_pair",
+          51
+        ],
+        [
+          "(1, 0)",
+          21
+        ],
+        [
+          "(11, 0)",
+          15
+        ],
+        [
+          "(3, 0)",
+          15
+        ],
+        [
+          "(5, 0)",
+          7
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 1684,
+      "oracle_edges": 2150,
+      "matched": 1398,
+      "recall": 0.6502,
+      "recall_ci": [
+        0.6298,
+        0.6701
+      ],
+      "outside_oracle": 286,
+      "outside_share": 0.1698,
+      "contradicted": 279,
+      "unjudged": 7,
+      "precision_vs_oracle": 0.8336,
+      "precision_ci": [
+        0.815,
+        0.8507
+      ],
+      "unjudged_share": 0.0042,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1398
+        ],
+        [
+          "no_file_pair",
+          55
+        ],
+        [
+          "(1, 0)",
+          21
+        ],
+        [
+          "(3, 0)",
+          16
+        ],
+        [
+          "(11, 0)",
+          14
+        ],
+        [
+          "(5, 0)",
+          7
+        ]
+      ]
+    }
+  }
+}

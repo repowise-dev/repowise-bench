@@ -153,3 +153,38 @@ mcp_configs/
 # artifact (repo precedent); per-run transcripts under logs/ stay local.
 !/results/context_bench/
 !/results/context_bench/**
+
+# Per-arm MCP configs written under a results/ run directory. These carry a live
+# OPENAI_API_KEY in their `env` block, the same hazard as /mcp_configs/ above,
+# and the `!/results/bakeoff_2026_08/**` un-ignore would otherwise pull them in.
+/results/**/arms/
+/results/**/arms-s2/
+
+# Per-session agent stream transcripts. 43 MB for the session-cost cells alone,
+# and nothing is graded on them: the graded artifacts are sessions*.jsonl and the
+# gate_post__* scores beside them. Same rule as the **/logs/ exclusion above.
+/results/**/_status_*/
+
+# Ad-hoc overnight run logs dropped at the repo root.
+/logs_*.log
+
+# Graph-quality results. Small JSON aggregates that graph/ cites by path, so
+# they have to be in the repo a skeptic clones.
+!/results/graph/
+!/results/graph/**
+
+# Graph-quality scratch: per-run repo copies, multi-GB, always regenerable.
+/scratch_graph/
+
+# Prebuilt competitor artifacts (graph/lib/artifact_cache.py). Rebuildable from
+# corpus.lock by graph/experiments/prebuild_artifacts.py, and already 716 MB
+# part-way through one sweep -- an index is evidence only while it sits beside
+# the tool version and pin that produced it, both of which are in meta.json.
+/artifacts/
+
+# G4 oracle outputs. Regenerable by anyone with the Go toolchain, which is the
+# whole claim of the experiment, and large: syft with tests is 186 MB of JSONL
+# on its own. The per-cell `*-g4.json` summaries ARE committed, so a reader gets
+# every published rate without the raw answer key.
+/graph/experiments/g4-oracle-anchored/*.jsonl
+/graph/experiments/g4-oracle-anchored/oracle/oracle.exe

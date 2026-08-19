@@ -1,0 +1,118 @@
+{
+  "provenance": {
+    "experiment": "g6-build-cost",
+    "run_at": "2026-08-18T04:35:46+00:00",
+    "publishable": false,
+    "repowise": {
+      "path": "C:\\Users\\ragha\\Desktop\\repowise",
+      "head": "8848c456c2d2827c4bad25d39ee1fbaddd204b30",
+      "head_short": "8848c456",
+      "branch": "feat/python-task-receiver",
+      "describe": "vscode-v0.8.0-61-g8848c456",
+      "dirty": true,
+      "dirty_paths": [
+        "packages/core/src/repowise/core/ingestion/call_resolver.py",
+        "packages/core/src/repowise/core/ingestion/languages/receiver_types.py",
+        "packages/core/src/repowise/core/ingestion/models.py",
+        "packages/types/src/graph.ts",
+        "packages/ui/__tests__/graph/edge-provenance.test.ts",
+        "packages/ui/src/graph/edge-provenance.ts"
+      ],
+      "dirty_scope": [
+        "packages"
+      ]
+    },
+    "bench": {
+      "path": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench",
+      "head": "01b8bce4efc3d23d831d1238a933e2f2159edc93",
+      "head_short": "01b8bce",
+      "branch": "bench/graph-quality",
+      "describe": "01b8bce",
+      "dirty": true,
+      "dirty_paths": [
+        "graph/experiments/g2-cross-file-coverage/run_ours.py",
+        "graph/experiments/g5-invariance/mutate.py",
+        "graph/experiments/g6-build-cost/",
+        "graph/lib/ours.py",
+        "graph/lib/procmeter.py",
+        "graph/lib/provenance.py",
+        "graph/smoke.py"
+      ],
+      "dirty_scope": null
+    },
+    "tools": {
+      "python": "3.13.5",
+      "platform": "Windows 11",
+      "codegraph": "1.5.0"
+    },
+    "not_publishable_because": "run with --allow-dirty; the measured tree contains uncommitted changes, so this is a smoke test and not a result"
+  },
+  "repo": "gitleaks",
+  "language": "go",
+  "runs_per_arm": 3,
+  "arms": {
+    "codegraph": {
+      "arm": "codegraph",
+      "runs": [
+        {
+          "seconds": 2.244,
+          "peak_rss_mb": 710.6,
+          "index_mb": 4.98
+        },
+        {
+          "seconds": 1.948,
+          "peak_rss_mb": 709.3,
+          "index_mb": 4.98
+        },
+        {
+          "seconds": 1.888,
+          "peak_rss_mb": 710.4,
+          "index_mb": 4.98
+        }
+      ],
+      "median_seconds": 1.948,
+      "min_seconds": 1.888,
+      "max_seconds": 2.244,
+      "median_peak_rss_mb": 710.4
+    },
+    "repowise": {
+      "arm": "repowise",
+      "runs": [
+        {
+          "seconds": 2.379,
+          "phases": {
+            "walk": 1.429,
+            "parse": 0.445,
+            "build": 0.505
+          },
+          "peak_rss_mb": null,
+          "edges": 2286
+        },
+        {
+          "seconds": 2.55,
+          "phases": {
+            "walk": 1.49,
+            "parse": 0.539,
+            "build": 0.521
+          },
+          "peak_rss_mb": null,
+          "edges": 2286
+        },
+        {
+          "seconds": 2.649,
+          "phases": {
+            "walk": 1.471,
+            "parse": 0.618,
+            "build": 0.56
+          },
+          "peak_rss_mb": null,
+          "edges": 2286
+        }
+      ],
+      "median_seconds": 2.55,
+      "min_seconds": 2.379,
+      "max_seconds": 2.649,
+      "median_peak_rss_mb": null
+    }
+  }
+}

@@ -1,0 +1,3840 @@
+{
+  "schema": "graph-result/1",
+  "experiments": [
+    "g2-cross-file-coverage",
+    "g6-build-cost"
+  ],
+  "provenance": {
+    "experiment": "g2g6",
+    "run_at": "2026-08-18T06:21:40+00:00",
+    "publishable": true,
+    "repowise": {
+      "path": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean\\packages",
+      "head": "3594ba75547b8821b01e321928bda55df905fcea",
+      "head_short": "3594ba75",
+      "branch": "HEAD",
+      "describe": "vscode-v0.8.0-62-g3594ba75",
+      "dirty": false,
+      "dirty_paths": [],
+      "dirty_scope": [
+        "packages"
+      ]
+    },
+    "bench": {
+      "path": "C:\\Users\\ragha\\Desktop\\repowise\\repowise-bench",
+      "head": "29ebad85cada22a28b37cd6deb8f7ab59b9ff792",
+      "head_short": "29ebad8",
+      "branch": "bench/graph-quality",
+      "describe": "29ebad8",
+      "dirty": true,
+      "dirty_paths": [
+        "results/graph/g2g6/"
+      ],
+      "dirty_scope": null
+    },
+    "tools": {
+      "python": "3.13.5",
+      "platform": "Windows 11",
+      "codegraph": "1.5.0"
+    },
+    "warmup": true,
+    "arms_requested": [
+      "code-review-graph",
+      "codegraph",
+      "graphify",
+      "repowise",
+      "repowise-subprocess"
+    ],
+    "measured_tree": "C:\\Users\\ragha\\Desktop\\bench-worktrees\\g2clean\\packages"
+  },
+  "repos": {
+    "dub": {
+      "language": "typescript",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 4048,
+        "files_seen_per_arm": {
+          "code-review-graph": 4056,
+          "codegraph": 4065,
+          "graphify": 4105,
+          "repowise": 4147,
+          "repowise-subprocess": 4147
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 8,
+          "codegraph": 17,
+          "graphify": 57,
+          "repowise": 99,
+          "repowise-subprocess": 99
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 3202,
+          "codegraph": 3906,
+          "graphify": 4047,
+          "repowise": 3921,
+          "repowise-subprocess": 3921
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 3201,
+          "codegraph": 3903,
+          "graphify": 4041,
+          "repowise": 3919,
+          "repowise-subprocess": 3919
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 70,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "dub",
+            "seconds": 56.481,
+            "peak_rss_mb": 372.5,
+            "index_size_mb": 152.26,
+            "harness_wall_sec": 60.668,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 4056,
+            "symbol_files": 3203,
+            "symbol_files_in_language": 3202,
+            "files_in_language": 4049,
+            "call_edges_distinct": 12395
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 2799,
+              "symbol_bearing": 3202,
+              "rate": 0.8741,
+              "ci_low": 0.8622,
+              "ci_high": 0.8852
+            },
+            "all_files__any_dependency__either": {
+              "covered": 2799,
+              "symbol_bearing": 3203,
+              "rate": 0.8739,
+              "ci_low": 0.8619,
+              "ci_high": 0.8849
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 2055,
+              "symbol_bearing": 3202,
+              "rate": 0.6418,
+              "ci_low": 0.625,
+              "ci_high": 0.6582
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 2055,
+              "symbol_bearing": 3203,
+              "rate": 0.6416,
+              "ci_low": 0.6248,
+              "ci_high": 0.658
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 2368,
+              "symbol_bearing": 3202,
+              "rate": 0.7395,
+              "ci_low": 0.7241,
+              "ci_high": 0.7544
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 2368,
+              "symbol_bearing": 3203,
+              "rate": 0.7393,
+              "ci_low": 0.7238,
+              "ci_high": 0.7542
+            },
+            "primary_language__calls_only__either": {
+              "covered": 2621,
+              "symbol_bearing": 3202,
+              "rate": 0.8186,
+              "ci_low": 0.8048,
+              "ci_high": 0.8315
+            },
+            "all_files__calls_only__either": {
+              "covered": 2621,
+              "symbol_bearing": 3203,
+              "rate": 0.8183,
+              "ci_low": 0.8046,
+              "ci_high": 0.8313
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 1846,
+              "symbol_bearing": 3202,
+              "rate": 0.5765,
+              "ci_low": 0.5593,
+              "ci_high": 0.5935
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 1846,
+              "symbol_bearing": 3203,
+              "rate": 0.5763,
+              "ci_low": 0.5591,
+              "ci_high": 0.5933
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 1919,
+              "symbol_bearing": 3202,
+              "rate": 0.5993,
+              "ci_low": 0.5822,
+              "ci_high": 0.6162
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 1919,
+              "symbol_bearing": 3203,
+              "rate": 0.5991,
+              "ci_low": 0.582,
+              "ci_high": 0.616
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-dub-b25z91gg\\dub",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-dub-euhq65z6\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 70659,
+              "CONTAINS": 6647,
+              "IMPORTS_FROM": 21905,
+              "REFERENCES": 2182,
+              "TESTED_BY": 4592
+            },
+            "calls_rows_total": 70659,
+            "calls_rows_unresolved": 58264,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "dub",
+            "seconds": 22.29,
+            "peak_rss_mb": 1751.7,
+            "index_size_mb": 115.7,
+            "harness_wall_sec": 26.903,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 4065,
+            "symbol_files": 3914,
+            "symbol_files_in_language": 3911,
+            "files_in_language": 4049,
+            "call_edges_distinct": 24076
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 3874,
+              "symbol_bearing": 3911,
+              "rate": 0.9905,
+              "ci_low": 0.987,
+              "ci_high": 0.9931
+            },
+            "all_files__any_dependency__either": {
+              "covered": 3875,
+              "symbol_bearing": 3914,
+              "rate": 0.99,
+              "ci_low": 0.9864,
+              "ci_high": 0.9927
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 2924,
+              "symbol_bearing": 3911,
+              "rate": 0.7476,
+              "ci_low": 0.7338,
+              "ci_high": 0.761
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 2925,
+              "symbol_bearing": 3914,
+              "rate": 0.7473,
+              "ci_low": 0.7335,
+              "ci_high": 0.7607
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 3606,
+              "symbol_bearing": 3911,
+              "rate": 0.922,
+              "ci_low": 0.9132,
+              "ci_high": 0.93
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 3606,
+              "symbol_bearing": 3914,
+              "rate": 0.9213,
+              "ci_low": 0.9125,
+              "ci_high": 0.9293
+            },
+            "primary_language__calls_only__either": {
+              "covered": 3466,
+              "symbol_bearing": 3911,
+              "rate": 0.8862,
+              "ci_low": 0.8759,
+              "ci_high": 0.8958
+            },
+            "all_files__calls_only__either": {
+              "covered": 3467,
+              "symbol_bearing": 3914,
+              "rate": 0.8858,
+              "ci_low": 0.8754,
+              "ci_high": 0.8954
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 2306,
+              "symbol_bearing": 3911,
+              "rate": 0.5896,
+              "ci_low": 0.5741,
+              "ci_high": 0.6049
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 2307,
+              "symbol_bearing": 3914,
+              "rate": 0.5894,
+              "ci_low": 0.5739,
+              "ci_high": 0.6047
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 2904,
+              "symbol_bearing": 3911,
+              "rate": 0.7425,
+              "ci_low": 0.7286,
+              "ci_high": 0.756
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 2904,
+              "symbol_bearing": 3914,
+              "rate": 0.742,
+              "ci_low": 0.728,
+              "ci_high": 0.7554
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-dub-idwl851u\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "dub",
+            "seconds": 176.521,
+            "peak_rss_mb": 1533.5,
+            "index_size_mb": 29.13,
+            "harness_wall_sec": 180.843,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 4105,
+            "symbol_files": 4084,
+            "symbol_files_in_language": 4049,
+            "files_in_language": 4049,
+            "call_edges_distinct": 6724
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 2315,
+              "symbol_bearing": 4049,
+              "rate": 0.5717,
+              "ci_low": 0.5564,
+              "ci_high": 0.5869
+            },
+            "all_files__any_dependency__either": {
+              "covered": 2316,
+              "symbol_bearing": 4084,
+              "rate": 0.5671,
+              "ci_low": 0.5518,
+              "ci_high": 0.5822
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 1071,
+              "symbol_bearing": 4049,
+              "rate": 0.2645,
+              "ci_low": 0.2512,
+              "ci_high": 0.2783
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 1072,
+              "symbol_bearing": 4084,
+              "rate": 0.2625,
+              "ci_low": 0.2492,
+              "ci_high": 0.2762
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 1858,
+              "symbol_bearing": 4049,
+              "rate": 0.4589,
+              "ci_low": 0.4436,
+              "ci_high": 0.4743
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 1858,
+              "symbol_bearing": 4084,
+              "rate": 0.4549,
+              "ci_low": 0.4397,
+              "ci_high": 0.4703
+            },
+            "primary_language__calls_only__either": {
+              "covered": 2204,
+              "symbol_bearing": 4049,
+              "rate": 0.5443,
+              "ci_low": 0.529,
+              "ci_high": 0.5596
+            },
+            "all_files__calls_only__either": {
+              "covered": 2204,
+              "symbol_bearing": 4084,
+              "rate": 0.5397,
+              "ci_low": 0.5244,
+              "ci_high": 0.5549
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 985,
+              "symbol_bearing": 4049,
+              "rate": 0.2433,
+              "ci_low": 0.2303,
+              "ci_high": 0.2567
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 985,
+              "symbol_bearing": 4084,
+              "rate": 0.2412,
+              "ci_low": 0.2283,
+              "ci_high": 0.2545
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 1792,
+              "symbol_bearing": 4049,
+              "rate": 0.4426,
+              "ci_low": 0.4273,
+              "ci_high": 0.4579
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 1792,
+              "symbol_bearing": 4084,
+              "rate": 0.4388,
+              "ci_low": 0.4236,
+              "ci_high": 0.4541
+            }
+          },
+          "extra": {
+            "nodes": 14516,
+            "links": 51196,
+            "directed": false,
+            "files_processed": 4105,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "dub",
+            "seconds": 10.623,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 10.759,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 4147,
+            "symbol_files": 3921,
+            "symbol_files_in_language": 3919,
+            "files_in_language": 4041,
+            "call_edges_distinct": 22537
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 3833,
+              "symbol_bearing": 3919,
+              "rate": 0.9781,
+              "ci_low": 0.973,
+              "ci_high": 0.9822
+            },
+            "all_files__any_dependency__either": {
+              "covered": 3833,
+              "symbol_bearing": 3921,
+              "rate": 0.9776,
+              "ci_low": 0.9724,
+              "ci_high": 0.9817
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 2813,
+              "symbol_bearing": 3919,
+              "rate": 0.7178,
+              "ci_low": 0.7035,
+              "ci_high": 0.7317
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 2813,
+              "symbol_bearing": 3921,
+              "rate": 0.7174,
+              "ci_low": 0.7031,
+              "ci_high": 0.7313
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 3038,
+              "symbol_bearing": 3919,
+              "rate": 0.7752,
+              "ci_low": 0.7619,
+              "ci_high": 0.788
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 3038,
+              "symbol_bearing": 3921,
+              "rate": 0.7748,
+              "ci_low": 0.7615,
+              "ci_high": 0.7876
+            },
+            "primary_language__calls_only__either": {
+              "covered": 3392,
+              "symbol_bearing": 3919,
+              "rate": 0.8655,
+              "ci_low": 0.8545,
+              "ci_high": 0.8759
+            },
+            "all_files__calls_only__either": {
+              "covered": 3392,
+              "symbol_bearing": 3921,
+              "rate": 0.8651,
+              "ci_low": 0.854,
+              "ci_high": 0.8754
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 2247,
+              "symbol_bearing": 3919,
+              "rate": 0.5734,
+              "ci_low": 0.5578,
+              "ci_high": 0.5888
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 2247,
+              "symbol_bearing": 3921,
+              "rate": 0.5731,
+              "ci_low": 0.5575,
+              "ci_high": 0.5885
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 2781,
+              "symbol_bearing": 3919,
+              "rate": 0.7096,
+              "ci_low": 0.6952,
+              "ci_high": 0.7236
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 2781,
+              "symbol_bearing": 3921,
+              "rate": 0.7093,
+              "ci_low": 0.6948,
+              "ci_high": 0.7233
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 2.064,
+              "parse": 6.867,
+              "build": 1.692
+            },
+            "calls_raw": 22537
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "dub",
+            "seconds": 11.569,
+            "peak_rss_mb": 140.9,
+            "index_size_mb": null,
+            "harness_wall_sec": 11.733,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 4147,
+            "symbol_files": 3921,
+            "symbol_files_in_language": 3919,
+            "files_in_language": 4041,
+            "call_edges_distinct": 22537
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 3833,
+              "symbol_bearing": 3919,
+              "rate": 0.9781,
+              "ci_low": 0.973,
+              "ci_high": 0.9822
+            },
+            "all_files__any_dependency__either": {
+              "covered": 3833,
+              "symbol_bearing": 3921,
+              "rate": 0.9776,
+              "ci_low": 0.9724,
+              "ci_high": 0.9817
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 2813,
+              "symbol_bearing": 3919,
+              "rate": 0.7178,
+              "ci_low": 0.7035,
+              "ci_high": 0.7317
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 2813,
+              "symbol_bearing": 3921,
+              "rate": 0.7174,
+              "ci_low": 0.7031,
+              "ci_high": 0.7313
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 3038,
+              "symbol_bearing": 3919,
+              "rate": 0.7752,
+              "ci_low": 0.7619,
+              "ci_high": 0.788
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 3038,
+              "symbol_bearing": 3921,
+              "rate": 0.7748,
+              "ci_low": 0.7615,
+              "ci_high": 0.7876
+            },
+            "primary_language__calls_only__either": {
+              "covered": 3392,
+              "symbol_bearing": 3919,
+              "rate": 0.8655,
+              "ci_low": 0.8545,
+              "ci_high": 0.8759
+            },
+            "all_files__calls_only__either": {
+              "covered": 3392,
+              "symbol_bearing": 3921,
+              "rate": 0.8651,
+              "ci_low": 0.854,
+              "ci_high": 0.8754
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 2247,
+              "symbol_bearing": 3919,
+              "rate": 0.5734,
+              "ci_low": 0.5578,
+              "ci_high": 0.5888
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 2247,
+              "symbol_bearing": 3921,
+              "rate": 0.5731,
+              "ci_low": 0.5575,
+              "ci_high": 0.5885
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 2781,
+              "symbol_bearing": 3919,
+              "rate": 0.7096,
+              "ci_low": 0.6952,
+              "ci_high": 0.7236
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 2781,
+              "symbol_bearing": 3921,
+              "rate": 0.7093,
+              "ci_low": 0.6948,
+              "ci_high": 0.7233
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 2.138,
+              "parse": 6.82,
+              "build": 1.673,
+              "total": 10.631
+            },
+            "calls_raw": 22537,
+            "nodes": 19463,
+            "edges": 53851,
+            "returncode": 0
+          }
+        }
+      }
+    },
+    "caffeine": {
+      "language": "java",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 678,
+        "files_seen_per_arm": {
+          "code-review-graph": 682,
+          "codegraph": 785,
+          "graphify": 734,
+          "repowise": 833,
+          "repowise-subprocess": 833
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 4,
+          "codegraph": 107,
+          "graphify": 56,
+          "repowise": 155,
+          "repowise-subprocess": 155
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 546,
+          "codegraph": 674,
+          "graphify": 674,
+          "repowise": 546,
+          "repowise-subprocess": 546
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 536,
+          "codegraph": 664,
+          "graphify": 664,
+          "repowise": 536,
+          "repowise-subprocess": 536
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 0,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "caffeine",
+            "seconds": 33.87,
+            "peak_rss_mb": 477.4,
+            "index_size_mb": 276.2,
+            "harness_wall_sec": 35.455,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 682,
+            "symbol_files": 548,
+            "symbol_files_in_language": 536,
+            "files_in_language": 668,
+            "call_edges_distinct": 14504
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 319,
+              "symbol_bearing": 536,
+              "rate": 0.5951,
+              "ci_low": 0.5531,
+              "ci_high": 0.6359
+            },
+            "all_files__any_dependency__either": {
+              "covered": 319,
+              "symbol_bearing": 548,
+              "rate": 0.5821,
+              "ci_low": 0.5404,
+              "ci_high": 0.6227
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 240,
+              "symbol_bearing": 536,
+              "rate": 0.4478,
+              "ci_low": 0.4062,
+              "ci_high": 0.4901
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 240,
+              "symbol_bearing": 548,
+              "rate": 0.438,
+              "ci_low": 0.397,
+              "ci_high": 0.4798
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 261,
+              "symbol_bearing": 536,
+              "rate": 0.4869,
+              "ci_low": 0.4449,
+              "ci_high": 0.5292
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 261,
+              "symbol_bearing": 548,
+              "rate": 0.4763,
+              "ci_low": 0.4348,
+              "ci_high": 0.5181
+            },
+            "primary_language__calls_only__either": {
+              "covered": 290,
+              "symbol_bearing": 536,
+              "rate": 0.541,
+              "ci_low": 0.4987,
+              "ci_high": 0.5828
+            },
+            "all_files__calls_only__either": {
+              "covered": 290,
+              "symbol_bearing": 548,
+              "rate": 0.5292,
+              "ci_low": 0.4873,
+              "ci_high": 0.5706
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 140,
+              "symbol_bearing": 536,
+              "rate": 0.2612,
+              "ci_low": 0.2258,
+              "ci_high": 0.3
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 140,
+              "symbol_bearing": 548,
+              "rate": 0.2555,
+              "ci_low": 0.2207,
+              "ci_high": 0.2936
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 219,
+              "symbol_bearing": 536,
+              "rate": 0.4086,
+              "ci_low": 0.3678,
+              "ci_high": 0.4507
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 219,
+              "symbol_bearing": 548,
+              "rate": 0.3996,
+              "ci_low": 0.3595,
+              "ci_high": 0.4412
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-caffeine-m8fs11qk\\caffeine",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-caffeine-6pfjuvnx\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 80326,
+              "CONTAINS": 10842,
+              "IMPORTS_FROM": 7960,
+              "INHERITS": 694,
+              "INJECTS": 6,
+              "TESTED_BY": 44308
+            },
+            "calls_rows_total": 80326,
+            "calls_rows_unresolved": 65789,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "caffeine",
+            "seconds": 11.162,
+            "peak_rss_mb": 1534.1,
+            "index_size_mb": 104.55,
+            "harness_wall_sec": 12.417,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 785,
+            "symbol_files": 694,
+            "symbol_files_in_language": 664,
+            "files_in_language": 668,
+            "call_edges_distinct": 38597
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 532,
+              "symbol_bearing": 664,
+              "rate": 0.8012,
+              "ci_low": 0.7692,
+              "ci_high": 0.8298
+            },
+            "all_files__any_dependency__either": {
+              "covered": 558,
+              "symbol_bearing": 694,
+              "rate": 0.804,
+              "ci_low": 0.7729,
+              "ci_high": 0.8319
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 413,
+              "symbol_bearing": 664,
+              "rate": 0.622,
+              "ci_low": 0.5845,
+              "ci_high": 0.6581
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 422,
+              "symbol_bearing": 694,
+              "rate": 0.6081,
+              "ci_low": 0.5712,
+              "ci_high": 0.6437
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 515,
+              "symbol_bearing": 664,
+              "rate": 0.7756,
+              "ci_low": 0.7423,
+              "ci_high": 0.8057
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 538,
+              "symbol_bearing": 694,
+              "rate": 0.7752,
+              "ci_low": 0.7427,
+              "ci_high": 0.8047
+            },
+            "primary_language__calls_only__either": {
+              "covered": 521,
+              "symbol_bearing": 664,
+              "rate": 0.7846,
+              "ci_low": 0.7518,
+              "ci_high": 0.8142
+            },
+            "all_files__calls_only__either": {
+              "covered": 545,
+              "symbol_bearing": 694,
+              "rate": 0.7853,
+              "ci_low": 0.7532,
+              "ci_high": 0.8142
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 343,
+              "symbol_bearing": 664,
+              "rate": 0.5166,
+              "ci_low": 0.4786,
+              "ci_high": 0.5544
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 349,
+              "symbol_bearing": 694,
+              "rate": 0.5029,
+              "ci_low": 0.4658,
+              "ci_high": 0.54
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 477,
+              "symbol_bearing": 664,
+              "rate": 0.7184,
+              "ci_low": 0.683,
+              "ci_high": 0.7513
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 499,
+              "symbol_bearing": 694,
+              "rate": 0.719,
+              "ci_low": 0.6844,
+              "ci_high": 0.7512
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-caffeine-r22vxzrw\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "caffeine",
+            "seconds": 49.771,
+            "peak_rss_mb": 994.8,
+            "index_size_mb": 83.43,
+            "harness_wall_sec": 51.452,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 734,
+            "symbol_files": 718,
+            "symbol_files_in_language": 664,
+            "files_in_language": 668,
+            "call_edges_distinct": 18465
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 506,
+              "symbol_bearing": 664,
+              "rate": 0.762,
+              "ci_low": 0.7282,
+              "ci_high": 0.7929
+            },
+            "all_files__any_dependency__either": {
+              "covered": 508,
+              "symbol_bearing": 718,
+              "rate": 0.7075,
+              "ci_low": 0.6732,
+              "ci_high": 0.7396
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 197,
+              "symbol_bearing": 664,
+              "rate": 0.2967,
+              "ci_low": 0.2632,
+              "ci_high": 0.3325
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 197,
+              "symbol_bearing": 718,
+              "rate": 0.2744,
+              "ci_low": 0.243,
+              "ci_high": 0.3081
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 457,
+              "symbol_bearing": 664,
+              "rate": 0.6883,
+              "ci_low": 0.652,
+              "ci_high": 0.7223
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 459,
+              "symbol_bearing": 718,
+              "rate": 0.6393,
+              "ci_low": 0.6035,
+              "ci_high": 0.6736
+            },
+            "primary_language__calls_only__either": {
+              "covered": 463,
+              "symbol_bearing": 664,
+              "rate": 0.6973,
+              "ci_low": 0.6613,
+              "ci_high": 0.731
+            },
+            "all_files__calls_only__either": {
+              "covered": 464,
+              "symbol_bearing": 718,
+              "rate": 0.6462,
+              "ci_low": 0.6106,
+              "ci_high": 0.6804
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 155,
+              "symbol_bearing": 664,
+              "rate": 0.2334,
+              "ci_low": 0.2028,
+              "ci_high": 0.2671
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 155,
+              "symbol_bearing": 718,
+              "rate": 0.2159,
+              "ci_low": 0.1873,
+              "ci_high": 0.2474
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 396,
+              "symbol_bearing": 664,
+              "rate": 0.5964,
+              "ci_low": 0.5586,
+              "ci_high": 0.633
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 397,
+              "symbol_bearing": 718,
+              "rate": 0.5529,
+              "ci_low": 0.5164,
+              "ci_high": 0.5889
+            }
+          },
+          "extra": {
+            "nodes": 13201,
+            "links": 51742,
+            "directed": false,
+            "files_processed": 734,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "caffeine",
+            "seconds": 10.953,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 11.096,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 833,
+            "symbol_files": 567,
+            "symbol_files_in_language": 536,
+            "files_in_language": 668,
+            "call_edges_distinct": 56376
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 535,
+              "symbol_bearing": 536,
+              "rate": 0.9981,
+              "ci_low": 0.9895,
+              "ci_high": 0.9997
+            },
+            "all_files__any_dependency__either": {
+              "covered": 554,
+              "symbol_bearing": 567,
+              "rate": 0.9771,
+              "ci_low": 0.9612,
+              "ci_high": 0.9866
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 431,
+              "symbol_bearing": 536,
+              "rate": 0.8041,
+              "ci_low": 0.7684,
+              "ci_high": 0.8355
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 439,
+              "symbol_bearing": 567,
+              "rate": 0.7743,
+              "ci_low": 0.7381,
+              "ci_high": 0.8068
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 505,
+              "symbol_bearing": 536,
+              "rate": 0.9422,
+              "ci_low": 0.9191,
+              "ci_high": 0.959
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 521,
+              "symbol_bearing": 567,
+              "rate": 0.9189,
+              "ci_low": 0.8935,
+              "ci_high": 0.9386
+            },
+            "primary_language__calls_only__either": {
+              "covered": 522,
+              "symbol_bearing": 536,
+              "rate": 0.9739,
+              "ci_low": 0.9566,
+              "ci_high": 0.9844
+            },
+            "all_files__calls_only__either": {
+              "covered": 539,
+              "symbol_bearing": 567,
+              "rate": 0.9506,
+              "ci_low": 0.9296,
+              "ci_high": 0.9656
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 326,
+              "symbol_bearing": 536,
+              "rate": 0.6082,
+              "ci_low": 0.5663,
+              "ci_high": 0.6486
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 331,
+              "symbol_bearing": 567,
+              "rate": 0.5838,
+              "ci_low": 0.5428,
+              "ci_high": 0.6237
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 467,
+              "symbol_bearing": 536,
+              "rate": 0.8713,
+              "ci_low": 0.8403,
+              "ci_high": 0.897
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 480,
+              "symbol_bearing": 567,
+              "rate": 0.8466,
+              "ci_low": 0.8146,
+              "ci_high": 0.8739
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 0.794,
+              "parse": 5.868,
+              "build": 4.291
+            },
+            "calls_raw": 65635
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "caffeine",
+            "seconds": 10.311,
+            "peak_rss_mb": 160.8,
+            "index_size_mb": null,
+            "harness_wall_sec": 10.488,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 833,
+            "symbol_files": 567,
+            "symbol_files_in_language": 536,
+            "files_in_language": 668,
+            "call_edges_distinct": 56376
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 535,
+              "symbol_bearing": 536,
+              "rate": 0.9981,
+              "ci_low": 0.9895,
+              "ci_high": 0.9997
+            },
+            "all_files__any_dependency__either": {
+              "covered": 554,
+              "symbol_bearing": 567,
+              "rate": 0.9771,
+              "ci_low": 0.9612,
+              "ci_high": 0.9866
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 431,
+              "symbol_bearing": 536,
+              "rate": 0.8041,
+              "ci_low": 0.7684,
+              "ci_high": 0.8355
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 439,
+              "symbol_bearing": 567,
+              "rate": 0.7743,
+              "ci_low": 0.7381,
+              "ci_high": 0.8068
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 505,
+              "symbol_bearing": 536,
+              "rate": 0.9422,
+              "ci_low": 0.9191,
+              "ci_high": 0.959
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 521,
+              "symbol_bearing": 567,
+              "rate": 0.9189,
+              "ci_low": 0.8935,
+              "ci_high": 0.9386
+            },
+            "primary_language__calls_only__either": {
+              "covered": 522,
+              "symbol_bearing": 536,
+              "rate": 0.9739,
+              "ci_low": 0.9566,
+              "ci_high": 0.9844
+            },
+            "all_files__calls_only__either": {
+              "covered": 539,
+              "symbol_bearing": 567,
+              "rate": 0.9506,
+              "ci_low": 0.9296,
+              "ci_high": 0.9656
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 326,
+              "symbol_bearing": 536,
+              "rate": 0.6082,
+              "ci_low": 0.5663,
+              "ci_high": 0.6486
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 331,
+              "symbol_bearing": 567,
+              "rate": 0.5838,
+              "ci_low": 0.5428,
+              "ci_high": 0.6237
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 467,
+              "symbol_bearing": 536,
+              "rate": 0.8713,
+              "ci_low": 0.8403,
+              "ci_high": 0.897
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 480,
+              "symbol_bearing": 567,
+              "rate": 0.8466,
+              "ci_low": 0.8146,
+              "ci_high": 0.8739
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 0.643,
+              "parse": 4.643,
+              "build": 4.063,
+              "total": 9.348
+            },
+            "calls_raw": 65635,
+            "nodes": 12690,
+            "edges": 64726,
+            "returncode": 0
+          }
+        }
+      }
+    },
+    "Ocelot": {
+      "language": "csharp",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 755,
+        "files_seen_per_arm": {
+          "code-review-graph": 777,
+          "codegraph": 772,
+          "graphify": 875,
+          "repowise": 874,
+          "repowise-subprocess": 874
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 22,
+          "codegraph": 17,
+          "graphify": 120,
+          "repowise": 119,
+          "repowise-subprocess": 119
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 729,
+          "codegraph": 733,
+          "graphify": 748,
+          "repowise": 733,
+          "repowise-subprocess": 733
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 729,
+          "codegraph": 732,
+          "graphify": 747,
+          "repowise": 732,
+          "repowise-subprocess": 732
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 15,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "Ocelot",
+            "seconds": 11.252,
+            "peak_rss_mb": 372.5,
+            "index_size_mb": 51.11,
+            "harness_wall_sec": 12.155,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 777,
+            "symbol_files": 731,
+            "symbol_files_in_language": 729,
+            "files_in_language": 754,
+            "call_edges_distinct": 2665
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__any_dependency__either": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "primary_language__calls_only__either": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__calls_only__either": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 729,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 731,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0052
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-Ocelot-6xwhn8ot\\Ocelot",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-Ocelot-swwkbg9d\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 21282,
+              "CONTAINS": 5276,
+              "IMPORTS_FROM": 2586,
+              "INHERITS": 611,
+              "TESTED_BY": 24
+            },
+            "calls_rows_total": 21282,
+            "calls_rows_unresolved": 18617,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "Ocelot",
+            "seconds": 4.312,
+            "peak_rss_mb": 781.0,
+            "index_size_mb": 35.89,
+            "harness_wall_sec": 5.196,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 772,
+            "symbol_files": 733,
+            "symbol_files_in_language": 732,
+            "files_in_language": 754,
+            "call_edges_distinct": 9383
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 721,
+              "symbol_bearing": 732,
+              "rate": 0.985,
+              "ci_low": 0.9733,
+              "ci_high": 0.9916
+            },
+            "all_files__any_dependency__either": {
+              "covered": 721,
+              "symbol_bearing": 733,
+              "rate": 0.9836,
+              "ci_low": 0.9716,
+              "ci_high": 0.9906
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 491,
+              "symbol_bearing": 732,
+              "rate": 0.6708,
+              "ci_low": 0.6359,
+              "ci_high": 0.7038
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 491,
+              "symbol_bearing": 733,
+              "rate": 0.6698,
+              "ci_low": 0.635,
+              "ci_high": 0.7029
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 665,
+              "symbol_bearing": 732,
+              "rate": 0.9085,
+              "ci_low": 0.8854,
+              "ci_high": 0.9273
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 665,
+              "symbol_bearing": 733,
+              "rate": 0.9072,
+              "ci_low": 0.8841,
+              "ci_high": 0.9262
+            },
+            "primary_language__calls_only__either": {
+              "covered": 553,
+              "symbol_bearing": 732,
+              "rate": 0.7555,
+              "ci_low": 0.723,
+              "ci_high": 0.7852
+            },
+            "all_files__calls_only__either": {
+              "covered": 553,
+              "symbol_bearing": 733,
+              "rate": 0.7544,
+              "ci_low": 0.722,
+              "ci_high": 0.7842
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 258,
+              "symbol_bearing": 732,
+              "rate": 0.3525,
+              "ci_low": 0.3187,
+              "ci_high": 0.3878
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 258,
+              "symbol_bearing": 733,
+              "rate": 0.352,
+              "ci_low": 0.3183,
+              "ci_high": 0.3872
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 458,
+              "symbol_bearing": 732,
+              "rate": 0.6257,
+              "ci_low": 0.5901,
+              "ci_high": 0.66
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 458,
+              "symbol_bearing": 733,
+              "rate": 0.6248,
+              "ci_low": 0.5892,
+              "ci_high": 0.6591
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-Ocelot-e7z4gbeo\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "Ocelot",
+            "seconds": 39.52,
+            "peak_rss_mb": 890.4,
+            "index_size_mb": 36.85,
+            "harness_wall_sec": 40.738,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 875,
+            "symbol_files": 819,
+            "symbol_files_in_language": 747,
+            "files_in_language": 754,
+            "call_edges_distinct": 5395
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 586,
+              "symbol_bearing": 747,
+              "rate": 0.7845,
+              "ci_low": 0.7536,
+              "ci_high": 0.8125
+            },
+            "all_files__any_dependency__either": {
+              "covered": 607,
+              "symbol_bearing": 819,
+              "rate": 0.7411,
+              "ci_low": 0.7101,
+              "ci_high": 0.77
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 342,
+              "symbol_bearing": 747,
+              "rate": 0.4578,
+              "ci_low": 0.4224,
+              "ci_high": 0.4937
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 344,
+              "symbol_bearing": 819,
+              "rate": 0.42,
+              "ci_low": 0.3867,
+              "ci_high": 0.4541
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 486,
+              "symbol_bearing": 747,
+              "rate": 0.6506,
+              "ci_low": 0.6157,
+              "ci_high": 0.6839
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 506,
+              "symbol_bearing": 819,
+              "rate": 0.6178,
+              "ci_low": 0.5841,
+              "ci_high": 0.6505
+            },
+            "primary_language__calls_only__either": {
+              "covered": 455,
+              "symbol_bearing": 747,
+              "rate": 0.6091,
+              "ci_low": 0.5736,
+              "ci_high": 0.6435
+            },
+            "all_files__calls_only__either": {
+              "covered": 455,
+              "symbol_bearing": 819,
+              "rate": 0.5556,
+              "ci_low": 0.5213,
+              "ci_high": 0.5892
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 250,
+              "symbol_bearing": 747,
+              "rate": 0.3347,
+              "ci_low": 0.3018,
+              "ci_high": 0.3693
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 250,
+              "symbol_bearing": 819,
+              "rate": 0.3053,
+              "ci_low": 0.2747,
+              "ci_high": 0.3376
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 297,
+              "symbol_bearing": 747,
+              "rate": 0.3976,
+              "ci_low": 0.3631,
+              "ci_high": 0.4331
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 297,
+              "symbol_bearing": 819,
+              "rate": 0.3626,
+              "ci_low": 0.3304,
+              "ci_high": 0.3961
+            }
+          },
+          "extra": {
+            "nodes": 10248,
+            "links": 23215,
+            "directed": false,
+            "files_processed": 875,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "Ocelot",
+            "seconds": 5.134,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 5.266,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 874,
+            "symbol_files": 739,
+            "symbol_files_in_language": 732,
+            "files_in_language": 754,
+            "call_edges_distinct": 8326
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 721,
+              "symbol_bearing": 732,
+              "rate": 0.985,
+              "ci_low": 0.9733,
+              "ci_high": 0.9916
+            },
+            "all_files__any_dependency__either": {
+              "covered": 724,
+              "symbol_bearing": 739,
+              "rate": 0.9797,
+              "ci_low": 0.9668,
+              "ci_high": 0.9877
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 474,
+              "symbol_bearing": 732,
+              "rate": 0.6475,
+              "ci_low": 0.6122,
+              "ci_high": 0.6813
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 474,
+              "symbol_bearing": 739,
+              "rate": 0.6414,
+              "ci_low": 0.6062,
+              "ci_high": 0.6752
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 663,
+              "symbol_bearing": 732,
+              "rate": 0.9057,
+              "ci_low": 0.8824,
+              "ci_high": 0.9248
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 666,
+              "symbol_bearing": 739,
+              "rate": 0.9012,
+              "ci_low": 0.8776,
+              "ci_high": 0.9207
+            },
+            "primary_language__calls_only__either": {
+              "covered": 542,
+              "symbol_bearing": 732,
+              "rate": 0.7404,
+              "ci_low": 0.7075,
+              "ci_high": 0.7709
+            },
+            "all_files__calls_only__either": {
+              "covered": 542,
+              "symbol_bearing": 739,
+              "rate": 0.7334,
+              "ci_low": 0.7004,
+              "ci_high": 0.764
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 307,
+              "symbol_bearing": 732,
+              "rate": 0.4194,
+              "ci_low": 0.3842,
+              "ci_high": 0.4555
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 307,
+              "symbol_bearing": 739,
+              "rate": 0.4154,
+              "ci_low": 0.3804,
+              "ci_high": 0.4513
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 343,
+              "symbol_bearing": 732,
+              "rate": 0.4686,
+              "ci_low": 0.4327,
+              "ci_high": 0.5048
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 343,
+              "symbol_bearing": 739,
+              "rate": 0.4641,
+              "ci_low": 0.4285,
+              "ci_high": 0.5002
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 0.491,
+              "parse": 1.933,
+              "build": 2.71
+            },
+            "calls_raw": 8327
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "Ocelot",
+            "seconds": 6.124,
+            "peak_rss_mb": 88.2,
+            "index_size_mb": null,
+            "harness_wall_sec": 6.342,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 874,
+            "symbol_files": 739,
+            "symbol_files_in_language": 732,
+            "files_in_language": 754,
+            "call_edges_distinct": 8326
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 721,
+              "symbol_bearing": 732,
+              "rate": 0.985,
+              "ci_low": 0.9733,
+              "ci_high": 0.9916
+            },
+            "all_files__any_dependency__either": {
+              "covered": 724,
+              "symbol_bearing": 739,
+              "rate": 0.9797,
+              "ci_low": 0.9668,
+              "ci_high": 0.9877
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 474,
+              "symbol_bearing": 732,
+              "rate": 0.6475,
+              "ci_low": 0.6122,
+              "ci_high": 0.6813
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 474,
+              "symbol_bearing": 739,
+              "rate": 0.6414,
+              "ci_low": 0.6062,
+              "ci_high": 0.6752
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 663,
+              "symbol_bearing": 732,
+              "rate": 0.9057,
+              "ci_low": 0.8824,
+              "ci_high": 0.9248
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 666,
+              "symbol_bearing": 739,
+              "rate": 0.9012,
+              "ci_low": 0.8776,
+              "ci_high": 0.9207
+            },
+            "primary_language__calls_only__either": {
+              "covered": 542,
+              "symbol_bearing": 732,
+              "rate": 0.7404,
+              "ci_low": 0.7075,
+              "ci_high": 0.7709
+            },
+            "all_files__calls_only__either": {
+              "covered": 542,
+              "symbol_bearing": 739,
+              "rate": 0.7334,
+              "ci_low": 0.7004,
+              "ci_high": 0.764
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 307,
+              "symbol_bearing": 732,
+              "rate": 0.4194,
+              "ci_low": 0.3842,
+              "ci_high": 0.4555
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 307,
+              "symbol_bearing": 739,
+              "rate": 0.4154,
+              "ci_low": 0.3804,
+              "ci_high": 0.4513
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 343,
+              "symbol_bearing": 732,
+              "rate": 0.4686,
+              "ci_low": 0.4327,
+              "ci_high": 0.5048
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 343,
+              "symbol_bearing": 739,
+              "rate": 0.4641,
+              "ci_low": 0.4285,
+              "ci_high": 0.5002
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 0.495,
+              "parse": 2.024,
+              "build": 2.775,
+              "total": 5.294
+            },
+            "calls_raw": 8327,
+            "nodes": 9705,
+            "edges": 25348,
+            "returncode": 0
+          }
+        }
+      }
+    },
+    "celery": {
+      "language": "python",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 415,
+        "files_seen_per_arm": {
+          "code-review-graph": 430,
+          "codegraph": 435,
+          "graphify": 431,
+          "repowise": 470,
+          "repowise-subprocess": 470
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 15,
+          "codegraph": 20,
+          "graphify": 16,
+          "repowise": 55,
+          "repowise-subprocess": 55
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 344,
+          "codegraph": 372,
+          "graphify": 408,
+          "repowise": 372,
+          "repowise-subprocess": 372
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 344,
+          "codegraph": 372,
+          "graphify": 408,
+          "repowise": 372,
+          "repowise-subprocess": 372
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 36,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "celery",
+            "seconds": 22.07,
+            "peak_rss_mb": 410.5,
+            "index_size_mb": 95.23,
+            "harness_wall_sec": 22.828,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 430,
+            "symbol_files": 352,
+            "symbol_files_in_language": 346,
+            "files_in_language": 417,
+            "call_edges_distinct": 10206
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 328,
+              "symbol_bearing": 346,
+              "rate": 0.948,
+              "ci_low": 0.9193,
+              "ci_high": 0.9668
+            },
+            "all_files__any_dependency__either": {
+              "covered": 328,
+              "symbol_bearing": 352,
+              "rate": 0.9318,
+              "ci_low": 0.9006,
+              "ci_high": 0.9538
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 157,
+              "symbol_bearing": 346,
+              "rate": 0.4538,
+              "ci_low": 0.4021,
+              "ci_high": 0.5064
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 157,
+              "symbol_bearing": 352,
+              "rate": 0.446,
+              "ci_low": 0.395,
+              "ci_high": 0.4983
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 303,
+              "symbol_bearing": 346,
+              "rate": 0.8757,
+              "ci_low": 0.8368,
+              "ci_high": 0.9064
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 303,
+              "symbol_bearing": 352,
+              "rate": 0.8608,
+              "ci_low": 0.8207,
+              "ci_high": 0.8931
+            },
+            "primary_language__calls_only__either": {
+              "covered": 264,
+              "symbol_bearing": 346,
+              "rate": 0.763,
+              "ci_low": 0.7155,
+              "ci_high": 0.8048
+            },
+            "all_files__calls_only__either": {
+              "covered": 264,
+              "symbol_bearing": 352,
+              "rate": 0.75,
+              "ci_low": 0.7022,
+              "ci_high": 0.7924
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 121,
+              "symbol_bearing": 346,
+              "rate": 0.3497,
+              "ci_low": 0.3014,
+              "ci_high": 0.4014
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 121,
+              "symbol_bearing": 352,
+              "rate": 0.3438,
+              "ci_low": 0.2961,
+              "ci_high": 0.3948
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 226,
+              "symbol_bearing": 346,
+              "rate": 0.6532,
+              "ci_low": 0.6016,
+              "ci_high": 0.7014
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 226,
+              "symbol_bearing": 352,
+              "rate": 0.642,
+              "ci_low": 0.5907,
+              "ci_high": 0.6903
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-celery-8y9hexgp\\celery",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-celery-tbhl1hrm\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 33063,
+              "CONTAINS": 8922,
+              "IMPORTS_FROM": 3005,
+              "INHERITS": 524,
+              "REFERENCES": 1205,
+              "TESTED_BY": 18728
+            },
+            "calls_rows_total": 33063,
+            "calls_rows_unresolved": 22856,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "celery",
+            "seconds": 3.931,
+            "peak_rss_mb": 788.5,
+            "index_size_mb": 31.65,
+            "harness_wall_sec": 4.589,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 435,
+            "symbol_files": 372,
+            "symbol_files_in_language": 372,
+            "files_in_language": 415,
+            "call_edges_distinct": 13301
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 364,
+              "symbol_bearing": 372,
+              "rate": 0.9785,
+              "ci_low": 0.9581,
+              "ci_high": 0.9891
+            },
+            "all_files__any_dependency__either": {
+              "covered": 364,
+              "symbol_bearing": 372,
+              "rate": 0.9785,
+              "ci_low": 0.9581,
+              "ci_high": 0.9891
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 230,
+              "symbol_bearing": 372,
+              "rate": 0.6183,
+              "ci_low": 0.5679,
+              "ci_high": 0.6662
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 230,
+              "symbol_bearing": 372,
+              "rate": 0.6183,
+              "ci_low": 0.5679,
+              "ci_high": 0.6662
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 358,
+              "symbol_bearing": 372,
+              "rate": 0.9624,
+              "ci_low": 0.9378,
+              "ci_high": 0.9775
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 358,
+              "symbol_bearing": 372,
+              "rate": 0.9624,
+              "ci_low": 0.9378,
+              "ci_high": 0.9775
+            },
+            "primary_language__calls_only__either": {
+              "covered": 324,
+              "symbol_bearing": 372,
+              "rate": 0.871,
+              "ci_low": 0.8331,
+              "ci_high": 0.9013
+            },
+            "all_files__calls_only__either": {
+              "covered": 324,
+              "symbol_bearing": 372,
+              "rate": 0.871,
+              "ci_low": 0.8331,
+              "ci_high": 0.9013
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 182,
+              "symbol_bearing": 372,
+              "rate": 0.4892,
+              "ci_low": 0.4388,
+              "ci_high": 0.5399
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 182,
+              "symbol_bearing": 372,
+              "rate": 0.4892,
+              "ci_low": 0.4388,
+              "ci_high": 0.5399
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 307,
+              "symbol_bearing": 372,
+              "rate": 0.8253,
+              "ci_low": 0.7834,
+              "ci_high": 0.8605
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 307,
+              "symbol_bearing": 372,
+              "rate": 0.8253,
+              "ci_low": 0.7834,
+              "ci_high": 0.8605
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-celery-873dh_7p\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "celery",
+            "seconds": 31.255,
+            "peak_rss_mb": 896.4,
+            "index_size_mb": 26.13,
+            "harness_wall_sec": 32.57,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 431,
+            "symbol_files": 422,
+            "symbol_files_in_language": 408,
+            "files_in_language": 415,
+            "call_edges_distinct": 7104
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 289,
+              "symbol_bearing": 408,
+              "rate": 0.7083,
+              "ci_low": 0.6624,
+              "ci_high": 0.7503
+            },
+            "all_files__any_dependency__either": {
+              "covered": 289,
+              "symbol_bearing": 422,
+              "rate": 0.6848,
+              "ci_low": 0.639,
+              "ci_high": 0.7273
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 136,
+              "symbol_bearing": 408,
+              "rate": 0.3333,
+              "ci_low": 0.2893,
+              "ci_high": 0.3804
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 136,
+              "symbol_bearing": 422,
+              "rate": 0.3223,
+              "ci_low": 0.2795,
+              "ci_high": 0.3683
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 260,
+              "symbol_bearing": 408,
+              "rate": 0.6373,
+              "ci_low": 0.5895,
+              "ci_high": 0.6824
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 260,
+              "symbol_bearing": 422,
+              "rate": 0.6161,
+              "ci_low": 0.5689,
+              "ci_high": 0.6613
+            },
+            "primary_language__calls_only__either": {
+              "covered": 265,
+              "symbol_bearing": 408,
+              "rate": 0.6495,
+              "ci_low": 0.602,
+              "ci_high": 0.6942
+            },
+            "all_files__calls_only__either": {
+              "covered": 265,
+              "symbol_bearing": 422,
+              "rate": 0.628,
+              "ci_low": 0.5809,
+              "ci_high": 0.6727
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 136,
+              "symbol_bearing": 408,
+              "rate": 0.3333,
+              "ci_low": 0.2893,
+              "ci_high": 0.3804
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 136,
+              "symbol_bearing": 422,
+              "rate": 0.3223,
+              "ci_low": 0.2795,
+              "ci_high": 0.3683
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 232,
+              "symbol_bearing": 408,
+              "rate": 0.5686,
+              "ci_low": 0.5202,
+              "ci_high": 0.6158
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 232,
+              "symbol_bearing": 422,
+              "rate": 0.5498,
+              "ci_low": 0.5021,
+              "ci_high": 0.5966
+            }
+          },
+          "extra": {
+            "nodes": 10452,
+            "links": 24005,
+            "directed": false,
+            "files_processed": 431,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "celery",
+            "seconds": 7.502,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 7.783,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 470,
+            "symbol_files": 379,
+            "symbol_files_in_language": 373,
+            "files_in_language": 416,
+            "call_edges_distinct": 9514
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 356,
+              "symbol_bearing": 373,
+              "rate": 0.9544,
+              "ci_low": 0.9282,
+              "ci_high": 0.9714
+            },
+            "all_files__any_dependency__either": {
+              "covered": 356,
+              "symbol_bearing": 379,
+              "rate": 0.9393,
+              "ci_low": 0.9106,
+              "ci_high": 0.9592
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 203,
+              "symbol_bearing": 373,
+              "rate": 0.5442,
+              "ci_low": 0.4935,
+              "ci_high": 0.5941
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 203,
+              "symbol_bearing": 379,
+              "rate": 0.5356,
+              "ci_low": 0.4853,
+              "ci_high": 0.5852
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 346,
+              "symbol_bearing": 373,
+              "rate": 0.9276,
+              "ci_low": 0.8967,
+              "ci_high": 0.9498
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 346,
+              "symbol_bearing": 379,
+              "rate": 0.9129,
+              "ci_low": 0.8802,
+              "ci_high": 0.9373
+            },
+            "primary_language__calls_only__either": {
+              "covered": 306,
+              "symbol_bearing": 373,
+              "rate": 0.8204,
+              "ci_low": 0.7782,
+              "ci_high": 0.856
+            },
+            "all_files__calls_only__either": {
+              "covered": 306,
+              "symbol_bearing": 379,
+              "rate": 0.8074,
+              "ci_low": 0.7647,
+              "ci_high": 0.8439
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 141,
+              "symbol_bearing": 373,
+              "rate": 0.378,
+              "ci_low": 0.3303,
+              "ci_high": 0.4282
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 141,
+              "symbol_bearing": 379,
+              "rate": 0.372,
+              "ci_low": 0.3249,
+              "ci_high": 0.4217
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 285,
+              "symbol_bearing": 373,
+              "rate": 0.7641,
+              "ci_low": 0.7184,
+              "ci_high": 0.8043
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 285,
+              "symbol_bearing": 379,
+              "rate": 0.752,
+              "ci_low": 0.7061,
+              "ci_high": 0.7928
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 0.593,
+              "parse": 5.986,
+              "build": 0.924
+            },
+            "calls_raw": 9583
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "celery",
+            "seconds": 4.606,
+            "peak_rss_mb": 82.8,
+            "index_size_mb": null,
+            "harness_wall_sec": 4.761,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 470,
+            "symbol_files": 379,
+            "symbol_files_in_language": 373,
+            "files_in_language": 416,
+            "call_edges_distinct": 9514
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 356,
+              "symbol_bearing": 373,
+              "rate": 0.9544,
+              "ci_low": 0.9282,
+              "ci_high": 0.9714
+            },
+            "all_files__any_dependency__either": {
+              "covered": 356,
+              "symbol_bearing": 379,
+              "rate": 0.9393,
+              "ci_low": 0.9106,
+              "ci_high": 0.9592
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 203,
+              "symbol_bearing": 373,
+              "rate": 0.5442,
+              "ci_low": 0.4935,
+              "ci_high": 0.5941
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 203,
+              "symbol_bearing": 379,
+              "rate": 0.5356,
+              "ci_low": 0.4853,
+              "ci_high": 0.5852
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 346,
+              "symbol_bearing": 373,
+              "rate": 0.9276,
+              "ci_low": 0.8967,
+              "ci_high": 0.9498
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 346,
+              "symbol_bearing": 379,
+              "rate": 0.9129,
+              "ci_low": 0.8802,
+              "ci_high": 0.9373
+            },
+            "primary_language__calls_only__either": {
+              "covered": 306,
+              "symbol_bearing": 373,
+              "rate": 0.8204,
+              "ci_low": 0.7782,
+              "ci_high": 0.856
+            },
+            "all_files__calls_only__either": {
+              "covered": 306,
+              "symbol_bearing": 379,
+              "rate": 0.8074,
+              "ci_low": 0.7647,
+              "ci_high": 0.8439
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 141,
+              "symbol_bearing": 373,
+              "rate": 0.378,
+              "ci_low": 0.3303,
+              "ci_high": 0.4282
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 141,
+              "symbol_bearing": 379,
+              "rate": 0.372,
+              "ci_low": 0.3249,
+              "ci_high": 0.4217
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 285,
+              "symbol_bearing": 373,
+              "rate": 0.7641,
+              "ci_low": 0.7184,
+              "ci_high": 0.8043
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 285,
+              "symbol_bearing": 379,
+              "rate": 0.752,
+              "ci_low": 0.7061,
+              "ci_high": 0.7928
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 0.281,
+              "parse": 2.831,
+              "build": 0.607,
+              "total": 3.719
+            },
+            "calls_raw": 9583,
+            "nodes": 9740,
+            "edges": 24765,
+            "returncode": 0
+          }
+        }
+      }
+    },
+    "zod": {
+      "language": "typescript",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 403,
+        "files_seen_per_arm": {
+          "code-review-graph": 407,
+          "codegraph": 421,
+          "graphify": 443,
+          "repowise": 481,
+          "repowise-subprocess": 481
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 4,
+          "codegraph": 18,
+          "graphify": 40,
+          "repowise": 78,
+          "repowise-subprocess": 78
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 321,
+          "codegraph": 287,
+          "graphify": 402,
+          "repowise": 269,
+          "repowise-subprocess": 269
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 320,
+          "codegraph": 285,
+          "graphify": 398,
+          "repowise": 267,
+          "repowise-subprocess": 267
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 25,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "zod",
+            "seconds": 11.58,
+            "peak_rss_mb": 397.3,
+            "index_size_mb": 76.11,
+            "harness_wall_sec": 12.145,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 407,
+            "symbol_files": 321,
+            "symbol_files_in_language": 320,
+            "files_in_language": 401,
+            "call_edges_distinct": 2847
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 182,
+              "symbol_bearing": 320,
+              "rate": 0.5687,
+              "ci_low": 0.514,
+              "ci_high": 0.6219
+            },
+            "all_files__any_dependency__either": {
+              "covered": 182,
+              "symbol_bearing": 321,
+              "rate": 0.567,
+              "ci_low": 0.5123,
+              "ci_high": 0.6201
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 53,
+              "symbol_bearing": 320,
+              "rate": 0.1656,
+              "ci_low": 0.1289,
+              "ci_high": 0.2103
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 53,
+              "symbol_bearing": 321,
+              "rate": 0.1651,
+              "ci_low": 0.1285,
+              "ci_high": 0.2096
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 165,
+              "symbol_bearing": 320,
+              "rate": 0.5156,
+              "ci_low": 0.461,
+              "ci_high": 0.5699
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 165,
+              "symbol_bearing": 321,
+              "rate": 0.514,
+              "ci_low": 0.4595,
+              "ci_high": 0.5682
+            },
+            "primary_language__calls_only__either": {
+              "covered": 151,
+              "symbol_bearing": 320,
+              "rate": 0.4719,
+              "ci_low": 0.4178,
+              "ci_high": 0.5266
+            },
+            "all_files__calls_only__either": {
+              "covered": 151,
+              "symbol_bearing": 321,
+              "rate": 0.4704,
+              "ci_low": 0.4165,
+              "ci_high": 0.525
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 29,
+              "symbol_bearing": 320,
+              "rate": 0.0906,
+              "ci_low": 0.0638,
+              "ci_high": 0.1271
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 29,
+              "symbol_bearing": 321,
+              "rate": 0.0903,
+              "ci_low": 0.0636,
+              "ci_high": 0.1267
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 134,
+              "symbol_bearing": 320,
+              "rate": 0.4188,
+              "ci_low": 0.366,
+              "ci_high": 0.4735
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 134,
+              "symbol_bearing": 321,
+              "rate": 0.4174,
+              "ci_low": 0.3648,
+              "ci_high": 0.4721
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-zod-vc0ik1bj\\zod",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-zod-l61jmi2u\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 31411,
+              "CONTAINS": 3569,
+              "IMPORTS_FROM": 970,
+              "REFERENCES": 285,
+              "TESTED_BY": 24623
+            },
+            "calls_rows_total": 31411,
+            "calls_rows_unresolved": 28564,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "zod",
+            "seconds": 3.943,
+            "peak_rss_mb": 769.0,
+            "index_size_mb": 27.92,
+            "harness_wall_sec": 4.412,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 421,
+            "symbol_files": 293,
+            "symbol_files_in_language": 291,
+            "files_in_language": 404,
+            "call_edges_distinct": 12884
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 273,
+              "symbol_bearing": 291,
+              "rate": 0.9381,
+              "ci_low": 0.9044,
+              "ci_high": 0.9605
+            },
+            "all_files__any_dependency__either": {
+              "covered": 274,
+              "symbol_bearing": 293,
+              "rate": 0.9352,
+              "ci_low": 0.9009,
+              "ci_high": 0.9581
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 70,
+              "symbol_bearing": 291,
+              "rate": 0.2405,
+              "ci_low": 0.195,
+              "ci_high": 0.2928
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 71,
+              "symbol_bearing": 293,
+              "rate": 0.2423,
+              "ci_low": 0.1968,
+              "ci_high": 0.2945
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 258,
+              "symbol_bearing": 291,
+              "rate": 0.8866,
+              "ci_low": 0.845,
+              "ci_high": 0.9181
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 258,
+              "symbol_bearing": 293,
+              "rate": 0.8805,
+              "ci_low": 0.8384,
+              "ci_high": 0.9128
+            },
+            "primary_language__calls_only__either": {
+              "covered": 250,
+              "symbol_bearing": 291,
+              "rate": 0.8591,
+              "ci_low": 0.8144,
+              "ci_high": 0.8944
+            },
+            "all_files__calls_only__either": {
+              "covered": 250,
+              "symbol_bearing": 293,
+              "rate": 0.8532,
+              "ci_low": 0.8082,
+              "ci_high": 0.8892
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 43,
+              "symbol_bearing": 291,
+              "rate": 0.1478,
+              "ci_low": 0.1116,
+              "ci_high": 0.1931
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 43,
+              "symbol_bearing": 293,
+              "rate": 0.1468,
+              "ci_low": 0.1108,
+              "ci_high": 0.1918
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 238,
+              "symbol_bearing": 291,
+              "rate": 0.8179,
+              "ci_low": 0.7695,
+              "ci_high": 0.858
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 238,
+              "symbol_bearing": 293,
+              "rate": 0.8123,
+              "ci_low": 0.7636,
+              "ci_high": 0.8528
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-zod-ix3se1ds\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "zod",
+            "seconds": 16.231,
+            "peak_rss_mb": 953.8,
+            "index_size_mb": 4.16,
+            "harness_wall_sec": 16.799,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 443,
+            "symbol_files": 436,
+            "symbol_files_in_language": 401,
+            "files_in_language": 401,
+            "call_edges_distinct": 480
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 25,
+              "symbol_bearing": 401,
+              "rate": 0.0623,
+              "ci_low": 0.0426,
+              "ci_high": 0.0904
+            },
+            "all_files__any_dependency__either": {
+              "covered": 25,
+              "symbol_bearing": 436,
+              "rate": 0.0573,
+              "ci_low": 0.0391,
+              "ci_high": 0.0833
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 15,
+              "symbol_bearing": 401,
+              "rate": 0.0374,
+              "ci_low": 0.0228,
+              "ci_high": 0.0608
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 15,
+              "symbol_bearing": 436,
+              "rate": 0.0344,
+              "ci_low": 0.021,
+              "ci_high": 0.056
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 13,
+              "symbol_bearing": 401,
+              "rate": 0.0324,
+              "ci_low": 0.019,
+              "ci_high": 0.0547
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 13,
+              "symbol_bearing": 436,
+              "rate": 0.0298,
+              "ci_low": 0.0175,
+              "ci_high": 0.0503
+            },
+            "primary_language__calls_only__either": {
+              "covered": 16,
+              "symbol_bearing": 401,
+              "rate": 0.0399,
+              "ci_low": 0.0247,
+              "ci_high": 0.0638
+            },
+            "all_files__calls_only__either": {
+              "covered": 16,
+              "symbol_bearing": 436,
+              "rate": 0.0367,
+              "ci_low": 0.0227,
+              "ci_high": 0.0588
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 9,
+              "symbol_bearing": 401,
+              "rate": 0.0224,
+              "ci_low": 0.0119,
+              "ci_high": 0.0421
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 9,
+              "symbol_bearing": 436,
+              "rate": 0.0206,
+              "ci_low": 0.0109,
+              "ci_high": 0.0388
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 8,
+              "symbol_bearing": 401,
+              "rate": 0.02,
+              "ci_low": 0.0101,
+              "ci_high": 0.0389
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 8,
+              "symbol_bearing": 436,
+              "rate": 0.0183,
+              "ci_low": 0.0093,
+              "ci_high": 0.0358
+            }
+          },
+          "extra": {
+            "nodes": 4338,
+            "links": 5928,
+            "directed": false,
+            "files_processed": 443,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "zod",
+            "seconds": 2.092,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 2.224,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 481,
+            "symbol_files": 271,
+            "symbol_files_in_language": 269,
+            "files_in_language": 400,
+            "call_edges_distinct": 9186
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 232,
+              "symbol_bearing": 269,
+              "rate": 0.8625,
+              "ci_low": 0.8162,
+              "ci_high": 0.8985
+            },
+            "all_files__any_dependency__either": {
+              "covered": 233,
+              "symbol_bearing": 271,
+              "rate": 0.8598,
+              "ci_low": 0.8134,
+              "ci_high": 0.8961
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 111,
+              "symbol_bearing": 269,
+              "rate": 0.4126,
+              "ci_low": 0.3554,
+              "ci_high": 0.4723
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 112,
+              "symbol_bearing": 271,
+              "rate": 0.4133,
+              "ci_low": 0.3563,
+              "ci_high": 0.4727
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 210,
+              "symbol_bearing": 269,
+              "rate": 0.7807,
+              "ci_low": 0.7275,
+              "ci_high": 0.826
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 210,
+              "symbol_bearing": 271,
+              "rate": 0.7749,
+              "ci_low": 0.7215,
+              "ci_high": 0.8206
+            },
+            "primary_language__calls_only__either": {
+              "covered": 210,
+              "symbol_bearing": 269,
+              "rate": 0.7807,
+              "ci_low": 0.7275,
+              "ci_high": 0.826
+            },
+            "all_files__calls_only__either": {
+              "covered": 210,
+              "symbol_bearing": 271,
+              "rate": 0.7749,
+              "ci_low": 0.7215,
+              "ci_high": 0.8206
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 37,
+              "symbol_bearing": 269,
+              "rate": 0.1375,
+              "ci_low": 0.1015,
+              "ci_high": 0.1838
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 37,
+              "symbol_bearing": 271,
+              "rate": 0.1365,
+              "ci_low": 0.1007,
+              "ci_high": 0.1825
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 194,
+              "symbol_bearing": 269,
+              "rate": 0.7212,
+              "ci_low": 0.6648,
+              "ci_high": 0.7714
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 194,
+              "symbol_bearing": 271,
+              "rate": 0.7159,
+              "ci_low": 0.6594,
+              "ci_high": 0.7663
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 0.188,
+              "parse": 1.681,
+              "build": 0.223
+            },
+            "calls_raw": 9186
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "zod",
+            "seconds": 3.432,
+            "peak_rss_mb": 67.5,
+            "index_size_mb": null,
+            "harness_wall_sec": 3.637,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 481,
+            "symbol_files": 271,
+            "symbol_files_in_language": 269,
+            "files_in_language": 400,
+            "call_edges_distinct": 9186
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 232,
+              "symbol_bearing": 269,
+              "rate": 0.8625,
+              "ci_low": 0.8162,
+              "ci_high": 0.8985
+            },
+            "all_files__any_dependency__either": {
+              "covered": 233,
+              "symbol_bearing": 271,
+              "rate": 0.8598,
+              "ci_low": 0.8134,
+              "ci_high": 0.8961
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 111,
+              "symbol_bearing": 269,
+              "rate": 0.4126,
+              "ci_low": 0.3554,
+              "ci_high": 0.4723
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 112,
+              "symbol_bearing": 271,
+              "rate": 0.4133,
+              "ci_low": 0.3563,
+              "ci_high": 0.4727
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 210,
+              "symbol_bearing": 269,
+              "rate": 0.7807,
+              "ci_low": 0.7275,
+              "ci_high": 0.826
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 210,
+              "symbol_bearing": 271,
+              "rate": 0.7749,
+              "ci_low": 0.7215,
+              "ci_high": 0.8206
+            },
+            "primary_language__calls_only__either": {
+              "covered": 210,
+              "symbol_bearing": 269,
+              "rate": 0.7807,
+              "ci_low": 0.7275,
+              "ci_high": 0.826
+            },
+            "all_files__calls_only__either": {
+              "covered": 210,
+              "symbol_bearing": 271,
+              "rate": 0.7749,
+              "ci_low": 0.7215,
+              "ci_high": 0.8206
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 37,
+              "symbol_bearing": 269,
+              "rate": 0.1375,
+              "ci_low": 0.1015,
+              "ci_high": 0.1838
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 37,
+              "symbol_bearing": 271,
+              "rate": 0.1365,
+              "ci_low": 0.1007,
+              "ci_high": 0.1825
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 194,
+              "symbol_bearing": 269,
+              "rate": 0.7212,
+              "ci_low": 0.6648,
+              "ci_high": 0.7714
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 194,
+              "symbol_bearing": 271,
+              "rate": 0.7159,
+              "ci_low": 0.6594,
+              "ci_high": 0.7663
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 0.185,
+              "parse": 2.007,
+              "build": 0.333,
+              "total": 2.524
+            },
+            "calls_raw": 9186,
+            "nodes": 3870,
+            "edges": 8760,
+            "returncode": 0
+          }
+        }
+      }
+    },
+    "gitleaks": {
+      "language": "go",
+      "shared": {
+        "arms": [
+          "code-review-graph",
+          "codegraph",
+          "graphify",
+          "repowise",
+          "repowise-subprocess"
+        ],
+        "files_seen_intersection": 215,
+        "files_seen_per_arm": {
+          "code-review-graph": 216,
+          "codegraph": 225,
+          "graphify": 224,
+          "repowise": 296,
+          "repowise-subprocess": 296
+        },
+        "files_seen_only_in": {
+          "code-review-graph": 1,
+          "codegraph": 10,
+          "graphify": 9,
+          "repowise": 81,
+          "repowise-subprocess": 81
+        },
+        "symbol_files_on_shared_seen": {
+          "code-review-graph": 211,
+          "codegraph": 214,
+          "graphify": 214,
+          "repowise": 214,
+          "repowise-subprocess": 214
+        },
+        "symbol_files_in_language_on_shared_seen": {
+          "code-review-graph": 210,
+          "codegraph": 213,
+          "graphify": 213,
+          "repowise": 213,
+          "repowise-subprocess": 213
+        },
+        "symbol_gap_in_language": {
+          "code-review-graph_only": 0,
+          "codegraph_only": 0,
+          "graphify_only": 1,
+          "repowise_only": 0,
+          "repowise-subprocess_only": 0
+        }
+      },
+      "arms": {
+        "code-review-graph": {
+          "version": "2.3.7",
+          "cost": {
+            "arm": "code-review-graph",
+            "version": "2.3.7",
+            "repo": "gitleaks",
+            "seconds": 3.747,
+            "peak_rss_mb": 369.3,
+            "index_size_mb": 7.2,
+            "harness_wall_sec": 4.341,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 216,
+            "symbol_files": 212,
+            "symbol_files_in_language": 210,
+            "files_in_language": 214,
+            "call_edges_distinct": 105
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__any_dependency__either": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            },
+            "primary_language__calls_only__either": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__calls_only__either": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 210,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.018
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 0,
+              "symbol_bearing": 212,
+              "rate": 0.0,
+              "ci_low": 0.0,
+              "ci_high": 0.0178
+            }
+          },
+          "extra": {
+            "build_root": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-gitleaks-93l40rrr\\gitleaks",
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-crg-gitleaks-a0szadqd\\graph.db",
+            "edge_kind_counts": {
+              "CALLS": 4367,
+              "CONTAINS": 565,
+              "IMPORTS_FROM": 797,
+              "REFERENCES": 2,
+              "TESTED_BY": 568
+            },
+            "calls_rows_total": 4367,
+            "calls_rows_unresolved": 4262,
+            "returncode": 0
+          }
+        },
+        "codegraph": {
+          "version": "1.5.0",
+          "cost": {
+            "arm": "codegraph",
+            "version": "1.5.0",
+            "repo": "gitleaks",
+            "seconds": 1.663,
+            "peak_rss_mb": 708.3,
+            "index_size_mb": 4.98,
+            "harness_wall_sec": 2.346,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 225,
+            "symbol_files": 214,
+            "symbol_files_in_language": 213,
+            "files_in_language": 214,
+            "call_edges_distinct": 2058
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 195,
+              "symbol_bearing": 213,
+              "rate": 0.9155,
+              "ci_low": 0.8704,
+              "ci_high": 0.9459
+            },
+            "all_files__any_dependency__either": {
+              "covered": 195,
+              "symbol_bearing": 214,
+              "rate": 0.9112,
+              "ci_low": 0.8655,
+              "ci_high": 0.9424
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 168,
+              "symbol_bearing": 213,
+              "rate": 0.7887,
+              "ci_low": 0.729,
+              "ci_high": 0.8382
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 168,
+              "symbol_bearing": 214,
+              "rate": 0.785,
+              "ci_low": 0.7252,
+              "ci_high": 0.8348
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 184,
+              "symbol_bearing": 213,
+              "rate": 0.8638,
+              "ci_low": 0.8113,
+              "ci_high": 0.9035
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 184,
+              "symbol_bearing": 214,
+              "rate": 0.8598,
+              "ci_low": 0.8069,
+              "ci_high": 0.9
+            },
+            "primary_language__calls_only__either": {
+              "covered": 194,
+              "symbol_bearing": 213,
+              "rate": 0.9108,
+              "ci_low": 0.8649,
+              "ci_high": 0.9422
+            },
+            "all_files__calls_only__either": {
+              "covered": 194,
+              "symbol_bearing": 214,
+              "rate": 0.9065,
+              "ci_low": 0.8601,
+              "ci_high": 0.9387
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 167,
+              "symbol_bearing": 213,
+              "rate": 0.784,
+              "ci_low": 0.724,
+              "ci_high": 0.834
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 167,
+              "symbol_bearing": 214,
+              "rate": 0.7804,
+              "ci_low": 0.7202,
+              "ci_high": 0.8306
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 177,
+              "symbol_bearing": 213,
+              "rate": 0.831,
+              "ci_low": 0.7749,
+              "ci_high": 0.8753
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 177,
+              "symbol_bearing": 214,
+              "rate": 0.8271,
+              "ci_low": 0.7708,
+              "ci_high": 0.8719
+            }
+          },
+          "extra": {
+            "frozen": false,
+            "db_path": "C:\\Users\\ragha\\AppData\\Local\\Temp\\gq-db-gitleaks-4ou9dyt3\\codegraph.db",
+            "returncode": 0
+          }
+        },
+        "graphify": {
+          "version": "0.9.31",
+          "cost": {
+            "arm": "graphify",
+            "version": "0.9.31",
+            "repo": "gitleaks",
+            "seconds": 5.002,
+            "peak_rss_mb": 833.5,
+            "index_size_mb": 2.78,
+            "harness_wall_sec": 5.53,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 224,
+            "symbol_files": 217,
+            "symbol_files_in_language": 214,
+            "files_in_language": 215,
+            "call_edges_distinct": 1476
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 189,
+              "symbol_bearing": 214,
+              "rate": 0.8832,
+              "ci_low": 0.8332,
+              "ci_high": 0.9196
+            },
+            "all_files__any_dependency__either": {
+              "covered": 189,
+              "symbol_bearing": 217,
+              "rate": 0.871,
+              "ci_low": 0.8198,
+              "ci_high": 0.9092
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 160,
+              "symbol_bearing": 214,
+              "rate": 0.7477,
+              "ci_low": 0.6855,
+              "ci_high": 0.8011
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 160,
+              "symbol_bearing": 217,
+              "rate": 0.7373,
+              "ci_low": 0.675,
+              "ci_high": 0.7914
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 177,
+              "symbol_bearing": 214,
+              "rate": 0.8271,
+              "ci_low": 0.7708,
+              "ci_high": 0.8719
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 177,
+              "symbol_bearing": 217,
+              "rate": 0.8157,
+              "ci_low": 0.7587,
+              "ci_high": 0.8616
+            },
+            "primary_language__calls_only__either": {
+              "covered": 179,
+              "symbol_bearing": 214,
+              "rate": 0.8364,
+              "ci_low": 0.781,
+              "ci_high": 0.88
+            },
+            "all_files__calls_only__either": {
+              "covered": 179,
+              "symbol_bearing": 217,
+              "rate": 0.8249,
+              "ci_low": 0.7688,
+              "ci_high": 0.8697
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 153,
+              "symbol_bearing": 214,
+              "rate": 0.715,
+              "ci_low": 0.6511,
+              "ci_high": 0.7712
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 153,
+              "symbol_bearing": 217,
+              "rate": 0.7051,
+              "ci_low": 0.6413,
+              "ci_high": 0.7618
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 164,
+              "symbol_bearing": 214,
+              "rate": 0.7664,
+              "ci_low": 0.7053,
+              "ci_high": 0.818
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 164,
+              "symbol_bearing": 217,
+              "rate": 0.7558,
+              "ci_low": 0.6945,
+              "ci_high": 0.8081
+            }
+          },
+          "extra": {
+            "nodes": 853,
+            "links": 2579,
+            "directed": false,
+            "files_processed": 224,
+            "run_flags": [
+              "--code-only"
+            ],
+            "files_seen_is_processed_only": true,
+            "returncode": 0
+          }
+        },
+        "repowise": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise",
+            "version": "3594ba75",
+            "repo": "gitleaks",
+            "seconds": 0.919,
+            "peak_rss_mb": null,
+            "index_size_mb": null,
+            "harness_wall_sec": 1.055,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 296,
+            "symbol_files": 217,
+            "symbol_files_in_language": 213,
+            "files_in_language": 214,
+            "call_edges_distinct": 2286
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 203,
+              "symbol_bearing": 213,
+              "rate": 0.9531,
+              "ci_low": 0.9157,
+              "ci_high": 0.9743
+            },
+            "all_files__any_dependency__either": {
+              "covered": 203,
+              "symbol_bearing": 217,
+              "rate": 0.9355,
+              "ci_low": 0.8946,
+              "ci_high": 0.9612
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 183,
+              "symbol_bearing": 213,
+              "rate": 0.8592,
+              "ci_low": 0.8061,
+              "ci_high": 0.8995
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 183,
+              "symbol_bearing": 217,
+              "rate": 0.8433,
+              "ci_low": 0.789,
+              "ci_high": 0.8857
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 190,
+              "symbol_bearing": 213,
+              "rate": 0.892,
+              "ci_low": 0.8432,
+              "ci_high": 0.927
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 190,
+              "symbol_bearing": 217,
+              "rate": 0.8756,
+              "ci_low": 0.825,
+              "ci_high": 0.9131
+            },
+            "primary_language__calls_only__either": {
+              "covered": 193,
+              "symbol_bearing": 213,
+              "rate": 0.9061,
+              "ci_low": 0.8594,
+              "ci_high": 0.9384
+            },
+            "all_files__calls_only__either": {
+              "covered": 193,
+              "symbol_bearing": 217,
+              "rate": 0.8894,
+              "ci_low": 0.8407,
+              "ci_high": 0.9245
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 162,
+              "symbol_bearing": 213,
+              "rate": 0.7606,
+              "ci_low": 0.699,
+              "ci_high": 0.8129
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 162,
+              "symbol_bearing": 217,
+              "rate": 0.7465,
+              "ci_low": 0.6847,
+              "ci_high": 0.7998
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 178,
+              "symbol_bearing": 213,
+              "rate": 0.8357,
+              "ci_low": 0.7801,
+              "ci_high": 0.8794
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 178,
+              "symbol_bearing": 217,
+              "rate": 0.8203,
+              "ci_low": 0.7638,
+              "ci_high": 0.8657
+            }
+          },
+          "extra": {
+            "in_process": true,
+            "timings_sec": {
+              "walk": 0.177,
+              "parse": 0.312,
+              "build": 0.429
+            },
+            "calls_raw": 2286
+          }
+        },
+        "repowise-subprocess": {
+          "version": "3594ba75",
+          "cost": {
+            "arm": "repowise-subprocess",
+            "version": "3594ba75",
+            "repo": "gitleaks",
+            "seconds": 1.697,
+            "peak_rss_mb": 53.9,
+            "index_size_mb": null,
+            "harness_wall_sec": 1.849,
+            "warmup_discarded": true
+          },
+          "counts": {
+            "files_seen": 296,
+            "symbol_files": 217,
+            "symbol_files_in_language": 213,
+            "files_in_language": 214,
+            "call_edges_distinct": 2286
+          },
+          "coverage": {
+            "primary_language__any_dependency__either": {
+              "covered": 203,
+              "symbol_bearing": 213,
+              "rate": 0.9531,
+              "ci_low": 0.9157,
+              "ci_high": 0.9743
+            },
+            "all_files__any_dependency__either": {
+              "covered": 203,
+              "symbol_bearing": 217,
+              "rate": 0.9355,
+              "ci_low": 0.8946,
+              "ci_high": 0.9612
+            },
+            "primary_language__any_dependency__incoming": {
+              "covered": 183,
+              "symbol_bearing": 213,
+              "rate": 0.8592,
+              "ci_low": 0.8061,
+              "ci_high": 0.8995
+            },
+            "all_files__any_dependency__incoming": {
+              "covered": 183,
+              "symbol_bearing": 217,
+              "rate": 0.8433,
+              "ci_low": 0.789,
+              "ci_high": 0.8857
+            },
+            "primary_language__any_dependency__outgoing": {
+              "covered": 190,
+              "symbol_bearing": 213,
+              "rate": 0.892,
+              "ci_low": 0.8432,
+              "ci_high": 0.927
+            },
+            "all_files__any_dependency__outgoing": {
+              "covered": 190,
+              "symbol_bearing": 217,
+              "rate": 0.8756,
+              "ci_low": 0.825,
+              "ci_high": 0.9131
+            },
+            "primary_language__calls_only__either": {
+              "covered": 193,
+              "symbol_bearing": 213,
+              "rate": 0.9061,
+              "ci_low": 0.8594,
+              "ci_high": 0.9384
+            },
+            "all_files__calls_only__either": {
+              "covered": 193,
+              "symbol_bearing": 217,
+              "rate": 0.8894,
+              "ci_low": 0.8407,
+              "ci_high": 0.9245
+            },
+            "primary_language__calls_only__incoming": {
+              "covered": 162,
+              "symbol_bearing": 213,
+              "rate": 0.7606,
+              "ci_low": 0.699,
+              "ci_high": 0.8129
+            },
+            "all_files__calls_only__incoming": {
+              "covered": 162,
+              "symbol_bearing": 217,
+              "rate": 0.7465,
+              "ci_low": 0.6847,
+              "ci_high": 0.7998
+            },
+            "primary_language__calls_only__outgoing": {
+              "covered": 178,
+              "symbol_bearing": 213,
+              "rate": 0.8357,
+              "ci_low": 0.7801,
+              "ci_high": 0.8794
+            },
+            "all_files__calls_only__outgoing": {
+              "covered": 178,
+              "symbol_bearing": 217,
+              "rate": 0.8203,
+              "ci_low": 0.7638,
+              "ci_high": 0.8657
+            }
+          },
+          "extra": {
+            "in_process_timings_sec": {
+              "walk": 0.184,
+              "parse": 0.326,
+              "build": 0.449,
+              "total": 0.959
+            },
+            "calls_raw": 2286,
+            "nodes": 1321,
+            "edges": 4635,
+            "returncode": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "oracle": {
+    "_header": true,
+    "algorithm": "rta",
+    "analysed_file_count": 663,
+    "go_version": "",
+    "load_errors": 0,
+    "oracle": "golang.org/x/tools/go/callgraph/rta",
+    "repo": "C:/Users/ragha/Desktop/repowise/test-repos/syft",
+    "root_count": 30,
+    "roots": [
+      "github.com/anchore/syft/examples/decode_sbom",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator",
+      "github.com/anchore/syft/cmd/syft",
+      "github.com/anchore/syft/internal/spdxlicense/generate",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary/internal/manager",
+      "github.com/anchore/syft/examples/source_from_image",
+      "github.com/anchore/syft/examples/create_custom_sbom",
+      "github.com/anchore/syft/internal/sourcemetadata/generate",
+      "github.com/anchore/syft/internal/capabilities/generate",
+      "github.com/anchore/syft/examples/create_simple_sbom",
+      "github.com/anchore/syft/examples/source_from_registry",
+      "github.com/anchore/syft/internal/packagemetadata/generate",
+      "github.com/anchore/syft/examples/select_catalogers",
+      "github.com/anchore/syft/internal/jsonschema",
+      "github.com/anchore/syft/examples/source_detection"
+    ],
+    "tests": false
+  },
+  "repo": "syft",
+  "arms": {
+    "repowise": {
+      "version": "13cc339a",
+      "edges_in_scope": 4569,
+      "oracle_edges": 8003,
+      "matched": 3844,
+      "recall": 0.4803,
+      "recall_ci": [
+        0.4694,
+        0.4913
+      ],
+      "outside_oracle": 725,
+      "outside_share": 0.1587,
+      "contradicted": 452,
+      "unjudged": 273,
+      "precision_vs_oracle": 0.8948,
+      "precision_ci": [
+        0.8853,
+        0.9036
+      ],
+      "unjudged_share": 0.0598,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          3844
+        ],
+        [
+          "no_file_pair",
+          292
+        ],
+        [
+          "(0, 5)",
+          75
+        ],
+        [
+          "(1, 0)",
+          44
+        ],
+        [
+          "(0, 15)",
+          40
+        ],
+        [
+          "(2, 0)",
+          37
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 5173,
+      "oracle_edges": 8003,
+      "matched": 3821,
+      "recall": 0.4774,
+      "recall_ci": [
+        0.4665,
+        0.4884
+      ],
+      "outside_oracle": 1352,
+      "outside_share": 0.2614,
+      "contradicted": 776,
+      "unjudged": 576,
+      "precision_vs_oracle": 0.8312,
+      "precision_ci": [
+        0.8201,
+        0.8417
+      ],
+      "unjudged_share": 0.1113,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          3821
+        ],
+        [
+          "no_file_pair",
+          881
+        ],
+        [
+          "(0, 5)",
+          73
+        ],
+        [
+          "(1, 0)",
+          45
+        ],
+        [
+          "(0, 15)",
+          31
+        ],
+        [
+          "(2, 0)",
+          31
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 7173,
+      "oracle_edges": 8003,
+      "matched": 4068,
+      "recall": 0.5083,
+      "recall_ci": [
+        0.4974,
+        0.5193
+      ],
+      "outside_oracle": 3105,
+      "outside_share": 0.4329,
+      "contradicted": 2675,
+      "unjudged": 430,
+      "precision_vs_oracle": 0.6033,
+      "precision_ci": [
+        0.5916,
+        0.6149
+      ],
+      "unjudged_share": 0.0599,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          4068
+        ],
+        [
+          "no_file_pair",
+          2205
+        ],
+        [
+          "(0, 5)",
+          72
+        ],
+        [
+          "(1, 0)",
+          47
+        ],
+        [
+          "(2, 0)",
+          40
+        ],
+        [
+          "(0, 50)",
+          35
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "oracle": {
+    "_header": true,
+    "algorithm": "rta",
+    "analysed_file_count": 184,
+    "go_version": "",
+    "load_errors": 0,
+    "oracle": "golang.org/x/tools/go/callgraph/rta",
+    "repo": "C:/Users/ragha/Desktop/repowise/test-repos/gitleaks",
+    "root_count": 4,
+    "roots": [
+      "github.com/zricethezav/gitleaks/v8/cmd/generate/config",
+      "github.com/zricethezav/gitleaks/v8"
+    ],
+    "tests": false
+  },
+  "repo": "gitleaks",
+  "arms": {
+    "repowise": {
+      "version": "13cc339a",
+      "edges_in_scope": 1594,
+      "oracle_edges": 1593,
+      "matched": 1495,
+      "recall": 0.9385,
+      "recall_ci": [
+        0.9256,
+        0.9493
+      ],
+      "outside_oracle": 99,
+      "outside_share": 0.0621,
+      "contradicted": 55,
+      "unjudged": 44,
+      "precision_vs_oracle": 0.9645,
+      "precision_ci": [
+        0.9541,
+        0.9726
+      ],
+      "unjudged_share": 0.0276,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1495
+        ],
+        [
+          "no_file_pair",
+          37
+        ],
+        [
+          "(0, 4)",
+          14
+        ],
+        [
+          "(0, -4)",
+          7
+        ],
+        [
+          "(1, 0)",
+          7
+        ],
+        [
+          "(-22, 0)",
+          4
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 1539,
+      "oracle_edges": 1593,
+      "matched": 1437,
+      "recall": 0.9021,
+      "recall_ci": [
+        0.8865,
+        0.9157
+      ],
+      "outside_oracle": 102,
+      "outside_share": 0.0663,
+      "contradicted": 63,
+      "unjudged": 39,
+      "precision_vs_oracle": 0.958,
+      "precision_ci": [
+        0.9466,
+        0.967
+      ],
+      "unjudged_share": 0.0253,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1437
+        ],
+        [
+          "no_file_pair",
+          36
+        ],
+        [
+          "(0, 4)",
+          14
+        ],
+        [
+          "(1, 0)",
+          9
+        ],
+        [
+          "(0, -4)",
+          7
+        ],
+        [
+          "(-22, 0)",
+          4
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 1684,
+      "oracle_edges": 1593,
+      "matched": 1520,
+      "recall": 0.9542,
+      "recall_ci": [
+        0.9428,
+        0.9634
+      ],
+      "outside_oracle": 164,
+      "outside_share": 0.0974,
+      "contradicted": 120,
+      "unjudged": 44,
+      "precision_vs_oracle": 0.9268,
+      "precision_ci": [
+        0.9132,
+        0.9385
+      ],
+      "unjudged_share": 0.0261,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1520
+        ],
+        [
+          "no_file_pair",
+          66
+        ],
+        [
+          "(0, 4)",
+          16
+        ],
+        [
+          "(0, -4)",
+          10
+        ],
+        [
+          "(1, 0)",
+          6
+        ],
+        [
+          "(0, -8)",
+          4
+        ]
+      ]
+    }
+  }
+}

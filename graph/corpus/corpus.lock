@@ -1,0 +1,1408 @@
+{
+  "schema": "corpus-lock/1",
+  "note": "Pins for every checkout in test-repos/, captured by graph/corpus/capture_pins.py. A rerun on a different pin is a different measurement and must say so.",
+  "captured_from": "C:\\Users\\ragha\\Desktop\\repowise\\test-repos",
+  "not_a_git_checkout": [
+    ".claude",
+    "_mem",
+    "diag-workspace",
+    "local-stash",
+    "outreach"
+  ],
+  "repos": [
+    {
+      "name": "abseil-cpp",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/abseil/abseil-cpp.git",
+      "pin": "35b9f25ba74a3cd71b6342168e74bd0dc4abf58b",
+      "files": 1601,
+      "extensions": {
+        "cpp": 874,
+        "python": 6,
+        "c": 1
+      }
+    },
+    {
+      "name": "aider",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/Aider-AI/aider",
+      "pin": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+      "files": 691,
+      "extensions": {
+        "python": 147,
+        "javascript": 12,
+        "typescript": 2,
+        "c": 1,
+        "cpp": 1,
+        "csharp": 1
+      }
+    },
+    {
+      "name": "Alamofire",
+      "language": "swift",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/Alamofire/Alamofire.git",
+      "pin": "0455bfb650893e86ad07ace16e5f2d36dadf46f4",
+      "files": 568,
+      "extensions": {
+        "swift": 98,
+        "javascript": 10
+      }
+    },
+    {
+      "name": "angular",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/angular/angular",
+      "pin": "d109cc5e9d58df169163fa6664ed576aade9ad16",
+      "files": 10605,
+      "extensions": {
+        "typescript": 6024,
+        "javascript": 886
+      }
+    },
+    {
+      "name": "aria2",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/aria2/aria2",
+      "pin": "9e7273583f83e881e3ec067b523ba88724088d2f",
+      "files": 1393,
+      "extensions": {
+        "cpp": 1169,
+        "c": 22,
+        "python": 3,
+        "javascript": 2
+      }
+    },
+    {
+      "name": "autogpt",
+      "language": null,
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/Significant-Gravitas/AutoGPT",
+      "pin": "e2711b1748bdc3fe702ab4e44c6a11df98458c53",
+      "files": 0,
+      "extensions": {},
+      "tracked_modifications": 4350,
+      "usable": false,
+      "unusable_because": "4278 tracked source paths differ from the pin, e.g. .deepsource.toml, .dockerignore, .gitattributes. Re-clone before using this repository for a measurement."
+    },
+    {
+      "name": "awesome-copilot",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/github/awesome-copilot.git",
+      "pin": "4b6430ee3ed78c4029bbb7360ba117b5ce53a78d",
+      "files": 2462,
+      "extensions": {
+        "python": 53,
+        "typescript": 44,
+        "javascript": 29,
+        "csharp": 8,
+        "go": 7,
+        "java": 7
+      }
+    },
+    {
+      "name": "bevy",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/bevyengine/bevy",
+      "pin": "df5d238c6d95a3321991cfd4aa938b6f0ff556c0",
+      "files": 2897,
+      "extensions": {
+        "rust": 1810,
+        "javascript": 2,
+        "typescript": 2,
+        "java": 2
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "caffeine",
+      "language": "java",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/ben-manes/caffeine.git",
+      "pin": "daefcd2ad1237034feb0d9490df60cf0ac75a423",
+      "files": 961,
+      "extensions": {
+        "java": 668,
+        "kotlin": 46,
+        "python": 2,
+        "c": 2,
+        "cpp": 2
+      },
+      "peer_index": "test-repos/caffeine/.codegraph/codegraph.db",
+      "tracked_modifications": 1,
+      "note": "Has a guava/ compatibility subtree that mirrors Guava names deliberately. The index also carries kotlin and python callers, so any java figure must pin files.language."
+    },
+    {
+      "name": "celery",
+      "language": "python",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/celery/celery",
+      "pin": "d6131816f172750f7ba6204f903cd2fc243853ad",
+      "files": 821,
+      "extensions": {
+        "python": 416
+      },
+      "peer_index": "test-repos/celery/.codegraph/codegraph.db",
+      "note": "Framework and repository under test at once. Any framework-shaped result measured here must be rerun on a repository that imports celery rather than vendoring it."
+    },
+    {
+      "name": "CleanArchitecture",
+      "language": "csharp",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/ardalis/CleanArchitecture.git",
+      "pin": "d79c69852db4ddf80efe0be53355720e38820211",
+      "files": 539,
+      "extensions": {
+        "csharp": 362,
+        "javascript": 15
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "cline",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/cline/cline",
+      "pin": "9aac8340dc2932d14038a801eb5da3e318bf72d5",
+      "files": 3184,
+      "extensions": {
+        "typescript": 2397,
+        "python": 15,
+        "javascript": 11,
+        "rust": 4
+      }
+    },
+    {
+      "name": "cobra",
+      "language": "go",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/spf13/cobra",
+      "pin": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+      "files": 66,
+      "extensions": {
+        "go": 36
+      }
+    },
+    {
+      "name": "codebase-memory-mcp",
+      "language": "c",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/DeusData/codebase-memory-mcp.git",
+      "pin": "10cb0e03fbb03fc62435174df5a52cad3186c444",
+      "files": 2039,
+      "extensions": {
+        "c": 843,
+        "cpp": 688,
+        "typescript": 53,
+        "python": 32,
+        "javascript": 7,
+        "go": 6
+      }
+    },
+    {
+      "name": "codegraph",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/colbymchenry/codegraph.git",
+      "pin": "c6aaa20358cd6adcd04b87bdef8e5803ad146f3a",
+      "files": 809,
+      "extensions": {
+        "typescript": 424,
+        "rust": 26,
+        "go": 20,
+        "cpp": 14,
+        "c": 9,
+        "scala": 8
+      }
+    },
+    {
+      "name": "codex",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/openai/codex.git",
+      "pin": "db1a4145692fcfc88fb354f478b0019ca0d2ef9d",
+      "files": 5939,
+      "extensions": {
+        "rust": 2867,
+        "typescript": 666,
+        "python": 147,
+        "c": 6,
+        "cpp": 5,
+        "javascript": 3
+      }
+    },
+    {
+      "name": "continue",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/continuedev/continue",
+      "pin": "d0a3c0b626b5bebc3bef4742eec05a0242be0bab",
+      "files": 3057,
+      "extensions": {
+        "typescript": 1774,
+        "kotlin": 88,
+        "javascript": 66,
+        "python": 51,
+        "rust": 10,
+        "java": 4
+      }
+    },
+    {
+      "name": "Crow",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/CrowCpp/Crow.git",
+      "pin": "bbaf5c1ea0b8f05d53059937a5af6194b5e6b9ff",
+      "files": 193,
+      "extensions": {
+        "cpp": 70,
+        "python": 3
+      }
+    },
+    {
+      "name": "dart-http",
+      "language": "dart",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/dart-lang/http.git",
+      "pin": "a9176ac97402a42e1b275a26eb20a9deaec92184",
+      "files": 680,
+      "extensions": {
+        "dart": 324,
+        "cpp": 17,
+        "kotlin": 9,
+        "swift": 8,
+        "objc": 1
+      }
+    },
+    {
+      "name": "deepwiki-open",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "git@github.com:AsyncFuncAI/deepwiki-open.git",
+      "pin": "34ebfec05b59304896f59300ed7f222808b952ab",
+      "files": 129,
+      "extensions": {
+        "typescript": 32,
+        "python": 30,
+        "javascript": 1
+      }
+    },
+    {
+      "name": "deja-vu",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/vshulcz/deja-vu.git",
+      "pin": "d2a18ee53fb097af3ee1ad3d2401170353692ed6",
+      "files": 717,
+      "extensions": {
+        "go": 579,
+        "python": 4,
+        "javascript": 1
+      }
+    },
+    {
+      "name": "django",
+      "language": "python",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/django/django",
+      "pin": "e78991410b78391bc07a4b5010b273dfec814ff6",
+      "files": 7070,
+      "extensions": {
+        "python": 2924,
+        "javascript": 111
+      }
+    },
+    {
+      "name": "dub",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/dubinc/dub.git",
+      "pin": "e6250ae33f60c0dbb07d72ac8efbaa97e72a04da",
+      "files": 4260,
+      "extensions": {
+        "typescript": 4049,
+        "javascript": 7
+      },
+      "peer_index": "test-repos/dub/.codegraph/codegraph.db",
+      "note": "Largest of the six. No hand-graded precision rows exist for it."
+    },
+    {
+      "name": "eShopOnWeb",
+      "language": "csharp",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/dotnet-architecture/eShopOnWeb.git",
+      "pin": "4da8212117e87d808d4bbc7da6286fd2147ce606",
+      "files": 459,
+      "extensions": {
+        "csharp": 254,
+        "javascript": 2
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "exposed",
+      "language": "kotlin",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/JetBrains/Exposed.git",
+      "pin": "e728cab4138f8c7675745f2a4d13611cacdad645",
+      "files": 5380,
+      "extensions": {
+        "kotlin": 835,
+        "javascript": 7
+      }
+    },
+    {
+      "name": "express",
+      "language": "javascript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/expressjs/express",
+      "pin": "a3714473feb3d2908add734d340e7755fd85e0a3",
+      "files": 213,
+      "extensions": {
+        "javascript": 141
+      }
+    },
+    {
+      "name": "faraday",
+      "language": "ruby",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/lostisland/faraday",
+      "pin": "b25b1b26ccef34b1460b0267115be238ca758087",
+      "files": 143,
+      "extensions": {
+        "ruby": 71
+      }
+    },
+    {
+      "name": "fastapi",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/fastapi/fastapi.git",
+      "pin": "1929ac23195136e8616ed1b7c3fd84c65b26d234",
+      "files": 2997,
+      "extensions": {
+        "python": 1129,
+        "javascript": 4
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "flask",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/pallets/flask",
+      "pin": "2a8a38b051fc248865730bf3511bf2e2ea325e81",
+      "files": 236,
+      "extensions": {
+        "python": 83
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "fmt",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/fmtlib/fmt.git",
+      "pin": "d24fef27d15adb537e60c7c8d54d4b5b23733949",
+      "files": 142,
+      "extensions": {
+        "cpp": 71,
+        "python": 4,
+        "javascript": 1,
+        "c": 1
+      }
+    },
+    {
+      "name": "gemini-cli",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/google-gemini/gemini-cli.git",
+      "pin": "ac42fb0a24fe7349e9968e2359ef5232f1cb6e72",
+      "files": 2942,
+      "extensions": {
+        "typescript": 2147,
+        "javascript": 57,
+        "python": 17,
+        "csharp": 1
+      }
+    },
+    {
+      "name": "gin-vue-admin",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/flipped-aurora/gin-vue-admin.git",
+      "pin": "7d3f0c75646e4d5fa89e9aff12a64bac249fcbc9",
+      "files": 775,
+      "extensions": {
+        "go": 412,
+        "vue": 120,
+        "javascript": 75
+      }
+    },
+    {
+      "name": "gitleaks",
+      "language": "go",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/gitleaks/gitleaks.git",
+      "pin": "8ad8470035d31a209322c580153b45c18e21b980",
+      "files": 454,
+      "extensions": {
+        "go": 214,
+        "python": 1
+      },
+      "peer_index": "test-repos/gitleaks/.codegraph/codegraph.db",
+      "note": "Vendors its own regexp wrapper that its tests import instead of the stdlib. Rows there look wrong and are not."
+    },
+    {
+      "name": "goose",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/block/goose.git",
+      "pin": "2db0e31fe77c7f626293f44a19d9f6c18db36ac5",
+      "files": 2309,
+      "extensions": {
+        "typescript": 525,
+        "rust": 467,
+        "javascript": 43,
+        "python": 25,
+        "kotlin": 11
+      }
+    },
+    {
+      "name": "gpt-engineer",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/gpt-engineer-org/gpt-engineer",
+      "pin": "a90fcd543eedcc0ff2c34561bc0785d2ba83c47e",
+      "files": 182,
+      "extensions": {
+        "python": 84
+      }
+    },
+    {
+      "name": "graperoot",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/kunal12203/GrapeRoot",
+      "pin": "4f7549f0b1b8878241c3f4fc072bd4803dbd5a6e",
+      "files": 70,
+      "extensions": {
+        "python": 3
+      }
+    },
+    {
+      "name": "graphify",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/Graphify-Labs/graphify.git",
+      "pin": "26128abf693e4aa691acb58727c1176eacb9b464",
+      "files": 794,
+      "extensions": {
+        "python": 296,
+        "cpp": 13,
+        "typescript": 8,
+        "csharp": 7,
+        "php": 5,
+        "swift": 4
+      }
+    },
+    {
+      "name": "guzzle",
+      "language": "php",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/guzzle/guzzle.git",
+      "pin": "d1cbca76970939a9c2ced55b1e25ea26f34fc773",
+      "files": 170,
+      "extensions": {
+        "php": 132
+      }
+    },
+    {
+      "name": "hermes-agent",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/NousResearch/hermes-agent.git",
+      "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+      "files": 8745,
+      "extensions": {
+        "python": 4017,
+        "typescript": 2066,
+        "javascript": 15,
+        "rust": 9,
+        "cpp": 2,
+        "c": 1
+      }
+    },
+    {
+      "name": "hermes-agent-full",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/NousResearch/hermes-agent.git",
+      "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+      "files": 8745,
+      "extensions": {
+        "python": 4017,
+        "typescript": 2066,
+        "javascript": 15,
+        "rust": 9,
+        "cpp": 2,
+        "c": 1
+      }
+    },
+    {
+      "name": "hono",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/honojs/hono.git",
+      "pin": "97c6fe1f12298c715eb7b2da65b4b6e0d81682bb",
+      "files": 490,
+      "extensions": {
+        "typescript": 362,
+        "javascript": 5
+      }
+    },
+    {
+      "name": "httpie",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/httpie/cli.git",
+      "pin": "5b604c37c6c67e18e7c3e9aee6c88a8c22b98345",
+      "files": 265,
+      "extensions": {
+        "python": 133,
+        "ruby": 2
+      }
+    },
+    {
+      "name": "hugo",
+      "language": "go",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/gohugoio/hugo.git",
+      "pin": "1a3d6d9f6f5a42d69e1e561a32c9a508d29dc568",
+      "files": 2918,
+      "extensions": {
+        "go": 896,
+        "javascript": 27,
+        "c": 3,
+        "cpp": 1
+      },
+      "tracked_modifications": 8
+    },
+    {
+      "name": "javalin",
+      "language": "kotlin",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/javalin/javalin.git",
+      "pin": "0ae00cac808d0d4418775ba04c54e2cd1d0af686",
+      "files": 500,
+      "extensions": {
+        "kotlin": 303,
+        "java": 64,
+        "vue": 18,
+        "javascript": 5
+      }
+    },
+    {
+      "name": "jekyll",
+      "language": "ruby",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/jekyll/jekyll.git",
+      "pin": "74d751339d3e534aa51d5d7b0640e9bd743509e4",
+      "files": 816,
+      "extensions": {
+        "ruby": 162,
+        "javascript": 5,
+        "php": 1
+      }
+    },
+    {
+      "name": "jhipster-sample-app",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/jhipster/jhipster-sample-app.git",
+      "pin": "00e253dc850af3efe0c0494474df6ea9f9586b62",
+      "files": 611,
+      "extensions": {
+        "typescript": 277,
+        "java": 136,
+        "javascript": 3
+      }
+    },
+    {
+      "name": "ktor",
+      "language": "kotlin",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/ktorio/ktor.git",
+      "pin": "4fdb1f8c8587d1f20ca6368ab9fa17279306c0ff",
+      "files": 3017,
+      "extensions": {
+        "kotlin": 2486,
+        "cpp": 12,
+        "rust": 8,
+        "javascript": 3,
+        "java": 1
+      }
+    },
+    {
+      "name": "langchain",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/langchain-ai/langchain",
+      "pin": "933adb0c95140bf310f6ae47f2b7589b16d17203",
+      "files": 3019,
+      "extensions": {
+        "python": 2532,
+        "javascript": 2
+      }
+    },
+    {
+      "name": "laravel-framework",
+      "language": "php",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/laravel/framework",
+      "pin": "faf45dd2b1549ff451993e9b20047ff0bf093033",
+      "files": 3354,
+      "extensions": {
+        "php": 3039,
+        "javascript": 4
+      }
+    },
+    {
+      "name": "leveldb",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/google/leveldb.git",
+      "pin": "7ee830d02b623e8ffe0b95d59a74db1e58da04c5",
+      "files": 154,
+      "extensions": {
+        "cpp": 132,
+        "c": 1
+      }
+    },
+    {
+      "name": "listmonk",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/knadh/listmonk.git",
+      "pin": "ef0a75872463f10a4848af6c547d1c057405453a",
+      "files": 507,
+      "extensions": {
+        "go": 94,
+        "typescript": 76,
+        "vue": 48,
+        "javascript": 39,
+        "python": 1
+      }
+    },
+    {
+      "name": "microdot",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/miguelgrinberg/microdot.git",
+      "pin": "697076e36dea68b5e8d2a59a6dbecafb7aed73aa",
+      "files": 243,
+      "extensions": {
+        "python": 106,
+        "javascript": 1
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "modelcontextprotocol",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol.git",
+      "pin": "e24f0099b60f7c00e165a0faa02a72029d2fa654",
+      "files": 942,
+      "extensions": {
+        "typescript": 38,
+        "javascript": 3
+      }
+    },
+    {
+      "name": "monica",
+      "language": "php",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/monicahq/monica",
+      "pin": "e08e91734170b6bbd582cb578532c3948196124e",
+      "files": 2093,
+      "extensions": {
+        "php": 1656,
+        "vue": 254,
+        "javascript": 7
+      }
+    },
+    {
+      "name": "nextjs",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/vercel/next.js",
+      "pin": "a88f25caf0070b582a8ed83b1ae9e7135d7fd3bc",
+      "files": 29516,
+      "extensions": {
+        "typescript": 11104,
+        "javascript": 10516,
+        "rust": 999,
+        "python": 1
+      }
+    },
+    {
+      "name": "nlohmann-json",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/nlohmann/json.git",
+      "pin": "25c58ac6bd88ccd55084e341f7ecb6ef88d527af",
+      "files": 1205,
+      "extensions": {
+        "cpp": 490,
+        "python": 6,
+        "swift": 1,
+        "c": 1
+      }
+    },
+    {
+      "name": "Ocelot",
+      "language": "csharp",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/ThreeMammals/Ocelot.git",
+      "pin": "78c983d895e274e25becfee9d256f17b1908e15c",
+      "files": 998,
+      "extensions": {
+        "csharp": 754,
+        "python": 1
+      },
+      "peer_index": "test-repos/Ocelot/.codegraph/codegraph.db"
+    },
+    {
+      "name": "oh-docs",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/OpenHands/docs.git",
+      "pin": "105fe541e1d93b0cb3e0058b7870bb5df50e61ef",
+      "files": 392,
+      "extensions": {
+        "python": 11,
+        "javascript": 2
+      }
+    },
+    {
+      "name": "oh-sdk",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/OpenHands/software-agent-sdk.git",
+      "pin": "973c35134f0be00f3ff65b9552b4b304433a74e2",
+      "files": 1431,
+      "extensions": {
+        "python": 1222,
+        "javascript": 9
+      }
+    },
+    {
+      "name": "open-interpreter",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/OpenInterpreter/open-interpreter",
+      "pin": "ac1b565c729e7a6192865e03301d81fa7c924025",
+      "files": 5259,
+      "extensions": {
+        "rust": 2346,
+        "typescript": 618,
+        "python": 134,
+        "c": 6,
+        "cpp": 5,
+        "javascript": 4
+      }
+    },
+    {
+      "name": "openclaw",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/openclaw/openclaw.git",
+      "pin": "ec737ee74d9be52101992f0cd5d17f5d3953344b",
+      "files": 20617,
+      "extensions": {
+        "typescript": 16672,
+        "swift": 695,
+        "kotlin": 198,
+        "go": 28,
+        "javascript": 12,
+        "python": 11
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "opencode",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/sst/opencode.git",
+      "pin": "60e23fee161982d572fafbf6cc0df63ac8ac87cc",
+      "files": 6394,
+      "extensions": {
+        "typescript": 3181,
+        "javascript": 4
+      }
+    },
+    {
+      "name": "OpenHands",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/All-Hands-AI/OpenHands.git",
+      "pin": "fe74c543573e86973d23b5cd3a076c401623cd75",
+      "files": 1931,
+      "extensions": {
+        "typescript": 1652,
+        "python": 4,
+        "javascript": 3
+      }
+    },
+    {
+      "name": "openwiki",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/langchain-ai/openwiki",
+      "pin": "d4e94ab513ab13908c6b61346b23dc17bbd59b1f",
+      "files": 123,
+      "extensions": {
+        "typescript": 83,
+        "javascript": 1
+      }
+    },
+    {
+      "name": "osv-scalibr",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/google/osv-scalibr.git",
+      "pin": "d76f5fcf88aa7b61ef8f05a24b6953126ca28593",
+      "files": 2358,
+      "extensions": {
+        "go": 1251,
+        "ruby": 16,
+        "rust": 3,
+        "javascript": 1
+      }
+    },
+    {
+      "name": "osv-scanner",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/google/osv-scanner.git",
+      "pin": "b56b5191101d5f27d4787d5583d8d01e9518a7af",
+      "files": 802,
+      "extensions": {
+        "go": 223,
+        "c": 27,
+        "cpp": 13,
+        "python": 7,
+        "java": 2,
+        "rust": 2
+      }
+    },
+    {
+      "name": "Polly",
+      "language": "csharp",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/App-vNext/Polly",
+      "pin": "47e3b412e8c3b7e6db1629acd98f3e3b6b529d6c",
+      "files": 1028,
+      "extensions": {
+        "csharp": 797,
+        "javascript": 1
+      }
+    },
+    {
+      "name": "PowerToys",
+      "language": "csharp",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/microsoft/PowerToys.git",
+      "pin": "2466a4b6fdb06c17d4ea40321d1cea98601d1f9c",
+      "files": 8171,
+      "extensions": {
+        "csharp": 3631,
+        "cpp": 1303,
+        "javascript": 124,
+        "c": 16,
+        "python": 4
+      },
+      "tracked_modifications": 2
+    },
+    {
+      "name": "preact",
+      "language": "javascript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/preactjs/preact",
+      "pin": "0405c33df4805ab9603ee0528e59e1d61e1d3298",
+      "files": 299,
+      "extensions": {
+        "javascript": 190,
+        "typescript": 40
+      }
+    },
+    {
+      "name": "pybind11",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/pybind/pybind11.git",
+      "pin": "84da0e25455a33634857f88491b72c9c835b88a7",
+      "files": 372,
+      "extensions": {
+        "cpp": 163,
+        "python": 97
+      }
+    },
+    {
+      "name": "pydantic",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/pydantic/pydantic.git",
+      "pin": "ee857ec769317486e6851c51ce56c9ad54af0ee7",
+      "files": 775,
+      "extensions": {
+        "python": 405,
+        "rust": 125,
+        "javascript": 5
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "react",
+      "language": "javascript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/facebook/react",
+      "pin": "68631c0453b08e2c7c96a40910f4c91db1f66d5a",
+      "files": 7243,
+      "extensions": {
+        "javascript": 3923,
+        "typescript": 541,
+        "rust": 120
+      }
+    },
+    {
+      "name": "requests",
+      "language": "python",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/psf/requests",
+      "pin": "4ed3d1b3204caa6806a36125a39589044a02e807",
+      "files": 130,
+      "extensions": {
+        "python": 37
+      }
+    },
+    {
+      "name": "ripgrep",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/BurntSushi/ripgrep",
+      "pin": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "files": 237,
+      "extensions": {
+        "rust": 110,
+        "ruby": 1
+      }
+    },
+    {
+      "name": "Roo-Code",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/RooCodeInc/Roo-Code.git",
+      "pin": "b867ec9145750d0ae1ff7f02d35406e9bf2a0b16",
+      "files": 3022,
+      "extensions": {
+        "typescript": 1555,
+        "javascript": 11
+      }
+    },
+    {
+      "name": "rtk",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/rtk-ai/rtk.git",
+      "pin": "8dd4aacd6d917245c6a3fa2e350dab4309498079",
+      "files": 410,
+      "extensions": {
+        "rust": 129,
+        "typescript": 9,
+        "java": 5,
+        "python": 4,
+        "ruby": 1
+      }
+    },
+    {
+      "name": "scrapy",
+      "language": "python",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/scrapy/scrapy",
+      "pin": "185d6b9a20b7d0e77f4c60435d17e5072bd4d704",
+      "files": 630,
+      "extensions": {
+        "python": 443
+      }
+    },
+    {
+      "name": "seastar",
+      "language": "cpp",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/scylladb/seastar.git",
+      "pin": "cd0bde17ad27036bd1d1a7fe1b3fae6451837767",
+      "files": 682,
+      "extensions": {
+        "cpp": 527,
+        "python": 19
+      },
+      "tracked_modifications": 1
+    },
+    {
+      "name": "serde",
+      "language": "rust",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/serde-rs/serde",
+      "pin": "747814f7d5fbab872df3b02f070c165b91bde062",
+      "files": 361,
+      "extensions": {
+        "rust": 208
+      }
+    },
+    {
+      "name": "Signal-Server",
+      "language": "java",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/signalapp/Signal-Server",
+      "pin": "40601b82972e9d5326f6d8adbe7ca608b9f51853",
+      "files": 1385,
+      "extensions": {
+        "java": 1248
+      }
+    },
+    {
+      "name": "sinatra",
+      "language": "ruby",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/sinatra/sinatra.git",
+      "pin": "cb22afd7902b566b6eaba6c4ea89739494a65d12",
+      "files": 292,
+      "extensions": {
+        "ruby": 147
+      }
+    },
+    {
+      "name": "slim",
+      "language": "php",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/slimphp/Slim",
+      "pin": "80900fb39cafce3ae53b18a2c4f642a122f03095",
+      "files": 145,
+      "extensions": {
+        "php": 125
+      }
+    },
+    {
+      "name": "solid",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/solidjs/solid",
+      "pin": "128225942095f51f9b49a3f8fdc1bd7e3b9ee97b",
+      "files": 184,
+      "extensions": {
+        "typescript": 68,
+        "javascript": 22
+      }
+    },
+    {
+      "name": "spring-petclinic",
+      "language": "java",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/spring-projects/spring-petclinic.git",
+      "pin": "b3ee2c53e76e9267f03551a7cd36b0983c859c56",
+      "files": 127,
+      "extensions": {
+        "java": 47
+      }
+    },
+    {
+      "name": "starlette",
+      "language": "python",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/encode/starlette",
+      "pin": "de970d7b3facb853eb7ad077decbf3d94f2aab6c",
+      "files": 129,
+      "extensions": {
+        "python": 67
+      }
+    },
+    {
+      "name": "svelte",
+      "language": "svelte",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/sveltejs/svelte",
+      "pin": "eae50dfd1c2269e37258ef5c09527003bcf61573",
+      "files": 8944,
+      "extensions": {
+        "svelte": 4443,
+        "javascript": 3367,
+        "typescript": 84
+      }
+    },
+    {
+      "name": "svelte-app-test",
+      "language": "svelte",
+      "language_inferred": true,
+      "kind": null,
+      "url": null,
+      "pin": "a17ff2132d608dcd8896df887e75ba426a05de77",
+      "files": 292,
+      "extensions": {
+        "svelte": 60,
+        "typescript": 50,
+        "javascript": 35
+      }
+    },
+    {
+      "name": "svelte-dev",
+      "language": "svelte",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/sveltejs/svelte.dev.git",
+      "pin": "7cca42dde511544a255fbc223fa293f13339b03d",
+      "files": 1953,
+      "extensions": {
+        "svelte": 557,
+        "javascript": 178,
+        "typescript": 126
+      }
+    },
+    {
+      "name": "swift-nio",
+      "language": "swift",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/apple/swift-nio.git",
+      "pin": "48119dbbd23e3eabba48952ac7f75ebeeb87c217",
+      "files": 766,
+      "extensions": {
+        "swift": 554,
+        "c": 21,
+        "cpp": 16,
+        "python": 1,
+        "ruby": 1
+      }
+    },
+    {
+      "name": "syft",
+      "language": "go",
+      "language_inferred": true,
+      "kind": "framework",
+      "url": "https://github.com/anchore/syft.git",
+      "pin": "b15c5dbfe2bb21c9d73002c1056a829c8c411c75",
+      "files": 2856,
+      "extensions": {
+        "go": 1144,
+        "python": 16,
+        "cpp": 15,
+        "csharp": 15,
+        "javascript": 12,
+        "java": 7
+      }
+    },
+    {
+      "name": "taxonomy",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": "application",
+      "url": "https://github.com/shadcn-ui/taxonomy.git",
+      "pin": "298a8857c7128a0d121e7f699dfd729f23b3966d",
+      "files": 188,
+      "extensions": {
+        "typescript": 125,
+        "javascript": 4
+      }
+    },
+    {
+      "name": "tld",
+      "language": "go",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/Mertcikla/tld",
+      "pin": "ace14a10aa6190c3831e9d43ea3b875ae6ba08af",
+      "files": 765,
+      "extensions": {
+        "go": 373,
+        "typescript": 308,
+        "javascript": 3,
+        "python": 1
+      }
+    },
+    {
+      "name": "tokenjuice",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/vincentkoc/tokenjuice.git",
+      "pin": "49bdcf1755833ff1e02e44e6e7fe91c0fb44c16e",
+      "files": 793,
+      "extensions": {
+        "typescript": 288
+      }
+    },
+    {
+      "name": "upickle",
+      "language": "scala",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/com-lihaoyi/upickle.git",
+      "pin": "87e0b24b8c811e174ebd680839e4edf1e62abe71",
+      "files": 227,
+      "extensions": {
+        "scala": 145,
+        "java": 3
+      }
+    },
+    {
+      "name": "vitepress",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/vuejs/vitepress",
+      "pin": "5a3830c4b7f06fe1e4d3a016c480f2aa6dbe75fa",
+      "files": 646,
+      "extensions": {
+        "typescript": 142,
+        "vue": 100,
+        "javascript": 6,
+        "python": 1
+      }
+    },
+    {
+      "name": "vue",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/vuejs/core",
+      "pin": "c0606e91798c8dca4f33d101e1dd836d672592c1",
+      "files": 703,
+      "extensions": {
+        "typescript": 487,
+        "javascript": 31,
+        "vue": 11
+      }
+    },
+    {
+      "name": "vue-element-admin",
+      "language": "vue",
+      "language_inferred": true,
+      "kind": null,
+      "url": "https://github.com/PanJiaChen/vue-element-admin",
+      "pin": "6858a9ad67483025f6a9432a926beb9327037be3",
+      "files": 307,
+      "extensions": {
+        "vue": 131,
+        "javascript": 90
+      }
+    },
+    {
+      "name": "zod",
+      "language": "typescript",
+      "language_inferred": true,
+      "kind": "library",
+      "url": "https://github.com/colinhacks/zod.git",
+      "pin": "bbc68f990c7e6a5e3f506c56fb04bd0279b9c9b5",
+      "files": 582,
+      "extensions": {
+        "typescript": 401,
+        "javascript": 2
+      },
+      "peer_index": "test-repos/zod/.codegraph/codegraph.db",
+      "note": "Parallel v3/v4/mini trees plus a zod4 package.json alias to a published npm package. Read the imports before grading."
+    }
+  ]
+}

@@ -69,6 +69,8 @@ them exists because something above got past its predecessor.
 | Cross-function performance bugs | clippy, ruff PERF, ESLint, golangci-lint | **0 linter hits vs 557 findings** | [§4](#4-performance-bugs-a-file-local-linter-cannot-see) |
 | Loading one commit's context | naive file reads, `git diff` | 393 tokens vs 13,984, **35.6x** pooled | [§5](#5-the-easy-number-loading-one-commits-context) |
 | Indexing time | CodeGraph, Graphify, code-review-graph | **we lose**, about 22x slower | [§6](#6-indexing-time-the-row-we-lose) |
+| Are the call graph's edges true | CodeGraph, codebase-memory-mcp | **we win** on precision against the Go compiler, most precise in all 5 cells | [§7](#7-is-the-call-graph-correct) · [graph/](graph/README.md) |
+| Does the call graph find every edge | the same two | **we lose**, on both coverage and oracle recall | [§7](#7-is-the-call-graph-correct) |
 
 Two things are deliberately absent. **Documentation generation** (DeepWiki,
 Swimm) and **PR review** (CodeRabbit, Greptile) are capability comparisons we
@@ -375,6 +377,53 @@ five tools are in [head-to-head/README.md](head-to-head/README.md).
 
 ---
 
+## 7. Is the call graph correct
+
+Every benchmark above asks whether a tool helps. This one opens the index and
+asks whether the edges inside it are true, which is a different question: a tool
+can point an agent at the right neighbourhood while the arrows between the houses
+are wrong.
+
+**Nobody in this field publishes a graph-correctness number against an outside
+oracle.** So [graph/](graph/README.md) builds one. The answer key is the Go
+team's own RTA call graph, from `golang.org/x/tools`, computed over the
+type-checked program. We cannot tune it, and anyone with the Go toolchain can
+regenerate it.
+
+Of the call edges each tool emits, the share the Go compiler confirms:
+
+| cell | repowise | CodeGraph | codebase-memory-mcp |
+|---|---:|---:|---:|
+| cobra | **0.890** | 0.852 | 0.834 |
+| gitleaks | **0.965** | 0.958 | 0.927 |
+| syft | **0.895** | 0.831 | 0.603 |
+
+Most precise in all five measured cells, no losses. On syft roughly half of what
+codebase-memory-mcp emits is a call the compiler says does not exist.
+
+**And we lose the other half of the same question.** On cross-file coverage
+across 35 repositories, codebase-memory-mcp separates from us on 15 and we
+separate on none. On oracle recall it leads four of five cells. It recovers more
+of the true call graph and invents far more that is not in it, which is one
+trade seen from two directions.
+
+The reason both are printed is that coverage counts the files an edge reaches
+and never asks whether the edge is real, so a tool that emits more edges wins it
+either way. No table in [graph/](graph/README.md) prints a coverage number
+without a precision number beside it.
+
+One result there is worth more than the competitive rows. **The oracle
+reproduced our own hand-graded audit**: 540 rows read from source said 96.7% on
+Go, and the compiler, over roughly 1,600 edges, says 96.5%. A person reading
+source and a type checker agreeing to within a point is the best evidence
+available that the hand-grading is accurate rather than self-serving.
+
+Limits: this is Go, three repositories. Python, Ruby and PHP admit no oracle
+even in principle, because what a call resolves to can change at runtime.
+Full results, method and caveats in [graph/README.md](graph/README.md).
+
+---
+
 ## How to read a number on this page
 
 These rules are applied everywhere in this repository and each one exists because
@@ -440,6 +489,14 @@ repowise-bench/
 │   ├── config.yaml                   per-repo configuration
 │   ├── run_benchmark.py              entry point
 │   └── lib/                          benchmark library modules
+│
+├── graph/                            call-graph correctness benchmark
+│   ├── README.md                     results index: precision, coverage, cost
+│   ├── METHODOLOGY.md                the measurement rules and why each exists
+│   ├── arms/                         one page per tool, normalisation decisions
+│   ├── corpus/                       35 repositories, pinned, 11 languages
+│   ├── experiments/<id>/             preregistration, result page, run scripts
+│   └── tools/                        table renderers; no table here is typed
 │
 ├── perf-detection/                   performance-bug detection benchmark
 │   ├── README.md                     overview (0 linter hits vs 557 findings)
