@@ -26,7 +26,7 @@ us behind on three of five languages. That distinction is the whole result and
 collapsing it into "we have more edges" would be a misrepresentation of our own
 data.
 
-G4 has since reproduced this audit's Go cell from the Go compiler, at 96.5%
+G4 has since reproduced this audit's Go cell from the Go compiler, at 97.6%
 against the hand-graded 96.7%. Two unrelated methods agreeing to within a point
 is the strongest evidence available that the hand-grading is accurate rather
 than self-serving.
@@ -87,23 +87,28 @@ side too, and report where.
 * [g2-cross-file-coverage](g2-cross-file-coverage/): CodeGraph's published
   metric, reproduced. Has the first numbers.
 * [g4-oracle-anchored](g4-oracle-anchored/): precision and recall against a gold
-  graph neither tool produced. **Measured on Go.** The strongest evidence in
-  this directory, because a reader can regenerate the answer key.
+  graph neither tool produced. **Measured on Go and TypeScript**, seven cells.
+  The strongest evidence in this directory, because a reader can regenerate the
+  answer key.
 * [g5-invariance](g5-invariance/): mutations that separate a resolver from a
   name-matcher.
 
 ## Sequencing, and what changed
 
 G2, G1, G5 and G6 are measured. G3 and G7 have results but no page, so they are
-unlinked rather than cited. G4 is measured on Go.
+unlinked rather than cited. G4 is measured on Go and TypeScript.
 
-**The plan said G4 would consume a session on symbol identity alone. It did
-not.** Keying on declaration locations rather than on names made the mapping
-land on the first attempt, at a modal offset of `(0,0)` across all three arms.
-What actually cost time was reading the oracle's own output correctly.
+**The plan said G4 would consume a session on symbol identity alone. That was
+right, and an early version of this paragraph said otherwise.** Keying on
+declaration locations rather than on names did make the mapping land at a modal
+offset of `(0,0)` on the first attempt, which is what the paragraph used to
+claim. It was not enough: both oracles were also keying a caller at a closure,
+which no tool in the comparison symbolises, and a modal offset computed over
+matched edges cannot see a defect that only touches unmatched ones. Reading
+twenty identities against source is what caught it, on each language in turn.
 
 **The order to extend in is set by which languages admit an oracle at all**, not
-by which experiment is next. Go is done. TypeScript is reachable with the
-toolchain already installed. C#, Java and Kotlin need an SDK each. Python, Ruby
+by which experiment is next. Go and TypeScript are done. C#, Java and Kotlin
+need an SDK each. Python, Ruby
 and PHP admit no oracle even in principle, because what a call resolves to can
 change at runtime, so those languages stay with G1 permanently.

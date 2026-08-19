@@ -146,36 +146,40 @@ touched our graph; it now fails loudly instead.
 Every other number on this page, including ours, is scored against something the
 publisher controls. [G4](experiments/g4-oracle-anchored/) is not. Its answer key
 is the Go team's own RTA call graph, computed over the type-checked program by
-`golang.org/x/tools`. We cannot tune it and anyone with the Go toolchain can
-regenerate it.
+`golang.org/x/tools`, and on TypeScript the `tsc` checker's own resolution of
+every call site. We cannot tune either one and anyone with the toolchain can
+regenerate both.
 
 Of the call edges each tool emits, the share the compiler confirms:
 
 | cell | repowise | CodeGraph | codebase-memory-mcp |
 |---|---:|---:|---:|
-| cobra (via tests) | **0.890** | 0.852 | 0.834 |
-| gitleaks (no tests) | **0.965** | 0.958 | 0.927 |
-| gitleaks (with tests) | **0.936** | 0.920 | 0.880 |
-| syft (no tests) | **0.895** | 0.831 | 0.603 |
-| syft (with tests) | **0.752** | 0.680 | 0.524 |
+| cobra (via tests) | **0.972** | 0.929 | 0.912 |
+| gitleaks (no tests) | 0.976 | 0.972 | 0.934 |
+| gitleaks (with tests) | 0.974 | 0.971 | 0.922 |
+| syft (no tests) | **0.943** | 0.872 | 0.635 |
+| syft (with tests) | **0.950** | 0.864 | 0.673 |
+| zod (no tests) | 0.992 | 0.729 | 0.987 |
+| hono (no tests) | 0.977 | 0.805 | 0.949 |
 
-**Most precise in all five cells.** Five separations against
-codebase-memory-mcp, three separations and two ties against CodeGraph, no
-losses. On syft roughly half of what codebase-memory-mcp emits is a call the Go
-compiler says does not exist.
+**Most precise in seven cells of seven.** Bold marks the three where the
+interval clears both other arms at once; against each competitor singly it is
+five of seven. The rest are ties and are printed as ties. On syft, more than a
+third of what codebase-memory-mcp emits is a call the Go compiler says does not
+exist.
 
-**Recall runs the other way and we lead in none of the five cells.** That is the
+**Recall runs the other way and we lead none of the Go cells.** That is the
 finding, not a footnote: codebase-memory-mcp recovers more of the true call
 graph and invents far more that is not in it. Both halves are on
-[the G4 page](experiments/g4-oracle-anchored/), and recall there must not be
-compared across repositories, because it scales with how many entry points the
-oracle had rather than with tool quality.
+[the G4 page](experiments/g4-oracle-anchored/), which also decomposes what we
+miss, and recall there must not be compared across repositories, because it
+scales with how many entry points the oracle had rather than with tool quality.
 
 ### The result that matters most is not competitive
 
 **The oracle reproduced the hand-graded audit.** G1 read Go by hand at 30 rows
 per side and got 96.7% for us and 96.7% for CodeGraph. The Go compiler, over
-roughly 1,600 edges on the same repository, says **96.5% and 95.8%**.
+roughly 1,600 edges on the same repository, says **97.6% and 97.2%**.
 
 A person reading source and a type checker agreeing to within about a point is
 the strongest evidence available that the 540-row hand-graded audit is accurate
