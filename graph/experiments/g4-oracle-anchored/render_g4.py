@@ -16,11 +16,15 @@ import argparse
 import json
 from pathlib import Path
 
-ARM_ORDER = ["repowise", "codegraph", "codebase-memory-mcp"]
+ARM_ORDER = [
+    "repowise", "codegraph", "codebase-memory-mcp", "graphify", "code-review-graph",
+]
 LABEL = {
     "repowise": "repowise",
     "codegraph": "CodeGraph",
     "codebase-memory-mcp": "codebase-memory-mcp",
+    "graphify": "Graphify",
+    "code-review-graph": "code-review-graph",
 }
 
 

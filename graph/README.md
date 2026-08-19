@@ -38,7 +38,7 @@ not require the arrows between the houses to be correct.
 
 | Question | Answer | Where |
 |---|---|---|
-| Are our edges true? | **Most precise of three tools in all 7 oracle cells**, checked against the Go compiler and the TypeScript checker | [below](#precision-against-a-compiler) |
+| Are our edges true? | **In all 7 oracle cells, no tool that finds as much of the graph gets more of it right.** Checked against the Go compiler and the TypeScript checker | [below](#precision-against-a-compiler) |
 | Do we find every edge? | **No.** We lose oracle recall in all 5 Go cells, and cross-file coverage on 15 of 35 repositories | [below](#the-coverage-rows-we-lose) |
 | Hand-graded precision, 9 languages | **84.8% vs 57.0%** against CodeGraph, intervals disjoint | [G1](experiments/g1-edge-precision/) |
 | Can the resolver be tricked? | Nobody passes all three mutations. Two arms cannot be tested at all | [below](#can-the-resolver-be-fooled) |
@@ -68,7 +68,7 @@ has a written protocol and no run behind it.
 | **G1** | [Edge precision](experiments/g1-edge-precision/) | Of the edges a tool emits, what share are true? Hand-graded from source. | **both sides, nine languages, 540 graded rows** |
 | **G2** | [Cross-file coverage](experiments/g2-cross-file-coverage/) | CodeGraph's own published metric, recomputed on every arm by one script. | **five arms, 35 repos, 11 languages** |
 | G3 | Shared-denominator recall *(closed unwritten)* | Of the calls that exist in the source, what share does each tool resolve? | results, no page; [why](experiments/README.md#g3-recall-on-a-denominator-both-tools-share) |
-| **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | **three arms, Go and TypeScript, seven cells, 37,853 oracle edges** |
+| **G4** | [Oracle-anchored precision and recall](experiments/g4-oracle-anchored/) | Both, automatically, at n in the thousands, against a gold graph neither tool produced. | **five arms, Go and TypeScript, seven cells, 37,853 oracle edges** |
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
 | **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **five arms, 35 repos, 175 cells, 0 failed** |
 | G7 | Language breadth *(closed unwritten)* | Every tool claims 20 to 40 languages. How many of them work? | results, no page; [why](experiments/README.md#g7-language-breadth-as-a-number) |
@@ -83,8 +83,8 @@ a repeat run, so a mutation's effect can be separated from drift.
 |---|---|---|
 | **repowise** | commit under test | all |
 | **CodeGraph** | 1.5.0 | all |
-| **Graphify** | 0.9.31 | coverage, cost, breadth |
-| **code-review-graph** | 2.3.7 | coverage, cost, breadth |
+| **Graphify** | 0.9.31 | all |
+| **code-review-graph** | 2.3.7 | all |
 | **codebase-memory-mcp** | 0.10.8, cost at 0.10.6 | all |
 
 Each arm has [a page](arms/) recording its version, how it is built, what it
@@ -162,15 +162,23 @@ Of the call edges each tool emits, the share the compiler confirms:
 | zod (no tests) | 0.992 | 0.729 | 0.987 |
 | hono (no tests) | 0.977 | 0.805 | 0.949 |
 
-**Most precise in seven cells of seven.** Bold marks the three where the
-interval clears both other arms at once; against each competitor singly it is
-five of seven. The rest are ties and are printed as ties. On syft, more than a
-third of what codebase-memory-mcp emits is a call the Go compiler says does not
-exist.
+**Two arms beat us on precision and both draw a much smaller graph.** On cobra,
+code-review-graph scores 0.997 from 360 edges against our 1,455, recovering 17%
+of the call graph to our 68%. Graphify takes both gitleaks cells the same way.
+Precision on its own is exactly as gameable as coverage on its own, in the
+opposite direction: resolve one call correctly and you score 1.000.
 
-**Recall runs the other way and we lead none of the Go cells.** That is the
-finding, not a footnote: codebase-memory-mcp recovers more of the true call
-graph and invents far more that is not in it. Both halves are on
+**The claim that survives all five arms is about the pair.** In all seven cells,
+**no arm that recovers at least as much of the call graph as we do is more
+precise than we are.** It names no threshold, so adding an arm can only break it;
+two arms were added after it was written and it held. Outright, we are the most
+precise in one cell and tied in one more; against the two arms this experiment
+started with it is seven of seven, and it should always carry that label.
+
+**Recall runs the other way against the arm above us and our way against the two
+below.** codebase-memory-mcp leads four of five Go cells and invents far more
+that is not there; on syft more than a third of what it emits is a call the
+compiler denies. Both halves are on
 [the G4 page](experiments/g4-oracle-anchored/), which also decomposes what we
 miss, and recall there must not be compared across repositories, because it
 scales with how many entry points the oracle had rather than with tool quality.
@@ -683,16 +691,20 @@ have a path under `results/graph/` behind it.
   metric and we are reproducing it. G1 and G5 are ours, and a reader should
   discount them the same way. G4 is the exception and is why it now leads this
   page: the Go team wrote the oracle, not us.
-* **G4 is one language.** Go, three repositories. It is not a nine-language
-  claim and the page says so. Its `contradicted` bucket is strong evidence
+* **G4 is two languages.** Go over three repositories and TypeScript over two,
+  seven cells in total. It is not a nine-language claim and the page says so. Its `contradicted` bucket is strong evidence
   rather than proof: RTA is unsound under reflection and `go:linkname`, which is
   why the metric is named precision *against the oracle*.
 * **Our worst cell is Java**, at roughly 67% edge precision, and it is also our
   largest edge count. [METHODOLOGY.md](METHODOLOGY.md) explains why it stands.
-* **Two arms are being read through an adapter we wrote.** Graphify's call
-  edges are 93% `INFERRED` by its own tagging, and code-review-graph stores
+* **Two arms are being read through an adapter we wrote, and both of them now
+  beat us on precision in some cell**, so the reading matters more than it did
+  when they only appeared in coverage. Graphify's call edges are 93% `INFERRED`
+  by its own tagging and we score all of them rather than the AST-certain tenth,
+  which is the choice least favourable to us. code-review-graph stores
   unresolved callees in the same table as resolved ones, so we filter to the
-  ones that resolve. Both choices are argued in [arms/](arms/) and both change
+  ones that resolve, which is the choice most favourable to it: on gitleaks that
+  is 76 edges out of 4,367 rows. Both choices are argued in [arms/](arms/) and both change
   those tools' numbers substantially. A reader who disagrees with either should
   say so; the counts either way are recorded in every result file.
 * **Four of our own results have moved against us**: the caffeine coverage

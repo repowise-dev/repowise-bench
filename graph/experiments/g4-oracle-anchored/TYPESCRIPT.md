@@ -1,6 +1,6 @@
 # G4 in TypeScript: an oracle with a call model, and what validating it changed
 
-**Status: measured on two repositories, one cell each, three arms.** The
+**Status: measured on two repositories, one cell each, five arms.** The
 [preregistration](PREREGISTRATION.md) predicted this cell was the least likely
 to survive. It survived, but only after validation found two defects large
 enough to invert the reading.

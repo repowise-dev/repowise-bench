@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sqlite3
 import sys
 from collections import Counter
@@ -123,10 +124,76 @@ def cbm_keys(art) -> set[Key]:
     )
 
 
+def _graphify_line(loc) -> int:
+    """`"L58"` -> 58, matching this arm's adapter. Malformed becomes -1 there
+    and here, so a lineless edge folds the same way on both readers."""
+    m = re.match(r"^L(\d+)$", str(loc or "").strip())
+    return int(m.group(1)) if m else -1
+
+
+def graphify_keys(art) -> set[Key]:
+    """Both endpoints keyed at their own node's declaration position.
+
+    A graphify call link carries a `source_file` / `source_location` of its own,
+    but that is the call site rather than a declaration, so keying on it would
+    compare this arm's call sites against every other arm's declarations. The
+    node each endpoint points at is the declaration, which is the key the rest
+    of this experiment uses.
+
+    No confidence filter. 93% of this arm's call edges are `INFERRED` by its own
+    tagging, and dropping those would score the tool on a tenth of its output
+    while every other arm is scored on all of its own.
+    """
+    doc = art.handle["doc"]
+    nodes = {n["id"]: n for n in doc.get("nodes", []) if "id" in n}
+    out: set[Key] = set()
+    for e in doc.get("links", []):
+        if e.get("relation") != "calls":
+            continue
+        src, tgt = nodes.get(str(e.get("source"))), nodes.get(str(e.get("target")))
+        if not src or not tgt:
+            continue
+        sf, tf = src.get("source_file"), tgt.get("source_file")
+        if not sf or not tf:
+            continue
+        out.add(
+            (arms_lib.norm_path(sf), _graphify_line(src.get("source_location")),
+             arms_lib.norm_path(tf), _graphify_line(tgt.get("source_location")))
+        )
+    return out
+
+
+def crg_keys(art) -> set[Key]:
+    """Resolved `CALLS` only, both endpoints joined through `nodes`.
+
+    The join is what enforces "resolved", exactly as this arm's adapter does it:
+    an unresolved callee is stored as a bare identifier matching no
+    `qualified_name`. Scoring the unresolved rows would charge the tool for
+    edges it never claimed to have drawn.
+
+    Its qualified names carry the absolute scratch directory it indexed, so
+    every path goes through the same normaliser the adapter uses.
+    """
+    return _sql_keys(
+        art.handle["conn"],
+        """
+        SELECT DISTINCT src.file_path, src.line_start, tgt.file_path, tgt.line_start
+        FROM edges e
+        JOIN nodes src ON src.qualified_name = e.source_qualified
+        JOIN nodes tgt ON tgt.qualified_name = e.target_qualified
+        WHERE e.kind = 'CALLS'
+          AND src.file_path IS NOT NULL AND tgt.file_path IS NOT NULL
+        """,
+        art.handle["root"],
+    )
+
+
 EXTRACT = {
     "repowise": ours_keys,
     "codegraph": codegraph_keys,
     "codebase-memory-mcp": cbm_keys,
+    "graphify": graphify_keys,
+    "code-review-graph": crg_keys,
 }
 
 
@@ -162,8 +229,15 @@ def main() -> int:
     ap.add_argument("--oracle", required=True)
     ap.add_argument("--repo", required=True)
     ap.add_argument("--repo-name", default=None)
-    ap.add_argument("--arms", default="repowise,codegraph,codebase-memory-mcp")
+    ap.add_argument("--arms",
+                    default="repowise,codegraph,codebase-memory-mcp,graphify,code-review-graph")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--pin", default=None,
+                    help="restore competitor artifacts from the cache for this pin "
+                         "instead of rebuilding. No cost number comes out of this "
+                         "experiment, and a restored artifact is byte-identical for "
+                         "the edge sets it reads, so this is free of the honesty rule "
+                         "that keeps the cache away from G6.")
     args = ap.parse_args()
 
     header, oracle_all, reachable = load_oracle(Path(args.oracle))
@@ -180,7 +254,10 @@ def main() -> int:
     rows: dict[str, dict] = {}
     for nm in args.arms.split(","):
         arm = arms_lib.get_arm(nm)
-        art = arm.build(repo, repo_name=name, fresh=True)
+        if args.pin:
+            art = arms_lib.build_cached(arm, repo, repo_name=name, pin=args.pin)
+        else:
+            art = arm.build(repo, repo_name=name, fresh=True)
         try:
             keys = in_scope(EXTRACT[nm](art), analysed)
             matched = keys & oracle
