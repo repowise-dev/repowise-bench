@@ -1,31 +1,67 @@
 # Graph quality
 
-Does the call graph contain the right edges?
+**Does the call graph contain the right edges?**
 
-This is a different question from the one [`head-to-head/`](../head-to-head/README.md)
-asks. That benchmark measures whether a tool points an agent at the right files,
-and grades the answer. This one opens the index and asks whether the edges inside
-it are true. A tool can win the first and lose this one: pointing at the right
-neighbourhood does not require the arrows between the houses to be correct.
+Take one line of Go:
 
-**Nobody in this field publishes a graph-correctness number against an outside
-oracle.** We checked every comparable tool (see [arms/](arms/)). CodeGraph
-publishes agent-efficiency deltas and a coverage table. Graphify publishes memory
-and QA scores. code-review-graph publishes an F1 of 0.714, with precision 0.578,
-graded against ground truth derived from the same graph its predictor walks,
-which measures self-consistency rather than correctness. To their credit **they
-say so themselves**, calling it "circular by construction" in both their README
-and their eval code, and they ship a non-circular co-change mode whose numbers
-they decline to quote before measuring. The gap this benchmark fills is the
-obvious one, and it is the reason it exists.
+```go
+w.Write(payload)
+```
+
+To draw an edge, a tool has to work out what `w` is. If it cannot, it has two
+options: emit nothing, or find something named `Write` and point at that. The
+second is tempting because it makes the graph look bigger, and a wrong arrow is
+indistinguishable from a right one once it is in the database.
+
+This page measures which tools do that, and how often.
+
+It is a different question from the one [`head-to-head/`](../head-to-head/README.md)
+asks. That benchmark measures whether a tool points an agent at the right files.
+This one opens the index and asks whether the edges inside it are true. A tool
+can win the first and lose this one: pointing at the right neighbourhood does
+not require the arrows between the houses to be correct.
+
+**Contents:** [Results at a glance](#results-at-a-glance) ·
+[Precision against a compiler](#precision-against-a-compiler) ·
+[The coverage rows we lose](#the-coverage-rows-we-lose) ·
+[Why a coverage number is not the result](#why-a-coverage-number-is-not-the-result) ·
+[A denominator that flattered us](#a-denominator-that-flattered-us) ·
+[Can the resolver be fooled](#can-the-resolver-be-fooled) ·
+[Build cost, where we were wrong](#build-cost-where-we-were-wrong) ·
+[Six repositories flattered us](#six-repositories-flattered-us) ·
+[How this is organised](#how-this-is-organised) ·
+[What to be suspicious of](#what-to-be-suspicious-of)
+
+---
+
+## Results at a glance
+
+| Question | Answer | Where |
+|---|---|---|
+| Are our edges true? | **Most precise of three tools in all 5 oracle cells**, checked against the Go compiler | [below](#precision-against-a-compiler) |
+| Do we find every edge? | **No.** We lose oracle recall in all 5 cells, and cross-file coverage on 15 of 35 repositories | [below](#the-coverage-rows-we-lose) |
+| Hand-graded precision, 9 languages | **84.8% vs 57.0%** against CodeGraph, intervals disjoint | [G1](experiments/g1-edge-precision/) |
+| Can the resolver be tricked? | Nobody passes all three mutations. Two arms cannot be tested at all | [below](#can-the-resolver-be-fooled) |
+| Build speed | **We are not faster.** Fastest on 14 of 35 repositories against CodeGraph's 16 | [G6](experiments/g6-build-cost/) |
+| Memory | **Lowest of five arms on 35 of 35**, median 75 MB against 757 MB | [G6](experiments/g6-build-cost/) |
+
+Two of those six run against us, and one corrects a claim we previously made.
+
+**Nobody else in this field publishes a graph-correctness number against an
+outside oracle.** We checked every comparable tool (see [arms/](arms/)).
+CodeGraph publishes agent-efficiency deltas and a coverage table. Graphify
+publishes memory and QA scores. code-review-graph publishes an F1 of 0.714 whose
+ground truth is derived from the same graph its predictor walks, which measures
+self-consistency rather than correctness. To their credit they say so
+themselves, calling it "circular by construction" in both their README and their
+eval code. That gap is why this benchmark exists.
 
 ---
 
 ## Status
 
-Nothing on this page is published externally yet. Bold rows have run at a
-recorded commit across every arm; `designed` rows have a written protocol and
-no run behind them.
+Bold rows have run at a recorded commit across every arm. A row without bold
+has a written protocol and no run behind it.
 
 | | Experiment | What it settles | Status |
 |---|---|---|---|
@@ -37,55 +73,61 @@ no run behind them.
 | **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **five arms, 35 repos, 175 cells, 0 failed** |
 | **G7** | Language breadth *(no page yet; results below)* | Every tool claims 20 to 40 languages. How many of them work? | **four arms, 35 repos, 11 languages** |
 
-Four arms: **repowise**, **CodeGraph 1.5.0**, **Graphify 0.9.31** and
-**code-review-graph 2.3.7**, all behind [one adapter protocol](lib/arms.py) so
-an experiment takes an arm name and stops caring what the tool is. All four
-rebuild byte-identically on a repeat run, so none of them is non-deterministic
-and a mutation's effect can be separated from drift.
+### The five arms
 
-A fifth, **codebase-memory-mcp**, has [an adapter and a
-page](arms/codebase-memory-mcp.md) and carries **coverage, precision and cost
-rows**. Coverage and precision are measured at **0.10.8**; the cost table stays
-at **0.10.6**, the release it was swept on, and says so.
+All behind [one adapter protocol](lib/arms.py), so an experiment takes an arm
+name and stops caring what the tool is. Every one rebuilds byte-identically on
+a repeat run, so a mutation's effect can be separated from drift.
 
-Reading its adapter against an index it produced, rather than against the schema
-in its source, falsified three of its queries. Two were plain defects: two
-builds of one repository shared no callee identities at all, because the tool
-derives its project name from the absolute path it indexed and that path leaked
-into every qualified name; and a synthetic pseudo-file broke the
-`symbol_files` subset invariant. The third looked like a defect and was not.
-**The tool records no language because it does not store one: it derives one**,
-from the file extension at read time, against a 44-entry table in its store
-layer, and that derivation is what backs the language breakdown its own output
-prints. The adapter now reproduces that table, so the attribution is the tool's
-published answer about itself rather than ours imposed on it. Checked against
-our own arm on gitleaks it gives an identical 214-file Go set, with one
-naming-only disagreement across 275 files.
+| arm | version | in which tables |
+|---|---|---|
+| **repowise** | commit under test | all |
+| **CodeGraph** | 1.5.0 | all |
+| **Graphify** | 0.9.31 | coverage, cost, breadth |
+| **code-review-graph** | 2.3.7 | coverage, cost, breadth |
+| **codebase-memory-mcp** | 0.10.8, cost at 0.10.6 | all |
 
-Getting it to run at all is itself a portability finding worth one line. It
-validates the ACL of every ancestor of both its coordination directory and its
-cache directory, **separately**, and refuses to start if any of them grants
-write rights to another local account. On a stock developer profile carrying a
-second account that is two independent refusals, its own default cache location
-is one of them, it fails closed, and a release build offers no override. It is
-the only arm of five with that property.
+Each arm has [a page](arms/) recording its version, how it is built, what it
+emits, and every normalisation decision that changes its numbers. Two of those
+decisions are large enough to name here: Graphify's call edges are 93%
+`INFERRED` by its own tagging, and code-review-graph stores unresolved callees
+beside resolved ones, so we filter to the ones that resolve.
 
-G4 and G5 are the two that do not exist anywhere in this field. **G4 is now the
-strongest thing on this page**, because its answer key comes from the Go
-compiler rather than from us, and anyone with the Go toolchain can regenerate
-it. G1 took the most human time and was, until G4, the only reading here that
-asked whether an edge is true. G2 is the one a reader will ask for first,
-because it is the number our largest competitor puts on its front page.
+**Reading an adapter against a database the tool produced, rather than against
+the schema in its source, has now falsified queries on three separate arms.**
+The most recent found two real defects and one thing that only looked like one:
+that tool stores no language because it derives one from the file extension at
+read time, so our adapter reproduces its table rather than inventing an
+attribution. Details on [its page](arms/codebase-memory-mcp.md).
 
-Numbers on this page were measured at **`3594ba75`** unless the section says
-otherwise; the 35-repository corpus below was measured at **`58576af0`**. Both
-on a clean detached worktree. Cost figures always come from a run with a
-discarded warmup per arm per repository.
+That arm is also the only one of five that **refuses to start on a stock
+developer profile carrying a second local account**. It validates the ACL of
+every ancestor of two separate directories, fails closed, and a release build
+offers no override. Its own default cache location fails its own check. There
+are open upstream issues for four different triggers, so this is a known class
+rather than something we discovered.
+
+### Which experiments matter most
+
+**G4 is the strongest thing on this page**, because its answer key comes from
+the Go compiler rather than from us and anyone with the toolchain can regenerate
+it. G4 and G5 are the two that do not exist anywhere else in this field. G1 took
+the most human time and was, until G4, the only reading here that asked whether
+an edge is true. G2 is the one a reader asks for first, because it is the number
+our largest competitor puts on its front page.
+
+### Where the numbers come from
+
+Numbers were measured at **`3594ba75`** unless a section says otherwise; the
+35-repository corpus at **`58576af0`**; G4 and the cost sweep at **`13cc339a`**.
+All on a clean detached worktree, with a discarded warmup per arm per repository
+for anything timed.
+
 `lib/provenance.py` refuses to run against a dirty tree without `--allow-dirty`
-and stamps anything produced that way `publishable: false`. Every table is
-generated from `results/graph/` by `graph/tools/render.py` rather than typed,
-because the sibling retrieval bench has twice published a row that no longer
-matched the data behind it.
+and stamps anything produced that way `publishable: false`. **Every table here is
+generated from `results/graph/` by the renderers in `tools/`, never typed**,
+because the sibling retrieval bench twice published a row that no longer matched
+the data behind it.
 
 Check the instruments still work:
 
@@ -99,7 +141,7 @@ touched our graph; it now fails loudly instead.
 
 ---
 
-## Headline: precision against an oracle neither tool produced
+## Precision against a compiler
 
 Every other number on this page, including ours, is scored against something the
 publisher controls. [G4](experiments/g4-oracle-anchored/) is not. Its answer key
@@ -149,7 +191,7 @@ permanently. This is a fact about those languages, not a gap in the harness.
 
 ---
 
-## The coverage result, and why it is reported beside precision
+## The coverage rows we lose
 
 codebase-memory-mcp beats us on cross-file `calls` coverage, on the fair shared
 denominator, across the whole corpus:
@@ -183,7 +225,7 @@ precision number beside it. Generated by `tools/render_coverage.py`.
 
 ---
 
-## First result: CodeGraph's coverage metric does not mean what it says
+## Why a coverage number is not the result
 
 CodeGraph's README publishes a per-language coverage table (Python/requests 100%,
 PHP/guzzle 100%, Go/gin 96.6%, Java/gson 93.3%, and so on for 22 languages) under
@@ -248,7 +290,7 @@ Reproduce: [`experiments/g2-cross-file-coverage/`](experiments/g2-cross-file-cov
 
 ---
 
-## Second result: a denominator can hand you a win you did not earn
+## A denominator that flattered us
 
 Coverage is a fraction, and this benchmark spent a session looking at
 numerators. The denominator turned out to be where our best-looking cell came
@@ -291,7 +333,7 @@ comparison intersects on it before computing anything.
 
 ---
 
-## Third result: the resolvers, adversarially
+## Can the resolver be fooled
 
 G5 mutates a repository in a way whose correct answer is known in advance. It
 is the one experiment here that a coverage number cannot approximate, because a
@@ -328,7 +370,7 @@ Reproduce: [`experiments/g5-invariance/`](experiments/g5-invariance/).
 
 ---
 
-## Fourth result: we were wrong about build cost
+## Build cost, where we were wrong
 
 This page previously said we lose on build cost and expect to keep losing. That
 was carried over from the full-index comparison in
@@ -410,7 +452,7 @@ lose it**. It is listed as unmeasured in G6 rather than quietly omitted.
 
 ---
 
-## Fifth result: at six repositories we looked better than we are
+## Six repositories flattered us
 
 Every per-language number this page carried before was a fact about one
 repository wearing a language's name. The six head-to-head repositories are
@@ -607,7 +649,7 @@ One experiment per directory, each self-contained, each with its prediction
 written down before the run. Nothing on this page cites a number that does not
 have a path under `results/graph/` behind it.
 
-## What a reader should be suspicious of
+## What to be suspicious of
 
 * **The head-to-head six are still six.** G2's paired arm-versus-arm rows and
   every cost figure come from those, and a paired sign test over six cannot
