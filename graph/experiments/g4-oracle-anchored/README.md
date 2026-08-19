@@ -118,10 +118,15 @@ break here: **the modal declaration-line offset is `(0,0)` for all three arms**,
 at 1,495 / 1,437 / 1,520 exact matches on gitleaks. A broken mapping cannot
 produce that.
 
-Still outstanding: protocol step 2 asks for **20 randomly drawn identities
-confirmed by hand**. The offset distribution is strong evidence but is not that
-check, and this page should not be quoted as fully protocol-compliant until it
-is done.
+Protocol step 2 also asks for **20 randomly drawn identities confirmed by
+hand**, because the offset distribution is a fact about a join that already
+happened: it says the two sides agree with each other, not that either is right.
+That check is now done and is written up in
+[`identity-validation.md`](identity-validation.md). **20 of 20 declaration
+positions are correct**, and a second draw of five whole edges confirms the
+direction of the join against source. Two rows are worth reading rather than
+counting: an immediately invoked function literal that no arm models as a
+symbol, and a `func init()` that codebase-memory-mcp does not store.
 
 ## The result that matters most is not competitive
 
@@ -160,6 +165,11 @@ cd graph/experiments/g4-oracle-anchored
 go build -o oracle/oracle.exe ./oracle/
 ./oracle/oracle.exe -repo <path-to-repo> [-tests] -out cell.jsonl
 python compare.py --oracle cell.jsonl --repo <path-to-repo> --out cell-g4.json
+```
+
+```bash
+python validate_identities.py --oracle cell.jsonl --repo <path-to-repo> --out draw.json
+python render_identity_validation.py --graded draw.json
 ```
 
 `-tests` includes `_test.go` in the analysed set; without it a library yields no
@@ -201,7 +211,8 @@ not void the experiment. The syft cells carry the weight.
 
 **"Step 2 fails at least once."** **Missed, and this is the good kind.** The
 identity mapping worked on the first attempt, at `(0,0)` modal offset across all
-three arms. What failed instead was reading the oracle's own output: an early
+three arms, and the hand check that followed found 20 correct positions out
+of 20. What failed instead was reading the oracle's own output: an early
 run conflated "no call site" with "call site outside the repository" in one
 counter, and `packages.NeedCompiledGoFiles` turned out to be a separate mode bit
 from `NeedFiles`, so the analysed file set silently came back empty. Both were

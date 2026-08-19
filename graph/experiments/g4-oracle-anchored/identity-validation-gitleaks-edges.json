@@ -1,0 +1,99 @@
+{
+  "repo": "gitleaks",
+  "seed": 20260819,
+  "oracle": "gitleaks-notests.jsonl",
+  "pool_size": 428,
+  "rows": [],
+  "edge_rows": [
+    {
+      "caller": "github.com/zricethezav/gitleaks/v8/cmd/generate/config.main",
+      "callee": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.LinkedinClientSecret",
+      "caller_decl": [
+        "cmd/generate/config/main.go",
+        20
+      ],
+      "callee_decl": [
+        "cmd/generate/config/rules/linkedin.go",
+        28
+      ],
+      "call_site": [
+        "cmd/generate/config/main.go",
+        153
+      ],
+      "site_source": "rules.LinkedinClientSecret(),",
+      "dynamic": false
+    },
+    {
+      "caller": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.PulumiAPIToken",
+      "callee": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/utils.GenerateUniqueTokenRegex",
+      "caller_decl": [
+        "cmd/generate/config/rules/pulumi.go",
+        9
+      ],
+      "callee_decl": [
+        "cmd/generate/config/utils/generate.go",
+        69
+      ],
+      "call_site": [
+        "cmd/generate/config/rules/pulumi.go",
+        14
+      ],
+      "site_source": "Regex:       utils.GenerateUniqueTokenRegex(`pul-[a-f0-9]{40}`, false),",
+      "dynamic": false
+    },
+    {
+      "caller": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.NPM",
+      "callee": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets.NewSecret",
+      "caller_decl": [
+        "cmd/generate/config/rules/npm.go",
+        9
+      ],
+      "callee_decl": [
+        "cmd/generate/secrets/regen.go",
+        9
+      ],
+      "call_site": [
+        "cmd/generate/config/rules/npm.go",
+        22
+      ],
+      "site_source": "tps := utils.GenerateSampleSecrets(\"npmAccessToken\", \"npm_\"+secrets.NewSecret(utils.AlphaNumeric(\"36\")))",
+      "dynamic": false
+    },
+    {
+      "caller": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.SettlemintApplicationAccessToken",
+      "callee": "github.com/zricethezav/gitleaks/v8/cmd/generate/secrets.NewSecret",
+      "caller_decl": [
+        "cmd/generate/config/rules/settlemint.go",
+        30
+      ],
+      "callee_decl": [
+        "cmd/generate/secrets/regen.go",
+        9
+      ],
+      "call_site": [
+        "cmd/generate/config/rules/settlemint.go",
+        46
+      ],
+      "site_source": "\"nonMatchingToken := \\\"sm_aat_\" + secrets.NewSecret(utils.AlphaNumeric(\"10\")) + \"\\\"\",",
+      "dynamic": false
+    },
+    {
+      "caller": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.Typeform",
+      "callee": "github.com/zricethezav/gitleaks/v8/cmd/generate/config/utils.GenerateSampleSecrets",
+      "caller_decl": [
+        "cmd/generate/config/rules/typeform.go",
+        9
+      ],
+      "callee_decl": [
+        "cmd/generate/config/utils/generate.go",
+        85
+      ],
+      "call_site": [
+        "cmd/generate/config/rules/typeform.go",
+        22
+      ],
+      "site_source": "tps := utils.GenerateSampleSecrets(\"typeformAPIToken\", \"tfp_\"+secrets.NewSecret(utils.AlphaNumericExtended(\"59\")))",
+      "dynamic": false
+    }
+  ]
+}

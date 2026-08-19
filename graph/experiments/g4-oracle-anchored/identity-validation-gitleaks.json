@@ -1,0 +1,619 @@
+{
+  "repo": "gitleaks",
+  "seed": 20260819,
+  "oracle": "gitleaks-notests.jsonl",
+  "pool_size": 428,
+  "rows": [
+    {
+      "n": 1,
+      "file": "cmd/generate/config/utils/patterns.go",
+      "line": 19,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/utils.AlphaNumeric"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    18  ",
+        "    19> func AlphaNumeric(size string) string {",
+        "    20  \treturn fmt.Sprintf(`[a-z0-9]{%s}`, size)"
+      ],
+      "arms": {
+        "repowise": [
+          "AlphaNumeric"
+        ],
+        "codegraph": [
+          "AlphaNumeric"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.utils.AlphaNumeric"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 2,
+      "file": "cmd/generate/config/rules/squarespace.go",
+      "line": 9,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.SquareSpaceAccessToken"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "     8  ",
+        "     9> func SquareSpaceAccessToken() *config.Rule {",
+        "    10  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "SquareSpaceAccessToken"
+        ],
+        "codegraph": [
+          "SquareSpaceAccessToken"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.SquareSpaceAccessToken"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 3,
+      "file": "cmd/root.go",
+      "line": 502,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd.fileExists"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "   501  ",
+        "   502> func fileExists(fileName string) bool {",
+        "   503  \t// check for a .gitleaksignore file"
+      ],
+      "arms": {
+        "repowise": [
+          "fileExists"
+        ],
+        "codegraph": [
+          "fileExists"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.fileExists"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 4,
+      "file": "detect/codec/segment.go",
+      "line": 35,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/detect/codec.Tags"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    34  // Tags returns additional meta data tags related to the types of segments",
+        "    35> func Tags(segments []*EncodedSegment) []string {",
+        "    36  \t// Return an empty list if we don't have any segments"
+      ],
+      "arms": {
+        "repowise": [
+          "Tags"
+        ],
+        "codegraph": [
+          "Tags"
+        ],
+        "codebase-memory-mcp": [
+          "detect.codec.Tags"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 5,
+      "file": "cmd/generate/config/rules/easypost.go",
+      "line": 10,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.EasyPost"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "     9  ",
+        "    10> func EasyPost() *config.Rule {",
+        "    11  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "EasyPost"
+        ],
+        "codegraph": [
+          "EasyPost"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.EasyPost"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 6,
+      "file": "cmd/generate/config/rules/messagebird.go",
+      "line": 30,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.MessageBirdClientID"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    29  ",
+        "    30> func MessageBirdClientID() *config.Rule {",
+        "    31  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "MessageBirdClientID"
+        ],
+        "codegraph": [
+          "MessageBirdClientID"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.MessageBirdClientID"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 7,
+      "file": "detect/detect.go",
+      "line": 284,
+      "oracle_names": [
+        "(*github.com/zricethezav/gitleaks/v8/detect.Detector).DetectContext$1"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "   283  \t\tfindings []report.Finding",
+        "   284> \t\tlogger   = func() zerolog.Logger {",
+        "   285  \t\t\tl := logging.With().Str(\"path\", fragment.FilePath)"
+      ],
+      "arms": {
+        "repowise": [],
+        "codegraph": [],
+        "codebase-memory-mcp": []
+      },
+      "verdict": "oracle only",
+      "note": "an immediately invoked func literal inside DetectContext; no arm models a closure as a symbol, so this identity can never match for anyone",
+      "decl_line_correct": true
+    },
+    {
+      "n": 8,
+      "file": "cmd/generate/config/rules/sidekiq.go",
+      "line": 37,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.SidekiqSensitiveUrl"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    36  ",
+        "    37> func SidekiqSensitiveUrl() *config.Rule {",
+        "    38  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "SidekiqSensitiveUrl"
+        ],
+        "codegraph": [
+          "SidekiqSensitiveUrl"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.SidekiqSensitiveUrl"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 9,
+      "file": "sources/file.go",
+      "line": 150,
+      "oracle_names": [
+        "(*github.com/zricethezav/gitleaks/v8/sources.File).decompressorFragments"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "   149  // decompressorFragments recursively crawls archives and yields fragments",
+        "   150> func (s *File) decompressorFragments(ctx context.Context, decompressor archives.Decompressor, reader io.Reader, yield FragmentsFunc) error {",
+        "   151  \tinnerReader, err := decompressor.OpenReader(reader)"
+      ],
+      "arms": {
+        "repowise": [
+          "decompressorFragments"
+        ],
+        "codegraph": [
+          "File::decompressorFragments"
+        ],
+        "codebase-memory-mcp": [
+          "sources.decompressorFragments"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "three spellings of one method: decompressorFragments, File::decompressorFragments, sources.decompressorFragments",
+      "decl_line_correct": true
+    },
+    {
+      "n": 10,
+      "file": "detect/git.go",
+      "line": 19,
+      "oracle_names": [
+        "(*github.com/zricethezav/gitleaks/v8/detect.Detector).DetectGit"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    18  // Deprecated: Use sources.Git and detector.DetectSource instead",
+        "    19> func (d *Detector) DetectGit(cmd *sources.GitCmd, remote *RemoteInfo) ([]report.Finding, error) {",
+        "    20  \treturn d.DetectSource("
+      ],
+      "arms": {
+        "repowise": [
+          "DetectGit"
+        ],
+        "codegraph": [
+          "Detector::DetectGit"
+        ],
+        "codebase-memory-mcp": [
+          "detect.DetectGit"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "three spellings again: DetectGit, Detector::DetectGit, detect.DetectGit",
+      "decl_line_correct": true
+    },
+    {
+      "n": 11,
+      "file": "cmd/generate/config/rules/flyio.go",
+      "line": 12,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.FlyIOAccessToken"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    11  // https://github.com/superfly/macaroon-elixir/blob/8b42043b0a24aada5c8b8eb8505dbf1590557f1b/test/vectors.json#L7",
+        "    12> func FlyIOAccessToken() *config.Rule {",
+        "    13  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "FlyIOAccessToken"
+        ],
+        "codegraph": [
+          "FlyIOAccessToken"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.FlyIOAccessToken"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 12,
+      "file": "cmd/generate/config/rules/scalingo.go",
+      "line": 9,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.ScalingoAPIToken"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "     8  ",
+        "     9> func ScalingoAPIToken() *config.Rule {",
+        "    10  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "ScalingoAPIToken"
+        ],
+        "codegraph": [
+          "ScalingoAPIToken"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.ScalingoAPIToken"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 13,
+      "file": "cmd/generate/config/rules/aws.go",
+      "line": 85,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.AmazonBedrockAPIKeyShortLived"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    84  ",
+        "    85> func AmazonBedrockAPIKeyShortLived() *config.Rule {",
+        "    86  \t// https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-how.html"
+      ],
+      "arms": {
+        "repowise": [
+          "AmazonBedrockAPIKeyShortLived"
+        ],
+        "codegraph": [
+          "AmazonBedrockAPIKeyShortLived"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.AmazonBedrockAPIKeyShortLived"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 14,
+      "file": "cmd/generate/config/base/config.go",
+      "line": 11,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/base.CreateGlobalConfig"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    10  ",
+        "    11> func CreateGlobalConfig() config.Config {",
+        "    12  \treturn config.Config{"
+      ],
+      "arms": {
+        "repowise": [
+          "CreateGlobalConfig"
+        ],
+        "codegraph": [
+          "CreateGlobalConfig"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.base.CreateGlobalConfig"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 15,
+      "file": "cmd/generate/config/rules/curl.go",
+      "line": 101,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.CurlHeaderAuth"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "   100  // https://curl.se/docs/manpage.html#-H",
+        "   101> func CurlHeaderAuth() *config.Rule {",
+        "   102  \t// language=regexp"
+      ],
+      "arms": {
+        "repowise": [
+          "CurlHeaderAuth"
+        ],
+        "codegraph": [
+          "CurlHeaderAuth"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.CurlHeaderAuth"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 16,
+      "file": "logging/log.go",
+      "line": 44,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/logging.Fatal"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    43  ",
+        "    44> func Fatal() *zerolog.Event {",
+        "    45  \treturn Logger.Fatal()"
+      ],
+      "arms": {
+        "repowise": [
+          "Fatal"
+        ],
+        "codegraph": [
+          "Fatal"
+        ],
+        "codebase-memory-mcp": [
+          "logging.Fatal"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 17,
+      "file": "sources/file.go",
+      "line": 254,
+      "oracle_names": [
+        "(*github.com/zricethezav/gitleaks/v8/sources.File).FullPath"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "   253  // FullPath returns the File.Path with any preceding outer paths",
+        "   254> func (s *File) FullPath() string {",
+        "   255  \tif len(s.outerPaths) > 0 {"
+      ],
+      "arms": {
+        "repowise": [
+          "FullPath"
+        ],
+        "codegraph": [
+          "File::FullPath"
+        ],
+        "codebase-memory-mcp": [
+          "sources.FullPath"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 18,
+      "file": "cmd/generate/config/rules/finicity.go",
+      "line": 24,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.FinicityAPIToken"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "    23  ",
+        "    24> func FinicityAPIToken() *config.Rule {",
+        "    25  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "FinicityAPIToken"
+        ],
+        "codegraph": [
+          "FinicityAPIToken"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.FinicityAPIToken"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    },
+    {
+      "n": 19,
+      "file": "cmd/stdin.go",
+      "line": 13,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd.init#6"
+      ],
+      "roles": [
+        "caller"
+      ],
+      "source": [
+        "    12  ",
+        "    13> func init() {",
+        "    14  \trootCmd.AddCommand(stdInCmd)"
+      ],
+      "arms": {
+        "repowise": [
+          "init"
+        ],
+        "codegraph": [
+          "init"
+        ],
+        "codebase-memory-mcp": []
+      },
+      "verdict": "confirmed",
+      "note": "the sixth package-level init in package cmd; codebase-memory-mcp stores no symbol at this position",
+      "decl_line_correct": true
+    },
+    {
+      "n": 20,
+      "file": "cmd/generate/config/rules/mailgun.go",
+      "line": 9,
+      "oracle_names": [
+        "github.com/zricethezav/gitleaks/v8/cmd/generate/config/rules.MailGunPrivateAPIToken"
+      ],
+      "roles": [
+        "callee",
+        "caller"
+      ],
+      "source": [
+        "     8  ",
+        "     9> func MailGunPrivateAPIToken() *config.Rule {",
+        "    10  \t// define rule"
+      ],
+      "arms": {
+        "repowise": [
+          "MailGunPrivateAPIToken"
+        ],
+        "codegraph": [
+          "MailGunPrivateAPIToken"
+        ],
+        "codebase-memory-mcp": [
+          "cmd.generate.config.rules.MailGunPrivateAPIToken"
+        ]
+      },
+      "verdict": "confirmed",
+      "note": "",
+      "decl_line_correct": true
+    }
+  ]
+}
