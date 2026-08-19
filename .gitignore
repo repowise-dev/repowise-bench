@@ -181,3 +181,10 @@ mcp_configs/
 # part-way through one sweep -- an index is evidence only while it sits beside
 # the tool version and pin that produced it, both of which are in meta.json.
 /artifacts/
+
+# G4 oracle outputs. Regenerable by anyone with the Go toolchain, which is the
+# whole claim of the experiment, and large: syft with tests is 186 MB of JSONL
+# on its own. The per-cell `*-g4.json` summaries ARE committed, so a reader gets
+# every published rate without the raw answer key.
+/graph/experiments/g4-oracle-anchored/*.jsonl
+/graph/experiments/g4-oracle-anchored/oracle/oracle.exe

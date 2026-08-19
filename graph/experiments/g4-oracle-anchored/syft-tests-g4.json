@@ -1,0 +1,293 @@
+{
+  "oracle": {
+    "_header": true,
+    "algorithm": "rta",
+    "analysed_file_count": 1107,
+    "go_version": "",
+    "load_errors": 3,
+    "oracle": "golang.org/x/tools/go/callgraph/rta",
+    "repo": "C:/Users/ragha/Desktop/repowise/test-repos/syft",
+    "root_count": 268,
+    "roots": [
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator.test",
+      "github.com/anchore/syft/internal/tmpdir.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/redhat.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/javascript.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/alpine.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/r.test",
+      "github.com/anchore/syft/internal/sbomsync.test",
+      "github.com/anchore/syft/internal/jsonschema.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/nix.test",
+      "github.com/anchore/syft/internal/capabilities/generate.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary.test",
+      "github.com/anchore/syft/syft/format/common/spdxhelpers.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/bitnami.test",
+      "github.com/anchore/syft/examples/source_detection",
+      "github.com/anchore/syft/syft/pkg.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator",
+      "github.com/anchore/syft/examples/decode_sbom",
+      "github.com/anchore/syft/syft/format/template.test",
+      "github.com/anchore/syft/syft/source/stereoscopesource.test",
+      "github.com/anchore/syft/syft/format/cyclonedxjson.test",
+      "github.com/anchore/syft/syft/file/cataloger/filecontent.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/erlang.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/licenses.test",
+      "github.com/anchore/syft/syft/file/cataloger/filedigest.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/generic.test",
+      "github.com/anchore/syft/syft/format/table.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/swift.test",
+      "github.com/anchore/syft/cmd/syft/internal/options.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/kernel.test",
+      "github.com/anchore/syft/internal/capabilities/generate",
+      "github.com/anchore/syft/syft/source/ocimodelsource.test",
+      "github.com/anchore/syft/internal/sourcemetadata.test",
+      "github.com/anchore/syft/syft/source/snapsource.test",
+      "github.com/anchore/syft/examples/create_simple_sbom",
+      "github.com/anchore/syft/syft/pkg/cataloger/ai.test",
+      "github.com/anchore/syft/syft/linux.test",
+      "github.com/anchore/syft/internal/packagemetadata/generate",
+      "github.com/anchore/syft/syft/format/cpes.test",
+      "github.com/anchore/syft/internal/spdxlicense/generate",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/binutils.test",
+      "github.com/anchore/syft/syft/file/cataloger/executable.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/lua.test",
+      "github.com/anchore/syft/internal/relationship.test",
+      "github.com/anchore/syft/internal/spdxlicense/generate.test",
+      "github.com/anchore/syft/internal/jsonschema",
+      "github.com/anchore/syft/syft/format/purls.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/dart.test",
+      "github.com/anchore/syft/internal/packagemetadata.test",
+      "github.com/anchore/syft/internal/capabilities/generate",
+      "github.com/anchore/syft/syft/pkg/cataloger/sbom.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/ocaml.test",
+      "github.com/anchore/syft/cmd/syft/internal/commands.test",
+      "github.com/anchore/syft/test/cli.test",
+      "github.com/anchore/syft/cmd/syft/internal/ui.test",
+      "github.com/anchore/syft/internal.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/java.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/gentoo.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/java/internal/maven.test",
+      "github.com/anchore/syft/syft/format.test",
+      "github.com/anchore/syft/syft/internal/unionreader.test",
+      "github.com/anchore/syft/examples/source_from_registry",
+      "github.com/anchore/syft/cmd/syft",
+      "github.com/anchore/syft/syft/format/common/cyclonedxhelpers.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/elixir.test",
+      "github.com/anchore/syft/syft/format/internal/spdxutil/helpers.test",
+      "github.com/anchore/syft/cmd/syft/internal/test/integration.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/ruby.test",
+      "github.com/anchore/syft/syft/cpe.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/golang.test",
+      "github.com/anchore/syft/internal/file.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/conda.test",
+      "github.com/anchore/syft/syft/internal/windows.test",
+      "github.com/anchore/syft/syft/format/spdxjson.test",
+      "github.com/anchore/syft/syft/format/internal/cyclonedxutil/helpers.test",
+      "github.com/anchore/syft/syft/cataloging/filecataloging.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/homebrew.test",
+      "github.com/anchore/syft/syft/format/internal/cyclonedxutil.test",
+      "github.com/anchore/syft/syft/format/syftjson/model.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/redhat/sqlitetest.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/rust.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/dependency.test",
+      "github.com/anchore/syft/syft.test",
+      "github.com/anchore/syft/internal/capabilities.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/cpegenerate.test",
+      "github.com/anchore/syft/syft/file/cataloger/filemetadata.test",
+      "github.com/anchore/syft/examples/select_catalogers",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary/internal/manager",
+      "github.com/anchore/syft/syft/license.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary/internal/manager/internal.test",
+      "github.com/anchore/syft/internal/os.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary/internal/manager/internal/config.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/arch.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/githubactions.test",
+      "github.com/anchore/syft/syft/file/cataloger/internal.test",
+      "github.com/anchore/syft/syft/source/filesource.test",
+      "github.com/anchore/syft/internal/cache.test",
+      "github.com/anchore/syft/internal/capabilities/internal.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/wordpress.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/dotnet.test",
+      "github.com/anchore/syft/syft/source/internal.test",
+      "github.com/anchore/syft/examples/source_from_image",
+      "github.com/anchore/syft/syft/pkg/cataloger/terraform.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/haskell.test",
+      "github.com/anchore/syft/syft/format/spdxtagvalue.test",
+      "github.com/anchore/syft/syft/format/github/internal/model.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/php.test",
+      "github.com/anchore/syft/internal/spdxlicense.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/snap.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/swipl.test",
+      "github.com/anchore/syft/internal/relationship/binary.test",
+      "github.com/anchore/syft/syft/source.test",
+      "github.com/anchore/syft/internal/jsonschema",
+      "github.com/anchore/syft/internal/unknown.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/debian.test",
+      "github.com/anchore/syft/syft/format/cyclonedxxml.test",
+      "github.com/anchore/syft/internal/task.test",
+      "github.com/anchore/syft/syft/file.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/python.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/cpp.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/internal/pe.test",
+      "github.com/anchore/syft/syft/format/internal.test",
+      "github.com/anchore/syft/cmd/syft/cli/ui.test",
+      "github.com/anchore/syft/syft/format/github.test",
+      "github.com/anchore/syft/syft/format/syftjson.test",
+      "github.com/anchore/syft/syft/format/text.test",
+      "github.com/anchore/syft/examples/create_custom_sbom",
+      "github.com/anchore/syft/internal/licenses.test",
+      "github.com/anchore/syft/syft/pkg/cataloger/golang/internal/xcoff.test",
+      "github.com/anchore/syft/internal/spdxlicense/generate",
+      "github.com/anchore/syft/internal/sourcemetadata/generate",
+      "github.com/anchore/syft/syft/pkg/cataloger/binary/internal/manager/testutil.test",
+      "github.com/anchore/syft/internal/mimetype.test",
+      "github.com/anchore/syft/syft/format/internal/stream.test"
+    ],
+    "tests": true
+  },
+  "repo": "syft",
+  "arms": {
+    "repowise": {
+      "version": "13cc339a",
+      "edges_in_scope": 7818,
+      "oracle_edges": 23117,
+      "matched": 5749,
+      "recall": 0.2487,
+      "recall_ci": [
+        0.2432,
+        0.2543
+      ],
+      "outside_oracle": 2069,
+      "outside_share": 0.2646,
+      "contradicted": 1900,
+      "unjudged": 169,
+      "precision_vs_oracle": 0.7516,
+      "precision_ci": [
+        0.7418,
+        0.7612
+      ],
+      "unjudged_share": 0.0216,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          5749
+        ],
+        [
+          "no_file_pair",
+          239
+        ],
+        [
+          "(0, 5)",
+          75
+        ],
+        [
+          "(16, 0)",
+          65
+        ],
+        [
+          "(1, 0)",
+          63
+        ],
+        [
+          "(-9, 0)",
+          43
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 9285,
+      "oracle_edges": 23117,
+      "matched": 6012,
+      "recall": 0.2601,
+      "recall_ci": [
+        0.2545,
+        0.2658
+      ],
+      "outside_oracle": 3273,
+      "outside_share": 0.3525,
+      "contradicted": 2829,
+      "unjudged": 444,
+      "precision_vs_oracle": 0.68,
+      "precision_ci": [
+        0.6702,
+        0.6897
+      ],
+      "unjudged_share": 0.0478,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          6012
+        ],
+        [
+          "no_file_pair",
+          1292
+        ],
+        [
+          "(0, 5)",
+          74
+        ],
+        [
+          "(1, 0)",
+          73
+        ],
+        [
+          "(16, 0)",
+          64
+        ],
+        [
+          "(-9, 0)",
+          43
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 12533,
+      "oracle_edges": 23117,
+      "matched": 6343,
+      "recall": 0.2744,
+      "recall_ci": [
+        0.2687,
+        0.2802
+      ],
+      "outside_oracle": 6190,
+      "outside_share": 0.4939,
+      "contradicted": 5768,
+      "unjudged": 422,
+      "precision_vs_oracle": 0.5237,
+      "precision_ci": [
+        0.5148,
+        0.5326
+      ],
+      "unjudged_share": 0.0337,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          6343
+        ],
+        [
+          "no_file_pair",
+          3435
+        ],
+        [
+          "(1, 0)",
+          78
+        ],
+        [
+          "(0, 5)",
+          72
+        ],
+        [
+          "(16, 0)",
+          66
+        ],
+        [
+          "(2, 0)",
+          49
+        ]
+      ]
+    }
+  }
+}
