@@ -4,6 +4,15 @@ The evidence behind every number [repowise](https://github.com/repowise-dev/repo
 publishes, plus the harness to rerun it. Public repositories, pinned commits,
 scripts included, and the rows we lose printed beside the rows we win.
 
+**Arrived from
+[docs/BENCHMARKS.md](https://github.com/repowise-dev/repowise/blob/main/docs/BENCHMARKS.md)?**
+That page is the summary: every headline with its sample size, its test and its
+caveats. This repository is the layer underneath it, so start with
+[graph/](graph/README.md) for call-graph correctness,
+[head-to-head/](head-to-head/) for retrieval and the agent loop,
+[health-defect/](health-defect/) for defect prediction, and
+[repro/](repro/README.md) if you want to rerun a specific claim.
+
 [![GitHub stars](https://img.shields.io/github/stars/repowise-dev/repowise?style=flat)](https://github.com/repowise-dev/repowise)
 [![License](https://img.shields.io/github/license/repowise-dev/repowise)](https://github.com/repowise-dev/repowise/blob/main/LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/repowise-dev/repowise)](https://github.com/repowise-dev/repowise/releases)
@@ -384,42 +393,64 @@ asks whether the edges inside it are true, which is a different question: a tool
 can point an agent at the right neighbourhood while the arrows between the houses
 are wrong.
 
-**Nobody in this field publishes a graph-correctness number against an outside
-oracle.** So [graph/](graph/README.md) builds one. The answer key is the Go
-team's own RTA call graph, from `golang.org/x/tools`, computed over the
-type-checked program. We cannot tune it, and anyone with the Go toolchain can
-regenerate it.
+[graph/](graph/README.md) answers it twice, by two methods, because each one
+alone has a weakness the other covers.
 
-Of the call edges each tool emits, the share the Go compiler confirms:
+**Against an oracle we do not control.** On Go the answer key is the Go team's
+own RTA call graph from `golang.org/x/tools`, computed over the type-checked
+program; on TypeScript it is the `tsc` checker's own resolution of every call
+site. We cannot tune either, and anyone with the toolchain can regenerate both.
+Five tools, seven cells, five repositories, **37,853 oracle edges**.
 
-| cell | repowise | CodeGraph | codebase-memory-mcp |
-|---|---:|---:|---:|
-| cobra | **0.890** | 0.852 | 0.834 |
-| gitleaks | **0.965** | 0.958 | 0.927 |
-| syft | **0.895** | 0.831 | 0.603 |
+**The headline is a Pareto claim, and it is deliberately not "most precise".**
 
-Most precise in all five measured cells, no losses. On syft roughly half of what
-codebase-memory-mcp emits is a call the compiler says does not exist.
+> In all seven cells, no tool that recovers as much of the call graph as we do
+> gets more of it right.
 
-**And we lose the other half of the same question.** On cross-file coverage
-across 35 repositories, codebase-memory-mcp separates from us on 15 and we
-separate on none. On oracle recall it leads four of five cells. It recovers more
-of the true call graph and invents far more that is not in it, which is one
-trade seen from two directions.
+Precision alone is exactly as gameable as coverage alone, in the opposite
+direction, and both failure modes are in the data. One arm draws 12,533 edges on
+syft and more than a third are calls the compiler says do not exist. Another
+scores the highest precision anywhere in this repository, 0.997, from a graph
+holding 17% of the calls in the repository; on gitleaks that figure rests on 76
+resolved edges out of 4,367 stored rows. So the claim names no threshold, which
+means it cannot be tuned by picking a cutoff and adding a competitor can only
+break it. **Two arms were added after it was written and it held in all seven
+cells.**
 
-The reason both are printed is that coverage counts the files an edge reaches
-and never asks whether the edge is real, so a tool that emits more edges wins it
-either way. No table in [graph/](graph/README.md) prints a coverage number
-without a precision number beside it.
+Read outright rather than as a pair, we are the most precise arm in **one cell of
+seven**, tied in one, and **beaten in five**: by code-review-graph on cobra and
+both syft cells, by Graphify on both gitleaks cells. Against the two arms this
+experiment started with, CodeGraph and codebase-memory-mcp, we are most precise in
+seven of seven, and that narrower claim always carries its label.
 
-One result there is worth more than the competitive rows. **The oracle
-reproduced our own hand-graded audit**: 540 rows read from source said 96.7% on
-Go, and the compiler, over roughly 1,600 edges, says 96.5%. A person reading
-source and a type checker agreeing to within a point is the best evidence
-available that the hand-grading is accurate rather than self-serving.
+**Hand-graded across nine languages, both sides read.** 30 rows per language per
+tool, seed 2026, stratified by resolution strategy, every row read from source:
+**ours 229/270 = 84.8%** [80.0, 88.6] against **CodeGraph's 154/270 = 57.0%**
+[51.1, 62.8], intervals disjoint. Four of the nine cells separate; five are ties
+and are reported as ties. Read the other way round, roughly fifteen percent of our
+call edges are wrong.
 
-Limits: this is Go, three repositories. Python, Ruby and PHP admit no oracle
-even in principle, because what a call resolves to can change at runtime.
+**And we lose the other half of the same question.** On cross-file coverage across
+35 repositories, codebase-memory-mcp separates from us on 15 and we separate on
+none. On oracle recall we lead the two TypeScript cells and **none of the five Go
+cells**. It recovers more of the true call graph and invents far more that is not
+in it, which is one trade seen from two directions. The reason both are always
+printed is that coverage counts the files an edge reaches and never asks whether
+the edge is real, so a tool that emits more edges wins it either way. No table in
+[graph/](graph/README.md) prints a coverage number without a precision number
+beside it.
+
+One result there is worth more than any competitive row. **The oracle reproduced
+our own hand-graded audit**: 30 rows read from source said 96.7% on Go for both
+arms, and the compiler, over roughly 1,600 edges, says **97.6% and 97.2%**. A
+person reading source and a type checker agreeing to within a point is the best
+evidence available that the hand-grading is accurate rather than self-serving.
+
+Limits: the oracle is two languages and stops at two. C#, Java, Kotlin and C++
+each need a toolchain and a working build per repository; Rust has the toolchain
+and no sound call-graph tool exists; Python, Ruby and PHP admit no oracle even in
+principle, because what a call resolves to can change at runtime. On those
+languages the hand-graded audit is the permanent method rather than a stopgap.
 Full results, method and caveats in [graph/README.md](graph/README.md).
 
 ---
