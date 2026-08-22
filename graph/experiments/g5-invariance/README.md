@@ -1,10 +1,31 @@
 # G5: adversarial invariance
 
-**Status: mutation generator built and verified on Go. The scorer is next, so
-there are no scores yet.**
+**Status: scored, four arms, Go.** The generator and the scorer both exist and
+gitleaks is graded at `3594ba75`. Java is predicted and not run.
 
 Read [PREREGISTRATION.md](PREREGISTRATION.md) first. It has the predictions,
 including the one that says we fail badly on Java.
+
+## Result
+
+| arm | M1 decoy twin | M2 consistent rename | M3 shadowing |
+|---|---|---|---|
+| repowise | pass | pass | **fail** |
+| codegraph | pass | pass | **fail** |
+| graphify | untestable | untestable | untestable |
+| code-review-graph | untestable | untestable | untestable |
+
+Neither we nor CodeGraph put an edge on M1's decoy, and both come through M2's
+284 affected edges with none lost and none gained, so neither tool is a
+name-matcher. **Nobody passes M3**: ours resolves `secrets.NewSecret(...)` to the
+package function after `secrets` has become an `int`, and CodeGraph does the
+same.
+
+`untestable` is not a pass and is never reported as one. Graphify and
+code-review-graph resolved no edge to the mutated symbol at the baseline, so a
+mutation cannot change their answer. An arm that resolves nothing cannot be
+tricked, and scoring that as a pass would rank it above one that resolves almost
+everything.
 
 ## What exists
 
