@@ -1,0 +1,128 @@
+{
+  "distinct_resolved_calls": 9486,
+  "language": "cpp",
+  "origin_mix": {
+    "enclosing_class": 15,
+    "global_unique": 1101,
+    "import_merged": 5631,
+    "same_file": 2739
+  },
+  "population_split": {
+    "call": 9486,
+    "reference": 260
+  },
+  "repo": "aria2",
+  "sample": [
+    {
+      "caller": "src/DHTMessageTracker.cc::DHTMessageTracker::handleTimeoutEntry",
+      "confidence": 0.85,
+      "file": "src/DHTMessageTracker.cc",
+      "kind": "call",
+      "line": 123,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/fmt.h::fmt",
+      "target": "fmt"
+    },
+    {
+      "caller": "src/DownloadCommand.cc::DownloadCommand::executeInternal",
+      "confidence": 0.5,
+      "file": "src/DownloadCommand.cc",
+      "kind": "call",
+      "line": 196,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "src/SocketRecvBuffer.cc::SocketRecvBuffer::drain",
+      "target": "drain"
+    },
+    {
+      "caller": "src/KqueueEventPoll.cc::KqueueEventPoll::~KqueueEventPoll",
+      "confidence": 0.85,
+      "file": "src/KqueueEventPoll.cc",
+      "kind": "call",
+      "line": 103,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/LogFactory.h::A2_LOG_ERROR",
+      "target": "A2_LOG_ERROR"
+    },
+    {
+      "caller": "src/RpcMethodImpl.cc::AddMetalinkRpcMethod::process",
+      "confidence": 0.85,
+      "file": "src/RpcMethodImpl.cc",
+      "kind": "call",
+      "line": 363,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/fmt.h::fmt",
+      "target": "fmt"
+    },
+    {
+      "caller": "test/BtPieceMessageTest.cc::BtPieceMessageTest::testCreate",
+      "confidence": 0.85,
+      "file": "test/BtPieceMessageTest.cc",
+      "kind": "call",
+      "line": 99,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/bittorrent_helper.cc::setIntParam",
+      "target": "setIntParam"
+    },
+    {
+      "caller": "test/BtSuggestPieceMessageTest.cc::BtSuggestPieceMessageTest::testCreateMessage",
+      "confidence": 0.85,
+      "file": "test/BtSuggestPieceMessageTest.cc",
+      "kind": "call",
+      "line": 64,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/bittorrent_helper.cc::setIntParam",
+      "target": "setIntParam"
+    },
+    {
+      "caller": "test/ChunkedDecodingStreamFilterTest.cc::ChunkedDecodingStreamFilterTest::testTransform",
+      "confidence": 0.95,
+      "file": "test/ChunkedDecodingStreamFilterTest.cc",
+      "kind": "call",
+      "line": 69,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/ChunkedDecodingStreamFilterTest.cc::ChunkedDecodingStreamFilterTest::clearWriter",
+      "target": "clearWriter"
+    },
+    {
+      "caller": "test/RpcMethodTest.cc::RpcMethodTest::testAddTorrent",
+      "confidence": 0.95,
+      "file": "test/RpcMethodTest.cc",
+      "kind": "call",
+      "line": 382,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/RpcMethodTest.cc::createAddTorrentReq",
+      "target": "createAddTorrentReq"
+    },
+    {
+      "caller": "test/UDPTrackerClientTest.cc::UDPTrackerClientTest::testConnectFollowedByAnnounce",
+      "confidence": 0.95,
+      "file": "test/UDPTrackerClientTest.cc",
+      "kind": "call",
+      "line": 162,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/UDPTrackerClientTest.cc::createAnnounce",
+      "target": "createAnnounce"
+    },
+    {
+      "caller": "test/UriTest.cc::UriTest::testJoinUri",
+      "confidence": 0.85,
+      "file": "test/UriTest.cc",
+      "kind": "call",
+      "line": 484,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/uri.cc::joinUri",
+      "target": "joinUri"
+    }
+  ],
+  "seed": 2026
+}

@@ -1,0 +1,132 @@
+{
+  "distinct_resolved_calls": 11278,
+  "language": "cpp",
+  "origin_mix": {
+    "enclosing_class": 83,
+    "global_unique": 878,
+    "import_merged": 4657,
+    "receiver_global": 93,
+    "receiver_import": 28,
+    "receiver_same_file": 30,
+    "same_file": 4224,
+    "same_target": 1285
+  },
+  "population_split": {
+    "call": 11278,
+    "reference": 264
+  },
+  "repo": "seastar",
+  "sample": [
+    {
+      "caller": "include/seastar/core/sharded.hh::seastar",
+      "confidence": 0.5,
+      "file": "include/seastar/core/sharded.hh",
+      "kind": "call",
+      "line": 881,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "include/seastar/core/shard_id.hh::this_shard_id",
+      "target": "this_shard_id"
+    },
+    {
+      "caller": "src/core/future.cc::test::with_allow_abandoned_failed_futures",
+      "confidence": 0.85,
+      "file": "src/core/future.cc",
+      "kind": "call",
+      "line": 242,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/seastar/util/assert.hh::SEASTAR_ASSERT",
+      "target": "SEASTAR_ASSERT"
+    },
+    {
+      "caller": "src/core/io_queue.cc::io_queue::io_queue",
+      "confidence": 0.85,
+      "file": "src/core/io_queue.cc",
+      "kind": "call",
+      "line": 656,
+      "origin": "same_target",
+      "receiver": null,
+      "resolved_to": "src/core/reactor.cc::cpu_stall_detector::get_config",
+      "target": "get_config"
+    },
+    {
+      "caller": "src/core/memory.cc::cpu_pages::do_resize",
+      "confidence": 0.95,
+      "file": "src/core/memory.cc",
+      "kind": "call",
+      "line": 1310,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "src/core/memory.cc::maybe_enable_transparent_hugepages",
+      "target": "maybe_enable_transparent_hugepages"
+    },
+    {
+      "caller": "tests/unit/content_source_test.cc::SEASTAR_TEST_CASE",
+      "confidence": 0.95,
+      "file": "tests/unit/content_source_test.cc",
+      "kind": "call",
+      "line": 108,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "tests/unit/content_source_test.cc::single_bytes_source_impl::get",
+      "target": "get"
+    },
+    {
+      "caller": "tests/unit/fstream_test.cc::SEASTAR_TEST_CASE",
+      "confidence": 0.85,
+      "file": "tests/unit/fstream_test.cc",
+      "kind": "call",
+      "line": 555,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/seastar/core/seastar.hh::open_file_dma",
+      "target": "open_file_dma"
+    },
+    {
+      "caller": "tests/unit/futures_test.cc::SEASTAR_TEST_CASE",
+      "confidence": 0.95,
+      "file": "tests/unit/futures_test.cc",
+      "kind": "call",
+      "line": 2182,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "tests/unit/futures_test.cc::throw_on_move::throw_on_move",
+      "target": "throw_on_move"
+    },
+    {
+      "caller": "tests/unit/sharded_test.cc::service::fn_sharded_param",
+      "confidence": 0.85,
+      "file": "tests/unit/sharded_test.cc",
+      "kind": "call",
+      "line": 192,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/seastar/core/shard_id.hh::this_shard_id",
+      "target": "this_shard_id"
+    },
+    {
+      "caller": "tests/unit/smp_test.cc::main",
+      "confidence": 0.95,
+      "file": "tests/unit/smp_test.cc",
+      "kind": "call",
+      "line": 74,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "tests/unit/smp_test.cc::test_smp_call",
+      "target": "test_smp_call"
+    },
+    {
+      "caller": "tests/unit/socket_test.cc::SEASTAR_TEST_CASE",
+      "confidence": 0.85,
+      "file": "tests/unit/socket_test.cc",
+      "kind": "call",
+      "line": 208,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/seastar/util/later.hh::yield",
+      "target": "yield"
+    }
+  ],
+  "seed": 2026
+}

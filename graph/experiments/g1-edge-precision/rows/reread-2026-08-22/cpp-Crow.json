@@ -1,0 +1,132 @@
+{
+  "distinct_resolved_calls": 751,
+  "language": "cpp",
+  "origin_mix": {
+    "enclosing_class": 17,
+    "global_unique": 113,
+    "import_merged": 131,
+    "receiver_global": 1,
+    "receiver_import": 1,
+    "same_file": 475,
+    "same_target": 2,
+    "self_scope": 11
+  },
+  "population_split": {
+    "call": 751,
+    "reference": 4
+  },
+  "repo": "Crow",
+  "sample": [
+    {
+      "caller": "include/crow/http_parser_merged.h::http_parser_execute",
+      "confidence": 0.95,
+      "file": "include/crow/http_parser_merged.h",
+      "kind": "call",
+      "line": 1383,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "include/crow/http_parser_merged.h::CROW_SET_ERRNO",
+      "target": "CROW_SET_ERRNO"
+    },
+    {
+      "caller": "include/crow/json.h::load_nocopy_internal",
+      "confidence": 0.85,
+      "file": "include/crow/json.h",
+      "kind": "call",
+      "line": 971,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/crow/utility.h::CROW_UNLIKELY",
+      "target": "CROW_UNLIKELY"
+    },
+    {
+      "caller": "include/crow/middlewares/cors.h::CORSRules::apply",
+      "confidence": 0.95,
+      "file": "include/crow/middlewares/cors.h",
+      "kind": "call",
+      "line": 147,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "include/crow/middlewares/cors.h::CORSRules::set_header_no_override",
+      "target": "set_header_no_override"
+    },
+    {
+      "caller": "include/crow/multipart.h::message::message",
+      "confidence": 0.95,
+      "file": "include/crow/multipart.h",
+      "kind": "call",
+      "line": 148,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "include/crow/multipart.h::message::get_boundary",
+      "target": "get_boundary"
+    },
+    {
+      "caller": "include/crow/mustache.h::template_t::render_internal",
+      "confidence": 0.95,
+      "file": "include/crow/mustache.h",
+      "kind": "call",
+      "line": 299,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "include/crow/mustache.h::template_t::tag_name",
+      "target": "tag_name"
+    },
+    {
+      "caller": "include/crow/routing.h::Node::IsSimpleNode",
+      "confidence": 0.5,
+      "file": "include/crow/routing.h",
+      "kind": "call",
+      "line": 779,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "include/crow/middlewares/session.h::ExpirationTracker::begin",
+      "target": "begin"
+    },
+    {
+      "caller": "tests/unit_tests/test_utility.cpp::__module__",
+      "confidence": 0.5,
+      "file": "tests/unit_tests/test_utility.cpp",
+      "kind": "call",
+      "line": 77,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "include/crow/utility.h::sanitize_filename",
+      "target": "sanitize_filename"
+    },
+    {
+      "caller": "tests/unittest.cpp::__module__",
+      "confidence": 0.95,
+      "file": "tests/unittest.cpp",
+      "kind": "call",
+      "line": 1175,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "tests/unittest.cpp::Cookie",
+      "target": "Cookie"
+    },
+    {
+      "caller": "tests/unittest.cpp::__module__",
+      "confidence": 0.95,
+      "file": "tests/unittest.cpp",
+      "kind": "call",
+      "line": 1280,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "tests/unittest.cpp::HttpClient::request",
+      "target": "request"
+    },
+    {
+      "caller": "tests/unittest.cpp::__module__",
+      "confidence": 0.85,
+      "file": "tests/unittest.cpp",
+      "kind": "call",
+      "line": 1981,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/crow/middlewares/session.h::context::string",
+      "target": "string"
+    }
+  ],
+  "seed": 2026
+}

@@ -206,10 +206,19 @@ a silent one.
 exists to remove, and it would quietly favour whichever tool spells identifiers
 most like the oracle.
 
-**Call-site granularity is deliberately not used.** codebase-memory-mcp records
-no line for a call site, storing the calling function's declaration line
-instead. A site-keyed join would zero that arm out for a reason about its
-storage rather than its resolver.
+**Call-site granularity is deliberately not used.** A site-keyed join would zero
+codebase-memory-mcp out for a reason about its storage rather than its resolver.
+
+**The reason recorded here was wrong, corrected 2026-08-22, and the decision
+survives it.** This paragraph used to say that arm records no line for a call
+site. It does: `properties.$.line`, verified against source, and
+[G8](../g8-coverage-leader-precision/) grades at the site because of it. What
+makes a site-keyed join unsafe is different and worse. On C and C++ that line is
+past the end of the file the edge names in **30.2% of fmt's call rows and 16.9%
+of aria2's**, across 317 of aria2's 869 source files, which looks like
+include-expansion attributed to the includer. Since this experiment's own cells
+are Go and TypeScript, where the field is clean, the conclusion is unchanged: the
+join stays keyed on declarations.
 
 ### Splitting "outside the oracle", which is what makes precision automatable
 

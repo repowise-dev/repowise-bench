@@ -1,0 +1,130 @@
+{
+  "distinct_resolved_calls": 9058,
+  "language": "cpp",
+  "origin_mix": {
+    "enclosing_class": 79,
+    "global_unique": 2432,
+    "import_merged": 2610,
+    "receiver_global": 10,
+    "same_file": 3815,
+    "same_target": 112
+  },
+  "population_split": {
+    "call": 9058,
+    "reference": 62
+  },
+  "repo": "fmt",
+  "sample": [
+    {
+      "caller": "test/base-test.cc::TEST",
+      "confidence": 0.85,
+      "file": "test/base-test.cc",
+      "kind": "call",
+      "line": 377,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/fmt/base.h::format_args",
+      "target": "format_args"
+    },
+    {
+      "caller": "test/chrono-test.cc::TEST",
+      "confidence": 0.5,
+      "file": "test/chrono-test.cc",
+      "kind": "call",
+      "line": 728,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+      "target": "EXPECT_EQ"
+    },
+    {
+      "caller": "test/color-test.cc::TEST",
+      "confidence": 0.85,
+      "file": "test/color-test.cc",
+      "kind": "call",
+      "line": 21,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/fmt/color.h::rgb::rgb",
+      "target": "rgb"
+    },
+    {
+      "caller": "test/format-test.cc::TEST",
+      "confidence": 0.5,
+      "file": "test/format-test.cc",
+      "kind": "call",
+      "line": 1149,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+      "target": "EXPECT_EQ"
+    },
+    {
+      "caller": "test/gtest/gmock-gtest-all.cc::UnitTestImpl::RunAllTests",
+      "confidence": 0.95,
+      "file": "test/gtest/gmock-gtest-all.cc",
+      "kind": "call",
+      "line": 7324,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/gtest/gmock-gtest-all.cc::ForEach",
+      "target": "ForEach"
+    },
+    {
+      "caller": "test/gtest/gmock-gtest-all.cc::NoExecDeathTest::AssumeRole",
+      "confidence": 0.95,
+      "file": "test/gtest/gmock-gtest-all.cc",
+      "kind": "call",
+      "line": 9386,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/gtest/gmock-gtest-all.cc::DeathTestImpl::set_read_fd",
+      "target": "set_read_fd"
+    },
+    {
+      "caller": "test/gtest/gmock-gtest-all.cc::IsAsciiPunct",
+      "confidence": 0.95,
+      "file": "test/gtest/gmock-gtest-all.cc",
+      "kind": "call",
+      "line": 11111,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/gtest/gmock-gtest-all.cc::IsInSet",
+      "target": "IsInSet"
+    },
+    {
+      "caller": "test/os-test.cc::TEST",
+      "confidence": 0.85,
+      "file": "test/os-test.cc",
+      "kind": "call",
+      "line": 467,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "src/os.cc::file::read",
+      "target": "read"
+    },
+    {
+      "caller": "test/posix-mock-test.cc::TEST",
+      "confidence": 0.5,
+      "file": "test/posix-mock-test.cc",
+      "kind": "call",
+      "line": 441,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "test/gtest/gtest/gtest.h::EXPECT_EQ",
+      "target": "EXPECT_EQ"
+    },
+    {
+      "caller": "test/scan.h::scan_to",
+      "confidence": 0.95,
+      "file": "test/scan.h",
+      "kind": "call",
+      "line": 695,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "test/scan.h::vscan",
+      "target": "vscan"
+    }
+  ],
+  "seed": 2026
+}

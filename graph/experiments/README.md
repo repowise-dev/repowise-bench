@@ -34,6 +34,22 @@ against the hand-graded 96.7%. Two unrelated methods agreeing to within a point
 is the strongest evidence available that the hand-grading is accurate rather
 than self-serving.
 
+## G8: the coverage leader's precision, where no compiler can arbitrate
+
+The coverage rows on the main page are led by codebase-memory-mcp on nine of
+eleven languages, and G4 can only judge two of them. G8 draws G1's sample from
+that arm on the other nine and reads every row from source.
+
+**Measured and published: [g8-coverage-leader-precision](g8-coverage-leader-precision/)**,
+137/270 = 50.7% [44.8, 56.7]. On the seven languages all three hand-graded arms
+share, it is 50.0% against CodeGraph's 56.2% and our 81.4%: the two peers are a
+tie with each other and both separate from us.
+
+It is one arm rather than two because the other side of that comparison already
+exists in G1 at the same seed on the same repositories, and re-reading it would
+have bought nothing. The departures from G1's method, all of them forced by the
+arm's own fields, are listed on the page.
+
 ## G3: recall on a denominator both tools share
 
 Each tool's own recall is quoted against its own denominator, and the two
@@ -109,11 +125,16 @@ at the end of a session.
   answer key.
 * [g5-invariance](g5-invariance/): mutations that separate a resolver from a
   name-matcher.
+* [g8-coverage-leader-precision](g8-coverage-leader-precision/): G1's method,
+  applied to codebase-memory-mcp on the nine languages no oracle reaches. 270
+  rows, **50.7%**. Closes the hole the main page named against itself: its
+  coverage lead was of unknown quality outside Go and TypeScript, and is not any
+  more.
 
 ## Sequencing, and what changed
 
-G2, G1, G5 and G6 are measured. **G3 and G7 have results and no page, and are
-now closed rather than pending**; each section above says why. They stay unlinked
+G2, G1, G5, G6 and G8 are measured. **G3 and G7 have results and no page, and
+are now closed rather than pending**; each section above says why. They stay unlinked
 rather than cited. G4 is measured on Go and TypeScript.
 
 **The plan said G4 would consume a session on symbol identity alone. That was
@@ -128,4 +149,6 @@ twenty identities against source is what caught it, on each language in turn.
 **The order to extend in is set by which languages admit an oracle at all**, not
 by which experiment is next. Go and TypeScript are done. C#, Java and Kotlin
 need an SDK each. Python, Ruby and PHP admit no oracle even in principle, because what a call resolves to can
-change at runtime, so those languages stay with G1 permanently.
+change at runtime, so those languages stay hand-graded permanently. **G8 is what
+"hand-graded permanently" looks like when it is actually done**: the nine
+languages no oracle reaches, on the arm that leads their coverage rows.

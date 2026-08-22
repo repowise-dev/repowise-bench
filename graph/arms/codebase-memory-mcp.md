@@ -124,9 +124,29 @@ every other arm.
 `start_line`, the line the calling function is declared on, not the line the
 call appears on.
 
-Consequence, stated rather than hidden: a function calling the same target
-twice folds to **one** triple here, where an arm recording call-site lines
-yields two. METHODOLOGY rule 2 folds on distinct `(caller_file, line,
+> **CORRECTED 2026-08-22. The first sentence is true and the conclusion drawn
+> from it was wrong.** There is no line *column*, but `properties` carries
+> `$.line`, and it is the **call site**, not the declaration. It was checked
+> against source on four Alamofire rows, is present on every `CALLS` row in
+> eighteen of twenty-one repository cells, and G8 grades at the call site
+> because of it. The adapter's own triple is unchanged and still uses
+> `start_line`; changing it would move published coverage and cost numbers, and
+> that is a separate decision from recording that the field exists.
+>
+> **On C and C++ the field is unusable in a large minority of rows.** Share of
+> `CALLS` rows whose line is past the end of the file the edge names: fmt
+> 2,265/7,510 = **30.2%**, aria2 2,774/16,405 = **16.9%**, seastar 0.9%, and zero
+> on Crow, Alamofire, Ocelot, caffeine, ripgrep, serde, javalin, exposed, guzzle,
+> monica, faraday, jekyll and sinatra. It touches 317 of aria2's 869 source files
+> and 22 of fmt's 80, so it is not a stray file; the shape is include-expansion,
+> a line counted in the translation unit and attributed to the includer. Anyone
+> keying on this field must scope out C and C++ or check the line against the
+> file length.
+
+The multiplicity consequence is unaffected by that correction and stands: `edges`
+is unique on `(source_id, target_id, type)`, so a function calling the same target
+twice folds to **one** row here, carrying one of the two lines, where an arm
+recording call sites yields two. METHODOLOGY rule 2 folds on distinct `(caller_file, line,
 callee_identity)`, and this arm's triples are strictly coarser than the others'.
 **Its `call_edges` count is a lower bound and is not comparable like-for-like
 with the per-site arms.** `cross_file_edges` is unaffected, because that folds

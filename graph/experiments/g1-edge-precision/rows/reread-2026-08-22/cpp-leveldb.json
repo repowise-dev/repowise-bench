@@ -1,0 +1,130 @@
+{
+  "distinct_resolved_calls": 3124,
+  "language": "cpp",
+  "origin_mix": {
+    "enclosing_class": 2,
+    "global_unique": 401,
+    "import_merged": 415,
+    "module_alias": 5,
+    "same_file": 2004,
+    "same_target": 297
+  },
+  "population_split": {
+    "call": 3124,
+    "reference": 15
+  },
+  "repo": "leveldb",
+  "sample": [
+    {
+      "caller": "db/corruption_test.cc::TEST_F",
+      "confidence": 0.95,
+      "file": "db/corruption_test.cc",
+      "kind": "call",
+      "line": 356,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "db/corruption_test.cc::CorruptionTest::Value",
+      "target": "Value"
+    },
+    {
+      "caller": "db/db_test.cc::TEST_F",
+      "confidence": 0.5,
+      "file": "db/db_test.cc",
+      "kind": "call",
+      "line": 732,
+      "origin": "global_unique",
+      "receiver": null,
+      "resolved_to": "util/testutil.h::ASSERT_LEVELDB_OK",
+      "target": "ASSERT_LEVELDB_OK"
+    },
+    {
+      "caller": "db/db_test.cc::MTThreadBody",
+      "confidence": 0.85,
+      "file": "db/db_test.cc",
+      "kind": "call",
+      "line": 2047,
+      "origin": "import_merged",
+      "receiver": null,
+      "resolved_to": "include/leveldb/db.h::WriteOptions",
+      "target": "WriteOptions"
+    },
+    {
+      "caller": "db/filename.cc::ParseFileName",
+      "confidence": 0.85,
+      "file": "db/filename.cc",
+      "kind": "call",
+      "line": 93,
+      "origin": "same_target",
+      "receiver": null,
+      "resolved_to": "util/logging.cc::ConsumeDecimalNumber",
+      "target": "ConsumeDecimalNumber"
+    },
+    {
+      "caller": "db/log_test.cc::TEST_F",
+      "confidence": 0.95,
+      "file": "db/log_test.cc",
+      "kind": "call",
+      "line": 303,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "db/log_test.cc::StringSource::Read",
+      "target": "Read"
+    },
+    {
+      "caller": "db/log_test.cc::TEST_F",
+      "confidence": 0.95,
+      "file": "db/log_test.cc",
+      "kind": "call",
+      "line": 328,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "db/log_test.cc::BigString",
+      "target": "BigString"
+    },
+    {
+      "caller": "db/skiplist_test.cc::ConcurrentTest::WriteStep",
+      "confidence": 0.95,
+      "file": "db/skiplist_test.cc",
+      "kind": "call",
+      "line": 221,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "db/skiplist_test.cc::ConcurrentTest::MakeKey",
+      "target": "MakeKey"
+    },
+    {
+      "caller": "util/cache.cc::LRUCache::Release",
+      "confidence": 0.95,
+      "file": "util/cache.cc",
+      "kind": "call",
+      "line": 264,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "util/cache.cc::LRUCache::Unref",
+      "target": "Unref"
+    },
+    {
+      "caller": "util/env_windows.cc::WindowsEnv::GetTestDirectory",
+      "confidence": 0.95,
+      "file": "util/env_windows.cc",
+      "kind": "call",
+      "line": 640,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "util/env_windows.cc::WindowsEnv::CreateDir",
+      "target": "CreateDir"
+    },
+    {
+      "caller": "util/env_windows.cc::Limiter",
+      "confidence": 0.95,
+      "file": "util/env_windows.cc",
+      "kind": "call",
+      "line": 810,
+      "origin": "same_file",
+      "receiver": null,
+      "resolved_to": "util/env_windows.cc::SingletonEnv::AssertEnvNotInitialized",
+      "target": "AssertEnvNotInitialized"
+    }
+  ],
+  "seed": 2026
+}
