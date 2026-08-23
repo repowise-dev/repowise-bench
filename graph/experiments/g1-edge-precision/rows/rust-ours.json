@@ -8,7 +8,7 @@
   "serde",
   "bevy"
  ],
- "repowise_commit": "13cc339a",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
@@ -16,7 +16,7 @@
   "wrong": 8,
   "ambiguous": 0
  },
- "note": "The draw, not the grading. This cell was re-read on a fresh draw after #1708 stopped the bare-name tier answering for the standard library, and the per-row verdicts of that read were not written down. What survives is the cell total, 22 of 30, and the composition of the 8 wrong rows: 4 macro invocations graded as calls, 3 cross-module or overload collisions, and 1 standard-library type constructor. The rows below are the sites that were read, so the sample is auditable even though the verdicts are not. This is the one cell of the nine whose rows this directory cannot supply.",
+ "note": "The draw, not the grading. This cell was re-read on a fresh draw after #1708 stopped the bare-name tier answering for the standard library, and the per-row verdicts of that read were not written down. What survives is the cell total, 22 of 30, and the composition of the 8 wrong rows: 4 macro invocations graded as calls, 3 cross-module or overload collisions, and 1 standard-library type constructor. The rows below are the sites that were read, so the sample is auditable even though the verdicts are not. This is the one cell of the nine whose rows this directory cannot supply. Re-measured at 350f6a3a, the single commit all nine cells now carry. ripgrep, serde and bevy are byte-identical at 13cc339a and 350f6a3a: 5,238, 1,996 and 30,475 distinct resolved call sites, same sites, same targets, same origins. No row was re-read and none needed to be.",
  "rows": [
   {
    "repo": "ripgrep",

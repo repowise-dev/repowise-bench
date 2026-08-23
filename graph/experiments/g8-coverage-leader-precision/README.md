@@ -29,8 +29,8 @@ to population, every row read from source.
 | **codebase-memory-mcp 0.10.8** | **137/270 = 50.7%** | [44.8, 56.7] |
 
 **About half of the coverage leader's call edges, on the languages nobody had
-judged, do not exist.** The interval is disjoint from our published 84.8%
-[80.0, 88.6] by more than twenty points at the nearest ends.
+judged, do not exist.** The interval is disjoint from our published 85.7%
+[81.1, 89.3] by more than twenty points at the nearest ends.
 
 ## Per language
 
@@ -39,13 +39,20 @@ judged, do not exist.** The interval is disjoint from our published 84.8%
 | python | celery | 23/30 = 76.7% | [59.1, 88.2] | 28/30 = 93.3% | tie |
 | php | guzzle, laravel-framework, monica | 17/30 = 56.7% | [39.2, 72.6] | *(no cell)* | — |
 | kotlin | javalin, ktor, exposed | 16/30 = 53.3% | [36.1, 69.8] | 27/30 = 90.0% | **we separate** |
-| java | caffeine | 15/30 = 50.0% | [33.2, 66.8] | 20/30 = 66.7% | tie |
-| cpp | fmt, Crow, leveldb, seastar, aria2 | 15/30 = 50.0% | [33.2, 66.8] | 23/30 = 76.7% | tie |
+| java | caffeine | 15/30 = 50.0% | [33.2, 66.8] | 20/30 = 66.7% *(caffeine only)* | tie |
+| cpp | fmt, Crow, leveldb, seastar, aria2 | 15/30 = 50.0% | [33.2, 66.8] | 22/30 = 73.3% | tie |
 | ruby | faraday, jekyll, sinatra | 15/30 = 50.0% | [33.2, 66.8] | *(no cell)* | — |
 | rust | ripgrep, serde, bevy | 13/30 = 43.3% | [27.4, 60.8] | 22/30 = 73.3% | tie |
 | swift | Alamofire *(n=1 repo)* | 12/30 = 40.0% | [24.6, 57.7] | 23/30 = 76.7% | **we separate** |
-| csharp | Ocelot | 11/30 = 36.7% | [21.9, 54.5] | 28/30 = 93.3% | **we separate** |
-| **pooled** | | **137/270 = 50.7%** | [44.8, 56.7] | **229/270 = 84.8%** | **we separate** |
+| csharp | Ocelot | 11/30 = 36.7% | [21.9, 54.5] | 30/30 = 100.0% | **we separate** |
+| **pooled** | | **137/270 = 50.7%** | [44.8, 56.7] | **240/280 = 85.7%** | **we separate** |
+
+**The java comparison is caffeine on both sides.** G1's java cell has since been
+widened to caffeine plus spring-petclinic and reads 30/40, but this arm was only
+ever graded on caffeine, so the column above holds our caffeine-only 20/30. The
+same rule applies to the three-way below. Re-grading the arm on a second
+repository would mean re-running a peer, which the frozen-artifact discipline does
+not allow.
 
 **We are ahead on the point estimate in all seven languages that have a G1 cell,
 and separate on three of them.** Four are statistical ties at n=30 and are
@@ -54,23 +61,26 @@ mostly cannot, which is what n=30 buys.
 
 ## The like-for-like three-way, which is the row to quote
 
-The pooled 50.7% above and the published 84.8% / 57.0% pair **are not over the
+The pooled 50.7% above and the published 85.7% / 58.6% pair **are not over the
 same nine languages**: G1's nine include go and typescript and exclude php and
-ruby, and this experiment does the reverse. Quoting 50.7% against 57.0% compares
-two different language sets and should not be done.
+ruby, and this experiment does the reverse. Quoting 50.7% against 58.6% compares
+two different language sets and should not be done. G1's java cell is also read on
+two repositories now while this one is read on caffeine alone, so the three-way
+below restricts every arm's java to caffeine and its pooled row is unchanged by the
+widening.
 
 The seven languages all three arms have been hand-graded on:
 
 | language | repowise | CodeGraph 1.5.0 | codebase-memory-mcp 0.10.8 |
 |---|---|---|---|
-| csharp | 28/30 = 93.3% | 20/30 = 66.7% | 11/30 = 36.7% |
+| csharp | 30/30 = 100.0% | 20/30 = 66.7% | 11/30 = 36.7% |
 | python | 28/30 = 93.3% | 19/30 = 63.3% | 23/30 = 76.7% |
 | java | 20/30 = 66.7% | 18/30 = 60.0% | 15/30 = 50.0% |
 | swift | 23/30 = 76.7% | 19/30 = 63.3% | 12/30 = 40.0% |
 | kotlin | 27/30 = 90.0% | 13/30 = 43.3% | 16/30 = 53.3% |
 | rust | 22/30 = 73.3% | 13/30 = 43.3% | 13/30 = 43.3% |
-| cpp | 23/30 = 76.7% | 16/30 = 53.3% | 15/30 = 50.0% |
-| **pooled** | **171/210 = 81.4%** [75.6, 86.1] | **118/210 = 56.2%** [49.4, 62.7] | **105/210 = 50.0%** [43.3, 56.7] |
+| cpp | 22/30 = 73.3% | 16/30 = 53.3% | 15/30 = 50.0% |
+| **pooled** | **172/210 = 81.9%** [76.1, 86.5] | **118/210 = 56.2%** [49.4, 62.7] | **105/210 = 50.0%** [43.3, 56.7] |
 
 `python verify_rows.py --threeway` rebuilds it, reading G1's own row files for
 the first two columns rather than copying its published table.
@@ -78,7 +88,7 @@ the first two columns rather than copying its published table.
 **The two peers are a statistical tie with each other and both separate from
 us.** Saying the coverage leader is *less* precise than CodeGraph is not
 supported: 50.0% against 56.2%, intervals overlapping. What is supported is that
-neither is within reach of 81.4%.
+neither is within reach of 81.9%.
 
 ## What this buys the coverage table
 
@@ -242,7 +252,7 @@ inside the file.
 
 | # | prediction | outcome |
 |---|---|---|
-| pooled | 62% [55, 69], below ours, above CodeGraph's | **missed, on both halves.** 50.7% [44.8, 56.7] falls outside the predicted interval entirely. On the direction: the prediction has to be graded on the like-for-like seven, not against the 57.0% figure this page forbids quoting here, and there it is 50.0% against CodeGraph's 56.2%, i.e. below rather than above. Only the overlap of those two intervals keeps it from being a clean directional loss |
+| pooled | 62% [55, 69], below ours, above CodeGraph's | **missed, on both halves.** 50.7% [44.8, 56.7] falls outside the predicted interval entirely. On the direction: the prediction has to be graded on the like-for-like seven, not against the 58.6% figure this page forbids quoting here, and there it is 50.0% against CodeGraph's 56.2%, i.e. below rather than above. Only the overlap of those two intervals keeps it from being a clean directional loss |
 | ranking | nine languages ordered by bare-name share | **failed.** Spearman −0.15 against the outcome, which is no predictive power at all |
 | 1 | `suffix_match` below 45% | **held**, and by a distance: 23.1% [16.0, 32.0] |
 | 2 | typed / LSP strata above 80% | **narrowly missed.** 75.0% [64.8, 83.0], interval contains 80 |

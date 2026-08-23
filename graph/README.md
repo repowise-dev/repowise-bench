@@ -40,7 +40,7 @@ not require the arrows between the houses to be correct.
 |---|---|---|
 | Are our edges true? | **In all 7 oracle cells, no tool that finds as much of the graph gets more of it right.** Checked against the Go compiler and the TypeScript checker | [below](#precision-against-a-compiler) |
 | Do we find every edge? | **No.** We lose oracle recall in all 5 Go cells, and cross-file coverage on 15 of 35 repositories | [below](#the-coverage-rows-we-lose) |
-| Hand-graded precision, 9 languages | **84.8% vs 57.0%** against CodeGraph, intervals disjoint | [G1](experiments/g1-edge-precision/) |
+| Hand-graded precision, 9 languages | **85.7% vs 58.6%** against CodeGraph, intervals disjoint | [G1](experiments/g1-edge-precision/) |
 | Can the resolver be tricked? | Nobody passes all three mutations. Two arms cannot be tested at all | [below](#can-the-resolver-be-fooled) |
 | Build speed | **We are not faster.** Fastest on 14 of 35 repositories against CodeGraph's 16 | [G6](experiments/g6-build-cost/) |
 | Memory | **Lowest of five arms on 35 of 35**, median 75 MB against 757 MB | [G6](experiments/g6-build-cost/) |
@@ -256,7 +256,7 @@ source.
 
 **About half of the edges behind the coverage rows it leads do not exist.** On
 the seven languages all three hand-graded arms share, it is 50.0% [43.3, 56.7]
-against CodeGraph's 56.2% [49.4, 62.7] and our 81.4% [75.6, 86.1]: the two peers are
+against CodeGraph's 56.2% [49.4, 62.7] and our 81.9% [76.1, 86.5]: the two peers are
 a tie with each other, and both separate from us. The failure is one mechanism: its
 two bare-name tiers are 70% of its call edges and grade 39.1%, while its
 type-backed tiers grade 91.9%.
@@ -589,19 +589,26 @@ precision is a regression wearing a win's clothes; the same holds between two
 tools. Our defensible claim has always been precision per edge, not more edges.
 
 The hand-graded audit now covers **nine languages on both sides**, 30 rows per
-side per language, every row read from source:
-**ours 229/270 = 84.8%** [80.0, 88.6] against **theirs 154/270 = 57.0%**
-[51.1, 62.8]. The intervals are disjoint. Full tables, per-repository splits and
+side per language and 40 for java, every row read from source:
+**ours 240/280 = 85.7%** [81.1, 89.3] against **theirs 164/280 = 58.6%**
+[52.7, 64.2]. The intervals are disjoint. Every cell on our side is measured at
+one commit, `350f6a3a`, rather than at four. Full tables, per-repository splits and
 the failure taxonomy are in [G1](experiments/g1-edge-precision/).
+
+**java is the cell read on two repositories.** It was one, and that one turned out
+to fire its worst resolution tier about a hundred times more often than an ordinary
+Spring application. A second repository was added and **both sides score 10/10 on
+it**, so the old 66.7% was a property of the repository rather than of the
+language. The caffeine reading is still shown split out on the G1 page.
 
 Our figure is **down** from the 89.3% this page used to quote, and it is worth
 more: 89.3% was five languages chosen for continuity with earlier work, all of
-them ones where we are strong. Read the 84.8% the other way round and it says
+them ones where we are strong. Read the 85.7% the other way round and it says
 **roughly fifteen percent of our call edges are wrong**, which is the number to
 plan against.
 
 **Four of the nine cells separate; five are ties and are reported as ties**.
-go, java, swift, rust and cpp. C++ is a tie in particular: a 23-point
+go, java, swift, rust and cpp. C++ is a tie in particular: a 20-point
 point-estimate gap that sits inside two overlapping intervals is not a win, at
 either n=30 or the n=50 depth read.
 
@@ -612,17 +619,25 @@ confirmed shared-denominator coverage loss, 0.341 against 0.489. Coverage and
 precision usually trade against each other, so a language losing both is a
 genuine resolution gap rather than a metric artifact.
 
-**One cell goes clearly to the peer, and it is worth publishing unprompted.** On
-`seastar` they read **6/10 against our 4/10**, the only repository in the audit
-on any language, where they beat us on a clear margin. Our failures there are
-chained calls on an untyped receiver bound to an unrelated method; they infer the
-callee's declared return type and validate against it, so a failed inference
-costs them an edge instead of buying them a wrong one. On `aria2` both sides read
-10/10 and they resolve 24,950 distinct call edges to our 9,486.
+**One repository has gone back and forth, which is why this page no longer calls
+it.** On `seastar` CodeGraph reads **6/10** and has throughout, because its index
+is frozen. We have read it three times at the same seed and got **4/10, then 8/10
+after a change refused 317 of the edges causing the misses, then 5/10** at the
+pinned commit. **That spread is the draw, not the graph.** Between the last two
+readings seastar's call population moved by 63 sites out of 11,278 and not one of
+the ten newly drawn rows was among them, so a three-row swing came out of a sample
+in which nothing graded had changed. The mechanism behind our misses is real and
+unclosed: four of the five current wrong rows are chained calls on an untyped
+receiver bound to an unrelated method, where CodeGraph infers the callee's declared
+return type and validates against it, so a failed inference costs it an edge
+instead of buying it a wrong one. But **a single repository at n=10 cannot settle
+who is ahead on it**, and this page used to say we had taken the lead there. On
+`aria2` both sides read 10/10 and they resolve 24,950 distinct call edges to our
+9,486.
 
 So the honest statement is: **we lead on precision pooled and on four of nine
-languages, five languages are ties, one repository goes clearly to them, and we
-trail on coverage on four languages after the fair recount.** What is still
+languages, five languages are ties, seastar is within one row either way and is
+called for nobody, and we trail on coverage on four languages after the fair recount.** What is still
 missing is a test of whether the coverage gap is in **resolution reach** rather
 than in which files we call symbol-bearing. Two candidate explanations for that
 gap, receiver typing and symbol extraction, have each been measured and refused.
@@ -655,17 +670,22 @@ Measured at **`58576af0`**, `repowise 0.43.0+dev`.
 
 **`v0.44.0` exists and is `7f44232e`.** An earlier version of this line said it
 did not, which was wrong. What is true is narrower and matters more: **`#1708`
-(`13cc339a`) landed after that tag**, and the rust and cpp precision cells were
-measured on it, so those cells reflect code that is not in 0.44.0. Nothing on
+(`13cc339a`) landed after that tag**, and the rust precision cell was measured
+on it while the cpp cell was re-read later still at `48d400f7`, after `#1782`, so
+neither cell reflects code that is in 0.44.0. Nothing on
 this page should be quoted as "measured on 0.44.0"; every table here carries the
 commit it was taken at, and [G1](experiments/g1-edge-precision/) pins a commit
 per cell.
 
-Where cells were taken at different commits, the staleness runs **conservative**.
-Every resolver change between the earliest cell and `13cc339a` (`#1690`,
-`#1692`, `#1708`) only removes wrong edges: measured at the time, they removed
-16,122, 1,399 and a further set respectively, and **gained 0** between them. An
-older cell can therefore only understate our precision, never overstate it.
+Where cells were taken at different commits, the staleness **used to run one way
+and no longer does.** `#1690`, `#1692` and `#1708` only removed wrong edges,
+measured at the time and gaining 0 between them, which made the pooled figure a
+floor. A sweep of everything merged into `core/ingestion/` since then found twelve
+further changes that add a call site or retarget one, reaching eight of the nine
+cells; only cpp has been re-read. The list and the reasoning are on
+[G1](experiments/g1-edge-precision/#provenance). The direction is unknown rather
+than assumed bad, since most of the twelve replace a bare-name guess with a typed
+answer, but the figure carries a date now instead of a floor.
 
 Competitor artifacts were restored from the prebuild cache and warmup was
 skipped, so this run is stamped `publishable: false` **for cost**. Coverage is

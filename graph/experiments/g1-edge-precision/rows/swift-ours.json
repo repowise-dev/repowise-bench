@@ -6,7 +6,7 @@
  "repositories": [
   "Alamofire"
  ],
- "repowise_commit": "58576af0",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
@@ -285,5 +285,6 @@
    "verdict": "wrong",
    "reason": "line 629 `Data(\"français\".utf8)`, same Foundation Data init mis-resolved to the unrelated Tests/TestHelpers.swift `extension Data` block."
   }
- ]
+ ],
+ "note": "Re-measured at 350f6a3a, the single commit all nine cells now carry. Alamofire is byte-identical at 58576af0 and 350f6a3a: 2,610 distinct resolved call sites, same sites, same targets, same origins. No row was re-read and none needed to be."
 }

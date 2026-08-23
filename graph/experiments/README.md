@@ -17,7 +17,7 @@ enclosing scope, then the target declaration. Verdicts are right / wrong /
 ambiguous, and ambiguous is an honest answer.
 
 **Measured and published: [g1-edge-precision](g1-edge-precision/)**, nine
-languages, 270 rows per side, 540 in total. Ours 84.8%, CodeGraph 57.0%,
+languages, 280 rows per side, 560 in total. Ours 85.7%, CodeGraph 58.6%,
 disjoint. **The 540 graded rows are in
 [g1-edge-precision/rows](g1-edge-precision/rows/)**, one file per cell, each row
 with its verdict and the reason it was given; `verify_rows.py` rebuilds every
@@ -42,7 +42,7 @@ that arm on the other nine and reads every row from source.
 
 **Measured and published: [g8-coverage-leader-precision](g8-coverage-leader-precision/)**,
 137/270 = 50.7% [44.8, 56.7]. On the seven languages all three hand-graded arms
-share, it is 50.0% against CodeGraph's 56.2% and our 81.4%: the two peers are a
+share, it is 50.0% against CodeGraph's 56.2% and our 81.9%: the two peers are a
 tie with each other and both separate from us.
 
 It is one arm rather than two because the other side of that comparison already

@@ -6,12 +6,12 @@
  "repositories": [
   "Ocelot"
  ],
- "repowise_commit": "2017de7c",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
-  "correct": 28,
-  "wrong": 2,
+  "correct": 30,
+  "wrong": 0,
   "ambiguous": 0
  },
  "rows": [
@@ -19,331 +19,332 @@
    "repo": "Ocelot",
    "file": "acceptance/AggregateTests.cs",
    "line": 68,
-   "source_line": "var route1 = GivenAggRoute(port1, \"Comments\", ...)",
-   "receiver": "(implicit `this`)",
-   "target": "AggregateTests::GivenAggRoute",
+   "source_line": "var route1 = GivenAggRoute(port1, \"Comments\", \"/Comments\", \"/\");",
+   "receiver": null,
+   "target": "acceptance/AggregateTests.cs::AggregateTests::GivenAggRoute",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "GivenAggRoute` is a private method declared at line 503 of the same file."
+   "reason": "private FileRoute GivenAggRoute declared at acceptance/AggregateTests.cs:503 inside the same AggregateTests class, single declaration, arity 4 matches the call."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/AggregateTests.cs",
+   "line": 398,
+   "source_line": "var comments = GivenAggRoute(commentsPort, \"comments\", \"/comments\", \"/comments\");",
+   "receiver": null,
+   "target": "acceptance/AggregateTests.cs::AggregateTests::GivenAggRoute",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "same private GivenAggRoute at acceptance/AggregateTests.cs:503 in the enclosing AggregateTests class, the only declaration of that name in the repo."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Caching/CachingTests.cs",
    "line": 110,
    "source_line": ".And(x => GivenOcelotIsRunning())",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::GivenOcelotIsRunning",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::GivenOcelotIsRunning",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "CachingTests : Steps : AcceptanceSteps`; parameterless overload declared in AcceptanceSteps.cs:151."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "acceptance/LogLevelTests.cs",
-   "line": 80,
-   "source_line": "new Exception(\"test\")",
-   "receiver": "none (ctor)",
-   "target": "src/Errors/Error.cs::Error::Exception",
-   "origin": "global_unique",
-   "verdict": "wrong",
-   "reason": "This is a `new System.Exception(...)` BCL constructor call; `Error.Exception` is an unrelated get-only property on Ocelot's `Error` class that happens to share the bare name \"Exception\". Confidence was already low (0.5)."
+   "reason": "CachingTests is `sealed class CachingTests : Steps` (line 8) and Steps : AcceptanceSteps (acceptance/Steps.cs:8); no GivenOcelotIsRunning is declared locally, so the no-arg overload at testing/AcceptanceSteps.cs:151 is the inherited target."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Metadata/DownstreamMetadataTests.cs",
    "line": 52,
    "source_line": ".Then(x => ThenTheStatusCodeShouldBe(HttpStatusCode.OK))",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::ThenTheStatusCodeShouldBe",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::ThenTheStatusCodeShouldBe",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "DownstreamMetadataTests : Steps : AcceptanceSteps`; declared AcceptanceSteps.cs:508."
+   "reason": "DownstreamMetadataTests : Steps : AcceptanceSteps and declares no ThenTheStatusCodeShouldBe of its own; the HttpStatusCode overload is at testing/AcceptanceSteps.cs:508."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "acceptance/RateLimiting/ClientHeaderRateLimitingTests.cs",
+   "line": 210,
+   "source_line": ".And(x => ThenTheResponseHeaderIs(HeaderNames.RetryAfter, \"-1\"))",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::ThenTheResponseHeaderIs",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "ClientHeaderRateLimitingTests : RateLimitingSteps (testing/Steps/RateLimitingSteps.cs:5) which derives from AcceptanceSteps; ThenTheResponseHeaderIs(string,string) has exactly one declaration, testing/AcceptanceSteps.cs:344, and it is inherited and accessible."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/RateLimiting/ClientHeaderRateLimitingTests.cs",
    "line": 273,
-   "source_line": "var route = GivenRoute(port, upstream: \"/rateUnlimited\");",
-   "receiver": "(implicit `this`)",
-   "target": "ClientHeaderRateLimitingTests::GivenRoute",
+   "source_line": "var route2 = GivenRoute(port2,",
+   "receiver": null,
+   "target": "acceptance/RateLimiting/ClientHeaderRateLimitingTests.cs::ClientHeaderRateLimitingTests::GivenRoute",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Private `GivenRoute` declared in the same file at line 392."
+   "reason": "a private GivenRoute with these named parameters is declared at acceptance/RateLimiting/ClientHeaderRateLimitingTests.cs:392 in the same class and shadows base.GivenRoute (which it calls explicitly via `base.` on line 395)."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Routing/RoutingBasedOnHeadersTests.cs",
    "line": 31,
    "source_line": ".And(x => ThenTheResponseBodyShouldBe(Hello()))",
-   "receiver": "(implicit `this`)",
-   "target": "RoutingBasedOnHeadersTests::Hello",
+   "receiver": null,
+   "target": "acceptance/Routing/RoutingBasedOnHeadersTests.cs::RoutingBasedOnHeadersTests::Hello",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "private static string Hello()` declared at line 388 of the same file."
+   "reason": "private static string Hello() is declared at acceptance/Routing/RoutingBasedOnHeadersTests.cs:388 in the same class, and the call passes no arguments so it binds there rather than to Hello(string) on 389."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Routing/RoutingBasedOnHeadersTests.cs",
    "line": 75,
    "source_line": ".And(x => GivenOcelotIsRunning())",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::GivenOcelotIsRunning",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::GivenOcelotIsRunning",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "RoutingBasedOnHeadersTests : Steps : AcceptanceSteps`."
+   "reason": "RoutingBasedOnHeadersTests : Steps : AcceptanceSteps, no local GivenOcelotIsRunning declaration, so the inherited no-arg overload at testing/AcceptanceSteps.cs:151 applies."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Routing/RoutingBasedOnHeadersTests.cs",
    "line": 166,
    "source_line": "var configuration = GivenConfiguration(route);",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::GivenConfiguration",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::GivenConfiguration",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "GivenConfiguration(params FileRoute[])` declared virtual in AcceptanceSteps.cs:71."
+   "reason": "RoutingBasedOnHeadersTests declares no GivenConfiguration; the virtual `GivenConfiguration(params FileRoute[])` at testing/AcceptanceSteps.cs:71 is inherited through Steps and is un-overridden anywhere in the chain."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Routing/RoutingTests.cs",
    "line": 450,
-   "source_line": ".Then(x => ThenTheDownstreamUrlQueryStringShouldBe(queryString))",
-   "receiver": "(implicit `this`)",
-   "target": "RoutingTests::ThenTheDownstreamUrlQueryStringShouldBe",
+   "source_line": ".And(x => ThenTheDownstreamUrlQueryStringShouldBe(queryString))",
+   "receiver": null,
+   "target": "acceptance/Routing/RoutingTests.cs::RoutingTests::ThenTheDownstreamUrlQueryStringShouldBe",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Private method declared at line 758 of the same file."
+   "reason": "private void ThenTheDownstreamUrlQueryStringShouldBe(string) is declared at acceptance/Routing/RoutingTests.cs:758 in the same RoutingTests class (the only other same-named member is a separate private one in RoutingWithQueryStringTests, unreachable from here)."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Routing/RoutingTests.cs",
    "line": 648,
    "source_line": ".Then(x => ThenTheStatusCodeShouldBe(HttpStatusCode.OK))",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::ThenTheStatusCodeShouldBe",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::ThenTheStatusCodeShouldBe",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "Same base-class method as row 4."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "acceptance/ServiceDiscovery/ServiceFabricTests.cs",
-   "line": 63,
-   "source_line": "var port = PortFinder.GetRandomPort();",
-   "receiver": "PortFinder` (static type)",
-   "target": "testing/PortFinder.cs::PortFinder::GetRandomPort",
-   "origin": "receiver_global",
-   "verdict": "correct",
-   "reason": "PortFinder` is a repo-declared static class; `GetRandomPort()` is its public static method."
+   "reason": "RoutingTests : Steps : AcceptanceSteps with no local declaration; ThenTheStatusCodeShouldBe(HttpStatusCode) at testing/AcceptanceSteps.cs:508 is the inherited target."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/Transformations/HeaderTests.cs",
-   "line": 105,
-   "source_line": "var port = PortFinder.GetRandomPort();",
-   "receiver": "PortFinder",
-   "target": "testing/PortFinder.cs::PortFinder::GetRandomPort",
-   "origin": "receiver_global",
+   "line": 121,
+   "source_line": ".And(x => ThenTheResponseHeaderIs(\"Location\", \"http://anotherapp.azurewebsites.net/pay/Receive\"))",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::ThenTheResponseHeaderIs",
+   "origin": "global_unique",
    "verdict": "correct",
-   "reason": "Same as row 11."
+   "reason": "HeaderTests : Steps : AcceptanceSteps; ThenTheResponseHeaderIs has one declaration repo-wide, testing/AcceptanceSteps.cs:344, inherited and public."
   },
   {
    "repo": "Ocelot",
    "file": "acceptance/WebSockets/ClientWebSocketTests.cs",
    "line": 172,
    "source_line": ".Given(x => GivenThereIsAConfiguration(configuration))",
-   "receiver": "(implicit `this`)",
-   "target": "AcceptanceSteps::GivenThereIsAConfiguration",
+   "receiver": null,
+   "target": "testing/AcceptanceSteps.cs::AcceptanceSteps::GivenThereIsAConfiguration",
    "origin": "enclosing_inherited",
    "verdict": "correct",
-   "reason": "GivenThereIsAConfiguration(FileConfiguration)` declared virtual AcceptanceSteps.cs:108."
+   "reason": "ClientWebSocketTests : WebSocketsSteps (testing/Steps/WebSocketsSteps.cs:18) which derives from AcceptanceSteps; the virtual GivenThereIsAConfiguration(FileConfiguration) at testing/AcceptanceSteps.cs:108 matches the single-argument call and is not overridden in the chain."
   },
   {
    "repo": "Ocelot",
-   "file": "src/Configuration/Creator/CacheOptionsCreator.cs",
-   "line": 61,
-   "source_line": "return new CacheOptions(ttlSeconds, region, header, enableHashing);",
-   "receiver": "none (ctor)",
-   "target": "src/Configuration/File/FileGlobalConfiguration.cs::FileGlobalConfiguration::CacheOptions",
-   "origin": "import_merged",
-   "verdict": "wrong",
-   "reason": "This constructs `Ocelot.Configuration.CacheOptions` (a class in `src/Configuration/CacheOptions.cs` with a matching 4-arg constructor). The bound symbol is instead the unrelated `FileGlobalConfiguration.CacheOptions` *property* — a name collision between the class and a same-named property elsewhere."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "testing/ServiceHandler.cs",
-   "line": 131,
-   "source_line": "var host = CreateHost(ConfigureWeb);",
-   "receiver": "(implicit `this`)",
-   "target": "testing/ServiceHandler.cs::CreateHost",
+   "file": "testing/PortFinder.cs",
+   "line": 41,
+   "source_line": "ports[i] = GetRandomPort();",
+   "receiver": null,
+   "target": "testing/PortFinder.cs::PortFinder::GetRandomPort",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "private static IWebHost CreateHost(...)` is declared in the same file (line ~76/98 region) and called from `GivenThereIsAServiceRunningOn`."
+   "reason": "GetRandomPort is the static method at testing/PortFinder.cs:20, called from GetPorts at line 41 inside the same static PortFinder class."
   },
   {
    "repo": "Ocelot",
-   "file": "unit/Configuration/AggregatesCreatorTests.cs",
-   "line": 48,
-   "source_line": "WhenICreate();",
-   "receiver": "(implicit `this`)",
-   "target": "AggregatesCreatorTests::WhenICreate",
+   "file": "unit/Claims/AddClaimsToRequestTests.cs",
+   "line": 95,
+   "source_line": "ThenTheResultIsError();",
+   "receiver": null,
+   "target": "unit/Claims/AddClaimsToRequestTests.cs::AddClaimsToRequestTests::ThenTheResultIsError",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Private method declared at line 176 of the same file."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/Configuration/ClaimToThingConfigurationParserTests.cs",
-   "line": 112,
-   "source_line": "return _parser.Extract(first.Key, first.Value);",
-   "receiver": "_parser` field",
-   "target": "src/Configuration/Parser/ClaimToThingConfigurationParser.cs::ClaimToThingConfigurationParser::Extract",
-   "origin": "receiver_field_import",
-   "verdict": "correct",
-   "reason": "_parser` is declared `private readonly ClaimToThingConfigurationParser _parser;`, which declares `Extract`."
+   "reason": "private void ThenTheResultIsError() is declared at unit/Claims/AddClaimsToRequestTests.cs:131 in the same AddClaimsToRequestTests class, single no-arg declaration."
   },
   {
    "repo": "Ocelot",
    "file": "unit/DependencyInjection/ConfigurationBuilderExtensionsTests.cs",
-   "line": 1753,
+   "line": 1625,
    "source_line": "GivenJObject(jobj);",
-   "receiver": "(implicit `this`)",
-   "target": "...::OcelotJProperty::GivenJObject",
+   "receiver": null,
+   "target": "unit/DependencyInjection/ConfigurationBuilderExtensionsTests.cs::OcelotJProperty::GivenJObject",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Call is inside nested class `OcelotJProperty` (line 1452+), which itself declares a private `GivenJObject` at line 1455 — correctly indexed as `Inner`, not `Outer.Inner`."
+   "reason": "the call at line 1625 is inside nested `public class OcelotJProperty : UnitTest` (line 1452), which declares its own private GivenJObject(JObject) on line 1455; the other GivenJObject copies live in sibling nested classes and are not in scope."
   },
   {
    "repo": "Ocelot",
-   "file": "unit/DependencyInjection/OcelotBuilderTests.cs",
-   "line": 96,
-   "source_line": "ThenTheGlobalHandlersAreTransient();",
-   "receiver": "(implicit `this`)",
-   "target": "OcelotBuilderTests::ThenTheGlobalHandlersAreTransient",
+   "file": "unit/DependencyInjection/ConfigurationExtensionsTests.cs",
+   "line": 231,
+   "source_line": "var config = BuildConfigWithAggregates();",
+   "receiver": null,
+   "target": "unit/DependencyInjection/ConfigurationExtensionsTests.cs::OcelotAggregate::BuildConfigWithAggregates",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Private method declared at line 514 of the same file."
+   "reason": "private static IConfigurationRoot BuildConfigWithAggregates() is declared at unit/DependencyInjection/ConfigurationExtensionsTests.cs:238 inside the same nested `class OcelotAggregate` (line 205) that contains the caller."
   },
   {
    "repo": "Ocelot",
-   "file": "unit/Infrastructure/ClaimParserTests.cs",
-   "line": 51,
-   "source_line": "new CannotFindClaimError($\"Cannot find claim for key: {key}\")",
-   "receiver": "none (ctor)",
-   "target": "src/Infrastructure/Claims/CannotFindClaimError.cs::CannotFindClaimError::CannotFindClaimError",
+   "file": "unit/DownstreamRouteFinder/DownstreamRouteFinderTests.cs",
+   "line": 536,
+   "source_line": "var serviceProviderConfig = new ServiceProviderConfigurationBuilder().Build();",
+   "receiver": "ServiceProviderConfigurationBuilder",
+   "target": "src/Configuration/Builder/ServiceProviderConfigurationBuilder.cs::ServiceProviderConfigurationBuilder::Build",
+   "origin": "receiver_global",
+   "verdict": "correct",
+   "reason": "`new ServiceProviderConfigurationBuilder().Build()` binds to the single parameterless Build() in src/Configuration/Builder/ServiceProviderConfigurationBuilder.cs, the only class of that name in the repo."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamRouteFinder/DownstreamRouteProviderFactoryTests.cs",
+   "line": 63,
+   "source_line": "var spConfig = new ServiceProviderConfigurationBuilder()",
+   "receiver": "ServiceProviderConfigurationBuilder",
+   "target": "src/Configuration/Builder/ServiceProviderConfigurationBuilder.cs::ServiceProviderConfigurationBuilder::WithScheme",
+   "origin": "receiver_global",
+   "verdict": "correct",
+   "reason": "the chained `.WithScheme(\"http\")` on line 64 targets the sole WithScheme(string) in src/Configuration/Builder/ServiceProviderConfigurationBuilder.cs, receiver is the freshly-constructed builder of exactly that type."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamUrlCreator/DownstreamUrlCreatorMiddlewareTests.cs",
+   "line": 529,
+   "source_line": "var downstreamRoute = new DownstreamRouteBuilder()",
+   "receiver": null,
+   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::DownstreamRouteBuilder",
    "origin": "import_merged",
    "verdict": "correct",
-   "reason": "Constructor call to the repo's `CannotFindClaimError` class, imported via `using Ocelot.Errors;`/`Ocelot.Infrastructure.Claims`."
+   "reason": "`new DownstreamRouteBuilder()` matches the explicit parameterless constructor at src/Configuration/Builder/DownstreamRouteBuilder.cs:44; the test file imports Ocelot.Configuration.Builder on line 3."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/DownstreamUrlCreator/DownstreamUrlCreatorMiddlewareTests.cs",
+   "line": 694,
+   "source_line": "await _middleware.Invoke(_httpContext);",
+   "receiver": "_middleware",
+   "target": "src/DownstreamUrlCreator/DownstreamUrlCreatorMiddleware.cs::DownstreamUrlCreatorMiddleware::Invoke",
+   "origin": "receiver_field_import",
+   "verdict": "correct",
+   "reason": "_middleware is declared `private readonly DownstreamUrlCreatorMiddleware _middleware` at line 23 and assigned at line 37, and Invoke(HttpContext) is at src/DownstreamUrlCreator/DownstreamUrlCreatorMiddleware.cs:34."
   },
   {
    "repo": "Ocelot",
    "file": "unit/Infrastructure/DesignPatterns/CircuitBreakerTests.cs",
-   "line": 368,
-   "source_line": "Assert.True(cb.CanExecute());",
-   "receiver": "cb` local",
-   "target": "src/Infrastructure/DesignPatterns/CircuitBreaker.cs::CircuitBreaker::CanExecute",
+   "line": 490,
+   "source_line": "cb.RecordFailure();",
+   "receiver": "cb",
+   "target": "src/Infrastructure/DesignPatterns/CircuitBreaker.cs::CircuitBreaker::RecordFailure",
    "origin": "receiver_typed_import",
    "verdict": "correct",
-   "reason": "cb` is `new CircuitBreaker(...)`; `CanExecute()` declared public at CircuitBreaker.cs:146."
+   "reason": "local `var cb = new CircuitBreaker(0.5, 2, ...)` on line 487 gives the receiver type CircuitBreaker, whose single RecordFailure() is at src/Infrastructure/DesignPatterns/CircuitBreaker.cs:212 (the mode-specific variants are private helpers)."
   },
   {
    "repo": "Ocelot",
    "file": "unit/Infrastructure/ScopesAuthorizerTests.cs",
-   "line": 90,
+   "line": 28,
    "source_line": "var result = _authorizer.Authorize(principal, allowedScopes);",
-   "receiver": "_authorizer` field",
+   "receiver": "_authorizer",
    "target": "src/Authorization/ScopesAuthorizer.cs::ScopesAuthorizer::Authorize",
    "origin": "receiver_field_global",
    "verdict": "correct",
-   "reason": "_authorizer` is `private readonly ScopesAuthorizer _authorizer;`."
+   "reason": "_authorizer is `private readonly ScopesAuthorizer` (line 11) constructed on line 17, and Authorize(ClaimsPrincipal, List<string>) is declared at src/Authorization/ScopesAuthorizer.cs:24; the file imports Ocelot.Authorization."
   },
   {
    "repo": "Ocelot",
-   "file": "unit/LoadBalancer/CookieStickySessionsTests.cs",
-   "line": 140,
-   "source_line": "_stickySessions.Release(new ServiceHostAndPort(string.Empty, 0));",
-   "receiver": "_stickySessions` field",
-   "target": "src/LoadBalancer/Balancers/CookieStickySessions.cs::CookieStickySessions::Release",
-   "origin": "receiver_field_import",
-   "verdict": "correct",
-   "reason": "Field typed `CookieStickySessions`, which declares `Release`."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/LoadBalancer/LeastConnectionTests.cs",
-   "line": 186,
-   "source_line": "response = await _leastConnection.LeaseAsync(_httpContext);",
-   "receiver": "_leastConnection` field",
-   "target": "src/LoadBalancer/Balancers/LeastConnection.cs::LeastConnection::LeaseAsync",
-   "origin": "receiver_field_global",
-   "verdict": "correct",
-   "reason": "Field typed `LeastConnection`, which declares `LeaseAsync`."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/LoadBalancer/LoadBalancerFactoryTests.cs",
-   "line": 81,
-   "source_line": "GivenTheServiceProviderFactoryReturns();",
-   "receiver": "(implicit `this`)",
-   "target": "LoadBalancerFactoryTests::GivenTheServiceProviderFactoryReturns",
-   "origin": "same_file",
-   "verdict": "correct",
-   "reason": "Private method declared at line 145 of the same file."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/Middleware/OcelotMiddlewareExtensionsTests.cs",
-   "line": 94,
-   "source_line": "var builder = GivenFullApplicationBuilder();",
-   "receiver": "(implicit `this`)",
-   "target": "OcelotMiddlewareExtensionsTests::GivenFullApplicationBuilder",
-   "origin": "same_file",
-   "verdict": "correct",
-   "reason": "Private method declared at line 353 of the same file."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/Requester/DelegatingHandlerFactoryTests.cs",
-   "line": 183,
-   "source_line": "var route = new DownstreamRouteBuilder()...",
-   "receiver": "none (ctor)",
-   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::DownstreamRouteBuilder",
-   "origin": "import_merged",
-   "verdict": "correct",
-   "reason": "Constructor call to repo's `DownstreamRouteBuilder`, imported via `using Ocelot.Configuration.Builder;`."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/Requester/HttpRequesterMiddlewareTests.cs",
-   "line": 31,
-   "source_line": "new DownstreamRouteBuilder().Build()",
-   "receiver": "none (ctor)",
-   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::DownstreamRouteBuilder",
-   "origin": "import_merged",
-   "verdict": "correct",
-   "reason": "Same constructor as row 27, called in the test's own ctor."
-  },
-  {
-   "repo": "Ocelot",
-   "file": "unit/Requester/MessageInvokerHttpRequesterTests.cs",
-   "line": 44,
-   "source_line": "var downstreamRoute = new DownstreamRouteBuilder().Build();",
-   "receiver": "DownstreamRouteBuilder` (fresh instance)",
-   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::Build",
+   "file": "unit/LoadBalancer/RoundRobinCreatorTests.cs",
+   "line": 26,
+   "source_line": "var route = new DownstreamRouteBuilder()",
+   "receiver": "DownstreamRouteBuilder",
+   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::WithServiceName",
    "origin": "receiver_import",
    "verdict": "correct",
-   "reason": ".Build()` chained on the freshly constructed builder, matching the C#-freshly-constructed-receiver typing case."
+   "reason": "the receiver is a fresh `new DownstreamRouteBuilder()` on line 26 and WithServiceName(string) is at src/Configuration/Builder/DownstreamRouteBuilder.cs:166; the test imports Ocelot.Configuration.Builder on line 1."
   },
   {
    "repo": "Ocelot",
-   "file": "unit/WebSockets/WebSocketsProxyMiddlewareTests.cs",
-   "line": 369,
-   "source_line": "var actual = AndBothSocketsGenerateExceptionWhenReceiveAsync(...)",
-   "receiver": "(implicit `this`)",
-   "target": "WebSocketsProxyMiddlewareTests::AndBothSocketsGenerateExceptionWhenReceiveAsync",
+   "file": "unit/Middleware/BaseUrlFinderTests.cs",
+   "line": 29,
+   "source_line": "var result = WhenIFindTheUrl();",
+   "receiver": null,
+   "target": "unit/Middleware/BaseUrlFinderTests.cs::BaseUrlFinderTests::WhenIFindTheUrl",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Private static method declared at line 293 of the same file."
+   "reason": "private string WhenIFindTheUrl() is declared at unit/Middleware/BaseUrlFinderTests.cs:52 in the same BaseUrlFinderTests class, single no-arg declaration."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Multiplexing/SimpleJsonResponseAggregatorTests.cs",
+   "line": 25,
+   "source_line": "var commentsDownstreamRoute = new DownstreamRouteBuilder().WithKey(\"Comments\").Build();",
+   "receiver": null,
+   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::Build",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "`new DownstreamRouteBuilder().WithKey(\"Comments\").Build()`: WithKey returns DownstreamRouteBuilder (line 190), so Build() is the single DownstreamRouteBuilder.Build at src/Configuration/Builder/DownstreamRouteBuilder.cs:256."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/QualityOfService/CircuitBreakerDelegatingHandlerTests.cs",
+   "line": 172,
+   "source_line": "var opts = new QoSOptions(threshold, 1000);",
+   "receiver": null,
+   "target": "src/Configuration/QoSOptions.cs::QoSOptions::QoSOptions",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "`new QoSOptions(threshold, 1000)` constructs the QoSOptions in src/Configuration/QoSOptions.cs, the only type of that name; the two-int-argument form matches QoSOptions(int?, int?) on line 9."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/QualityOfService/QualityOfServiceFactoryTests.cs",
+   "line": 92,
+   "source_line": "var handler = _factory.Get(route);",
+   "receiver": "_factory",
+   "target": "src/QualityOfService/QualityOfServiceFactory.cs::QualityOfServiceFactory::Get",
+   "origin": "receiver_field_import",
+   "verdict": "correct",
+   "reason": "_factory is `private QualityOfServiceFactory _factory` (line 14), reassigned with `new QualityOfServiceFactory(...)` in each test, and Get(DownstreamRoute) is the sole Get at src/QualityOfService/QualityOfServiceFactory.cs:25."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/QualityOfService/QualityOfServiceFactoryTests.cs",
+   "line": 175,
+   "source_line": "_factory = new QualityOfServiceFactory(provider, _contextAccessor.Object, _loggerFactory.Object);",
+   "receiver": null,
+   "target": "src/QualityOfService/QualityOfServiceFactory.cs::QualityOfServiceFactory::QualityOfServiceFactory",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "the three-argument `new QualityOfServiceFactory(provider, _contextAccessor.Object, _loggerFactory.Object)` matches the only constructor, src/QualityOfService/QualityOfServiceFactory.cs:17."
+  },
+  {
+   "repo": "Ocelot",
+   "file": "unit/Request/Mapper/RequestMapperTests.cs",
+   "line": 93,
+   "source_line": "_downstreamRoute = new DownstreamRouteBuilder()",
+   "receiver": null,
+   "target": "src/Configuration/Builder/DownstreamRouteBuilder.cs::DownstreamRouteBuilder::DownstreamRouteBuilder",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "`new DownstreamRouteBuilder()` binds to the parameterless constructor at src/Configuration/Builder/DownstreamRouteBuilder.cs:44; unit/Request/Mapper/RequestMapperTests.cs imports Ocelot.Configuration.Builder on line 4."
   }
- ]
+ ],
+ "note": "Re-measured at 350f6a3a, the single commit all nine cells now carry. Ocelot gained 622 call sites and lost none, so the seeded draw moved and the cell was re-drawn and re-read in full: a fresh draw at the same seed, not a re-grade, and 0 of 30 row keys survive from the 2017de7c file. One of the 30 is a site that did not exist before, from the new C# chained-call capture in #1782, and it reads correct; the other 29 are pre-existing sites the new draw happened to reach. The rise from 28/30 is therefore the draw and not the capture."
 }

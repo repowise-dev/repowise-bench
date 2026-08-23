@@ -4,13 +4,14 @@
  "side": "codegraph",
  "arm": "CodeGraph 1.5.0",
  "repositories": [
-  "caffeine"
+  "caffeine",
+  "spring-petclinic"
  ],
  "repowise_commit": "2017de7c",
  "seed": 2026,
  "pooled_cell": {
-  "n": 30,
-  "correct": 18,
+  "n": 40,
+  "correct": 28,
   "wrong": 12,
   "ambiguous": 0
  },
@@ -344,6 +345,117 @@
    "origin": "exact-match",
    "verdict": "correct",
    "reason": "Private method declared in the same file."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/owner/Owner.java",
+   "line": 151,
+   "source_line": ".append(\"lastName\", this.getLastName())",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.model::Person::getLastName",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "Owner.java:151 calls this.getLastName() inside Owner.toString(); Owner extends Person and Person.java:49 declares getLastName(), inherited with no override."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+   "line": 143,
+   "source_line": "if (existingPet != null && !Objects.equals(existingPet.getId(), pet.getId())) {",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.model::BaseEntity::getId",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "PetController.java:143 calls existingPet.getId() where existingPet is a Pet; BaseEntity.java:39 declares getId(), inherited by Pet with no override."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+   "line": 47,
+   "source_line": "return addPaginationModel(page, paginated, model);",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.vet::VetController::addPaginationModel",
+   "origin": "exact-match",
+   "verdict": "correct",
+   "reason": "VetController.java:47 calls addPaginationModel(page, paginated, model) inside showVetList; the private method is declared at VetController.java:50 with matching parameter types."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/PostgresIntegrationTests.java",
+   "line": 83,
+   "source_line": "vets.findAll();",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.vet::VetRepository::findAll",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "PostgresIntegrationTests.java:83 calls vets.findAll() on an autowired VetRepository; VetRepository declares Collection<Vet> findAll() at line 46. The recorded target_line 44 points two lines above, at the @Transactional annotation, but names the same method and no other overload matches a zero-arg call."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/owner/VisitControllerTests.java",
+   "line": 63,
+   "source_line": "owner.addPet(pet);",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.owner::Owner::addPet",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "VisitControllerTests.java:63 calls owner.addPet(pet) where owner is an Owner; Owner.java:97 declares addPet(Pet pet)."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 89,
+   "source_line": "Page<Owner> owners = this.owners.findByLastNameStartingWith(\"Davis\", pageable);",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.owner::OwnerRepository::findByLastNameStartingWith",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:89 calls this.owners.findByLastNameStartingWith(\"Davis\", pageable); OwnerRepository.java:45 declares the matching two-argument method."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 117,
+   "source_line": "owner.setCity(\"Wollongong\");",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.owner::Owner::setCity",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:117 calls owner.setCity(\"Wollongong\") on a newly constructed Owner; Owner.java:81 declares setCity(String)."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 152,
+   "source_line": "assertThat(petType4.getName()).isEqualTo(\"snake\");",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.model::NamedEntity::getName",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:152 calls petType4.getName() where petType4 is a PetType; PetType extends NamedEntity and NamedEntity.java:37 declares getName()."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 168,
+   "source_line": "pet.setBirthDate(LocalDate.now());",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.owner::Pet::setBirthDate",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:168 calls pet.setBirthDate(LocalDate.now()) where pet is a Pet; Pet.java:61 declares setBirthDate(LocalDate)."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 180,
+   "source_line": "assertThat(pet.getId()).isNotNull();",
+   "receiver": null,
+   "target": "org.springframework.samples.petclinic.model::BaseEntity::getId",
+   "origin": "instance-method",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:180 calls pet.getId() where pet is a Pet; BaseEntity.java:39 declares getId(), inherited with no override."
   }
- ]
+ ],
+ "note": "Widened from one repository to two. caffeine's 30 rows are the seed-2026 draw certified at 350f6a3a and are unchanged; spring-petclinic's 10 are a fresh seed-2026 draw at the same pin, read from source on both sides. caffeine's rows record  as a basename and spring-petclinic's as a repository-relative path;  disambiguates them."
 }

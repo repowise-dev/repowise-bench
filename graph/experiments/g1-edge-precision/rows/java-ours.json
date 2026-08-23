@@ -4,13 +4,14 @@
  "side": "ours",
  "arm": "repowise",
  "repositories": [
-  "caffeine"
+  "caffeine",
+  "spring-petclinic"
  ],
- "repowise_commit": "2017de7c",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
-  "n": 30,
-  "correct": 20,
+  "n": 40,
+  "correct": 30,
   "wrong": 9,
   "ambiguous": 1
  },
@@ -344,6 +345,117 @@
    "origin": "same_file",
    "verdict": "correct",
    "reason": "Explicit `ChartStyle.` qualifier."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+   "line": 118,
+   "source_line": "return addPaginationModel(page, model, ownersResults);",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java::OwnerController::addPaginationModel",
+   "origin": "same_file",
+   "verdict": "correct",
+   "reason": "OwnerController.java:118 calls addPaginationModel(page, model, ownersResults) inside processFindForm; the private method is declared in the same file at line 121 with a matching 3-arg signature."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+   "line": 143,
+   "source_line": "if (existingPet != null && !Objects.equals(existingPet.getId(), pet.getId())) {",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/model/BaseEntity.java::BaseEntity::getId",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "PetController.java:143 calls getId() on existingPet and pet, both of static type Pet; Pet extends NamedEntity extends BaseEntity and none of them override getId, so BaseEntity.java:39 getId() is the correct target."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+   "line": 70,
+   "source_line": "Pet pet = owner.getPet(petId);",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/owner/Owner.java::Owner::getPet",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "VisitController.java:70 calls owner.getPet(petId) where owner is of type Owner and petId is int; Owner.java:117 declares getPet(Integer id), the only overload matching a single int argument."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+   "line": 75,
+   "source_line": "Pet pet = new Pet();",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/owner/Pet.java::Pet",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "PetControllerTests.java:75 is in package org.springframework.samples.petclinic.owner (no import needed) and instantiates Pet, matching the class declared in owner/Pet.java."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/owner/PetControllerTests.java",
+   "line": 82,
+   "source_line": "dog.setName(\"doggy\");",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/model/NamedEntity.java::NamedEntity::setName",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "PetControllerTests.java:82 calls dog.setName(\"doggy\") where dog is a Pet; Pet.java has no setName override, so it resolves to NamedEntity.java:39 setName(String)."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 180,
+   "source_line": "assertThat(pet.getId()).isNotNull();",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/model/BaseEntity.java::BaseEntity::getId",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:180 uses the statically imported org.assertj.core.api.Assertions.assertThat (line 18) on pet.getId(); pet is a Pet, so getId() resolves via inheritance to BaseEntity.java:39."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 206,
+   "source_line": "Collection<Vet> vets = this.vets.findAll();",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/vet/VetRepository.java::VetRepository::findAll",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:206 calls this.vets.findAll() with no args on the field protected VetRepository vets (line 83); VetRepository.java:46 declares the zero-arg findAll() overload, distinct from the Pageable overload at line 56."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/service/ClinicServiceTests.java",
+   "line": 230,
+   "source_line": "assertThat(pet7.getVisits()) //",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/owner/Pet.java::Pet::getVisits",
+   "origin": "import_merged",
+   "verdict": "correct",
+   "reason": "ClinicServiceTests.java:230 calls pet7.getVisits() where pet7 is a Pet; Pet.java:77 declares getVisits() with no args."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+   "line": 33,
+   "source_line": "final CrashController testee = new CrashController();",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/system/CrashController.java::CrashController",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "CrashControllerTests.java:33 is in the same package (system) as CrashController and instantiates it; CrashController.java:28 declares the class with an implicit no-arg constructor."
+  },
+  {
+   "repo": "spring-petclinic",
+   "file": "src/test/java/org/springframework/samples/petclinic/system/CrashControllerTests.java",
+   "line": 37,
+   "source_line": "assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> testee.triggerException())",
+   "receiver": null,
+   "target": "src/main/java/org/springframework/samples/petclinic/system/CrashController.java::CrashController::triggerException",
+   "origin": "same_package",
+   "verdict": "correct",
+   "reason": "CrashControllerTests.java:37 calls testee.triggerException() where testee is a CrashController; CrashController.java:30 declares triggerException() with no args."
   }
- ]
+ ],
+ "note": "Widened from one repository to two. caffeine's 30 rows are the seed-2026 draw certified at 350f6a3a and are unchanged; spring-petclinic's 10 are a fresh seed-2026 draw at the same pin, read from source on both sides. caffeine's rows record  as a basename and spring-petclinic's as a repository-relative path;  disambiguates them."
 }

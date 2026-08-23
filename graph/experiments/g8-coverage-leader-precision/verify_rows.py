@@ -27,10 +27,18 @@ G1_ROWS = HERE.parent / "g1-edge-precision" / "rows"
 LANGUAGES = ["csharp", "python", "java", "swift", "kotlin", "rust", "cpp", "php", "ruby"]
 
 # The seven with a G1 cell; php and ruby have none and are printed as such.
+# java is deliberately caffeine's 30 and not G1's widened 40: this arm was only
+# ever graded on caffeine, so the wider cell would put a two-repository column
+# beside two single-repository ones under the same language name.
 G1_CELL = {
-    "csharp": (28, 30), "python": (28, 30), "java": (20, 30), "swift": (23, 30),
-    "kotlin": (27, 30), "rust": (22, 30), "cpp": (23, 30),
+    "csharp": (30, 30), "python": (28, 30), "java": (20, 30), "swift": (23, 30),
+    "kotlin": (27, 30), "rust": (22, 30), "cpp": (22, 30),
 }
+
+# Where a G1 cell is read on more repositories than this arm was, the three-way
+# takes only the shared ones. Otherwise the pooled row silently compares
+# different corpora.
+THREEWAY_REPOS = {"java": {"caffeine"}}
 
 # The two bare-name strata: the fallback tier this experiment set out to price.
 BARE_NAME = {"suffix_match", "unique_name"}
@@ -96,6 +104,9 @@ def main() -> None:
             ):
                 cell = json.loads(path.read_text(encoding="utf-8"))
                 rows = [r for r in cell["rows"] if r.get("in_pooled_30", True)]
+                shared = THREEWAY_REPOS.get(language)
+                if shared:
+                    rows = [r for r in rows if r["repo"] in shared]
                 # The rust cell on our side ships its draw without its grading.
                 if any(r["verdict"] is None for r in rows):
                     k, n = cell["pooled_cell"]["correct"], cell["pooled_cell"]["n"]
@@ -175,7 +186,7 @@ def main() -> None:
               f"| {iv.pct().split(' ', 1)[1]} | {g1s} |")
     iv = wilson(pooled_k, pooled_n)
     print(f"| **pooled** | | **{pooled_k}/{pooled_n} = {pooled_k / pooled_n * 100:.1f}%** "
-          f"| {iv.pct().split(' ', 1)[1]} | **229/270 = 84.8%** |")
+          f"| {iv.pct().split(' ', 1)[1]} | **240/280 = 85.7%** |")
 
     print("\n| verdict | rows |")
     print("|---|---:|")

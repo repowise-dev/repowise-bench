@@ -8,7 +8,7 @@
   "ktor",
   "exposed"
  ],
- "repowise_commit": "58576af0",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
@@ -201,91 +201,102 @@
    "repo": "exposed",
    "file": "exposed-kotlin-datetime/src/test/kotlin/org/jetbrains/exposed/v1/datetime/DateTimeLiteralTest.kt",
    "line": 72,
-   "target": "withTables",
+   "source_line": "withTables(TableWithDatetime) {",
+   "target": "exposed-tests/src/main/kotlin/org/jetbrains/exposed/v1/tests/DatabaseTestsBase.kt::DatabaseTestsBase::withTables",
    "origin": "import_merged",
    "verdict": "correct",
-   "reason": "class DateTimeLiteralTest extends DatabaseTestsBase; withTables(...) is the inherited member fun declared at DatabaseTestsBase.kt line 136."
+   "reason": "DateTimeLiteralTest extends DatabaseTestsBase (imported org.jetbrains.exposed.v1.tests.DatabaseTestsBase), and withTables(vararg tables, ...) is declared on that class at DatabaseTestsBase.kt:200, so the unqualified call reaches the inherited member."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/postgresql/ConnectionPoolTests.kt",
+   "line": 37,
+   "source_line": "setUrl(TestDB.POSTGRESQL.connection.invoke().replaceUrlAsPool())",
+   "target": "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/R2dbcDatabaseConfig.kt::Builder::setUrl",
+   "origin": "global_unique",
+   "verdict": "correct",
+   "reason": "The call sits inside R2dbcDatabase.connect { ... } whose lambda receiver is R2dbcDatabaseConfig.Builder (R2dbcDatabase.kt:192-195), and setUrl is declared in that Builder at R2dbcDatabaseConfig.kt:88."
   },
   {
    "repo": "exposed",
    "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/UserCreatedTransactionsTests.kt",
    "line": 136,
-   "target": "create",
+   "source_line": "SchemaUtils.create(TestTable)",
+   "target": "exposed-r2dbc/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/SchemaUtils.kt::SchemaUtils::create",
    "origin": "module_alias",
    "verdict": "correct",
-   "reason": "SchemaUtils.create(TestTable), explicit import org.jetbrains.exposed.v1.r2dbc.SchemaUtils, object SchemaUtils declared at SchemaUtils.kt line 14."
-  },
-  {
-   "repo": "exposed",
-   "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/ddl/ColumnDefinitionTests.kt",
-   "line": 39,
-   "target": "stringLiteral",
-   "origin": "global_unique",
-   "verdict": "correct",
-   "reason": "explicit import org.jetbrains.exposed.v1.core.stringLiteral; call stringLiteral(comment) matches top-level fun at LiteralOp.kt line 50."
+   "reason": "SchemaUtils is imported from org.jetbrains.exposed.v1.r2dbc (line 7) and that object declares `suspend fun <T : Table> create(vararg tables: T, ...)` at exposed-r2dbc/.../SchemaUtils.kt:140."
   },
   {
    "repo": "exposed",
    "file": "exposed-r2dbc-tests/src/test/kotlin/org/jetbrains/exposed/v1/r2dbc/sql/tests/shared/functions/FunctionsTests.kt",
    "line": 82,
-   "target": "withTables",
+   "source_line": "withTables(table) {",
+   "target": "exposed-r2dbc-tests/src/main/kotlin/org/jetbrains/exposed/v1/r2dbc/tests/R2dbcDatabaseTestsBase.kt::R2dbcDatabaseTestsBase::withTables",
    "origin": "import_merged",
    "verdict": "correct",
-   "reason": "class FunctionsTests extends R2dbcDatabaseTestsBase; withTables(table){...} is the inherited member declared at R2dbcDatabaseTestsBase.kt line 137/201."
+   "reason": "FunctionsTests extends R2dbcDatabaseTestsBase (imported line 21), which declares withTables at R2dbcDatabaseTestsBase.kt:137/201, so the bare call resolves to the inherited member."
   },
   {
    "repo": "exposed",
    "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/h2/EntityReferenceCacheTest.kt",
    "line": 255,
-   "target": "executeOnH2",
+   "source_line": "executeOnH2(Cities, Users) {",
+   "target": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/h2/EntityReferenceCacheTest.kt::EntityReferenceCacheTest::executeOnH2",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "executeOnH2(Cities, Users){...} matches private fun executeOnH2 declared at line 52 of the same file."
+   "reason": "executeOnH2 is a private member of the same class, declared at EntityReferenceCacheTest.kt:52, and the call at line 255 is inside that class."
   },
   {
    "repo": "exposed",
    "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/DDLTests.kt",
    "line": 733,
-   "target": "assertEquals",
+   "source_line": "assertEquals(\"'value'\", TextColumnType().nonNullValueToString(\"value\"))",
+   "target": "exposed-tests/src/main/kotlin/org/jetbrains/exposed/v1/tests/shared/Assert.kt::assertEquals",
    "origin": "same_package",
    "verdict": "correct",
-   "reason": "call is inside withDb(...){...} whose statement param is typed JdbcTransaction.(TestDB)->Unit, so the implicit-receiver extension fun JdbcTransaction.assertEquals(exp,act) in Assert.kt correctly outranks the imported kotlin.test.assertEquals for this 2-arg call."
+   "reason": "The call is inside withDb(TestDB.H2_V2) { }, whose lambda receiver is JdbcTransaction (DatabaseTestsBase.kt:97-101), and Assert.kt declares `fun <T> JdbcTransaction.assertEquals(exp: T, act: T)` in the same package org.jetbrains.exposed.v1.tests.shared that DDLTests is in."
   },
   {
    "repo": "exposed",
    "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/dml/UpsertTests.kt",
    "line": 426,
-   "target": "integer",
+   "source_line": "val losses = integer(\"losses\")",
+   "target": "exposed-core/src/main/kotlin/org/jetbrains/exposed/v1/core/Table.kt::Table::integer",
    "origin": "import_merged",
    "verdict": "correct",
-   "reason": "integer(\"gains\") inside object : Table(\"tester\") {...} body resolves to member fun Table.integer at Table.kt line 842."
-  },
-  {
-   "repo": "exposed",
-   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/ImmutableEntityTest.kt",
-   "line": 109,
-   "target": "text",
-   "origin": "same_package",
-   "verdict": "wrong",
-   "reason": "val name = text(\"name\") inside object ImmutableCacheTable : IntIdTable(...) calls the member fun Table.text(...) at Table.kt line 922; resolved_to instead points at an unrelated delegated property (var text by Notes.text) on class Note in EntityTests.kt line 798, a same-named but unconnected declaration in a different class/file."
+   "reason": "The call is inside `object : Table(\"tester\")` at UpsertTests.kt:422, so the implicit receiver is Table, and integer(name, checkConstraintName) is declared inside open class Table at exposed-core/.../Table.kt:842."
   },
   {
    "repo": "exposed",
    "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/EntityCacheRefreshTests.kt",
    "line": 183,
-   "target": "commit",
+   "source_line": "commit()",
+   "target": "exposed-jdbc/src/main/kotlin/org/jetbrains/exposed/v1/jdbc/JdbcTransaction.kt::JdbcTransaction::commit",
    "origin": "import_merged",
    "verdict": "correct",
-   "reason": "commit() inside withTables(...){...} (JdbcTransaction receiver) matches override fun commit() at JdbcTransaction.kt line 87."
+   "reason": "The call is in a withTables { } body whose receiver is JdbcTransaction (DatabaseTestsBase.kt:200), and JdbcTransaction.kt:87 declares `override fun commit()` in open class JdbcTransaction (line 30)."
+  },
+  {
+   "repo": "exposed",
+   "file": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/ImmutableEntityTest.kt",
+   "line": 109,
+   "source_line": "val name = text(\"name\")",
+   "target": "exposed-tests/src/test/kotlin/org/jetbrains/exposed/v1/tests/shared/entities/EntityTests.kt::Note::text",
+   "origin": "same_package",
+   "verdict": "wrong",
+   "reason": "The receiver is `object ImmutableCacheTable : IntIdTable(...)` at ImmutableEntityTest.kt:108, so text(\"name\") is Table.text declared at exposed-core/.../Table.kt:922; EntityTests.kt:798 holds only `var text by Notes.text`, a delegated property on the unrelated entity class Note, which is not callable here."
   },
   {
    "repo": "exposed",
    "file": "spring7-transaction/src/test/kotlin/org/jetbrains/exposed/v1/spring7/transaction/TransactionSynchronizationTest.kt",
    "line": 12,
-   "target": "TestSynchronization",
+   "source_line": "private var synchronization: TestSynchronization = TestSynchronization()",
+   "target": "spring7-transaction/src/test/kotlin/org/jetbrains/exposed/v1/spring7/transaction/TransactionSynchronizationTest.kt::TransactionSynchronizationTest::TestSynchronization",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "TestSynchronization() constructor call matches nested class TestSynchronization declared at line 86 of the same file."
+   "reason": "TestSynchronization() is a constructor invocation of the nested class declared at TransactionSynchronizationTest.kt:86 in this very file (the identically named class in spring-transaction is a different package and not imported)."
   }
- ]
+ ],
+ "note": "Re-measured at 350f6a3a, the single commit all nine cells now carry. javalin and ktor are byte-identical populations at both commits, so their 20 rows are the rows that were read, unchanged. exposed gained 9 call sites, which moved its seeded draw, so its 10 were re-drawn and re-read; that read is 9/10, the same count on different rows. The cell is 27/30 either way."
 }

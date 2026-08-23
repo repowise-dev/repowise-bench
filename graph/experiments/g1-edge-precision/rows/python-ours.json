@@ -6,7 +6,7 @@
  "repositories": [
   "celery"
  ],
- "repowise_commit": "2017de7c",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
@@ -20,11 +20,11 @@
    "file": "celery/_state.py",
    "line": 116,
    "source_line": "return _get_current_app()",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/_state.py::_get_current_app",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "_get_current_app` is a module-level function (line 92); this is the `C_WARN_APP` fallback branch calling it directly."
+   "reason": "get_current_app is the else-branch alias `get_current_app = _get_current_app` (celery/_state.py:118) but the call at line 116 is inside the C_WARN_APP variant of get_current_app and refers to the module-level def at celery/_state.py:92."
   },
   {
    "repo": "celery",
@@ -32,87 +32,76 @@
    "line": 398,
    "source_line": "self.__autoset('include', include)",
    "receiver": "self",
-   "target": "Celery::__autoset",
+   "target": "celery/app/base.py::Celery::__autoset",
    "origin": "self_scope",
    "verdict": "correct",
-   "reason": "__autoset` defined in the same `Celery` class (base.py:447), called inside `__init__`."
+   "reason": "`self.__autoset` name-mangles to _Celery__autoset and Celery.__autoset is declared in the same class at celery/app/base.py:447, with the call site inside Celery.__init__."
   },
   {
    "repo": "celery",
    "file": "celery/app/defaults.py",
    "line": 239,
-   "source_line": "security=Namespace(__old__=old_ns(...), ...)",
-   "receiver": "null",
+   "source_line": "security=Namespace(",
+   "receiver": null,
    "target": "celery/app/defaults.py::Namespace",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Namespace` is a module-level function (defaults.py:30) used to build the config tree."
+   "reason": "Namespace is a module-level factory declared at celery/app/defaults.py:30 and the call at line 239 is inside the NAMESPACES = Namespace(...) literal in the same module, no import involved."
   },
   {
    "repo": "celery",
    "file": "celery/app/defaults.py",
    "line": 336,
-   "source_line": "direct=Option(False, type='bool', ...)",
-   "receiver": "null",
+   "source_line": "direct=Option(False, type='bool', old={'celery_worker_direct'}),",
+   "receiver": null,
    "target": "celery/app/defaults.py::Option",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Option` class defined in the same file (defaults.py:42)."
+   "reason": "Option is the class declared at celery/app/defaults.py:42 and the call at line 336 sits in the same module's NAMESPACES literal."
   },
   {
    "repo": "celery",
    "file": "celery/backends/mongodb.py",
    "line": 203,
-   "source_line": "return self.meta_from_decoded({...})",
+   "source_line": "return self.meta_from_decoded({",
    "receiver": "self",
    "target": "celery/backends/base.py::Backend::meta_from_decoded",
    "origin": "self_inherited",
    "verdict": "correct",
-   "reason": "MongoBackend(BaseBackend)`, `BaseBackend(Backend, SyncBackendMixin)`; `meta_from_decoded` is defined on `Backend` (base.py:531)."
-  },
-  {
-   "repo": "celery",
-   "file": "celery/canvas.py",
-   "line": 658,
-   "source_line": "link = maybe_signature(link, app=self.app)",
-   "receiver": "null",
-   "target": "celery/canvas.py::maybe_signature",
-   "origin": "same_file",
-   "verdict": "correct",
-   "reason": "maybe_signature` is a module-level function in the same file."
+   "reason": "MongoBackend(BaseBackend) (mongodb.py:36) and BaseBackend(Backend, SyncBackendMixin) (base.py:947), so self.meta_from_decoded reaches the single definition on Backend at celery/backends/base.py:531 - no other class in the MRO defines it."
   },
   {
    "repo": "celery",
    "file": "celery/contrib/rdb.py",
    "line": 186,
    "source_line": "frame = _frame().f_back",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/contrib/rdb.py::_frame",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "_frame = getattr(sys, '_getframe')` is a module-level alias (rdb.py:64) in the same file."
+   "reason": "`_frame` is bound in the same module by `_frame = getattr(sys, '_getframe')` at celery/contrib/rdb.py:64; that module-level binding is the only name in scope, though the real callee is the CPython builtin sys._getframe and not a Python declaration."
   },
   {
    "repo": "celery",
    "file": "celery/events/receiver.py",
    "line": 59,
-   "source_line": "raise ImproperlyConfigured('Queue cannot be...')",
-   "receiver": "null",
+   "source_line": "raise ImproperlyConfigured(",
+   "receiver": null,
    "target": "celery/exceptions.py::ImproperlyConfigured",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "Imported `from celery.exceptions import ImproperlyConfigured` at the top of the file."
+   "reason": "Imported at celery/events/receiver.py:11 `from celery.exceptions import ImproperlyConfigured`, and the class is declared at celery/exceptions.py:206."
   },
   {
    "repo": "celery",
    "file": "celery/utils/dispatch/signal.py",
    "line": 163,
-   "source_line": "return retry_over_time(retry_fun, Exception, args, kwargs, on_error)",
-   "receiver": "null",
+   "source_line": "return retry_over_time(retry_fun, Exception, args,",
+   "receiver": null,
    "target": "celery/contrib/testing/manager.py::ManagerMixin::retry_over_time",
    "origin": "global_unique",
    "verdict": "wrong",
-   "reason": "File imports `from kombu.utils.functional import retry_over_time` (signal.py:8) — a third-party function — but OURS bound the bare name to an unrelated same-named test-harness method."
+   "reason": "signal.py imports the free function at line 8 `from kombu.utils.functional import retry_over_time` (an external package), but the resolver bound it to the unrelated bound method ManagerMixin.retry_over_time in celery/contrib/testing/manager.py:106, which signal.py never imports - a global_unique name collision."
   },
   {
    "repo": "celery",
@@ -123,7 +112,7 @@
    "target": "celery/utils/term.py::colored::node",
    "origin": "self_scope",
    "verdict": "correct",
-   "reason": "node` defined in the same `colored` class."
+   "reason": "Both colored.white (line 118) and colored.node (line 94) live in the same class `colored` declared at celery/utils/term.py:36, so self.node resolves there."
   },
   {
    "repo": "celery",
@@ -131,76 +120,76 @@
    "line": 68,
    "source_line": "self.on_clock_event(c, clock)",
    "receiver": "self",
-   "target": "Mingle::on_clock_event",
+   "target": "celery/worker/consumer/mingle.py::Mingle::on_clock_event",
    "origin": "self_scope",
    "verdict": "correct",
-   "reason": "Defined at line 71 in the same `Mingle` class."
+   "reason": "sync_with_node (line 67) and on_clock_event (line 71) are both methods of Mingle declared at celery/worker/consumer/mingle.py:13."
   },
   {
    "repo": "celery",
    "file": "t/integration/test_canvas.py",
    "line": 1288,
    "source_line": "group_sig = group((child_chord,))",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/canvas.py::group",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "group` imported `from celery import chain, chord, group, signature` (re-exports canvas.py)."
+   "reason": "Imported at t/integration/test_canvas.py:10 `from celery import chain, chord, group, signature`; celery/__init__.py re-exports group whose real declaration is `class group(Signature)` at celery/canvas.py:1492, so the re-export was followed correctly."
   },
   {
    "repo": "celery",
    "file": "t/integration/test_canvas.py",
    "line": 1751,
    "source_line": "chord_add.apply_async(args=(4, 8), throw=True).get()",
-   "receiver": "null (chained)",
+   "receiver": null,
    "target": "celery/backends/base.py::BaseKeyValueStoreBackend::get",
    "origin": "import_merged",
    "verdict": "wrong",
-   "reason": ".get()` here is called on the `AsyncResult` returned by `apply_async`, i.e. `celery/result.py`'s `AsyncResult.get`, not any backend's `get`."
+   "reason": "The receiver is the result of `chord_add.apply_async(args=(4,8), throw=True)` under task_always_eager, i.e. an EagerResult/AsyncResult whose get is celery/result.py:191 (AsyncResult.get) - the resolver bound it to BaseKeyValueStoreBackend.get merely because that class happens to be imported at line 11 of the test file."
   },
   {
    "repo": "celery",
-   "file": "t/unit/app/test_schedules.py",
-   "line": 180,
-   "source_line": "crontab_parser(min_=1).parse('55-5/3')",
-   "receiver": "null",
-   "target": "celery/schedules.py::crontab_parser::parse",
-   "origin": "import_merged",
+   "file": "t/integration/test_canvas.py",
+   "line": 3693,
+   "source_line": "stamped_task = replace_with_stamped_task.s()",
+   "receiver": "replace_with_stamped_task",
+   "target": "celery/app/task.py::Task::s",
+   "origin": "receiver_framework_global",
    "verdict": "correct",
-   "reason": "crontab_parser` imported; `.parse` defined on that class at schedules.py:260."
+   "reason": "replace_with_stamped_task is imported from t/integration/tasks and declared there with @shared_task(bind=True, base=StampedTaskOnReplace) (tasks.py:518), so it is a Task instance and `.s` is Task.s at celery/app/task.py:974; StampedTaskOnReplace defines no `s` of its own."
+  },
+  {
+   "repo": "celery",
+   "file": "t/smoke/tests/quorum_queues/test_native_delayed_delivery.py",
+   "line": 206,
+   "source_line": "s = noop.s().set(queue=celery_setup.worker.worker_queue)",
+   "receiver": "noop",
+   "target": "celery/app/task.py::Task::s",
+   "origin": "receiver_framework_global",
+   "verdict": "correct",
+   "reason": "noop is imported at line 11 from t.smoke.tasks where it is `@shared_task def noop` (t/smoke/tasks.py:17-18), so the receiver is a Task and `.s()` is Task.s at celery/app/task.py:974."
   },
   {
    "repo": "celery",
    "file": "t/unit/app/test_schedules.py",
    "line": 804,
-   "source_line": "with patch_crontab_nowfun(self.weekly, ...)",
-   "receiver": "null",
+   "source_line": "with patch_crontab_nowfun(self.weekly, datetime(2010, 5, 7, 10, 30)):",
+   "receiver": null,
    "target": "t/unit/app/test_schedules.py::patch_crontab_nowfun",
    "origin": "same_file",
    "verdict": "correct",
-   "reason": "Defined at line 23 in the same test file."
+   "reason": "patch_crontab_nowfun is a module-level contextmanager declared in the same file at t/unit/app/test_schedules.py:23."
   },
   {
    "repo": "celery",
    "file": "t/unit/backends/test_gcs.py",
    "line": 191,
    "source_line": "backend = GCSBackend(app=self.app)",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/backends/gcs.py::GCSBackend",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "GCSBackend` imported at top of file; this is the constructor call."
-  },
-  {
-   "repo": "celery",
-   "file": "t/unit/backends/test_redis.py",
-   "line": 332,
-   "source_line": "consumer = self.get_consumer()",
-   "receiver": "self",
-   "target": "test_RedisResultConsumer::get_consumer",
-   "origin": "self_scope",
-   "verdict": "correct",
-   "reason": "Defined at line 206 in the same test class."
+   "reason": "Imported at t/unit/backends/test_gcs.py:7 `from celery.backends.gcs import GCSBackend`, declared `class GCSBackend(GCSBackendBase)` at celery/backends/gcs.py:161."
   },
   {
    "repo": "celery",
@@ -208,87 +197,109 @@
    "line": 20,
    "source_line": "consumer = self.get_consumer()",
    "receiver": "self",
-   "target": "test_RPCResultConsumer::get_consumer",
+   "target": "t/unit/backends/test_rpc.py::test_RPCResultConsumer::get_consumer",
    "origin": "self_scope",
    "verdict": "correct",
-   "reason": "Defined at line 16 in the same test class."
+   "reason": "get_consumer is defined on the same test class test_RPCResultConsumer (t/unit/backends/test_rpc.py:16), which is the enclosing class of test_drain_events_before_start."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/concurrency/test_eventlet.py",
+   "line": 131,
+   "source_line": "assert x._get_info() == {",
+   "receiver": "x",
+   "target": "celery/concurrency/eventlet.py::TaskPool::_get_info",
+   "origin": "receiver_typed_import",
+   "verdict": "correct",
+   "reason": "x = TaskPool(10) two lines above, with TaskPool imported at t/unit/concurrency/test_eventlet.py:11 from celery.concurrency.eventlet, whose TaskPool overrides _get_info at celery/concurrency/eventlet.py:153 (shadowing BasePool._get_info)."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/concurrency/test_prefork.py",
+   "line": 608,
+   "source_line": "pool = asynpool.AsynPool(processes=1, synack=False, threads=False)",
+   "receiver": "asynpool",
+   "target": "celery/concurrency/asynpool.py::AsynPool",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "`from celery.concurrency import asynpool` at t/unit/concurrency/test_prefork.py:20 makes asynpool.AsynPool the class declared at celery/concurrency/asynpool.py:414."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/concurrency/test_solo.py",
+   "line": 21,
+   "source_line": "x = solo.TaskPool()",
+   "receiver": "solo",
+   "target": "celery/concurrency/solo.py::TaskPool",
+   "origin": "module_alias",
+   "verdict": "correct",
+   "reason": "`from celery.concurrency import solo` at t/unit/concurrency/test_solo.py:5, and solo.TaskPool is `class TaskPool(BasePool)` at celery/concurrency/solo.py:11."
+  },
+  {
+   "repo": "celery",
+   "file": "t/unit/security/test_serialization.py",
+   "line": 24,
+   "source_line": "PrivateKey(key), Certificate(cert), store, serializer=serializer",
+   "receiver": null,
+   "target": "celery/security/key.py::PrivateKey",
+   "origin": "import_scoped",
+   "verdict": "correct",
+   "reason": "Imported at t/unit/security/test_serialization.py:10 `from celery.security.key import PrivateKey`, declared at celery/security/key.py:12."
   },
   {
    "repo": "celery",
    "file": "t/unit/tasks/test_canvas.py",
    "line": 506,
-   "source_line": "group(tasks(), app=self.app)",
-   "receiver": "null",
+   "source_line": "group([self.add.s(2, 2)], app=self.app),",
+   "receiver": null,
    "target": "celery/canvas.py::group",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "group` imported from `celery.canvas` at the top of the file."
-  },
-  {
-   "repo": "celery",
-   "file": "t/unit/tasks/test_canvas.py",
-   "line": 1452,
-   "source_line": "assert isinstance(signature(x), chord_type)",
-   "receiver": "null",
-   "target": "celery/canvas.py::signature",
-   "origin": "import_scoped",
-   "verdict": "correct",
-   "reason": "signature` imported from `celery.canvas`."
+   "reason": "Imported at t/unit/tasks/test_canvas.py:9 directly from celery.canvas, where `class group(Signature)` is declared at celery/canvas.py:1492."
   },
   {
    "repo": "celery",
    "file": "t/unit/tasks/test_canvas.py",
    "line": 1579,
    "source_line": "sig = chord(chord(tuple(), [self.add.s()]))",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/canvas.py::chord",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "chord` imported from `celery.canvas`."
-  },
-  {
-   "repo": "celery",
-   "file": "t/unit/tasks/test_canvas.py",
-   "line": 1996,
-   "source_line": "header = group([self.add.s(1, 1), self.add.s(2, 2)])",
-   "receiver": "null",
-   "target": "celery/canvas.py::group",
-   "origin": "import_scoped",
-   "verdict": "correct",
-   "reason": "Same import as above."
+   "reason": "chord is imported from celery.canvas at line 9 of the test; in canvas.py the public name is the module-level alias `chord = _chord` (celery/canvas.py:2392) pointing at class _chord (line 1971), so the file and in-scope binding are right even though the class itself is named _chord."
   },
   {
    "repo": "celery",
    "file": "t/unit/tasks/test_stamping.py",
    "line": 501,
-   "source_line": "chord((signature(f\"sig{i}\") for i in range(4, 6)), ...)",
-   "receiver": "null",
+   "source_line": "chord(",
+   "receiver": null,
    "target": "celery/canvas.py::chord",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "Module-level literal built from imported `chord`."
+   "reason": "t/unit/tasks/test_stamping.py:8 imports chord from celery.canvas; line 501 is a real construction call inside a module-level nested canvas literal, reaching the `chord = _chord` alias at celery/canvas.py:2392."
   },
   {
    "repo": "celery",
    "file": "t/unit/tasks/test_stamping.py",
    "line": 569,
-   "source_line": "group(signature(\"sig1\"), group(signature(\"sig2\")), ...)",
-   "receiver": "null",
+   "source_line": "group(signature(\"sig2\")),",
+   "receiver": null,
    "target": "celery/canvas.py::group",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "Imported `group` used in a nested literal."
+   "reason": "Same module-level import at t/unit/tasks/test_stamping.py:8; line 569 `group(signature(\"sig2\")),` constructs celery/canvas.py:1492 `class group(Signature)`."
   },
   {
    "repo": "celery",
    "file": "t/unit/tasks/test_trace.py",
    "line": 418,
-   "source_line": "trace_task_ret(self.add.name, 'id1', {}, ...)",
-   "receiver": "null",
+   "source_line": "trace_task_ret(",
+   "receiver": null,
    "target": "celery/app/trace.py::trace_task_ret",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "Imported from `celery.app.trace` at top of file."
+   "reason": "Imported at t/unit/tasks/test_trace.py:13 `from celery.app.trace import ... trace_task_ret ...`, declared `def trace_task_ret` at celery/app/trace.py:735."
   },
   {
    "repo": "celery",
@@ -299,40 +310,29 @@
    "target": "celery/platforms.py::Pidfile::is_locked",
    "origin": "receiver_typed_import",
    "verdict": "correct",
-   "reason": "p = Pidfile('/var/pid')`; `Pidfile` imported and `is_locked` defined on it."
+   "reason": "p = Pidfile('/var/pid') on the preceding line, with Pidfile imported at t/unit/utils/test_platforms.py:14 from celery.platforms; is_locked is declared on that class at celery/platforms.py:153."
   },
   {
    "repo": "celery",
-   "file": "t/unit/utils/test_platforms.py",
-   "line": 1013,
-   "source_line": "check_privileges(accept_content)",
-   "receiver": "null",
-   "target": "celery/platforms.py::check_privileges",
-   "origin": "import_scoped",
+   "file": "t/unit/worker/test_control.py",
+   "line": 123,
+   "source_line": "self.panel = self.create_panel(consumer=Consumer(self.app))",
+   "receiver": null,
+   "target": "t/unit/worker/test_control.py::Consumer",
+   "origin": "same_file",
    "verdict": "correct",
-   "reason": "Imported at top of file."
-  },
-  {
-   "repo": "celery",
-   "file": "t/unit/worker/test_consumer.py",
-   "line": 1361,
-   "source_line": "tasks.start(c)",
-   "receiver": "tasks",
-   "target": "celery/worker/consumer/tasks.py::Tasks::start",
-   "origin": "receiver_typed_import",
-   "verdict": "correct",
-   "reason": "tasks = Tasks(c)`; `Tasks` imported, `start` defined on it."
+   "reason": "The test module shadows the imported consumer module's class with its own `class Consumer(consumer.Consumer)` at t/unit/worker/test_control.py:35, and that local subclass is what line 123 instantiates."
   },
   {
    "repo": "celery",
    "file": "t/unit/worker/test_loops.py",
    "line": 408,
    "source_line": "asynloop(*x.args)",
-   "receiver": "null",
+   "receiver": null,
    "target": "celery/worker/loops.py::asynloop",
    "origin": "import_scoped",
    "verdict": "correct",
-   "reason": "Imported at top of file."
+   "reason": "Imported at t/unit/worker/test_loops.py:15 `from celery.worker.loops import _quick_drain, asynloop, synloop`, declared `def asynloop` at celery/worker/loops.py:50."
   },
   {
    "repo": "celery",
@@ -340,10 +340,11 @@
    "line": 721,
    "source_line": "job = self.get_request(self.mytask.s(1, f='x'))",
    "receiver": "self",
-   "target": "test_Request::get_request",
+   "target": "t/unit/worker/test_request.py::test_Request::get_request",
    "origin": "self_scope",
    "verdict": "correct",
-   "reason": "Defined at line 187 in the same test class."
+   "reason": "get_request is declared on the enclosing test class itself - class test_Request at t/unit/worker/test_request.py:185, def get_request at line 187 - so self.get_request resolves in-file."
   }
- ]
+ ],
+ "note": "Re-measured at 350f6a3a, the single commit all nine cells now carry. celery gained 1,136 call sites and lost none, so the seeded draw moved and the cell was re-drawn and re-read in full: a fresh draw at the same seed, not a re-grade. Four of the 30 are sites that did not exist before, from the submodule binding work in #1733 and #1785, and all four read correct; both wrong rows are pre-existing sites. The cell total is unchanged at 28/30 and the rows behind it are not the same rows."
 }

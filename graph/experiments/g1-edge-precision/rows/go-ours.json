@@ -6,7 +6,7 @@
  "repositories": [
   "gitleaks"
  ],
- "repowise_commit": "2017de7c",
+ "repowise_commit": "350f6a3a",
  "seed": 2026,
  "pooled_cell": {
   "n": 30,
@@ -345,5 +345,6 @@
    "verdict": "correct",
    "reason": "called from `NewGitLogCmd` (git.go:65) into sibling func at git.go:71"
   }
- ]
+ ],
+ "note": "Re-measured at 350f6a3a, the single commit all nine cells now carry. gitleaks is byte-identical at 2017de7c and 350f6a3a on both bases: 2,279 distinct resolved call sites and 2,296 resolver records, same sites, same targets, same origins. #1727 and #1726 are the two Go changes in the window; #1727 is the capture half only and its new sites do not resolve, so neither reaches this population. No row was re-read and none needed to be."
 }

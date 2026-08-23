@@ -25,12 +25,14 @@ ROWS = HERE / "rows"
 
 # Descending by our rate, the order the published table uses.
 LANGUAGES = [
-    "typescript", "go", "csharp", "python", "kotlin", "swift", "cpp", "rust", "java",
+    "typescript", "go", "csharp", "python", "kotlin", "cpp", "swift", "rust", "java",
 ]
 SIDES = [("ours", "repowise"), ("codegraph", "CodeGraph")]
 
 # The headline this page publishes, so the script can disagree with it out loud.
-PUBLISHED = {"ours": (229, 270), "codegraph": (154, 270)}
+# 280 rather than 270 since the java cell was widened to a second repository:
+# java carries 40 rows over caffeine and spring-petclinic, every other cell 30.
+PUBLISHED = {"ours": (240, 280), "codegraph": (164, 280)}
 
 
 def load(language: str, side: str) -> dict:
@@ -47,6 +49,28 @@ def counted(cell: dict) -> list[dict]:
     if any("in_pooled_30" in r for r in rows):
         return [r for r in rows if r["in_pooled_30"]]
     return rows
+
+
+def check_depth(language: str, side: str, cell: dict) -> str | None:
+    """A row file must agree with its own stated ``depth_read``.
+
+    Added after a published row file carried two draws mixed together and summed
+    to a depth of 43 against its own stated 42. The pooled cell agreed with the
+    page by coincidence, so checking only the pooled cell caught nothing.
+    """
+    stated = cell.get("depth_read")
+    if not stated:
+        return None
+    rows = cell["rows"]
+    if any(r["verdict"] is None for r in rows):
+        return None
+    k = sum(1 for r in rows if r["verdict"] == "correct")
+    if (k, len(rows)) != (stated["correct"], stated["n"]):
+        return (
+            f"{language}/{side}: rows sum to {k}/{len(rows)} against a stated "
+            f"depth_read of {stated['correct']}/{stated['n']}"
+        )
+    return None
 
 
 def score(rows: list[dict]) -> tuple[int, int] | None:
@@ -81,6 +105,7 @@ def main() -> None:
 
     pooled = {side: [0, 0] for side, _ in SIDES}
     missing = []
+    depth_errors = []
 
     print("| language | repositories | repowise | CodeGraph |")
     print("|---|---|---|---|")
@@ -90,6 +115,9 @@ def main() -> None:
         line.append(", ".join(cells["ours"]["repositories"]))
         for side, _ in SIDES:
             cell = cells[side]
+            problem = check_depth(language, side, cell)
+            if problem:
+                depth_errors.append(problem)
             scored = score(counted(cell))
             line.append(fmt(scored, cell["pooled_cell"]))
             if scored is None:

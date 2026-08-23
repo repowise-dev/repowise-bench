@@ -424,11 +424,12 @@ experiment started with, CodeGraph and codebase-memory-mcp, we are most precise 
 seven of seven, and that narrower claim always carries its label.
 
 **Hand-graded across nine languages, both sides read.** 30 rows per language per
-tool, seed 2026, stratified by resolution strategy, every row read from source:
-**ours 229/270 = 84.8%** [80.0, 88.6] against **CodeGraph's 154/270 = 57.0%**
-[51.1, 62.8], intervals disjoint. Four of the nine cells separate; five are ties
-and are reported as ties. Read the other way round, roughly fifteen percent of our
-call edges are wrong.
+tool and 40 for java, seed 2026, stratified by resolution strategy, every row read
+from source: **ours 240/280 = 85.7%** [81.1, 89.3] against **CodeGraph's
+164/280 = 58.6%** [52.7, 64.2], intervals disjoint. Four of the nine cells
+separate; five are ties and are reported as ties. Read the other way round,
+roughly fourteen percent of our call edges are wrong. Every cell on our side is
+measured at one commit.
 
 **And we lose the other half of the same question.** On cross-file coverage across
 35 repositories, codebase-memory-mcp separates from us on 15 and we separate on
