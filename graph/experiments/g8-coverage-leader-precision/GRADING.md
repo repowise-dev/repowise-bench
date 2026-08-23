@@ -57,6 +57,26 @@ grading can be recovered without regrading. This is what G1 does.
   own `regexp` wrapper, caffeine carries a `guava/` compatibility subtree, and
   zod has parallel v3 / v4 / mini trees. A target in one of those can be right.
   Check the import before calling it wrong.
+* **The recorded line need not carry the callee token.** Step 1's "read enough
+  around it" is the rule, and it decides the multi-line chain: where a site
+  records the first line of `A::new()
+    .b()
+    .c()` and the graded
+  callee is `.c`, grade the call, not the line number. Where the site was
+  stamped is a resolver detail; the experiment asks whether the target is
+  right. Settled 2026-08-23 after three rust rows turned on it. Tightening the
+  rule would flip those three and would retroactively narrow an allowance that
+  around fifty already-published multi-line rows across seven other languages
+  were graded under.
+* **A constructor is a call, graded like any other.** `new Foo(..)`,
+  `Foo::new(..)` and a rust tuple-struct or tuple-variant `Enum("x")` are all
+  call sites: `correct` where the target is the declaration reached, `wrong`
+  where it is not - which is why `Saturating(..)` binding a trait impl rather
+  than the type's declaration is `wrong`. Settled 2026-08-23. Ruling
+  constructors out of the population instead would flip 10 csharp rows and 8
+  kotlin rows, collapsing two of the cells the page reports as separating, and
+  it was never the convention any of the 540 published rows were graded under.
+
 * **Do not consult the tool's own `confidence` or `strategy` when deciding.**
   Those are what the result is analysed against; letting them steer a verdict
   makes the analysis circular. Read them after, or not at all.
