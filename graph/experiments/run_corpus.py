@@ -59,6 +59,10 @@ from datetime import date
 from pathlib import Path
 
 BENCH = Path(__file__).resolve().parents[2]
+
+# One document, two experiments. A caveat rarely compromises both.
+G2 = "g2-cross-file-coverage"
+G6 = "g6-build-cost"
 GRAPH = BENCH / "graph"
 sys.path.insert(0, str(GRAPH / "lib"))
 
@@ -396,32 +400,42 @@ def main() -> int:
             f"no git checkout above {repowise.core.__file__}; refusing to run "
             "a measurement whose source tree cannot be identified"
         )
-    publishable = provenance.require_clean(measured_tree, allow_dirty=args.allow_dirty)
+    publishable = provenance.require_clean(
+        measured_tree, bench_repo=BENCH, allow_dirty=args.allow_dirty
+    )
     reasons: list[str] = []
-    if not publishable:
-        reasons.append("--allow-dirty: the measured tree has uncommitted changes")
-    if args.no_warmup:
-        publishable = False
-        reasons.append("--no-warmup: the first build on a repository is cold, and "
-                       "gitleaks measured 6.92s cold against 1.90s warm")
     # Coverage survives a restored artifact -- every protocol set round-trips
-    # byte for byte -- but the cost row does not, so the whole document is
-    # stamped rather than half of it. G6 re-runs with --use-cache off.
+    # byte for byte -- but the cost row does not. Stamping the document as a
+    # whole made the sound half unciteable: the coverage sweep this produced was
+    # read as not publishable on the strength of a caveat about cost.
+    ok = {G2: publishable, G6: publishable}
+    why: dict[str, str] = {}
+    if not publishable:
+        dirty = "--allow-dirty: the measured tree has uncommitted changes"
+        reasons.append(dirty)
+        why[G2] = why[G6] = dirty
+    if args.no_warmup:
+        ok[G6] = False
+        why[G6] = ("--no-warmup: the first build on a repository is cold, and "
+                   "gitleaks measured 6.92s cold against 1.90s warm")
+        reasons.append(why[G6])
     cost_from_cache = args.use_cache
     if cost_from_cache:
-        publishable = False
-        reasons.append("--use-cache: competitor cost rows were measured when the "
-                       "artifact cache was filled, not on this run. Coverage is "
-                       "unaffected; G6 needs a run without it")
+        ok[G6] = False
+        why[G6] = ("--use-cache: competitor cost rows were measured when the "
+                   "artifact cache was filled, not on this run. Coverage is "
+                   "unaffected; G6 needs a run without it")
+        reasons.append(why[G6])
 
     result: dict = {
         "schema": SCHEMA,
-        "experiments": ["g2-cross-file-coverage", "g6-build-cost"],
+        "experiments": [G2, G6],
         "provenance": provenance.stamp(
             "g2g6",
             repowise_repo=measured_tree,
             bench_repo=BENCH,
-            publishable=publishable,
+            publishable=ok,
+            reasons=why,
             extra={
                 "warmup": not args.no_warmup,
                 "arms_requested": arm_names,

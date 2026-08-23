@@ -267,7 +267,9 @@ def main() -> int:
             "measurement whose source tree cannot be identified"
         )
 
-    publishable = provenance.require_clean(measured_tree, allow_dirty=args.allow_dirty)
+    publishable = provenance.require_clean(
+        measured_tree, bench_repo=BENCH, allow_dirty=args.allow_dirty
+    )
     reasons: list[str] = []
     if not publishable:
         reasons.append("--allow-dirty: the measured tree has uncommitted changes")

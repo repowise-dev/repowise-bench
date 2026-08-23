@@ -310,6 +310,19 @@ def resolved_call_edges(built: BuiltGraph) -> set[tuple[str, int, str]]:
     return set(built.resolved_calls)
 
 
+def resolved_call_pairs(built: BuiltGraph) -> set[tuple[str, str]]:
+    """Distinct `(caller_file, target_qualified_name)` -- the pair fold.
+
+    The site fold above and this one answer different questions and both are
+    wanted: sites count how much call expression a tool resolved, pairs count
+    how much distinct caller-callee structure it recovered. Reporting one arm on
+    sites and the other on pairs is not a comparison, and the ratio between the
+    two folds is itself a property of a tool worth printing. Folded from the
+    same `resolved_calls` the site count uses, so the two cannot drift.
+    """
+    return {(f, target) for f, _line, target in built.resolved_calls}
+
+
 def symbol_bearing_files(built: BuiltGraph, languages: list[str] | None = None) -> set[str]:
     """Source files that declare at least one real symbol.
 

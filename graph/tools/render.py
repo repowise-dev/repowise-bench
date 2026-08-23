@@ -58,7 +58,23 @@ def _fmt(rate, low=None, high=None) -> str:
     return f"{rate:.3f} [{low:.2f}, {high:.2f}]"
 
 
-def _provenance_line(doc: dict) -> str:
+def _publishable(p: dict, experiment: str | None = None) -> bool:
+    """Read a verdict that may be one flag or one per experiment.
+
+    Documents written before the stamp was split carry a single bool, so both
+    shapes have to be readable. A dict is truthy, so a reader that forgot this
+    would call every split document publishable -- which is the failure mode
+    worth being explicit about rather than terse.
+    """
+    pub = p["publishable"]
+    if not isinstance(pub, dict):
+        return bool(pub)
+    if experiment is not None:
+        return bool(pub.get(experiment, False))
+    return all(pub.values())
+
+
+def _provenance_line(doc: dict, experiment: str | None = None) -> str:
     """Provenance, distinguishing what a caveat actually invalidates.
 
     `publishable` is one document-level boolean and it is deliberately
@@ -79,7 +95,15 @@ def _provenance_line(doc: dict) -> str:
         f"run {p['run_at'][:10]}",
         f"warmup {'on' if p.get('warmup') else 'OFF'}",
     ]
-    if not p["publishable"]:
+    if not _publishable(p, experiment):
+        why = p.get("not_publishable_because")
+        if isinstance(why, dict):
+            # The stamp is split, so the reason is already attributed and the
+            # heuristic below is not needed.
+            bits.append("**NOT PUBLISHABLE** ("
+                        + (why.get(experiment) or "; ".join(sorted(set(why.values()))))
+                        + ")")
+            return " | ".join(bits)
         cost_only = not p["repowise"].get("dirty", True) and not any(
             "allow-dirty" in c for c in p.get("caveats", [])
         )
@@ -101,7 +125,7 @@ def _provenance_line(doc: dict) -> str:
 
 def render_g2(doc: dict) -> str:
     """Coverage, per arm, on both denominators, with intervals."""
-    out = ["## G2 cross-file coverage", "", _provenance_line(doc), ""]
+    out = ["## G2 cross-file coverage", "", _provenance_line(doc, "g2-cross-file-coverage"), ""]
 
     arms_seen: list[str] = []
     for repo in doc["repos"].values():
@@ -203,7 +227,7 @@ def render_g2(doc: dict) -> str:
 
 def render_g6(doc: dict) -> str:
     """Build cost. Graph construction only, on every arm."""
-    out = ["## G6 graph build cost", "", _provenance_line(doc), ""]
+    out = ["## G6 graph build cost", "", _provenance_line(doc, "g6-build-cost"), ""]
     out += [
         "Graph construction only: walk, parse, resolve, write edges. No "
         "documentation, no embeddings, no health pass. Never quote this beside "
@@ -554,7 +578,7 @@ def main() -> int:
     if args.list:
         for p in sorted(RESULTS.glob("*/result.json")):
             doc = json.loads(p.read_text(encoding="utf-8"))
-            pub = "publishable" if doc["provenance"]["publishable"] else "not publishable"
+            pub = "publishable" if _publishable(doc["provenance"]) else "not publishable"
             print(f"{p.parent.name}  {len(doc['repos'])} repos  {pub}")
         return 0
 

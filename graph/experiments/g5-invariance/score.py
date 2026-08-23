@@ -282,7 +282,9 @@ def main() -> int:
     import repowise.core
 
     measured_tree = Path(repowise.core.__file__).resolve().parents[4]
-    publishable = provenance.require_clean(measured_tree, allow_dirty=args.allow_dirty)
+    publishable = provenance.require_clean(
+        measured_tree, bench_repo=BENCH, allow_dirty=args.allow_dirty
+    )
     if args.skip_determinism:
         publishable = False
 

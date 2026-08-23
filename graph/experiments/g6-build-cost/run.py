@@ -136,7 +136,9 @@ def main() -> int:
     )
     args = ap.parse_args()
 
-    publishable = prov.require_clean(BENCH.parent, allow_dirty=args.allow_dirty)
+    publishable = prov.require_clean(
+        BENCH.parent, bench_repo=BENCH, allow_dirty=args.allow_dirty
+    )
     repo = Path(args.repo).resolve()
     scratch = Path(args.scratch).resolve() if args.scratch else BENCH / "scratch_graph" / "g6"
     scratch.mkdir(parents=True, exist_ok=True)

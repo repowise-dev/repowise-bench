@@ -446,6 +446,28 @@ class CodebaseMemoryMcpArm:
             if self._real_file(f)
         }
 
+    def call_pairs(self, art: arms.Artifact) -> set[tuple[str, str]]:
+        """`(caller_file, callee_qualified_name)`.
+
+        This arm's site fold is already coarser than the others' -- its `edges`
+        carry no line, so `call_edges` keys off the caller symbol's declaration
+        line -- which makes its site and pair counts much closer together than
+        another arm's. That gap is the thing worth reporting, not a defect to
+        hide by publishing only one of them.
+        """
+        sql = """
+            SELECT DISTINCT src.file_path, tgt.qualified_name
+            FROM edges e
+            JOIN nodes src ON src.id = e.source_id
+            JOIN nodes tgt ON tgt.id = e.target_id
+            WHERE e.type IN ('CALLS', 'ASYNC_CALLS') AND src.file_path <> ''
+        """
+        return {
+            (self._n(art, f), self._q(art, target))
+            for f, target in art.handle["conn"].execute(sql)
+            if self._real_file(f)
+        }
+
     def cross_file_edges(
         self, art: arms.Artifact, kinds: frozenset[str] | None = None
     ) -> set[tuple[str, str]]:

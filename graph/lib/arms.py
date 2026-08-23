@@ -221,6 +221,16 @@ class Arm(Protocol):
     def call_edges(self, art: Artifact) -> set[tuple[str, int, str]]:
         """Distinct `(caller_file, line, callee_identity)`, folded."""
 
+    def call_pairs(self, art: Artifact) -> set[tuple[str, str]]:
+        """Distinct `(caller_file, callee_identity)` -- the same edges, folded
+        to pairs instead of to sites.
+
+        Both folds come off one build. True-edge volume was not comparable
+        across arms while each side reported whichever fold it happened to
+        compute, and the fix is to make every arm able to report both rather
+        than to argue about which one is the real count.
+        """
+
     def cross_file_edges(
         self, art: Artifact, kinds: frozenset[str] | None = None
     ) -> set[tuple[str, str]]:

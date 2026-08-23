@@ -175,6 +175,12 @@ class CodeGraphArm:
             for f, line, target in peer.resolved_call_edges(art.handle)
         }
 
+    def call_pairs(self, art: arms.Artifact) -> set[tuple[str, str]]:
+        return {
+            (arms.norm_path(f), target)
+            for f, target in peer.resolved_call_pairs(art.handle)
+        }
+
     def cross_file_edges(
         self, art: arms.Artifact, kinds: frozenset[str] | None = None
     ) -> set[tuple[str, str]]:

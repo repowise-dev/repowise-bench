@@ -67,7 +67,9 @@ def _package_version(repo: Path) -> str | None:
     return m.group(1) if m else None
 
 
-def git_state(repo: Path | str, *, paths: list[str] | None = None) -> dict[str, Any]:
+def git_state(
+    repo: Path | str, *, paths: list[str] | None = None, untracked: bool = True
+) -> dict[str, Any]:
     """HEAD, branch and dirtiness for one checkout.
 
     `paths` narrows the dirty check to the subtree that actually affects the
@@ -78,6 +80,12 @@ def git_state(repo: Path | str, *, paths: list[str] | None = None) -> dict[str, 
     """
     repo = Path(repo)
     status_args = ["status", "--porcelain"]
+    # A tree can be legitimately ahead of its upstream and carry untracked
+    # build output without being a tree nobody can reproduce. Only tracked
+    # edits make an instrument unreconstructable, so a gate on the bench
+    # tree drops `??` lines; the product gate keeps them.
+    if not untracked:
+        status_args.append("--untracked-files=no")
     # A scope that matches nothing makes this guard vacuous: `status -- packages`
     # run from a directory that has no `packages/` returns empty, which reads as
     # "clean" and stamps the result publishable without having checked anything.
@@ -132,10 +140,18 @@ def stamp(
     *,
     repowise_repo: Path | str,
     bench_repo: Path | str,
-    publishable: bool,
+    publishable: bool | dict[str, bool],
+    reasons: dict[str, str] | None = None,
     extra: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """The provenance block every result JSON carries at its top level."""
+    """The provenance block every result JSON carries at its top level.
+
+    `publishable` may be a mapping from experiment id to a verdict. One document
+    can cover two experiments where a caveat compromises only one of them -- a
+    restored artifact voids a cost row and leaves coverage untouched -- and a
+    single document-wide flag makes the sound half unciteable. Pass a mapping
+    and each experiment carries its own verdict and its own reason.
+    """
     block: dict[str, Any] = {
         "experiment": experiment,
         "run_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -147,24 +163,40 @@ def stamp(
         "bench": git_state(bench_repo),
         "tools": tool_versions(),
     }
-    if not publishable and not (extra or {}).get("caveats"):
-        # A caller that listed its own reasons keeps them; this default fires
-        # only when the tree is the sole reason.
-        block["not_publishable_because"] = (
-            "run with --allow-dirty; the measured tree contains uncommitted "
-            "changes, so this is a smoke test and not a result"
-        )
+    # Every false verdict states its own reason. The previous rule suppressed
+    # the default line whenever the document carried any caveat at all, so a
+    # reader met `publishable: false` beside a caveat about something else
+    # entirely and had no way to tell what the false referred to.
+    default = (
+        "run with --allow-dirty; the measured tree contains uncommitted "
+        "changes, so this is a smoke test and not a result"
+    )
+    reasons = reasons or {}
+    if isinstance(publishable, dict):
+        why = {k: reasons.get(k, default) for k, ok in publishable.items() if not ok}
+    else:
+        why = {} if publishable else {experiment: reasons.get(experiment, default)}
+    if why:
+        block["not_publishable_because"] = why
     if extra:
         block.update(extra)
     return block
 
 
-def require_clean(repowise_repo: Path | str, *, allow_dirty: bool) -> bool:
+def require_clean(
+    repowise_repo: Path | str, *, bench_repo: Path | str, allow_dirty: bool
+) -> bool:
     """Gate a run on a clean tree. Returns whether the result is publishable.
 
     Raises rather than warning. A warning printed to stderr during a long run
     is a warning nobody reads, and the whole point is that a dirty-tree number
     is indistinguishable from a good one once it is written down.
+
+    Both trees are gated. This used to see only the product repository, so
+    the measuring instrument itself -- the harness deciding what counts as
+    an edge -- could carry arbitrary uncommitted edits and the result was
+    still stamped publishable. `bench_repo` is required rather than optional
+    because a gate a caller can forget to pass is the defect this closes.
     """
     state = git_state(repowise_repo, paths=["packages"])
     if state.get("dirty_scope_missing"):
@@ -175,6 +207,20 @@ def require_clean(repowise_repo: Path | str, *, allow_dirty: bool) -> bool:
             "--allow-dirty does not suppress this: a guard that cannot fail is "
             "not a guard, and this one silently stamped every run publishable."
         )
+    bench = git_state(bench_repo, untracked=False)
+    if bench["dirty"]:
+        if not allow_dirty:
+            listed_b = "\n  ".join(bench["dirty_paths"][:10])
+            raise DirtyTreeError(
+                f"the bench tree {bench['path']} has uncommitted "
+                f"changes:\n  {listed_b}\n\n"
+                "The harness is the instrument. A result measured by an "
+                "unreconstructable instrument cannot be reproduced from "
+                "any commit, so it is not a result. Commit the harness, "
+                "or pass --allow-dirty to run this as a smoke test."
+            )
+        return False
+
     if not state["dirty"]:
         return True
     if allow_dirty:
