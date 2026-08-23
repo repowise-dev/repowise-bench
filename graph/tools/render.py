@@ -28,6 +28,7 @@ from pathlib import Path
 BENCH = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(BENCH / "graph" / "lib"))
 
+import provenance  # noqa: E402
 import stats  # noqa: E402
 
 RESULTS = BENCH / "results" / "graph" / "g2g6"
@@ -59,19 +60,8 @@ def _fmt(rate, low=None, high=None) -> str:
 
 
 def _publishable(p: dict, experiment: str | None = None) -> bool:
-    """Read a verdict that may be one flag or one per experiment.
-
-    Documents written before the stamp was split carry a single bool, so both
-    shapes have to be readable. A dict is truthy, so a reader that forgot this
-    would call every split document publishable -- which is the failure mode
-    worth being explicit about rather than terse.
-    """
-    pub = p["publishable"]
-    if not isinstance(pub, dict):
-        return bool(pub)
-    if experiment is not None:
-        return bool(pub.get(experiment, False))
-    return all(pub.values())
+    """Delegates: one reader for both renderers, so they cannot disagree."""
+    return provenance.is_publishable(p, experiment)
 
 
 def _provenance_line(doc: dict, experiment: str | None = None) -> str:

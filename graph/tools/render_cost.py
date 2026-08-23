@@ -26,6 +26,10 @@ import sys
 from pathlib import Path
 
 BENCH = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(BENCH / "graph" / "lib"))
+
+import provenance  # noqa: E402
+
 RESULTS = BENCH / "results" / "graph" / "g6-corpus"
 
 # Display order, ours first: the reader is here to compare against us.
@@ -103,7 +107,7 @@ def provenance_line(doc: dict, path: Path) -> str:
             f"nothing here may be quoted as a {ver} figure.",
             "",
         ]
-    if not pv.get("publishable"):
+    if not provenance.is_publishable(pv):
         out += ["**STAMPED NOT PUBLISHABLE.**"]
         for c in pv.get("caveats") or []:
             out.append(f"* {c}")
@@ -279,7 +283,7 @@ def main() -> int:
         for p in sorted(RESULTS.glob("*/result.json")):
             d = json.loads(p.read_text(encoding="utf-8"))
             print(f"{p.parent.name}  {d.get('counts', {}).get('cells', '?')} cells  "
-                  f"publishable={d['provenance']['publishable']}")
+                  f"publishable={provenance.is_publishable(d['provenance'])}")
         return 0
 
     path, doc = load(args.run)

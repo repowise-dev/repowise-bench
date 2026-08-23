@@ -183,6 +183,22 @@ def stamp(
     return block
 
 
+def is_publishable(block: dict[str, Any], experiment: str | None = None) -> bool:
+    """Read a verdict that may be one flag or one per experiment.
+
+    Documents written before the stamp was split carry a single bool, so both
+    shapes have to be readable. A dict is truthy, so a reader that forgot this
+    would call every split document publishable, which is the failure mode this
+    exists to make impossible rather than merely unlikely.
+    """
+    pub = block.get("publishable")
+    if not isinstance(pub, dict):
+        return bool(pub)
+    if experiment is not None:
+        return bool(pub.get(experiment, False))
+    return bool(pub) and all(pub.values())
+
+
 def require_clean(
     repowise_repo: Path | str, *, bench_repo: Path | str, allow_dirty: bool
 ) -> bool:

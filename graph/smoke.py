@@ -131,15 +131,18 @@ def main() -> int:
     def _():
         import provenance as pv
 
+        # Both trees are gated now, so a clean product tree is not on its own
+        # enough for the guard to allow a publishable run.
         state = pv.git_state(BENCH.parent, paths=["packages"])
-        if not state["dirty"]:
-            require(pv.require_clean(BENCH.parent, allow_dirty=False) is True, "clean tree rejected")
+        bench = pv.git_state(BENCH, untracked=False)
+        if not state["dirty"] and not bench["dirty"]:
+            require(pv.require_clean(BENCH.parent, bench_repo=BENCH, allow_dirty=False) is True, "clean tree rejected")
             return "tree clean, guard allows publishable"
         try:
-            pv.require_clean(BENCH.parent, allow_dirty=False)
+            pv.require_clean(BENCH.parent, bench_repo=BENCH, allow_dirty=False)
         except pv.DirtyTreeError:
             require(
-                pv.require_clean(BENCH.parent, allow_dirty=True) is False,
+                pv.require_clean(BENCH.parent, bench_repo=BENCH, allow_dirty=True) is False,
                 "--allow-dirty must yield publishable=False, not True",
             )
             return "dirty tree refused, --allow-dirty yields publishable=False"
