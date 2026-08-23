@@ -1,292 +1,296 @@
 {
- "experiment": "G1",
- "language": "rust",
- "side": "ours",
- "arm": "repowise",
- "repositories": [
-  "ripgrep",
-  "serde",
-  "bevy"
- ],
- "repowise_commit": "350f6a3a",
- "seed": 2026,
- "pooled_cell": {
-  "n": 30,
-  "correct": 22,
-  "wrong": 8,
-  "ambiguous": 0
- },
- "note": "The draw, not the grading. This cell was re-read on a fresh draw after #1708 stopped the bare-name tier answering for the standard library, and the per-row verdicts of that read were not written down. What survives is the cell total, 22 of 30, and the composition of the 8 wrong rows: 4 macro invocations graded as calls, 3 cross-module or overload collisions, and 1 standard-library type constructor. The rows below are the sites that were read, so the sample is auditable even though the verdicts are not. This is the one cell of the nine whose rows this directory cannot supply. Re-measured at 350f6a3a, the single commit all nine cells now carry. ripgrep, serde and bevy are byte-identical at 13cc339a and 350f6a3a: 5,238, 1,996 and 30,475 distinct resolved call sites, same sites, same targets, same origins. No row was re-read and none needed to be.",
- "rows": [
-  {
-   "repo": "ripgrep",
-   "file": "crates/core/flags/defs.rs",
-   "line": 7228,
-   "target": "crates/core/flags/parse.rs::parse_low_raw",
-   "origin": "import_scoped",
-   "verdict": null,
-   "reason": null
+  "experiment": "G1",
+  "language": "rust",
+  "side": "ours",
+  "arm": "repowise",
+  "repositories": [
+    "ripgrep",
+    "serde",
+    "bevy"
+  ],
+  "repowise_commit": "350f6a3a",
+  "seed": 2026,
+  "pooled_cell": {
+    "n": 30,
+    "correct": 22,
+    "wrong": 8,
+    "ambiguous": 0
   },
-  {
-   "repo": "ripgrep",
-   "file": "crates/globset/src/glob.rs",
-   "line": 1669,
-   "target": "crates/globset/src/glob.rs::tests::prefix",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/ignore/examples/walk.rs",
-   "line": 27,
-   "target": "crates/ignore/src/walk.rs::WalkParallel::threads",
-   "origin": "import_merged",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/ignore/src/incremental.rs",
-   "line": 1199,
-   "target": "crates/ignore/src/incremental.rs::tests::wfile",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/ignore/src/walk.rs",
-   "line": 1632,
-   "target": "crates/ignore/src/lib.rs::Error::with_depth",
-   "origin": "global_unique",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/printer/src/standard.rs",
-   "line": 2907,
-   "target": "crates/printer/src/standard.rs::StandardBuilder::new",
-   "origin": "receiver_same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/printer/src/standard.rs",
-   "line": 3496,
-   "target": "crates/printer/src/standard.rs::StandardBuilder::build",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/printer/src/standard.rs",
-   "line": 3902,
-   "target": "crates/pcre2/src/matcher.rs::RegexMatcherBuilder::new",
-   "origin": "receiver_global",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/searcher/src/line_buffer.rs",
-   "line": 816,
-   "target": "crates/searcher/src/line_buffer.rs::LineBufferBuilder::binary_detection",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "ripgrep",
-   "file": "crates/searcher/src/searcher/core.rs",
-   "line": 404,
-   "target": "crates/searcher/src/searcher/core.rs::Core::after_context_by_line",
-   "origin": "self_scope",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "serde_core/src/ser/impls.rs",
-   "line": 24,
-   "target": "serde_core/src/ser/impls.rs::primitive_impl",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "serde_derive/src/de/tuple.rs",
-   "line": 105,
-   "target": "serde_derive/src/fragment.rs::quote_block",
-   "origin": "import_merged",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "serde_derive/src/internals/attr.rs",
-   "line": 1029,
-   "target": "serde_derive/src/internals/attr.rs::Attr::none",
-   "origin": "receiver_same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "serde_derive/src/internals/receiver.rs",
-   "line": 126,
-   "target": "serde_derive/src/internals/receiver.rs::ReplaceReceiver::visit_macro_mut",
-   "origin": "self_scope",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "serde_derive/src/ser.rs",
-   "line": 492,
-   "target": "serde_derive/src/ser.rs::serialize_untagged_variant",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "test_suite/tests/test_de.rs",
-   "line": 739,
-   "target": "test_suite/tests/test_de.rs::test",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "test_suite/tests/test_de.rs",
-   "line": 1699,
-   "target": "test_suite/tests/test_de.rs::test",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "test_suite/tests/test_de.rs",
-   "line": 2050,
-   "target": "test_suite/tests/test_de.rs::test",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "test_suite/tests/test_de.rs",
-   "line": 2086,
-   "target": "serde_core/src/ser/impls.rs::Saturating",
-   "origin": "global_unique",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "serde",
-   "file": "test_suite/tests/test_ignored_any.rs",
-   "line": 105,
-   "target": "test_suite/tests/test_ignored_any.rs::Enum",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_ecs/src/query/mod.rs",
-   "line": 767,
-   "target": "crates/bevy_ecs/src/query/access.rs::ComponentIdIter::next",
-   "origin": "import_merged",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_ecs/src/relationship/mod.rs",
-   "line": 446,
-   "target": "crates/bevy_ecs/src/component/clone.rs::ComponentCloneBehavior::reflect",
-   "origin": "receiver_global",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_ecs/src/world/deferred_world.rs",
-   "line": 666,
-   "target": "crates/bevy_ecs/src/component/info.rs::Components::get_info_unchecked",
-   "origin": "global_unique",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_pbr/src/render/gpu_preprocess.rs",
-   "line": 1322,
-   "target": "crates/bevy_material/src/descriptor.rs::BindGroupLayoutDescriptor::new",
-   "origin": "receiver_global",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_pbr/src/render/light.rs",
-   "line": 1936,
-   "target": "crates/bevy_pbr/src/render/light.rs::despawn_entities",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_reflect/src/func/args/count.rs",
-   "line": 268,
-   "target": "crates/bevy_reflect/src/func/args/count.rs::ArgCount::default",
-   "origin": "receiver_same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "crates/bevy_state/src/state/resources.rs",
-   "line": 82,
-   "target": "crates/bevy_state/src/state/resources.rs::State::get",
-   "origin": "self_scope",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "examples/3d/light_probe_blending.rs",
-   "line": 219,
-   "target": "examples/3d/light_probe_blending.rs::spawn_buttons",
-   "origin": "same_file",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "examples/animation/eased_motion.rs",
-   "line": 135,
-   "target": "crates/bevy_animation/src/animation_curves.rs::animated_field",
-   "origin": "import_scoped",
-   "verdict": null,
-   "reason": null
-  },
-  {
-   "repo": "bevy",
-   "file": "examples/testbed/ui.rs",
-   "line": 1955,
-   "target": "crates/bevy_ui/src/ui_node.rs::BorderColor::all",
-   "origin": "receiver_global",
-   "verdict": null,
-   "reason": null
-  }
- ]
+  "note": "The draw, not the grading. This cell was re-read on a fresh draw after #1708 stopped the bare-name tier answering for the standard library, and the per-row verdicts of that read were not written down. What survives is the cell total, 22 of 30, and the composition of the 8 wrong rows: 4 macro invocations graded as calls, 3 cross-module or overload collisions, and 1 standard-library type constructor. The rows below are the sites that were read, so the sample is auditable even though the verdicts are not. This is the one cell of the nine whose rows this directory cannot supply. Re-measured at 350f6a3a, the single commit all nine cells now carry. ripgrep, serde and bevy are byte-identical at 13cc339a and 350f6a3a: 5,238, 1,996 and 30,475 distinct resolved call sites, same sites, same targets, same origins. No row was re-read and none needed to be.",
+  "rows": [
+    {
+      "repo": "ripgrep",
+      "file": "crates/core/flags/defs.rs",
+      "line": 7228,
+      "target": "crates/core/flags/parse.rs::parse_low_raw",
+      "origin": "import_scoped",
+      "verdict": "correct",
+      "reason": "Call site is `let args = parse_low_raw([\"--trim\"]).unwrap();` at defs.rs:7228 inside `#[test] fn test_trim`; defs.rs:34-35 has `#[cfg(test)] use crate::flags::parse::parse_low_raw`; target is the sole `pub(crate) fn parse_low_raw` at parse.rs:139."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/globset/src/glob.rs",
+      "line": 1669,
+      "target": "crates/globset/src/glob.rs::tests::prefix",
+      "origin": "same_file",
+      "verdict": "wrong",
+      "reason": "Line 1669 is `prefix!(extract_prefix1, \"/foo\", Some(s(\"/foo\")));`, a macro invocation, not a call; the target `tests::prefix` is `macro_rules! prefix` at glob.rs:1608 inside `mod tests` (the only `fn prefix` is the unrelated `Tokens::prefix` at glob.rs:419).",
+      "error_class": "macro_as_call"
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/ignore/examples/walk.rs",
+      "line": 27,
+      "target": "crates/ignore/src/walk.rs::WalkParallel::threads",
+      "origin": "import_merged",
+      "verdict": "wrong",
+      "reason": "Line 27 is `let walker = WalkBuilder::new(path).threads(6).build_parallel();` so `.threads(6)` binds to `pub fn threads(&mut self, n: usize) -> &mut WalkBuilder` in `impl WalkBuilder` at walk.rs:773; the target `WalkParallel::threads` is the zero-arg `fn threads(&self) -> usize` at walk.rs:1537 inside `impl WalkParallel` (walk.rs:1424) - right name, wrong type."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/ignore/src/incremental.rs",
+      "line": 1199,
+      "target": "crates/ignore/src/incremental.rs::tests::wfile",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 1199 is `wfile(td.path().join(\"visible-file\"), \"\");` inside `#[test] fn hidden_files_and_directories`, which sits in `mod tests` starting at incremental.rs:558; target `fn wfile<P: AsRef<Path>>` is at incremental.rs:572 in that same test module and is the only declaration of the name."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/ignore/src/walk.rs",
+      "line": 1632,
+      "target": "crates/ignore/src/lib.rs::Error::with_depth",
+      "origin": "global_unique",
+      "verdict": "correct",
+      "reason": "Lines 1632-1635 are the single expression `Error::from(err).with_path(self.dent.path()).with_depth(self.dent.depth() + 1)`; the receiver of `.with_depth` is `ignore::Error`, and `fn with_depth(self, depth: usize) -> Error` at lib.rs:271 is the only declaration of that name in the whole workspace."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/printer/src/standard.rs",
+      "line": 2907,
+      "target": "crates/printer/src/standard.rs::StandardBuilder::new",
+      "origin": "receiver_same_file",
+      "verdict": "correct",
+      "reason": "Line 2907 is `let mut printer = StandardBuilder::new().build(NoColor::new(vec![]));` inside `#[test] fn max_matches_multi_line1`; `use super::{ColorSpecs, Standard, StandardBuilder}` at the top of `mod tests` (standard.rs:1745) pins the type, and target `pub fn new() -> StandardBuilder` is at standard.rs:105 in `impl StandardBuilder` (103)."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/printer/src/standard.rs",
+      "line": 3496,
+      "target": "crates/printer/src/standard.rs::StandardBuilder::build",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Lines 3496-3498 are `StandardBuilder::new().replacement(Some(...)).build(NoColor::new(vec![]))`; `.replacement` returns `&mut StandardBuilder`, so `.build` binds to `pub fn build<W: WriteColor>(&self, wtr: W) -> Standard<W>` at standard.rs:127 in `impl StandardBuilder`. The other `fn build` candidates reachable in the test module belong to SearcherBuilder and RegexMatcherBuilder, which are not the receiver here."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/printer/src/standard.rs",
+      "line": 3902,
+      "target": "crates/pcre2/src/matcher.rs::RegexMatcherBuilder::new",
+      "origin": "receiver_global",
+      "verdict": "wrong",
+      "reason": "Line 3902 is `RegexMatcherBuilder::new().crlf(true).build(r\"x?\").unwrap();`, and `mod tests` at standard.rs:1745 imports `use grep_regex::{RegexMatcher, RegexMatcherBuilder}`, so the call reaches `impl RegexMatcherBuilder` in crates/regex/src/matcher.rs:34. The target names the identically-spelled builder in the pcre2 crate (crates/pcre2/src/matcher.rs:20), a different crate that is not imported here."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/searcher/src/line_buffer.rs",
+      "line": 816,
+      "target": "crates/searcher/src/line_buffer.rs::LineBufferBuilder::binary_detection",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Lines 816-818 are `LineBufferBuilder::new().binary_detection(BinaryDetection::Quit(b'\\x00')).build();` inside `#[test] fn buffer_binary_quit2`; the `.binary_detection` receiver is `&mut LineBufferBuilder` and the target `pub(crate) fn binary_detection` is at line_buffer.rs:196 in `impl LineBufferBuilder` (114), the only declaration of that name in the file."
+    },
+    {
+      "repo": "ripgrep",
+      "file": "crates/searcher/src/searcher/core.rs",
+      "line": 404,
+      "target": "crates/searcher/src/searcher/core.rs::Core::after_context_by_line",
+      "origin": "self_scope",
+      "verdict": "correct",
+      "reason": "Line 404 is `if !self.after_context_by_line(buf, line.start())? {` inside `impl<'s, M: Matcher, S: Sink> Core<'s, M, S>` (core.rs:39), so `self` is `Core`; target `pub(crate) fn after_context_by_line` at core.rs:276 is in that same impl and is the only declaration of the name in the workspace."
+    },
+    {
+      "repo": "serde",
+      "file": "serde_core/src/ser/impls.rs",
+      "line": 24,
+      "target": "serde_core/src/ser/impls.rs::primitive_impl",
+      "origin": "same_file",
+      "verdict": "wrong",
+      "reason": "Line 24 is `primitive_impl!(i16, serialize_i16);`, a macro invocation rather than a function call; the target is `macro_rules! primitive_impl` at impls.rs:7. The item and the site are right, but the edge type is not a call.",
+      "error_class": "macro_as_call"
+    },
+    {
+      "repo": "serde",
+      "file": "serde_derive/src/de/tuple.rs",
+      "line": 105,
+      "target": "serde_derive/src/fragment.rs::quote_block",
+      "origin": "import_merged",
+      "verdict": "wrong",
+      "reason": "Line 105 opens `quote_block! { ... }` inside `fn deserialize`, a macro invocation; the target `fragment.rs::quote_block` is `macro_rules! quote_block` at fragment.rs:19. Correct item, wrong edge type - a macro expansion recorded as a call.",
+      "error_class": "macro_as_call"
+    },
+    {
+      "repo": "serde",
+      "file": "serde_derive/src/internals/attr.rs",
+      "line": 1029,
+      "target": "serde_derive/src/internals/attr.rs::Attr::none",
+      "origin": "receiver_same_file",
+      "verdict": "correct",
+      "reason": "Line 1029 is `let mut default = Attr::none(cx, DEFAULT);`; the path is explicitly qualified with `Attr`, so it binds to `fn none(cx: &'c Ctxt, name: Symbol) -> Self` at attr.rs:32 in `impl<'c, T> Attr<'c, T>` (31). The sibling `BoolAttr::none` (80) and `VecAttr::none` (101) share the name but are called on other lines, not this one."
+    },
+    {
+      "repo": "serde",
+      "file": "serde_derive/src/internals/receiver.rs",
+      "line": 126,
+      "target": "serde_derive/src/internals/receiver.rs::ReplaceReceiver::visit_macro_mut",
+      "origin": "self_scope",
+      "verdict": "correct",
+      "reason": "Line 126 is `Type::Macro(ty) => self.visit_macro_mut(&mut ty.mac),` inside `fn visit_type_mut` in the inherent `impl ReplaceReceiver<'_>` starting at receiver.rs:72, so `self` is `ReplaceReceiver`; target `fn visit_macro_mut(&mut self, _mac: &mut Macro) {}` at receiver.rs:292 is the last method of that same inherent impl."
+    },
+    {
+      "repo": "serde",
+      "file": "serde_derive/src/ser.rs",
+      "line": 492,
+      "target": "serde_derive/src/ser.rs::serialize_untagged_variant",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 492 is `serialize_untagged_variant(params, variant, cattrs)` in the `(attr::TagType::None, _) | (_, true)` match arm; target `fn serialize_untagged_variant` at ser.rs:765 is the only declaration of that name in serde_derive."
+    },
+    {
+      "repo": "serde",
+      "file": "test_suite/tests/test_de.rs",
+      "line": 739,
+      "target": "test_suite/tests/test_de.rs::test",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 739 is `test(65535, &[Token::U16(65535)]);` at the top level of a `#[test]` fn body, so the bare name resolves to the file-scope `fn test<'de, T>(value: T, tokens: &'de [Token])` at test_de.rs:155. The other `fn test` in the file (2357) is nested inside `fn test_atomics` and is not in scope here."
+    },
+    {
+      "repo": "serde",
+      "file": "test_suite/tests/test_de.rs",
+      "line": 1699,
+      "target": "test_suite/tests/test_de.rs::test",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 1699 opens the multi-line call `test(EnumOther::Unit, &[Token::Enum { name: \"EnumOther\" }, Token::U8(0), Token::Unit],);` at the top level of a `#[test]` fn; it binds to the file-scope `fn test<'de, T>` at test_de.rs:155, not the `fn test<L, A, T>` nested inside `fn test_atomics` at 2357."
+    },
+    {
+      "repo": "serde",
+      "file": "test_suite/tests/test_de.rs",
+      "line": 2050,
+      "target": "test_suite/tests/test_de.rs::test",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 2050 opens `test(SkipPartialEq(ArcWeak::<bool>::new()), &[Token::Some, Token::Bool(true)],)` inside `#[test] fn test_arc_weak_some`; resolves to the file-scope `fn test<'de, T>` at test_de.rs:155, the only `test` in scope at that point."
+    },
+    {
+      "repo": "serde",
+      "file": "test_suite/tests/test_de.rs",
+      "line": 2086,
+      "target": "serde_core/src/ser/impls.rs::Saturating",
+      "origin": "global_unique",
+      "verdict": "wrong",
+      "reason": "Line 2086 is `test(Saturating(u8::MIN), &[Token::I8(-1)]);`; the recorded callee `Saturating(...)` is the tuple-struct constructor of `std::num::Saturating`, imported at test_de.rs:23-26. The target `serde_core/src/ser/impls.rs::Saturating` is not a declaration of that type at all - impls.rs:981 is `impl<T> Serialize for Saturating<T>`, a trait impl in a different crate."
+    },
+    {
+      "repo": "serde",
+      "file": "test_suite/tests/test_ignored_any.rs",
+      "line": 105,
+      "target": "test_suite/tests/test_ignored_any.rs::Enum",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 105 is `IgnoredAny::deserialize(Enum(\"Newtype\")).unwrap();`; `Enum(\"Newtype\")` is the tuple-struct constructor of `struct Enum(&'static str)` declared at test_ignored_any.rs:19, the same file, and the only item named `Enum` declared here (`EnumAccess` on line 5 is a different name)."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_ecs/src/query/mod.rs",
+      "line": 767,
+      "target": "crates/bevy_ecs/src/query/access.rs::ComponentIdIter::next",
+      "origin": "import_merged",
+      "verdict": "wrong",
+      "reason": "Line 767 is `let _: Option<&Foo> = q.iter_many(&world, [e]).next();`; `QueryState::iter_many` returns `QueryManyIter<'w, 's, D::ReadOnly, F, EntityList::IntoIter>` (query/state.rs:1267-1271), so `.next()` binds to QueryManyIter's Iterator impl. The target is `impl<I: Iterator<Item = usize>> Iterator for ComponentIdIter<I>` at query/access.rs:1473 - a same-named `next` on an unrelated iterator type."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_ecs/src/relationship/mod.rs",
+      "line": 446,
+      "target": "crates/bevy_ecs/src/component/clone.rs::ComponentCloneBehavior::reflect",
+      "origin": "receiver_global",
+      "verdict": "correct",
+      "reason": "Line 446 is `ComponentCloneBehavior::reflect()` inside `impl ... RelationshipCloneBehaviorViaReflect for &RelationshipCloneBehaviorSpecialization<C>`; relationship/mod.rs:20 imports `component::{..., ComponentCloneBehavior, ...}` and the only declaration of that enum in the repo is component/clone.rs:11, whose impl (21) holds `pub fn reflect() -> Self` at clone.rs:31."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_ecs/src/world/deferred_world.rs",
+      "line": 666,
+      "target": "crates/bevy_ecs/src/component/info.rs::Components::get_info_unchecked",
+      "origin": "global_unique",
+      "verdict": "correct",
+      "reason": "Line 666 is `let hooks = unsafe { self.components().get_info_unchecked(component_id) }.hooks();` in `DeferredWorld::trigger_on_insert`; `self.components()` yields `&Components`, and `pub unsafe fn get_info_unchecked(&self, id: ComponentId) -> &ComponentInfo` at component/info.rs:513 is the only declaration of that name in bevy_ecs."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_pbr/src/render/gpu_preprocess.rs",
+      "line": 1322,
+      "target": "crates/bevy_material/src/descriptor.rs::BindGroupLayoutDescriptor::new",
+      "origin": "receiver_global",
+      "verdict": "correct",
+      "reason": "Line 1322 is `let reset_indirect_batch_sets_bind_group_layout = BindGroupLayoutDescriptor::new(...)`; gpu_preprocess.rs:53 imports the name from `bevy_render::render_resource`, which re-exports it via `pub use bevy_material::{..., descriptor::{BindGroupLayoutDescriptor, ...}}` (render_resource/mod.rs:84). Following the re-export lands on `impl BindGroupLayoutDescriptor { pub fn new(...) }` at bevy_material/src/descriptor.rs:19-20, the only declaration of that struct in the repo."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_pbr/src/render/light.rs",
+      "line": 1936,
+      "target": "crates/bevy_pbr/src/render/light.rs::despawn_entities",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 1936 is `despawn_entities(&mut commands, entities);` inside the directional-light cleanup loop; `fn despawn_entities(commands: &mut Commands, entities: Vec<Entity>)` at light.rs:2174 is the only declaration of that name anywhere in bevy_pbr."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_reflect/src/func/args/count.rs",
+      "line": 268,
+      "target": "crates/bevy_reflect/src/func/args/count.rs::ArgCount::default",
+      "origin": "receiver_same_file",
+      "verdict": "correct",
+      "reason": "Line 268 is `let mut count = ArgCount::default();` inside `#[test] fn should_allow_removing_nonexistent_count` in `mod tests` (count.rs:191); the type is pinned by the explicit `ArgCount::` path, and the reached declaration is `fn default() -> Self` at count.rs:141 in `impl Default for ArgCount` (140) - the trait impl, as the rubric requires, not the trait declaration."
+    },
+    {
+      "repo": "bevy",
+      "file": "crates/bevy_state/src/state/resources.rs",
+      "line": 82,
+      "target": "crates/bevy_state/src/state/resources.rs::State::get",
+      "origin": "self_scope",
+      "verdict": "correct",
+      "reason": "Line 82 is `self.get() == other` inside `fn eq` of `impl<S: States> PartialEq<S> for State<S>` (resources.rs:80), so `self` is `&State<S>` and the call reaches the inherent `pub fn get(&self) -> &S` at resources.rs:69 in `impl<S: States> State<S>` (60). The same-named `PreviousState::get` at 138 is on a different type."
+    },
+    {
+      "repo": "bevy",
+      "file": "examples/3d/light_probe_blending.rs",
+      "line": 219,
+      "target": "examples/3d/light_probe_blending.rs::spawn_buttons",
+      "origin": "same_file",
+      "verdict": "correct",
+      "reason": "Line 219 is `spawn_buttons(&mut commands);` inside the `setup` system; `fn spawn_buttons(commands: &mut Commands)` at light_probe_blending.rs:353 is the only declaration of that name in this example file, which is its own crate root."
+    },
+    {
+      "repo": "bevy",
+      "file": "examples/animation/eased_motion.rs",
+      "line": 135,
+      "target": "crates/bevy_animation/src/animation_curves.rs::animated_field",
+      "origin": "import_scoped",
+      "verdict": "wrong",
+      "reason": "Line 135 is `AnimatableCurve::new(animated_field!(Transform::rotation), rotation_curve),`; the recorded callee `animated_field!` is a macro invocation, and the target is `macro_rules! animated_field` at bevy_animation/src/animation_curves.rs:794. Right item, wrong edge type.",
+      "error_class": "macro_as_call"
+    },
+    {
+      "repo": "bevy",
+      "file": "examples/testbed/ui.rs",
+      "line": 1955,
+      "target": "crates/bevy_ui/src/ui_node.rs::BorderColor::all",
+      "origin": "receiver_global",
+      "verdict": "correct",
+      "reason": "Line 1955 is `BorderColor::all(RED),` inside a `builder.spawn((...))` bundle; `pub fn all(color: impl Into<Color>) -> Self` at bevy_ui/src/ui_node.rs:2275 sits in `impl BorderColor` (2264) for the sole `pub struct BorderColor` in the repo (ui_node.rs:2251). The other `fn all` in the file (2545) belongs to BorderRadius, a different type."
+    }
+  ]
 }
