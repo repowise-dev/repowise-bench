@@ -374,9 +374,9 @@ and python cells. Patching individual rows would have broken the stratification,
 so where a population moved the cell was replaced whole.
 
 **Where the pooled figure went, and why it is smaller than the churn suggests.**
-230/270 against the previous 231/270, both figures being the nine-cell pool as it
+230/270 against the previous 229/270, both figures being the nine-cell pool as it
 stood before java was widened to 40 rows. csharp rose two rows to 30/30 and C++ fell
-three to 22/30; every other cell is unchanged. Neither move is attributable to a
+one to 22/30; every other cell is unchanged. Neither move is attributable to a
 resolver change: of the 30 csharp rows only one is a site that #1782 newly
 captured, and it reads correct, while all ten seastar rows are sites that existed
 and resolved identically before. **Both moves are the draw.** The direction of the
@@ -386,6 +386,48 @@ than either "floor" or "regression", and it is the one the rows support.
 Two changes in the same window are safely inert and are named so the list is not
 mistaken for a complete inventory of the window: #1773 stores a call line as an
 edge attribute and #1755 adds an edge-type constant. Neither produces an edge.
+
+### How stale the page is against a later tip, measured rather than argued
+
+The cells are pinned to `350f6a3a`. Nine resolver changes have merged since. The
+same site-by-site diff that produced the table above was re-run for all
+seventeen corpus repositories between that pin and `58403ddb6`, and then a second
+question was asked that the first one does not answer: **did any GRADED row
+move?** A population can move by thousands of sites and leave every verdict on
+this page standing.
+
+| cell | population before -> after | added | removed | retargeted | graded rows moved | their verdicts |
+|---|---|---|---|---|---|---|
+| typescript | 9,174 -> 9,174 *identical* | 0 | 0 | 0 | **0** | - |
+| go | 2,279 -> 2,279 *identical* | 0 | 0 | 0 | **0** | - |
+| python | 9,878 -> 9,878 *identical* | 0 | 0 | 0 | **0** | - |
+| csharp | 8,946 -> 8,960 | 14 | 0 | 0 | **0** | - |
+| kotlin | 41,139 -> 41,368 | 229 | 0 | 0 | **0** | - |
+| swift | 2,610 -> 2,536 | 124 | 198 | 0 | **3** | 3 wrong |
+| rust | 37,709 -> 35,714 | 1,029 | 3,024 | 0 | **4** | 4 wrong |
+| java | 52,349 -> 48,234 | 65 | 4,180 | 7,048 | **4** | 4 wrong |
+| cpp | 33,705 -> 41,754 | 8,186 | 137 | 462 | **1** | 1 wrong |
+
+**Twelve of the 280 pooled rows moved, and every one of them is a row this page
+grades `wrong`.** Eleven sites disappeared; one rebound elsewhere. **No row graded
+`correct` moved on any cell.** That is the whole basis for calling the staleness
+conservative, and it replaces the older and simply false claim that the changes
+in between "gained zero" - C++ gained 8,186 sites and rust 1,029.
+
+Three cells are certified byte-identical at the later tip. The other six are not,
+and the correct repair is a fresh proportional draw per cell rather than patching
+twelve rows, for the same reason given above: the sampler stratifies, so a
+population that moves at all reshuffles the whole draw. That re-read has not been
+done, so **this page remains a measurement at `350f6a3a` and says so**, with the
+direction of its error now known rather than assumed.
+
+The instrument is `dump_call_population.py` plus `g1_rows_moved.py`. The row files
+do not share one schema - java writes a bare basename and `Class::method` where
+others write a repo-relative path and a bare callee - so the join is
+`(basename, line, callee-name)` and the script **refuses to report** unless every
+row joins, because an unjoined row is indistinguishable from a deleted site and
+reads as staleness that is not there. The first run of it reported all 40 java
+rows as deleted, which was the join and not the resolver.
 
 ### One thing this page cannot currently reproduce
 
@@ -418,6 +460,35 @@ should be able to say how they were drawn.
   the Kotlin sample carried a receiver-typed origin. A stratified-by-population
   draw puts almost nothing in that stratum, so this audit cannot certify that
   mechanism; doing so needs a draw restricted to receiver-typed rows.
+
+## php is graded and deliberately not pooled
+
+`rows/php-ours.json` and `rows/php-codegraph.json` are complete, graded cells
+over guzzle, monica and laravel-framework: **ours 30/30, the peer 28/30**, which
+on overlapping intervals is a tie. They are **not** in `verify_rows.py`'s
+`LANGUAGES` and not in the headline, so the published figure stays nine
+languages at 240/280 and 164/280.
+
+That is a decision, not an oversight, and it is recorded here because it was
+previously recorded only in a commit message, where nobody reading the page
+would find it. Two reasons:
+
+* **Entering a language moves the board.** php should enter once, together with
+  ruby, rather than moving the published pool twice. ruby has no rows at all
+  yet.
+* **The cell is at a different commit** (`18340180`) from the nine-cell pool
+  (`350f6a3a`), so pooling it today would mix pins as well as languages.
+
+**The 30/30 is real and has been read four times.** A perfect cell is a bug
+until proven otherwise, so it was graded by two independent blind readers when
+it was taken and by two more, blind to those, afterwards: all four return 30/30
+with identical per-row labels. Its ceiling is stated rather than hidden: the
+draw is proportional and php's population is dominated by its two most decidable
+tiers, sixteen `self_scope` and six `import_merged` of thirty, because PHP makes
+`use` imports mandatory. It says the tiers we already fire are sound, not that a
+new one would be. The Laravel facade appears in none of the thirty rows and
+monica alone holds roughly 850 facade static-call sites, so the cell is silent
+on the shape that matters most for php coverage.
 
 ## Reproducing
 
