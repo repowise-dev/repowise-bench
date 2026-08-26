@@ -1,0 +1,89 @@
+{
+  "gate": {
+    "arm": "rw-full",
+    "phase": "post",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf",
+    "passed": true,
+    "checks": [
+      {
+        "check": "tree_exists",
+        "ok": true,
+        "detail": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf"
+      },
+      {
+        "check": "tree_pinned",
+        "ok": true,
+        "detail": {
+          "head": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+          "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457"
+        }
+      },
+      {
+        "check": "block_matches_declaration",
+        "ok": true,
+        "detail": {
+          "visible": true,
+          "declared": true,
+          "chars": 6944
+        }
+      },
+      {
+        "check": "block_non_empty",
+        "ok": true,
+        "detail": {
+          "chars": 6944
+        }
+      },
+      {
+        "check": "hook_ledger_populated",
+        "ok": true,
+        "detail": {
+          "db_present": true,
+          "sessions": 22,
+          "hook_runs": 7,
+          "skeleton_or_digest": 0,
+          "hook_calls": 22,
+          "hook_emitted": 4,
+          "injections": 1,
+          "read_hook_calls": 3,
+          "read_hook_emitted": 0,
+          "search_hook_calls": 6,
+          "search_hook_emitted": 0
+        }
+      },
+      {
+        "check": "replacing_surfaces_installed",
+        "ok": true,
+        "detail": {
+          "read_calls": 3,
+          "search_calls": 6
+        }
+      },
+      {
+        "check": "replacing_surfaces_emission_RATE_not_a_gate",
+        "ok": true,
+        "detail": {
+          "read": "0/3",
+          "search": "0/6",
+          "total": "4/22"
+        }
+      },
+      {
+        "check": "index_present",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "index_embedder_mock": false
+        }
+      },
+      {
+        "check": "embedder_live_1536",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "note": "D13: every index before 2026-08-05 was mock at 8 dims"
+        }
+      }
+    ]
+  }
+}

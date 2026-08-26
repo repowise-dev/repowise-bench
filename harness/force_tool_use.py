@@ -80,18 +80,72 @@ Usage, as a hook command:
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 
-def _called(transcript_path: str, prefix: str) -> bool:
-    """Did this session issue a tool call to the arm's own server?
+def _cli_needles(tools: str) -> list[str]:
+    """The `Bash` command spellings that count as using the CLI surface.
+
+    The CLI arm's "tool call" is a `Bash` tool_use whose command invokes one of
+    the arm's own subcommands. There is no server prefix to match on, so the
+    needle is the command line itself, and it has to be tight enough that
+    `repowise --version` or a `grep repowise` does not read as adoption. That is
+    the negative direction this detector is proved in before it is trusted:
+    step 2's pre-registration section 5 makes it a gate, because run 1 lost four
+    numbers to detectors that were never shown to fire in both directions.
+    """
+    return [f"repowise {t.strip()}" for t in tools.split(",") if t.strip()]
+
+
+def _called_cli(transcript_path: str, tools: str, since_line: int = 0) -> bool:
+    """Did this unit of work run one of the arm's subcommands through Bash?
+
+    Same contract as :func:`_called`: ISSUED not answered, scoped to the task by
+    `since_line`, and failing OPEN on unreadable input so a hook bug cannot burn
+    a cell's turns.
+    """
+    p = Path(transcript_path)
+    if not p.is_file():
+        return True
+    needles = _cli_needles(tools)
+    if not needles:
+        return False
+    try:
+        with p.open(encoding="utf-8", errors="replace") as fh:
+            for n, line in enumerate(fh):
+                if n < since_line:
+                    continue
+                if '"tool_use"' not in line or '"Bash"' not in line:
+                    continue
+                if any(needle in line for needle in needles):
+                    return True
+    except OSError:
+        return True
+    return False
+
+
+def _called(transcript_path: str, prefix: str, since_line: int = 0) -> bool:
+    """Did this unit of work issue a tool call to the arm's own server?
 
     Read from the transcript rather than from `last_assistant_message`, because
-    the question is about the whole session and the last message is one turn.
+    the question spans more than one turn and the last message is one turn.
     ISSUED, not answered: this hook decides whether to nudge, and an agent that
     tried and got an error has already stopped needing the nudge. Arm-integrity
     accounting stays where it was, on `arm_exercised`, which is stricter.
+
+    `since_line` is what makes this survive a session-shaped run, and it was
+    added on measurement rather than on principle. Scanning the WHOLE transcript
+    means one MCP call anywhere in the session silences the nudge for every task
+    after it, permanently. Measured on the first enforced arm: the agent called
+    `get_answer` once on task 1, and enforcement was then mute for the remaining
+    ten tasks. Combined with a per-session nudge cap that gave 154 firings, 2
+    injections and 1 call in 11 tasks, and the arm was labelled `enforced` while
+    running unenforced.
+
+    Scoped to the current task, the question becomes the one the mechanism was
+    calibrated on: has the agent used the server for THIS piece of work.
     """
     p = Path(transcript_path)
     if not p.is_file():
@@ -101,12 +155,25 @@ def _called(transcript_path: str, prefix: str) -> bool:
     needle = f'"{prefix}'
     try:
         with p.open(encoding="utf-8", errors="replace") as fh:
-            for line in fh:
+            for n, line in enumerate(fh):
+                if n < since_line:
+                    continue
                 if needle in line and '"tool_use"' in line:
                     return True
     except OSError:
         return True
     return False
+
+
+def _transcript_lines(transcript_path: str) -> int:
+    p = Path(transcript_path)
+    if not p.is_file():
+        return 0
+    try:
+        with p.open(encoding="utf-8", errors="replace") as fh:
+            return sum(1 for _ in fh)
+    except OSError:
+        return 0
 
 
 _READ_TOOLS = {"Read", "Grep", "Glob"}
@@ -116,21 +183,44 @@ _NAME_CAP = 3
 
 
 def _nudges_used(session_id: str, prefix: str, cap: int) -> int:
-    """How many times this session has already been nudged, incrementing.
+    """How many times this UNIT OF WORK has already been nudged, incrementing.
 
-    A temp counter keyed on the session and the arm, because a PreToolUse hook
-    has no memory and an uncapped nudge would fire on every file read. Fails
-    OPEN at the cap on any error, so a bookkeeping problem silences the nudge
-    rather than turning it into spam.
+    A temp counter keyed on the unit of work and the arm, because a PreToolUse
+    hook has no memory and an uncapped nudge would fire on every file read.
+    Fails OPEN at the cap on any error, so a bookkeeping problem silences the
+    nudge rather than turning it into spam.
+
+    THE UNIT OF WORK IS THE TASK, NOT THE SESSION, AND THAT DISTINCTION WAS
+    MEASURED RATHER THAN ASSUMED. The cap was keyed on `session_id` alone, which
+    was correct when every cell was its own one-question session: each question
+    got up to `cap` nudges. Moved to a session-shaped run, an 11-task session is
+    ONE session id, so the whole session got 3 nudges and only 2 emitted.
+    Measured on the first enforced arm: **154 hook firings, 2 injections, 1 MCP
+    call in 11 tasks.** The enforced condition had silently become the unenforced
+    one, and the run would have reported "PreToolUse guidance does not work" when
+    what happened is that it was applied twice.
+
+    So the marker includes `BENCH_TASK_ID` when the runner sets it, restoring the
+    per-question granularity the mechanism was calibrated at (6 of 6 adoption,
+    near-zero token cost, `50-results/layerb-opus-preguide/RESULT.md` section 4).
+    Absent that variable the behaviour is unchanged, so every existing caller
+    keeps its old semantics.
+
+    This generalises past this harness: a countermeasure tuned on one-question
+    cells does not survive being moved to a session, which is the same shape as
+    the resident-cost problem this whole run exists to measure, pointed at our
+    own instrument.
     """
     import hashlib
+    import os
     import tempfile
 
+    unit = os.environ.get("BENCH_TASK_ID", "")
     # hashlib, NOT hash(): every hook fire is a fresh process and PYTHONHASHSEED
     # is randomised per process, so `hash(prefix)` named a different marker file
     # every time and the cap never held. Caught by the self-test below, which
     # fires four times and requires the fourth to be silent.
-    key = hashlib.sha1(f"{session_id}\x00{prefix}".encode()).hexdigest()[:20]
+    key = hashlib.sha1(f"{session_id}\x00{unit}\x00{prefix}".encode()).hexdigest()[:20]
     marker = Path(tempfile.gettempdir()) / f".bench-nudge-{key}"
     try:
         used = int(marker.read_text(encoding="utf-8")) if marker.is_file() else 0
@@ -141,10 +231,36 @@ def _nudges_used(session_id: str, prefix: str, cap: int) -> int:
         return cap
 
 
+def _task_baseline(session_id: str, unit: str, transcript_path: str) -> int:
+    """Transcript line count when this unit of work started.
+
+    Recorded once, on the unit's first hook fire, so `_called` can ask about
+    this task rather than about the whole session. Fails OPEN at 0, which makes
+    `_called` scan everything and the nudge go quiet: a bookkeeping problem must
+    never turn the nudge into spam.
+    """
+    import hashlib
+    import tempfile
+
+    if not unit:
+        return 0
+    key = hashlib.sha1(f"base\x00{session_id}\x00{unit}".encode()).hexdigest()[:20]
+    marker = Path(tempfile.gettempdir()) / f".bench-base-{key}"
+    try:
+        if marker.is_file():
+            return int(marker.read_text(encoding="utf-8"))
+        n = _transcript_lines(transcript_path)
+        marker.write_text(str(n), encoding="utf-8")
+        return n
+    except (OSError, ValueError):
+        return 0
+
+
 def main() -> int:
     argv = sys.argv[1:]
     prefix = tools = ""
     mode = "stop-block"
+    surface = "mcp"
     cap = 3
     for i, a in enumerate(argv):
         if a == "--prefix" and i + 1 < len(argv):
@@ -153,9 +269,13 @@ def main() -> int:
             tools = argv[i + 1]
         elif a == "--mode" and i + 1 < len(argv):
             mode = argv[i + 1]
+        elif a == "--surface" and i + 1 < len(argv):
+            surface = argv[i + 1]
         elif a == "--max-nudges" and i + 1 < len(argv):
             cap = int(argv[i + 1])
     if not prefix:
+        return 0
+    if surface not in ("mcp", "cli"):
         return 0
 
     try:
@@ -175,22 +295,44 @@ def main() -> int:
     # the arm author's choice and not ours. The job of the nudge is to make ONE
     # tool a candidate, not to recite a catalogue.
     _all = [t.strip() for t in tools.split(",") if t.strip()]
-    named = ", ".join(f"{prefix}{t}" for t in _all[:_NAME_CAP])
+    # The CLI arm's capabilities are named as the shell would invoke them. Step
+    # 2 holds discovery FIXED across transports, so the two nudges must differ
+    # only where the invocation genuinely differs and nowhere else — same verb,
+    # same cap, same ordering, same count of names.
+    if surface == "cli":
+        named = ", ".join(f"repowise {t}" for t in _all[:_NAME_CAP])
+    else:
+        named = ", ".join(f"{prefix}{t}" for t in _all[:_NAME_CAP])
 
     if mode == "pre-guide" and event == "PreToolUse":
         if payload.get("tool_name") not in _READ_TOOLS:
             return 0
-        if _called(payload.get("transcript_path", ""), prefix):
+        _unit = os.environ.get("BENCH_TASK_ID", "")
+        _sid = payload.get("session_id", "")
+        _tp = payload.get("transcript_path", "")
+        _base = _task_baseline(_sid, _unit, _tp)
+        _used = (_called_cli(_tp, tools, _base) if surface == "cli"
+                 else _called(_tp, prefix, _base))
+        if _used:
             return 0
         if _nudges_used(payload.get("session_id", ""), prefix, cap) >= cap:
             return 0
-        guidance = (
-            "You are reading source files directly and have not used the "
-            "codebase-intelligence server available for this repository in "
-            "this session. Load one of its tools with ToolSearch and try it "
-            "before continuing to explore by hand"
-            + (f". Available: {named}." if named else ".")
-        )
+        if surface == "cli":
+            guidance = (
+                "You are reading source files directly and have not used the "
+                "codebase-intelligence commands available for this repository in "
+                "this session. Run one of them with Bash and try it "
+                "before continuing to explore by hand"
+                + (f". Available: {named}." if named else ".")
+            )
+        else:
+            guidance = (
+                "You are reading source files directly and have not used the "
+                "codebase-intelligence server available for this repository in "
+                "this session. Load one of its tools with ToolSearch and try it "
+                "before continuing to explore by hand"
+                + (f". Available: {named}." if named else ".")
+            )
         print(json.dumps({"hookSpecificOutput": {
             "hookEventName": "PreToolUse",
             "additionalContext": guidance,
@@ -199,11 +341,21 @@ def main() -> int:
 
     if mode != "stop-block" or event != "Stop":
         return 0
+    if surface == "cli":
+        # The block reason below is written for a server surface ("load them
+        # with ToolSearch") and step 2 uses `pre-guide` only. Emitting it to a
+        # CLI arm would instruct the agent to do something that arm cannot do,
+        # which is worse than not nudging. Refuse LOUDLY rather than nudge
+        # wrongly or go quietly no-op.
+        print("force_tool_use: --mode stop-block has no CLI wording; use "
+              "--mode pre-guide for a CLI-surface arm", file=sys.stderr)
+        return 0
     # The binary's own guidance: return success while this is true. Honouring
     # it is what makes this ONE nudge rather than a fight with the block cap.
     if payload.get("stop_hook_active"):
         return 0
-    if _called(payload.get("transcript_path", ""), prefix):
+    _tp = payload.get("transcript_path", "")
+    if (_called_cli(_tp, tools) if surface == "cli" else _called(_tp, prefix)):
         return 0
 
     reason = (

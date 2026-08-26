@@ -1,0 +1,386 @@
+{
+  "c0-bare": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-c0bare-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 6.79s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 6.17s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 5.81s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.37s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-block": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-block-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 22.46s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 22.76s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 10.94s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 9.24s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.claude/', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-mcp": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-mcp-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 12.02s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 17.07s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 15.17s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.19s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-hooks": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-hooks-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 12.75s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 13.24s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 10.21s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 5.99s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-full": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 5.93s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 7.05s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 7.24s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.87s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.claude/', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-full-unenf": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-unenf-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 12.72s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 10.73s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 7.65s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.46s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.claude/', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "codegraph": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-codegraph-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 8.19s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 6.74s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 6.91s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.58s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['CHANGELOG.md', 'rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-lean3": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-lean3-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 988 passed, 23 skipped in 7.05s [+4 tests added by the agent]"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 988 passed, 23 skipped in 7.07s [+4 tests added by the agent]"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 988 passed, 23 skipped in 6.80s [+4 tests added by the agent]"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 988 passed, 23 skipped in 6.72s [+4 tests added by the agent]"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_ansi.py', 'tests/test_highlighter.py', 'tests/test_panel.py', 'tests/test_progress.py', '.mcp.json', 'tests/test_init.py']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-noanswer": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-noanswer-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 985 passed, 23 skipped in 8.68s [+1 tests added by the agent]"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 985 passed, 23 skipped in 8.76s [+1 tests added by the agent]"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 985 passed, 23 skipped in 7.87s [+1 tests added by the agent]"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 985 passed, 23 skipped in 9.42s [+1 tests added by the agent]"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_highlighter.py', 'tests/test_panel.py', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-lean-nosym": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-lean-nosym-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 987 passed, 23 skipped in 8.46s [+3 tests added by the agent]"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 987 passed, 23 skipped in 6.45s [+3 tests added by the agent]"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 987 passed, 23 skipped in 6.41s [+3 tests added by the agent]"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 987 passed, 23 skipped in 6.24s [+3 tests added by the agent]"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_ansi.py', 'tests/test_highlighter.py', 'tests/test_panel.py', 'tests/test_progress.py', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-answeronly": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-answeronly-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 16.08s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 8.44s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 10.12s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 7.70s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  },
+  "rw-cli": {
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-cli-rich",
+    "passed": 4,
+    "of": 6,
+    "oracles": {
+      "t03_getcwd": {
+        "passed": true,
+        "detail": "ORACLE T03 PASS :: import survived a raising os.getcwd; suite: 984 passed, 23 skipped in 13.60s"
+      },
+      "t04_parametrize_zip": {
+        "passed": true,
+        "detail": "ORACLE T04 PASS :: no PytestRemovedIn10Warning; suite: 984 passed, 23 skipped in 16.63s"
+      },
+      "t06_from_ansi_crlf": {
+        "passed": true,
+        "detail": "ORACLE T06 PASS :: CRLF= ['one', 'two', 'three'] | LF= ['one', 'two', 'three'] | MATCH; suite: 984 passed, 23 skipped in 8.51s"
+      },
+      "t08_repr_tag_greedy": {
+        "passed": true,
+        "detail": "ORACLE T08 PASS :: SPANS= [(0, 1, 'repr.tag_start'), (1, 4, 'repr.tag_name'), (4, 5, 'repr.tag_end'), (6, 7, 'repr.tag_start'), (7, 10, 'repr.tag_name'), (10, 11, 'repr.tag_end')] | NAMES= [(1, 4), (7, 10)] | CROSSING= [] | OK; suite: 984 passed, 23 skipped in 6.82s"
+      },
+      "t10_readme_branch": {
+        "passed": false,
+        "note": "no-baseline",
+        "detail": "ORACLE T10 FAIL :: this task modified files other than README.md: ['rich/__init__.py', 'rich/ansi.py', 'rich/highlighter.py', 'rich/progress.py', 'tests/test_panel.py', '.mcp.json']"
+      },
+      "t11_track_expand": {
+        "passed": false,
+        "detail": "ORACLE T11 FAIL :: track(expand=) not delivered -> HAS_EXPAND= True | DEFAULT_BAR_WIDTHS= [40] | EXPANDED_BAR_WIDTHS= [40] | BAD"
+      }
+    }
+  }
+}

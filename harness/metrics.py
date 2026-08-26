@@ -79,6 +79,19 @@ class RunMetrics:
     # cell ever run. Such a cell must never enter an arm's mean.
     arm_exercised: Optional[bool] = None
     mcp_per_server: dict = field(default_factory=dict)
+    # The condition's OWN repowise surface, which is not `served_tools`. Two
+    # conditions can share one arm, one index and one server and differ only by
+    # allowlist: `C2_repowise_local` denies `get_answer` so no frontier model
+    # can enter a row that will be read as a pure-local claim. `served_count`
+    # reports the ARM's surface and is identical on both, so without this field
+    # the two rows are indistinguishable on disk and the rule against pooling
+    # them cannot be checked after the fact.
+    condition_allowed_tools: Optional[list] = None
+    # Per-step prefill/decode. The summed `input_tokens` counts the same prompt
+    # once per turn, so it is not a context-window reading and cannot separate
+    # a big single payload from many small round trips.
+    token_steps: list = field(default_factory=list)
+    max_step_input: int = 0
     hook_events: list = field(default_factory=list)
     hook_injections: list = field(default_factory=list)
     index_evidence: dict = field(default_factory=dict)

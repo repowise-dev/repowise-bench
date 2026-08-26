@@ -1,0 +1,205 @@
+# Session-cost eval, cell A task set.
+#
+# AUTHORED 2026-08-10 FROM THE REPO'S OWN OPEN ISSUE TRACKER, before any arm ran
+# and without consulting any repowise output. Every issue number below is a live
+# Textualize/rich issue; the "verified" line on each edit task records the probe
+# that reproduced it at the pinned commit, per standing rule 17 (prove the
+# detector before recording anything).
+#
+# The mix was fixed before authoring: 3 retrieval-heavy, 2 architecture,
+# 4 edits with a test oracle, 2 pure mechanical. The two mechanical tasks are
+# the honesty control: repowise has no retrieval role in them, so a "win" there
+# is the instrument measuring position or variance.
+#
+# ONE CONTINUOUS SESSION works this list top to bottom. Do not reorder.
+
+cell_id: cellA-rich
+repo: Textualize/rich
+repo_local: repos/rich
+pin: 46cebbb032f920eb096efbaf23cdc6fe9dd541f7
+language: python
+
+baseline:
+  # Measured on a clean worktree at the pin, 2026-08-10, with the shared bench
+  # venv (pytest 9.1.1, pygments 2.20.0, markdown-it-py, attrs, typing-extensions).
+  command: python -m pytest -q
+  passed: 984
+  skipped: 23
+  failed: 0
+  wall_seconds: 12.8
+
+test_env:
+  python: C:\Users\ragha\Desktop\bakeoff\se-venv\Scripts\python.exe
+  # Given to every arm verbatim in the system prompt. An arm that had to
+  # discover the test command for itself would differ from one that did not by
+  # something other than its treatment, and the bench venv deliberately does
+  # not have `rich` installed, so a bare `pytest` off PATH is not equivalent.
+  command_display: >-
+    C:\Users\ragha\Desktop\bakeoff\se-venv\Scripts\python.exe -m pytest -q
+  # rich/ sits at the repo root, so pytest's rootdir insertion imports the tree
+  # under test. The bench venv deliberately does NOT have rich installed.
+  env:
+    PYTHONUTF8: "1"
+    PYTHONIOENCODING: utf-8
+
+tasks:
+
+  - id: T01
+    kind: retrieval
+    source_issue: 4192
+    oracle: none
+    prompt: >-
+      Issue #4192 reports that Live outputs a different number of newlines
+      depending on whether the console is a terminal. Do not change any code.
+      Tell me which file and which function decides that, and list every place
+      that feeds the decision.
+
+  - id: T02
+    kind: architecture
+    source_issue: null
+    oracle: none
+    prompt: >-
+      Explain how a renderable becomes output on the stream in this codebase:
+      the path from Console.print to bytes written, naming the main types
+      involved and what each one is responsible for. Do not change any code.
+
+  - id: T03
+    kind: edit
+    source_issue: 4201
+    verified: >-
+      Reproduced 2026-08-10 at the pin: a subprocess that replaces os.getcwd
+      with a function raising PermissionError(13) and then imports rich,
+      rich.console, rich.traceback, rich.syntax, rich.logging dies with
+      PermissionError [Errno 13].
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/t03_getcwd.py
+      description: >-
+        importing rich with os.getcwd() raising PermissionError must succeed,
+        and the full suite must stay at 984 passed / 0 failed.
+    prompt: >-
+      Issue #4201: importing Rich fails when os.getcwd() raises
+      PermissionError. Fix it. The full test suite must still pass.
+
+  - id: T04
+    kind: mechanical
+    source_issue: 4169
+    verified: >-
+      Reproduced 2026-08-10 at the pin: pytest -q emits
+      PytestRemovedIn10Warning naming tests/test_panel.py::test_render_panel,
+      argvalues type: zip.
+    oracle:
+      kind: suite_no_warning
+      pattern: PytestRemovedIn10Warning
+      description: >-
+        pytest -q reports 984 passed and no PytestRemovedIn10Warning.
+    prompt: >-
+      Issue #4169: in tests/test_panel.py, test_render_panel passes a zip
+      iterator to pytest.mark.parametrize, which pytest deprecates. Convert it
+      to a list.
+
+  - id: T05
+    kind: retrieval
+    source_issue: 3647
+    oracle: none
+    prompt: >-
+      Issue #3647 reports that legacy_windows is True when is_terminal is
+      False. Do not change any code. Tell me where legacy_windows is decided
+      and list every place in the library that reads it.
+
+  - id: T06
+    kind: edit
+    source_issue: 4090
+    verified: >-
+      Reproduced 2026-08-10 at the pin:
+      Text.from_ansi("one\r\ntwo\r\nthree").split("\n") gives plains
+      ['', '', 'three'] against ['one', 'two', 'three'] for the LF input, so
+      content is destroyed rather than merely spaced.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/t06_from_ansi_crlf.py
+      description: >-
+        Text.from_ansi with CRLF line endings must produce the same plain
+        lines as the LF input, and the full suite must stay at 984 passed.
+    prompt: >-
+      Issue #4090: Text.from_ansi leaves empty lines when the input string has
+      CRLF line endings. Fix it. The full test suite must still pass.
+
+  - id: T07
+    kind: architecture
+    source_issue: null
+    oracle: none
+    prompt: >-
+      How does the word wrap and line breaking subsystem work in this
+      codebase, and where does Segment fit into it? Do not change any code.
+
+  - id: T08
+    kind: edit
+    source_issue: 4035
+    verified: >-
+      Reproduced 2026-08-10 at the pin: ReprHighlighter on "<foo> <bar>"
+      produces spans tag_start(0,1), tag_name(1,4), tag_contents(4,10),
+      tag_end(10,11), so the greedy pattern swallows the gap and the second
+      tag, instead of highlighting two separate tags.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/t08_repr_tag_greedy.py
+      description: >-
+        ReprHighlighter on "<foo> <bar>" must yield two repr.tag_name spans,
+        one covering foo and one covering bar, and no span may cross index 5.
+        The full suite must stay at 984 passed.
+    prompt: >-
+      Issue #4035: ReprHighlighter's tag regex is greedy, so two adjacent tags
+      on one line are merged into a single tag. Fix it. The full test suite
+      must still pass.
+
+  - id: T09
+    kind: retrieval
+    source_issue: 4093
+    oracle: none
+    prompt: >-
+      Issue #4093 reports that RichHandler builds file links on Windows as
+      file:// with backslashes, which VS Code does not follow. Do not change
+      any code. Tell me which function builds that link and list every caller
+      that reaches it.
+
+  - id: T10
+    kind: mechanical
+    source_issue: 4173
+    verified: >-
+      Verified 2026-08-10 at the pin: README.md contains 43 lines matching
+      "master", all of them github.com/textualize/rich/{raw,blob}/master URLs.
+    oracle:
+      kind: file_substring
+      path: README.md
+      absent: ["/rich/raw/master/", "/rich/blob/master/"]
+      present_count:
+        "/rich/raw/master/": 0
+        "/rich/blob/master/": 0
+      description: >-
+        README.md must contain no textualize/rich raw or blob URL still
+        pointing at master, and no file other than README.md may be modified.
+      only_file_changed: README.md
+    prompt: >-
+      Issue #4173: README.md links to the master branch, but the default
+      branch is main. Update the branch name in the GitHub URLs in README.md.
+      Change nothing else.
+
+  - id: T11
+    kind: edit
+    source_issue: 3588
+    verified: >-
+      Verified 2026-08-10 at the pin: inspect.signature(rich.progress.track)
+      has no expand parameter.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/t11_track_expand.py
+      description: >-
+        rich.progress.track must accept expand=True, and with it the Progress
+        it builds must carry a BarColumn whose bar_width is None (full width).
+        track without expand must keep its current bar_width. The full suite
+        must stay at 984 passed.
+    prompt: >-
+      Issue #3588 asks for an expand parameter on rich.progress.track so the
+      progress bar can span the full terminal width, matching Progress's own
+      expand behaviour. Add it. The full test suite must still pass.

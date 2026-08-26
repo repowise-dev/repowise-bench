@@ -1,0 +1,374 @@
+# Session-cost eval, cell B: the BIG-REPO cell.
+#
+# AUTHORED 2026-08-11 from NousResearch/hermes-agent's own open issue tracker,
+# before any cell-B arm ran. Repo gating, the pre-registered direction
+# prediction and the oracle bar are fixed in
+# `local-stash/competitive-proof/session-cost-eval/06_SESSION_C_PREREG.md` and
+# `07_SESSION_C_DESIGN.md`.
+#
+# This file currently holds the SMOKE task set: B01, B02, B03. The remaining
+# nine tasks of the 12-task design (07_SESSION_C_DESIGN.md section 3.2) are
+# appended only as their oracles are proved in both directions, never on the
+# strength of triage.
+#
+# ONE CONTINUOUS SESSION works this list top to bottom. Do not reorder.
+#
+# ---------------------------------------------------------------------------
+# tree_slug, and why it is not optional
+# ---------------------------------------------------------------------------
+# `session_arms.tree_for` used to hardcode `rich` into every tree name. Cell A
+# has already written `se-c0-bare-r1-rich` and `se-c0-short-r{1..6}-rich` to
+# disk, so a cell-B arm reusing one of those names would have silently resolved
+# to CELL A's tree: `prepare` skips `worktree add` when the path exists, so the
+# run would have measured Textualize/rich under cell-B labels. `tree_slug` is
+# what keeps the two apart, and `scripts/payload/prove_tree_slug.py` proves it
+# in both directions (32/32) against the trees actually on disk.
+
+cell_id: cellB-hermes
+repo: NousResearch/hermes-agent
+repo_local: ../test-repos/hermes-agent-full
+pin: c0106e50e7ecedb3ce34e785d949725dc4e0e457
+language: python
+
+# `hermes-pf` = post-#1443. CHANGED 2026-08-12, and the reason is a second
+# instance of the trap the slug was invented for.
+#
+# `tree_for` returns `se-<arm>-<tree_slug>`, so `hermes` resolved the treated arm
+# to `se-rw-full-hermes` -- a tree whose index was built 2026-08-11, BEFORE OSS
+# PR #1443 (`a7de4b9e`) stopped the traversal size cap dropping every file over
+# 500 KB. That index is missing hermes's six biggest modules (the CLI, gateway,
+# web server and state layer: 103,664 lines, 2,617 indexed symbols), and
+# `prepare` skips `worktree add` when the path already exists, so a re-run would
+# have silently served the stale index while every row said post-fix.
+#
+# The lesson the original slug fix did NOT cover: `tree_slug` separates CELLS,
+# but nothing separated INDEX GENERATIONS. A tree name that stays constant while
+# the index behind it changes meaning is the same silent-reuse failure wearing
+# different clothes. Bump this slug whenever an indexer change invalidates the
+# store, not only when the repo changes.
+#
+# Measured delta, golden post-fix tree vs the pre-fix tree it replaces:
+#   wiki_pages   8483 -> 8587  (+104)
+#   wiki_symbols 84829 -> 88016 (+3187), of which 2,617 are the six modules
+tree_slug: hermes-pf
+
+# Recorded because 07_SESSION_C_DESIGN.md section 5 listed it as an open risk:
+# the clone was believed to be `--filter=blob:none`. It is NOT. Verified
+# 2026-08-11: `git rev-list --objects --all --missing=print` reports 0 missing
+# objects and `.git` is 638 MB, so worktrees at the pin get full blobs and no
+# re-clone is needed.
+clone: full
+
+baseline:
+  # SCOPE DEVIATION FROM CELL A, STATED RATHER THAN BURIED.
+  #
+  # Cell A's suite half ran the whole of `Textualize/rich`: 984 tests in 12.8s.
+  # That does not transfer. hermes-agent has 2,809 test files under `tests/` and
+  # its own pytest config isolates them per file (`no_isolate` is an OPT-OUT
+  # marker, so isolation is the default). A whole-tree run is not affordable per
+  # task, and it would inject wall-clock and flakiness that have nothing to do
+  # with the treatment into the only columns this cell can resolve.
+  #
+  # Three environment facts had to be fixed before ANY of this collected:
+  #   * `mcp` and `aiohttp` were missing -> 4 collection errors. Fixed by
+  #     installing the project's own declared `[dev,slack]` extras.
+  #   * `pytest-asyncio` was missing, so every `@pytest.mark.asyncio` test
+  #     emitted PytestUnknownMarkWarning and did not run as an async test. A
+  #     baseline taken before this was found would have covered a suite that
+  #     silently was not exercising its async paths.
+  #   * `tests/tools/test_search_hidden_dirs.py` shells out to `which rg` AT
+  #     COLLECTION TIME, which does not exist on Windows. Excluded by name; it
+  #     is a hermes portability bug unrelated to any task here.
+  #
+  # Also recorded: the hermes suite writes literal-path junk files into the repo
+  # root on Windows (paths built with a mangled `C:`), 8 of them per `tests/tools`
+  # run. Every arm's tree must be `git clean`ed between runs or those show up in
+  # the runner's pre-task `git status` snapshot.
+  #
+  # Read every number below as ">= passed, with zero failures", NEVER as an
+  # exact count. Writing `== N` fails a correct fix that legitimately ADDS a
+  # regression test, which is what a correct fix to an edit task is supposed to
+  # do. That bug has been written twice in this workstream.
+  #
+  # MEASURED 2026-08-11 on a clean worktree at the pin, hermes-venv. Wall times
+  # were taken while an index build was running on the same host, so they are
+  # UPPER bounds, not clean timings.
+  per_module:
+    tests/tools/test_todo_tool.py:                  {passed_at_least: 14,  failed: 0, wall_seconds: 4.3}
+    tests/tools/test_process_wait_clarity.py:       {passed_at_least: 5,   failed: 0, wall_seconds: 10.3}
+    tests/agent/test_gemini_native_adapter.py:      {passed_at_least: 9,   failed: 0, wall_seconds: 1.1}
+    # #83131's module, two files (the rest of tests/hermes_cli/ has an unrelated
+    # collection error in test_doctor_journal_modes.py).
+    tests/hermes_cli/test_web_server.py+test_gateway_runtime_health.py:
+      {passed_at_least: 143, skipped: 5, failed: 0, wall_seconds: 36.2}
+
+test_env:
+  python: C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe
+  # Given to every arm verbatim in the system prompt, for the same reason cell A
+  # did it: an arm that had to discover its own test command would differ from
+  # one that did not by something other than its treatment.
+  #
+  # !! OPEN DESIGN ITEM, MUST BE RESOLVED BEFORE THE FULL CELL RUNS !!
+  #
+  # `session_runner.SYSTEM_PROMPT` interpolates ONE literal command for the whole
+  # session ("Run the test suite with this exact command"). Cell A could use
+  # `pytest -q`, which names nothing. Every affordable cell-B command names test
+  # FILES, and naming `tests/tools/test_todo_tool.py` in the system prompt of a
+  # session whose third task is "fix TodoStore.write" HANDS THE AGENT THE
+  # ANSWER'S LOCATION -- before task B01 has even started.
+  #
+  # That is a treatment-independent hint, so it would inflate every arm equally
+  # rather than favour one, but it corrupts the completion signal that
+  # `07_SESSION_C_DESIGN.md` section 4 names as the thing a big repo is supposed
+  # to pay in. It is NOT acceptable for the scored cell.
+  #
+  # For THIS SMOKE it is accepted and recorded, because the smoke's questions are
+  # plumbing, tool-call behaviour and per-task price -- none of which the hint
+  # changes -- and the alternative (a ~90 min `tests/tools` run per task) exceeds
+  # the runner's 1800s per-task timeout outright.
+  #
+  # RESOLVED 2026-08-12 by option (a), the recommended one: the runner now takes
+  # a PER-TASK `test_command`, and a task that declares `test_command: none`
+  # gets no test clause in its system prompt at all. So a read-only task carries
+  # no module name, and an edit task carries only its own.
+  #
+  # `pytest tests/tools -q -n auto` was measured and is dead on two counts:
+  # xdist violates hermes's own stated per-file isolation contract, and
+  # `tests/tools` is not green at the pin on Windows anyway (236 failed), so a
+  # ">= baseline, 0 failed" claim over the directory is impossible.
+  #
+  # This cell-wide value is now only a FALLBACK for tasks that declare nothing.
+  # Every task below declares explicitly; leaving it here keeps cell-A-style
+  # configs working unchanged.
+  # Proof both directions: `scripts/payload/prove_harness_fixes.py`.
+  command_display: >-
+    C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/tools/test_todo_tool.py -q
+  env:
+    PYTHONUTF8: "1"
+    PYTHONIOENCODING: utf-8
+
+tasks:
+
+  - id: B01
+    kind: retrieval
+    source_issue: 83861
+    oracle: none
+    # Read-only task: it must not carry B03's module name. See test_env above.
+    test_command: none
+    prompt: >-
+      Issue #83861 reports that `/sessions full` lists only one Telegram
+      session even though several exist in the session database. Do not change
+      any code. Tell me which file and which function builds the session list
+      that command renders, and list every place that filters or limits which
+      sessions reach it.
+
+  - id: B02
+    kind: architecture
+    source_issue: null
+    oracle: none
+    # Read-only task: changes no code, so it needs no test command.
+    test_command: none
+    prompt: >-
+      Explain how a tool call travels from model output to execution in this
+      codebase: the path from the raw tool call the model emits to the code
+      that actually runs it and returns a result, naming the main types
+      involved and what each one is responsible for. Do not change any code.
+
+  - id: B03
+    kind: edit
+    source_issue: 83389
+    # Edit task: leaks only its OWN module, which it is already pointed at.
+    test_command: >-
+      C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/tools/test_todo_tool.py -q
+    verified: >-
+      Reproduced 2026-08-11 at the pin: TodoStore().write([{content:"Task 1",
+      status:"pending"},{content:"Task 2",status:"pending"}]) returns ONE item,
+      [{'id': '?', 'content': 'Task 2', 'status': 'pending'}]. `_dedupe_by_id`
+      keys every id-less item to the literal "?" so each overwrites the
+      previous one's index. Proved in both directions: the oracle exits 1 on
+      the unfixed tree, exits 0 with a correct fix, and exits 1 again after the
+      revert.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/hermes_83389_todo_dedupe.py
+      suite_scope: tests/tools/test_todo_tool.py   # >= 14 passed, 0 failed
+      description: >-
+        TodoStore.write must retain both id-less items with DISTINCT ids, and
+        tests/tools must stay at >= the recorded baseline passed with zero
+        failures. The probe deliberately asserts the property the issue states
+        (both contents retained, distinct ids) and NOT an exact output list:
+        the first candidate patch fixed `_dedupe_by_id` alone, both items then
+        survived dedup, and `_validate` re-stamped "?" on each so they collided
+        again. An oracle asserting only `len == 2` would have graded that
+        broken fix as a pass.
+    prompt: >-
+      Issue #83389: TodoStore.write silently drops todo items that have no
+      explicit `id` key, so writing two id-less items keeps only the last one.
+      Fix it. The test suite must still pass.
+
+  # -------------------------------------------------------------------------
+  # SESSION C1 continues
+  # -------------------------------------------------------------------------
+
+  - id: B04
+    kind: mechanical
+    source_issue: 83131
+    # HONESTY CONTROL, and its status CHANGED on 2026-08-12.
+    #
+    # The smoke found `hermes_cli/web_server.py` absent from the index and
+    # proposed dropping this task or labelling it a negative control on the
+    # grounds that retrieval provably could not help. That was an artefact of
+    # the oversize-file exclusion, not a property of the task: post-fix the file
+    # carries 622 indexed symbols and `_probe_gateway_health` resolves. It is
+    # therefore an ORDINARY mechanical task, and must NOT be reported as a
+    # negative control.
+    verified: >-
+      Proved in both directions with negative controls. NC2 matters most: a
+      "fix" that simply stops probing /health/detailed genuinely removes the
+      401s by removing the feature, and an oracle checking only "no more 401"
+      would have called that a fix.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/hermes_83131_health_probe_auth.py
+      suite_scope: tests/hermes_cli/test_web_server.py+test_gateway_runtime_health.py
+      description: >-
+        The /health/detailed probe must carry Bearer API_SERVER_KEY, and
+        dropping the detailed probe entirely must NOT count as a fix.
+    test_command: >-
+      C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/hermes_cli/test_web_server.py tests/hermes_cli/test_gateway_runtime_health.py -q
+    prompt: >-
+      Issue #83131: the dashboard's gateway health probe requests
+      /health/detailed without an Authorization header, so every call is
+      rejected with 401 and the code silently falls back to the
+      unauthenticated /health route. Send the configured API server key on the
+      detailed probe. The test suite must still pass.
+
+  # -------------------------------------------------------------------------
+  # SESSION C2
+  # -------------------------------------------------------------------------
+
+  - id: B05
+    kind: retrieval
+    source_issue: 83422
+    oracle: none
+    test_command: none
+    prompt: >-
+      Issue #83422 reports that `hermes teams-pipeline fetch --join-web-url`
+      cannot resolve Microsoft Teams `/meet/` short meeting URLs, and that the
+      organizer-scoped Graph endpoint resolves the same meeting. Do not change
+      any code. Tell me which file and which function turns a join URL into a
+      meeting, and name every Microsoft Graph endpoint that code path can
+      query.
+
+  - id: B06
+    kind: edit
+    source_issue: 83807
+    verified: >-
+      Proved in both directions. The issue names TWO acceptable fixes and picks
+      neither, so the oracle asserts the property they share: the raw timeout
+      may not appear as a bare duration token, and if shown at all it must be
+      labelled. Both acceptable fixes pass; a degenerate "delete the tool row"
+      fails.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/hermes_83807_process_wait_timeout_unit.py
+      suite_scope: tests/tools/test_process_wait_clarity.py   # >= 5 passed, 0 failed
+      description: >-
+        A model-supplied timeout must not render as a bare elapsed-looking
+        duration. Pinning either exact replacement string would fail the other
+        acceptable fix.
+    test_command: >-
+      C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/tools/test_process_wait_clarity.py -q
+    prompt: >-
+      Issue #83807: the `process wait` tool row renders a model-supplied
+      timeout argument as `40000s`, which reads like eleven hours of elapsed
+      waiting rather than a timeout setting. Fix it. The test suite must still
+      pass.
+
+  - id: B07
+    kind: edit
+    source_issue: 84289
+    # Replaces the design's #83792, which was NOT authored: the test that issue
+    # ships deliberately asserts the CURRENT (undesired) behaviour, so it is a
+    # characterisation test rather than an oracle, and a correct fix is
+    # under-specified.
+    verified: >-
+      Proved in both directions 2026-08-12 with three negative controls. TWO
+      independent sites carry the same four lines (the local path in
+      execute_code and the remote path in _execute_remote), and the half-fix NC
+      confirms a patch to one alone does NOT pass. NOTE: the issue body's own
+      repro step 3 is WRONG -- it calls `enabled_tools=["web_search"]` a
+      non-sandbox list, but web_search IS in SANDBOX_ALLOWED_TOOLS, so that
+      case is already correct and an oracle following the body would fail a
+      correct fix.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/hermes_84289_sandbox_tool_gating.py
+      suite_scope: tests/tools/test_code_execution_modes.py   # >= 12 passed, 9 skipped, 0 failed
+      description: >-
+        An explicit restriction must be respected on BOTH execute paths, and
+        `enabled_tools=None` must still trigger the legacy full-access
+        fallback. Deleting the fallback makes the first half pass and breaks
+        every existing caller.
+    test_command: >-
+      C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/tools/test_code_execution_modes.py -q
+    prompt: >-
+      Issue #84289: execute_code treats an explicit empty tool restriction as
+      missing configuration, so `enabled_tools=[]` exposes the full set of
+      sandbox helper tools instead of none. Only `enabled_tools is None` should
+      fall back to granting everything. Fix it. The test suite must still pass.
+
+  # -------------------------------------------------------------------------
+  # SESSION C3
+  # -------------------------------------------------------------------------
+
+  - id: B08
+    kind: architecture
+    source_issue: null
+    oracle: none
+    test_command: none
+    prompt: >-
+      Explain how a conversation's message history is persisted and restored in
+      this codebase: where a turn's messages are written, what store holds
+      them, and how a later session reloads them. Name the main types involved
+      and what each one is responsible for. Do not change any code.
+
+  - id: B09
+    kind: retrieval
+    source_issue: 83459
+    oracle: none
+    test_command: none
+    prompt: >-
+      Issue #83459 reports that the Accounts page shows an Anthropic OAuth
+      provider as "Connected" while the model picker reports no authenticated
+      providers. Do not change any code. Tell me which code decides the
+      connected state shown for a provider account, and where the
+      account-removal action is handled.
+
+  - id: B10
+    kind: edit
+    source_issue: 83869
+    # Replaces the design's #83651, REJECTED with evidence: its stated expected
+    # behaviour is "I hope I can scroll faster", which has no threshold, and it
+    # is TypeScript, needing a second toolchain the cell does not otherwise use.
+    verified: >-
+      Proved in both directions. The oracle drives the public
+      translate_gemini_response rather than the private helper, so a fix that
+      stops routing through the helper is still graded on what the adapter
+      returns. It asserts distinguishability from success rather than a literal
+      token, because the issue names no replacement.
+    oracle:
+      kind: probe_and_suite
+      probe: scripts/oracles/hermes_83869_gemini_malformed_finish.py
+      suite_scope: tests/agent/test_gemini_native_adapter.py   # >= 9 passed, 0 failed
+      description: >-
+        A provider-side MALFORMED_FUNCTION_CALL must not be reported with the
+        same finish_reason as a clean completion. Blanket "everything is an
+        error" and raising instead of reporting both fail.
+    test_command: >-
+      C:\Users\ragha\Desktop\bakeoff\hermes-venv\Scripts\python.exe -m pytest tests/agent/test_gemini_native_adapter.py -q
+    prompt: >-
+      Issue #83869: when Gemini returns MALFORMED_FUNCTION_CALL, the adapter
+      maps it through a catch-all so the turn is recorded with the same
+      finish_reason as a clean completion and lands in the successful
+      trajectory file. Fix it. The test suite must still pass.

@@ -4,28 +4,41 @@ Local-model counterpart to ``run_claude_code`` in ``swe_qa_runner.py``. Same
 conditions (C0 = no repowise, C2 = repowise MCP), but an opencode agent driving
 an Ollama-served model instead of Claude Code driving Anthropic.
 
-TRANSPORT — why the HTTP server, not the CLI:
-  ``opencode run --format json`` emits ZERO bytes to stdout on this Windows
-  build (verified streaming for 300s; default/human format works fine). It's an
-  opencode bug, not a config issue. So we drive opencode via its REST server
-  instead, which is the intended programmatic interface anyway:
+TRANSPORT — the JSON CLI, since 1.18.15:
+  ``opencode run --format json`` emitted ZERO bytes on the 1.15.13 Windows build
+  (verified streaming for 300s), and a persistent ``opencode serve`` REST
+  singleton existed for that one reason. **Re-measured on 1.18.15 (2026-08-09):
+  the CLI emits NDJSON, including the tool-call events.** The singleton is
+  therefore deleted rather than maintained — it was workaround scaffolding, and
+  keeping it would mean carrying shared cross-cell server state for nothing.
 
-    1. ``opencode serve --port N``           (one persistent server per benchmark)
-    2. POST /session?directory=<repo>        -> {id}
-    3. POST /session/{id}/message            -> assistant SessionMessage (BLOCKS
-       body: {model:{providerID,modelID},      until complete, returns full
-              parts:[{type:text,text}],         message with parts)
-              tools?, system?}
-    NOTE: the /api/session/.../prompt "v2" endpoint returns
-    "V2 session prompt is not available yet" in 1.15.x — use the v1
-    /session/{id}/message route (operationId session.prompt).
+  One process per cell:
+    opencode run --format json --dir <repo> --model <provider/model>
+                 --agent <BENCH_AGENT> "<prompt>"
 
-SessionMessage shape we parse (from the OpenAPI spec + live probe):
-  info.cost           USD (0 for local Ollama)
-  info.tokens         {input, output, reasoning, cache:{read,write}}
-  parts[]             step-start | reasoning | text | step-finish | tool
-    - tool part:  {type:"tool", tool:"read"|"repowise_get_context"|..., state:{status,input}}
-    - text part:  {type:"text", text:"..."}
+  Each stdout line is one event: {type, timestamp, sessionID, part:{...}}. The
+  ``part`` objects carry the SAME ``type`` values the REST route returned
+  (tool / text / step-finish), which is why ``parse_session_messages`` is reused
+  verbatim instead of a second aggregator being written.
+
+  Events observed on a tool-using turn:
+    step_start  -> part.type "step-start"
+    tool_use    -> part.type "tool",        part.tool "repowise_search_codebase"
+    text        -> part.type "text",        part.text "<the answer>"
+    step_finish -> part.type "step-finish", part.tokens {...}, part.cost 0
+
+BINARY — never the .CMD shim:
+  ``shutil.which("opencode")`` resolves to the npm ``opencode.CMD`` batch shim.
+  A NEWLINE in a positional argument truncates a batch shim's command line and
+  silently drops every flag after it — this workstream already lost time to
+  exactly that with ``codex.cmd``, where ``--json`` and ``--cd`` vanished with no
+  error. Our prompt is always multi-line, so the real ``opencode.exe`` under
+  node_modules is resolved and the shim is a last resort.
+
+SYSTEM PROMPT — via the config, because the CLI has no --system:
+  ``opencode run`` exposes no system-prompt flag. The config schema does:
+  ``agent.<name>.prompt``. So the per-condition system prompt is written into
+  opencode.json as a custom agent and selected with ``--agent``.
 
 MODEL PRECONDITIONS (learned the hard way — see harness/check_tool_calling.py):
   - The Ollama model MUST emit *structured* tool_calls. qwen2.5-coder:7b emits
@@ -37,16 +50,10 @@ MODEL PRECONDITIONS (learned the hard way — see harness/check_tool_calling.py)
 
 from __future__ import annotations
 
-import atexit
 import json
 import os
 import shutil
-import socket
 import subprocess
-import threading
-import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Optional
 
@@ -56,9 +63,35 @@ from harness.swe_qa_runner import _UTF8_ENV  # noqa: E402
 
 OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
-# On Windows the npm-global `opencode` is a .CMD shim; subprocess.Popen needs the
-# resolved path (bash finds it via PATH, Python does not).
-_OPENCODE_BIN = shutil.which("opencode") or "opencode"
+# The custom agent that carries our system prompt. `opencode run` has no
+# --system flag, so the prompt travels in opencode.json under this name.
+BENCH_AGENT = "bench"
+
+
+def _resolve_opencode_bin() -> str:
+    """The real opencode.exe, never the npm .CMD shim if it can be avoided.
+
+    `shutil.which("opencode")` returns `opencode.CMD`. Passing a MULTI-LINE
+    positional argument through a batch shim truncates the command line at the
+    newline and silently drops every flag after it, which is how `codex.cmd`
+    swallowed `--json` and `--cd` with rc=0 and no error. Our prompt always
+    contains newlines, so resolve the executable the shim wraps.
+    """
+    env_bin = os.environ.get("OPENCODE_BIN")
+    if env_bin and Path(env_bin).exists():
+        return env_bin
+    shim = shutil.which("opencode")
+    if shim:
+        # npm layout: <prefix>/opencode.CMD wraps
+        # <prefix>/node_modules/opencode-ai/bin/opencode.exe
+        real = (Path(shim).parent / "node_modules" / "opencode-ai" / "bin"
+                / "opencode.exe")
+        if real.exists():
+            return str(real)
+    return shim or "opencode"
+
+
+_OPENCODE_BIN = _resolve_opencode_bin()
 
 
 def _resolve_repowise_exe() -> str:
@@ -85,7 +118,24 @@ _REPOWISE_EXE = _resolve_repowise_exe()
 # opencode.json generation (per-repo, in the repo cwd)
 # ---------------------------------------------------------------------------
 
-def build_opencode_config(*, model: str, repowise_enabled: bool, repo_path: Path) -> dict:
+# Every tool the repowise MCP server serves in single-repo mode, read off a live
+# server on 2026-08-09. Named explicitly so a condition's allowlist can DENY the
+# complement: a tool the server gains later would otherwise default to enabled
+# and quietly re-enter a condition that is defined by its absence.
+REPOWISE_SERVED_TOOLS = (
+    "get_answer", "get_change_risk", "get_context", "get_dead_code",
+    "get_health", "get_overview", "get_risk", "get_symbol", "get_why",
+    "list_repos", "search_codebase",
+)
+
+# Large, low-QA-value payloads. A 16k window cannot afford them and the answer
+# does not need them. Denied in every repowise condition.
+_VERBOSE_TOOLS = ("get_overview", "get_health", "get_dead_code")
+
+
+def build_opencode_config(*, model: str, repowise_enabled: bool, repo_path: Path,
+                          allowed_tools: Optional[list] = None,
+                          system_prompt: Optional[str] = None) -> dict:
     """opencode.json for one condition.
 
     provider  -> local Ollama OpenAI-compatible endpoint.
@@ -94,6 +144,17 @@ def build_opencode_config(*, model: str, repowise_enabled: bool, repo_path: Path
     snapshot  -> false; opencode's git-snapshot crawl hangs on large repos and is
                  useless for read-only QA.
     mcp       -> repowise server, present only for repowise conditions.
+    agent     -> carries the system prompt; `opencode run` has no --system flag.
+    tools     -> the per-condition allowlist.
+
+    ``allowed_tools`` is the condition's repowise surface, UNPREFIXED
+    (``["search_codebase", "get_context", "get_symbol"]``). It is what makes
+    `C2_repowise_local` a different arm from `C2_repowise` rather than a
+    relabelling of it: `get_answer` synthesizes through a FRONTIER model, so a
+    row that reaches it is measuring gemini and not the local 8b. This function
+    previously ignored the field entirely, which would have published a
+    pure-local row with a frontier model in the loop and nothing in the output
+    to show it. None = the full surface minus the verbose three.
     """
     provider_model = model.split("/", 1)[-1]  # "ollama/qwen3.5:4b-16k" -> "qwen3.5:4b-16k"
     config: dict = {
@@ -111,14 +172,31 @@ def build_opencode_config(*, model: str, repowise_enabled: bool, repo_path: Path
         "permission": {
             "edit": "deny", "write": "deny", "bash": "deny", "webfetch": "deny",
             "read": "allow", "grep": "allow", "glob": "allow", "list": "allow",
-            # Deny the large, low-QA-value repowise tools so a weak model can't
-            # waste its small context dumping their output instead of answering.
-            "repowise_get_overview": "deny",
-            "repowise_get_health": "deny",
-            "repowise_get_dead_code": "deny",
         },
     }
+    if system_prompt:
+        config["agent"] = {
+            BENCH_AGENT: {
+                "description": "repowise-bench SWE-QA condition",
+                "mode": "primary",
+                "prompt": system_prompt,
+            }
+        }
     if repowise_enabled:
+        # Deny-by-default over the whole served surface, then re-enable exactly
+        # this condition's tools. Expressed on BOTH the `tools` map and the
+        # `permission` map: `tools` is the documented enable/disable surface and
+        # `permission` is what older builds honoured, and a tool that slips
+        # through one is the silent kind of failure this row cannot survive.
+        surface = (list(allowed_tools) if allowed_tools is not None
+                   else [t for t in REPOWISE_SERVED_TOOLS if t not in _VERBOSE_TOOLS])
+        tools_map: dict = {"repowise_*": False}
+        for t in REPOWISE_SERVED_TOOLS:
+            tools_map[f"repowise_{t}"] = t in surface
+        config["tools"] = tools_map
+        for t in REPOWISE_SERVED_TOOLS:
+            if t not in surface:
+                config["permission"][f"repowise_{t}"] = "deny"
         repo_abs = str(repo_path.resolve())
         # Full mode's get_answer (LLM synthesis) and semantic search (gemini
         # embedder) need a provider key at QUERY time — forward whatever is in
@@ -144,133 +222,6 @@ def write_opencode_config(repo_path: Path, config: dict) -> Path:
     cfg_path = repo_path / "opencode.json"
     cfg_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
     return cfg_path
-
-
-# ---------------------------------------------------------------------------
-# opencode server lifecycle
-# ---------------------------------------------------------------------------
-
-def _free_port() -> int:
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(("127.0.0.1", 0))
-    port = s.getsockname()[1]
-    s.close()
-    return port
-
-
-class OpencodeServer:
-    """Start `opencode serve` once and reuse it across all tasks.
-
-    Spawning a fresh `opencode run` per task is both slow and the route through
-    the broken json CLI; one long-lived server is faster and gives structured
-    responses. Use as a context manager.
-    """
-
-    def __init__(self, port: Optional[int] = None, ready_timeout: float = 30.0):
-        self.port = port or _free_port()
-        self.base = f"http://127.0.0.1:{self.port}"
-        self.ready_timeout = ready_timeout
-        self._proc: Optional[subprocess.Popen] = None
-
-    def __enter__(self) -> "OpencodeServer":
-        self._proc = subprocess.Popen(
-            [_OPENCODE_BIN, "serve", "--port", str(self.port)],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            env=_UTF8_ENV,
-        )
-        deadline = time.time() + self.ready_timeout
-        while time.time() < deadline:
-            try:
-                with urllib.request.urlopen(f"{self.base}/doc", timeout=2):
-                    return self
-            except Exception:
-                time.sleep(0.5)
-        self.__exit__(None, None, None)
-        raise RuntimeError(f"opencode server did not become ready on :{self.port}")
-
-    def __exit__(self, *exc) -> None:
-        if self._proc:
-            self._proc.terminate()
-            try:
-                self._proc.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                self._proc.kill()
-            self._proc = None
-
-    # -- HTTP helpers --
-    def _post(self, path: str, body: dict, timeout: float) -> dict:
-        data = json.dumps(body).encode()
-        req = urllib.request.Request(
-            f"{self.base}{path}", data=data,
-            headers={"Content-Type": "application/json"}, method="POST",
-        )
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return json.loads(r.read())
-
-    def create_session(self, directory: str, timeout: float = 30.0) -> str:
-        from urllib.parse import quote
-        d = quote(directory, safe="")
-        resp = self._post(f"/session?directory={d}", {}, timeout)
-        sid = resp.get("id")
-        if not sid:
-            raise RuntimeError(f"session create failed: {resp}")
-        return sid
-
-    def prompt(self, session_id: str, directory: str, model: str, text: str,
-               system: Optional[str] = None, timeout: float = 600.0) -> dict:
-        """POST /session/{id}/message (v1 session.prompt). Blocks until complete."""
-        from urllib.parse import quote
-        d = quote(directory, safe="")
-        provider_id, _, model_id = model.partition("/")
-        body: dict = {
-            "model": {"providerID": provider_id, "modelID": model_id},
-            "parts": [{"type": "text", "text": text}],
-        }
-        if system:
-            body["system"] = system
-        return self._post(f"/session/{session_id}/message?directory={d}", body, timeout)
-
-    def get_messages(self, session_id: str, directory: str, timeout: float = 30.0) -> list:
-        """GET /session/{id}/message — all messages with their parts.
-
-        The prompt response is only the FINAL assistant message; tool-call parts
-        from earlier steps of the same turn live in prior messages. Aggregating
-        across all messages is the only way to count tool calls / files read.
-        """
-        from urllib.parse import quote
-        d = quote(directory, safe="")
-        req = urllib.request.Request(
-            f"{self.base}/session/{session_id}/message?directory={d}", method="GET",
-        )
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            data = json.loads(r.read())
-        # Response may be a bare list or {messages:[...]} depending on route version.
-        if isinstance(data, dict):
-            return data.get("messages") or data.get("data") or []
-        return data
-
-
-# ---------------------------------------------------------------------------
-# Shared server singleton (one `opencode serve` for the whole experiment)
-# ---------------------------------------------------------------------------
-
-_SERVER_LOCK = threading.Lock()
-_SHARED_SERVER: Optional["OpencodeServer"] = None
-
-
-def get_shared_server() -> "OpencodeServer":
-    """Lazily start one OpencodeServer and reuse it across all tasks.
-
-    A local GPU serves one inference at a time, so a single long-lived server is
-    both sufficient and cheapest (spawning per task is slow and routes through the
-    broken json CLI). Torn down at interpreter exit.
-    """
-    global _SHARED_SERVER
-    with _SERVER_LOCK:
-        if _SHARED_SERVER is None:
-            _SHARED_SERVER = OpencodeServer().__enter__()
-            atexit.register(lambda: _SHARED_SERVER.__exit__(None, None, None))
-        return _SHARED_SERVER
 
 
 # ---------------------------------------------------------------------------
@@ -322,16 +273,49 @@ WORKFLOW:
   4. Answer concisely, referencing real file paths and function/class names."""
 
 
+# C2_repowise_local: the ZERO-LLM repowise surface. No get_answer, so no
+# frontier model enters the loop and the row can carry a "small local model plus
+# repowise" claim. The steps deliberately mirror _OPENCODE_PROMPT_FULL's shape
+# (same call budget, same hard rules, same length) so the two conditions differ
+# by the TOOLS THEY NAME and not by how hard each is coached.
+_OPENCODE_PROMPT_LOCAL = """You answer a question about the code repository in your current directory using repowise tools (an accurate indexed wiki of THIS repo).
+
+STEPS:
+  1. Call repowise_search_codebase with {"query": "<the exact question>"} — actually invoke the tool, do NOT type the call as text.
+  2. (Optional, only if you still lack a specific class/function body) call repowise_get_symbol with {"symbol_id": "Name"} — a bare name like "Blueprint" works — or repowise_get_context with {"targets": ["path/a.py"]}.
+  Make at most TWO tool calls total.
+
+THEN STOP CALLING TOOLS and write your FINAL ANSWER as plain prose.
+
+HARD RULES:
+  - You MUST end with a written answer. Never end your turn on a tool call. Never print a tool call (e.g. `repowise_get_symbol(...)`) as your answer.
+  - Ground EVERY statement in the tool output. Do NOT invent class names, file paths, exceptions, or "test failures" that the tools did not return. If the tools don't cover something, say only what they did show.
+  - Answer the SPECIFIC question asked — do not paste a generic repository overview.
+  - Be concise (3-6 sentences). Cite real file paths / function names that appear in the tool results."""
+
+
 def build_opencode_system_prompt(condition: dict, benchmark: str = "swe_qa") -> str:
     """Pick the opencode system prompt for a condition.
 
     Mirrors swe_qa_runner's SWEQA_PROMPT_* but uses opencode's ``repowise_<tool>``
     naming. The small local model ignores the MCP tools without this nudge.
+
+    THE PROMPT MUST MATCH THE ALLOWLIST. `C2_repowise_local` runs `repowise_mode:
+    full` with `get_answer` denied, so the full-mode prompt would open by
+    instructing the model to call a tool the condition blocks. The model would
+    burn its two-call budget on a refusal and the row would read as "the
+    zero-LLM surface does not help" when what was actually measured is a prompt
+    pointed at a closed door.
     """
     if not condition.get("repowise_enabled"):
         return _OPENCODE_PROMPT_BARE
     mode = condition.get("repowise_mode", "full")
-    return _OPENCODE_PROMPT_INDEX_ONLY if mode == "index-only" else _OPENCODE_PROMPT_FULL
+    if mode == "index-only":
+        return _OPENCODE_PROMPT_INDEX_ONLY
+    allowed = condition.get("allowed_tools")
+    if allowed is not None and "get_answer" not in allowed:
+        return _OPENCODE_PROMPT_LOCAL
+    return _OPENCODE_PROMPT_FULL
 
 
 # ---------------------------------------------------------------------------
@@ -346,12 +330,41 @@ def _normalize_message(m: dict) -> tuple[dict, list]:
     return m, m.get("parts", []) or []
 
 
+# opencode's own tools. Everything else in a tool part came from a mounted MCP
+# server, which is how an MCP call is told apart from a builtin one here:
+# opencode names MCP tools `<server>_<tool>` with no `mcp__` marker, so there is
+# nothing structural to match on.
+_OPENCODE_BUILTIN_TOOLS = frozenset({
+    "read", "grep", "glob", "list", "write", "edit", "patch", "bash",
+    "webfetch", "websearch", "task", "todowrite", "todoread", "question",
+    "skill", "invalid",
+})
+
+
+def _mcp_split(name: str) -> tuple[str, str]:
+    """(server, tool) for an opencode MCP tool name, or ("", "") if builtin."""
+    if not name or name in _OPENCODE_BUILTIN_TOOLS or "_" not in name:
+        return "", ""
+    server, _, tool = name.partition("_")
+    return server, tool
+
+
 def parse_session_messages(messages: list) -> dict:
     """Aggregate ALL session messages into run_claude_code's output shape.
 
     Cost/tokens are summed across every step-finish (the per-message info.tokens
     is only that message's slice). Tool calls and files-read are collected across
     all assistant messages of the turn, not just the final one.
+
+    THE MCP FIELDS ARE THE ADOPTION INSTRUMENT AND THEY ARE NOT OPTIONAL.
+    `run_swe_qa_task` decides `arm_exercised` from `mcp_tools_issued` and
+    `mcp_per_server`, which are the Claude-shaped names; this function used to
+    emit only `repowise_tools_called`, so every opencode cell arrived with both
+    fields empty and the integrity guard printed "arm NOT EXERCISED, the agent
+    called none of them" on cells that had demonstrably called their tools. That
+    is the workstream's own trap running backwards: a detector reporting a
+    plausible ZERO for a live arm. Believed, it would have published an adoption
+    collapse for the local harness on the strength of a naming mismatch.
     """
     if isinstance(messages, dict) and messages.get("_tag"):
         return {"error": json.dumps(messages)[:500], "result": ""}
@@ -363,8 +376,13 @@ def parse_session_messages(messages: list) -> dict:
     steps = 0
     tool_calls = 0
     files_explored: list[str] = []
-    repowise_tools: list[str] = []
     answer_parts: list[str] = []
+    mcp_issued: list[str] = []
+    mcp_ok: list[str] = []
+    mcp_errors: list[str] = []
+    server_tools: dict = {}
+    per_server: dict = {}
+    step_detail: list = []
 
     for m in messages:
         if not isinstance(m, dict):
@@ -376,13 +394,27 @@ def parse_session_messages(messages: list) -> dict:
             if ptype == "tool":
                 tool_calls += 1
                 name = p.get("tool", "")
-                tinput = (p.get("state", {}) or {}).get("input", {}) or {}
+                state = p.get("state", {}) or {}
+                tinput = state.get("input", {}) or {}
                 if name == "read":
                     fp = tinput.get("filePath") or tinput.get("path")
                     if fp:
                         files_explored.append(fp)
-                if "repowise" in name:
-                    repowise_tools.append(name)
+                server, _tool = _mcp_split(name)
+                if server:
+                    # ISSUED is every call the agent made; OK is only the ones
+                    # the server answered. The gap between them is the whole
+                    # point: a call that came back an error leaves the agent
+                    # with exactly what a bare agent had.
+                    mcp_issued.append(name)
+                    server_tools.setdefault(server, []).append(name)
+                    bucket = per_server.setdefault(server, {"ok": 0, "error": 0})
+                    if state.get("status") == "completed":
+                        mcp_ok.append(name)
+                        bucket["ok"] += 1
+                    else:
+                        mcp_errors.append(name)
+                        bucket["error"] += 1
             elif ptype == "text":
                 # ONLY the assistant's text is the answer. The GET messages route
                 # returns the user message too, whose text part is our prompt — if
@@ -397,11 +429,25 @@ def parse_session_messages(messages: list) -> dict:
                 steps += 1
                 cost += float(p.get("cost", 0) or 0)
                 tok = p.get("tokens", {}) or {}
-                in_tok += int(tok.get("input", 0) or 0)
-                out_tok += int(tok.get("output", 0) or 0)
+                step_in = int(tok.get("input", 0) or 0)
+                step_out = int(tok.get("output", 0) or 0)
+                in_tok += step_in
+                out_tok += step_out
                 cache = tok.get("cache", {}) or {}
                 cache_read += int(cache.get("read", 0) or 0)
                 cache_write += int(cache.get("write", 0) or 0)
+                # PER STEP, not just summed. On a local model the summed input
+                # count is not a context-window reading (it double-counts the
+                # prompt across turns) and it cannot separate PREFILL from
+                # DECODE. Those are different costs on a GPU: prefill is
+                # parallel, decode is serial, so "one big payload, fewer turns"
+                # and "small payloads, more turns" are distinguishable here and
+                # nowhere in the sums.
+                step_detail.append({
+                    "input": step_in,
+                    "output": step_out,
+                    "reasoning": int(tok.get("reasoning", 0) or 0),
+                })
 
     return {
         "result": answer_parts[-1] if answer_parts else "",
@@ -416,7 +462,22 @@ def parse_session_messages(messages: list) -> dict:
         "num_tool_calls": tool_calls,
         "files_explored": files_explored,
         "files_edited": [],
-        "repowise_tools_called": repowise_tools,
+        # Same meaning as in metrics.py: MCP tools that returned SUCCESSFULLY,
+        # for whichever server the arm mounted, not narrowed to repowise.
+        "repowise_tools_called": mcp_ok,
+        "mcp_tools_called": mcp_ok,
+        "server_tools_called": server_tools,
+        "mcp_tools_issued": sorted(set(mcp_issued)),
+        "mcp_tool_errors": mcp_errors,
+        "mcp_isError_count": len(mcp_errors),
+        "mcp_per_server": per_server,
+        # Per-step prefill/decode. `max_step_input` is the closest thing to a
+        # real context-window reading: the summed input token count exceeds the
+        # 16k window routinely just by counting the same prompt on every turn,
+        # so only the per-step maximum can say whether a payload actually
+        # crowded the window and got the tool definitions truncated.
+        "token_steps": step_detail,
+        "max_step_input": max((s["input"] for s in step_detail), default=0),
         "stop_reason": "stop",
     }
 
@@ -425,22 +486,76 @@ def parse_session_messages(messages: list) -> dict:
 # Runner
 # ---------------------------------------------------------------------------
 
+def parse_cli_events(stdout: str) -> dict:
+    """Aggregate `opencode run --format json` NDJSON into the output shape.
+
+    Each line is {type, timestamp, sessionID, part:{...}} and the `part` objects
+    carry the same `type` values the REST route returned, so the events are
+    folded into ONE pseudo-message and handed to `parse_session_messages`. One
+    aggregator, not two: the token/tool/answer accounting is the instrument this
+    whole run is read through, and a second copy of it is a second thing to
+    drift.
+
+    role is forced to "assistant" because the CLI streams only the assistant's
+    own events; the prompt is never echoed back as a text part, which is the
+    case the role filter exists to catch.
+    """
+    parts: list = []
+    session_id = None
+    unparsed = 0
+    for line in stdout.splitlines():
+        line = line.strip()
+        if not line or not line.startswith("{"):
+            continue
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            unparsed += 1
+            continue
+        session_id = session_id or ev.get("sessionID")
+        part = ev.get("part")
+        if isinstance(part, dict):
+            parts.append(part)
+    out = parse_session_messages([{"info": {"role": "assistant"}, "parts": parts}])
+    out["session_id"] = session_id
+    out["n_events"] = len(parts)
+    if unparsed:
+        out["unparsed_lines"] = unparsed
+    return out
+
+
+def _opencode_cmd(*, directory: str, model: str, prompt: str,
+                  use_agent: bool, session_id: Optional[str] = None) -> list:
+    cmd = [_OPENCODE_BIN, "run", "--format", "json",
+           "--dir", directory, "--model", model]
+    if use_agent:
+        cmd += ["--agent", BENCH_AGENT]
+    if session_id:
+        cmd += ["--session", session_id]
+    cmd.append(prompt)
+    return cmd
+
+
 def run_opencode(
     prompt: str,
     repo_path: str,
     condition: dict,
     model: str,
     timeout: int,
-    server: OpencodeServer,
+    server=None,
     benchmark: str = "swe_qa",
     system_prompt: Optional[str] = None,
     disable_thinking: bool = True,
+    stream_log_path: Optional[str] = None,
 ) -> tuple[dict, int]:
-    """Run one SWE-QA task through opencode's server. Returns (output_dict, retries=0).
+    """Run one SWE-QA task through `opencode run`. Returns (output_dict, retries=0).
 
     Mirrors run_claude_code's return so run_swe_qa_task can dispatch to either
-    harness. ``server`` is a live OpencodeServer (started once for the whole run).
-    Local models don't rate-limit, so there is no retry/backoff.
+    harness. One process per cell, no shared server. Local models do not rate
+    limit, so there is no retry/backoff.
+
+    ``server`` is accepted and ignored; it is the removed REST singleton's
+    parameter, kept so an older caller does not TypeError.
 
     disable_thinking: append qwen3 ``/no_think`` to suppress chain-of-thought
         latency. (qwen3.5 only partially honours it via the OpenAI-compat
@@ -450,9 +565,7 @@ def run_opencode(
 
     # C0 runs in a clean git worktree so prior .repowise/ + opencode.json are
     # physically absent; reuse the Claude arm's worktree helper for identical
-    # isolation. NOTE: worktrees live under the bench's scratch dir; if opencode
-    # bootstrap proves sensitive to monorepo nesting, point this at an external
-    # work root instead.
+    # isolation.
     if not condition.get("repowise_enabled"):
         from harness.swe_qa_runner import get_c0_worktree
         repo = get_c0_worktree(repo)
@@ -461,6 +574,8 @@ def run_opencode(
         model=model,
         repowise_enabled=bool(condition.get("repowise_enabled")),
         repo_path=repo,
+        allowed_tools=condition.get("allowed_tools"),
+        system_prompt=system_prompt,
     )
     write_opencode_config(repo, config)
 
@@ -468,41 +583,64 @@ def run_opencode(
         prompt = prompt + "\n\n/no_think"
 
     directory = str(repo.resolve())
-    try:
-        session_id = server.create_session(directory)
-        final = server.prompt(
-            session_id, directory, model, prompt,
-            system=system_prompt, timeout=float(timeout),
-        )
-        if isinstance(final, dict) and final.get("_tag"):
-            return {"error": json.dumps(final)[:500]}, 0
-        # Tool-call parts live across the turn's messages, not just the final
-        # assistant message — aggregate them all.
-        messages = server.get_messages(session_id, directory)
-        if not messages:
-            messages = [final]
 
-        parsed = parse_session_messages(messages)
+    def _run(text: str, session_id: Optional[str] = None) -> tuple[str, str, int]:
+        proc = subprocess.run(
+            _opencode_cmd(directory=directory, model=model, prompt=text,
+                          use_agent=bool(system_prompt), session_id=session_id),
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+            timeout=float(timeout), env=_UTF8_ENV, cwd=directory,
+        )
+        return proc.stdout or "", proc.stderr or "", proc.returncode
+
+    try:
+        stdout, stderr, rc = _run(prompt)
+        if stream_log_path:
+            Path(stream_log_path).parent.mkdir(parents=True, exist_ok=True)
+            Path(stream_log_path).write_text(stdout, encoding="utf-8")
+        parsed = parse_cli_events(stdout)
+
+        # A non-zero rc with no parsed answer is a harness failure, not a bad
+        # answer, and must never be graded as one.
+        if rc != 0 and not (parsed.get("result") or "").strip():
+            return {"error": f"opencode rc={rc}: {(stderr or stdout)[:400]}"}, 0
 
         # Empty-answer recovery: small models often end a turn on a tool call
         # without writing a final answer (observed on both qwen3.5:4b and
         # qwen3:8b). That yields an unscored row and lost data. Re-prompt ONCE
         # in the SAME session — the tool results are already in context, so the
-        # model just has to synthesize. Cheap and materially cuts empties.
-        if not (parsed.get("result") or "").strip() and not parsed.get("error"):
-            server.prompt(
-                session_id, directory, model,
+        # model just has to synthesize.
+        if not (parsed.get("result") or "").strip() and parsed.get("session_id"):
+            stdout2, _, _ = _run(
                 "You did not provide a final answer. Based on the tool results "
                 "already in this conversation, write your final answer now as "
                 "plain prose. Do NOT call any tools. /no_think",
-                timeout=float(timeout),
+                session_id=parsed["session_id"],
             )
-            messages = server.get_messages(session_id, directory) or messages
-            parsed = parse_session_messages(messages)
-    except urllib.error.URLError as e:
-        return {"error": f"opencode server error: {e}", "timed_out": "timed out" in str(e).lower()}, 0
+            if stream_log_path:
+                with open(stream_log_path, "a", encoding="utf-8") as fh:
+                    fh.write(stdout2)
+            retry = parse_cli_events(stdout2)
+            if (retry.get("result") or "").strip():
+                # Keep the FIRST turn's tool/token accounting and add the
+                # retry's, so a recovered cell is not recorded as a zero-tool
+                # one. Adoption is the headline this run reports.
+                retry["repowise_tools_called"] = (
+                    parsed.get("repowise_tools_called", [])
+                    + retry.get("repowise_tools_called", []))
+                retry["num_tool_calls"] = (parsed.get("num_tool_calls", 0)
+                                           + retry.get("num_tool_calls", 0))
+                retry["files_explored"] = (parsed.get("files_explored", [])
+                                           + retry.get("files_explored", []))
+                for k in ("input_tokens", "output_tokens"):
+                    retry["usage"][k] = (parsed["usage"].get(k, 0)
+                                         + retry["usage"].get(k, 0))
+                retry["answer_recovered_on_retry"] = True
+                parsed = retry
+    except subprocess.TimeoutExpired:
+        return {"error": f"opencode timed out after {timeout}s", "timed_out": True}, 0
     except Exception as e:
-        return {"error": str(e)[:500]}, 0
+        return {"error": f"{type(e).__name__}: {str(e)[:400]}"}, 0
 
     if parsed.get("error") and not parsed.get("result"):
         return {"error": parsed["error"]}, 0
