@@ -297,11 +297,18 @@ def block_chars(md: Path) -> int:
 def install_block(tree: Path, block_source: Optional[Path]) -> int:
     """Ensure the arm carries exactly ONE copy of the resident block.
 
-    `repowise init` already writes it to `.claude/CLAUDE.md`, and
-    `--no-editor-setup` does NOT suppress that (`--no-claude-md` is the flag that
-    does). So the common case here is that the block is already present and the
-    right action is to leave it alone. Writing a second copy at the repo root
-    would double the very quantity this run exists to price.
+    When `repowise init` writes it to `.claude/CLAUDE.md`, the right action
+    here is to leave it alone: writing a second copy at the repo root would
+    double the very quantity this run exists to price.
+
+    **`--no-editor-setup` used to leave the block alone and no longer does.**
+    On the 2026-08-12 build only `--no-claude-md` suppressed it, so an indexed
+    tree always carried one. Indexing at `e485fb6a7` with the same flags
+    produced no block at all, and the stamping step failed with "golden has no
+    .claude/". Do not assume an indexed tree has a block -- check, and if it
+    has none, generate it from the built index with
+    `editor_integrations.claude.maybe_generate_claude_md`, which is the same
+    code path init would have taken.
     """
     already = block_path(tree)
     if already is not None:
