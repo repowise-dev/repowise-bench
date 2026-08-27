@@ -15,7 +15,18 @@
 # Usage: powershell -File index_hermes_polled.ps1 -Tree C:\...\se-hermes-pf-golden
 
 param([Parameter(Mandatory = $true)][string]$Tree,
-      [int]$IntervalSec = 15)
+      [int]$IntervalSec = 15,
+      # Trap 9: three knobs point at a binary, and the primary checkout's
+      # repowise.exe resolves to a working tree that usually carries in-flight
+      # edits, so it cannot measure a shipped build. Pass the pin's shim here
+      # and the run records which build it actually indexed with.
+      [string]$Exe = "C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe",
+      # A pinned worktree's venv usually has the packages installed editable but
+      # no console script, so the entry point is reached as
+      #   -Exe <that venv's python.exe> -ExeArgs <shim.py>
+      # rather than through a .cmd, which Start-Process cannot launch once
+      # output redirection has forced UseShellExecute off.
+      [string[]]$ExeArgs = @())
 
 # CLAUDE.md: without these the rich checkmark glyph crashes the CLI with a
 # charmap codec error on Windows.
@@ -57,14 +68,16 @@ function Get-Descendants([int]$root) {
   $keep.Values
 }
 
-$exe = "C:\Users\ragha\Desktop\repowise\.venv\Scripts\repowise.exe"
+if (-not (Test-Path $Exe)) { throw "indexer binary not found: $Exe" }
+$exe = $Exe
+Write-Host "INDEXER_EXE=$exe $($ExeArgs -join ' ')"
 $out = Join-Path $env:TEMP "hermes_pf_init_out.txt"
 $err = Join-Path $env:TEMP "hermes_pf_init_err.txt"
 
 $t0 = Get-Date
 $proc = Start-Process -FilePath $exe `
-  -ArgumentList @("init","--embedder","openai","--max-file-pages","0",
-                  "--no-workspace","--no-editor-setup","--yes") `
+  -ArgumentList ($ExeArgs + @("init","--embedder","openai","--max-file-pages","0",
+                  "--no-workspace","--no-editor-setup","--yes")) `
   -WorkingDirectory $Tree -PassThru -NoNewWindow `
   -RedirectStandardOutput $out -RedirectStandardError $err
 
