@@ -372,6 +372,38 @@ def ledger_rows(tree: Path) -> dict:
     return out
 
 
+def clear_session_ledger(tree: Path) -> dict:
+    """Delete this tree's OWN hook-ledger rows before a run.
+
+    An aborted arm leaves rows in `.repowise/sessions/sessions.db`, which then
+    fails `hook_ledger_clean_before_run` on the next attempt at the same tree --
+    a check that is correct to have but wrong to leave the operator to satisfy
+    by hand. `prepare` calls this so a re-run clears the stale state itself
+    instead of failing on it.
+
+    Scoped to exactly the tree being prepared: the path is built from `tree`,
+    never from a global or default location, and a missing database is a no-op
+    rather than an error, since most trees never had a hooks arm run in them.
+    """
+    db = tree / ".repowise" / "sessions" / "sessions.db"
+    out = {"db_present": db.exists(), "cleared": {}}
+    if not db.exists():
+        return out
+    con = sqlite3.connect(str(db))
+    try:
+        for table in ("hook_runs", "injections", "rewrite_runs"):
+            try:
+                cur = con.execute(f"DELETE FROM {table}")
+                out["cleared"][table] = cur.rowcount if cur.rowcount >= 0 else 0
+            except sqlite3.Error:
+                # Table absent in this schema generation -- nothing to clear.
+                out["cleared"][table] = 0
+        con.commit()
+    finally:
+        con.close()
+    return out
+
+
 # Every place the agent can pick the block up. `.claude/CLAUDE.md` is FIRST
 # because that is where the generator actually writes it, and reading only the
 # repo-root `CLAUDE.md` is how this gate first reported a declared block as
@@ -555,6 +587,12 @@ def prepare(cell: dict, arm: str, block_source: Optional[Path],
         if r.returncode != 0:
             raise RuntimeError(f"worktree add failed: {r.stderr.strip()[-300:]}")
 
+    # An aborted arm can leave rows behind from a previous attempt at THIS
+    # tree, which would fail the pre-run `hook_ledger_clean_before_run` check
+    # below. Clear them here rather than making the operator do it by hand --
+    # scoped to this tree only, never a shared or default path.
+    ledger_clear = clear_session_ledger(tree)
+
     out_dir = BENCH_ROOT / "results" / "bakeoff_2026_08" / "session-cost-eval" / "arms" / arm
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -580,6 +618,7 @@ def prepare(cell: dict, arm: str, block_source: Optional[Path],
         "arm": arm, "tree": str(tree), "condition": condition,
         "uses_mcp": uses_mcp, "uses_hooks": uses_hooks, "uses_block": uses_block,
         "block_chars": chars,
+        "ledger_cleared": ledger_clear,
         "settings": str(settings),
         "mcp_config": mcp_config,
         "client_tools": arm_obj.client_tools,
