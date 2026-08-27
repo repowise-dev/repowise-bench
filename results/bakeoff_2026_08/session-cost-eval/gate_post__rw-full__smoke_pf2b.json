@@ -1,0 +1,82 @@
+{
+  "gate": {
+    "arm": "rw-full",
+    "phase": "post",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf2",
+    "passed": false,
+    "checks": [
+      {
+        "check": "tree_exists",
+        "ok": true,
+        "detail": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf2"
+      },
+      {
+        "check": "tree_pinned",
+        "ok": true,
+        "detail": {
+          "head": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+          "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457"
+        }
+      },
+      {
+        "check": "block_matches_declaration",
+        "ok": true,
+        "detail": {
+          "visible": true,
+          "declared": true,
+          "chars": 6648
+        }
+      },
+      {
+        "check": "block_non_empty",
+        "ok": true,
+        "detail": {
+          "chars": 6648
+        }
+      },
+      {
+        "check": "hook_ledger_populated",
+        "ok": false,
+        "detail": {
+          "db_present": false,
+          "sessions": 0,
+          "hook_runs": 0,
+          "skeleton_or_digest": 0
+        }
+      },
+      {
+        "check": "replacing_surfaces_installed",
+        "ok": false,
+        "detail": {
+          "read_calls": null,
+          "search_calls": null
+        }
+      },
+      {
+        "check": "replacing_surfaces_emission_RATE_not_a_gate",
+        "ok": true,
+        "detail": {
+          "read": "None/None",
+          "search": "None/None",
+          "total": "None/None"
+        }
+      },
+      {
+        "check": "index_present",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "index_embedder_mock": false
+        }
+      },
+      {
+        "check": "embedder_live_1536",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "note": "D13: every index before 2026-08-05 was mock at 8 dims"
+        }
+      }
+    ]
+  }
+}

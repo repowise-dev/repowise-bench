@@ -1,0 +1,98 @@
+{
+  "gate": {
+    "arm": "rw-full",
+    "phase": "post",
+    "tree": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf2",
+    "passed": true,
+    "checks": [
+      {
+        "check": "tree_exists",
+        "ok": true,
+        "detail": "C:\\Users\\ragha\\Desktop\\bakeoff\\se-rw-full-hermes-pf2"
+      },
+      {
+        "check": "tree_pinned",
+        "ok": true,
+        "detail": {
+          "head": "c0106e50e7ecedb3ce34e785d949725dc4e0e457",
+          "pin": "c0106e50e7ecedb3ce34e785d949725dc4e0e457"
+        }
+      },
+      {
+        "check": "block_matches_declaration",
+        "ok": true,
+        "detail": {
+          "visible": true,
+          "declared": true,
+          "chars": 6648
+        }
+      },
+      {
+        "check": "block_non_empty",
+        "ok": true,
+        "detail": {
+          "chars": 6648
+        }
+      },
+      {
+        "check": "hook_ledger_populated",
+        "ok": true,
+        "detail": {
+          "db_present": true,
+          "sessions": 41,
+          "hook_runs": 6,
+          "skeleton_or_digest": 0,
+          "hook_calls": 41,
+          "hook_emitted": 3,
+          "injections": 0,
+          "read_hook_calls": 14,
+          "read_hook_emitted": 0,
+          "search_hook_calls": 19,
+          "search_hook_emitted": 0
+        }
+      },
+      {
+        "check": "replacing_surfaces_installed",
+        "ok": true,
+        "detail": {
+          "read_calls": 14,
+          "search_calls": 19
+        }
+      },
+      {
+        "check": "replacing_surfaces_emission_RATE_not_a_gate",
+        "ok": true,
+        "detail": {
+          "read": "0/14",
+          "search": "0/19",
+          "total": "3/41"
+        }
+      },
+      {
+        "check": "index_present",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "index_embedder_mock": false
+        }
+      },
+      {
+        "check": "embedder_live_1536",
+        "ok": true,
+        "detail": {
+          "index_vector_dim": 1536,
+          "note": "D13: every index before 2026-08-05 was mock at 8 dims"
+        }
+      },
+      {
+        "check": "hook_command_resolvable",
+        "ok": true,
+        "detail": {
+          "scripts_dir": "C:\\Users\\ragha\\Desktop\\rw-flowui\\.venv\\Scripts",
+          "found": "C:\\Users\\ragha\\Desktop\\rw-flowui\\.venv\\Scripts\\repowise-augment.exe",
+          "note": "a .cmd is not found by the hook's `command -v`; it needs a real console script"
+        }
+      }
+    ]
+  }
+}
