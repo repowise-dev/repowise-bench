@@ -81,6 +81,13 @@ $proc = Start-Process -FilePath $exe `
   -WorkingDirectory $Tree -PassThru -NoNewWindow `
   -RedirectStandardOutput $out -RedirectStandardError $err
 
+# Cache the process handle WHILE IT IS STILL ALIVE. Without this, ExitCode
+# reads back null once the process has gone -- WaitForExit does not rescue it --
+# so `exit $rc` exited 0 whatever init did, and a failed index printed the same
+# blank INIT_RC as a clean one. Proved both ways against a child exiting 0 and
+# a child exiting 3.
+$null = $proc.Handle
+
 Write-Host "LAUNCHER_PID=$($proc.Id)  poller armed at t=0 (before any child exists)"
 
 # Sample the whole process tree, including the launcher itself: on this repo the
@@ -105,7 +112,17 @@ while ($true) {
   Start-Sleep -Seconds $IntervalSec
 }
 
+# `Start-Process -PassThru` hands back a Process object whose ExitCode stays
+# null until WaitForExit is called on THAT object. The polling loop above uses
+# Get-Process, which is a different object, so reading ExitCode straight off
+# $proc yields nothing and `exit $rc` then exits 0 whatever init did. A failed
+# index and a clean one printed the same blank INIT_RC and the same exit 0.
+$proc.WaitForExit()
 $rc = $proc.ExitCode
+if ($null -eq $rc) {
+  Write-Host "INIT_RC could not be read. Refusing to report success."
+  $rc = 1
+}
 $mins = [math]::Round(((Get-Date) - $t0).TotalMinutes, 1)
 Write-Host ""
 Write-Host "INIT_RC=$rc ELAPSED_MIN=$mins PEAK_TREE_RSS_MB=$peak PEAK_AT=$peakAt SAMPLES=$samples"
