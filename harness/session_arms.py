@@ -451,7 +451,8 @@ def index_proof(arm_obj, tree: Path) -> dict:
 # The gate
 # ---------------------------------------------------------------------------
 
-def gate(cell: dict, arm: str, phase: str, block_source: Optional[Path]) -> dict:
+def gate(cell: dict, arm: str, phase: str, block_source: Optional[Path],
+         binary_python: Optional[str] = None) -> dict:
     uses_mcp, uses_hooks, uses_block = shape(arm)
     tree = tree_for(cell, arm)
     checks: list[dict] = []
@@ -531,6 +532,29 @@ def gate(cell: dict, arm: str, phase: str, block_source: Optional[Path]) -> dict
                         if (tree / d).is_dir()), None)
             check("competitor_index_present", art is not None,
                   {"artifact_dir": str(art) if art else None})
+
+    # --- can this arm actually run the hooks it declares? -------------------
+    #
+    # The shipped hook is `if command -v repowise-augment ...; then exec ...`,
+    # which is deliberately fail-safe: with nothing on PATH it does nothing and
+    # says nothing. `--pinned-bin` is what puts the build's Scripts dir on PATH,
+    # and its default pointed at a directory that no longer exists, so every
+    # arm declaring hooks ran with none of them firing. The post gate caught it
+    # afterwards, by which point the arm was paid for. Check it before.
+    if uses_hooks:
+        scripts = Path(binary_python).parent if binary_python else None
+        augment = None
+        if scripts is not None:
+            for ext in (".exe", ".cmd", ".bat", ""):
+                cand = scripts / f"repowise-augment{ext}"
+                if cand.exists():
+                    augment = cand
+                    break
+        check("hook_command_resolvable", augment is not None and augment.suffix == ".exe",
+              {"scripts_dir": str(scripts) if scripts else None,
+               "found": str(augment) if augment else None,
+               "note": "a .cmd is not found by the hook's `command -v`; it "
+                       "needs a real console script"})
 
     # --- the binary under test, all three knobs at once ---------------------
     spec = session_b_binary(arm)
@@ -625,6 +649,11 @@ def prepare(cell: dict, arm: str, block_source: Optional[Path],
         "arm": arm, "tree": str(tree), "condition": condition,
         "uses_mcp": uses_mcp, "uses_hooks": uses_hooks, "uses_block": uses_block,
         "block_chars": chars,
+        # The Scripts dir the run must put on PATH. A declared hook's shipped
+        # command is `command -v repowise-augment`, which silently does nothing
+        # when PATH does not offer one -- so this has to travel with the arm
+        # rather than being a default in the runner that nobody re-checks.
+        "pinned_bin": str(Path(binary_python).parent) if binary_python else None,
         "ledger_cleared": ledger_clear,
         "settings": str(settings),
         "mcp_config": mcp_config,
@@ -652,6 +681,8 @@ def emit_cmd(cell: dict, manifest: dict, config_path: str, out_path: str,
             cmd += ["--mcp-config", manifest["mcp_config"]]
     if manifest["settings"]:
         cmd += ["--settings", manifest["settings"]]
+    if manifest.get("pinned_bin"):
+        cmd += ["--pinned-bin", manifest["pinned_bin"]]
     return cmd
 
 
@@ -683,7 +714,8 @@ def main() -> int:
         result["prepare"] = prepare(cell, a.arm, block_source, a.condition,
                                     a.binary_python, force=a.force)
     if a.gate:
-        result["gate"] = gate(cell, a.arm, a.phase, block_source)
+        result["gate"] = gate(cell, a.arm, a.phase, block_source,
+                              a.binary_python)
     if a.emit_cmd:
         man = result.get("prepare") or prepare(cell, a.arm, block_source,
                                                a.condition, a.binary_python)
