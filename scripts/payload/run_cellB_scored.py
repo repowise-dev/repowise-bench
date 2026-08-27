@@ -51,6 +51,9 @@ import sys
 import time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pinned_build import check_binary, check_out  # noqa: E402
+
 BENCH = Path(__file__).resolve().parents[2]
 PY = Path(sys.executable)
 ARMS = BENCH / "harness" / "session_arms.py"
@@ -82,25 +85,6 @@ CONDITION = "unenforced"
 # Hard ceiling. The arc's standing budget is $350 and ~$172 is spent; this run
 # is priced at ~$54 from measured per-task figures. If it runs away, stop.
 BUDGET_CEILING_USD = 90.0
-
-
-def fingerprint(binary_python: Path) -> dict:
-    """Which build this interpreter actually imports.
-
-    A version string cannot separate two builds of the same release, and an
-    editable install resolves to whatever tree it was installed from, so the
-    only honest fingerprint is the file the import lands on.
-    """
-    code = ("import json, repowise.core as c, repowise.server as s;"
-            "print(json.dumps({'core': c.__file__, 'server': s.__file__}))")
-    r = subprocess.run([str(binary_python), "-c", code], capture_output=True,
-                       text=True, encoding="utf-8", errors="replace")
-    if r.returncode != 0:
-        return {"error": (r.stderr or r.stdout)[-500:]}
-    try:
-        return json.loads(r.stdout.strip())
-    except ValueError:
-        return {"error": r.stdout[-500:]}
 
 
 def _env(repowise_exe: Path) -> dict:
@@ -188,42 +172,15 @@ def main() -> int:
     print(f"condition={CONDITION}  out={out.name}")
 
     # Both binary knobs, resolved and fingerprinted, before anything is spent.
-    for label, path in (("binary-python", binary_python),
-                        ("repowise-exe", repowise_exe)):
-        if not path.exists():
-            print(f"!! {label} does not exist: {path}", file=sys.stderr)
-            return 2
-    fp = fingerprint(binary_python)
-    if "error" in fp:
-        print(f"!! could not fingerprint the build: {fp['error']}",
-              file=sys.stderr)
+    fp = check_binary(binary_python, repowise_exe)
+    if fp is None:
         return 2
     print(f"binary-python  {binary_python}")
     print(f"repowise-exe   {repowise_exe}")
     print(f"imports core   {fp['core']}")
     print(f"imports server {fp['server']}")
 
-    # The two knobs must name the same build. Setting one and forgetting the
-    # other leaves an arm running one build's hooks against another's server,
-    # with nothing in the output saying so.
-    root = str(binary_python.parent.parent.parent).lower()
-    if not fp["core"].lower().startswith(root):
-        print(f"!! the interpreter imports a build outside {root}. Refusing: "
-              f"a row that cannot name its binary is not a measurement.",
-              file=sys.stderr)
-        return 2
-    if not str(repowise_exe).lower().startswith(root):
-        print(f"!! repowise-exe is not from the same build as binary-python. "
-              f"Refusing rather than mixing two builds in one arm.",
-              file=sys.stderr)
-        return 2
-
-    if out.exists() and out.stat().st_size > 0 and not args.append:
-        print(f"\n!! {out.name} already has rows. A re-run that appends to a "
-              f"previous run's file mixes two index generations under one "
-              f"name and starts the budget counter part-spent. Use a new "
-              f"--run-id, or --append if continuing this same run.",
-              file=sys.stderr)
+    if not check_out(out, args.append):
         return 3
     print()
     for sess, rep, kind, arm, ids in schedule:

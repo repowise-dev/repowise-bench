@@ -39,6 +39,7 @@ it and `scripts/payload/prove_tree_slug.py` proves it in both directions.
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import subprocess
@@ -46,29 +47,30 @@ import sys
 import time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pinned_build import check_binary, check_out  # noqa: E402
+
 BENCH = Path(__file__).resolve().parents[2]
-PY = Path(r"C:\Users\ragha\Desktop\repowise\.venv\Scripts\python.exe")
+PY = Path(sys.executable)
 ARMS = BENCH / "harness" / "session_arms.py"
 CONFIG = BENCH / "configs" / "session_cost_eval_cellB_hermes.yaml"
-OUT = (BENCH / "results" / "bakeoff_2026_08" / "session-cost-eval"
-       / "sessions_s3c_smoke_hermes.jsonl")
+RESULTS = BENCH / "results" / "bakeoff_2026_08" / "session-cost-eval"
 
 # The binary under test. It must CONTAIN #1435 (f82ebb0d), which is the whole
 # reason question 2 above is worth asking, and the commit is recorded in the
 # results file rather than assumed from a version string -- `repowise --version`
 # reads 0.41.0 for builds either side of the fix.
+# Only the API key is read from here; the BUILD is an argument.
 REPOWISE_ROOT = Path(r"C:\Users\ragha\Desktop\repowise")
-BINARY_PYTHON = REPOWISE_ROOT / ".venv" / "Scripts" / "python.exe"
-REPOWISE_EXE = REPOWISE_ROOT / ".venv" / "Scripts" / "repowise.exe"
 
 ARM_NAMES = ["c0-bare", "rw-full"]
 CONDITION = "unenforced"
 LIMIT_TASKS = 3
 
 
-def _env() -> dict:
+def _env(repowise_exe: Path) -> dict:
     env = os.environ.copy()
-    env["REPOWISE_EXE"] = str(REPOWISE_EXE)
+    env["REPOWISE_EXE"] = str(repowise_exe)
     env["DO_NOT_TRACK"] = "1"
     env["REPOWISE_SKIP_EDITOR_SETUP"] = "1"
     env["PYTHONUTF8"] = "1"
@@ -85,20 +87,50 @@ def _env() -> dict:
     return env
 
 
-def _arms(arm: str, *extra: str) -> subprocess.CompletedProcess:
+def _arms(arm: str, binary_python: Path, repowise_exe: Path,
+          *extra: str) -> subprocess.CompletedProcess:
     cmd = [str(PY), str(ARMS), "--config", str(CONFIG), "--arm", arm,
-           "--condition", CONDITION, "--binary-python", str(BINARY_PYTHON),
+           "--condition", CONDITION, "--binary-python", str(binary_python),
            *extra]
     return subprocess.run(cmd, capture_output=True, text=True,
                           encoding="utf-8", errors="replace",
-                          cwd=str(BENCH), env=_env())
+                          cwd=str(BENCH), env=_env(repowise_exe))
 
 
 def main() -> int:
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--binary-python", required=True)
+    ap.add_argument("--repowise-exe", required=True)
+    ap.add_argument("--run-id", required=True)
+    ap.add_argument("--append", action="store_true")
+    args = ap.parse_args()
+
+    binary_python = Path(args.binary_python)
+    repowise_exe = Path(args.repowise_exe)
+    out = RESULTS / f"sessions_smoke_{args.run_id}.jsonl"
+
+    fp = check_binary(binary_python, repowise_exe)
+    if fp is None:
+        return 2
+    print(f"binary-python  {binary_python}")
+    print(f"repowise-exe   {repowise_exe}")
+    print(f"imports core   {fp['core']}")
+    print(f"out            {out.name}")
+    if not check_out(out, args.append):
+        return 3
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    (out.parent / f"provenance__smoke_{args.run_id}.json").write_text(
+        json.dumps({"run_id": args.run_id, "arms": ARM_NAMES,
+                    "limit_tasks": LIMIT_TASKS, "condition": CONDITION,
+                    "binary_python": str(binary_python),
+                    "repowise_exe": str(repowise_exe), "imports": fp},
+                   indent=2), encoding="utf-8")
+
     for arm in ARM_NAMES:
-        r = _arms(arm, "--prepare", "--gate", "--phase", "pre",
-                  "--emit-cmd", "--out", str(OUT))
+        r = _arms(arm, binary_python, repowise_exe,
+                  "--prepare", "--gate", "--phase", "pre",
+                  "--emit-cmd", "--out", str(out))
         if r.returncode != 0:
             print(f"!! {arm} FAILED ITS PRE GATE. Stopping rather than grading "
                   f"an arm that is not what it claims to be.\n"
@@ -110,7 +142,7 @@ def main() -> int:
         print(f"\n{'=' * 70}\n=== {arm}  ({time.strftime('%H:%M:%S')})  "
               f"{LIMIT_TASKS} tasks  cellB-hermes\n{'=' * 70}", flush=True)
         t0 = time.time()
-        p = subprocess.run(cmd, cwd=str(BENCH), env=_env())
+        p = subprocess.run(cmd, cwd=str(BENCH), env=_env(repowise_exe))
         print(f"=== {arm} exited {p.returncode} after {time.time() - t0:.0f}s",
               flush=True)
         if p.returncode != 0:
@@ -118,12 +150,12 @@ def main() -> int:
                   f"rest on top of a broken arm.", file=sys.stderr)
             return p.returncode
 
-        g = _arms(arm, "--gate", "--phase", "post")
-        (OUT.parent / f"gate_post__{arm}__cellB.json").write_text(
+        g = _arms(arm, binary_python, repowise_exe, "--gate", "--phase", "post")
+        (out.parent / f"gate_post__{arm}__smoke_{args.run_id}.json").write_text(
             g.stdout, encoding="utf-8")
         print(f"--- {arm} POST GATE rc={g.returncode}")
 
-    print(f"\nsmoke complete: {len(ARM_NAMES)} arms -> {OUT}")
+    print(f"\nsmoke complete: {len(ARM_NAMES)} arms -> {out}")
     return 0
 
 
