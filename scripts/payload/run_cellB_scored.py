@@ -52,9 +52,13 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pinned_build import check_binary, check_out  # noqa: E402
+from pinned_build import (  # noqa: E402
+    check_binary, check_harness_python, check_out)
 
 BENCH = Path(__file__).resolve().parents[2]
+# The interpreter that RUNS the harness. Not the build under test: it needs
+# lancedb and yaml so the gate can prove an arm's index is a real store.
+# Defaults to the build's own venv python, which always has both.
 PY = Path(sys.executable)
 ARMS = BENCH / "harness" / "session_arms.py"
 CONFIG = BENCH / "configs" / "session_cost_eval_cellB_hermes.yaml"
@@ -157,10 +161,15 @@ def main() -> int:
                          "arm must never land in a previous run's rows")
     ap.add_argument("--append", action="store_true",
                     help="continue a run whose output file already exists")
+    ap.add_argument("--harness-python", default=None,
+                    help="interpreter that runs the harness; defaults to "
+                         "--binary-python, which has what the gate needs")
     args = ap.parse_args()
 
     binary_python = Path(args.binary_python)
     repowise_exe = Path(args.repowise_exe)
+    global PY
+    PY = Path(args.harness_python) if args.harness_python else binary_python
     out = RESULTS / f"sessions_cellB_{args.run_id}.jsonl"
 
     schedule = plan()
@@ -174,6 +183,8 @@ def main() -> int:
     # Both binary knobs, resolved and fingerprinted, before anything is spent.
     fp = check_binary(binary_python, repowise_exe)
     if fp is None:
+        return 2
+    if not check_harness_python(PY):
         return 2
     print(f"binary-python  {binary_python}")
     print(f"repowise-exe   {repowise_exe}")

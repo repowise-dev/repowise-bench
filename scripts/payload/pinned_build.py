@@ -85,6 +85,34 @@ def check_binary(binary_python: Path, repowise_exe: Path,
     return fp
 
 
+def check_harness_python(harness_python: Path, out=sys.stderr) -> bool:
+    """The interpreter that RUNS the harness, which is not the build under test.
+
+    `session_arms.gate` proves an arm's index is a real 1536-dim store by
+    opening it with lancedb. An interpreter without lancedb makes that proof
+    return None, and the gate then refuses the arm for "index_vector_dim:
+    None" -- which reads exactly like a mock 8-dim index and sends you looking
+    at the store instead of at the interpreter. It cost one smoke arm.
+
+    So the harness interpreter is checked for what it actually needs, and says
+    which of the two things is wrong.
+    """
+    if not harness_python.exists():
+        print(f"!! harness-python does not exist: {harness_python}", file=out)
+        return False
+    r = subprocess.run([str(harness_python), "-c", "import lancedb, yaml"],
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace")
+    if r.returncode != 0:
+        print(f"!! the harness interpreter cannot import what the gate needs: "
+              f"{harness_python}", file=out)
+        print(f"   {r.stderr.strip()[-300:]}", file=out)
+        print("   Without lancedb the index proof returns None and every "
+              "treated arm is refused as if its store were mock.", file=out)
+        return False
+    return True
+
+
 def check_out(out_path: Path, append: bool, out=sys.stderr) -> bool:
     """True when it is safe to write rows here."""
     if out_path.exists() and out_path.stat().st_size > 0 and not append:
@@ -128,6 +156,25 @@ def self_test() -> int:
     buf = io.StringIO()
     check("missing server refused", check_binary(me, Path("nope.exe"), out=buf), None)
     check("...naming the server knob", "repowise-exe does not exist" in buf.getvalue(), True)
+
+    # The harness interpreter check must fail on one without lancedb and pass
+    # on one with it. Both arms are only assertable if such interpreters exist
+    # here, so each half is skipped only when its subject is absent -- and the
+    # skip is printed, never silent.
+    buf = io.StringIO()
+    check("absent harness python refused",
+          check_harness_python(Path("nope.exe"), out=buf), False)
+    check("...and says so", "does not exist" in buf.getvalue(), True)
+
+    buf = io.StringIO()
+    has_lancedb = subprocess.run([str(me), "-c", "import lancedb, yaml"],
+                                 capture_output=True).returncode == 0
+    got = check_harness_python(me, out=buf)
+    check("harness python check agrees with reality", got, has_lancedb)
+    if not has_lancedb:
+        check("...and names the missing import", "lancedb" in buf.getvalue(), True)
+    print(f"  (this interpreter {'has' if has_lancedb else 'lacks'} lancedb; "
+          f"the check returned {got})")
 
     # venv_root climbs exactly three levels, which is what the layout is.
     check("venv root",
