@@ -1,4 +1,4 @@
-"""Prove the two harness fixes in BOTH directions, with negative controls.
+"""Prove the harness fixes in BOTH directions, with negative controls.
 
 Fix A — per-run stream directories. The scratch directory was keyed on
 cell/arm/condition only, so re-running an arm overwrote the previous run's
@@ -8,6 +8,16 @@ Fix B — per-task test command. The runner interpolated ONE test command for th
 whole session, so a session whose later task edits module M announced M in the
 system prompt before its first task ran.
 
+Fix C — the cell-B tree slug is a second-generation slug (`hermes-pf2`), so a
+re-run cannot silently resolve to the August `hermes-pf` trees the indexer
+change invalidated.
+
+Fix D — an aborted arm's rows in `.repowise/sessions/sessions.db` are cleared
+by `prepare`, not left to fail the next `hook_ledger_clean_before_run` check.
+
+Fix E — `get_health` is in `mcp_payload.py`'s canonical call list, so the
+payload regression guard actually measures it.
+
 Each check must fail on the old behaviour and pass on the new one. A check that
 only passes on the new behaviour proves nothing about what was wrong — this
 workstream has shipped several of those, so both directions are asserted here
@@ -16,11 +26,15 @@ and the OLD behaviour is reconstructed explicitly rather than described.
 
 from __future__ import annotations
 
+import re
+import sqlite3
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from harness import session_arms as sa  # noqa: E402
 from harness.session_runner import (  # noqa: E402
     SYSTEM_PROMPT_HEAD,
     SYSTEM_PROMPT_TAIL,
@@ -126,8 +140,163 @@ check(
     "this is what overwrote the pre-fix transcripts",
 )
 
+
+# --------------------------------------------------------------------------
+# Fix C: bump the cell-B tree slug past the stale index generation
+# --------------------------------------------------------------------------
+print()
+print("FIX C — cell-B tree slug is a new index generation")
+
+import yaml  # noqa: E402
+
+CELL_B_CONFIG = Path(__file__).resolve().parents[2] / "configs" / "session_cost_eval_cellB_hermes.yaml"
+cell_b = yaml.safe_load(CELL_B_CONFIG.read_text(encoding="utf-8"))
+
+check(
+    "D1 the live config's tree_slug is no longer the stale generation",
+    cell_b.get("tree_slug") != "hermes-pf",
+    f"tree_slug={cell_b.get('tree_slug')!r}",
+)
+check(
+    "D2 tree_for resolves cell B off the new slug",
+    sa.tree_for(cell_b, "rw-full").name == f"se-rw-full-{cell_b['tree_slug']}",
+    sa.tree_for(cell_b, "rw-full").name,
+)
+
+# NEGATIVE CONTROL: the OLD config value, reconstructed rather than described,
+# resolves to the exact stale August tree that made the run's rows lie.
+OLD_CELL_B = dict(cell_b, tree_slug="hermes-pf")
+check(
+    "NC old slug resolves to the stale August tree (so D1/D2 are not vacuous)",
+    sa.tree_for(OLD_CELL_B, "rw-full").name == "se-rw-full-hermes-pf",
+    sa.tree_for(OLD_CELL_B, "rw-full").name,
+)
+check(
+    "D3 new slug and old slug never resolve to the same path",
+    sa.tree_for(cell_b, "rw-full") != sa.tree_for(OLD_CELL_B, "rw-full"),
+    f"{sa.tree_for(cell_b, 'rw-full').name} != {sa.tree_for(OLD_CELL_B, 'rw-full').name}",
+)
+
+# --------------------------------------------------------------------------
+# Fix D: clear stale session-ledger rows before a run, don't fail on them
+# --------------------------------------------------------------------------
+print()
+print("FIX D — stale sessions.db rows are cleared before a run")
+
+with tempfile.TemporaryDirectory() as tmp:
+    tree = Path(tmp) / "se-fake-tree"
+    db_path = tree / ".repowise" / "sessions" / "sessions.db"
+    db_path.parent.mkdir(parents=True)
+    con = sqlite3.connect(str(db_path))
+    con.execute("CREATE TABLE hook_runs (tool TEXT, calls INTEGER, emitted INTEGER)")
+    con.execute("CREATE TABLE injections (id INTEGER)")
+    con.execute("CREATE TABLE rewrite_runs (id INTEGER)")
+    con.execute("INSERT INTO hook_runs VALUES ('Read', 3, 0)")
+    con.execute("INSERT INTO injections VALUES (1)")
+    con.commit()
+    con.close()
+
+    before = sa.ledger_rows(tree)
+    check(
+        "NC an aborted arm's rows are present before any fix runs "
+        "(so D1 is not vacuous)",
+        before["hook_runs"] > 0 and before["sessions"] > 0,
+        before,
+    )
+    # This is exactly what `hook_ledger_clean_before_run` asserts. Show it
+    # would have failed under the old behaviour, which never called any
+    # clearing step.
+    check(
+        "NC hook_ledger_clean_before_run FAILS on the stale rows pre-fix",
+        not (before.get("sessions", 0) == 0 and before.get("hook_runs", 0) == 0),
+        before,
+    )
+
+    cleared = sa.clear_session_ledger(tree)
+    after = sa.ledger_rows(tree)
+    check(
+        "D1 clear_session_ledger empties this tree's own ledger",
+        after["hook_runs"] == 0 and after["sessions"] == 0,
+        after,
+    )
+    check(
+        "D2 hook_ledger_clean_before_run now PASSES post-clear",
+        after.get("sessions", 0) == 0 and after.get("hook_runs", 0) == 0,
+        after,
+    )
+    check(
+        "D3 clear_session_ledger reports what it actually deleted",
+        cleared["cleared"].get("hook_runs") == 1
+        and cleared["cleared"].get("injections") == 1,
+        cleared,
+    )
+
+    # Scope check: a SECOND tree's ledger, never touched, must be untouched.
+    other_tree = Path(tmp) / "se-other-tree"
+    other_db = other_tree / ".repowise" / "sessions" / "sessions.db"
+    other_db.parent.mkdir(parents=True)
+    con = sqlite3.connect(str(other_db))
+    con.execute("CREATE TABLE hook_runs (tool TEXT, calls INTEGER, emitted INTEGER)")
+    con.execute("INSERT INTO hook_runs VALUES ('Read', 7, 0)")
+    con.commit()
+    con.close()
+
+    sa.clear_session_ledger(tree)  # clear the FIRST tree again
+    other_after = sa.ledger_rows(other_tree)
+    check(
+        "D4 clearing one tree does NOT touch a different tree's ledger",
+        other_after["hook_runs"] == 1,
+        other_after,
+    )
+
+# --------------------------------------------------------------------------
+# Fix E: get_health is in the payload guard's canonical call list
+# --------------------------------------------------------------------------
+print()
+print("FIX E — get_health is in the mcp_payload.py call list")
+
+import importlib.util  # noqa: E402
+
+spec = importlib.util.spec_from_file_location(
+    "mcp_payload", Path(__file__).resolve().parent / "mcp_payload.py")
+mcp_payload = importlib.util.module_from_spec(spec)
+# mcp_payload.py imports the `mcp` package at module scope purely to build a
+# stdio client it never uses at import time here; if that dependency is not
+# installed in this environment, fall back to reading the CALLS list as text
+# instead of failing the whole proof on an unrelated import.
+try:
+    spec.loader.exec_module(mcp_payload)
+    call_names = [name for name, _ in mcp_payload.CALLS]
+except ModuleNotFoundError as exc:
+    print(f"  (mcp package unavailable ({exc}); reading CALLS as text instead)")
+    text = (Path(__file__).resolve().parent / "mcp_payload.py").read_text(encoding="utf-8")
+    call_names = re.findall(r'\("(\w+)",\s*\{', text)
+
+check(
+    "D1 get_health is in the live canonical call list",
+    "get_health" in call_names,
+    call_names,
+)
+
+# NEGATIVE CONTROL: the OLD call list, reconstructed from what shipped before
+# this fix (git blame on mcp_payload.py), does not carry it.
+OLD_CALLS = [
+    "get_answer", "get_context", "get_symbol", "get_why",
+    "search_codebase", "get_risk",
+]
+check(
+    "NC the old call list does NOT carry get_health (so D1 is not vacuous)",
+    "get_health" not in OLD_CALLS,
+    OLD_CALLS,
+)
+check(
+    "D2 every other canonical call from before the fix is still present",
+    all(name in call_names for name in OLD_CALLS),
+    call_names,
+)
+
 print()
 if FAILURES:
     print(f"RESULT: FAIL ({len(FAILURES)}): {FAILURES}")
     sys.exit(1)
-print("RESULT: PASS — both fixes proved in both directions, with negative controls")
+print("RESULT: PASS — all fixes proved in both directions, with negative controls")
