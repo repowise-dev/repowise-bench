@@ -50,7 +50,16 @@ language: python
 # Measured delta, golden post-fix tree vs the pre-fix tree it replaces:
 #   wiki_pages   8483 -> 8587  (+104)
 #   wiki_symbols 84829 -> 88016 (+3187), of which 2,617 are the six modules
-tree_slug: hermes-pf
+#
+# `hermes-pf2` = a second bump, 2026-08-27. The indexer has changed heavily
+# since the `hermes-pf` build on 2026-08-12 (see
+# `local-stash/agent-context/mcp-agent-excellence/40_MEASUREMENT_ASSETS.md`
+# section 6, trap 1), so every `hermes-pf` tree on disk is stale. Bumping again
+# so a restart cannot silently resolve to an August index the way `hermes` once
+# resolved to a pre-#1443 one. The golden index and all `hermes-pf` trees under
+# `C:\Users\ragha\Desktop\bakeoff\` must be rebuilt under this slug before the
+# next scored run; do not reuse them by pointing `tree_slug` back at `hermes-pf`.
+tree_slug: hermes-pf2
 
 # Recorded because 07_SESSION_C_DESIGN.md section 5 listed it as an open risk:
 # the clone was believed to be `--filter=blob:none`. It is NOT. Verified
