@@ -27,6 +27,16 @@ across adjacent runs) falls equally on both arms instead of loading onto one.
 Machine safety: strictly sequential, one agent at a time. No indexing happens
 here -- treated trees are stamped from an already-built index by
 `clone_hermes_index.py`, so the 13.3 GB `init` peak is not re-triggered.
+
+Invocation. The binary under test and the output file are both required, with
+no defaults, because both were constants once and both were wrong:
+
+    python run_cellB_scored.py --run-id <new-id>         --binary-python <pinned venv>\Scripts\python.exe         --repowise-exe  <same venv>\Scriptsepowise.cmd
+
+`--run-id` names this run's own output file. Appending to a previous run's
+file would mix index generations under one name and start the budget counter
+part-spent, so an existing non-empty file is refused unless `--append` says
+this is the same run continuing.
 """
 
 from __future__ import annotations
@@ -40,15 +50,23 @@ import time
 from pathlib import Path
 
 BENCH = Path(__file__).resolve().parents[2]
-PY = Path(r"C:\Users\ragha\Desktop\repowise\.venv\Scripts\python.exe")
+PY = Path(sys.executable)
 ARMS = BENCH / "harness" / "session_arms.py"
 CONFIG = BENCH / "configs" / "session_cost_eval_cellB_hermes.yaml"
-OUT = (BENCH / "results" / "bakeoff_2026_08" / "session-cost-eval"
-       / "sessions_cellB_scored.jsonl")
+RESULTS = BENCH / "results" / "bakeoff_2026_08" / "session-cost-eval"
 
-REPOWISE_ROOT = Path(r"C:\Users\ragha\Desktop\repowise")
-BINARY_PYTHON = REPOWISE_ROOT / ".venv" / "Scripts" / "python.exe"
-REPOWISE_EXE = REPOWISE_ROOT / ".venv" / "Scripts" / "repowise.exe"
+# The build under test is an ARGUMENT, and the output file is one too.
+#
+# Both used to be constants pointing at the primary checkout and at
+# `sessions_cellB_scored.jsonl`. The checkout's console script is an editable
+# install that runs whatever branch that checkout is on, so a run could not say
+# which build produced it. And that output file already holds rows from an
+# earlier run against an index generation that no longer exists, so appending
+# to it would mix two generations under one filename and start the budget
+# counter part-spent. Three knobs point at a binary in this harness and setting
+# two of three mixes builds silently, so the binary is required with no default
+# and is fingerprinted before a dollar is spent. `repowise --version` cannot
+# tell two builds apart; `repowise.core.__file__` can.
 
 # Frozen. Order within a session is part of the design.
 SESSIONS = {
@@ -64,9 +82,28 @@ CONDITION = "unenforced"
 BUDGET_CEILING_USD = 90.0
 
 
-def _env() -> dict:
+def fingerprint(binary_python: Path) -> dict:
+    """Which build this interpreter actually imports.
+
+    A version string cannot separate two builds of the same release, and an
+    editable install resolves to whatever tree it was installed from, so the
+    only honest fingerprint is the file the import lands on.
+    """
+    code = ("import json, repowise.core as c, repowise.server as s;"
+            "print(json.dumps({'core': c.__file__, 'server': s.__file__}))")
+    r = subprocess.run([str(binary_python), "-c", code], capture_output=True,
+                       text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        return {"error": (r.stderr or r.stdout)[-500:]}
+    try:
+        return json.loads(r.stdout.strip())
+    except ValueError:
+        return {"error": r.stdout[-500:]}
+
+
+def _env(repowise_exe: Path) -> dict:
     env = os.environ.copy()
-    env["REPOWISE_EXE"] = str(REPOWISE_EXE)
+    env["REPOWISE_EXE"] = str(repowise_exe)
     env["DO_NOT_TRACK"] = "1"
     env["REPOWISE_SKIP_EDITOR_SETUP"] = "1"
     env["PYTHONUTF8"] = "1"
@@ -79,20 +116,21 @@ def _env() -> dict:
     return env
 
 
-def _arms(arm: str, *extra: str) -> subprocess.CompletedProcess:
+def _arms(arm: str, binary_python: Path, repowise_exe: Path,
+          *extra: str) -> subprocess.CompletedProcess:
     cmd = [str(PY), str(ARMS), "--config", str(CONFIG), "--arm", arm,
-           "--condition", CONDITION, "--binary-python", str(BINARY_PYTHON),
+           "--condition", CONDITION, "--binary-python", str(binary_python),
            *extra]
     return subprocess.run(cmd, capture_output=True, text=True,
                           encoding="utf-8", errors="replace",
-                          cwd=str(BENCH), env=_env())
+                          cwd=str(BENCH), env=_env(repowise_exe))
 
 
-def spent_so_far() -> float:
-    if not OUT.exists():
+def spent_so_far(out: Path) -> float:
+    if not out.exists():
         return 0.0
     total = 0.0
-    for line in OUT.read_text(encoding="utf-8").splitlines():
+    for line in out.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
         try:
@@ -124,7 +162,20 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true",
                     help="print the schedule and exit without spending")
     ap.add_argument("--only-session", type=int, default=0)
+    ap.add_argument("--binary-python", required=True,
+                    help="python.exe of the build under test")
+    ap.add_argument("--repowise-exe", required=True,
+                    help="the server the agent actually calls, same build")
+    ap.add_argument("--run-id", required=True,
+                    help="names this run's own output file; a re-run of an "
+                         "arm must never land in a previous run's rows")
+    ap.add_argument("--append", action="store_true",
+                    help="continue a run whose output file already exists")
     args = ap.parse_args()
+
+    binary_python = Path(args.binary_python)
+    repowise_exe = Path(args.repowise_exe)
+    out = RESULTS / f"sessions_cellB_{args.run_id}.jsonl"
 
     schedule = plan()
     if args.only_session:
@@ -132,7 +183,46 @@ def main() -> int:
 
     print(f"cell B scored: {len(SESSIONS)} sessions x 2 arms x {REPS} reps "
           f"= {len(schedule)} arm-runs")
-    print(f"condition={CONDITION}  out={OUT.name}")
+    print(f"condition={CONDITION}  out={out.name}")
+
+    # Both binary knobs, resolved and fingerprinted, before anything is spent.
+    for label, path in (("binary-python", binary_python),
+                        ("repowise-exe", repowise_exe)):
+        if not path.exists():
+            print(f"!! {label} does not exist: {path}", file=sys.stderr)
+            return 2
+    fp = fingerprint(binary_python)
+    if "error" in fp:
+        print(f"!! could not fingerprint the build: {fp['error']}",
+              file=sys.stderr)
+        return 2
+    print(f"binary-python  {binary_python}")
+    print(f"repowise-exe   {repowise_exe}")
+    print(f"imports core   {fp['core']}")
+    print(f"imports server {fp['server']}")
+
+    # The two knobs must name the same build. Setting one and forgetting the
+    # other leaves an arm running one build's hooks against another's server,
+    # with nothing in the output saying so.
+    root = str(binary_python.parent.parent.parent).lower()
+    if not fp["core"].lower().startswith(root):
+        print(f"!! the interpreter imports a build outside {root}. Refusing: "
+              f"a row that cannot name its binary is not a measurement.",
+              file=sys.stderr)
+        return 2
+    if not str(repowise_exe).lower().startswith(root):
+        print(f"!! repowise-exe is not from the same build as binary-python. "
+              f"Refusing rather than mixing two builds in one arm.",
+              file=sys.stderr)
+        return 2
+
+    if out.exists() and out.stat().st_size > 0 and not args.append:
+        print(f"\n!! {out.name} already has rows. A re-run that appends to a "
+              f"previous run's file mixes two index generations under one "
+              f"name and starts the budget counter part-spent. Use a new "
+              f"--run-id, or --append if continuing this same run.",
+              file=sys.stderr)
+        return 3
     print()
     for sess, rep, kind, arm, ids in schedule:
         first = " (bare first)" if arm_order(rep)[0] == "bare" else " (treated first)"
@@ -142,19 +232,27 @@ def main() -> int:
         print("\ndry run: nothing spent")
         return 0
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    # Provenance beside the rows, so the file can always say what made it.
+    (out.parent / f"provenance__{args.run_id}.json").write_text(
+        json.dumps({"run_id": args.run_id, "config": CONFIG.name,
+                    "condition": CONDITION, "reps": REPS,
+                    "sessions": SESSIONS, "binary_python": str(binary_python),
+                    "repowise_exe": str(repowise_exe), "imports": fp},
+                   indent=2), encoding="utf-8")
     t_start = time.time()
 
     for i, (sess, rep, kind, arm, ids) in enumerate(schedule, 1):
-        spent = spent_so_far()
+        spent = spent_so_far(out)
         if spent >= BUDGET_CEILING_USD:
             print(f"\n!! BUDGET CEILING reached (${spent:.2f} >= "
                   f"${BUDGET_CEILING_USD:.2f}). Stopping before {arm}.",
                   file=sys.stderr)
             return 4
 
-        r = _arms(arm, "--prepare", "--gate", "--phase", "pre",
-                  "--emit-cmd", "--out", str(OUT))
+        r = _arms(arm, binary_python, repowise_exe,
+                  "--prepare", "--gate", "--phase", "pre",
+                  "--emit-cmd", "--out", str(out))
         if r.returncode != 0:
             print(f"!! {arm} FAILED ITS PRE GATE. Stopping rather than grading "
                   f"an arm that is not what it claims to be.\n"
@@ -168,7 +266,7 @@ def main() -> int:
               f"{el:.0f} min in, ${spent:.2f} spent)\n{'=' * 70}", flush=True)
 
         t0 = time.time()
-        p = subprocess.run(cmd, cwd=str(BENCH), env=_env())
+        p = subprocess.run(cmd, cwd=str(BENCH), env=_env(repowise_exe))
         print(f"=== {arm} exited {p.returncode} after {time.time() - t0:.0f}s",
               flush=True)
         if p.returncode != 0:
@@ -176,14 +274,14 @@ def main() -> int:
                   f"rest on top of a broken arm.", file=sys.stderr)
             return p.returncode
 
-        g = _arms(arm, "--gate", "--phase", "post")
-        (OUT.parent / f"gate_post__{arm}__cellB_scored.json").write_text(
+        g = _arms(arm, binary_python, repowise_exe, "--gate", "--phase", "post")
+        (out.parent / f"gate_post__{arm}__cellB_scored.json").write_text(
             g.stdout, encoding="utf-8")
         print(f"--- {arm} POST GATE rc={g.returncode}")
 
     mins = (time.time() - t_start) / 60.0
     print(f"\nscored cell complete: {len(schedule)} arm-runs, "
-          f"{mins:.0f} min, ${spent_so_far():.2f} -> {OUT}")
+          f"{mins:.0f} min, ${spent_so_far(out):.2f} -> {out}")
     return 0
 
 
