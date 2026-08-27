@@ -34,6 +34,7 @@ CALLS = [
     ("get_why", {"query": "why is the highlighter regex greedy?"}),
     ("search_codebase", {"query": "progress bar expand width", "limit": 5}),
     ("get_risk", {"targets": ["rich/progress.py"]}),
+    ("get_health", {"targets": ["rich/progress.py"]}),
 ]
 
 
