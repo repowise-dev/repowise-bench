@@ -433,9 +433,12 @@ def main() -> int:
                     help="comma-separated task ids to run, in config order "
                          "(default: all). Unknown ids are a hard error rather "
                          "than a silent empty run.")
-    ap.add_argument("--pinned-bin",
-                    default=r"C:\Users\ragha\Desktop\repowise-sessioneval\.venv\Scripts",
-                    help="Scripts dir of the repowise build under test")
+    ap.add_argument("--pinned-bin", default=None,
+                    help="Scripts dir of the repowise build under test. The "
+                         "arm passes this; it used to default to a path that "
+                         "was later deleted, and since a missing directory "
+                         "just leaves PATH alone, every declared hook then "
+                         "silently did nothing.")
     args = ap.parse_args()
 
     # Resolve every path the CLI receives. `claude` runs with cwd set to the
@@ -510,7 +513,13 @@ def main() -> int:
               "operator's hooks and plugins firing into it (D16). Refusing.",
               file=sys.stderr)
         return 3
-    run_env = _utf8_env(claude_home, Path(args.pinned_bin))
+    if args.pinned_bin and not Path(args.pinned_bin).is_dir():
+        print(f"!! --pinned-bin is not a directory: {args.pinned_bin}. Refusing "
+              f"rather than running with hooks that will silently no-op.",
+              file=sys.stderr)
+        return 2
+    run_env = _utf8_env(claude_home,
+                        Path(args.pinned_bin) if args.pinned_bin else None)
 
     print(f"cell={cfg['cell_id']} arm={args.arm} condition={args.condition}")
     print(f"claude_home={claude_home}")
