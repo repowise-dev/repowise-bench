@@ -28,10 +28,12 @@ Machine safety: strictly sequential, one agent at a time. No indexing happens
 here -- treated trees are stamped from an already-built index by
 `clone_hermes_index.py`, so the 13.3 GB `init` peak is not re-triggered.
 
-Invocation. The binary under test and the output file are both required, with
-no defaults, because both were constants once and both were wrong:
+Invocation. The binary under test and the output file are both required,
+with no defaults, because both were constants once and both were wrong:
 
-    python run_cellB_scored.py --run-id <new-id>         --binary-python <pinned venv>\Scripts\python.exe         --repowise-exe  <same venv>\Scriptsepowise.cmd
+    python run_cellB_scored.py --run-id <new-id>
+        --binary-python <pinned venv>/Scripts/python.exe
+        --repowise-exe  <same venv>/Scripts/repowise.cmd
 
 `--run-id` names this run's own output file. Appending to a previous run's
 file would mix index generations under one name and start the budget counter
