@@ -53,9 +53,52 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace")
 
 
+def claude_terminal_result(trial_dir: Path) -> dict | None:
+    """Claude Code's own terminal `result` event, or None.
+
+    Needed because pier loses the Claude Code trajectory entirely. Its converter
+    numbers steps from 2 while pier's own Trajectory model requires step_ids
+    sequential from 1, so every Claude Code cell fails validation with
+
+        Failed to convert Claude Code events to trajectory: 1 validation error
+        Value error, steps[0].step_id: expected 1 (sequential from 1), got 2
+
+    and lands with n_output_tokens, cost_usd and n_agent_steps all null while
+    still carrying a verifier reward. Same shape as every other defect in this
+    harness: the cell looks finished and the instrument is blind.
+
+    Claude Code's raw stream is unaffected and carries the same numbers, so the
+    metrics are recovered from there rather than reported as zero.
+    """
+    last = None
+    for line in read_text(trial_dir / "agent" / "claude-code.txt").splitlines():
+        line = line.strip()
+        if not line.startswith("{"):
+            continue
+        try:
+            event = json.loads(line)
+        except ValueError:
+            continue
+        if event.get("type") == "result":
+            last = event
+    return last
+
+
 def collect_cell(trial_dir: Path) -> dict:
     result = json.loads((trial_dir / "result.json").read_text(encoding="utf-8"))
-    agent = result.get("agent_result") or {}
+    agent = dict(result.get("agent_result") or {})
+
+    claude = claude_terminal_result(trial_dir)
+    if claude is not None and agent.get("n_output_tokens") is None:
+        usage = claude.get("usage") or {}
+        agent["n_output_tokens"] = usage.get("output_tokens")
+        agent["n_input_tokens"] = usage.get("input_tokens")
+        agent["n_cache_tokens"] = usage.get("cache_read_input_tokens")
+        # Modelled from token counts at list rates. On a subscription this is
+        # NOT billed spend, and the same is true of the Codex column, so the two
+        # are comparable to each other but neither is an invoice.
+        agent["cost_usd"] = claude.get("total_cost_usd")
+        agent["n_agent_steps"] = claude.get("num_turns")
 
     reward_path = trial_dir / "verifier" / "reward.json"
     reward = json.loads(reward_path.read_text(encoding="utf-8")) if reward_path.is_file() else {}
@@ -64,14 +107,27 @@ def collect_cell(trial_dir: Path) -> dict:
     codex_log = read_text(trial_dir / "agent" / "codex.txt")
     detector = mcp_err + "\n" + codex_log
 
+    # One census source, preferring the server's own stderr.
+    census, census_source = (mcp_err, "mcp_err") if mcp_err.strip() else (codex_log, "codex_txt")
+    if not census.strip():
+        census, census_source = "", "none"
+
     out_tokens = agent.get("n_output_tokens") or 0
     exception = result.get("exception_info")
 
-    # Liveness. An agent that emitted no tokens did not run, whatever the
-    # verifier says about it.
+    # Liveness, checked before the reward is read.
+    #
+    # The guard is "the agent demonstrably did not run", not "metrics are
+    # missing". Those are different, and conflating them cost a real cell: the
+    # first valid Claude Code cell of this run worked for 27 minutes, solved the
+    # task at F2P 66/66, and was wrongly excluded because pier had dropped its
+    # trajectory and reported zero tokens. A guard that discards good cells is
+    # as damaging as one that admits dead ones.
     invalid: list[str] = []
     if exception:
         invalid.append(f"exception:{exception.get('exception_type', 'unknown')}")
+    if claude is not None and claude.get("is_error"):
+        invalid.append(f"agent_error:{claude.get('api_error_status') or claude.get('subtype')}")
     if out_tokens == 0:
         invalid.append("zero_output_tokens")
     if CANCEL_RE.search(detector):
@@ -83,14 +139,20 @@ def collect_cell(trial_dir: Path) -> dict:
         "reward": reward.get("reward"),
         "f2p": f"{reward.get('f2p_passed')}/{reward.get('f2p_total')}",
         "p2p": f"{reward.get('p2p_passed')}/{reward.get('p2p_total')}",
-        "steps": result.get("n_agent_steps"),
+        "steps": agent.get("n_agent_steps") or result.get("n_agent_steps"),
         "out_tokens": out_tokens,
         "cost_usd": agent.get("cost_usd"),
         # Adoption, server-side. list_served proves the server was reachable at
         # all, which is what makes a zero call count readable as the agent's
         # choice rather than a dead arm.
-        "list_served": len(LIST_RE.findall(detector)),
-        "calls": len(CALL_RE.findall(detector)),
+        # Counted from ONE source, never summed. Codex forwards the MCP server's
+        # own stderr into codex.txt, so adding the two double-counts every
+        # request: a single ListToolsRequest was being reported as two.
+        # The server's own stderr is authoritative; codex.txt is the fallback
+        # for cells whose artifact download failed, and a cross-check otherwise.
+        "list_served": len(LIST_RE.findall(census)),
+        "calls": len(CALL_RE.findall(census)),
+        "census_source": census_source,
         "tools": sorted(set(TOOL_NAME_RE.findall(mcp_err))),
         "detector_bytes": len(detector),
         "invalid": invalid,
@@ -134,7 +196,10 @@ def main() -> int:
           f"{'total $':>9} {'$/solved':>9} {'mean calls':>11} {'zero-call':>10}")
     by_arm: dict[str, list[dict]] = {}
     for r in valid:
-        by_arm.setdefault(r["cell"].rsplit("-r", 1)[0], []).append(r)
+        # Strip only a trailing rep suffix like "-r0"; "codex-rw" must NOT be
+        # split on its own "-r".
+        arm = re.sub(r"-r\d+$", "", r["cell"])
+        by_arm.setdefault(arm, []).append(r)
     for arm, group in sorted(by_arm.items()):
         solved = sum(1 for r in group if r["reward"] == 1)
         total_cost = sum(r["cost_usd"] or 0 for r in group)

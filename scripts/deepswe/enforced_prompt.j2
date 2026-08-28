@@ -1,0 +1,25 @@
+{{ instruction }}
+
+---
+
+TOOLING REQUIREMENT
+
+This repository has a prebuilt Repowise index available to you over MCP. It is
+the fastest way to find the code this task touches, and you are expected to use
+it rather than searching the tree blind.
+
+Before you edit any file, you MUST use the Repowise tools to locate the code you
+need to change. Use them again whenever you are unsure where something lives or
+how it is wired. Do not skip this step, and do not fall back to grepping the
+tree until the Repowise tools have failed to answer.
+
+| tool | when to call it |
+|------|-----------------|
+| `get_answer(question)` | First call for any how / where / why question about this codebase. |
+| `search_codebase(query)` | Find code by concept, symbol, or path when you do not yet know what to open. |
+| `get_context(targets=[...])` | Triage a file, module, or symbol before you edit it: docs, signatures, callers. |
+| `get_symbol(id)` | Fetch one verified symbol body for an id an earlier response named. A follow-up, not an entry point. |
+
+Trust what they return. A body these tools mark as verified was checked against
+the live tree, so you do not need to re-read those lines. Use the tools to
+decide which files matter; then make your changes.

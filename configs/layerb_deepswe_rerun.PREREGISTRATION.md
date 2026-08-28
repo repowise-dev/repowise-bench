@@ -263,7 +263,50 @@ which is precisely the confusion D1 produced on 2026-08-09.
 
 ---
 
-## J. WHAT THIS SMOKE MAY NOT DO
+## J. AMENDMENT, 2026-08-28, AFTER 3 CELLS AND BEFORE THE REST
+
+**The treated arm as originally built was not the product, and this is recorded
+here rather than quietly absorbed.**
+
+The arm registered the MCP server and nothing else: no `AGENTS.md`, no
+`CLAUDE.md`, no guidance of any kind, inherited from the 2026-08-09 config
+(`--no-claude-md --no-agents --no-codex`) without being re-examined. Registering
+a server tells an agent that tools *exist*; it does not tell it when they are
+worth calling. `repowise init` writes an editor guidance file by default, and in
+real use that file is how the tools get adopted at all. So the original arm was
+repowise with its onboarding surface removed.
+
+**What the original arm measured is kept, because it is a real finding**: with a
+provably alive server, unforced adoption was **0 calls on 2 of 2 treated cells**
+across both harnesses, and the Codex unguided cell scored **F2P 52/66, byte-identical
+to its own bare control**. An unexercised arm is a bare agent with extra steps,
+and here it measured exactly that.
+
+**The treated arm from this point is enforced**, delivered through pier's prompt
+template (`enforced_prompt.j2`), which renders around `instruction.md` so the
+task bytes and checksum are unchanged.
+
+Two mechanisms were rejected, each for a measured reason:
+
+| mechanism | why not |
+|---|---|
+| the `AGENTS.md`/`CLAUDE.md` repowise actually generates | it carries an architecture summary, key modules, entry points and hotspot files, so it can name a task's own gold files and hand localization to the arm whose entire claim is localization |
+| writing our own `AGENTS.md`/`CLAUDE.md` into `/app` | **`python-statemachine` tracks its own `AGENTS.md` and `CLAUDE.md`.** Overwriting them destroys repo content the control still sees and pushes a modification into the graded diff. Verified: the arm image build fails its own `/app` clean check |
+
+The template names four tools (`get_answer`, `search_codebase`, `get_context`,
+`get_symbol`) and says nothing about the task, the repository, or any file --
+the same fairness cap the 2026-08-09 run arrived at.
+
+**The cost of this arm, stated before its numbers are read:** it receives prompt
+the control does not. Its token and cost columns are therefore **not**
+attributable to the tool alone. The quality column still is. And the first
+enforced cell makes that caution concrete rather than theoretical: it scored
+**F2P 63/66 against the control's 52/66 while making zero tool calls**, so that
+entire difference is a prompt effect with no tool in it.
+
+---
+
+## K. WHAT THIS SMOKE MAY NOT DO
 
 * No number leaves this run without sign-off.
 * **No cost number without its completion number in the same row.** Cost per

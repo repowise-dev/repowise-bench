@@ -83,6 +83,33 @@ if [ "$ARM" = "rw" ]; then
   # present and callable.
   extra+=(--artifact "/tmp/repowise-mcp.err")
 
+  # The onboarding surface, delivered as prompt rather than as a file.
+  #
+  # Registering an MCP server tells an agent that tools EXIST. It does not tell
+  # it when they are worth calling, and the first two treated cells of this run
+  # measured what that costs: a provably alive server, ListToolsRequest served,
+  # and ZERO CallToolRequest on both harnesses. Nobody installs repowise that
+  # way - `repowise init` writes an AGENTS.md / CLAUDE.md, and that file is how
+  # a real installation gets adopted at all.
+  #
+  # It is NOT delivered as AGENTS.md/CLAUDE.md here, for two measured reasons.
+  # python-statemachine TRACKS its own AGENTS.md and CLAUDE.md, so writing ours
+  # would destroy repo content the control still sees and push a modification
+  # into the graded diff. And the file repowise actually generates carries an
+  # architecture summary, key modules, entry points and hotspot files, so it
+  # could name a task's own gold files and hand localization to the arm whose
+  # entire claim is localization.
+  #
+  # The template names four tools and says nothing about the task, the
+  # repository or any file - the fairness cap the 2026-08-09 run arrived at. It
+  # renders around instruction.md, which stays byte-identical, so the task
+  # checksum still refers to the same task.
+  #
+  # Stated plainly because it is the arm's main weakness: the treated arm
+  # receives prompt the control does not, so its token and cost columns are not
+  # attributable to the tool alone. The QUALITY column still is.
+  extra+=(--ak "prompt_template_path=$RERUN/enforced_prompt.j2")
+
   if [ "$HARNESS" = "codex" ]; then
     # Codex MCP is configured OUTSIDE pier, for three separately-found reasons:
     #   1. pier joins command+args into one string Codex execs as one program
