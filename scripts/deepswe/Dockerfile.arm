@@ -49,11 +49,59 @@ RUN printf '#!/bin/bash\nexec repowise mcp /app --transport stdio 2> >(tee -a /t
 # Prebuilt, commit-matched index.
 COPY index/ /app/.repowise/
 
+# THE SHIPPED INTEGRATION, not just the MCP server.
+#
+# The first three treated cells of this run registered the MCP server and
+# nothing else, and measured zero tool calls on a provably alive server across
+# both harnesses - including under an explicit "you MUST call these tools"
+# mandate. That is what an agent does when retrieval is something it may elect:
+# it does not elect it.
+#
+# repowise does not ship that way. `repowise init` writes editor guidance and
+# HOOKS, and the hooks are the part that does not depend on the model choosing.
+# `repowise agents` reports tier `full` for both codex and claude-code. The
+# competitor whose numbers motivated this run ships "MCP + skills + hooks" too.
+# Comparing our tools-only arm against their full integration was never
+# like-for-like.
+#
+# Codex: repowise's own installer writes .codex/hooks.json (SessionStart plus
+# PostToolUse on shell and patch tools, both running repowise-augment) and flips
+# features.hooks, without which the hooks file is inert.
+RUN repowise agents add /app --target=codex --scope=project -y --format=json \
+ && test -s /app/.codex/hooks.json \
+ && grep -q 'hooks = true' /app/.codex/config.toml \
+ && echo "OK: codex hooks wired"
+
+# Claude Code: repowise wires its hooks at USER scope, and pier points
+# CLAUDE_CONFIG_DIR at a runtime-mounted logs directory that cannot be baked.
+# So the same entries go in project-scoped .claude/settings.json instead. The
+# matchers and the command are repowise's own, copied from
+# cli/editor_integrations/claude_config.py rather than invented here, so the arm
+# is the shipped surface and not a benchmark-specific construction.
+RUN printf '%s\n' \
+'{' \
+'  "hooks": {' \
+'    "SessionStart": [{"matcher": "startup|resume|clear", "hooks": [{"type": "command", "command": "if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi"}]}],' \
+'    "PostToolUse": [{"matcher": "Grep|Glob|Read|Edit|Write|mcp__.*[Rr]epowise.*__.*", "hooks": [{"type": "command", "command": "if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi"}]}],' \
+'    "PostToolUseFailure": [{"matcher": "Read|Edit|Write|Grep|Glob|NotebookEdit", "hooks": [{"type": "command", "command": "if command -v repowise-augment >/dev/null 2>&1; then exec repowise-augment; fi"}]}]' \
+'  }' \
+'}' > /app/.claude-settings.json \
+ && mkdir -p /app/.claude \
+ && cp /app/.claude-settings.json /app/.claude/settings.json \
+ && rm /app/.claude-settings.json \
+ && python3 -c "import json;json.load(open('/app/.claude/settings.json'));print('OK: claude hooks wired')"
+
+# The hook binaries must resolve, or every matched tool call is a silent
+# `command not found` that the hook handler swallows. A declared hook whose
+# command is not on PATH does nothing and says nothing.
+RUN command -v repowise-augment && command -v repowise-rewrite \
+ && echo "OK: hook binaries resolve"
+
 # The task instruction tells the agent to commit everything when it is done, and
 # the verifier grades `git diff <base>..HEAD`. Without this a `git add -A` would
 # sweep the index into the graded patch: megabytes of arm-specific noise in the
 # diff, and a difference between arms that has nothing to do with the solution.
-RUN printf '.repowise/\n' >> /app/.git/info/exclude \
+RUN printf '.repowise/\n.codex/\n.claude/\n' >> /app/.git/info/exclude \
  && if [ -n "$(git -C /app status --porcelain)" ]; then \
         echo "FAIL: /app not clean after index bake:"; \
         git -C /app status --porcelain; \

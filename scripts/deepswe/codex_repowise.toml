@@ -1,0 +1,47 @@
+[mcp_servers.repowise]
+command = "/usr/local/bin/repowise-mcp"
+# repowise's first call after a server start can hang (finding A8); the client
+# giving up is what unblocks it. Give the server room to start and the tool a
+# bound, rather than letting one call eat the cell's timeout.
+startup_timeout_sec = 60
+tool_timeout_sec = 180
+
+[mcp_servers.repowise.env]
+# Codex spawns MCP servers with a SANITIZED environment, so a variable set on
+# the codex process does NOT reach its MCP children. Without this block repowise
+# logs "Configured embedder 'openai' failed to initialise ... running on mock
+# vectors and CANNOT match the real index" - D13 at the harness layer.
+OPENAI_API_KEY = "__OPENAI_API_KEY__"
+DO_NOT_TRACK = "1"
+REPOWISE_SKIP_EDITOR_SETUP = "1"
+
+# Codex's non-interactive approval policy is DENY, not ALLOW, so every tool must
+# be auto-approved by name. Our own Codex harness records what happens without
+# this: a cell came back arm_exercised true, one get_answer issued, error null
+# and a 9.0 judge score, while the call itself returned "user cancelled MCP tool
+# call" in a run with no user in it.
+[mcp_servers.repowise.tools.search_codebase]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_answer]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_context]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_symbol]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_overview]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_why]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_risk]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_health]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_dead_code]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.get_change_risk]
+approval_mode = "approve"
+[mcp_servers.repowise.tools.list_repos]
+approval_mode = "approve"
+
+[features]
+hooks = true

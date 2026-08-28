@@ -83,6 +83,16 @@ if [ "$ARM" = "rw" ]; then
   # present and callable.
   extra+=(--artifact "/tmp/repowise-mcp.err")
 
+  # The HOOK detector, and it is separate from the MCP one on purpose.
+  # Hooks do not go through the MCP server, so repowise-mcp.err cannot see them.
+  # repowise bills every hook invocation to a sqlite ledger at
+  # .repowise/sessions/sessions.db, recording the event, the tool and whether
+  # the hook actually emitted anything. That distinguishes the three states a
+  # declared hook can be in - never ran, ran and stayed silent, ran and injected
+  # - which a declared-but-unresolvable hook command cannot be told apart from
+  # otherwise, because it fails silently on every matched call.
+  extra+=(--artifact "/app/.repowise/sessions/sessions.db")
+
   # The onboarding surface, delivered as prompt rather than as a file.
   #
   # Registering an MCP server tells an agent that tools EXIST. It does not tell
