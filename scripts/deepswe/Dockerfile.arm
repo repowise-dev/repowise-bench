@@ -1,0 +1,67 @@
+# repowise arm image for a DeepSWE task, 2026-08-28 rerun.
+#
+# Layers on top of the task's own prebuilt image so the agent's environment,
+# toolchain and /app checkout are byte-identical to the bare control. The ONLY
+# differences are (1) the repowise binary and (2) the prebuilt index.
+#
+# The index is built OUTSIDE the container, on a clone pinned to the same
+# base_commit_hash /app carries. An index built in here would have no API key at
+# build time and would silently write 8-dim mock vectors while every health
+# field read clean.
+ARG BASE
+FROM ${BASE}
+
+ARG REPOWISE_VERSION=0.46.0
+
+# uv ships in the base image already. `uv tool install` keeps repowise in its
+# own venv so none of the task's own dependencies are perturbed; installing into
+# the task interpreter would change the environment under test.
+RUN uv tool install "repowise==${REPOWISE_VERSION}" \
+ && /root/.local/bin/repowise --version
+
+ENV PATH="/root/.local/bin:${PATH}"
+
+# Two things at once, and each was found the hard way.
+#
+# 1. WORKAROUND for pier defect D3. pier's Codex MCP registration writes
+#        command = "repowise mcp /app --transport stdio"
+#    because _build_register_mcp_servers_command does shlex.join([command] +
+#    args) into the single `command` key. Codex spawns that value directly and
+#    its schema wants `command` and `args` separately, so it searches for an
+#    executable whose NAME is the whole string. Nothing logs an error; the agent
+#    simply has no tools and the arm silently degrades to the control. A wrapper
+#    means `command` carries no arguments for pier to mangle.
+#
+# 2. A HARNESS-INDEPENDENT ADOPTION DETECTOR. repowise logs every request it
+#    serves on stderr. Codex forwards MCP server stderr into its own, but Claude
+#    Code does not surface it the same way, so relying on the harness's log
+#    plumbing would give two different detectors of two different qualities for
+#    the two arms being compared. Teeing stderr to a file inside the container
+#    gives the SAME byte-level detector on both harnesses, while `>&2` keeps the
+#    Codex-side forwarding intact as a cross-check.
+#
+#    stdout carries the MCP protocol itself and is never touched.
+RUN printf '#!/bin/bash\nexec repowise mcp /app --transport stdio 2> >(tee -a /tmp/repowise-mcp.err >&2)\n' \
+      > /usr/local/bin/repowise-mcp \
+ && chmod +x /usr/local/bin/repowise-mcp \
+ && python3 -c "import subprocess; p=subprocess.Popen(['/usr/local/bin/repowise-mcp'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE); p.kill(); print('OK: repowise-mcp wrapper spawns')"
+
+# Prebuilt, commit-matched index.
+COPY index/ /app/.repowise/
+
+# The task instruction tells the agent to commit everything when it is done, and
+# the verifier grades `git diff <base>..HEAD`. Without this a `git add -A` would
+# sweep the index into the graded patch: megabytes of arm-specific noise in the
+# diff, and a difference between arms that has nothing to do with the solution.
+RUN printf '.repowise/\n' >> /app/.git/info/exclude \
+ && if [ -n "$(git -C /app status --porcelain)" ]; then \
+        echo "FAIL: /app not clean after index bake:"; \
+        git -C /app status --porcelain; \
+        exit 1; \
+    else \
+        echo "OK: /app clean, .repowise excluded from git"; \
+    fi
+
+# Telemetry off, and never let a container touch machine-wide editor config.
+ENV DO_NOT_TRACK=1 \
+    REPOWISE_SKIP_EDITOR_SETUP=1
