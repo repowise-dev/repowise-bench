@@ -75,7 +75,10 @@ def check(repo: Path) -> tuple[bool, list[str]]:
         return False, lines + ["FAIL lancedb not importable; run with the pinned repowise venv"]
 
     db = lancedb.connect(str(lancedb_dir))
-    tables = list(db.list_tables())
+    # list_tables() returns a ListTablesResponse whose iteration yields
+    # (field, value) pairs, not names; the names live on .tables.
+    listing = db.list_tables()
+    tables = list(getattr(listing, "tables", listing))
     if not tables:
         return False, lines + ["FAIL lancedb store has no tables"]
 
