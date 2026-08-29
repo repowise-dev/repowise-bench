@@ -20,6 +20,5 @@ tree until the Repowise tools have failed to answer.
 | `get_context(targets=[...])` | Triage a file, module, or symbol before you edit it: docs, signatures, callers. |
 | `get_symbol(id)` | Fetch one verified symbol body for an id an earlier response named. A follow-up, not an entry point. |
 
-Trust what they return. A body these tools mark as verified was checked against
-the live tree, so you do not need to re-read those lines. Use the tools to
-decide which files matter; then make your changes.
+These tools decide WHICH files matter. They do not replace opening the files you
+are about to change: read the code you edit, and check the tests that cover it.

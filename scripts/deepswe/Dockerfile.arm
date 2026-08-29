@@ -72,6 +72,40 @@ RUN repowise agents add /app --target=codex --scope=project -y --format=json \
  && grep -q 'hooks = true' /app/.codex/config.toml \
  && echo "OK: codex hooks wired"
 
+# Strip the MCP server table repowise's installer also writes into the PROJECT
+# config, keeping only [features] hooks = true.
+#
+# Measured: leaving it in re-registers repowise with `command = "repowise"`,
+# which overrides the no-argument wrapper this image installs, and the tee'd
+# stderr detector then comes back EMPTY on a cell whose arm may well have been
+# alive. That is the precise failure the tee exists to prevent, reintroduced by
+# a second registration of the same server.
+#
+# MCP therefore has exactly ONE definition, in the config passed at run time,
+# which is also the only one carrying the env block and the per-tool approval
+# modes that a headless Codex run needs. Hooks come from here; MCP comes from
+# there; neither is declared twice.
+RUN python3 -c "\
+import re,pathlib;\
+p=pathlib.Path('/app/.codex/config.toml');\
+t=p.read_text();\
+t=re.sub(r'\[mcp_servers\.repowise\][^\[]*', '', t);\
+p.write_text(t);\
+print(t)" \
+ && ! grep -q 'mcp_servers' /app/.codex/config.toml \
+ && grep -q 'hooks = true' /app/.codex/config.toml \
+ && echo "OK: project config carries hooks only, no duplicate MCP registration"
+
+# The hook ledger lives at <repo>/.repowise/sessions/sessions.db, and that path
+# is not configurable. It cannot be collected from there: pier copies every
+# downloaded artifact BACK INTO the verifier container, whose image has no
+# /app/.repowise/sessions directory, so `docker compose cp` fails and takes the
+# whole trial down AFTER the agent has already run - a dead cell with a live
+# agent's work in it. Pointing the directory at /tmp puts the ledger at
+# /tmp/sessions.db, whose parent exists in both images.
+RUN rm -rf /app/.repowise/sessions && ln -s /tmp /app/.repowise/sessions \
+ && echo "OK: hook ledger redirected to /tmp/sessions.db"
+
 # Claude Code: repowise wires its hooks at USER scope, and pier points
 # CLAUDE_CONFIG_DIR at a runtime-mounted logs directory that cannot be baked.
 # So the same entries go in project-scoped .claude/settings.json instead. The
@@ -90,6 +124,35 @@ RUN printf '%s\n' \
  && cp /app/.claude-settings.json /app/.claude/settings.json \
  && rm /app/.claude-settings.json \
  && python3 -c "import json;json.load(open('/app/.claude/settings.json'));print('OK: claude hooks wired')"
+
+# HOOK-FIRING MARKER. Instrumentation, not product.
+#
+# repowise bills hook runs to .repowise/sessions/sessions.db, but _count_run
+# returns early when the payload carries no session_id, and Codex's hook payload
+# does not appear to supply one - the ledger was never created on a cell whose
+# arm was demonstrably alive. So hook firing cannot be read from the ledger on
+# this harness.
+#
+# A line appended before `exec` gives an unambiguous count. It runs in the same
+# shell the hook already spawns, costs one append, and does not alter what
+# repowise-augment itself does - the command it execs is byte-identical to the
+# shipped one. Without this the arm can only be described as "changed", never as
+# "the hooks fired N times", and a mechanism nobody has proven is a mechanism
+# nobody should claim.
+RUN python3 - <<'PYEOF'
+import json, pathlib
+for path in (pathlib.Path("/app/.codex/hooks.json"), pathlib.Path("/app/.claude/settings.json")):
+    doc = json.loads(path.read_text())
+    for event, entries in doc["hooks"].items():
+        for entry in entries:
+            for hook in entry["hooks"]:
+                cmd = hook["command"]
+                if "repowise-augment" in cmd and "hookfired" not in cmd:
+                    hook["command"] = (
+                        'echo "%s" >> /tmp/hookfired.log; ' % event) + cmd
+    path.write_text(json.dumps(doc, indent=2))
+    print("instrumented", path)
+PYEOF
 
 # The hook binaries must resolve, or every matched tool call is a silent
 # `command not found` that the hook handler swallows. A declared hook whose

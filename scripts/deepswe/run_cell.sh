@@ -91,7 +91,7 @@ if [ "$ARM" = "rw" ]; then
   # declared hook can be in - never ran, ran and stayed silent, ran and injected
   # - which a declared-but-unresolvable hook command cannot be told apart from
   # otherwise, because it fails silently on every matched call.
-  extra+=(--artifact "/app/.repowise/sessions/sessions.db")
+  extra+=(--artifact "/tmp/hookfired.log")
 
   # The onboarding surface, delivered as prompt rather than as a file.
   #
@@ -142,7 +142,11 @@ PY
   fi
 fi
 
-job="$TASK--$HARNESS-$ARM"
+# TAG separates arm GENERATIONS in one jobs dir. The first six cells of this
+# run used an MCP-only treated arm; the shipped arm adds hooks and distill, and
+# the two must never be pooled. pier also refuses to reuse a job dir under a
+# changed config, so a tag is required rather than merely tidy.
+job="$TASK--$HARNESS-$ARM${TAG:+-$TAG}"
 echo "########## CELL $job"
 echo "task path : $path"
 echo "agent     : $agent   model: $model"
