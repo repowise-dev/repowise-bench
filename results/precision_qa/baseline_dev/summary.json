@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "transport": "stdio",
+    "endpoint": null,
+    "judge_model": "sonnet",
+    "question_files": [
+      "/Users/swatiahuja/Desktop/bench-wt/H9-qa-sets/data/precision_qa"
+    ],
+    "commits": {
+      "click": "06b2a678741131fd577ce170e23e5ca0aeba0309",
+      "cobra": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+      "composio": "c7e7da1e0542a1fbe82629bcf96c9da1d3f9da25",
+      "httpx": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254"
+    }
+  },
+  "repos": {
+    "*": {
+      "questions": 80,
+      "judged": 80,
+      "verdicts": {
+        "correct": 18,
+        "partial": 38,
+        "confidently_wrong": 4,
+        "refused_hedged": 19,
+        "wrong": 1
+      },
+      "tiers": {
+        "high": 29,
+        "medium": 34,
+        "low": 11
+      },
+      "correct": 0.2432,
+      "confidently_wrong": 0.05,
+      "high_tier_correct": 0.3448,
+      "trap_refused": 0.8333,
+      "citation_resolves": 0.9769,
+      "must_cite_recall": 0.5152,
+      "errors": 0
+    },
+    "click": {
+      "questions": 20,
+      "judged": 20,
+      "verdicts": {
+        "correct": 7,
+        "partial": 9,
+        "confidently_wrong": 1,
+        "refused_hedged": 3
+      },
+      "tiers": {
+        "high": 9,
+        "medium": 7,
+        "low": 2
+      },
+      "correct": 0.3889,
+      "confidently_wrong": 0.05,
+      "high_tier_correct": 0.3333,
+      "trap_refused": 1.0,
+      "citation_resolves": 1.0,
+      "must_cite_recall": 0.8,
+      "errors": 0
+    },
+    "cobra": {
+      "questions": 20,
+      "judged": 20,
+      "verdicts": {
+        "correct": 5,
+        "partial": 8,
+        "refused_hedged": 5,
+        "wrong": 1,
+        "confidently_wrong": 1
+      },
+      "tiers": {
+        "high": 9,
+        "low": 4,
+        "medium": 5
+      },
+      "correct": 0.2778,
+      "confidently_wrong": 0.05,
+      "high_tier_correct": 0.5556,
+      "trap_refused": 0.5,
+      "citation_resolves": 0.9565,
+      "must_cite_recall": 0.5143,
+      "errors": 0
+    },
+    "composio": {
+      "questions": 20,
+      "judged": 20,
+      "verdicts": {
+        "partial": 9,
+        "refused_hedged": 8,
+        "correct": 2,
+        "confidently_wrong": 1
+      },
+      "tiers": {
+        "medium": 11,
+        "low": 4,
+        "high": 4
+      },
+      "correct": 0.1053,
+      "confidently_wrong": 0.05,
+      "high_tier_correct": 0.25,
+      "trap_refused": 1.0,
+      "citation_resolves": 0.9574,
+      "must_cite_recall": 0.2326,
+      "errors": 0
+    },
+    "httpx": {
+      "questions": 20,
+      "judged": 20,
+      "verdicts": {
+        "partial": 12,
+        "refused_hedged": 3,
+        "confidently_wrong": 1,
+        "correct": 4
+      },
+      "tiers": {
+        "medium": 11,
+        "high": 7,
+        "low": 1
+      },
+      "correct": 0.2105,
+      "confidently_wrong": 0.05,
+      "high_tier_correct": 0.1429,
+      "trap_refused": 1.0,
+      "citation_resolves": 1.0,
+      "must_cite_recall": 0.6897,
+      "errors": 0
+    }
+  }
+}
