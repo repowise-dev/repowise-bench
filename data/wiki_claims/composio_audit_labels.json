@@ -1,0 +1,1287 @@
+{
+ "source": "2026-09-29 Composio accuracy audit (wiki/docs prose): 30 LLM-written pages of hosted snapshot 1644beeb5549, fact-checked by hand against composio @ c7e7da1e0542a1fbe82629bcf96c9da1d3f9da25. Per-page counts are the auditors' correct/wrong/misleading/speculative tallies; the overview group was reported only in aggregate. 'claims' are the claims the auditors enumerated with their label; 'anchors' are case-insensitive substrings that locate the claim on the page.",
+ "groups": [
+  {
+   "name": "overview+core (aggregate)",
+   "pages": [
+    "repo_overview:composio",
+    "module_page:ts/packages/core",
+    "module_page:ts/packages/core/src",
+    "onboarding:onboarding/active_landscape"
+   ],
+   "counts": {
+    "correct": 21,
+    "wrong": 8,
+    "misleading": 5,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "ts core/src/models",
+   "pages": [
+    "module_page:ts/packages/core/src/models"
+   ],
+   "counts": {
+    "correct": 9,
+    "wrong": 4,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "ts core/src/types",
+   "pages": [
+    "module_page:ts/packages/core/src/types"
+   ],
+   "counts": {
+    "correct": 7,
+    "wrong": 0,
+    "misleading": 3,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "ts core/src/utils",
+   "pages": [
+    "module_page:ts/packages/core/src/utils"
+   ],
+   "counts": {
+    "correct": 10,
+    "wrong": 1,
+    "misleading": 1,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "ts utils/config-defaults",
+   "pages": [
+    "module_page:ts/packages/core/src/utils/config-defaults"
+   ],
+   "counts": {
+    "correct": 6,
+    "wrong": 2,
+    "misleading": 3,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "ts providers",
+   "pages": [
+    "module_page:ts/packages/providers"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 2,
+    "misleading": 3,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "ts providers/anthropic",
+   "pages": [
+    "module_page:ts/packages/providers/anthropic"
+   ],
+   "counts": {
+    "correct": 6,
+    "wrong": 4,
+    "misleading": 1,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "ts providers/typesafe",
+   "pages": [
+    "module_page:ts/packages/providers/typesafe"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 4,
+    "misleading": 2,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "ts cli-keyring",
+   "pages": [
+    "module_page:ts/packages/cli-keyring"
+   ],
+   "counts": {
+    "correct": 10,
+    "wrong": 2,
+    "misleading": 3,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "ts cli",
+   "pages": [
+    "module_page:ts/packages/cli"
+   ],
+   "counts": {
+    "correct": 11,
+    "wrong": 2,
+    "misleading": 3,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "cli/src/commands",
+   "pages": [
+    "module_page:ts/packages/cli/src/commands"
+   ],
+   "counts": {
+    "correct": 11,
+    "wrong": 1,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "cli/src/services",
+   "pages": [
+    "module_page:ts/packages/cli/src/services"
+   ],
+   "counts": {
+    "correct": 11,
+    "wrong": 1,
+    "misleading": 2,
+    "speculative": 3
+   }
+  },
+  {
+   "name": "cli/src/effects",
+   "pages": [
+    "module_page:ts/packages/cli/src/effects"
+   ],
+   "counts": {
+    "correct": 12,
+    "wrong": 1,
+    "misleading": 4,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "harness",
+   "pages": [
+    "module_page:harness"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 3,
+    "misleading": 3,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "root",
+   "pages": [
+    "module_page:root"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 2,
+    "misleading": 2,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "onboarding how_it_works",
+   "pages": [
+    "onboarding:onboarding/how_it_works"
+   ],
+   "counts": {
+    "correct": 9,
+    "wrong": 1,
+    "misleading": 2,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "onboarding getting_started",
+   "pages": [
+    "onboarding:onboarding/getting_started"
+   ],
+   "counts": {
+    "correct": 10,
+    "wrong": 1,
+    "misleading": 1,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "onboarding key_concepts",
+   "pages": [
+    "onboarding:onboarding/key_concepts"
+   ],
+   "counts": {
+    "correct": 7,
+    "wrong": 1,
+    "misleading": 2,
+    "speculative": 0
+   }
+  },
+  {
+   "name": "python",
+   "pages": [
+    "module_page:python"
+   ],
+   "counts": {
+    "correct": 9,
+    "wrong": 4,
+    "misleading": 2,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "python/composio",
+   "pages": [
+    "module_page:python/composio"
+   ],
+   "counts": {
+    "correct": 12,
+    "wrong": 4,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python core/models",
+   "pages": [
+    "module_page:python/composio/core/models"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 3,
+    "misleading": 3,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python utils",
+   "pages": [
+    "module_page:python/composio/utils"
+   ],
+   "counts": {
+    "correct": 10,
+    "wrong": 3,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python/providers",
+   "pages": [
+    "module_page:python/providers"
+   ],
+   "counts": {
+    "correct": 4,
+    "wrong": 6,
+    "misleading": 1,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python providers/openai",
+   "pages": [
+    "module_page:python/providers/openai"
+   ],
+   "counts": {
+    "correct": 9,
+    "wrong": 2,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python providers/anthropic",
+   "pages": [
+    "module_page:python/providers/anthropic"
+   ],
+   "counts": {
+    "correct": 7,
+    "wrong": 4,
+    "misleading": 1,
+    "speculative": 1
+   }
+  },
+  {
+   "name": "python providers/google",
+   "pages": [
+    "module_page:python/providers/google"
+   ],
+   "counts": {
+    "correct": 10,
+    "wrong": 2,
+    "misleading": 2,
+    "speculative": 2
+   }
+  },
+  {
+   "name": "python examples",
+   "pages": [
+    "module_page:python/examples"
+   ],
+   "counts": {
+    "correct": 8,
+    "wrong": 3,
+    "misleading": 2,
+    "speculative": 3
+   }
+  }
+ ],
+ "claims": [
+  {
+   "page_id": "repo_overview:composio",
+   "label": "wrong",
+   "anchors": [
+    "operational entry point"
+   ],
+   "note": "entry.ts is a keyring credential Entry class, not the CLI entry"
+  },
+  {
+   "page_id": "repo_overview:composio",
+   "label": "correct",
+   "anchors": [
+    "1000+ apps"
+   ],
+   "note": "verified correct"
+  },
+  {
+   "page_id": "repo_overview:composio",
+   "label": "correct",
+   "anchors": [
+    "TypesafeProvider::execute"
+   ],
+   "note": "verified correct"
+  },
+  {
+   "page_id": "module_page:ts/packages/core",
+   "label": "wrong",
+   "anchors": [
+    "stable TypeScript-facing entrypoint"
+   ],
+   "note": "pack/generated/index.js only throws 'not initialized'"
+  },
+  {
+   "page_id": "module_page:ts/packages/core",
+   "label": "wrong",
+   "anchors": [
+    "vitest"
+   ],
+   "note": "type tests run via tsc -p tsconfig.type-tests.json"
+  },
+  {
+   "page_id": "module_page:ts/packages/core",
+   "label": "wrong",
+   "anchors": [
+    "SCRIPT_DIR"
+   ],
+   "note": "used at generate-docs.ts:18"
+  },
+  {
+   "page_id": "module_page:ts/packages/core",
+   "label": "misleading",
+   "anchors": [
+    "husky"
+   ],
+   "note": "root devDependencies credited to the package"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src",
+   "label": "wrong",
+   "anchors": [
+    "limited dependency graph"
+   ],
+   "note": "core has 10 deps"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "wrong",
+   "anchors": [
+    "58 bug-fix"
+   ],
+   "note": "file has 57 commits in total"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "wrong",
+   "anchors": [
+    "Experimental.ts",
+    "consumed by"
+   ],
+   "note": "imported by composio.ts and index.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "wrong",
+   "anchors": [
+    "UNSUPPORTED_MESSAGE"
+   ],
+   "note": "used"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "wrong",
+   "anchors": [
+    "WEBHOOK_HEADERS"
+   ],
+   "note": "used"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "wrong",
+   "anchors": [
+    "rather than implementing validation or transport"
+   ],
+   "note": "models call the API"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "misleading",
+   "anchors": [
+    "Keyring.ts"
+   ],
+   "note": "it lists transfer keys via the API"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/models",
+   "label": "misleading",
+   "anchors": [
+    "Webhooks.ts",
+    "verification"
+   ],
+   "note": "verification lives in Triggers.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/types",
+   "label": "misleading",
+   "anchors": [
+    "persistence boundary"
+   ],
+   "note": "types + zod schemas, nothing persisted"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/types",
+   "label": "misleading",
+   "anchors": [
+    "SessionContextImpl"
+   ],
+   "note": "impl is in models/SessionContext.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/types",
+   "label": "misleading",
+   "anchors": [
+    "MCPConfigToolkitsSchema"
+   ],
+   "note": "used in its own file"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils",
+   "label": "wrong",
+   "anchors": [
+    "MAX_REF_CHAIN_DEPTH"
+   ],
+   "note": "used in jsonSchema.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils",
+   "label": "misleading",
+   "anchors": [
+    "readResponseBody"
+   ],
+   "note": "a 100 MB memory guard"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils/config-defaults",
+   "label": "wrong",
+   "anchors": [
+    "src/transformers/connectedAccounts.ts"
+   ],
+   "note": "path does not exist"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils/config-defaults",
+   "label": "wrong",
+   "anchors": [
+    "CONFIG_DEFAULTS",
+    "FileToolModifier"
+   ],
+   "note": "both have importers"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils/config-defaults",
+   "label": "misleading",
+   "anchors": [
+    "docstring"
+   ],
+   "note": "transformers have nothing to do with docs"
+  },
+  {
+   "page_id": "module_page:ts/packages/core/src/utils/config-defaults",
+   "label": "misleading",
+   "anchors": [
+    "FileToolModifier.node.ts",
+    "most"
+   ],
+   "note": "tied at 3 commits"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers",
+   "label": "wrong",
+   "anchors": [
+    "terminal-kit/session/message.tsx"
+   ],
+   "note": "no provider imports it"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers",
+   "label": "wrong",
+   "anchors": [
+    "51 bug-fix"
+   ],
+   "note": "index.ts has 14 commits"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers",
+   "label": "misleading",
+   "anchors": [
+    "glue"
+   ],
+   "note": "folder holds 11 providers"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers",
+   "label": "misleading",
+   "anchors": [
+    "uniformity"
+   ],
+   "note": "typesafe-specific types"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers",
+   "label": "misleading",
+   "anchors": [
+    "keys.ts"
+   ],
+   "note": "Jev choice option keys"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "shared provider base types"
+   ],
+   "note": "base classes are in core BaseProvider.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "terminal-kit/session/message.tsx"
+   ],
+   "note": "phantom import edge"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "38 bug-fix"
+   ],
+   "note": "14 commits in total"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "MAX_KEY_LENGTH"
+   ],
+   "note": "live in sanitize-keys.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/typesafe",
+   "label": "wrong",
+   "anchors": [
+    "AskResult"
+   ],
+   "note": "defined at decide.ts:179"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/typesafe",
+   "label": "wrong",
+   "anchors": [
+    "cf-workers-tool-router-ai"
+   ],
+   "note": "they import @composio/vercel"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/typesafe",
+   "label": "wrong",
+   "anchors": [
+    "13 bug-fix"
+   ],
+   "note": "14 commits, 6 fix-tagged"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/typesafe",
+   "label": "wrong",
+   "anchors": [
+    "classify.ts"
+   ],
+   "note": "classifies JSON-schema argument properties"
+  },
+  {
+   "page_id": "module_page:ts/packages/providers/typesafe",
+   "label": "misleading",
+   "anchors": [
+    "companion.ts"
+   ],
+   "note": "shortlistTools + confidenceGate"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli-keyring",
+   "label": "wrong",
+   "anchors": [
+    "MemoryStore"
+   ],
+   "note": "only a test double"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli-keyring",
+   "label": "wrong",
+   "anchors": [
+    "UnsupportedPlatformStore"
+   ],
+   "note": "in stores/unsupported.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli-keyring",
+   "label": "misleading",
+   "anchors": [
+    "persistence.ts"
+   ],
+   "note": "a 25-line enum"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli-keyring",
+   "label": "misleading",
+   "anchors": [
+    "Effect v4"
+   ],
+   "note": "core is Promise-based"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli-keyring",
+   "label": "misleading",
+   "anchors": [
+    "entry.ts",
+    "wiring"
+   ],
+   "note": "Entry credential handle"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "wrong",
+   "anchors": [
+    "terminal-kit/input/input.tsx",
+    "pulls in"
+   ],
+   "note": "CLI never references terminal-kit"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "wrong",
+   "anchors": [
+    "composio manage"
+   ],
+   "note": "replaced by dev (97a5218dc)"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "misleading",
+   "anchors": [
+    "json-transform-schema"
+   ],
+   "note": "generic JSON codec"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "misleading",
+   "anchors": [
+    "connected-account-id"
+   ],
+   "note": "removed only from tools execute"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "misleading",
+   "anchors": [
+    "skills-src"
+   ],
+   "note": "source of the agent skill doc"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli",
+   "label": "speculative",
+   "anchors": [
+    "351 bug-fix"
+   ],
+   "note": "tool-defined count"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/commands",
+   "label": "wrong",
+   "anchors": [
+    "manage"
+   ],
+   "note": "replaced by dev"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/commands",
+   "label": "misleading",
+   "anchors": [
+    "thin orchestration"
+   ],
+   "note": "tools.execute.cmd.ts has 2235 lines"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/commands",
+   "label": "misleading",
+   "anchors": [
+    "validate-toolkit-versions"
+   ],
+   "note": "only ts/py generate import it"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/services",
+   "label": "wrong",
+   "anchors": [
+    "byte-level"
+   ],
+   "note": "upgrade-binary.ts streams the download"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/services",
+   "label": "misleading",
+   "anchors": [
+    "master-detector"
+   ],
+   "note": "detects codex/claude/user"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/services",
+   "label": "misleading",
+   "anchors": [
+    "user-context"
+   ],
+   "note": "stores the API key in the keyring"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/effects",
+   "label": "wrong",
+   "anchors": [
+    "jkomyno"
+   ],
+   "note": "same person as Alberto Schiabel"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/effects",
+   "label": "misleading",
+   "anchors": [
+    "338"
+   ],
+   "note": "fix touched upgrade-binary.ts"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/effects",
+   "label": "misleading",
+   "anchors": [
+    "network variability"
+   ],
+   "note": "installs agent skill files"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/effects",
+   "label": "misleading",
+   "anchors": [
+    "version.ts"
+   ],
+   "note": "only getVersion"
+  },
+  {
+   "page_id": "module_page:ts/packages/cli/src/effects",
+   "label": "misleading",
+   "anchors": [
+    "NoActiveConnection"
+   ],
+   "note": "handled in composio-error-overrides.ts"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "wrong",
+   "anchors": [
+    "rather than executing"
+   ],
+   "note": "it IS the examples runner"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "wrong",
+   "anchors": [
+    "consistency gate"
+   ],
+   "note": "parity.mjs is a standalone comparator"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "wrong",
+   "anchors": [
+    "backend-url",
+    "fix"
+   ],
+   "note": "one commit ever"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "misleading",
+   "anchors": [
+    "sitecustomize"
+   ],
+   "note": "they are the tracers"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "misleading",
+   "anchors": [
+    "persistence/coordination boundary"
+   ],
+   "note": "only validates COMPOSIO_BASE_URL"
+  },
+  {
+   "page_id": "module_page:harness",
+   "label": "misleading",
+   "anchors": [
+    "error contract"
+   ],
+   "note": "a 6-line HarnessError"
+  },
+  {
+   "page_id": "module_page:root",
+   "label": "wrong",
+   "anchors": [
+    "isTurboTask",
+    "not used"
+   ],
+   "note": "used in tsdown.config.base.ts"
+  },
+  {
+   "page_id": "module_page:root",
+   "label": "wrong",
+   "anchors": [
+    ".pnpmfile.cjs",
+    "most active"
+   ],
+   "note": "0 commits in the window"
+  },
+  {
+   "page_id": "module_page:root",
+   "label": "misleading",
+   "anchors": [
+    "readPackage"
+   ],
+   "note": "a pnpm hook"
+  },
+  {
+   "page_id": "module_page:root",
+   "label": "misleading",
+   "anchors": [
+    "alongside"
+   ],
+   "note": "unrelated pnpm alias hook"
+  },
+  {
+   "page_id": "onboarding:onboarding/how_it_works",
+   "label": "wrong",
+   "anchors": [
+    "TelemetryTransport"
+   ],
+   "note": "no error telemetry on this path"
+  },
+  {
+   "page_id": "onboarding:onboarding/how_it_works",
+   "label": "misleading",
+   "anchors": [
+    "service-side"
+   ],
+   "note": "client SDK"
+  },
+  {
+   "page_id": "onboarding:onboarding/how_it_works",
+   "label": "misleading",
+   "anchors": [
+    "prepareAndSend"
+   ],
+   "note": "goes through deferTelemetry"
+  },
+  {
+   "page_id": "onboarding:onboarding/getting_started",
+   "label": "wrong",
+   "anchors": [
+    "cli-keyring/src/core/entry.ts"
+   ],
+   "note": "real entry is cli/src/bin.ts"
+  },
+  {
+   "page_id": "onboarding:onboarding/getting_started",
+   "label": "correct",
+   "anchors": [
+    "packageManager"
+   ],
+   "note": "commands match CONTRIBUTING/package.json"
+  },
+  {
+   "page_id": "onboarding:onboarding/key_concepts",
+   "label": "wrong",
+   "anchors": [
+    "gateway"
+   ],
+   "note": "Entry is a keyring credential handle"
+  },
+  {
+   "page_id": "onboarding:onboarding/key_concepts",
+   "label": "misleading",
+   "anchors": [
+    "TypeScriptTranspileError"
+   ],
+   "note": "unrelated Effect TaggedError"
+  },
+  {
+   "page_id": "module_page:python",
+   "label": "wrong",
+   "anchors": [
+    "contract/adaptation layer"
+   ],
+   "note": "schema-to-signature helper"
+  },
+  {
+   "page_id": "module_page:python",
+   "label": "wrong",
+   "anchors": [
+    "`Tools`",
+    "base.py"
+   ],
+   "note": "Tools is in tools.py"
+  },
+  {
+   "page_id": "module_page:python",
+   "label": "wrong",
+   "anchors": [
+    "NonAgentic",
+    "base.py"
+   ],
+   "note": "agentic.py / none_agentic.py"
+  },
+  {
+   "page_id": "module_page:python",
+   "label": "misleading",
+   "anchors": [
+    "_files.py",
+    "fix"
+   ],
+   "note": "tool_router_session.py has most"
+  },
+  {
+   "page_id": "module_page:python/composio",
+   "label": "wrong",
+   "anchors": [
+    "none_agentic"
+   ],
+   "note": "NonAgenticProvider, not 'none'"
+  },
+  {
+   "page_id": "module_page:python/composio",
+   "label": "wrong",
+   "anchors": [
+    "typesafe"
+   ],
+   "note": "nothing in python/composio mentions typesafe"
+  },
+  {
+   "page_id": "module_page:python/composio",
+   "label": "wrong",
+   "anchors": [
+    "jkomyno"
+   ],
+   "note": "same person"
+  },
+  {
+   "page_id": "module_page:python/composio",
+   "label": "misleading",
+   "anchors": [
+    "sdk.py"
+   ],
+   "note": "holds the main Composio class"
+  },
+  {
+   "page_id": "module_page:python/composio",
+   "label": "misleading",
+   "anchors": [
+    "mise"
+   ],
+   "note": "unrelated to the Python package"
+  },
+  {
+   "page_id": "module_page:python/composio/core/models",
+   "label": "wrong",
+   "anchors": [
+    "google_adk",
+    "depend"
+   ],
+   "note": "only typesafe imports _modifiers"
+  },
+  {
+   "page_id": "module_page:python/composio/core/models",
+   "label": "wrong",
+   "anchors": [
+    "uuid"
+   ],
+   "note": "uuid4 is random"
+  },
+  {
+   "page_id": "module_page:python/composio/core/models",
+   "label": "wrong",
+   "anchors": [
+    "87"
+   ],
+   "note": "_files.py has 32 commits"
+  },
+  {
+   "page_id": "module_page:python/composio/core/models",
+   "label": "misleading",
+   "anchors": [
+    "persistence boundary"
+   ],
+   "note": "they are HTTP API clients"
+  },
+  {
+   "page_id": "module_page:python/composio/core/models",
+   "label": "misleading",
+   "anchors": [
+    "experimental.py"
+   ],
+   "note": "ExperimentalAPI"
+  },
+  {
+   "page_id": "module_page:python/composio/utils",
+   "label": "wrong",
+   "anchors": [
+    "json_schema.py"
+   ],
+   "note": "resolves $ref"
+  },
+  {
+   "page_id": "module_page:python/composio/utils",
+   "label": "wrong",
+   "anchors": [
+    "pydantic.py",
+    "base.py"
+   ],
+   "note": "actual importers differ"
+  },
+  {
+   "page_id": "module_page:python/composio/utils",
+   "label": "wrong",
+   "anchors": [
+    "stable"
+   ],
+   "note": "random uuid4"
+  },
+  {
+   "page_id": "module_page:python/composio/utils",
+   "label": "misleading",
+   "anchors": [
+    "glue"
+   ],
+   "note": "two small helpers"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "Anthropic Providers package"
+   ],
+   "note": "folder holds 13 packages"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "AgenticProvider",
+    "Anthropic"
+   ],
+   "note": "Anthropic is NonAgentic"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "_openai_responses"
+   ],
+   "note": "imports only core.provider, types, utils.shared"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "claude_agent.py"
+   ],
+   "note": "imports ClaudeAgentSDKProvider"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "OpenAI Agents"
+   ],
+   "note": "7-line re-export"
+  },
+  {
+   "page_id": "module_page:python/providers",
+   "label": "wrong",
+   "anchors": [
+    "48"
+   ],
+   "note": "provider.py has 5 commits"
+  },
+  {
+   "page_id": "module_page:python/providers/openai",
+   "label": "wrong",
+   "anchors": [
+    "typesafe",
+    "typing"
+   ],
+   "note": "independent provider for Jev"
+  },
+  {
+   "page_id": "module_page:python/providers/openai",
+   "label": "wrong",
+   "anchors": [
+    "openai_agents",
+    "_openai"
+   ],
+   "note": "doesn't import them"
+  },
+  {
+   "page_id": "module_page:python/providers/openai",
+   "label": "misleading",
+   "anchors": [
+    "keys.py"
+   ],
+   "note": "Choice option keys"
+  },
+  {
+   "page_id": "module_page:python/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "json_schema"
+   ],
+   "note": "invented imports"
+  },
+  {
+   "page_id": "module_page:python/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "claude_agent"
+   ],
+   "note": "invented importers"
+  },
+  {
+   "page_id": "module_page:python/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "19"
+   ],
+   "note": "provider.py has 4 fix commits"
+  },
+  {
+   "page_id": "module_page:python/providers/anthropic",
+   "label": "wrong",
+   "anchors": [
+    "angrybayblade"
+   ],
+   "note": "7-file package"
+  },
+  {
+   "page_id": "module_page:python/providers/anthropic",
+   "label": "misleading",
+   "anchors": [
+    "@changesets/cli"
+   ],
+   "note": "repo-root devDependencies"
+  },
+  {
+   "page_id": "module_page:python/providers/google",
+   "label": "wrong",
+   "anchors": [
+    "__init__.py"
+   ],
+   "note": "none of these providers import it"
+  },
+  {
+   "page_id": "module_page:python/providers/google",
+   "label": "wrong",
+   "anchors": [
+    "angrybayblade"
+   ],
+   "note": "Musthaq primary on 10"
+  },
+  {
+   "page_id": "module_page:python/providers/google",
+   "label": "misleading",
+   "anchors": [
+    "lint-staged"
+   ],
+   "note": "repo-root devDependencies"
+  },
+  {
+   "page_id": "module_page:python/examples",
+   "label": "wrong",
+   "anchors": [
+    "mcp.py"
+   ],
+   "note": "scripts import only composio/public modules"
+  },
+  {
+   "page_id": "module_page:python/examples",
+   "label": "wrong",
+   "anchors": [
+    "direct_tools_preset"
+   ],
+   "note": "a Tool Router session preset"
+  },
+  {
+   "page_id": "module_page:python/examples",
+   "label": "wrong",
+   "anchors": [
+    "session_update.py"
+   ],
+   "note": "5 commits, tied"
+  },
+  {
+   "page_id": "module_page:python/examples",
+   "label": "misleading",
+   "anchors": [
+    "auth_configs.py"
+   ],
+   "note": "standalone"
+  },
+  {
+   "page_id": "module_page:python/examples",
+   "label": "misleading",
+   "anchors": [
+    "CrewAI"
+   ],
+   "note": "points CrewAI at the MCP URL"
+  }
+ ]
+}
