@@ -1,0 +1,606 @@
+{
+  "repo": "cobra",
+  "commit": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+  "split": "dev",
+  "questions": [
+    {
+      "id": "cobra-01",
+      "question": "Where is the Command struct defined in the Go package, and where are its subcommand groups modelled?",
+      "category": "where_defined",
+      "identifier_style": "PascalCase",
+      "language": "go",
+      "trap": false,
+      "reference_answer": "The Command struct is defined in command.go (type Command struct at line 54). It holds the user-facing fields (Use, Aliases, Short, Long, Args, ValidArgs, the Run/RunE family of hooks, Version, etc.) plus private state such as flag sets, parent and child commands. Help-output groups for subcommands are modelled by the small Group struct (ID and Title) defined just above it in the same file, and a subcommand opts in via its GroupID field.",
+      "key_facts": [
+        "Command is defined in command.go",
+        "Group struct with ID and Title fields is in command.go",
+        "subcommands join a group through the GroupID field"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "The Command struct is defined in cobra.go",
+        "Command is an interface"
+      ],
+      "evidence": [
+        "command.go:45-52",
+        "command.go:54-266"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-03",
+      "question": "Where is `hasNoOptDefVal` defined and what does it check?",
+      "category": "where_defined",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": false,
+      "reference_answer": "hasNoOptDefVal is an unexported helper in command.go (line 654). It looks the flag name up in the given pflag FlagSet and returns true only if the flag exists and its NoOptDefVal is non-empty, i.e. the flag can be given without a value (like a bool flag). Its sibling shortHasNoOptDefVal does the same for a one-character shorthand. stripFlags, argsMinusFirstX and Traverse use it to decide whether the next argument is the flag's value.",
+      "key_facts": [
+        "defined in command.go",
+        "returns true when the flag exists and NoOptDefVal != \"\"",
+        "used to decide whether the following arg is a flag value (stripFlags/argsMinusFirstX/Traverse)"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "hasNoOptDefVal is defined in pflag",
+        "it checks whether the flag has a default value (DefValue)"
+      ],
+      "evidence": [
+        "command.go:654-671",
+        "command.go:691",
+        "command.go:729",
+        "command.go:830"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-05",
+      "question": "Where is the hidden command that shell completion scripts call to request completion choices created?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "It is created in completions.go by Command.initCompleteCmd (line 231). The command's name is ShellCompRequestCmd (\"__complete\") with the alias ShellCompNoDescRequestCmd (\"__completeNoDesc\"); it is Hidden, has DisableFlagParsing set and requires at least one arg. ExecuteC calls initCompleteCmd on every execution, and the command is removed again unless it is the one actually being invoked.",
+      "key_facts": [
+        "created by initCompleteCmd in completions.go",
+        "command name __complete, alias __completeNoDesc",
+        "hidden and DisableFlagParsing",
+        "called from ExecuteC"
+      ],
+      "must_cite_files": [
+        "completions.go",
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "The __complete command is defined in bash_completions.go",
+        "The completion-request command is always visible in help"
+      ],
+      "evidence": [
+        "completions.go:28-35",
+        "completions.go:231-308",
+        "command.go:1110"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-06",
+      "question": "In the Go code, where is the splash message shown when a CLI is launched by double-clicking it in Windows Explorer implemented?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": "go",
+      "trap": false,
+      "reference_answer": "In command_win.go (built only on windows): preExecHookFn is set to preExecHook, which checks mousetrap.StartedByExplorer(); if MousetrapHelpText is non-empty it prints it, sleeps MousetrapDisplayDuration (or waits for Return if the duration is 0) and exits with status 1. On other platforms command_notwin.go declares preExecHookFn as a nil func. ExecuteC calls preExecHookFn if it is non-nil. The text and duration variables are in cobra.go.",
+      "key_facts": [
+        "implemented by preExecHook in command_win.go",
+        "uses mousetrap.StartedByExplorer",
+        "command_notwin.go leaves preExecHookFn nil",
+        "ExecuteC invokes preExecHookFn",
+        "MousetrapHelpText/MousetrapDisplayDuration in cobra.go"
+      ],
+      "must_cite_files": [
+        "command_win.go",
+        "command_notwin.go",
+        "cobra.go"
+      ],
+      "forbidden_claims": [
+        "The splash is implemented in command.go for all platforms",
+        "It is shown on macOS as well"
+      ],
+      "evidence": [
+        "command_win.go:28-43",
+        "command_notwin.go:20",
+        "command.go:1094-1097",
+        "cobra.go:68-81"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-10",
+      "question": "Where is the newer bash completion script (version 2) generated?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In bash_completionsV2.go. The public entry points are Command.GenBashCompletionV2(w, includeDesc) and GenBashCompletionFileV2(filename, includeDesc); they call the unexported genBashCompletion, which writes the script produced by genBashComp. The script calls the program's hidden __complete (or __completeNoDesc when descriptions are off) command at completion time. The default 'completion bash' subcommand uses GenBashCompletionV2.",
+      "key_facts": [
+        "bash_completionsV2.go",
+        "GenBashCompletionV2 / GenBashCompletionFileV2 -> genBashCompletion -> genBashComp",
+        "script invokes __complete or __completeNoDesc",
+        "default completion bash command uses V2"
+      ],
+      "must_cite_files": [
+        "bash_completionsV2.go",
+        "completions.go"
+      ],
+      "forbidden_claims": [
+        "V2 is generated in bash_completions.go",
+        "The V2 script is fully static and never calls the program"
+      ],
+      "evidence": [
+        "bash_completionsV2.go:24-40",
+        "bash_completionsV2.go:469-484",
+        "completions.go:831-833"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-11",
+      "question": "What calls `stripFlags` in the non-test code?",
+      "category": "who_calls",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Only Command.Find in command.go calls it: once inside Find's innerfind closure (to get the non-flag args and pick the next subcommand name) and once at the end of Find, where legacyArgs(commandFound, stripFlags(a, commandFound)) validates args when the found command's Args is nil. The only other caller is a unit test in command_test.go.",
+      "key_facts": [
+        "Command.Find's innerfind closure calls stripFlags",
+        "Command.Find also calls it when passing args to legacyArgs",
+        "otherwise only command_test.go uses it"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "Traverse calls stripFlags",
+        "ExecuteC calls stripFlags directly"
+      ],
+      "evidence": [
+        "command.go:757-779",
+        "command_test.go:709"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-16",
+      "question": "Who calls `InitDefaultHelpCmd`, besides normal command execution?",
+      "category": "who_calls",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In the core package it is called by Command.ExecuteC (command.go) before resolving the command. The doc generators also call it so the generated docs include the help command: genMan in doc/man_docs.go, GenMarkdownCustom in doc/md_docs.go, GenReSTCustom in doc/rest_docs.go and GenYamlCustom in doc/yaml_docs.go.",
+      "key_facts": [
+        "ExecuteC calls InitDefaultHelpCmd",
+        "doc generators genMan, GenMarkdownCustom, GenReSTCustom, GenYamlCustom call it"
+      ],
+      "must_cite_files": [
+        "command.go",
+        "doc/md_docs.go",
+        "doc/man_docs.go"
+      ],
+      "forbidden_claims": [
+        "AddCommand calls InitDefaultHelpCmd",
+        "execute() calls InitDefaultHelpCmd"
+      ],
+      "evidence": [
+        "command.go:1100",
+        "doc/man_docs.go:203",
+        "doc/md_docs.go:58",
+        "doc/rest_docs.go:63",
+        "doc/yaml_docs.go:94"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-17",
+      "question": "Which functions call `configEnvVar` to build program-specific environment variable names?",
+      "category": "who_calls",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Two non-test callers: activeHelpEnvVar in active_help.go (suffix ACTIVE_HELP) and getEnvConfig in completions.go, which calls it twice: first for <ROOT>_<SUFFIX> and then, if that is empty, for COBRA_<SUFFIX>. completions_test.go also calls it.",
+      "key_facts": [
+        "activeHelpEnvVar in active_help.go",
+        "getEnvConfig in completions.go (twice)"
+      ],
+      "must_cite_files": [
+        "active_help.go",
+        "completions.go"
+      ],
+      "forbidden_claims": [
+        "GetActiveHelpConfig calls configEnvVar directly",
+        "The bash generator calls configEnvVar"
+      ],
+      "evidence": [
+        "active_help.go:58-60",
+        "completions.go:1006-1024"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-18",
+      "question": "Who calls `Command.ValidateFlagGroups` during normal execution?",
+      "category": "who_calls",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Only Command.execute in command.go. It runs after the persistent pre-run and PreRun hooks and after ValidateRequiredFlags, and before Run/RunE; an error aborts execution before Run.",
+      "key_facts": [
+        "Command.execute is the caller",
+        "runs after PreRun and ValidateRequiredFlags",
+        "runs before Run/RunE"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "ParseFlags calls ValidateFlagGroups",
+        "It runs before PersistentPreRun"
+      ],
+      "evidence": [
+        "command.go:1007-1012"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-20",
+      "question": "How does `Command.execute` order the run hooks, and what changes when EnableTraverseRunHooks is set?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "execute() parses flags, handles --help/--version, returns ErrHelp if not runnable, runs OnInitialize initializers (preRun) and defers finalizers, validates args, then runs: PersistentPreRun(E), PreRun(E), ValidateRequiredFlags, ValidateFlagGroups, Run(E), PostRun(E), PersistentPostRun(E). The E variant wins when both are set. By default only the first persistent pre/post hook found walking from the command up to the root runs. With EnableTraverseRunHooks, every ancestor's PersistentPreRun runs from the root down to the command, and every PersistentPostRun from the command up to the root.",
+      "key_facts": [
+        "order: PersistentPreRun, PreRun, Run, PostRun, PersistentPostRun",
+        "E variants take precedence over non-E",
+        "default: only the nearest persistent hook runs",
+        "EnableTraverseRunHooks runs all ancestors' persistent hooks (pre root->child, post child->root)",
+        "required-flag and flag-group checks run after PreRun and before Run"
+      ],
+      "must_cite_files": [
+        "command.go",
+        "cobra.go"
+      ],
+      "forbidden_claims": [
+        "All parents' persistent hooks always run by default",
+        "PostRun runs even if Run returns an error"
+      ],
+      "evidence": [
+        "command.go:905-1045",
+        "cobra.go:64-66"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-21",
+      "question": "How are persistent flags declared on parent commands made available to a child command?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Through Command.mergePersistentFlags, which is called before parsing (ParseFlags) and from many helpers. It calls updateParentsPflags, which lazily creates c.parentsPflags, adds Go's global flag.CommandLine flags to the root's PersistentFlags, and visits every parent adding its PersistentFlags to parentsPflags. mergePersistentFlags then adds the command's own PersistentFlags and parentsPflags into c.Flags(), so the child's full flag set includes inherited persistent flags. Command.Flag also falls back to persistentFlag, which searches parentsPflags.",
+      "key_facts": [
+        "mergePersistentFlags adds own PersistentFlags and parentsPflags to Flags()",
+        "updateParentsPflags collects all parents' PersistentFlags",
+        "Go's flag.CommandLine is added to the root's persistent flags",
+        "called from ParseFlags before parsing"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "Children copy parent flags at AddCommand time",
+        "persistent flags are only inherited by direct children"
+      ],
+      "evidence": [
+        "command.go:1896-1926",
+        "command.go:1868-1890",
+        "command.go:1843-1866"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-22",
+      "question": "How does shell completion produce the list of choices and the directive that the completion scripts parse?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The scripts run the program's hidden __complete (or __completeNoDesc) command with the command line. Its Run calls getCompletions, which finds the target command (Find or Traverse), handles flag-value vs flag-name vs argument completion, and consults ValidArgs, registered flag completion functions or ValidArgsFunction. The Run then prints one completion per line to stdout (dropping ActiveHelp entries if disabled, stripping tab-separated descriptions for __completeNoDesc or when <PROGRAM>_COMPLETION_DESCRIPTIONS is false, keeping only the first line, trimmed), and finally prints ':<directive>' as the last line. A human-readable 'Completion ended with directive' message goes to stderr.",
+      "key_facts": [
+        "hidden __complete / __completeNoDesc command",
+        "getCompletions computes completions and ShellCompDirective",
+        "one completion per line on stdout",
+        "last line is :<directive integer>",
+        "descriptions stripped for NoDesc or env config"
+      ],
+      "must_cite_files": [
+        "completions.go"
+      ],
+      "forbidden_claims": [
+        "Completions are written as JSON",
+        "The directive is printed first"
+      ],
+      "evidence": [
+        "completions.go:231-308",
+        "completions.go:316-585"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-26",
+      "question": "How does cobra build the 'Did you mean this?' suggestions for a mistyped command?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "findSuggestions (command.go) returns nothing if DisableSuggestions is set, defaults SuggestionsMinimumDistance to 2 when it is <= 0, and calls SuggestionsFor. SuggestionsFor checks each available subcommand: it's suggested if the case-insensitive Levenshtein distance (ld) is within the minimum distance, if its name starts with the typed text (case-insensitive), or if the typed text matches one of its SuggestFor entries. The result is formatted as '\\n\\nDid you mean this?\\n\\t<name>'. legacyArgs and OnlyValidArgs append it to their errors.",
+      "key_facts": [
+        "DisableSuggestions turns it off",
+        "default minimum distance 2",
+        "Levenshtein distance, prefix match, or SuggestFor",
+        "used in legacyArgs and OnlyValidArgs error messages"
+      ],
+      "must_cite_files": [
+        "command.go",
+        "args.go",
+        "cobra.go"
+      ],
+      "forbidden_claims": [
+        "Suggestions include hidden commands",
+        "The default minimum distance is 3"
+      ],
+      "evidence": [
+        "command.go:781-796",
+        "command.go:863-881",
+        "args.go:36",
+        "args.go:61"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-27",
+      "question": "How does `Command.Traverse` resolve the target command, and how does it treat flags on parent commands?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Traverse walks the args, collecting flags: a long flag without '=' marks the next arg as its value unless the flag has a NoOptDefVal; a two-character short flag without NoOptDefVal also consumes the next arg; other flag-looking args are collected as-is. At the first non-flag arg it calls findNext; if no child matches it returns the current command and all args. If a child matches, it parses the collected flags on the current (parent) command with ParseFlags and recurses into the child with the remaining args. ExecuteC uses it when the root has TraverseChildren set, and getCompletions does too.",
+      "key_facts": [
+        "collects flags and their values, using hasNoOptDefVal",
+        "at first non-flag arg calls findNext",
+        "parses collected flags on the parent via ParseFlags before recursing",
+        "used when TraverseChildren is set"
+      ],
+      "must_cite_files": [
+        "command.go",
+        "completions.go"
+      ],
+      "forbidden_claims": [
+        "Traverse ignores parent flags",
+        "Traverse is the default resolution method"
+      ],
+      "evidence": [
+        "command.go:819-860",
+        "command.go:1119-1123",
+        "completions.go:330-331"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-31",
+      "question": "How do ValidArgs and ValidArgsFunction differ for shell completion?",
+      "category": "compare",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "ValidArgs is a static list of completions (optionally with tab-separated descriptions). In getCompletions it is only used for the first positional argument: matching entries by prefix are added with ShellCompDirectiveNoFileComp (ArgAliases are tried if nothing matched), and if ValidArgs is non-empty completion stops there, so ValidArgsFunction is not called. ValidArgsFunction is a dynamic CompletionFunc called with (cmd, args, toComplete) and returns completions plus a directive. The struct doc says only one of them can be used per command. ValidArgs is also used for validation by OnlyValidArgs.",
+      "key_facts": [
+        "ValidArgs is static, ValidArgsFunction dynamic",
+        "ValidArgs only completes the first argument",
+        "if ValidArgs is set, ValidArgsFunction is not called",
+        "OnlyValidArgs validates against ValidArgs"
+      ],
+      "must_cite_files": [
+        "completions.go",
+        "command.go",
+        "args.go"
+      ],
+      "forbidden_claims": [
+        "ValidArgs and ValidArgsFunction results are merged",
+        "ValidArgs completes every positional argument"
+      ],
+      "evidence": [
+        "command.go:84-89",
+        "completions.go:533-556",
+        "completions.go:564-582",
+        "args.go:49-66"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-33",
+      "question": "What's the difference between MarkFlagRequired and MarkFlagsRequiredTogether?",
+      "category": "compare",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "MarkFlagRequired (shell_completions.go) sets the BashCompOneRequiredFlag annotation to \"true\" on one flag; ValidateRequiredFlags then fails with 'required flag(s) \"x\" not set' if it wasn't given, and completion prioritises it. MarkFlagsRequiredTogether (flag_groups.go) takes several flag names, panics if any doesn't exist, and records the group in the cobra_annotation_required_if_others_set annotation; none of them is required on its own, but ValidateFlagGroups errors if some but not all of the group are set.",
+      "key_facts": [
+        "MarkFlagRequired makes one flag mandatory via BashCompOneRequiredFlag",
+        "error 'required flag(s) ... not set' from ValidateRequiredFlags",
+        "MarkFlagsRequiredTogether: all-or-none group",
+        "MarkFlagsRequiredTogether panics on unknown flags"
+      ],
+      "must_cite_files": [
+        "shell_completions.go",
+        "flag_groups.go",
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "MarkFlagsRequiredTogether makes every flag in the group mandatory",
+        "MarkFlagRequired panics when the flag is missing"
+      ],
+      "evidence": [
+        "shell_completions.go:21-41",
+        "flag_groups.go:31-45",
+        "flag_groups.go:144-165",
+        "command.go:1180-1201"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-34",
+      "question": "Why does ExecuteC not read os.Args when the running binary is named cobra.test?",
+      "category": "why",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The code comment calls it a workaround for failures with \"go test -v\" / \"cobra.test -test.v\" (issue #155). When no args were set with SetArgs, ExecuteC normally uses os.Args[1:], but if the binary's base name is cobra.test (cobra's own test binary) it leaves args nil so the go test flags aren't parsed as command-line arguments.",
+      "key_facts": [
+        "workaround referenced as #155",
+        "avoids treating go test flags like -test.v as command args",
+        "applies only when args weren't set via SetArgs"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "It is done for Windows compatibility",
+        "It exists to speed up tests"
+      ],
+      "evidence": [
+        "command.go:1102-1107"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-37",
+      "question": "Why does `argsMinusFirstX` remove only the first matching argument instead of every occurrence?",
+      "category": "why",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Its comment says that removing every occurrence would break commands where a later argument has the same text as the subcommand name, like 'openshift admin policy add-role-to-user admin my-user', which would lose the 'admin' argument. It also skips flag values (a flag without '=' and without NoOptDefVal consumes the next arg) so a flag value equal to the name isn't removed by mistake.",
+      "key_facts": [
+        "removing all occurrences would drop legitimate args equal to the command name",
+        "example: openshift admin policy add-role-to-user admin my-user",
+        "flag values are skipped so they aren't removed"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "It removes only the first for performance reasons",
+        "It removes all occurrences of the command name"
+      ],
+      "evidence": [
+        "command.go:712-748"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-39",
+      "question": "What does MarkFlagsDependent do and where is it implemented?",
+      "category": "trap",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": true,
+      "reference_answer": "MarkFlagsDependent doesn't exist in cobra. The flag-group APIs in flag_groups.go are MarkFlagsRequiredTogether (all or none), MarkFlagsOneRequired (at least one) and MarkFlagsMutuallyExclusive (at most one), enforced by ValidateFlagGroups.",
+      "key_facts": [
+        "MarkFlagsDependent does not exist",
+        "the real flag-group functions are MarkFlagsRequiredTogether, MarkFlagsOneRequired, MarkFlagsMutuallyExclusive"
+      ],
+      "must_cite_files": [
+        "flag_groups.go"
+      ],
+      "forbidden_claims": [
+        "MarkFlagsDependent is defined in flag_groups.go",
+        "MarkFlagsDependent makes one flag require another"
+      ],
+      "evidence": [
+        "flag_groups.go:31-78"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "cobra-40",
+      "question": "How does cobra enforce a per-command execution timeout that cancels the Run function when it expires?",
+      "category": "trap",
+      "identifier_style": "none",
+      "language": null,
+      "trap": true,
+      "reference_answer": "It doesn't: cobra has no per-command timeout feature, and nothing in the Go code mentions timeouts. The only related mechanism is context propagation: ExecuteContext/ExecuteContextC set a context on the root, ExecuteC passes it to the found child if that child has none, and Run functions can read it with cmd.Context() and honour any deadline themselves.",
+      "key_facts": [
+        "no timeout feature exists",
+        "context passed via ExecuteContext and cmd.Context()",
+        "enforcement is up to the user's Run code"
+      ],
+      "must_cite_files": [
+        "command.go"
+      ],
+      "forbidden_claims": [
+        "cobra cancels Run when a timeout expires",
+        "Command has a Timeout field"
+      ],
+      "evidence": [
+        "command.go:1059-1082",
+        "command.go:1142-1147",
+        "command.go:269-278"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    }
+  ]
+}

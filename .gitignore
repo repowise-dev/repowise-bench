@@ -54,6 +54,9 @@ __pycache__/
 !/results/calibration/
 !/results/calibration/*.json
 !/results/archive-pre-t0/
+# Precision Q&A baselines (harness/answer_precision.py): tracked so a fix's
+# before/after compares against a recorded run, not a remembered number.
+!/results/precision_qa/
 # Top-level aggregate outputs of the tool-comparison scripts — tracked so the
 # comparison and resolution-time analyses reproduce from cache.
 !/results/codescene_headtohead.json
@@ -99,3 +102,4 @@ opencode-src/
 # artifact (repo precedent); per-run transcripts under logs/ stay local.
 !/results/context_bench/
 !/results/context_bench/**
+heldout/

@@ -1,0 +1,589 @@
+{
+  "repo": "click",
+  "commit": "06b2a678741131fd577ce170e23e5ca0aeba0309",
+  "split": "dev",
+  "questions": [
+    {
+      "id": "click-04",
+      "question": "Where is the low-level command-line option parser that is modelled after optparse implemented?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "It is `_OptionParser` in src/click/parser.py. Its docstring says it is modelled after optparse with a simplified API, and is used internally by the high-level Command classes (Command.make_parser builds one). It is deprecated as public API and slated for removal in Click 9.0. It supports add_option/add_argument and parse_args returning (opts, largs, order).",
+      "key_facts": [
+        "The parser is _OptionParser in src/click/parser.py",
+        "It is modelled after optparse",
+        "Command.make_parser creates it",
+        "parse_args returns the options dict, leftover args and the parameter order"
+      ],
+      "must_cite_files": [
+        "src/click/parser.py"
+      ],
+      "forbidden_claims": [
+        "click uses argparse under the hood",
+        "the parser lives in core.py as class OptionParser"
+      ],
+      "evidence": [
+        "src/click/parser.py:224-315",
+        "src/click/core.py:1252"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-05",
+      "question": "Where is the `BashComplete` class defined, and which other shells have completion classes?",
+      "category": "where_defined",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "BashComplete is defined in src/click/shell_completion.py as a subclass of ShellComplete (name = 'bash'). The same file defines ZshComplete, FishComplete and PowerShellComplete; all four are registered in the `_available_shells` dict, and add_completion_class lets users register more.",
+      "key_facts": [
+        "Defined in src/click/shell_completion.py",
+        "Subclass of ShellComplete",
+        "Other built-in shells: zsh, fish, powershell",
+        "Registered in the _available_shells mapping"
+      ],
+      "must_cite_files": [
+        "src/click/shell_completion.py"
+      ],
+      "forbidden_claims": [
+        "BashComplete is defined in src/click/_bashcomplete.py",
+        "click only supports bash and zsh completion"
+      ],
+      "evidence": [
+        "src/click/shell_completion.py:389-446",
+        "src/click/shell_completion.py:448",
+        "src/click/shell_completion.py:484",
+        "src/click/shell_completion.py:521",
+        "src/click/shell_completion.py:555-560"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-06",
+      "question": "In this Python package, where is the code that decides which folder an application should store its configuration in on each operating system?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": "python",
+      "trap": false,
+      "reference_answer": "That is `get_app_dir(app_name, roaming=True, force_posix=False)` in src/click/utils.py. On Windows it uses %APPDATA% (roaming) or %LOCALAPPDATA%, falling back to the home directory; with force_posix it returns ~/.<posixified-name>; on macOS it uses ~/Library/Application Support/<name>; otherwise $XDG_CONFIG_HOME (default ~/.config)/<posixified-name>.",
+      "key_facts": [
+        "The function is get_app_dir in src/click/utils.py",
+        "Windows uses APPDATA or LOCALAPPDATA depending on roaming",
+        "macOS uses ~/Library/Application Support",
+        "Other Unix uses XDG_CONFIG_HOME defaulting to ~/.config"
+      ],
+      "must_cite_files": [
+        "src/click/utils.py"
+      ],
+      "forbidden_claims": [
+        "it uses the platformdirs library",
+        "get_app_dir creates the directory on disk"
+      ],
+      "evidence": [
+        "src/click/utils.py:472-518"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-07",
+      "question": "Where is `click.exceptions.NoSuchCommand` defined and what exit code does it produce?",
+      "category": "where_defined",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "NoSuchCommand is defined in src/click/exceptions.py and subclasses UsageError, so its exit_code is 2. It stores command_name and, if possibilities are given, uses difflib.get_close_matches to compute 'Did you mean' suggestions appended in format_message. Group.resolve_command raises it when a subcommand can't be found.",
+      "key_facts": [
+        "Defined in src/click/exceptions.py",
+        "Subclass of UsageError, exit code 2",
+        "Uses difflib.get_close_matches for suggestions",
+        "Raised by Group.resolve_command in core.py"
+      ],
+      "must_cite_files": [
+        "src/click/exceptions.py",
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "NoSuchCommand exits with code 1",
+        "NoSuchCommand subclasses NoSuchOption"
+      ],
+      "evidence": [
+        "src/click/exceptions.py:68-80",
+        "src/click/exceptions.py:268-300",
+        "src/click/core.py:2136-2139"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-10",
+      "question": "Where is `click.decorators.version_option` defined and how does it find the version when none is passed?",
+      "category": "where_defined",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "version_option is defined in src/click/decorators.py. If neither version nor package_name is given, it inspects the caller's frame globals to take the top-level package name (__name__ or __package__ when __main__). At callback time it calls importlib.metadata.version(package_name); on PackageNotFoundError it tries importlib.metadata.packages_distributions() to map an import name to a single distribution, raising RuntimeError if none or several match. It is an eager, is_flag option with expose_value=False that echoes the message and calls ctx.exit().",
+      "key_facts": [
+        "Defined in src/click/decorators.py",
+        "Package name is detected from the caller's stack frame",
+        "Version comes from importlib.metadata.version",
+        "Falls back to packages_distributions() to resolve import names to distributions",
+        "Option is eager and not exposed to the callback"
+      ],
+      "must_cite_files": [
+        "src/click/decorators.py"
+      ],
+      "forbidden_claims": [
+        "version_option uses pkg_resources",
+        "version_option reads the version from setup.py",
+        "version_option raises SystemExit directly instead of ctx.exit"
+      ],
+      "evidence": [
+        "src/click/decorators.py:421-558"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-11",
+      "question": "Who calls `iter_params_for_processing`?",
+      "category": "who_calls",
+      "identifier_style": "snake_case",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The only production caller is Command.parse_args in src/click/core.py, which calls iter_params_for_processing(param_order, self.get_params(ctx)) and then handle_parse_result for each parameter in that order. It is also exercised directly by tests/test_commands.py::test_iter_params_for_processing.",
+      "key_facts": [
+        "Command.parse_args in src/click/core.py is the only non-test caller",
+        "tests/test_commands.py calls it directly in a test"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "Group.invoke calls iter_params_for_processing",
+        "the parser module calls iter_params_for_processing"
+      ],
+      "evidence": [
+        "src/click/core.py:1392-1400",
+        "tests/test_commands.py:401-417"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-13",
+      "question": "Who calls `_check_nested_chain`, and what does it prevent?",
+      "category": "who_calls",
+      "identifier_style": "snake_case",
+      "language": null,
+      "trap": false,
+      "reference_answer": "It is called from Group.add_command (with register=True) and from CommandCollection.get_command (when the collection is in chain mode and a command is found on a source). It raises RuntimeError if a Group is being nested under a group that has chain=True, because nesting groups inside chained groups is not supported.",
+      "key_facts": [
+        "Called by Group.add_command with register=True",
+        "Called by CommandCollection.get_command in chain mode",
+        "Raises RuntimeError when a Group is added to a chained group"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "_check_nested_chain is called from Group.invoke",
+        "it raises UsageError"
+      ],
+      "evidence": [
+        "src/click/core.py:83-100",
+        "src/click/core.py:1831-1839",
+        "src/click/core.py:2201-2215"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-14",
+      "question": "Which functions wrap their work so that usage errors get the current context and parameter attached to them?",
+      "category": "who_calls",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "That is the `augment_usage_errors` context manager in src/click/core.py, which fills in `ctx` (and `param` for BadParameter) on UsageError/BadParameter if missing. It is used in two places: Context.invoke (`with augment_usage_errors(self), ctx:` around the callback) and Parameter.handle_parse_result (`with augment_usage_errors(ctx, param=self):` around consume_value/process_value).",
+      "key_facts": [
+        "The helper is augment_usage_errors in core.py",
+        "Used by Context.invoke",
+        "Used by Parameter.handle_parse_result",
+        "It sets e.ctx and, for BadParameter, e.param when missing"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "augment_usage_errors is used by Command.main",
+        "it converts exceptions into ClickException"
+      ],
+      "evidence": [
+        "src/click/core.py:149-165",
+        "src/click/core.py:935",
+        "src/click/core.py:2857"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-16",
+      "question": "What calls the helper that works out the program name for help text when no prog_name is passed?",
+      "category": "who_calls",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The helper is `_detect_program_name` in src/click/utils.py. Its only production caller is Command.main in src/click/core.py (`if prog_name is None: prog_name = _detect_program_name()`). It is also tested directly in tests/test_utils/test__detect_program_name.py. It returns the script file name, or `python -m <module>` when run as a module.",
+      "key_facts": [
+        "Helper is _detect_program_name in utils.py",
+        "Called by Command.main when prog_name is None",
+        "Tested in tests/test_utils/test__detect_program_name.py"
+      ],
+      "must_cite_files": [
+        "src/click/utils.py",
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "Context.__init__ calls _detect_program_name",
+        "CliRunner.invoke calls _detect_program_name"
+      ],
+      "evidence": [
+        "src/click/utils.py:550",
+        "src/click/core.py:1570-1571"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-19",
+      "question": "How does click decide the order in which parameters (and their callbacks) are processed?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Command.parse_args calls iter_params_for_processing(param_order, declared_params). It sorts the declared parameters by a key (not is_eager, invocation index), so eager parameters (like --help/--version) come first, then parameters in the order the user typed them on the command line, and parameters not given on the command line last (index = infinity), keeping declaration order among ties.",
+      "key_facts": [
+        "Eager parameters are processed first",
+        "Then parameters are processed in command-line invocation order",
+        "Parameters not provided on the command line come last in declaration order",
+        "Implemented by iter_params_for_processing in core.py"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "parameters are always processed in declaration order",
+        "callbacks run in reverse decorator order"
+      ],
+      "evidence": [
+        "src/click/core.py:168-192",
+        "src/click/core.py:1399-1400"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-20",
+      "question": "How does `click.core.Parameter.consume_value` pick where a parameter's value comes from?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "It checks sources in precedence order: the value parsed from the command line (source COMMANDLINE); if unset, value_from_envvar (ENVIRONMENT); if still unset, ctx.lookup_default(name) from default_map (DEFAULT_MAP, splitting strings for nargs != 1); finally get_default (DEFAULT). If nothing is found it returns the internal UNSET sentinel. Option.consume_value additionally handles flags needing a value and prompting.",
+      "key_facts": [
+        "Command line has highest precedence",
+        "Then environment variable",
+        "Then Context.default_map",
+        "Then the parameter's default",
+        "Returns UNSET sentinel when nothing found"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "default_map overrides environment variables",
+        "environment variables override command-line values"
+      ],
+      "evidence": [
+        "src/click/core.py:2586-2632"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-22",
+      "question": "How does `click.Group.invoke` run subcommands when the group is in chain mode?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In chain mode Group.invoke sets ctx.invoked_subcommand to '*' (or None if no args), invokes the group's own callback, then repeatedly calls resolve_command and cmd.make_context for each subcommand with allow_extra_args=True and allow_interspersed_args=False, passing leftover args to the next command. After all contexts are created it invokes each subcommand in order, collects their return values in a list and passes that list to the result callback (_process_result).",
+      "key_facts": [
+        "invoked_subcommand is set to '*'",
+        "The group's own callback runs before subcommands",
+        "All sub-contexts are created first with allow_extra_args=True, allow_interspersed_args=False",
+        "Subcommands then run in order and results are collected in a list",
+        "The list is passed to the result callback"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "in chain mode each subcommand is parsed and executed before the next is parsed",
+        "chained groups can contain nested groups"
+      ],
+      "evidence": [
+        "src/click/core.py:2048-2114"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-24",
+      "question": "How does `make_pass_decorator` locate the object it passes to the callback?",
+      "category": "how_does",
+      "identifier_style": "snake_case",
+      "language": null,
+      "trap": false,
+      "reference_answer": "make_pass_decorator(object_type, ensure=False) returns a decorator whose wrapper gets the current context (get_current_context) and calls ctx.find_object(object_type), which walks from the current context up through parent contexts returning the first ctx.obj that is an instance of object_type. With ensure=True it uses ctx.ensure_object, which creates object_type() and stores it on the innermost context if not found. If no object is found it raises RuntimeError; otherwise it calls ctx.invoke(f, obj, ...).",
+      "key_facts": [
+        "Uses get_current_context",
+        "find_object walks up parent contexts checking isinstance(ctx.obj, object_type)",
+        "ensure=True creates and stores a new instance via ensure_object",
+        "Raises RuntimeError when no object is found"
+      ],
+      "must_cite_files": [
+        "src/click/decorators.py",
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "make_pass_decorator only looks at the root context",
+        "it passes the Context itself"
+      ],
+      "evidence": [
+        "src/click/decorators.py:51-97",
+        "src/click/core.py:766-785"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-28",
+      "question": "How does click decide whether to strip ANSI color codes when printing output?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "click.echo (src/click/utils.py) calls should_strip_ansi(file, resolve_color_default(color)). resolve_color_default returns the explicit color argument, else the current Context's color setting, else None. With color None, _compat.should_strip_ansi strips codes when the stream is not a TTY (and not Jupyter output); an explicit color=True keeps codes and color=False strips them. Bytes messages bypass stripping and are written to the binary stream.",
+      "key_facts": [
+        "echo calls should_strip_ansi with resolve_color_default(color)",
+        "Explicit color argument wins, then Context.color",
+        "Autodetection strips when the stream is not a terminal",
+        "Bytes output is not stripped"
+      ],
+      "must_cite_files": [
+        "src/click/utils.py",
+        "src/click/globals.py",
+        "src/click/_compat.py"
+      ],
+      "forbidden_claims": [
+        "click uses colorama to strip codes",
+        "ANSI codes are always stripped on Windows"
+      ],
+      "evidence": [
+        "src/click/utils.py:240-334",
+        "src/click/globals.py:54-67",
+        "src/click/_compat.py:502-512"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-30",
+      "question": "How do `ctx.invoke` and `ctx.forward` differ?",
+      "category": "compare",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Context.invoke accepts either a plain callback or a Command; for a Command it creates a sub-context, fills missing parameters with their defaults (type-cast, UNSET -> None) and records kwargs in the sub-context params. Context.forward only accepts a Command (TypeError otherwise) and first copies all of the current context's params into kwargs (without overriding given ones), then delegates to invoke.",
+      "key_facts": [
+        "invoke accepts callbacks or Commands",
+        "invoke fills defaults for missing params when given a Command",
+        "forward only accepts Commands",
+        "forward copies the current context's params into kwargs then calls invoke"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "forward can call plain functions",
+        "invoke copies the current context's params automatically"
+      ],
+      "evidence": [
+        "src/click/core.py:883-955"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-32",
+      "question": "What is the difference between the `click.File` and `click.Path` parameter types?",
+      "category": "compare",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "click.File converts the value into an open file object (stdin/stdout for '-'), opening lazily by default for write modes via _LazyFile, and registers closing/flushing on the context. click.Path does not open anything: it validates the path (exists, file_okay, dir_okay, readable, writable, executable, optional resolve_path) with os.stat/os.access and returns the path (optionally coerced via path_type).",
+      "key_facts": [
+        "File returns an open file object",
+        "File is lazy by default for write modes",
+        "File registers close/flush with ctx.call_on_close",
+        "Path returns the filename after validation checks",
+        "Path checks existence and permissions via os.stat/os.access"
+      ],
+      "must_cite_files": [
+        "src/click/types.py"
+      ],
+      "forbidden_claims": [
+        "Path opens the file",
+        "File returns a pathlib.Path"
+      ],
+      "evidence": [
+        "src/click/types.py:915-1030",
+        "src/click/types.py:1059-1233"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-34",
+      "question": "Why doesn't click's standalone main exit using the return value of the command callback?",
+      "category": "why",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Command.main just calls ctx.exit() (code 0) after invoke in standalone mode. The comment explains it's not safe to ctx.exit(rv): rv may contain data like '1' that would have unintended effects, and chained commands can return values like [None, None], so a return value's truthiness does not reliably indicate success or failure. In non-standalone mode rv is returned to the caller instead.",
+      "key_facts": [
+        "main calls ctx.exit() without passing rv",
+        "A return value could be data like '1' and mis-set the exit code",
+        "Chained commands return lists like [None, None]",
+        "With standalone_mode=False the return value is returned"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "the return value is used as the exit code",
+        "click exits with 1 when the callback returns None"
+      ],
+      "evidence": [
+        "src/click/core.py:1590-1603"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-37",
+      "question": "Why won't `version_option` accept new placeholder variables in its message, and what should I use instead?",
+      "category": "why",
+      "identifier_style": "snake_case",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Its docstring notes that the parameters and message variables (%(prog)s, %(package)s, %(version)s) are frozen to keep the common case simple and predictable (rationale: discussion #3527). For values it doesn't expose \u2014 a file path, the Python version, git metadata \u2014 use custom_version_option, which calls your callback(ctx) to build the whole string, echoes it and exits.",
+      "key_facts": [
+        "version_option's variables are intentionally frozen",
+        "Rationale: keep the common case simple and predictable (discussion #3527)",
+        "custom_version_option lets a callback produce the full output"
+      ],
+      "must_cite_files": [
+        "src/click/decorators.py"
+      ],
+      "forbidden_claims": [
+        "version_option supports arbitrary format variables",
+        "new placeholders are planned for version_option"
+      ],
+      "evidence": [
+        "src/click/decorators.py:443-452",
+        "src/click/decorators.py:561-600"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-38",
+      "question": "Where is `Context.getParentCommand` defined and what does it return?",
+      "category": "trap",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": true,
+      "reference_answer": "There is no `getParentCommand` (or get_parent_command) anywhere in click. The closest real things are `Context.parent` (the parent Context), `Context.find_root()` (the outermost context), and `ctx.parent.command` for the parent's Command.",
+      "key_facts": [
+        "getParentCommand does not exist",
+        "Context.parent / Context.find_root are the real alternatives"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "getParentCommand is defined in core.py",
+        "getParentCommand returns the parent Command"
+      ],
+      "evidence": [
+        "src/click/core.py:759-764"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "click-39",
+      "question": "How does the `CommandRegistry` class register plugin commands in click?",
+      "category": "trap",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": true,
+      "reference_answer": "click has no CommandRegistry class. Commands are registered on a Group with Group.add_command (or the group.command()/group.group() decorators), and CommandCollection can merge commands from several groups; lazy/plugin loading is done by overriding Group.get_command/list_commands.",
+      "key_facts": [
+        "CommandRegistry does not exist in click",
+        "Group.add_command registers commands",
+        "CommandCollection merges multiple groups"
+      ],
+      "must_cite_files": [
+        "src/click/core.py"
+      ],
+      "forbidden_claims": [
+        "CommandRegistry is defined in",
+        "CommandRegistry.register"
+      ],
+      "evidence": [
+        "src/click/core.py:1831-1839",
+        "src/click/core.py:2169"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    }
+  ]
+}

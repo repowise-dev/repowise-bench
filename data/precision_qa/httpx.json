@@ -1,0 +1,593 @@
+{
+  "repo": "httpx",
+  "commit": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+  "split": "dev",
+  "questions": [
+    {
+      "id": "httpx-01",
+      "question": "Where are the default timeout, connection-pool limits and redirect cap configured, and what are their values?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "They are module-level constants at the bottom of httpx/_config.py: DEFAULT_TIMEOUT_CONFIG = Timeout(timeout=5.0) (5 seconds for connect, read, write and pool), DEFAULT_LIMITS = Limits(max_connections=100, max_keepalive_connections=20) (keepalive_expiry defaults to 5.0 in Limits), and DEFAULT_MAX_REDIRECTS = 20. BaseClient/Client/AsyncClient use them as keyword defaults.",
+      "key_facts": [
+        "DEFAULT_TIMEOUT_CONFIG is Timeout(timeout=5.0) in httpx/_config.py",
+        "DEFAULT_LIMITS is max_connections=100, max_keepalive_connections=20",
+        "DEFAULT_MAX_REDIRECTS is 20"
+      ],
+      "must_cite_files": [
+        "httpx/_config.py"
+      ],
+      "forbidden_claims": [
+        "The default timeout is None / no timeout",
+        "The default max_redirects is 30",
+        "The defaults are defined in httpx/_client.py"
+      ],
+      "evidence": [
+        "httpx/_config.py:246-248",
+        "httpx/_config.py:161-176",
+        "httpx/_client.py:189-202"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-02",
+      "question": "Where is the httpx command-line tool's entry point defined?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "pyproject.toml declares [project.scripts] httpx = \"httpx:main\". httpx/__init__.py imports main from httpx/_main.py, where main is a click command (@click.command with url argument and many options) that builds a Client and streams the request. If the optional CLI dependencies (click, pygments, rich from the 'cli' extra) are missing, __init__.py defines a fallback main() that prints an install hint ('pip install httpx[cli]') and exits with status 1.",
+      "key_facts": [
+        "[project.scripts] maps httpx to httpx:main in pyproject.toml",
+        "The real main is a click command in httpx/_main.py",
+        "httpx/__init__.py falls back to a stub main that tells you to install httpx[cli] when the import fails"
+      ],
+      "must_cite_files": [
+        "pyproject.toml",
+        "httpx/_main.py",
+        "httpx/__init__.py"
+      ],
+      "forbidden_claims": [
+        "The CLI is implemented with argparse",
+        "The CLI lives in httpx/__main__.py"
+      ],
+      "evidence": [
+        "pyproject.toml:58-59",
+        "httpx/_main.py:313-506",
+        "httpx/__init__.py:14-27"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-08",
+      "question": "Where is httpx.codes defined, and how does it support names like codes.not_found?",
+      "category": "where_defined",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "httpx.codes is an IntEnum defined in httpx/_status_codes.py. Each member carries a reason phrase (set in __new__), and classmethods like get_reason_phrase, is_success, is_redirect and is_error classify integers. After the class body, a loop does setattr(codes, code._name_.lower(), int(code)) for every member, adding lower-case aliases 'for requests compatibility'.",
+      "key_facts": [
+        "codes is an IntEnum in httpx/_status_codes.py",
+        "Lower-case aliases are added by a loop after the class for requests compatibility",
+        "Members carry a phrase attribute"
+      ],
+      "must_cite_files": [
+        "httpx/_status_codes.py"
+      ],
+      "forbidden_claims": [
+        "codes is a plain dict",
+        "Lower-case names are separate enum members declared by hand"
+      ],
+      "evidence": [
+        "httpx/_status_codes.py:8-40",
+        "httpx/_status_codes.py:160-162"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-09",
+      "question": "Where is httpx.MockTransport defined and what does it do before calling the handler?",
+      "category": "where_defined",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "MockTransport is in httpx/_transports/mock.py and implements both BaseTransport and AsyncBaseTransport. handle_request calls request.read() then the handler, raising TypeError if the handler didn't return a Response (e.g. an async handler in a sync client). handle_async_request awaits request.aread(), calls the handler, and awaits the result if it isn't already a Response, so the handler may be sync or async.",
+      "key_facts": [
+        "MockTransport is in httpx/_transports/mock.py",
+        "It reads the request body (read/aread) before calling the handler",
+        "In async mode the handler may optionally be a coroutine function"
+      ],
+      "must_cite_files": [
+        "httpx/_transports/mock.py"
+      ],
+      "forbidden_claims": [
+        "MockTransport lives in the tests directory only",
+        "MockTransport requires an async handler"
+      ],
+      "evidence": [
+        "httpx/_transports/mock.py:15-43"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-10",
+      "question": "Where is normalize_port defined in the Python code, and which default ports does it drop?",
+      "category": "where_defined",
+      "identifier_style": "snake_case",
+      "language": "python",
+      "trap": false,
+      "reference_answer": "normalize_port is in httpx/_urlparse.py. It returns None for None/empty ports, raises InvalidURL('Invalid port: ...') for non-integers, and returns None when the port equals the scheme's default from {'ftp': 21, 'http': 80, 'https': 443, 'ws': 80, 'wss': 443}; otherwise it returns the int port.",
+      "key_facts": [
+        "normalize_port is in httpx/_urlparse.py",
+        "Default ports ftp 21, http 80, https 443, ws 80, wss 443 are normalized to None",
+        "Non-numeric ports raise InvalidURL"
+      ],
+      "must_cite_files": [
+        "httpx/_urlparse.py"
+      ],
+      "forbidden_claims": [
+        "normalize_port is in httpx/_urls.py",
+        "The default port is kept in the URL"
+      ],
+      "evidence": [
+        "httpx/_urlparse.py:395-419"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-12",
+      "question": "What code uses map_httpcore_exceptions?",
+      "category": "who_calls",
+      "identifier_style": "snake_case",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Only httpx/_transports/default.py uses it: ResponseStream.__iter__, HTTPTransport.__exit__, HTTPTransport.handle_request, AsyncResponseStream.__aiter__, AsyncHTTPTransport.__aexit__ and AsyncHTTPTransport.handle_async_request all wrap their httpcore calls in 'with map_httpcore_exceptions():'.",
+      "key_facts": [
+        "HTTPTransport.handle_request and AsyncHTTPTransport.handle_async_request use it",
+        "ResponseStream.__iter__ and AsyncResponseStream.__aiter__ use it",
+        "HTTPTransport.__exit__ / AsyncHTTPTransport.__aexit__ use it"
+      ],
+      "must_cite_files": [
+        "httpx/_transports/default.py"
+      ],
+      "forbidden_claims": [
+        "Client._send_single_request uses map_httpcore_exceptions",
+        "It is used in httpx/_client.py"
+      ],
+      "evidence": [
+        "httpx/_transports/default.py:126",
+        "httpx/_transports/default.py:227",
+        "httpx/_transports/default.py:249",
+        "httpx/_transports/default.py:270",
+        "httpx/_transports/default.py:371",
+        "httpx/_transports/default.py:393"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-14",
+      "question": "Which code calls Cookies.extract_cookies?",
+      "category": "who_calls",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Three non-test call sites: Client._send_single_request and AsyncClient._send_single_request in httpx/_client.py (self.cookies.extract_cookies(response) after each response, persisting Set-Cookie into the client jar), and the Response.cookies property in httpx/_models.py, which builds a fresh Cookies and extracts into it. tests/models/test_cookies.py also calls it.",
+      "key_facts": [
+        "Client._send_single_request calls it",
+        "AsyncClient._send_single_request calls it",
+        "Response.cookies property calls it"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py",
+        "httpx/_models.py"
+      ],
+      "forbidden_claims": [
+        "Only the redirect logic extracts cookies",
+        "Client.send calls extract_cookies"
+      ],
+      "evidence": [
+        "httpx/_client.py:1022",
+        "httpx/_client.py:1737",
+        "httpx/_models.py:835-840",
+        "httpx/_models.py:1101-1108"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-15",
+      "question": "Who calls the top-level httpx.request function?",
+      "category": "who_calls",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In httpx/_api.py, the convenience functions get, options, head, post, put, patch and delete each 'return request(...)' with their method name. httpx.stream does not call it; it opens its own Client and uses client.stream. httpx.request itself creates a Client in a with-block and calls client.request.",
+      "key_facts": [
+        "get, options, head, post, put, patch and delete in httpx/_api.py call request()",
+        "httpx.stream does not call request()",
+        "request() creates a temporary Client and calls client.request"
+      ],
+      "must_cite_files": [
+        "httpx/_api.py"
+      ],
+      "forbidden_claims": [
+        "httpx.stream calls httpx.request",
+        "Client.request calls httpx.request"
+      ],
+      "evidence": [
+        "httpx/_api.py:39-121",
+        "httpx/_api.py:174-200",
+        "httpx/_api.py:426"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-17",
+      "question": "Who drives Auth.sync_auth_flow and Auth.async_auth_flow?",
+      "category": "who_calls",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Client._send_handling_auth calls auth.sync_auth_flow(request) and AsyncClient._send_handling_auth calls auth.async_auth_flow(request), both in httpx/_client.py; they advance the generator, send each response back into it, and close it in a finally block. tests/test_auth.py drives sync_auth_flow directly in unit tests.",
+      "key_facts": [
+        "Client._send_handling_auth calls sync_auth_flow",
+        "AsyncClient._send_handling_auth calls async_auth_flow",
+        "The client sends responses back into the generator until StopIteration"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py",
+        "httpx/_auth.py"
+      ],
+      "forbidden_claims": [
+        "Client.send calls auth.auth_flow directly",
+        "The transport calls the auth flow"
+      ],
+      "evidence": [
+        "httpx/_client.py:930-962",
+        "httpx/_client.py:1645-1677",
+        "tests/test_auth.py:19"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-19",
+      "question": "How does the client follow redirects, and what happens when redirect following is turned off?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Client._send_handling_redirects loops: it raises TooManyRedirects when len(history) exceeds max_redirects (default 20), runs request event hooks, sends via _send_single_request, runs response hooks, and returns if response.has_redirect_location is false (a 301/302/303/307/308 with a Location header). Otherwise it builds the next request with _build_redirect_request (method rewrite, URL resolution, header stripping, body handling) and appends the response to history. If follow_redirects is true it reads the body and loops; if false it sets response.next_request and returns the redirect response. follow_redirects defaults to False on the client.",
+      "key_facts": [
+        "Loop in Client._send_handling_redirects raises TooManyRedirects past max_redirects",
+        "has_redirect_location requires 301/302/303/307/308 plus a Location header",
+        "With follow_redirects=False the response is returned with next_request set",
+        "follow_redirects defaults to False"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py",
+        "httpx/_models.py"
+      ],
+      "forbidden_claims": [
+        "httpx follows redirects by default",
+        "Redirects are handled inside the transport/httpcore"
+      ],
+      "evidence": [
+        "httpx/_client.py:964-999",
+        "httpx/_models.py:772-792",
+        "httpx/_client.py:196"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-20",
+      "question": "How does httpx decide which proxy, if any, to use for a request, including environment variables?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "At Client construction, _get_proxy_map returns {'all://': Proxy} for an explicit proxy argument; otherwise, if trust_env is true and no custom transport was given, it uses get_environment_proxies(), which reads urllib's getproxies() for http/https/all and turns NO_PROXY entries into mount keys mapped to None (NO_PROXY=* disables all proxies). Each key becomes a URLPattern mapped to a proxy HTTPTransport (or None), user mounts are added, and the dict is sorted by URLPattern priority. Per request, _transport_for_url returns the first matching pattern's transport, falling back to the default transport when the match is None or nothing matches.",
+      "key_facts": [
+        "Explicit proxy= maps to 'all://'",
+        "Env proxies come from get_environment_proxies only when trust_env and no custom transport",
+        "NO_PROXY entries map to None meaning direct connection",
+        "_transport_for_url picks the first match from the priority-sorted mounts"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py",
+        "httpx/_utils.py"
+      ],
+      "forbidden_claims": [
+        "Environment proxies are used even when a custom transport is passed",
+        "NO_PROXY is ignored"
+      ],
+      "evidence": [
+        "httpx/_client.py:239-252",
+        "httpx/_client.py:684-716",
+        "httpx/_client.py:760-769",
+        "httpx/_utils.py:30-75"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-22",
+      "question": "How does DigestAuth build the Authorization header after a 401 challenge?",
+      "category": "how_does",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "DigestAuth.auth_flow (httpx/_auth.py) sends the request first (with a header only if a previous challenge is cached). If the response is a 401 with a WWW-Authenticate header starting 'Digest ', it parses realm, nonce, algorithm (default MD5), opaque and qop into a _DigestAuthChallenge, resets the nonce count, builds the header and yields the retried request (copying response cookies into it). _build_auth_header hashes A1=username:realm:password and A2=method:path with the algorithm's hash (MD5/SHA/SHA-256/SHA-512, '-sess' variants rehash HA1 with nonce and cnonce), uses a random cnonce and an 8-hex nc value, and follows RFC 2069 when there's no qop and RFC 2617/7616 when qop=auth; auth-int alone raises NotImplementedError.",
+      "key_facts": [
+        "Initial request is sent without credentials unless a previous challenge is cached",
+        "Only a 401 with a Digest WWW-Authenticate header triggers the retry",
+        "Supports MD5, SHA, SHA-256, SHA-512 and -sess variants",
+        "qop auth-int is not implemented"
+      ],
+      "must_cite_files": [
+        "httpx/_auth.py"
+      ],
+      "forbidden_claims": [
+        "DigestAuth supports qop=auth-int",
+        "DigestAuth sends credentials pre-emptively on the first request"
+      ],
+      "evidence": [
+        "httpx/_auth.py:175-340"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-24",
+      "question": "How does httpx.Client.send process a request?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Client.send (httpx/_client.py) raises RuntimeError if the client is CLOSED, marks it OPENED, resolves follow_redirects from the client default, fills in the timeout extension (_set_timeout), and builds the Auth via _build_request_auth (explicit auth, the client's auth, URL userinfo as BasicAuth, or a no-op Auth). It then calls _send_handling_auth, which drives the auth flow generator around _send_handling_redirects and ultimately _send_single_request. Unless stream=True it reads the response body; on any exception it closes the response and re-raises. The request is otherwise sent unmodified.",
+      "key_facts": [
+        "Sending on a closed client raises RuntimeError",
+        "Auth is resolved by _build_request_auth, including credentials from the URL",
+        "Call chain: _send_handling_auth -> _send_handling_redirects -> _send_single_request",
+        "The body is read unless stream=True"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py"
+      ],
+      "forbidden_claims": [
+        "send merges client headers and base_url into the request",
+        "send always streams the response"
+      ],
+      "evidence": [
+        "httpx/_client.py:879-928",
+        "httpx/_client.py:457-473"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-28",
+      "question": "How does httpx.Response.iter_lines handle lines split across chunks?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Response.iter_lines feeds iter_text output into a LineDecoder (httpx/_decoders.py). LineDecoder mirrors str.splitlines incrementally: text without a trailing newline is buffered and joined onto the next chunk, and a trailing '\\r' is held back and prepended to the next chunk so a '\\r\\n' split across chunks isn't treated as two line breaks. flush() emits whatever remains buffered at the end. It recognises all splitlines newline characters, not just '\\n'.",
+      "key_facts": [
+        "iter_lines uses LineDecoder over iter_text",
+        "Partial lines are buffered until a newline arrives",
+        "A trailing \\r is carried into the next chunk to handle split \\r\\n"
+      ],
+      "must_cite_files": [
+        "httpx/_models.py",
+        "httpx/_decoders.py"
+      ],
+      "forbidden_claims": [
+        "iter_lines only splits on '\\n'",
+        "iter_lines reads the whole body before splitting"
+      ],
+      "evidence": [
+        "httpx/_models.py:926-933",
+        "httpx/_decoders.py:321-378"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-29",
+      "question": "What are the differences between Client and AsyncClient when sending a request?",
+      "category": "compare",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Both inherit BaseClient (build_request, merging, redirect helpers). Client uses sync methods: its _send_single_request requires a SyncByteStream (else RuntimeError 'Attempted to send an async request with a sync Client instance'), calls transport.handle_request and wraps the stream in BoundSyncStream; auth uses sync_auth_flow. AsyncClient uses async methods, requires an AsyncByteStream, awaits transport.handle_async_request, wraps in BoundAsyncStream, drives async_auth_flow, and closes with aclose()/async with. Default transports are HTTPTransport vs AsyncHTTPTransport.",
+      "key_facts": [
+        "Both share BaseClient",
+        "Client requires SyncByteStream and calls handle_request; AsyncClient requires AsyncByteStream and awaits handle_async_request",
+        "Auth flows: sync_auth_flow vs async_auth_flow",
+        "Default transports: HTTPTransport vs AsyncHTTPTransport"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py"
+      ],
+      "forbidden_claims": [
+        "AsyncClient wraps Client in a thread pool",
+        "Client and AsyncClient do not share a base class"
+      ],
+      "evidence": [
+        "httpx/_client.py:188",
+        "httpx/_client.py:1001-1034",
+        "httpx/_client.py:1717-1749"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-31",
+      "question": "Compare ASGITransport and WSGITransport.",
+      "category": "compare",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "ASGITransport (httpx/_transports/asgi.py) is an AsyncBaseTransport for AsyncClient: it builds an ASGI 'http' scope, provides receive/send callables, collects body parts until more_body is false (skipping bodies for HEAD), and takes root_path and client=('127.0.0.1', 123). WSGITransport (httpx/_transports/wsgi.py) is a sync BaseTransport for Client: it reads the request body, builds a WSGI environ (REQUEST_METHOD, PATH_INFO, HTTP_* headers, etc.), calls app(environ, start_response), and takes script_name, remote_addr='127.0.0.1' and wsgi_errors. Both accept raise_app_exceptions (default True).",
+      "key_facts": [
+        "ASGITransport is async-only; WSGITransport is sync-only",
+        "ASGI uses scope/receive/send; WSGI uses environ/start_response",
+        "root_path/client vs script_name/remote_addr options",
+        "Both have raise_app_exceptions defaulting to True"
+      ],
+      "must_cite_files": [
+        "httpx/_transports/asgi.py",
+        "httpx/_transports/wsgi.py"
+      ],
+      "forbidden_claims": [
+        "WSGITransport can be used with AsyncClient",
+        "ASGITransport runs the app in a separate thread"
+      ],
+      "evidence": [
+        "httpx/_transports/asgi.py:63-187",
+        "httpx/_transports/wsgi.py:44-149"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-32",
+      "question": "When building a request, what's the difference between passing content=, data=, files= and json=?",
+      "category": "compare",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "encode_request in httpx/_content.py decides. content= (bytes/str/iterators) is sent raw via encode_content with Content-Length, or chunked for streams of unknown length. files= produces multipart/form-data (data= becomes form fields in it). data= alone (a mapping) is url-encoded as application/x-www-form-urlencoded. json= is serialised compactly (ensure_ascii=False, no NaN) as application/json. Precedence is content, then files, then data, then json. Passing non-mapping data (e.g. bytes) is deprecated: it warns and is treated as content=.",
+      "key_facts": [
+        "Precedence: content > files > data > json",
+        "data= mapping becomes application/x-www-form-urlencoded; with files= it becomes multipart",
+        "json= is application/json with compact separators and allow_nan=False",
+        "Non-mapping data= emits DeprecationWarning and is treated as content"
+      ],
+      "must_cite_files": [
+        "httpx/_content.py"
+      ],
+      "forbidden_claims": [
+        "json= takes precedence over data=",
+        "data=b'...' raises an error"
+      ],
+      "evidence": [
+        "httpx/_content.py:186-218",
+        "httpx/_content.py:136-183"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-35",
+      "question": "Why does the client turn a POST into a GET when following some redirects?",
+      "category": "why",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "BaseClient._redirect_method in httpx/_client.py explains it in comments: a 303 See Other becomes GET per RFC 7231 section 6.4.4 (except HEAD); a 302 becomes GET because that's what browsers do 'despite standards'; and a POST answered with 301 becomes GET, a 'bizarre behaviour' explained in requests issue 1704. 307 and 308 keep the method. When the method changes to GET, _redirect_headers drops Content-Length/Transfer-Encoding and _redirect_stream drops the body.",
+      "key_facts": [
+        "303 -> GET per RFC 7231",
+        "302 -> GET to match browser behaviour",
+        "POST on 301 -> GET, citing requests issue 1704",
+        "Body and body headers are dropped when switching to GET"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py"
+      ],
+      "forbidden_claims": [
+        "307 redirects also switch to GET",
+        "The behaviour is required by RFC for 302"
+      ],
+      "evidence": [
+        "httpx/_client.py:494-515",
+        "httpx/_client.py:546-582"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-37",
+      "question": "Why do request methods use a USE_CLIENT_DEFAULT sentinel instead of None for auth and timeout?",
+      "category": "why",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The UseClientDefault docstring in httpx/_client.py explains that parameters like auth and timeout need an 'unset' state distinct from None: omitting the argument (USE_CLIENT_DEFAULT) means use whatever the client configured, while passing None explicitly disables the feature, overriding the client default (e.g. timeout=None means no timeout). User code shouldn't need the constant; it's used internally as the default.",
+      "key_facts": [
+        "None means explicitly disable, overriding client config",
+        "USE_CLIENT_DEFAULT means fall back to the client's setting",
+        "Example given: timeout=None means no timeout"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py"
+      ],
+      "forbidden_claims": [
+        "USE_CLIENT_DEFAULT is the same as None",
+        "The sentinel exists for thread-safety"
+      ],
+      "evidence": [
+        "httpx/_client.py:94-117"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "httpx-39",
+      "question": "What does httpx.Client.retry_request do when a server returns a 5xx?",
+      "category": "trap",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": true,
+      "reference_answer": "httpx.Client has no retry_request method. The client never retries on status codes; a 5xx is returned as a normal Response, and Response.raise_for_status() raises HTTPStatusError if you want an exception. Only connection-level retries exist, via HTTPTransport(retries=...).",
+      "key_facts": [
+        "retry_request does not exist on Client",
+        "5xx responses are returned normally; raise_for_status raises HTTPStatusError"
+      ],
+      "must_cite_files": [
+        "httpx/_client.py",
+        "httpx/_models.py"
+      ],
+      "forbidden_claims": [
+        "Client.retry_request retries the request with backoff",
+        "retry_request is defined in httpx/_client.py"
+      ],
+      "evidence": [
+        "httpx/_models.py:794-829"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    }
+  ]
+}

@@ -1274,6 +1274,32 @@ lower, however fluent. An answer that says the reason cannot be determined
 from the available information is honest, not wrong: score its correctness
 5 and judge the other dimensions on their merits.
 """,
+    # Precision Q&A (harness/answer_precision.py): the reference carries key
+    # facts and forbidden claims, and the verdict label - not the 1-10 scores -
+    # is what the precision gate counts. "Confidently wrong" is the failure the
+    # gate exists to catch, so it is separated from a hedged wrong answer.
+    "precision-qa": """
+CATEGORY NOTE: The reference lists KEY FACTS a correct answer must contain and
+FORBIDDEN CLAIMS that make an answer wrong. The agent answer ends with the
+tool's own confidence label. Add a "verdict" key to the JSON object you
+return below, exactly one of:
+- "correct": answers the question with the key facts (wording may differ)
+  and makes no forbidden claim or other material factual error. Omitting one
+  minor supporting detail, or a key fact about something the question did not
+  ask, is still correct.
+- "partial": no forbidden claim or material error, but misses a key fact the
+  question asks for (e.g. one of several callers, a step of the flow, one
+  side of a comparison).
+- "refused_hedged": declines, says it cannot tell or that the thing does not
+  exist, or only lists candidates without committing to an answer.
+- "wrong": makes a forbidden claim or material error, but hedges it (low tool
+  confidence, or the prose says it is unsure).
+- "confidently_wrong": makes a forbidden claim or material error and presents
+  it as fact (tool confidence medium or high, no hedging in the prose).
+For a TRAP question (the reference says the name does not exist), an answer
+saying it does not exist is "refused_hedged"; one describing it as real is
+"wrong" or "confidently_wrong".
+""",
 }
 
 
@@ -1305,8 +1331,13 @@ Respond with ONLY a JSON object like:
 
 
 def judge_answer(question: str, gold_answer: str, agent_answer: str,
-                 judge_model: str, category: Optional[str] = None) -> dict:
-    """Score agent answer via LLM judge. Retries on rate limits."""
+                 judge_model: str, category: Optional[str] = None,
+                 cli_args: tuple[str, ...] = ()) -> dict:
+    """Score agent answer via LLM judge. Retries on rate limits.
+
+    ``cli_args`` are appended to the Claude CLI fallback call, e.g. flags that
+    drop tools and settings so a judge call costs cents, not dimes.
+    """
     judge_prompt = build_judge_prompt(question, gold_answer, agent_answer, category)
 
     # Try Anthropic SDK first (if API key available)
@@ -1327,7 +1358,7 @@ def judge_answer(question: str, gold_answer: str, agent_answer: str,
         try:
             result = subprocess.run(
                 ["claude", "-p", judge_prompt, "--output-format", "json",
-                 "--model", judge_model, "--max-budget-usd", "0.40"],
+                 "--model", judge_model, "--max-budget-usd", "0.40", *cli_args],
                 capture_output=True, text=True, timeout=150,
                 env=_UTF8_ENV, encoding="utf-8", errors="replace"
             )

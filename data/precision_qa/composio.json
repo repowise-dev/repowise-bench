@@ -1,0 +1,661 @@
+{
+  "repo": "composio",
+  "commit": "c7e7da1e0542a1fbe82629bcf96c9da1d3f9da25",
+  "split": "dev",
+  "questions": [
+    {
+      "id": "composio-01",
+      "question": "How does tool execution work end to end in the TypeScript SDK?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": "typescript",
+      "trap": false,
+      "reference_answer": "composio.tools.execute(slug, body) validates the params with ToolExecuteParamsSchema, fetches the tool schema with getRawComposioToolBySlug (using the explicit version or the SDK's toolkitVersions), then calls executeWithTool. executeWithTool runs applyBeforeExecuteModifiers (file-upload staging when dangerouslyAllowAutoUploadDownloadFiles is on, then the caller's beforeExecute), then executeComposioTool, which resolves the toolkit version (throwing ComposioToolVersionRequiredError if it is 'latest' and dangerouslySkipVersionCheck is not set) and POSTs to client.tools.execute through a client with retries disabled, mapping API errors via handleToolExecutionError. Finally applyAfterExecuteModifiers downloads any s3url files (when auto-download is on) and runs afterExecute. Provider-wrapped tools reach the same executeWithTool/execute path through createExecuteToolFn / createExecuteFnForProviders with dangerouslySkipVersionCheck defaulting to true.",
+      "key_facts": [
+        "Tools.execute fetches the tool schema via getRawComposioToolBySlug and then calls executeWithTool",
+        "executeWithTool order: before-execute modifiers (file upload, then beforeExecute) -> executeComposioTool -> after-execute modifiers (file download, then afterExecute)",
+        "executeComposioTool throws ComposioToolVersionRequiredError when the resolved version is 'latest' and dangerouslySkipVersionCheck is not true",
+        "the API call goes through clientWithoutRetries (maxRetries: 0)",
+        "provider-driven execution sets dangerouslySkipVersionCheck to true by default"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Tools.ts",
+        "ts/packages/core/src/provider/BaseProvider.ts"
+      ],
+      "forbidden_claims": [
+        "tool execution retries automatically on timeout",
+        "custom tools and remote tools share the same executeComposioTool path",
+        "the version check is skipped for manual tools.execute calls by default"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Tools.ts:991-1077",
+        "ts/packages/core/src/models/Tools.ts:1171-1189",
+        "ts/packages/core/src/models/Tools.ts:871-879",
+        "ts/packages/core/src/models/Tools.ts:931-953"
+      ],
+      "source": "audit:ans01",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-02",
+      "question": "Where are the providers for OpenAI, Anthropic and LangChain implemented?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "TypeScript: OpenAIProvider lives in core at ts/packages/core/src/provider/OpenAIProvider.ts and is only re-exported by ts/packages/providers/openai/src/index.ts (which also defines OpenAIResponsesProvider in OpenAIResponsesProvider.ts); AnthropicProvider is in ts/packages/providers/anthropic/src/index.ts; LangchainProvider is in ts/packages/providers/langchain/src/index.ts. Python: OpenAIProvider is in python/composio/core/provider/_openai.py (re-exported by python/providers/openai/composio_openai/provider.py); AnthropicProvider is in python/providers/anthropic/composio_anthropic/provider.py; LangchainProvider is in python/providers/langchain/composio_langchain/provider.py.",
+      "key_facts": [
+        "TS OpenAIProvider is defined in core (ts/packages/core/src/provider/OpenAIProvider.ts); the openai provider package only re-exports it",
+        "TS AnthropicProvider: ts/packages/providers/anthropic/src/index.ts; TS LangchainProvider: ts/packages/providers/langchain/src/index.ts",
+        "Python OpenAIProvider is in python/composio/core/provider/_openai.py",
+        "Python Anthropic and LangChain providers are in python/providers/anthropic/composio_anthropic/provider.py and python/providers/langchain/composio_langchain/provider.py"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/provider/OpenAIProvider.ts",
+        "ts/packages/providers/anthropic/src/index.ts",
+        "python/providers/langchain/composio_langchain/provider.py"
+      ],
+      "forbidden_claims": [
+        "OpenAIProvider is implemented in ts/packages/providers/openai/src/index.ts",
+        "there is no Python LangChain provider",
+        "the Python OpenAI provider is implemented in python/providers/openai/composio_openai/provider.py"
+      ],
+      "evidence": [
+        "ts/packages/core/src/provider/OpenAIProvider.ts:26",
+        "ts/packages/providers/openai/src/index.ts:15-16",
+        "ts/packages/providers/anthropic/src/index.ts:66",
+        "ts/packages/providers/langchain/src/index.ts:25",
+        "python/composio/core/provider/_openai.py:25",
+        "python/providers/openai/composio_openai/provider.py:5-6",
+        "python/providers/anthropic/composio_anthropic/provider.py:17",
+        "python/providers/langchain/composio_langchain/provider.py:47"
+      ],
+      "source": "audit:ans02",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-04",
+      "question": "What does the Composio class constructor do in the TypeScript SDK?",
+      "category": "how_does",
+      "identifier_style": "PascalCase",
+      "language": "typescript",
+      "trap": false,
+      "reference_answer": "The constructor (ts/packages/core/src/composio.ts) resolves the org/project scope, resolves baseURL and apiKey via getSDKConfig (param, COMPOSIO_API_KEY env, or the CLI user-data file), optionally configures the logger, and picks the provider (defaulting to new OpenAIProvider()). It builds this.config with toolkitVersions from getToolkitVersionsFromEnv, allowTracking (default true) and file upload/download options, creates the ComposioClient with default headers, and then instantiates the model classes: tools (Tools), mcp, toolkits, triggers, authConfigs, files, connectedAccounts, webhooks, logs, keyring, experimental, sessions (also exposed as toolRouter), sessionConfigs, and binds create/use to sessions. If allowTracking is true it calls telemetry.setup, it instruments the instance and provider for telemetry, and unless disableVersionCheck is set it calls checkForLatestVersionFromNPM.",
+      "key_facts": [
+        "defaults the provider to new OpenAIProvider() when none is passed",
+        "toolkitVersions are resolved with getToolkitVersionsFromEnv (env COMPOSIO_TOOLKIT_VERSION_* merged with user config)",
+        "creates the ComposioClient and instantiates Tools, Triggers, ConnectedAccounts, AuthConfigs, MCP, Sessions etc.",
+        "sets up telemetry when allowTracking (default true) and checks NPM for a newer SDK version unless disableVersionCheck"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/composio.ts"
+      ],
+      "forbidden_claims": [
+        "the constructor makes a network call to validate the API key",
+        "the default provider is Anthropic",
+        "the constructor requires a provider argument"
+      ],
+      "evidence": [
+        "ts/packages/core/src/composio.ts:452-597"
+      ],
+      "source": "audit:ans04",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-05",
+      "question": "How do custom tools work?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In the TypeScript SDK a custom tool is created with createCustomTool(slug, {name, description, inputParams: z.object(...), execute, extendsToolkit?, preload?}) in ts/packages/core/src/models/CustomTool.ts; it validates the slug and options, converts the Zod input schema to JSON Schema and returns a CustomTool handle. Custom tools (and custom toolkits from createCustomToolkit) are session-scoped: they are passed via experimental.customTools / customToolkits when creating or using a Tool Router session, serialized inline to the backend, and mapped to final slugs with a LOCAL_ prefix (LOCAL_<SLUG> or LOCAL_<TOOLKIT>_<SLUG>). When a session executes a slug that matches a custom tool (findCustomTool by final or unique original slug), executeCustomTool runs it in-process: it validates arguments with the original Zod schema, calls the tool's execute(input, sessionContext), and returns {data, error: null, successful: true} or {successful: false, error} on validation failure or thrown errors. Non-custom slugs go to the backend.",
+      "key_facts": [
+        "createCustomTool requires a z.object() inputParams schema and an execute function",
+        "custom tools are attached to Tool Router sessions (experimental.customTools/customToolkits), not to tools.execute",
+        "final slugs are prefixed LOCAL_ (LOCAL_<TOOLKIT>_<SLUG> when extending a toolkit)",
+        "executeCustomTool runs in-process after Zod validation and converts exceptions into successful:false results"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/CustomTool.ts",
+        "ts/packages/core/src/models/customToolExecution.ts",
+        "ts/packages/core/src/models/ToolRouterSession.ts"
+      ],
+      "forbidden_claims": [
+        "custom tools are uploaded and executed on Composio's servers",
+        "custom tools are executed via composio.tools.execute",
+        "custom tool input schemas are plain JSON Schema objects written by hand"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/CustomTool.ts:143-200",
+        "ts/packages/core/src/models/CustomTool.ts:267-272",
+        "ts/packages/core/src/models/customToolExecution.ts:63-118",
+        "ts/packages/core/src/models/ToolRouterSession.ts:682-705"
+      ],
+      "source": "audit:ans05",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-06",
+      "question": "Where is the Composio CLI implemented and what is its entry point?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The CLI is the @composio/cli package in ts/packages/cli. Its package.json maps the 'composio' binary to bin/composio.mjs, a Bun shim that imports the built dist/bin.mjs (and errors if not built). The source entry point is ts/packages/cli/src/bin.ts: it strips the telemetry-debug flag from argv, and either runs a background analytics worker or dynamically imports ./cli-main and calls runCli. Commands are registered in ts/packages/cli/src/commands/index.ts (ROOT_COMMANDS and buildRootCommand, built on Effect's CLI Command.withSubcommands).",
+      "key_facts": [
+        "the CLI lives in ts/packages/cli (@composio/cli)",
+        "package.json bin 'composio' -> bin/composio.mjs, which loads dist/bin.mjs",
+        "source entry point is ts/packages/cli/src/bin.ts, which calls runCli from src/cli-main.ts",
+        "root commands are registered in src/commands/index.ts"
+      ],
+      "must_cite_files": [
+        "ts/packages/cli/src/bin.ts",
+        "ts/packages/cli/package.json",
+        "ts/packages/cli/src/commands/index.ts"
+      ],
+      "forbidden_claims": [
+        "the CLI is implemented in the Python package",
+        "the entry point is ts/packages/cli/src/index.ts",
+        "the CLI uses commander/yargs"
+      ],
+      "evidence": [
+        "ts/packages/cli/package.json:7-9",
+        "ts/packages/cli/bin/composio.mjs:1-14",
+        "ts/packages/cli/src/bin.ts:1-40",
+        "ts/packages/cli/src/commands/index.ts:60-95",
+        "ts/packages/cli/src/cli-main.ts:423"
+      ],
+      "source": "audit:ans06",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-07",
+      "question": "How do the Python and TypeScript SDKs differ?",
+      "category": "compare",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "They mirror the same model surface (tools, toolkits, triggers, auth configs, connected accounts, MCP, sessions/tool router, both defaulting to an OpenAI provider and enforcing the 'latest' toolkit-version check on manual execution) but differ in idiom and some behavior. TypeScript (ts/packages/core) is async/Promise-based, uses camelCase options (userId, toolkitVersions, dangerouslySkipVersionCheck), validates with Zod, passes modifiers as option objects (beforeExecute/afterExecute/modifySchema), instruments async methods via telemetry.instrument, and can read the API key from the CLI's user-data file. Python (python/composio) is synchronous, uses snake_case kwargs (user_id, toolkit_versions, dangerously_skip_version_check), expresses modifiers with decorators (before_execute, after_execute, schema_modifier) in _modifiers.py, traces calls with a trace_method wrapper gated by an allow_tracking context var, raises ApiKeyNotProvidedError at construction when no key is found, and creates a fresh provider per SDK instance. The CLI exists only in TypeScript (ts/packages/cli). Provider integrations are split into separate packages in both (ts/packages/providers/*, python/providers/*).",
+      "key_facts": [
+        "TS is async/Promise-based with camelCase params; Python is synchronous with snake_case kwargs",
+        "Python modifiers are decorators (before_execute/after_execute/schema_modifier); TS passes modifier functions in an options object",
+        "both default to an OpenAI provider and both refuse 'latest' toolkit versions on manual execution unless skipped",
+        "the CLI is TypeScript-only"
+      ],
+      "must_cite_files": [
+        "python/composio/sdk.py",
+        "ts/packages/core/src/composio.ts",
+        "python/composio/core/models/_modifiers.py"
+      ],
+      "forbidden_claims": [
+        "the Python SDK is a thin wrapper that calls the TypeScript SDK",
+        "only the TypeScript SDK checks toolkit versions",
+        "the Python SDK has its own CLI"
+      ],
+      "evidence": [
+        "python/composio/sdk.py:129-318",
+        "ts/packages/core/src/composio.ts:452-597",
+        "python/composio/core/models/_modifiers.py:228-400",
+        "python/composio/core/models/base.py:22-72",
+        "ts/packages/core/src/models/Tools.ts:991-1001",
+        "python/composio/core/models/tools.py:605-635"
+      ],
+      "source": "audit:ans07",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-08",
+      "question": "Where are tool schemas modified before being sent to the LLM?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In TypeScript, in ts/packages/core/src/models/Tools.ts: getRawComposioTools / getRawComposioToolBySlug convert API tools to camelCase (transformToolCases) and apply default schema modifiers (applyDefaultSchemaModifiers -> FileToolModifier.modifyToolSchema, which rewrites file_uploadable inputs to path strings only when dangerouslyAllowAutoUploadDownloadFiles is on); Tools.get then applies the caller's modifySchema via applySchemaModifiers before wrapToolsForProvider hands the tools to provider.wrapTools, which converts them into the provider's format. Sessions apply modifySchema in ToolRouterSession.applySchemaModifier. In Python, Tools._get in python/composio/core/models/tools.py applies 'schema' modifiers via apply_modifier_by_type, always enhances schema descriptions, and processes file_uploadable schemas only when auto upload/download is enabled.",
+      "key_facts": [
+        "TS: Tools.get applies modifySchema via applySchemaModifiers before provider.wrapTools",
+        "default modifiers (FileToolModifier.modifyToolSchema) run only when dangerouslyAllowAutoUploadDownloadFiles is enabled",
+        "Python: Tools._get applies schema modifiers through apply_modifier_by_type(type='schema')"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Tools.ts",
+        "ts/packages/core/src/utils/modifiers/FileToolModifier.node.ts",
+        "python/composio/core/models/tools.py"
+      ],
+      "forbidden_claims": [
+        "schemas are modified on the Composio backend only",
+        "file_uploadable fields are always rewritten regardless of configuration"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Tools.ts:244-250",
+        "ts/packages/core/src/models/Tools.ts:813-840",
+        "ts/packages/core/src/models/Tools.ts:843-862",
+        "ts/packages/core/src/models/Tools.ts:891-899",
+        "ts/packages/core/src/utils/modifiers/FileToolModifier.node.ts:296-312",
+        "python/composio/core/models/tools.py:357-420"
+      ],
+      "source": "audit:ans08",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-10",
+      "question": "What is the tool router and how do sessions work?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The tool router is the session API (ToolRouter in ts/packages/core/src/models/ToolRouter.ts, exposed as composio.sessions, with composio.toolRouter as an alias and composio.create/use bound to it). ToolRouter.create(userId, config) validates the config, builds the payload (toolkits, tools, tags, auth configs, connected accounts, workbench/sandbox, multi-account, preload, inline custom tools) and calls client.toolRouter.session.create; it returns a ToolRouterSession holding the sessionId, an MCP server config (url/headers), custom-tool maps and metadata. use(id) re-attaches to an existing session. A session exposes tools() (fetches the session's tools page by page and wraps them for the provider, routing custom LOCAL_ tools in-process), authorize(toolkit) for connecting accounts, toolkits(), search(), execute(slug, args) (custom tools locally, others via client.toolRouter.session.execute), proxyExecute(), update() and delete(). Python mirrors this in python/composio/core/models/tool_router.py and tool_router_session.py.",
+      "key_facts": [
+        "composio.toolRouter is an alias of composio.sessions (a ToolRouter); create/use are bound to it",
+        "ToolRouter.create calls client.toolRouter.session.create and returns a ToolRouterSession with a sessionId and MCP config",
+        "session.execute runs custom tools in-process and sends other slugs to the backend session execute endpoint",
+        "session.authorize(toolkit) returns a ConnectionRequest for connecting an account"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/ToolRouter.ts",
+        "ts/packages/core/src/models/ToolRouterSession.ts"
+      ],
+      "forbidden_claims": [
+        "sessions are purely client-side and never call the backend",
+        "the tool router is an LLM that picks tools locally in the SDK"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/ToolRouter.ts:206-330",
+        "ts/packages/core/src/models/ToolRouter.ts:356-370",
+        "ts/packages/core/src/models/ToolRouterSession.ts:224-275",
+        "ts/packages/core/src/models/ToolRouterSession.ts:444-505",
+        "ts/packages/core/src/models/ToolRouterSession.ts:682-740",
+        "ts/packages/core/src/composio.ts:560-566"
+      ],
+      "source": "audit:ans10",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-11",
+      "question": "How do triggers work and how do I subscribe to trigger events?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Triggers are managed by the Triggers model (ts/packages/core/src/models/Triggers.ts). composio.triggers.create(userId, slug, {connectedAccountId?, triggerConfig}) validates the trigger type via getType, then upserts a trigger instance with client.triggerInstances.upsert (passing the SDK's toolkitVersions) and returns {triggerId}. To receive events in real time call composio.triggers.subscribe(callback, filters): it validates the filters, then PusherService.subscribe connects to the project's Pusher channel and binds the 'trigger_to_client' event (plus a chunked variant for large messages). Each raw message is normalized by parsePusherPayload (V1/V2/V3/legacy formats) and passed to the callback only if it matches the filters (toolkits, triggerId, connectedAccountId, authConfigId, triggerSlug, triggerData, userId). unsubscribe() disconnects. For HTTP webhooks, events are delivered to your endpoint and verified with triggers.verifyWebhook.",
+      "key_facts": [
+        "triggers.create upserts a trigger instance after validating the trigger type",
+        "triggers.subscribe uses a Pusher websocket channel (PusherService) and the 'trigger_to_client' event",
+        "incoming payloads are normalized across V1/V2/V3 formats and filtered client-side before the callback runs"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Triggers.ts",
+        "ts/packages/core/src/services/pusher/Pusher.ts"
+      ],
+      "forbidden_claims": [
+        "subscribe polls the REST API for new events",
+        "filters are applied on the server",
+        "triggers.create executes the trigger immediately"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Triggers.ts:240-300",
+        "ts/packages/core/src/models/Triggers.ts:437-582",
+        "ts/packages/core/src/services/pusher/Pusher.ts:180-215"
+      ],
+      "source": "audit:ans11",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-13",
+      "question": "What is the difference between agentic and non-agentic providers?",
+      "category": "compare",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Both extend BaseProvider (ts/packages/core/src/provider/BaseProvider.ts). A non-agentic provider (BaseNonAgenticProvider, _isAgentic = false) only converts tools into the LLM's tool-schema format: wrapTool(tool) / wrapTools(tools) take no execute function, and the application runs tool calls itself (e.g. provider.executeToolCall / handleToolCalls, which call executeTool/executeToolForTarget). OpenAI, Anthropic, Google, Cloudflare are non-agentic. An agentic provider (BaseAgenticProvider, _isAgentic = true) gets an execute function: wrapTool(tool, executeTool) / wrapTools(tools, executeTool) produce framework tools (e.g. LangChain) that execute themselves when the agent framework calls them. In Python the equivalents are NonAgenticProvider.wrap_tool(tool) and AgenticProvider.wrap_tool(tool, execute_tool) (python/composio/core/provider).",
+      "key_facts": [
+        "non-agentic providers' wrapTool/wrapTools take no execute function; the caller executes tool calls",
+        "agentic providers' wrapTool/wrapTools receive an executeTool function so the framework executes tools itself",
+        "_isAgentic is false for BaseNonAgenticProvider and true for BaseAgenticProvider",
+        "OpenAI/Anthropic are non-agentic; LangChain is agentic"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/provider/BaseProvider.ts",
+        "python/composio/core/provider/agentic.py",
+        "python/composio/core/provider/none_agentic.py"
+      ],
+      "forbidden_claims": [
+        "agentic providers call an LLM internally",
+        "non-agentic providers cannot execute tools at all",
+        "OpenAIProvider is agentic"
+      ],
+      "evidence": [
+        "ts/packages/core/src/provider/BaseProvider.ts:12-190",
+        "ts/packages/providers/langchain/src/index.ts:25",
+        "python/composio/core/provider/agentic.py:25-48",
+        "python/composio/core/provider/none_agentic.py:9-30"
+      ],
+      "source": "audit:ans13",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-16",
+      "question": "How are webhook signatures verified?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "composio.triggers.verifyWebhook({payload, signature, secret, id, timestamp, tolerance}) in ts/packages/core/src/models/Triggers.ts validates the params (naming the missing webhook-id / webhook-timestamp / webhook-signature headers), checks the timestamp is within tolerance seconds (default 300) when tolerance > 0, then verifyWebhookSignature: it requires non-empty payload, signature, secret, id and timestamp, extracts the 'v1,<base64>' entries from the space-separated webhook-signature header, computes HMAC-SHA256 over `${webhookId}.${webhookTimestamp}.${payload}` with the secret (hmacSha256Base64 in utils/crypto.ts), and compares with timingSafeEqual; mismatch throws ComposioWebhookSignatureVerificationError. On success it parses the payload, detects V1/V2/V3 and returns {version, payload, rawPayload}. Python's Triggers.verify_webhook does the same with hmac and hmac.compare_digest.",
+      "key_facts": [
+        "signature is HMAC-SHA256 of '<webhook-id>.<webhook-timestamp>.<payload>' with the webhook secret, base64-encoded",
+        "only 'v1,' signatures from the webhook-signature header are accepted, compared in constant time",
+        "timestamps older than the tolerance (default 300 s) are rejected",
+        "returns the detected payload version and normalized payload"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Triggers.ts",
+        "ts/packages/core/src/utils/crypto.ts"
+      ],
+      "forbidden_claims": [
+        "the signature is computed over the payload alone",
+        "signatures are compared with plain string equality",
+        "verification uses RSA public keys"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Triggers.ts:907-967",
+        "ts/packages/core/src/models/Triggers.ts:1158-1255",
+        "ts/packages/core/src/types/triggers.types.ts:350",
+        "python/composio/core/models/triggers.py:1351",
+        "python/composio/core/models/triggers.py:1677-1689"
+      ],
+      "source": "audit:ans16",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-18",
+      "question": "Where is ComposioToolVersionRequiredError defined and when is it thrown?",
+      "category": "where_defined",
+      "identifier_style": "PascalCase",
+      "language": null,
+      "trap": false,
+      "reference_answer": "It is defined in ts/packages/core/src/errors/ToolErrors.ts (class ComposioToolVersionRequiredError extends ComposioError, code TOOL_VERSION_REQUIRED, with possibleFixes about passing a version, toolkitVersions config, COMPOSIO_TOOLKIT_VERSION_<TOOLKIT_SLUG> env, or dangerouslySkipVersionCheck). It is thrown in exactly one place: Tools.executeComposioTool in ts/packages/core/src/models/Tools.ts, when the resolved toolkit version (body.version ?? getToolkitVersion(...)) is 'latest' and dangerouslySkipVersionCheck is not true, i.e. on manual tools.execute calls without a pinned version. The Python counterpart is ToolVersionRequiredError in python/composio/exceptions.py, raised in Tools._execute_tool.",
+      "key_facts": [
+        "defined in ts/packages/core/src/errors/ToolErrors.ts",
+        "thrown only in Tools.executeComposioTool",
+        "thrown when the version resolves to 'latest' and dangerouslySkipVersionCheck is not true"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/errors/ToolErrors.ts",
+        "ts/packages/core/src/models/Tools.ts"
+      ],
+      "forbidden_claims": [
+        "it is thrown by getRawComposioToolBySlug",
+        "it is thrown when the backend returns 404",
+        "it is thrown for provider-executed tools by default"
+      ],
+      "evidence": [
+        "ts/packages/core/src/errors/ToolErrors.ts:216-233",
+        "ts/packages/core/src/models/Tools.ts:997-1001",
+        "python/composio/exceptions.py:547",
+        "python/composio/core/models/tools.py:634-635"
+      ],
+      "source": "audit:ans18",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-20",
+      "question": "How is telemetry collected and can it be disabled?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "In TypeScript, the Composio constructor calls telemetry.setup(...) only when allowTracking is true (default true via CONFIG_DEFAULTS), and instruments the Composio instance, the provider, and model classes (e.g. Tools) with telemetry.instrument, which wraps async methods to record the method name, duration and errors. Metrics are batched (BatchProcessor) and sent to https://telemetry.composio.dev/v1 (metrics/invocations and errors) by TelemetryService; failures are ignored. Disable it with new Composio({ allowTracking: false }), or with the TELEMETRY_DISABLED=true environment variable; it is also off when NODE_ENV is 'test' or 'ci'. In Python, trace_method in python/composio/core/models/base.py records events via push_event unless the allow_tracking context var is false; pass allow_tracking=False to Composio().",
+      "key_facts": [
+        "TS telemetry is enabled by default (allowTracking: true) and disabled with allowTracking: false",
+        "TELEMETRY_DISABLED=true or NODE_ENV test/ci also suppress TS telemetry",
+        "instrument() wraps async methods to record duration and errors, batched to telemetry.composio.dev",
+        "Python uses trace_method gated by the allow_tracking context var (Composio(allow_tracking=False))"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/telemetry/Telemetry.ts",
+        "ts/packages/core/src/composio.ts",
+        "python/composio/core/models/base.py"
+      ],
+      "forbidden_claims": [
+        "telemetry sends tool arguments and results",
+        "telemetry cannot be disabled",
+        "telemetry is disabled by default"
+      ],
+      "evidence": [
+        "ts/packages/core/src/telemetry/Telemetry.ts:54-182",
+        "ts/packages/core/src/services/telemetry/TelemetryService.ts:4-60",
+        "ts/packages/core/src/composio.ts:574-590",
+        "ts/packages/core/src/utils/config-defaults/ConfigDefaults.node.ts:3-7",
+        "python/composio/core/models/base.py:22-72",
+        "python/composio/sdk.py:250"
+      ],
+      "source": "audit:ans20",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-21",
+      "question": "How is the repository built and tested (monorepo tooling)?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "The TypeScript side is a pnpm workspace (pnpm-workspace.yaml / package.json workspaces covering ts/packages/*, providers, examples and e2e tests) orchestrated by Turborepo: root scripts run `turbo build` and `turbo test` (turbo.jsonc defines build/test tasks with ^build dependencies and dist/ outputs); packages are bundled with tsdown (tsdown.config.base.ts) and tests use Vitest, with extra root test scripts (toolchain, install.sh, provider-compatibility, examples) and e2e suites. Toolchain versions (node, bun, pnpm) are pinned by mise (mise.toml). The Python side is a uv workspace (root pyproject.toml [tool.uv.workspace] with python and python/providers/*), with nox sessions (python/noxfile.py: fmt, chk, tst, snt, type_inference) invoked via python/Makefile targets.",
+      "key_facts": [
+        "pnpm workspace + Turborepo (turbo build / turbo test) for TypeScript",
+        "tsdown builds packages; Vitest runs tests",
+        "mise pins node/bun/pnpm toolchain versions",
+        "Python is a uv workspace with nox sessions driven by the Makefile"
+      ],
+      "must_cite_files": [
+        "package.json",
+        "turbo.jsonc",
+        "python/noxfile.py"
+      ],
+      "forbidden_claims": [
+        "the repo uses Nx or Lerna",
+        "TypeScript packages are built with webpack",
+        "Python uses poetry"
+      ],
+      "evidence": [
+        "package.json:1-40",
+        "turbo.jsonc:1-30",
+        "pnpm-workspace.yaml:1-18",
+        "pyproject.toml:1-12",
+        "python/noxfile.py:56-160",
+        "python/Makefile:64-82"
+      ],
+      "source": "audit:ans21",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-22",
+      "question": "Where is the Python LangChain provider and how does it wrap tools?",
+      "category": "where_defined",
+      "identifier_style": "none",
+      "language": "python",
+      "trap": false,
+      "reference_answer": "It is LangchainProvider in python/providers/langchain/composio_langchain/provider.py, an AgenticProvider[StructuredTool, List[StructuredTool]] named 'langchain'. wrap_tool substitutes reserved Python keywords in the tool's input schema, builds a function that restores those keywords, normalizes the arguments and calls execute_tool(tool.slug, ...), gives it a Signature derived from the schema, and returns StructuredTool.from_function(name=tool.slug, description, args_schema=json_schema_to_model(...), handle_tool_error=True, handle_validation_error=True). The StructuredTool subclass validates dict inputs against the pydantic args schema and turns pydantic ValidationErrors into {successful: False, error, data: None}. wrap_tools maps wrap_tool over the tools.",
+      "key_facts": [
+        "LangchainProvider lives in python/providers/langchain/composio_langchain/provider.py",
+        "it is an agentic provider: wrap_tool receives an execute_tool function",
+        "each Composio tool becomes a LangChain StructuredTool named by the tool slug with a pydantic args_schema from json_schema_to_model",
+        "reserved Python keywords in parameter names are substituted and restored"
+      ],
+      "must_cite_files": [
+        "python/providers/langchain/composio_langchain/provider.py"
+      ],
+      "forbidden_claims": [
+        "the Python LangChain provider is non-agentic",
+        "it wraps tools as LangChain Tool objects that take a single string input"
+      ],
+      "evidence": [
+        "python/providers/langchain/composio_langchain/provider.py:23-113"
+      ],
+      "source": "audit:ans22",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-23",
+      "question": "What does ConnectionRequest.waitForConnection do?",
+      "category": "how_does",
+      "identifier_style": "dotted",
+      "language": null,
+      "trap": false,
+      "reference_answer": "waitForConnection(timeout = 60000 ms) is defined inside createConnectionRequest in ts/packages/core/src/models/ConnectionRequest.ts. It immediately retrieves the connected account (client.connectedAccounts.retrieve) and records its status on the request; if ACTIVE it returns the transformed account, if FAILED/EXPIRED/REVOKED it throws ConnectionRequestFailedError (with the status reason), and a 404 becomes ComposioConnectedAccountNotFoundError. Otherwise it polls every 1 second until the timeout elapses, returning on ACTIVE, throwing on a terminal error state, and finally throwing ConnectionRequestTimeoutError. ConnectedAccounts.waitForConnection(id, timeout) is a wrapper that creates a ConnectionRequest and calls this.",
+      "key_facts": [
+        "default timeout is 60000 ms; it polls every 1000 ms",
+        "returns the connected account when status becomes ACTIVE",
+        "throws ConnectionRequestFailedError on FAILED/EXPIRED/REVOKED and ConnectionRequestTimeoutError on timeout",
+        "it updates request.status with each observed status"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/ConnectionRequest.ts"
+      ],
+      "forbidden_claims": [
+        "it waits for a webhook callback",
+        "it retries forever without a timeout",
+        "the default timeout is 5 minutes"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/ConnectionRequest.ts:32-150",
+        "ts/packages/core/src/models/ConnectedAccounts.ts:487-492"
+      ],
+      "source": "audit:ans23",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-24",
+      "question": "How does proxyExecute work?",
+      "category": "how_does",
+      "identifier_style": "lowerCamel",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Tools.proxyExecute(body) in ts/packages/core/src/models/Tools.ts sends a raw HTTP request to a toolkit's API authenticated as a connected account, for endpoints no predefined tool covers. It validates body with ToolProxyParamsSchema (endpoint, method, connectedAccountId, body, parameters), converts parameters [{in: 'header'|'query', name, value}] to the API's {name, type, value} form (values stringified), builds the proxy body (plus the deprecated customConnectionData) and calls client.tools.proxy through the retry-disabled client, since a proxied call may be a non-idempotent write. Composio injects the credentials server-side; a relative endpoint is appended to the toolkit's base URL. Tool Router sessions have their own session.proxyExecute that calls client.toolRouter.session.proxyExecute and maps binary_data into binaryData. Python's equivalent is Tools.proxy.",
+      "key_facts": [
+        "validates input with ToolProxyParamsSchema and throws ValidationError on failure",
+        "converts {in, name, value} parameters to {name, type: 'header'|'query', value}",
+        "calls client.tools.proxy through the client with retries disabled",
+        "credentials are injected server-side by Composio for the connected account"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Tools.ts"
+      ],
+      "forbidden_claims": [
+        "proxyExecute calls the third-party API directly from the SDK with local credentials",
+        "proxyExecute retries failed requests automatically",
+        "proxyExecute requires a tool slug"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Tools.ts:1371-1417",
+        "ts/packages/core/src/models/ToolRouterSession.ts:740-772",
+        "python/composio/core/models/tools.py:789-803"
+      ],
+      "source": "audit:ans24",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-25",
+      "question": "How are errors from tool execution handled and surfaced to the user?",
+      "category": "how_does",
+      "identifier_style": "none",
+      "language": null,
+      "trap": false,
+      "reference_answer": "Validation problems throw typed errors before any call (ValidationError for bad params, ComposioToolVersionRequiredError for an unpinned 'latest' version, ComposioToolNotFoundError / ComposioToolFetchError when fetching the tool fails). If the execute API call itself throws, executeComposioTool passes the error to handleToolExecutionError (ts/packages/core/src/errors/ToolErrors.ts), which maps API error code 1803 to ComposioConnectedAccountNotFoundError and wraps everything else in ComposioToolExecutionError('Error executing the tool <slug>') with the original error as cause; cancellation is rethrown as ComposioRequestCancelledError. Failures reported by the tool itself are not thrown: the response comes back as {data, error, successful: false}. Custom tools likewise return successful: false with the validation or thrown error message. Providers pass results back to the LLM (e.g. AnthropicProvider returns {error} JSON when result.error is set).",
+      "key_facts": [
+        "API call failures are converted by handleToolExecutionError into ComposioToolExecutionError (or ComposioConnectedAccountNotFoundError for code 1803)",
+        "tool-level failures are returned as successful: false with an error field, not thrown",
+        "cancellation surfaces as ComposioRequestCancelledError",
+        "unpinned 'latest' manual executions throw ComposioToolVersionRequiredError"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/errors/ToolErrors.ts",
+        "ts/packages/core/src/models/Tools.ts"
+      ],
+      "forbidden_claims": [
+        "all tool errors are swallowed and logged",
+        "every non-successful tool result is thrown as an exception"
+      ],
+      "evidence": [
+        "ts/packages/core/src/errors/ToolErrors.ts:244-269",
+        "ts/packages/core/src/models/Tools.ts:1030-1038",
+        "ts/packages/core/src/models/Tools.ts:697-731",
+        "ts/packages/core/src/models/customToolExecution.ts:63-118",
+        "ts/packages/providers/anthropic/src/index.ts:304-311"
+      ],
+      "source": "audit:ans25",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-35",
+      "question": "Why does the Python SDK create a separate provider object for every SDK instance instead of sharing one?",
+      "category": "why",
+      "identifier_style": "none",
+      "language": "python",
+      "trap": false,
+      "reference_answer": "Because Tools.__init__ binds the SDK instance's execute function onto the provider (execute_tool_fn); if a provider object were shared (e.g. a module-level default OpenAIProvider), that binding would leak across Composio instances. The comment in python/composio/sdk.py cites issue #4369, and __init__ therefore uses the passed provider or constructs a new OpenAIProvider() per instance.",
+      "key_facts": [
+        "Tools.__init__ binds an execute_tool_fn onto the provider",
+        "sharing a provider would leak that binding across SDK instances (issue #4369)"
+      ],
+      "must_cite_files": [
+        "python/composio/sdk.py"
+      ],
+      "forbidden_claims": [
+        "a new provider is created for thread-safety of HTTP connections",
+        "providers are created per instance to reduce memory use"
+      ],
+      "evidence": [
+        "python/composio/sdk.py:240-245",
+        "python/composio/core/models/tools.py:200-213"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    },
+    {
+      "id": "composio-40",
+      "question": "How does the SDK's circuit breaker stop calling a toolkit after repeated tool-execution failures?",
+      "category": "trap",
+      "identifier_style": "none",
+      "language": null,
+      "trap": true,
+      "reference_answer": "The SDK has no circuit breaker. Tool execution failures are simply surfaced (thrown as ComposioToolExecutionError via handleToolExecutionError, or returned as successful: false), and tools.execute and proxy calls are sent with retries disabled; other API calls use the generated client's default retries. The only 'circuit breaker' strings in the repo are ngrok toolkit action descriptions in docs/public/data/toolkits.json, not SDK code.",
+      "key_facts": [
+        "there is no circuit breaker in the SDK",
+        "errors are surfaced per call; execute/proxy calls do not retry"
+      ],
+      "must_cite_files": [
+        "ts/packages/core/src/models/Tools.ts",
+        "ts/packages/core/src/errors/ToolErrors.ts"
+      ],
+      "forbidden_claims": [
+        "the SDK opens a circuit after N failures",
+        "the circuit breaker is configured via"
+      ],
+      "evidence": [
+        "ts/packages/core/src/models/Tools.ts:991-1039",
+        "ts/packages/core/src/errors/ToolErrors.ts:250-269"
+      ],
+      "source": "claude-draft",
+      "author": "claude-draft",
+      "reviewed": false
+    }
+  ]
+}
