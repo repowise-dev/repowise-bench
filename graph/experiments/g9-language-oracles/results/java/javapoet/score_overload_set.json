@@ -1,0 +1,77 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "scip-java",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 17,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "javapoet",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 767,
+      "oracle_edges": 698,
+      "matched": 322,
+      "recall": 0.4613,
+      "recall_ci": [
+        0.4246,
+        0.4984
+      ],
+      "outside_oracle": 445,
+      "outside_share": 0.5802,
+      "contradicted": 433,
+      "unjudged": 12,
+      "precision_vs_oracle": 0.4265,
+      "precision_ci": [
+        0.3917,
+        0.4621
+      ],
+      "unjudged_share": 0.0156,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          322
+        ],
+        [
+          "(0, -4)",
+          33
+        ],
+        [
+          "no_file_pair",
+          29
+        ],
+        [
+          "(0, -8)",
+          13
+        ],
+        [
+          "(-4, 0)",
+          10
+        ],
+        [
+          "(0, -37)",
+          10
+        ]
+      ],
+      "ambiguous_callers_excluded": 0,
+      "overload_set": {
+        "note": "SECONDARY -- callee grouped by (file, enclosing class, method name); a same-named overload of the true target counts as matched. The strict score stays primary. Shows how much of the gap is overload identity granularity (repowise keeps one node per overload set, no arity in the symbol id) versus real misresolution.",
+        "matched": 417,
+        "rescued_from_contradicted": 95,
+        "contradicted": 338,
+        "precision_vs_oracle": 0.5523,
+        "precision_ci": [
+          0.5167,
+          0.5874
+        ],
+        "recall": 0.6232,
+        "recall_ci": [
+          0.5867,
+          0.6584
+        ]
+      }
+    }
+  }
+}

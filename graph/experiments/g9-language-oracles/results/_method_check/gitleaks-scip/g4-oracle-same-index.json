@@ -1,0 +1,70 @@
+{
+  "oracle": {
+    "_header": true,
+    "algorithm": "rta",
+    "analysed_file_count": 184,
+    "caller_key": "outermost-enclosing-function",
+    "functions_judged": 415,
+    "functions_withheld": 0,
+    "go_version": "",
+    "load_errors": 0,
+    "oracle": "golang.org/x/tools/go/callgraph/rta",
+    "repo": "test-repos/gitleaks",
+    "root_count": 4,
+    "roots": [
+      "github.com/zricethezav/gitleaks/v8",
+      "github.com/zricethezav/gitleaks/v8/cmd/generate/config"
+    ],
+    "tests": false
+  },
+  "repo": "gitleaks",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 1594,
+      "oracle_edges": 1584,
+      "matched": 1512,
+      "recall": 0.9545,
+      "recall_ci": [
+        0.9431,
+        0.9638
+      ],
+      "outside_oracle": 82,
+      "outside_share": 0.0514,
+      "contradicted": 38,
+      "unjudged": 44,
+      "precision_vs_oracle": 0.9755,
+      "precision_ci": [
+        0.9665,
+        0.9821
+      ],
+      "unjudged_share": 0.0276,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1512
+        ],
+        [
+          "no_file_pair",
+          37
+        ],
+        [
+          "(0, 4)",
+          15
+        ],
+        [
+          "(0, -4)",
+          7
+        ],
+        [
+          "(-22, 0)",
+          4
+        ],
+        [
+          "(0, 9)",
+          3
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "scip-go",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 185,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "gitleaks",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 1594,
+      "oracle_edges": 1596,
+      "matched": 1546,
+      "recall": 0.9687,
+      "recall_ci": [
+        0.9589,
+        0.9762
+      ],
+      "outside_oracle": 48,
+      "outside_share": 0.0301,
+      "contradicted": 18,
+      "unjudged": 30,
+      "precision_vs_oracle": 0.9885,
+      "precision_ci": [
+        0.9819,
+        0.9927
+      ],
+      "unjudged_share": 0.0188,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1546
+        ],
+        [
+          "(0, 4)",
+          14
+        ],
+        [
+          "no_file_pair",
+          10
+        ],
+        [
+          "(0, -4)",
+          9
+        ],
+        [
+          "(0, 9)",
+          4
+        ],
+        [
+          "(0, -8)",
+          2
+        ]
+      ]
+    }
+  }
+}

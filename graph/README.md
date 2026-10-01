@@ -72,6 +72,7 @@ has a written protocol and no run behind it.
 | **G5** | [Adversarial invariance](experiments/g5-invariance/) | Does the resolver actually resolve, or does it match names? | **scored, four arms, Go** |
 | **G6** | [Graph build cost](experiments/g6-build-cost/) | Seconds and peak memory to produce the graph, and nothing else. | **five arms, 35 repos, 175 cells, 0 failed** |
 | G7 | Language breadth *(closed unwritten)* | Every tool claims 20 to 40 languages. How many of them work? | results, no page; [why](experiments/README.md#g7-language-breadth-as-a-number) |
+| **G9** | [Graded against each compiler](experiments/g9-language-oracles/) | How accurate is our own call graph per language, judged by each language's compiler? Repowise only, no comparison. | **repowise only, Java, C#, C, C++, Rust against the compiler, Python against jedi, 15 cells, 5 held out** |
 
 ### The five arms
 

@@ -50,6 +50,20 @@ exists in G1 at the same seed on the same repositories, and re-reading it would
 have bought nothing. The departures from G1's method, all of them forced by the
 arm's own fields, are listed on the page.
 
+## G9: our own call graph, graded against each language's compiler
+
+G4's method, a compiler's resolution as the answer key, run for repowise alone
+on the languages G4 could not reach with five arms. Call sites come from
+repowise's own tree-sitter queries and targets from a SCIP index built by each
+compiler (javac, Roslyn, clang, rust-analyzer), with jedi's type inference for
+Python. Dev and held-out repositories are reported apart, and an overload-set
+score sits beside the strict one where a language has overloads.
+
+**Measured and published: [g9-language-oracles](g9-language-oracles/)**, 15
+cells across six languages, five of them held out. Held-out C on git reads
+0.981 precision at 0.618 recall; held-out Java on javapoet reads 0.427 at 0.461.
+No competitor was run, so none of it is a comparison.
+
 ## G3: recall on a denominator both tools share
 
 Each tool's own recall is quoted against its own denominator, and the two

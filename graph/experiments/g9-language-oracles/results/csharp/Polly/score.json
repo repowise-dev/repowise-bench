@@ -1,0 +1,87 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "scip-csharp",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 215,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "Polly",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 258,
+      "oracle_edges": 1172,
+      "matched": 147,
+      "recall": 0.1254,
+      "recall_ci": [
+        0.1077,
+        0.1456
+      ],
+      "outside_oracle": 111,
+      "outside_share": 0.4302,
+      "contradicted": 43,
+      "unjudged": 68,
+      "precision_vs_oracle": 0.7737,
+      "precision_ci": [
+        0.7091,
+        0.8274
+      ],
+      "unjudged_share": 0.2636,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          147
+        ],
+        [
+          "no_file_pair",
+          30
+        ],
+        [
+          "(0, -3)",
+          10
+        ],
+        [
+          "(0, -27)",
+          5
+        ],
+        [
+          "(0, -36)",
+          4
+        ],
+        [
+          "(0, -26)",
+          3
+        ]
+      ]
+    },
+    "repowise_confidence_ge_0.9": {
+      "edges_in_scope": 71,
+      "matched": 33,
+      "contradicted": 13,
+      "recall": 0.0282,
+      "recall_ci": [0.0201, 0.0393],
+      "precision_vs_oracle": 0.7174,
+      "precision_ci": [0.5745, 0.8268]
+    },
+    "repowise_overload_set": {
+      "matched": 173,
+      "rescued_from_contradicted": 26,
+      "contradicted": 17,
+      "recall": 0.1561,
+      "precision_vs_oracle": 0.9105
+    }
+  },
+  "contradicted_by_resolution_origin": {
+    "same_file": 11,
+    "receiver_global": 10,
+    "receiver_field_import": 8,
+    "receiver_typed_import": 6,
+    "receiver_import": 3,
+    "global_unique": 3,
+    "receiver_same_file": 1,
+    "receiver_extension_same_file": 1
+  },
+  "notes": "SCOPE CAVEAT: only 4 of Polly's library projects (Polly, Polly.Core via transitive ProjectReference, Polly.Extensions, Polly.RateLimiting, Polly.Testing) were built/indexed -- Snippets was not, time-boxed out; global.json pins SDK 10.0.401 (not installed), worked around via a neutral build cwd for dotnet restore/build only (see RUN.md). SCIP's 215-file scope is much narrower than the full repo, so recall here is a floor, not Polly's true recall. Hand-check abbreviated to 10 contradicted + 5 missed (not the standard 20/10) per the coordinator's time-box; 0 oracle errors found, all sampled cases replicate FluentValidation's already-verified overload/interface-dispatch patterns. Concrete example: TimedLock.Lock(Lock) (1 arg) called from 10 sites across 3 classes, oracle correctly resolves all 10 to the public 1-arg overload (line 26; the 2-arg overload at line 29 is private and not even accessible from the calling classes), repowise binds all 10 to the private 2-arg overload instead."
+}

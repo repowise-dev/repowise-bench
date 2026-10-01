@@ -1,0 +1,169 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "scip-java",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 98,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "jsoup",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 4156,
+      "oracle_edges": 4329,
+      "matched": 2233,
+      "recall": 0.5158,
+      "recall_ci": [
+        0.5009,
+        0.5307
+      ],
+      "outside_oracle": 1923,
+      "outside_share": 0.4627,
+      "contradicted": 1887,
+      "unjudged": 36,
+      "precision_vs_oracle": 0.542,
+      "precision_ci": [
+        0.5267,
+        0.5572
+      ],
+      "unjudged_share": 0.0087,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          2233
+        ],
+        [
+          "no_file_pair",
+          350
+        ],
+        [
+          "(0, -23)",
+          95
+        ],
+        [
+          "(0, -10)",
+          78
+        ],
+        [
+          "(0, -12)",
+          40
+        ],
+        [
+          "(0, -11)",
+          30
+        ]
+      ],
+      "overload_set": {
+        "note": "SECONDARY -- callee grouped by (file, enclosing class, method name); a same-named overload of the true target counts as matched. The strict score stays primary. Shows how much of the gap is overload identity granularity (repowise keeps one node per overload set, no arity in the symbol id) versus real misresolution.",
+        "matched": 2746,
+        "rescued_from_contradicted": 513,
+        "contradicted": 1374,
+        "precision_vs_oracle": 0.6665,
+        "precision_ci": [
+          0.652,
+          0.6807
+        ],
+        "recall": 0.6429,
+        "recall_ci": [
+          0.6285,
+          0.657
+        ]
+      }
+    }
+  },
+  "patterns": {
+    "method": "heuristic classifier (results/_oracle-adjacent, not the oracle itself): regex-scans callee_file for the nearest preceding method-like declaration at callee_line, counts same-name declarations in that file (>=2 => overload_collapse), else checks whether caller_decl_file imports/shares callee_file's package (no => cross_*_fallback, yes-but-wrong => receiver_type_blind). Approximate; hand-verified sample in ORACLE_CHECK.md agrees on all 3 top patterns and their rank order.",
+    "contradicted_total": 1887,
+    "missed_total": 2095,
+    "contradicted_pattern_totals": {
+      "overload_collapse": 793,
+      "receiver_type_blind_same_package_or_file": 692,
+      "cross_package_receiver_type_blind": 323,
+      "cross_file_fallback_no_import": 57,
+      "unresolved_decl_name_classifier_gap": 22
+    },
+    "missed_pattern_totals": {
+      "receiver_type_blind_same_package_or_file": 1101,
+      "overload_collapse": 775,
+      "cross_package_receiver_type_blind": 157,
+      "unresolved_decl_name_classifier_gap": 52,
+      "cross_file_fallback_no_import": 10
+    },
+    "contradicted_top10_by_origin_pattern": [
+      {
+        "resolution_origin": "same_package",
+        "pattern": "receiver_type_blind_same_package_or_file",
+        "edges": 376
+      },
+      {
+        "resolution_origin": "import_merged",
+        "pattern": "cross_package_receiver_type_blind",
+        "edges": 227
+      },
+      {
+        "resolution_origin": "same_file",
+        "pattern": "receiver_type_blind_same_package_or_file",
+        "edges": 205
+      },
+      {
+        "resolution_origin": "import_merged",
+        "pattern": "overload_collapse",
+        "edges": 175
+      },
+      {
+        "resolution_origin": "same_file",
+        "pattern": "overload_collapse",
+        "edges": 175
+      },
+      {
+        "resolution_origin": "module_alias",
+        "pattern": "overload_collapse",
+        "edges": 154
+      },
+      {
+        "resolution_origin": "same_package",
+        "pattern": "overload_collapse",
+        "edges": 145
+      },
+      {
+        "resolution_origin": "import_merged",
+        "pattern": "receiver_type_blind_same_package_or_file",
+        "edges": 70
+      },
+      {
+        "resolution_origin": "receiver_typed_import",
+        "pattern": "overload_collapse",
+        "edges": 69
+      },
+      {
+        "resolution_origin": "global_unique",
+        "pattern": "cross_file_fallback_no_import",
+        "edges": 50
+      }
+    ],
+    "missed_top_by_pattern": [
+      {
+        "pattern": "receiver_type_blind_same_package_or_file",
+        "edges": 1101
+      },
+      {
+        "pattern": "overload_collapse",
+        "edges": 775
+      },
+      {
+        "pattern": "cross_package_receiver_type_blind",
+        "edges": 157
+      },
+      {
+        "pattern": "unresolved_decl_name_classifier_gap",
+        "edges": 52
+      },
+      {
+        "pattern": "cross_file_fallback_no_import",
+        "edges": 10
+      }
+    ]
+  }
+}

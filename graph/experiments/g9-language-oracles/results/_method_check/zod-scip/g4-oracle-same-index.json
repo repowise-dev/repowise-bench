@@ -1,0 +1,79 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "typescript 5.9.3 checker",
+    "algorithm": "tsc-resolved-signature",
+    "tests_included": false,
+    "tsconfig": null,
+    "config_errors": 0,
+    "subdirs": [
+      "packages/zod/src"
+    ],
+    "analysed_file_count": 116,
+    "root_count": null,
+    "load_errors": 0,
+    "counts": {
+      "call_sites": 4889,
+      "resolved": 4634,
+      "unresolved": 255,
+      "top_level": 489,
+      "external_target": 1417,
+      "abstract_target": 1038,
+      "emitted": 1269,
+      "jsx_skipped": 0,
+      "functions": 1106,
+      "functions_withheld": 353,
+      "functions_judged": 753
+    }
+  },
+  "repo": "zod",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 1721,
+      "oracle_edges": 1269,
+      "matched": 985,
+      "recall": 0.7762,
+      "recall_ci": [
+        0.7525,
+        0.7983
+      ],
+      "outside_oracle": 736,
+      "outside_share": 0.4277,
+      "contradicted": 7,
+      "unjudged": 729,
+      "precision_vs_oracle": 0.9929,
+      "precision_ci": [
+        0.9855,
+        0.9966
+      ],
+      "unjudged_share": 0.4236,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          985
+        ],
+        [
+          "no_file_pair",
+          286
+        ],
+        [
+          "(0, -464)",
+          54
+        ],
+        [
+          "(5, 8)",
+          40
+        ],
+        [
+          "(5, 9)",
+          4
+        ],
+        [
+          "(9, 0)",
+          4
+        ]
+      ]
+    }
+  }
+}

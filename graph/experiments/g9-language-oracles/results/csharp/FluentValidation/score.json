@@ -1,0 +1,79 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "scip-csharp",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 155,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "FluentValidation",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 378,
+      "oracle_edges": 629,
+      "matched": 266,
+      "recall": 0.4229,
+      "recall_ci": [
+        0.3849,
+        0.4619
+      ],
+      "outside_oracle": 112,
+      "outside_share": 0.2963,
+      "contradicted": 40,
+      "unjudged": 72,
+      "precision_vs_oracle": 0.8693,
+      "precision_ci": [
+        0.8269,
+        0.9025
+      ],
+      "unjudged_share": 0.1905,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          266
+        ],
+        [
+          "no_file_pair",
+          27
+        ],
+        [
+          "(0, -29)",
+          14
+        ],
+        [
+          "(0, -8)",
+          14
+        ],
+        [
+          "(0, -20)",
+          5
+        ],
+        [
+          "(0, -32)",
+          4
+        ]
+      ]
+    },
+    "repowise_confidence_ge_0.9": {
+      "edges_in_scope": 183,
+      "matched": 144,
+      "contradicted": 19,
+      "recall": 0.2289,
+      "recall_ci": [0.1978, 0.2634],
+      "precision_vs_oracle": 0.8834,
+      "precision_ci": [0.8251, 0.9241]
+    }
+  },
+  "contradicted_by_resolution_origin": {
+    "same_file": 17,
+    "import_merged": 8,
+    "global_unique": 6,
+    "receiver_typed_import": 4,
+    "receiver_global": 2,
+    "receiver_extension_same_file": 2,
+    "receiver_import": 1
+  },
+  "notes": "Two oracle-side fixes applied before these numbers held (see results/csharp/ORACLE_CHECK.md): the round-2 Java agent's generic modifier/attribute-shift reanchor, and this agent's new-X()-resolves-to-type-not-constructor fix. Hand-check: 0/20 contradicted and 0/10 missed sampled edges found to be oracle errors post-fix. Dominant repowise-side pattern: same-name overloads bound to one fixed candidate regardless of call-site argument types (same_file/global_unique origins); secondary: interface-dispatch/extension-method receiver-typing misses (import_merged/receiver_* origins)."
+}

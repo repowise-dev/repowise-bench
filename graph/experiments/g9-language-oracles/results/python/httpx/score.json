@@ -1,0 +1,248 @@
+{
+  "oracle": {
+    "_header": true,
+    "oracle": "jedi-python",
+    "algorithm": "scip-decl-join",
+    "analysed_file_count": 60,
+    "root_count": null,
+    "load_errors": 0
+  },
+  "repo": "httpx",
+  "arms": {
+    "repowise": {
+      "version": "c00e5b0c2",
+      "edges_in_scope": 1271,
+      "oracle_edges": 1753,
+      "matched": 1212,
+      "recall": 0.6914,
+      "recall_ci": [
+        0.6694,
+        0.7126
+      ],
+      "outside_oracle": 59,
+      "outside_share": 0.0464,
+      "contradicted": 38,
+      "unjudged": 21,
+      "precision_vs_oracle": 0.9696,
+      "precision_ci": [
+        0.9585,
+        0.9778
+      ],
+      "unjudged_share": 0.0165,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1212
+        ],
+        [
+          "no_file_pair",
+          31
+        ],
+        [
+          "(0, -53)",
+          3
+        ],
+        [
+          "(139, -37)",
+          1
+        ],
+        [
+          "(13, 0)",
+          1
+        ],
+        [
+          "(180, -76)",
+          1
+        ]
+      ]
+    },
+    "codegraph": {
+      "version": "1.5.0",
+      "edges_in_scope": 906,
+      "oracle_edges": 1753,
+      "matched": 632,
+      "recall": 0.3605,
+      "recall_ci": [
+        0.3384,
+        0.3833
+      ],
+      "outside_oracle": 274,
+      "outside_share": 0.3024,
+      "contradicted": 123,
+      "unjudged": 151,
+      "precision_vs_oracle": 0.8371,
+      "precision_ci": [
+        0.809,
+        0.8617
+      ],
+      "unjudged_share": 0.1667,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          632
+        ],
+        [
+          "no_file_pair",
+          83
+        ],
+        [
+          "(0, 271)",
+          19
+        ],
+        [
+          "(0, 184)",
+          7
+        ],
+        [
+          "(0, 479)",
+          3
+        ],
+        [
+          "(0, 79)",
+          2
+        ]
+      ]
+    },
+    "codebase-memory-mcp": {
+      "version": "0.10.8",
+      "edges_in_scope": 1832,
+      "oracle_edges": 1753,
+      "matched": 1452,
+      "recall": 0.8283,
+      "recall_ci": [
+        0.8099,
+        0.8452
+      ],
+      "outside_oracle": 380,
+      "outside_share": 0.2074,
+      "contradicted": 178,
+      "unjudged": 202,
+      "precision_vs_oracle": 0.8908,
+      "precision_ci": [
+        0.8747,
+        0.905
+      ],
+      "unjudged_share": 0.1103,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          1452
+        ],
+        [
+          "no_file_pair",
+          193
+        ],
+        [
+          "(0, 271)",
+          8
+        ],
+        [
+          "(0, 184)",
+          5
+        ],
+        [
+          "(0, 479)",
+          3
+        ],
+        [
+          "(0, 428)",
+          2
+        ]
+      ]
+    },
+    "graphify": {
+      "version": "0.9.31",
+      "edges_in_scope": 464,
+      "oracle_edges": 1753,
+      "matched": 366,
+      "recall": 0.2088,
+      "recall_ci": [
+        0.1904,
+        0.2284
+      ],
+      "outside_oracle": 98,
+      "outside_share": 0.2112,
+      "contradicted": 75,
+      "unjudged": 23,
+      "precision_vs_oracle": 0.8299,
+      "precision_ci": [
+        0.7921,
+        0.8621
+      ],
+      "unjudged_share": 0.0496,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          366
+        ],
+        [
+          "no_file_pair",
+          7
+        ],
+        [
+          "(0, -53)",
+          3
+        ],
+        [
+          "(0, -384)",
+          2
+        ],
+        [
+          "(0, -333)",
+          2
+        ],
+        [
+          "(61, 0)",
+          2
+        ]
+      ]
+    },
+    "code-review-graph": {
+      "version": "2.3.7",
+      "edges_in_scope": 441,
+      "oracle_edges": 1753,
+      "matched": 330,
+      "recall": 0.1882,
+      "recall_ci": [
+        0.1706,
+        0.2072
+      ],
+      "outside_oracle": 111,
+      "outside_share": 0.2517,
+      "contradicted": 65,
+      "unjudged": 46,
+      "precision_vs_oracle": 0.8354,
+      "precision_ci": [
+        0.7957,
+        0.8687
+      ],
+      "unjudged_share": 0.1043,
+      "line_offsets_top": [
+        [
+          "(0, 0)",
+          330
+        ],
+        [
+          "no_file_pair",
+          4
+        ],
+        [
+          "(13, -96)",
+          2
+        ],
+        [
+          "(-22, 0)",
+          2
+        ],
+        [
+          "(-17, -16)",
+          2
+        ],
+        [
+          "(-26, 0)",
+          2
+        ]
+      ]
+    }
+  }
+}
