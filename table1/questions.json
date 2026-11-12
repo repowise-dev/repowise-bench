@@ -1,0 +1,75 @@
+{
+  "_about": "Pre-registered before any tool call. Each row: the core-tool call an agent makes, the key terms an agent would grep for the same question (all terms must match, case-insensitive, whole word), and the file(s) that hold the answer (any one counts). Reference rows (get_context references) have no gold file: the answer is the reference list itself.",
+  "flask": [
+    {"id": "F1", "tool": "get_answer", "args": {"question": "How does Flask dispatch an incoming request to a view function?"}, "terms": ["dispatch", "view"], "gold": ["src/flask/app.py"]},
+    {"id": "F2", "tool": "get_answer", "args": {"question": "How are sessions signed and stored in cookies?"}, "terms": ["session", "cookie"], "gold": ["src/flask/sessions.py"]},
+    {"id": "F3", "tool": "get_answer", "args": {"question": "How does Flask load configuration from environment variables?"}, "terms": ["config", "environ"], "gold": ["src/flask/config.py"]},
+    {"id": "F4", "tool": "get_answer", "args": {"question": "How is the application context pushed and popped?"}, "terms": ["context", "push"], "gold": ["src/flask/ctx.py"]},
+    {"id": "F5", "tool": "search_codebase", "args": {"query": "url_for"}, "terms": ["url_for"], "gold": ["src/flask/helpers.py", "src/flask/app.py"]},
+    {"id": "F6", "tool": "search_codebase", "args": {"query": "Blueprint"}, "terms": ["Blueprint"], "gold": ["src/flask/blueprints.py", "src/flask/sansio/blueprints.py"]},
+    {"id": "F7", "tool": "search_codebase", "args": {"query": "send_file"}, "terms": ["send_file"], "gold": ["src/flask/helpers.py"]},
+    {"id": "F8", "tool": "get_symbol", "args": {"query": "SecureCookieSessionInterface"}, "terms": ["SecureCookieSessionInterface"], "gold": ["src/flask/sessions.py"]},
+    {"id": "F9", "tool": "get_context", "args": {"targets": ["render_template"], "include": ["references"]}, "terms": ["render_template"], "gold": []},
+    {"id": "F10", "tool": "get_context", "args": {"targets": ["make_response"], "include": ["references"]}, "terms": ["make_response"], "gold": []}
+  ],
+  "cobra": [
+    {"id": "C1", "tool": "get_answer", "args": {"question": "How does cobra find which subcommand to run from the command-line arguments?"}, "terms": ["find", "args"], "gold": ["command.go"]},
+    {"id": "C2", "tool": "get_answer", "args": {"question": "How are persistent flags inherited by child commands?"}, "terms": ["persistent", "flags"], "gold": ["command.go"]},
+    {"id": "C3", "tool": "get_answer", "args": {"question": "How does cobra generate the bash completion script?"}, "terms": ["completion", "bash"], "gold": ["bash_completionsV2.go", "bash_completions.go", "completions.go"]},
+    {"id": "C4", "tool": "get_answer", "args": {"question": "How does cobra suggest similar commands when the user mistypes one?"}, "terms": ["suggest"], "gold": ["command.go"]},
+    {"id": "C5", "tool": "search_codebase", "args": {"query": "ExecuteC"}, "terms": ["ExecuteC"], "gold": ["command.go"]},
+    {"id": "C6", "tool": "search_codebase", "args": {"query": "MousetrapHelpText"}, "terms": ["MousetrapHelpText"], "gold": ["cobra.go"]},
+    {"id": "C7", "tool": "search_codebase", "args": {"query": "ValidArgsFunction"}, "terms": ["ValidArgsFunction"], "gold": ["command.go", "completions.go"]},
+    {"id": "C8", "tool": "get_symbol", "args": {"query": "SuggestionsFor"}, "terms": ["SuggestionsFor"], "gold": ["command.go"]},
+    {"id": "C9", "tool": "get_context", "args": {"targets": ["ExactArgs"], "include": ["references"]}, "terms": ["ExactArgs"], "gold": []},
+    {"id": "C10", "tool": "get_context", "args": {"targets": ["CheckErr"], "include": ["references"]}, "terms": ["CheckErr"], "gold": []}
+  ],
+  "hono": [
+    {"id": "O1", "tool": "get_answer", "args": {"question": "How does Hono compose middleware handlers for a request?"}, "terms": ["compose", "middleware"], "gold": ["src/compose.ts"]},
+    {"id": "O2", "tool": "get_answer", "args": {"question": "How does the RegExpRouter match a path to a handler?"}, "terms": ["RegExpRouter"], "gold": ["src/router/reg-exp-router/router.ts", "src/router/reg-exp-router/matcher.ts"]},
+    {"id": "O3", "tool": "get_answer", "args": {"question": "How does Hono handle HEAD requests?"}, "terms": ["head"], "gold": ["src/hono-base.ts"]},
+    {"id": "O4", "tool": "get_answer", "args": {"question": "How does the basic auth middleware verify credentials?"}, "terms": ["basic", "auth"], "gold": ["src/middleware/basic-auth/index.ts"]},
+    {"id": "O5", "tool": "search_codebase", "args": {"query": "notFoundHandler"}, "terms": ["notFoundHandler"], "gold": ["src/hono-base.ts"]},
+    {"id": "O6", "tool": "search_codebase", "args": {"query": "HTTPException"}, "terms": ["HTTPException"], "gold": ["src/http-exception.ts"]},
+    {"id": "O7", "tool": "search_codebase", "args": {"query": "getCookie"}, "terms": ["getCookie"], "gold": ["src/helper/cookie/index.ts"]},
+    {"id": "O8", "tool": "get_symbol", "args": {"query": "compose"}, "terms": ["compose"], "gold": ["src/compose.ts"]},
+    {"id": "O9", "tool": "get_context", "args": {"targets": ["HTTPException"], "include": ["references"]}, "terms": ["HTTPException"], "gold": []},
+    {"id": "O10", "tool": "get_context", "args": {"targets": ["getCookie"], "include": ["references"]}, "terms": ["getCookie"], "gold": []}
+  ],
+  "gson": [
+    {"id": "G1", "tool": "get_answer", "args": {"question": "How does Gson choose a TypeAdapter for a given type?"}, "terms": ["adapter", "factory"], "gold": ["gson/src/main/java/com/google/gson/Gson.java"]},
+    {"id": "G2", "tool": "get_answer", "args": {"question": "How does Gson serialize a plain object's fields using reflection?"}, "terms": ["reflection", "field"], "gold": ["gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java"]},
+    {"id": "G3", "tool": "get_answer", "args": {"question": "How does JsonReader parse numbers?"}, "terms": ["JsonReader", "number"], "gold": ["gson/src/main/java/com/google/gson/stream/JsonReader.java"]},
+    {"id": "G4", "tool": "get_answer", "args": {"question": "How are field names translated by a FieldNamingPolicy?"}, "terms": ["FieldNamingPolicy"], "gold": ["gson/src/main/java/com/google/gson/FieldNamingPolicy.java"]},
+    {"id": "G5", "tool": "search_codebase", "args": {"query": "toJson"}, "terms": ["toJson"], "gold": ["gson/src/main/java/com/google/gson/Gson.java"]},
+    {"id": "G6", "tool": "search_codebase", "args": {"query": "JsonParser"}, "terms": ["JsonParser"], "gold": ["gson/src/main/java/com/google/gson/JsonParser.java"]},
+    {"id": "G7", "tool": "search_codebase", "args": {"query": "SerializedName"}, "terms": ["SerializedName"], "gold": ["gson/src/main/java/com/google/gson/annotations/SerializedName.java"]},
+    {"id": "G8", "tool": "get_symbol", "args": {"query": "setPrettyPrinting"}, "terms": ["setPrettyPrinting"], "gold": ["gson/src/main/java/com/google/gson/GsonBuilder.java"]},
+    {"id": "G9", "tool": "get_context", "args": {"targets": ["JsonSyntaxException"], "include": ["references"]}, "terms": ["JsonSyntaxException"], "gold": []},
+    {"id": "G10", "tool": "get_context", "args": {"targets": ["TypeToken"], "include": ["references"]}, "terms": ["TypeToken"], "gold": []}
+  ],
+  "django": [
+    {"id": "D1", "tool": "get_answer", "args": {"question": "How does Django's URL resolver match a request path to a view?"}, "terms": ["resolver", "path"], "gold": ["django/urls/resolvers.py"]},
+    {"id": "D2", "tool": "get_answer", "args": {"question": "How does the ORM compile a QuerySet filter into SQL?"}, "terms": ["compiler", "sql"], "gold": ["django/db/models/sql/compiler.py", "django/db/models/sql/query.py", "django/db/models/sql/where.py"]},
+    {"id": "D3", "tool": "get_answer", "args": {"question": "How does the CSRF middleware validate the token on a POST request?"}, "terms": ["csrf", "token"], "gold": ["django/middleware/csrf.py"]},
+    {"id": "D4", "tool": "get_answer", "args": {"question": "How are migrations detected from model changes?"}, "terms": ["migration", "changes"], "gold": ["django/db/migrations/autodetector.py"]},
+    {"id": "D5", "tool": "search_codebase", "args": {"query": "select_related"}, "terms": ["select_related"], "gold": ["django/db/models/query.py"]},
+    {"id": "D6", "tool": "search_codebase", "args": {"query": "get_object_or_404"}, "terms": ["get_object_or_404"], "gold": ["django/shortcuts.py"]},
+    {"id": "D7", "tool": "search_codebase", "args": {"query": "SessionMiddleware"}, "terms": ["SessionMiddleware"], "gold": ["django/contrib/sessions/middleware.py"]},
+    {"id": "D8", "tool": "get_symbol", "args": {"query": "get_object_or_404"}, "terms": ["get_object_or_404"], "gold": ["django/shortcuts.py"]},
+    {"id": "D9", "tool": "get_context", "args": {"targets": ["get_object_or_404"], "include": ["references"]}, "terms": ["get_object_or_404"], "gold": []},
+    {"id": "D10", "tool": "get_context", "args": {"targets": ["cached_property"], "include": ["references"]}, "terms": ["cached_property"], "gold": []}
+  ],
+  "nest": [
+    {"id": "N1", "tool": "get_answer", "args": {"question": "How does Nest resolve and inject a provider's constructor dependencies?"}, "terms": ["injector", "dependencies"], "gold": ["packages/core/injector/injector.ts"]},
+    {"id": "N2", "tool": "get_answer", "args": {"question": "How are guards executed before a route handler?"}, "terms": ["guards", "canActivate"], "gold": ["packages/core/guards/guards-consumer.ts", "packages/core/guards/guards-context-creator.ts"]},
+    {"id": "N3", "tool": "get_answer", "args": {"question": "How does the ValidationPipe validate incoming request bodies?"}, "terms": ["ValidationPipe"], "gold": ["packages/common/pipes/validation.pipe.ts"]},
+    {"id": "N4", "tool": "get_answer", "args": {"question": "How does Nest detect circular dependencies between providers?"}, "terms": ["circular", "dependency"], "gold": ["packages/core/injector/injector.ts", "packages/core/scanner.ts", "packages/core/errors/exceptions/circular-dependency.exception.ts"]},
+    {"id": "N5", "tool": "search_codebase", "args": {"query": "NestFactory"}, "terms": ["NestFactory"], "gold": ["packages/core/nest-factory.ts"]},
+    {"id": "N6", "tool": "search_codebase", "args": {"query": "UseInterceptors"}, "terms": ["UseInterceptors"], "gold": ["packages/common/decorators/core/use-interceptors.decorator.ts"]},
+    {"id": "N7", "tool": "search_codebase", "args": {"query": "ExceptionsHandler"}, "terms": ["ExceptionsHandler"], "gold": ["packages/core/exceptions/exceptions-handler.ts"]},
+    {"id": "N8", "tool": "get_symbol", "args": {"query": "Injectable"}, "terms": ["Injectable"], "gold": ["packages/common/decorators/core/injectable.decorator.ts"]},
+    {"id": "N9", "tool": "get_context", "args": {"targets": ["ModuleRef"], "include": ["references"]}, "terms": ["ModuleRef"], "gold": []},
+    {"id": "N10", "tool": "get_context", "args": {"targets": ["ExceptionsHandler"], "include": ["references"]}, "terms": ["ExceptionsHandler"], "gold": []}
+  ]
+}

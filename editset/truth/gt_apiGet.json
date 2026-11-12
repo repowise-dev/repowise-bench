@@ -1,0 +1,1710 @@
+[
+{
+"path": "packages/api-client/src/actions.ts",
+"line": 8,
+"text": "import { apiGet, apiPut } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/actions.ts",
+"line": 12,
+"text": "return apiGet<ActionsResponse>(`/api/repos/${repoId}/actions`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/actions.ts",
+"line": 32,
+"text": "return apiGet<AgentPromptResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/actions.ts",
+"line": 40,
+"text": "return apiGet<WorkspaceActionsResponse>(\"/api/workspace/actions\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 5,
+"text": "apiGet,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 71,
+"text": "it(\"sends apiGet and apiPost with plain-object headers\", async () => {",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 83,
+"text": "await expect(apiGet(\"/api/a\", { q: \"x\" })).resolves.toEqual({ ok: true });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 106,
+"text": "await apiGet(\"/api/a\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 115,
+"text": "const err = await apiGet(\"/api/repos/missing\").catch((e: unknown) => e);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 126,
+"text": "const err = await apiGet(\"/api/x\").catch((e: unknown) => e);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 145,
+"text": "await expect(apiGet(\"/api/x\")).rejects.toBeInstanceOf(SyntaxError);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/areas.ts",
+"line": 3,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/areas.ts",
+"line": 27,
+"text": "return apiGet<AreaTree>(`/api/repos/${repoId}/areas/tree`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/areas.ts",
+"line": 37,
+"text": "return apiGet<AreaDetail>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/blast-radius.ts",
+"line": 1,
+"text": "import { apiGet, apiPost } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/blast-radius.ts",
+"line": 39,
+"text": "return apiGet<ChangeCandidatesResponse>(`/api/repos/${repoId}/blast-radius/changes`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/c4.ts",
+"line": 6,
+"text": "import { apiGet, BASE_URL, buildHeaders, doFetch } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/c4.ts",
+"line": 10,
+"text": "return apiGet<C4L1>(`/api/graph/${repoId}/c4/l1`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/c4.ts",
+"line": 14,
+"text": "return apiGet<C4L2>(`/api/graph/${repoId}/c4/l2`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/c4.ts",
+"line": 18,
+"text": "return apiGet<C4L3>(`/api/graph/${repoId}/c4/l3`, { container_id: containerId });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/c4.ts",
+"line": 79,
+"text": "return apiGet<ArchitectureView>(`/api/graph/${repoId}/architecture-view`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/changes.ts",
+"line": 7,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/changes.ts",
+"line": 49,
+"text": "return apiGet<ChangeListResponse>(`/api/repos/${repoId}/changes`, { ...opts });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/changes.ts",
+"line": 58,
+"text": "return apiGet<PeriodHealthSummaryResponse>(`/api/repos/${repoId}/changes/summary`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/changes.ts",
+"line": 72,
+"text": "return apiGet<ChangeRecord>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.test.ts",
+"line": 4,
+"text": "apiGet: vi.fn(),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.test.ts",
+"line": 12,
+"text": "import { apiGet, apiPatch } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.test.ts",
+"line": 72,
+"text": "vi.mocked(apiGet).mockResolvedValueOnce({ id: \"a1\" });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.test.ts",
+"line": 76,
+"text": "expect(apiGet).toHaveBeenCalledWith(\"/api/repos/r1/chat/conversations/c1/artifacts/a1\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.ts",
+"line": 5,
+"text": "import { apiGet, apiDelete, apiPatch, apiPost, BASE_URL, buildHeaders } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.ts",
+"line": 16,
+"text": "return apiGet<ConversationResponse[]>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.ts",
+"line": 31,
+"text": "return apiGet(`/api/repos/${repoId}/chat/suggestions?${query.toString()}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.ts",
+"line": 41,
+"text": "return apiGet(`/api/repos/${repoId}/chat/conversations/${conversationId}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/chat.ts",
+"line": 79,
+"text": "return apiGet(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/client.ts",
+"line": 191,
+"text": "export async function apiGet<T>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 34,
+"text": "import { apiGet, apiPatch, apiPost } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 96,
+"text": "return apiGet<HealthOverviewResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 120,
+"text": "return apiGet<HealthFinding[]>(`/api/repos/${repoId}/health/findings`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 130,
+"text": "return apiGet<PerformanceOpportunityPage>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 157,
+"text": "return apiGet<PerformanceOpportunityDetail>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 168,
+"text": "return apiGet(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 185,
+"text": "return apiGet<HealthMapFeed>(`/api/repos/${repoId}/health/map`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 201,
+"text": "return apiGet<HealthFilesResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 212,
+"text": "return apiGet<HealthFileBreakdownResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 223,
+"text": "return apiGet<HealthTrendResponse>(`/api/repos/${repoId}/health/trend`, { limit, scope });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 246,
+"text": "return apiGet<HealthCoverageResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 256,
+"text": "return apiGet<TestsReachingFile>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 266,
+"text": "return apiGet<HealthWorkQueueResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 280,
+"text": "return apiGet<ImpactEffortResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 293,
+"text": "return apiGet<ChurnComplexityResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 307,
+"text": "return apiGet<FixFirstQueue>(`/api/repos/${repoId}/health/fix-first`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 319,
+"text": "return apiGet<FixItem>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/code-health.ts",
+"line": 331,
+"text": "return apiGet<AgentPromptResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/costs.ts",
+"line": 1,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/costs.ts",
+"line": 116,
+"text": "return apiGet<CostGroup[]>(`/api/repos/${repoId}/costs`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/costs.ts",
+"line": 126,
+"text": "return apiGet<CostSummary>(`/api/repos/${repoId}/costs/summary`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/costs.ts",
+"line": 135,
+"text": "return apiGet<Savings>(`/api/repos/${repoId}/savings`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/coupling.ts",
+"line": 11,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/coupling.ts",
+"line": 46,
+"text": "return apiGet<CouplingGraphResponse>(`/api/repos/${repoId}/coupling`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/coupling.ts",
+"line": 59,
+"text": "return apiGet<CouplingAreasResponse>(`/api/repos/${repoId}/coupling/areas`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/dead-code.ts",
+"line": 1,
+"text": "import { apiGet, apiPost, apiPatch } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/dead-code.ts",
+"line": 18,
+"text": "return apiGet<DeadCodeFindingResponse[]>(`/api/repos/${repoId}/dead-code`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/dead-code.ts",
+"line": 31,
+"text": "return apiGet<DeadCodeSummaryResponse>(`/api/repos/${repoId}/dead-code/summary`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 1,
+"text": "import { apiGet, apiPost, apiPatch, apiPut } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 49,
+"text": "return apiGet<DecisionRecordResponse[]>(`/api/repos/${repoId}/decisions`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 65,
+"text": "return apiGet<DecisionCounts>(`/api/repos/${repoId}/decisions/counts`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 79,
+"text": "return apiGet<DecisionLaneCounts>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 91,
+"text": "return apiGet<DecisionAgentPromptResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 101,
+"text": "return apiGet<DecisionRecordResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 158,
+"text": "const res = await apiGet<DecisionEvidenceResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 168,
+"text": "const res = await apiGet<DecisionLineageResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 175,
+"text": "return apiGet<DecisionGraph>(`/api/repos/${repoId}/decisions/graph`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.ts",
+"line": 179,
+"text": "return apiGet<DecisionSettings>(`/api/repos/${repoId}/decisions/settings`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/doc-drift.ts",
+"line": 10,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/doc-drift.ts",
+"line": 38,
+"text": "return apiGet<DocDriftResponse>(`/api/repos/${repoId}/doc-drift`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/doc-drift.ts",
+"line": 52,
+"text": "return apiGet<DocDriftReferencesResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/episodes.ts",
+"line": 9,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/episodes.ts",
+"line": 47,
+"text": "return apiGet<EpisodeListResponse>(`/api/repos/${repoId}/episodes`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/episodes.ts",
+"line": 54,
+"text": "return apiGet<EpisodeCountsResponse>(`/api/repos/${repoId}/episodes/counts`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/episodes.ts",
+"line": 72,
+"text": "return apiGet<EpisodeListResponse>(`/api/repos/${repoId}/episodes/by-file`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/episodes.ts",
+"line": 88,
+"text": "return apiGet<EpisodeDetail>(`/api/repos/${repoId}/episodes/${episodeId}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/events.ts",
+"line": 7,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/events.ts",
+"line": 21,
+"text": "return apiGet<EventListResponse>(`/api/repos/${repoId}/events`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/external-systems.ts",
+"line": 9,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/external-systems.ts",
+"line": 15,
+"text": "return apiGet<ExternalSystemsRegistry>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/external-systems.ts",
+"line": 31,
+"text": "return apiGet<ExternalSystemRelationshipGraph>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/external-systems.ts",
+"line": 47,
+"text": "return apiGet<ExternalSystemImportingFiles>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/external-systems.ts",
+"line": 66,
+"text": "return apiGet<ExternalSystemsSummary>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/files.ts",
+"line": 2,
+"text": "import { apiGet, BASE_URL, buildHeaders } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/files.ts",
+"line": 6,
+"text": "return apiGet<FilesIndexResponse>(`/api/repos/${repoId}/files`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/files.ts",
+"line": 23,
+"text": "return apiGet<FileDetailResponse>(`/api/repos/${repoId}/files/${encoded}${qs}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 32,
+"text": "return apiGet<GitMetadataResponse>(`/api/repos/${repoId}/git-metadata`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 63,
+"text": "return apiGet<HotspotPage>(`/api/repos/${repoId}/hotspots`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 92,
+"text": "return apiGet<Paginated<OwnershipEntry>>(`/api/repos/${repoId}/ownership`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 116,
+"text": "return apiGet(`/api/repos/${repoId}/co-changes`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 132,
+"text": "return apiGet<ReviewerSuggestionsResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 142,
+"text": "return apiGet<GitSummaryResponse>(`/api/repos/${repoId}/git-summary`, params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 170,
+"text": "return apiGet<Paginated<CommitResponse>>(`/api/repos/${repoId}/commits`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 186,
+"text": "return apiGet<PeriodHealthSummaryResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 194,
+"text": "return apiGet<AgentTrend>(`/api/repos/${repoId}/commits/agent-trend`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 201,
+"text": "return apiGet<CommitEvolution>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 207,
+"text": "return apiGet<CommitStats>(`/api/repos/${repoId}/commits/stats`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/git.ts",
+"line": 214,
+"text": "return apiGet<CommitDetailResponse>(`/api/repos/${repoId}/commits/${sha}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 25,
+"text": "return apiGet<GraphExportResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 36,
+"text": "return apiGet<GraphPathResponse>(`/api/graph/${repoId}/path`, { from, to });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 40,
+"text": "return apiGet<ModuleGraphResponse>(`/api/graph/${repoId}/modules`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 48,
+"text": "return apiGet<EgoGraphResponse>(`/api/graph/${repoId}/ego`, { node_id: nodeId, hops });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 56,
+"text": "return apiGet<NodeSearchResult[]>(`/api/graph/${repoId}/nodes/search`, { q, limit });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 60,
+"text": "return apiGet<GraphExportResponse>(`/api/graph/${repoId}/entry-points`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 74,
+"text": "return apiGet<ArchitectureGraphResponse>(`/api/graph/${repoId}/architecture`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 94,
+"text": "return apiGet<DeadCodeGraphResponse>(`/api/graph/${repoId}/dead-nodes`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 102,
+"text": "return apiGet<HotFilesGraphResponse>(`/api/graph/${repoId}/hot-files`, { days, limit });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 113,
+"text": "return apiGet<CommunitySummaryItem[]>(`/api/graph/${repoId}/communities`, population);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 121,
+"text": "return apiGet<CommunityDetailResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 137,
+"text": "return apiGet<CommunitySliceResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 147,
+"text": "return apiGet<GraphMetricsResponse>(`/api/graph/${repoId}/metrics`, { node_id: nodeId });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 155,
+"text": "return apiGet<CallersCalleesResponse>(`/api/graph/${repoId}/callers-callees`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 165,
+"text": "return apiGet<ExecutionFlowsResponse>(`/api/graph/${repoId}/execution-flows`, params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/graph.ts",
+"line": 177,
+"text": "return apiGet<ZoomMap>(`/api/graph/${repoId}/zoom-map`, params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/health.ts",
+"line": 1,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/health.ts",
+"line": 5,
+"text": "return apiGet<HealthResponse>(\"/health\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/health.ts",
+"line": 23,
+"text": "return apiGet<CoordinatorHealth>(`/api/repos/${repoId}/health/coordinator`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/history.ts",
+"line": 5,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/history.ts",
+"line": 22,
+"text": "return apiGet<WinsResponse>(`/api/repos/${repoId}/wins`, opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/jobs.ts",
+"line": 1,
+"text": "import { apiGet, apiPost, BASE_URL } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/jobs.ts",
+"line": 10,
+"text": "return apiGet<JobResponse[]>(\"/api/jobs\", opts);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/jobs.ts",
+"line": 14,
+"text": "return apiGet<JobResponse>(`/api/jobs/${jobId}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/knowledge-map.ts",
+"line": 1,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/knowledge-map.ts",
+"line": 37,
+"text": "return apiGet<KnowledgeMapResponse>(`/api/repos/${repoId}/knowledge-map`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/mcp-tools.ts",
+"line": 1,
+"text": "import { apiGet, apiPatch } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/mcp-tools.ts",
+"line": 6,
+"text": "return apiGet<McpToolSurface>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/meta.ts",
+"line": 14,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/meta.ts",
+"line": 25,
+"text": "return apiGet<MetaVersion>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/meta.ts",
+"line": 34,
+"text": "return apiGet<ChangelogData>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/modules.ts",
+"line": 1,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/modules.ts",
+"line": 18,
+"text": "return apiGet<Paginated<ModuleHealthSummary>>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/modules.ts",
+"line": 28,
+"text": "return apiGet<ModuleHealthDetail>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/overview.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/overview.ts",
+"line": 6,
+"text": "return apiGet<OverviewSummaryResponse>(`/api/repos/${repoId}/overview-summary`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.test.ts",
+"line": 3,
+"text": "const apiGet = vi.fn();",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.test.ts",
+"line": 5,
+"text": "apiGet: (...args: unknown[]) => apiGet(...args),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.test.ts",
+"line": 12,
+"text": "apiGet.mockReset();",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.test.ts",
+"line": 16,
+"text": "apiGet",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.test.ts",
+"line": 33,
+"text": "expect(apiGet).toHaveBeenCalledTimes(2);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.ts",
+"line": 31,
+"text": "return apiGet<Paginated<OwnerListEntry>>(`/api/repos/${repoId}/owners`, rest);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.ts",
+"line": 53,
+"text": "return apiGet<OwnerProfileResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.ts",
+"line": 60,
+"text": "return apiGet<OwnersSummary>(`/api/repos/${repoId}/owners/summary`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/owners.ts",
+"line": 65,
+"text": "return apiGet<KnowledgeMatrix>(`/api/repos/${repoId}/owners/knowledge-matrix`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 4,
+"text": "const apiGet = vi.fn();",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 6,
+"text": "apiGet: (...args: unknown[]) => apiGet(...args),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 15,
+"text": "apiGet.mockReset();",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 19,
+"text": "apiGet.mockResolvedValue([]);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 21,
+"text": "expect(apiGet.mock.calls[0]![1]).toMatchObject({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 31,
+"text": "apiGet.mockResolvedValueOnce(batch).mockResolvedValueOnce([{ id: \"last\" }]);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 36,
+"text": "expect(apiGet.mock.calls).toHaveLength(2);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 37,
+"text": "for (const call of apiGet.mock.calls) {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 41,
+"text": "expect(apiGet.mock.calls.map((c) => (c[1] as { offset: number }).offset)).toEqual([",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 47,
+"text": "apiGet.mockResolvedValue([]);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.test.ts",
+"line": 49,
+"text": "expect(apiGet.mock.calls[0]![1]).toMatchObject({ limit: 500, fields: \"full\" });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.ts",
+"line": 1,
+"text": "import { apiGet, apiPatch, apiPost } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.ts",
+"line": 40,
+"text": "return apiGet<PageSummary[]>(\"/api/pages\", { repo_id: repoId, ...opts });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.ts",
+"line": 100,
+"text": "return apiGet<PageResponse>(\"/api/pages/lookup\", {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/pages.ts",
+"line": 111,
+"text": "return apiGet<PageVersionResponse[]>(\"/api/pages/lookup/versions\", {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/platform.ts",
+"line": 7,
+"text": "import { apiGet, apiPost } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/platform.ts",
+"line": 26,
+"text": "return apiGet<HostedIdentity>(\"/api/platform/identity\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 5,
+"text": "import { apiGet, apiPatch, apiPost, apiDelete } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 23,
+"text": "return apiGet<ProvidersResponse>(`/api/providers${qs ? `?${qs}` : \"\"}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 57,
+"text": "return apiGet<ProviderModels>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 7,
+"text": "import { apiGet, apiPatch, apiPost, apiPut } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 54,
+"text": "return apiGet<RefactoringTargets>(`/api/repos/${repoId}/refactoring/targets`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 66,
+"text": "return apiGet<RefactoringPlan>(`/api/repos/${repoId}/refactoring/${suggestionId}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 75,
+"text": "return apiGet<AgentPromptResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 94,
+"text": "return apiGet<RefactoringSettings>(`/api/repos/${repoId}/refactoring/settings`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 137,
+"text": "return apiGet<RefactoringOpportunityPage>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 169,
+"text": "return apiGet<RefactoringOpportunityDetail>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 186,
+"text": "return apiGet<AgentPromptResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/refactoring.ts",
+"line": 196,
+"text": "return apiGet<RefactoringSummaryResponse>(`/api/repos/${repoId}/refactoring/summary`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/repos.ts",
+"line": 2,
+"text": "import { apiGet, apiPost, apiPatch, apiDelete } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/repos.ts",
+"line": 15,
+"text": "return apiGet<RepoResponse[]>(\"/api/repos\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/repos.ts",
+"line": 22,
+"text": "return apiGet<ReposSummaryResponse>(\"/api/repos/summary\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/repos.ts",
+"line": 26,
+"text": "return apiGet<RepoResponse>(`/api/repos/${repoId}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/repos.ts",
+"line": 95,
+"text": "return apiGet<RepoStatsResponse>(`/api/repos/${repoId}/stats`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/risk.ts",
+"line": 7,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/risk.ts",
+"line": 73,
+"text": "return apiGet<RiskRangeResponse>(`/api/repos/${repoId}/risk/range`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/risk.ts",
+"line": 88,
+"text": "return apiGet<PatchCoverageResponse | null>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/search.ts",
+"line": 1,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/search.ts",
+"line": 20,
+"text": "return apiGet<SearchResultResponse[]>(\"/api/search\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/security.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/security.ts",
+"line": 9,
+"text": "return apiGet<SecuritySummary>(`/api/repos/${repoId}/security/summary`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/security.ts",
+"line": 20,
+"text": "return apiGet<SecurityFinding[]>(`/api/repos/${repoId}/security`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/setup.ts",
+"line": 13,
+"text": "import { apiDelete, apiGet, apiPatch, apiPost, apiPut } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/setup.ts",
+"line": 22,
+"text": "return apiGet<SetupResponse>(`/api/repos/${encodeURIComponent(repoId)}/setup`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/setup.ts",
+"line": 69,
+"text": "return apiGet<OnboardingState>(\"/api/setup/onboarding\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/stats.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/stats.ts",
+"line": 6,
+"text": "return apiGet<StatsHighlights>(`/api/repos/${repoId}/stats/highlights`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/symbols.ts",
+"line": 2,
+"text": "import { apiGet } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/symbols.ts",
+"line": 28,
+"text": "return apiGet<Paginated<SymbolResponse>>(\"/api/symbols\", p);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/symbols.ts",
+"line": 45,
+"text": "return apiGet<SymbolResponse[]>(`/api/symbols/by-name/${encodeURIComponent(name)}`, {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/symbols.ts",
+"line": 51,
+"text": "return apiGet<SymbolResponse>(`/api/symbols/${encodeURIComponent(symbolDbId)}`);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/symbols.ts",
+"line": 59,
+"text": "return apiGet<SymbolDetailResponse>(\"/api/symbols/detail\", {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 1,
+"text": "import { apiDelete, apiGet, apiPost } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 25,
+"text": "return apiGet<WorkspaceResponse>(\"/api/workspace\", undefined, fetchOptions);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 50,
+"text": "return apiGet<WorkspaceContractsResponse>(\"/api/workspace/contracts\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 64,
+"text": "return apiGet<WorkspaceContractDetail>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 80,
+"text": "return apiGet<WorkspaceCoChangesResponse>(\"/api/workspace/co-changes\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 90,
+"text": "return apiGet<WorkspaceCoChangeStructure>(\"/api/workspace/co-changes/structure\", pair);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 94,
+"text": "return apiGet<WorkspaceGraphResponse>(\"/api/workspace/graph\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 108,
+"text": "return apiGet<ExtractionDiagnostics>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 129,
+"text": "return apiGet<WorkspaceSystemGraphResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 159,
+"text": "return apiGet<WorkspaceLinksBetweenResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 179,
+"text": "return apiGet<WorkspaceBlastRadiusResponse>(\"/api/workspace/blast-radius\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 194,
+"text": "return apiGet<WorkspaceBreakingChangesResponse>(\"/api/workspace/breaking-changes\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 207,
+"text": "return apiGet<WorkspaceConformanceResponse>(\"/api/workspace/conformance\", params);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 211,
+"text": "return apiGet<WorkspaceArchitectureResponse>(\"/api/workspace/architecture\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 223,
+"text": "return apiGet<WorkspaceEstateResponse>(\"/api/workspace/estate\", undefined, fetchOptions);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/workspace.ts",
+"line": 263,
+"text": "return apiGet<WorkspaceTestImpactResponse>(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/wrappers.py",
+"line": 5,
+"text": "That cannot distinguish ``apiGet(\"/users\")`` (a real call) from ``apiGet`` reading",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/web/src/app/repos/[id]/files/[...path]/page.tsx",
+"line": 30,
+"text": "*  what this buys is the segment's default fetch cache: `apiGet` sets no",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 19,
+"text": "apiGet: vi.fn(),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 65,
+"text": "vi.mock(\"@repowise-dev/api-client\", () => ({ apiGet: mocks.apiGet }));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 168,
+"text": "mocks.apiGet.mockResolvedValue({});",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 185,
+"text": "expect(mocks.apiGet).not.toHaveBeenCalled();",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 216,
+"text": "expect(mocks.apiGet).toHaveBeenCalledTimes(1);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 217,
+"text": "expect(mocks.apiGet.mock.calls[0]![0]).toContain(\"/external-systems/npm%3Areact/graph\");",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 218,
+"text": "expect(mocks.apiGet.mock.calls[0]![0]).not.toContain(\"/api/graph/\");",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 226,
+"text": "const firstSignal = (mocks.apiGet.mock.calls[0]![2] as { signal: AbortSignal }).signal;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 247,
+"text": "expect(mocks.apiGet).toHaveBeenCalledWith(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.integration.test.tsx",
+"line": 266,
+"text": "const fileCall = mocks.apiGet.mock.calls.find(([path]) => String(path).includes(\"/graph/files\"));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.tsx",
+"line": 30,
+"text": "import { apiGet } from \"@repowise-dev/api-client\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.tsx",
+"line": 80,
+"text": "return apiGet<ExternalSystemsSummary>(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.tsx",
+"line": 143,
+"text": "return apiGet<ExternalSystemRelationshipGraph>(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/architecture/dependencies-view.tsx",
+"line": 171,
+"text": "return apiGet<ExternalSystemImportingFiles>(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 112,
+"text": "async function apiGet(path, params, fetchOptions) {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 148,
+"text": "return apiGet(`/api/repos/${repoId}/savings`, {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 155,
+"text": "return apiGet(\"/health\");",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 160,
+"text": "return apiGet(\"/api/repos\");",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 3320,
+"text": "return apiGet(`/api/repos/${repoId}/health/map`, {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 212,
+"text": "# both `fetchUser` and `apiGet`, so the name-guessing dialect emits contracts",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 221,
+"text": "export function apiGet(key: string) {",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 227,
+"text": "const b = apiGet(\"/things/all\");",
+"cls": "doc",
+"ext": ".py"
+}
+]

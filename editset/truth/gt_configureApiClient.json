@@ -1,0 +1,212 @@
+[
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 7,
+"text": "configureApiClient,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 34,
+"text": "configureApiClient({ baseUrl: \"\" });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 39,
+"text": "configureApiClient({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 77,
+"text": "configureApiClient({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 104,
+"text": "configureApiClient({ baseUrl: \"http://h\", fetch: createAdapterFetch(minimal) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 113,
+"text": "configureApiClient({ baseUrl: \"http://h\", fetch: createAdapterFetch(minimal) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 124,
+"text": "configureApiClient({ baseUrl: \"http://h\", fetch: createAdapterFetch(minimal) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 136,
+"text": "configureApiClient({ baseUrl: \"http://h\", fetch: createAdapterFetch(minimal) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/adapter-fetch.test.ts",
+"line": 143,
+"text": "configureApiClient({ baseUrl: \"http://h\", fetch: createAdapterFetch(minimal) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/client.ts",
+"line": 4,
+"text": "* `configureApiClient` once, before making requests, to supply them.",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/client.ts",
+"line": 23,
+"text": "export function configureApiClient(next: ApiClientConfig): void {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/client.ts",
+"line": 32,
+"text": "// Live binding: reflects whatever `configureApiClient` last set. Kept as a",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/client.ts",
+"line": 160,
+"text": "* Wraps a minimal HTTP primitive as a `fetch` for `configureApiClient`. Pure:",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.test.ts",
+"line": 3,
+"text": "import { ApiClientError, configureApiClient, createAdapterFetch } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.test.ts",
+"line": 8,
+"text": "configureApiClient({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/decisions.test.ts",
+"line": 19,
+"text": "afterEach(() => configureApiClient({ baseUrl: \"\" }));",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers-response.test.ts",
+"line": 3,
+"text": "import { configureApiClient } from \"./client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers-response.test.ts",
+"line": 8,
+"text": "configureApiClient({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers-response.test.ts",
+"line": 28,
+"text": "configureApiClient({",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/data/transport.ts",
+"line": 1,
+"text": "import { configureApiClient, createAdapterFetch } from \"@repowise-dev/api-client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/data/transport.ts",
+"line": 6,
+"text": "configureApiClient({ baseUrl, fetch: createAdapterFetch(host.http) });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/test/discovery.test.ts",
+"line": 2,
+"text": "import { configureApiClient } from \"@repowise-dev/api-client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/test/discovery.test.ts",
+"line": 16,
+"text": "afterEach(() => configureApiClient({ baseUrl: \"\" }));",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/vscode/src/core/api.ts",
+"line": 3,
+"text": "import { configureApiClient } from \"@repowise-dev/api-client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/vscode/src/core/api.ts",
+"line": 19,
+"text": "* `configureApiClient` is re-pointed on every change.",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/vscode/src/core/api.ts",
+"line": 77,
+"text": "configureApiClient({ baseUrl: baseUrl ?? \"\", fetch: guardedFetch });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/api/client.ts",
+"line": 18,
+"text": "import { configureApiClient } from \"@repowise-dev/api-client\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/api/client.ts",
+"line": 36,
+"text": "configureApiClient({ baseUrl: BASE_URL, token: getApiKey });",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 4,
+"text": "function configureApiClient(next) {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 189,
+"text": "configureApiClient({ baseUrl, fetch: createAdapterFetch(host.http) });",
+"cls": "code",
+"ext": ".js"
+}
+]

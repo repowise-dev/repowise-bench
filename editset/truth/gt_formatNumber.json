@@ -1,0 +1,5861 @@
+[
+{
+"path": "packages/claude-mod/src/format.ts",
+"line": 1,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/format.ts",
+"line": 5,
+"text": "return `${formatNumber(n)} ${n === 1 ? singular : plural}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 6,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 272,
+"text": "const largest = `${formatNumber(s.shown)} largest of ${countOf(s.repositoryTotal, \"file\", \"files\")}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 275,
+"text": "return [`${formatNumber(s.drawn)} of the ${formatNumber(s.shown)} largest (of ${countOf(s.repositoryTotal, \"file\", \"files\")}) drawn at this size`, SCOPE_REST];",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 282,
+"text": "return [`${formatNumber(s.drawn)} of ${countOf(s.repositoryTotal, \"file\", \"files\")} drawn at this size`, SCOPE_REST];",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 315,
+"text": "return `${countOf(total, \"importer\", \"importers\")}: ${[...shown, ...(more > 0 ? [`+${formatNumber(more)}`] : [])].join(\", \")}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 394,
+"text": "return `reply cut at ${formatNumber(chars)} characters`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 398,
+"text": "return `and ${formatNumber(more)} more`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 425,
+"text": "const all = touched.capped ? `${formatNumber(touched.count)}+` : formatNumber(touched.count);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 426,
+"text": "return `${formatNumber(edited)} edited of ${all} ${touched.count === 1 && !touched.capped ? \"file\" : \"files\"} touched`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 431,
+"text": "return `${formatNumber(resolved)} resolved \u00b7 ${countOf(total, \"new finding\", \"new findings\")}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 446,
+"text": "return `${formatNumber(titles.length)}: ${titles.join(\"; \")}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 551,
+"text": "const named = t.named > 0 ? `, ${formatNumber(t.named)} named by Repowise first` : \"\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 559,
+"text": "return `${countOf(total, \"direct importer\", \"direct importers\")}; Claude opened ${opened === 0 ? \"none\" : formatNumber(opened)}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 569,
+"text": "return `${countOf(total, \"test file\", \"test files\")} reach ${file} (${basis}); ${run === 0 ? \"none\" : formatNumber(run)} run`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 590,
+"text": "return `+${formatNumber(n)} more`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 608,
+"text": "return `Turn ${turn}${how}${took} \u00b7 ${countOf(t.repowise, \"Repowise call\", \"Repowise calls\")} \u00b7 ${countOf(t.reads, \"file read\", \"files read\")} \u00b7 ${formatNumber(t.edits)} edited`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 612,
+"text": "return `Earlier: ${countOf(t.turns, \"turn\", \"turns\")} \u00b7 ${countOf(t.repowise, \"Repowise call\", \"Repowise calls\")} \u00b7 ${countOf(t.reads, \"file read\", \"files read\")} \u00b7 ${formatNumber(t.edits)} edited`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/claude-mod/src/views/copy.ts",
+"line": 650,
+"text": "return f.of === undefined ? countOf(f.n, one, many) : `${formatNumber(f.n)} of ${countOf(f.of, one, many)}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 49,
+"text": "link(\"src/app.ts\", \"src/util/format.ts\", [\"formatNumber\", \"truncatePath\"]),",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 51,
+"text": "link(\"src/util/parse.ts\", \"src/util/format.ts\", [\"formatNumber\"]),",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 85,
+"text": "expect(format.names).toEqual([\"formatNumber\", \"truncatePath\"]);",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 139,
+"text": "expect(screen.getByText(\"formatNumber, truncatePath\")).toBeTruthy();",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 155,
+"text": "expect(screen.queryByText(\"formatNumber, truncatePath\")).toBeNull();",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 157,
+"text": "expect(screen.queryByText(\"formatNumber, truncatePath\")).not.toBeNull();",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/graph/code-graph-tree.test.tsx",
+"line": 159,
+"text": "expect(screen.queryByText(\"formatNumber, truncatePath\")).toBeNull();",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 159,
+"text": "{formatNumber(g.files.length)} {g.files.length === 1 ? \"file\" : \"files\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 163,
+"text": "{often > 0 && `, ${formatNumber(often)} changed often`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 186,
+"text": "{all ? \"Show fewer\" : `+${formatNumber(g.files.length - PER_MODULE)} more`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 251,
+"text": "Showing {focus.label}: <span className=\"tabular-nums\">{formatNumber(focus.paths.size)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/affected-files.tsx",
+"line": 258,
+"text": "aria-label={`Clear the filter and show all ${formatNumber(reach.files.length)} files`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 43,
+"text": "const poor = b.poor ? `, ${formatNumber(b.poor)} with poor health` : \"\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 44,
+"text": "const what = `${b.label}, ${where}: ${formatNumber(b.files)} ${b.files === 1 ? \"file\" : \"files\"}${poor}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 232,
+"text": "const suffix = `${formatNumber(b.files)}${b.poor ? ` \u00b7 ${formatNumber(b.poor)} poor` : \"\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 300,
+"text": "{formatNumber(b.files)} {b.files === 1 ? \"file\" : \"files\"} {b.column === 0 ? \"changed\" : `${stepWords(b.column)} away`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 301,
+"text": "{b.poor > 0 && <span className=\"text-[var(--color-error)]\"> \u00b7 {formatNumber(b.poor)} poor health</span>}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 336,
+"text": "parts.push(`${formatNumber(map.testsNotDrawn)} test ${map.testsNotDrawn === 1 ? \"file\" : \"files\"} that import the change`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 338,
+"text": "parts.push(`${formatNumber(map.changedTestsNotDrawn)} changed test ${map.changedTestsNotDrawn === 1 ? \"file\" : \"files\"}`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 382,
+"text": "{c.title} <span className=\"tabular-nums text-[var(--color-text-tertiary)]\">{formatNumber(c.files)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 417,
+"text": "{formatNumber(b.files)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 418,
+"text": "{b.poor > 0 && <span className=\"text-[var(--color-error)]\"> \u00b7 {formatNumber(b.poor)} poor</span>}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 445,
+"text": "aria-label={`What depends on the change, by step: ${formatNumber(map.columns[0]!.files)} changed source files reach ${formatNumber(reached)} source files. Arrow keys move between folders; Enter shows ",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 451,
+"text": "{formatNumber(c.files)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-steps.tsx",
+"line": 469,
+"text": "<title>{`${formatNumber(b.files)} ${b.files === 1 ? \"file\" : \"files\"} reached through this link. Show them in the list`}</title>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 23,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 182,
+"text": "{all ? \"Show fewer\" : `Show all ${formatNumber(tests.length)}`}",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 243,
+"text": "? ofChanged.map((o) => ({ email: o.email, name: ownerName(o), why: `owns ${formatNumber(o.files)} of the ${count(changed, \"changed file\")}` }))",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 261,
+"text": "{people.length === 1 ? \"That is\" : \"Together,\"} {formatNumber(owned)} of the {count(changed, \"changed file\")}; the",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 376,
+"text": "<Stat figure={formatNumber(total)} label={`${total === 1 ? \"file\" : \"files\"} changed${total > analyzed ? ` (first ${formatNumber(analyzed)} analyzed)` : \"\"}`} />",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 380,
+"text": "<Stat figure={roughCount(files)} label={`source ${files === 1 ? \"file depends\" : \"files depend\"} on it, ${formatNumber(reach.direct)} directly`} />",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 382,
+"text": "<Stat figure={formatNumber(testsTotal)} label={testsTotal === 1 ? \"test to run\" : \"tests to run\"} />",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-verdict.tsx",
+"line": 485,
+"text": "<Block title=\"Run these tests\" hint={testsTotal > 0 ? formatNumber(testsTotal) : undefined}>",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/change-picker.tsx",
+"line": 9,
+"text": "import { formatNumber, formatRelativeTimeOrNull } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/change-picker.tsx",
+"line": 31,
+"text": "return `${formatNumber(n)} ${word}${n === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/impact-view.tsx",
+"line": 54,
+"text": "import { disambiguateBasenames, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/impact-view.tsx",
+"line": 228,
+"text": "<span className=\"text-xs font-normal tabular-nums text-[var(--color-text-tertiary)]\">{formatNumber(total)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/impact-view.tsx",
+"line": 333,
+"text": "<Section title=\"Files that depend on this\" hint={formatNumber(reach.files.length)}>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/review-details.tsx",
+"line": 8,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/review-details.tsx",
+"line": 39,
+"text": "<CollapsibleSection title=\"Changed files with no test\" hint={formatNumber(changed.length)}>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/review-details.tsx",
+"line": 46,
+"text": "hint={`${formatNumber(partners)} ${partners === 1 ? \"file\" : \"files\"}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/review-status.ts",
+"line": 13,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/blast-radius/review-status.ts",
+"line": 32,
+"text": "return `${formatNumber(n)} ${n === 1 ? word : plural}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/blast-radius/review-status.ts",
+"line": 37,
+"text": "return n < 1000 ? formatNumber(n) : `${formatNumber(Math.floor(n / 1000) * 1000)}+`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/c4/panels/ProjectOverview.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/c4/panels/ProjectOverview.tsx",
+"line": 211,
+"text": "detail: formatNumber(complexityCounts[k]),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/cards/evidence-card.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/cards/evidence-card.tsx",
+"line": 146,
+"text": "{typeof fact.value === \"number\" ? formatNumber(fact.value) : fact.value}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 41,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 95,
+"text": "<StatRow label=\"Files\" value={formatNumber(data.total_files)} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 96,
+"text": "<StatRow label=\"Symbols\" value={formatNumber(data.total_symbols)} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 97,
+"text": "<StatRow label=\"Hotspots\" value={formatNumber(data.hotspot_count)} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 109,
+"text": "value={typeof count === \"number\" ? formatNumber(count) : String(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 790,
+"text": "<StatRow label=\"Active\" value={formatNumber(Number(active))} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 793,
+"text": "value={formatNumber(Number(counts.stale ?? stale.length))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 797,
+"text": "value={formatNumber(Number(counts.proposed ?? proposed.length))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 801,
+"text": "value={formatNumber(hotspots.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 812,
+"text": "value={typeof count === \"number\" ? formatNumber(count) : String(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 934,
+"text": "value={formatNumber(data.summary.total_findings)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 938,
+"text": "value={formatNumber(data.summary.deletable_lines)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/chat/artifacts.tsx",
+"line": 955,
+"text": "{tier.findings.length} of {formatNumber(tier.count)} shown",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-distribution.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-distribution.tsx",
+"line": 57,
+"text": "The {formatNumber(recent.length)} most recent commits, on their own",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-risk-scatter.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-risk-scatter.tsx",
+"line": 136,
+"text": "{formatNumber(Math.pow(10, d))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-risk-scatter.tsx",
+"line": 208,
+"text": "{formatNumber(hovered.churn)} lines \u00b7{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 11,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 36,
+"text": "{ value: \"all\", label: \"All\", count: counts && formatNumber(counts.all) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 37,
+"text": "{ value: \"high\", label: \"High priority\", count: counts && formatNumber(counts.high) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 38,
+"text": "{ value: \"fixes\", label: \"Fixes\", count: counts && formatNumber(counts.fixes) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 46,
+"text": "value: formatNumber(stats.fix_commit_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 59,
+"text": "value: formatNumber(stats.agent_commit_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 102,
+"text": "value={formatNumber(stats.high_priority_count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 103,
+"text": "unit={`of ${formatNumber(total)} scored`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 107,
+"text": "{formatNumber(stats.high_priority_count)} commits",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 110,
+"text": "{formatNumber(total)} scored. The cut is drawn against this",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/history-filters.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/history-filters.tsx",
+"line": 112,
+"text": "return n == null ? undefined : formatNumber(n);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 33,
+"text": "`Nothing made health worse. ${formatNumber(r.better)} commit${s(r.better)} made it better, resolving ${formatNumber(r.findingsBetter)} finding${s(r.findingsBetter)}.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 35,
+"text": "`${formatNumber(r.worse)} made it worse, ${formatNumber(r.both)} of them while also making something better. ${formatNumber(r.neutral)} had no health impact.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 37,
+"text": "`None of the ${formatNumber(r.analysed)} analysed commit${s(r.analysed)} changed a health finding.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 38,
+"text": "catchingUpUnit: (r) => `of ${formatNumber(r.total)} commit${s(r.total)} analysed so far`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 42,
+"text": "unscanned: (r) => `${formatNumber(r.unscanned)} not yet analysed.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 66,
+"text": "<PageLede label={period} value={formatNumber(r.analysed)} unit={c.catchingUpUnit(r)} action={action}>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-health-headline.tsx",
+"line": 74,
+"text": "value={formatNumber(r.better)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 70,
+"text": "const plural = (n: number, one: string, many = `${one}s`) => `${formatNumber(n)} ${n === 1 ? one : many}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 77,
+"text": "`Health moved the right way: ${plural(r.health.findingsBetter, \"finding\")} resolved or improved, ${formatNumber(r.health.findingsWorse)} added or worsened.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 79,
+"text": "`Health slipped: ${plural(r.health.findingsWorse, \"finding\")} added or worsened, ${formatNumber(r.health.findingsBetter)} resolved or improved.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 86,
+"text": "`Health counts cover the ${formatNumber(r.health.analysed)} of ${formatNumber(r.total)} commits the current analyzer has read; the rest fill in as updates run.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/period-lede.tsx",
+"line": 131,
+"text": "<PageLede label={period} value={formatNumber(r.total)} unit={c.unit(r)}>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 38,
+"text": "findingsUnit: (commits) => `across ${formatNumber(commits)} commit${s(commits)}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 52,
+"text": "w.findings_resolved.count > 0 && `${formatNumber(w.findings_resolved.count)} resolved`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 53,
+"text": "w.files_improved.count > 0 && `${formatNumber(w.files_improved.count)} healthier`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 54,
+"text": "w.refactorings_landed.count > 0 && `${formatNumber(w.refactorings_landed.count)} refactored`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/recent-wins.tsx",
+"line": 103,
+"text": ".map(({ count, ...s }) => ({ ...s, value: formatNumber(count), good: true }));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/risk-driver-breakdown.tsx",
+"line": 2,
+"text": "import { formatLOC, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/risk-driver-breakdown.tsx",
+"line": 34,
+"text": "return `${formatNumber(n)} ${n === 1 ? \"file\" : \"files\"} touched`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/risk-driver-breakdown.tsx",
+"line": 36,
+"text": "return `${formatNumber(n)} ${n === 1 ? \"directory\" : \"directories\"} touched`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/risk-driver-breakdown.tsx",
+"line": 38,
+"text": "return `${formatNumber(n)} ${n === 1 ? \"subsystem\" : \"subsystems\"} touched`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/risk-driver-breakdown.tsx",
+"line": 47,
+"text": ": `author had ${formatNumber(n)} prior ${n === 1 ? \"commit\" : \"commits\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/operation-breakdown.tsx",
+"line": 5,
+"text": "import { formatCost, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/operation-breakdown.tsx",
+"line": 76,
+"text": ": [formatNumber(n), metric.replace(\"_\", \" \")];",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/provider-comparison.tsx",
+"line": 4,
+"text": "import { formatCost, formatNumber, formatTokens } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/provider-comparison.tsx",
+"line": 89,
+"text": "<span>{formatNumber(r.calls)} calls</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/savings-card.tsx",
+"line": 6,
+"text": "import { formatCost, formatNumber, formatTokens } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/savings-card.tsx",
+"line": 215,
+"text": "{formatNumber(data.unique_events)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/savings-card.tsx",
+"line": 223,
+"text": "{formatNumber(data.mcp_queries_answered)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/savings-card.tsx",
+"line": 277,
+"text": "\u2014 {formatNumber(data.missed_events ?? 0)} raw command",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/costs/savings-card.tsx",
+"line": 299,
+"text": "\u2014 {formatNumber(data.reread_events ?? 0)} full re-read",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/area-copy.ts",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/coupling/area-copy.ts",
+"line": 8,
+"text": "const fmt = (n: number) => formatNumber(n);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/coupling/area-pair-list.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/area-pair-list.tsx",
+"line": 105,
+"text": "value={formatNumber(hidden)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-explorer.tsx",
+"line": 13,
+"text": "import { formatNumber, truncatePath } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-explorer.tsx",
+"line": 285,
+"text": "<strong className=\"font-medium\">{formatNumber(data.coupled_files)}</strong> of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-explorer.tsx",
+"line": 286,
+"text": "<strong className=\"font-medium\">{formatNumber(data.total_files)}</strong> files",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-explorer.tsx",
+"line": 350,
+"text": "<strong className=\"font-medium\">{formatNumber(data.total_edges)}</strong>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-explorer.tsx",
+"line": 355,
+"text": "All <strong className=\"font-medium\">{formatNumber(edges.length)}</strong>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 9,
+"text": "import { disambiguateBasenames, formatDate, formatDateTime, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 210,
+"text": "description={`No files change together often enough to flag, across ${formatNumber(historyFiles)} files with commit history.`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/active-job-banner.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/active-job-banner.tsx",
+"line": 43,
+"text": "pagesFailed: (count) => `${formatNumber(count)} pages not written`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/active-job-banner.tsx",
+"line": 106,
+"text": "{isRunning && job.total_pages > 0 && `${formatNumber(job.completed_pages)}/${formatNumber(job.total_pages)}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/active-job-banner.tsx",
+"line": 109,
+"text": "{formatNumber(job.completed_pages)} pages",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/active-job-banner.tsx",
+"line": 111,
+"text": "<> \u00b7 {formatNumber(job.config.total_input_tokens as number)} tokens</>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/attention-panel.tsx",
+"line": 18,
+"text": "import { formatNumber, stripMarkdown } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/attention-panel.tsx",
+"line": 217,
+"text": "{formatNumber(proposed.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/health-overview-card.tsx",
+"line": 20,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/health-overview-card.tsx",
+"line": 143,
+"text": "detail: formatNumber(s.count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/health-overview-card.tsx",
+"line": 148,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/health-overview-card.tsx",
+"line": 481,
+"text": "{formatNumber(now)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/health-overview-card.tsx",
+"line": 487,
+"text": "{openOnly == null && <>\u00b7 {formatNumber(production)} in production </>}\u00b7 {formatScore(score)}/10",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/hotspots-mini.tsx",
+"line": 7,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/hotspots-mini.tsx",
+"line": 66,
+"text": "{top.length} of {formatNumber(fullCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/module-overview-grid.tsx",
+"line": 7,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/module-overview-grid.tsx",
+"line": 83,
+"text": "<span>{formatNumber(m.file_count)} files</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/module-overview-grid.tsx",
+"line": 84,
+"text": "<span>{formatNumber(m.symbol_count)} sym</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/module-overview-grid.tsx",
+"line": 104,
+"text": "{formatNumber(m.depCount)} deps",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/quick-actions.tsx",
+"line": 15,
+"text": "import { formatNumber, formatCost } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/quick-actions.tsx",
+"line": 208,
+"text": "{formatNumber(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/quick-actions.tsx",
+"line": 218,
+"text": "{formatNumber(estimate.inputTokens + estimate.outputTokens)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-lede.tsx",
+"line": 16,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-lede.tsx",
+"line": 50,
+"text": "return `${formatNumber(n)} ${word}${n === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-lede.tsx",
+"line": 67,
+"text": "moreFlagged: (count) => `${formatNumber(count)} more ${isAre(count)} flagged for review.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-lede.tsx",
+"line": 121,
+"text": "value={formatNumber(byCount ? ready : Math.max(summary.deletable_lines, 0))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 47,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 342,
+"text": "? `${reviewTruncated ? \"The first \" : \"\"}${formatNumber(tableFindings.length)} ${DEAD_CODE_STATUS_LABELS[statusFilter].toLowerCase()} finding${tableFindings.length === 1 ? \"\" : \"s\"}. Reopen one to put",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 344,
+"text": "? `Showing the first ${formatNumber(openCount)} of ${formatNumber(summary.total_findings)} open findings. Every action can be undone for six seconds.`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 17,
+"text": "import { formatDateTime, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 385,
+"text": "{f.lines == null ? \"\u2014\" : formatNumber(f.lines)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 519,
+"text": "{formatNumber(byKind[t.value]?.length ?? 0)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 553,
+"text": "title={`${formatNumber(hiddenInTab)} finding${hiddenInTab === 1 ? \"\" : \"s\"} hidden by the current filters`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/safe-to-delete-pile.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/safe-to-delete-pile.tsx",
+"line": 82,
+"text": "description={`${formatNumber(findings.length)} high-confidence finding${findings.length === 1 ? \"\" : \"s\"} in ${formatNumber(files)} file${files === 1 ? \"\" : \"s\"}, with no runtime-load risk. Read the d",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/safe-to-delete-pile.tsx",
+"line": 117,
+"text": "({formatNumber(g.finding_count)} findings)",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/safe-to-delete-pile.tsx",
+"line": 122,
+"text": "{formatNumber(g.lines)} lines",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/safe-to-delete-pile.tsx",
+"line": 133,
+"text": "{formatNumber(moreFiles)} more file{moreFiles === 1 ? \"\" : \"s\"} in the",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decision-capture-settings.tsx",
+"line": 11,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decision-capture-settings.tsx",
+"line": 310,
+"text": "{formatNumber(value)}",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 25,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 57,
+"text": "value: formatNumber(summary.findings_total),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 59,
+"text": "? { sub: `${formatNumber(shownCount)} on this page` }",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 65,
+"text": "value: formatNumber(summary.documents),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 71,
+"text": "value: formatNumber(high),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 78,
+"text": "value: formatNumber(medium + low),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 88,
+"text": "value={formatNumber(summary.findings_total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 110,
+"text": "{formatNumber(summary.findings_total)}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 115,
+"text": "{formatNumber(summary.documents)}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 126,
+"text": "`${formatNumber(count)} ${docDriftKindLabel(kind).toLowerCase()}${count === 1 ? \"\" : \"s\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 135,
+"text": "{formatNumber(summary.new_since_last_update)} appeared in the last",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-lede.tsx",
+"line": 178,
+"text": "].map((s) => ({ ...s, detail: formatNumber(s.value) }))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 27,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 109,
+"text": "pageCount: (n) => `${formatNumber(n)} ${n === 1 ? \"page\" : \"pages\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 111,
+"text": "stale: (n) => `${formatNumber(n)} stale`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 112,
+"text": "outdated: (n) => `${formatNumber(n)} outdated`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 113,
+"text": "unwritten: (n) => `${formatNumber(n)} not written`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 116,
+"text": "showMore: (next, remaining) => `Show ${formatNumber(next)} more (${formatNumber(remaining)} left)`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 119,
+"text": "walkthroughs: (n) => `Walkthroughs (${formatNumber(n)})`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 120,
+"text": "supportingPackages: (n) => `Supporting packages (${formatNumber(n)})`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 124,
+"text": "`${formatNumber(files)} ${files === 1 ? \"file\" : \"files\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 125,
+"text": "`${formatNumber(symbols)} ${symbols === 1 ? \"symbol\" : \"symbols\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 126,
+"text": "...(other > 0 ? [`${formatNumber(other)} other`] : []),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/docs/docs-tree.tsx",
+"line": 615,
+"text": "return { name, path: key, isDir: true, children, meta: formatNumber(pages.length) };",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-coverage-tab.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-coverage-tab.tsx",
+"line": 105,
+"text": "{formatNumber(coveredCount)} of {formatNumber(coverage.total_coverable_lines)}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-coverage-tab.tsx",
+"line": 108,
+"text": ", leaving <Fig>{formatNumber(uncovered)}</Fig> that no test executed",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 27,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 162,
+"text": "pillars.push({ label: \"Max CCN\", value: formatNumber(metric.max_ccn) });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 163,
+"text": "pillars.push({ label: \"Max nesting\", value: formatNumber(metric.max_nesting) });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 220,
+"text": "<Fig>{formatNumber(findings.length)}</Fig> open{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 12,
+"text": "formatNumber,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 72,
+"text": "value: formatNumber(commits),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 75,
+"text": "{ label: \"Last 90 days\", value: formatNumber(git.commit_count_90d) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 76,
+"text": "{ label: \"Contributors\", value: formatNumber(git.contributor_count) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 77,
+"text": "{ label: \"Bus factor\", value: formatNumber(git.bus_factor) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 168,
+"text": "<Fig>{formatNumber(agent.agent_commit_count)}</Fig>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 9,
+"text": "import { formatLOC, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 164,
+"text": "{findings === 1 ? \"One open finding deducts\" : `${formatNumber(findings)} open findings deduct`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 180,
+"text": "{commits > 0 && `, across ${formatNumber(commits)} commit${commits === 1 ? \"\" : \"s\"}`}.",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 201,
+"text": "if (symbols > 0) stats.push({ label: \"Symbols\", value: formatNumber(symbols) });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 203,
+"text": "stats.push({ label: \"Depended on by\", value: formatNumber(data.graph.in_degree) });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-page-header.tsx",
+"line": 204,
+"text": "stats.push({ label: \"Depends on\", value: formatNumber(data.graph.out_degree) });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/files-index.tsx",
+"line": 8,
+"text": "import { formatLOC, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/files-index.tsx",
+"line": 201,
+"text": "<Fig>{formatNumber(kpis.total)}</Fig> files across <Fig>{formatLOC(kpis.loc)}</Fig>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/files-index.tsx",
+"line": 206,
+"text": "<Fig>{kpis.goodPct}%</Fig> of the <Fig>{formatNumber(kpis.scored)}</Fig>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/files-index.tsx",
+"line": 254,
+"text": "<Fig>{formatNumber(tableFiles.length)}</Fig>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/agent-tier-bar.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/agent-tier-bar.tsx",
+"line": 41,
+"text": "detail: formatNumber(count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-toolbar.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-toolbar.tsx",
+"line": 120,
+"text": "? formatNumber(c.count)",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-toolbar.tsx",
+"line": 121,
+"text": ": `${formatNumber(c.count)} of ${formatNumber(facets.total)}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/risk-distribution-chart.tsx",
+"line": 16,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/risk-distribution-chart.tsx",
+"line": 68,
+"text": "Showing top {data.length} of {formatNumber(hotspots.length)} by triage index",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 32,
+"text": "import { formatNumber, truncatePath } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 458,
+"text": "{formatNumber(item.fileCount)} {item.fileCount === 1 ? \"file\" : \"files\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 576,
+"text": "{formatNumber(totalFiles)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 580,
+"text": "{formatNumber(directoryIds.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-inspection-panel.tsx",
+"line": 24,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-inspection-panel.tsx",
+"line": 419,
+"text": "{formatNumber(data.symbolCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-inspection-panel.tsx",
+"line": 504,
+"text": "{formatNumber(data.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-inspection-panel.tsx",
+"line": 511,
+"text": "{formatNumber(data.symbolCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 101,
+"text": "overviewFiles: (count) => `${formatNumber(count)} files`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 102,
+"text": "overviewThirdParty: (count) => `${formatNumber(count)} third-party`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 103,
+"text": "overviewDependencies: (count) => `${formatNumber(count)} dependencies`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 106,
+"text": "thirdPartyHidden: (count) => `${formatNumber(count)} third-party modules hidden`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 111,
+"text": "unlinkedNotDrawn: (count) => `${formatNumber(count)} unlinked files not drawn`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-legend.tsx",
+"line": 114,
+"text": "weakerLinksNotDrawn: (count) => `${formatNumber(count)} weaker community links not drawn`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-population-control.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-population-control.tsx",
+"line": 29,
+"text": "allCounted: (total) => `All ${formatNumber(total)} files`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-population-control.tsx",
+"line": 30,
+"text": "someCounted: (visible, total) => `${formatNumber(visible)} of ${formatNumber(total)} files`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-population-control.tsx",
+"line": 111,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 149,
+"text": "{g.id} \u00b7 {formatNumber(g.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 156,
+"text": "{g.id} \u00b7 {formatNumber(g.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 281,
+"text": "{c.label} \u00b7 {formatNumber(c.member_count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 290,
+"text": "{g.id} \u00b7 {formatNumber(g.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-scope-controls.tsx",
+"line": 299,
+"text": "{g.id} \u00b7 {formatNumber(g.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-truncation-banner.tsx",
+"line": 19,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-truncation-banner.tsx",
+"line": 100,
+"text": "{formatNumber(shown)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-truncation-banner.tsx",
+"line": 103,
+"text": "{formatNumber(total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-truncation-banner.tsx",
+"line": 119,
+"text": "{c.loadMore(formatNumber(Math.min(LOAD_MORE_STEP, nextLimit - limit)))}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/sigma/use-elk-sigma-layout.ts",
+"line": 12,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/graph/sigma/use-elk-sigma-layout.ts",
+"line": 29,
+"text": "return `Hierarchical layout needs ${ELK_MAX_NODES} nodes or fewer \u2014 this view has ${formatNumber(order)}.`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompt-action.tsx",
+"line": 8,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/ai-prompt-action.tsx",
+"line": 26,
+"text": "return count === 1 ? \"Copy prompt for this one\" : `Copy prompt for these ${formatNumber(count)}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/ai-prompt-modal.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/ai-prompt-modal.tsx",
+"line": 265,
+"text": "{formatNumber(prompt.length)} chars, approx{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/ai-prompt-modal.tsx",
+"line": 266,
+"text": "{formatNumber(Math.round(prompt.length / 4))} tokens",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/blast-radius-prompt.ts",
+"line": 2,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/blast-radius-prompt.ts",
+"line": 120,
+"text": "`Reach: ${formatNumber(i.reach.files)} source file${pluralS(i.reach.files)} in ${i.reach.modules} module${pluralS(i.reach.modules)} import it within the analyzed depth, ${i.reach.direct} directly${",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/blast-radius-prompt.ts",
+"line": 121,
+"text": "i.reach.tests ? `; ${formatNumber(i.reach.tests)} test file${pluralS(i.reach.tests)} also import it (tests to run, not reach)` : \"\"",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/dead-code-prompt.ts",
+"line": 12,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/dead-code-prompt.ts",
+"line": 102,
+"text": "`Estimated reclaimable lines: **${formatNumber(reclaimableLines(findings))}**`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/area-rail/area-sections.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/area-rail/area-sections.tsx",
+"line": 97,
+"text": "{formatNumber(a.fileCount)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/area-rail/labels.ts",
+"line": 2,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/area-rail/labels.ts",
+"line": 63,
+"text": "const s = (n: number, one: string, many: string) => `${formatNumber(n)} ${n === 1 ? one : many}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/area-rail/labels.ts",
+"line": 82,
+"text": "promptAction: (n) => (n === 1 ? \"Copy prompt for the top finding\" : `Copy prompt for the top ${formatNumber(n)} findings`),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/area-rail/labels.ts",
+"line": 94,
+"text": "hotspots: (n) => `Hotspots \u00b7 ${formatNumber(n)}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/code-health-controls.tsx",
+"line": 8,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-controls.tsx",
+"line": 143,
+"text": "<span>{formatNumber(file.nloc)} NLOC</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 34,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 69,
+"text": "? ` Of ${formatNumber(causes.production)} open in production code, ` +",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 70,
+"text": "`${formatNumber(causes.all)} overall.`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 138,
+"text": "{formatNumber(count)} more {one ? \"file is\" : \"files are\"} in a language health does not",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 198,
+"text": "? `${formatNumber(summary.file_count)} of ${formatNumber(summary.file_count + unanalysed)} code files`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 199,
+"text": ": `${formatNumber(summary.file_count)} files`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 202,
+"text": "{ label: \"Files\", value: formatNumber(summary.file_count), hint: FILES_HINT },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 216,
+"text": "value: perf == null ? \"\" : formatNumber(perfOpen),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 221,
+"text": "value: perf == null ? \"\" : formatNumber(perfCauses?.now ?? 0),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-lede.tsx",
+"line": 273,
+"text": "{formatNumber(unscored)} files are not scored here, having",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-map.tsx",
+"line": 45,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-map.tsx",
+"line": 336,
+"text": "{`${root ? formatNumber(root.fileCount) : formatNumber(fieldFiles.length)} files in ${Math.max(index.areas.size - 1, 0)} folders, each folder a disc sized by lines of code. The list beside the map rea",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-map.tsx",
+"line": 407,
+"text": "return a ? `${displayLabel(index, item.path, rootLabel)}, ${formatNumber(a.fileCount)} files` : \"\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 27,
+"text": "import { formatDate, formatDateTime, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 88,
+"text": "{formatNumber(summary.covered_lines)} of {formatNumber(summary.total_lines)}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 91,
+"text": "across {formatNumber(summary.file_count)} instrumented files",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 92,
+"text": "{moduleCount > 0 ? ` in ${formatNumber(moduleCount)} directories` : \"\"}.",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 101,
+"text": "{formatNumber(uncovered)} lines",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 160,
+"text": "value: formatNumber(summary.file_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 161,
+"text": "...(moduleCount > 0 ? { sub: `across ${formatNumber(moduleCount)} directories` } : {}),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 165,
+"text": "value: formatNumber(uncovered),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 166,
+"text": "sub: `of ${formatNumber(summary.total_lines)} coverable`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 35,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 463,
+"text": "`No untested hotspots across ${formatNumber(summary.file_count)} measured files`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 545,
+"text": "Showing {formatNumber(files.length)} of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 546,
+"text": "{formatNumber(summary.file_count)} instrumented files, capped so one",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 589,
+"text": "? `Your coverage report named ${formatNumber(measured)} files. The dependency graph answers for the other ${formatNumber(map.files_total)}: ${formatNumber(map.files_reached)} are reached by a test, an",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 598,
+"text": "{formatNumber(paths.matched)} of {formatNumber(paths.total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 603,
+"text": "; {formatNumber(missed)} did not",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-drawer/issues.tsx",
+"line": 43,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-drawer/issues.tsx",
+"line": 255,
+"text": "const count = formatNumber(rest.length);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-drawer/issues.tsx",
+"line": 263,
+"text": "<span className=\"tabular-nums\">{formatNumber(heldBackTotal)}</span> more{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-drawer/performance-causes.tsx",
+"line": 7,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-drawer/performance-causes.tsx",
+"line": 50,
+"text": "<span className=\"tabular-nums\">{formatNumber(page.total)}</span> open cause",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 56,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 407,
+"text": "{formatNumber(total)} {total === 1 ? \"file\" : \"files\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 409,
+"text": "? ` \u00b7 ${formatNumber(findingTotal)} ${",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 414,
+"text": "? ` \u00b7 ${formatNumber(historyHidden)} ${",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 613,
+"text": "description={`Health was scored${overview.summary.file_count ? ` across ${formatNumber(overview.summary.file_count)} files` : \"\"} and none carries an open finding. New work appears here after the next",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 690,
+"text": "Showing {formatNumber(shownFrom)}\u2013{formatNumber(shownTo)} of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 691,
+"text": "{formatNumber(total)} files",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 19,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 102,
+"text": "<span className=\"tabular-nums\">{formatNumber(excludedTotal)}</span> excluded",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/scope.ts",
+"line": 14,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/fix-first/scope.ts",
+"line": 98,
+"text": "const head = `${formatNumber(shown)} of ${formatNumber(eligible)} eligible item${",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/fix-first/scope.ts",
+"line": 102,
+"text": "? `${head} Dormant: ${formatNumber(dormant)} function${",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/fix-first/scope.ts",
+"line": 123,
+"text": "text: `${formatNumber(counts[key] ?? 0)} ${EXCLUSION_LABEL[key]}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/health-distribution-bar.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/health-distribution-bar.tsx",
+"line": 54,
+"text": "detail: `${share(b)}% \u00b7 ${formatNumber(files(b))} ${files(b) === 1 ? \"file\" : \"files\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/impact-effort-quadrant.tsx",
+"line": 14,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/impact-effort-quadrant.tsx",
+"line": 88,
+"text": "return formatNumber(n);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 44,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 70,
+"text": "{formatNumber(count)} {one ? \"is\" : \"are\"} generated, vendored, build, tooling,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 183,
+"text": "value={formatNumber(atRisk)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 192,
+"text": "{formatNumber(map.test_file_count)} test files reach{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 194,
+"text": "{formatNumber(map.files_reached)} of {formatNumber(map.files_total)} files",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 197,
+"text": "{formatNumber(map.files_not_reached)}.",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 247,
+"text": "Ranked over {formatNumber(map.files.length)} of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/inferred-tests-view.tsx",
+"line": 248,
+"text": "{formatNumber(map.files_total)} files, capped so one tab does not pull",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/canvas-labels.ts",
+"line": 6,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/map/canvas-labels.ts",
+"line": 37,
+"text": "const n = (v: number) => formatNumber(v);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/map/inspector.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/inspector.tsx",
+"line": 33,
+"text": "return `. ${formatNumber(omitted)} more carry causes worth fixing now outside the drawn field.`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/inspector.tsx",
+"line": 156,
+"text": "<span className=\"tabular-nums\">{formatNumber(ranked.length)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/overlay.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/overlay.tsx",
+"line": 160,
+"text": "{formatNumber(file.nloc)} NLOC",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 53,
+"text": "if (causes == null) return `${formatNumber(scope.omitted.files)} not drawn`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 55,
+"text": "return `${formatNumber(causes)} ${plural(causes, \"file\", \"files\")} with causes worth fixing now not drawn`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 74,
+"text": ": `Include ${formatNumber(held)} vendored and generated ${plural(held, \"file\", \"files\")}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 98,
+"text": "<span className=\"tabular-nums\">{formatNumber(matches)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 100,
+"text": "? ` of ${formatNumber(pinned.matches)} ${plural(pinned.matches, \"match\", \"matches\")} drawn`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 140,
+"text": "{formatNumber(scope.shown)} of {formatNumber(scope.eligible)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 147,
+"text": "Draw {formatNumber(more)} more",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 234,
+"text": "<span className=\"font-mono tabular-nums\">{formatNumber(total)}</span> files in folders \u00b7",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 240,
+"text": "{formatNumber(loaded)} of {formatNumber(total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/map/scope-note.tsx",
+"line": 247,
+"text": "<span className=\"tabular-nums\">{formatNumber(matches)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/module-coverage-list.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/module-coverage-list.tsx",
+"line": 140,
+"text": "{g.total > 0 ? `${formatNumber(g.covered)}/${formatNumber(g.total)} lines` : \"no coverable lines\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/module-rollup-list.tsx",
+"line": 7,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/module-rollup-list.tsx",
+"line": 53,
+"text": "{formatNumber(m.nloc)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance-view.tsx",
+"line": 60,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance-view.tsx",
+"line": 345,
+"text": "{formatNumber(data.areas.more)} more{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance-view.tsx",
+"line": 355,
+"text": "Show the {formatNumber(otherProduction)} other production{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/actionability-bar.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/actionability-bar.tsx",
+"line": 37,
+"text": "{ value: \"all\", label: \"All\", count: formatNumber(total) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/actionability-bar.tsx",
+"line": 41,
+"text": "count: formatNumber(counts[state]),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/area-groups.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/area-groups.tsx",
+"line": 43,
+"text": ".map((state) => `${formatNumber(group.counts[state])} ${ACTIONABILITY_LABEL[state].toLowerCase()}`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/area-groups.tsx",
+"line": 182,
+"text": "Show all {formatNumber(group.total)} in {label}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/drawer/judgements.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/drawer/judgements.tsx",
+"line": 104,
+"text": "? `${formatNumber(current.validation.total)} guarding`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/drawer/judgements.tsx",
+"line": 131,
+"text": "detail={`${formatNumber(current.observations_total)} observation${current.observations_total === 1 ? \"\" : \"s\"} fold into this cause.`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/drawer/judgements.tsx",
+"line": 176,
+"text": "Position <span className=\"tabular-nums\">{formatNumber(position + 1)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/evidence.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/evidence.tsx",
+"line": 64,
+"text": "<span className=\"tabular-nums\"> ({formatNumber(reportedTotal)})</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/evidence.tsx",
+"line": 109,
+"text": "Showing <span className=\"tabular-nums\">{formatNumber(preview.length)}</span> of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/evidence.tsx",
+"line": 110,
+"text": "<span className=\"tabular-nums\">{formatNumber(reportedTotal)}</span>. This host",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/filters.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/filters.tsx",
+"line": 83,
+"text": "label: `${facetValueLabel(facet, entry.value)} (${formatNumber(entry.total)})`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/presentation.ts",
+"line": 16,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/presentation.ts",
+"line": 275,
+"text": "const sitePart = `${formatNumber(sites)} call site${sites === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/presentation.ts",
+"line": 276,
+"text": "const filePart = `${formatNumber(files)} file${files === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/presentation.ts",
+"line": 303,
+"text": "? `${formatNumber(value)} call site${value === 1 ? \"\" : \"s\"}`",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/presentation.ts",
+"line": 333,
+"text": "const value = typeof factor.value === \"number\" ? formatNumber(factor.value) : humanizeToken(String(factor.value));",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/prompts.ts",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/prompts.ts",
+"line": 62,
+"text": "description: `${formatNumber(rows.length)} performance cause${rows.length === 1 ? \"\" : \"s\"} in this area${paged ? \" on this page\" : \"\"}, in ranked order, one change each.`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/performance/queue.tsx",
+"line": 30,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/queue.tsx",
+"line": 176,
+"text": "{formatNumber(opportunity.rank_position + 1)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/scope.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/scope.tsx",
+"line": 49,
+"text": "count: formatNumber(counts[scope]),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/scope.tsx",
+"line": 136,
+"text": "<span className=\"tabular-nums\">{formatNumber(clause.count)}</span> {clause.text}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/scope.tsx",
+"line": 140,
+"text": "<span className=\"tabular-nums\">{formatNumber(clause.count)}</span> {clause.text}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/scope.tsx",
+"line": 177,
+"text": "<span className=\"tabular-nums\">{formatNumber(review.count)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/verdict.tsx",
+"line": 9,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/verdict.tsx",
+"line": 68,
+"text": "value={formatNumber(verdict.value)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/related-work.tsx",
+"line": 29,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/related-work.tsx",
+"line": 125,
+"text": "item.rank != null ? `#${formatNumber(item.rank + 1)} in Fix first` : null,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/related-work.tsx",
+"line": 214,
+"text": "? `${items.length} of ${formatNumber(total)}`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/related-work.tsx",
+"line": 215,
+"text": ": formatNumber(total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/risk-coverage-scatter.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/risk-coverage-scatter.tsx",
+"line": 314,
+"text": "? `${formatNumber(data.length)} files \u00b7 ${formatNumber(reachedCount)} reached by a test \u00b7 dot size = lines of code \u00b7 height is the health score \u00b7 horizontal spread carries no meaning`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/risk-coverage-scatter.tsx",
+"line": 315,
+"text": ": `${formatNumber(data.length)} files \u00b7 dot size = lines of code \u00b7 thresholds at 60% coverage and 7.0 health`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/severity-distribution.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/severity-distribution.tsx",
+"line": 43,
+"text": "detail: formatNumber(breakdown[sev]),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/jobs/generation-progress.tsx",
+"line": 10,
+"text": "import { formatTokens, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/jobs/generation-progress.tsx",
+"line": 68,
+"text": "`${formatNumber(failed)} of ${formatNumber(total)} pages could not be written. Run it again to retry them.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/jobs/generation-progress.tsx",
+"line": 191,
+"text": "{formatNumber(job?.completed_pages ?? 0)} /{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/jobs/generation-progress.tsx",
+"line": 192,
+"text": "{formatNumber(job?.total_pages ?? 0)} pages",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/jobs/generation-progress.tsx",
+"line": 240,
+"text": "{formatNumber(job.completed_pages)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 32,
+"text": "export function formatNumber(n: number): string {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 58,
+"text": "return formatNumber(n);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 287,
+"text": "return `${formatNumber(done)} / ${formatNumber(total)} (${pct}%)`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/onboarding/add-repo-wizard.tsx",
+"line": 30,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/onboarding/add-repo-wizard.tsx",
+"line": 476,
+"text": "{formatNumber(preflight.file_count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/onboarding/add-repo-wizard.tsx",
+"line": 482,
+"text": "{estimate ? formatNumber(estimate.total_pages) : \"\u2014\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/onboarding/index-celebration.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/onboarding/index-celebration.tsx",
+"line": 41,
+"text": "? `${formatNumber(pagesGenerated)} documentation pages generated. `",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/action-drawer.tsx",
+"line": 20,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/action-drawer.tsx",
+"line": 145,
+"text": "title={`Evidence (${formatNumber(action.details_total)})`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/action-drawer.tsx",
+"line": 340,
+"text": "{all ? \"Show fewer\" : `Show all ${formatNumber(details.length)}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/action-drawer.tsx",
+"line": 344,
+"text": "<span>{`${formatNumber(total - details.length)} more; \"Look closer\" below lists them.`}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-areas.tsx",
+"line": 7,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-areas.tsx",
+"line": 87,
+"text": "{formatNumber(area.total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-section.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-section.tsx",
+"line": 41,
+"text": "scopeAreas: (areas) => `${formatNumber(areas)} ${areas === 1 ? \"area\" : \"areas\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-section.tsx",
+"line": 42,
+"text": "scopeOpen: (open) => `${formatNumber(open)} open`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-sources.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/attention-sources.tsx",
+"line": 45,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/health-lede.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/health-lede.tsx",
+"line": 99,
+"text": "? { hotspots: formatNumber(hotspotCount), files: formatNumber(fileCount) }",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/next-actions.tsx",
+"line": 27,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/next-actions.tsx",
+"line": 110,
+"text": "showAll: (count) => `Show all ${formatNumber(count)}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/next-actions.tsx",
+"line": 111,
+"text": "listing: (shown, total) => `Listing ${formatNumber(shown)} of ${formatNumber(total)}.`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/overview-body.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/overview-body.tsx",
+"line": 171,
+"text": "{`All ${formatNumber(stats.hotspot_count)} hotspots`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 34,
+"text": "import { formatLOC, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 106,
+"text": "`${formatNumber(prose)} with model-written prose, ${formatNumber(withoutProse)} built from the index`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 107,
+"text": "docsModules: (modules) => `Across ${formatNumber(modules)} modules`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 118,
+"text": "`${plural(hotspots, \"hotspot\", \"hotspots\")} across ${formatNumber(files)} files`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 122,
+"text": "`${plural(modules, \"module\", \"modules\")}, ${formatNumber(entryPoints)} entry points`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 125,
+"text": "`recorded, of which ${formatNumber(accepted)} in force and ${formatNumber(candidates)} background`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 146,
+"text": "exploreDocs: (pages, modules) => `${formatNumber(pages)} pages across ${formatNumber(modules)} modules`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 147,
+"text": "exploreFiles: (files) => `${formatNumber(files)} files with per-file docs, health and history`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 149,
+"text": "`Dependency graph, layers, and ${formatNumber(entryPoints)} entry points`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 151,
+"text": "`Per-file scores, ${formatNumber(findings)} open findings, coverage and refactoring targets`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 176,
+"text": "securityElsewhere: (elsewhere) => `${formatNumber(elsewhere)} more in tests and docs`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 261,
+"text": "value: `${d > 0 ? \"+\" : \"\"}${formatNumber(d)}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 320,
+"text": "value: formatNumber(docPages),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 331,
+"text": "detail: formatNumber(prosePages),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 337,
+"text": "detail: formatNumber(withoutProse),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 352,
+"text": "value: `${formatNumber(accuracy.hits)}/${formatNumber(accuracy.k)}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 383,
+"text": "{ label: \"Files\", value: formatNumber(summary.stats.file_count), href: `${r.base}/files` },",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 386,
+"text": "value: formatNumber(summary.stats.symbol_count),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 391,
+"text": "value: formatNumber(summary.stats.module_count),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 396,
+"text": "value: formatNumber(summary.languages.length),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 454,
+"text": "value: formatNumber(stats.module_count),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 467,
+"text": "if (stats.hotspot_count === 0) return { value: formatNumber(stats.file_count), caption: c.healthScored };",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 469,
+"text": "value: formatNumber(stats.hotspot_count),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 478,
+"text": "value: formatNumber(sole),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 487,
+"text": "value: formatNumber(d.total),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/overview-model.ts",
+"line": 496,
+"text": "value: formatNumber(r.opportunities_total),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/overview/repo-rows.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/repo-rows.tsx",
+"line": 81,
+"text": "const parts = [`${formatNumber(repo.fileCount)} files`];",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/repo-rows.tsx",
+"line": 84,
+"text": "parts.push(`${pct}% of ${formatNumber(repo.docPageCount)} doc pages fresh`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/repo-rows.tsx",
+"line": 86,
+"text": "if (repo.hotspotCount > 0) parts.push(`${formatNumber(repo.hotspotCount)} hotspots`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/overview/repo-rows.tsx",
+"line": 88,
+"text": "parts.push(`${formatNumber(repo.deadExportCount)} unused exports`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 9,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 11,
+"text": "const s = (n: number, one: string, many: string) => `${formatNumber(n)} ${n === 1 ? one : many}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 189,
+"text": "showAllFiles: (n) => `Show all ${formatNumber(n)} files`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 190,
+"text": "showAllDirectories: (n) => `Show all ${formatNumber(n)} directories`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 202,
+"text": "`${formatNumber(single)} of the ${s(files, \"changing file\", \"changing files\")} ${single === 1 ? \"has\" : \"have\"} one main author; your agent can plan how a second person learns them.`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 222,
+"text": "showAutomation: (n) => `Show ${formatNumber(n)} bot and agent ${n === 1 ? \"identity\" : \"identities\"}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 231,
+"text": "`${s(files, \"file has\", \"files have\")} one author and matter right now: ${formatNumber(hotspots)} ${hotspots === 1 ? \"is a hotspot\" : \"are hotspots\"} and ${formatNumber(lowHealth)} ${lowHealth === 1 ?",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 233,
+"text": "`Every hotspot and weak file has a second author, across ${formatNumber(files)} files`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 237,
+"text": "`${formatNumber(holders)} people each hold their own files${name ? `, ${name} the most (${formatNumber(files)})` : \"\"}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 238,
+"text": "risksSevere: (n) => `${formatNumber(n)} ${n === 1 ? \"is\" : \"are\"} both a hotspot and in weak health`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 242,
+"text": "`${s(total, \"person has\", \"people have\")} not committed in ${days} days but still own files that changed in that time. Each row shows which of the files that changed lately would have no majority auth",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 253,
+"text": ": `${formatNumber(changing)} of the ${formatNumber(owned)} files they own changed lately.`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 255,
+"text": "`Without them, ${s(files, \"file that changed lately has\", \"files that changed lately have\")} no majority author left${severe > 0 ? `, ${formatNumber(severe)} of them hotspots or in weak health` : \"\"}.",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 278,
+"text": "`Without ${names}, ${s(files, \"file\", \"files\")} would be left with authors holding under ${threshold} of the commits: ${codeShare} of the code${severe > 0 ? `, ${formatNumber(severe)} of them hotspots",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 284,
+"text": "`Lines of code in at-risk files, of ${formatNumber(nloc)} across ${s(files, \"file\", \"files\")}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 287,
+"text": "`${name} could take over: the strongest remaining author on ${formatNumber(files)} of ${formatNumber(of)}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 289,
+"text": "heirSevere: (n) => `${formatNumber(n)} ${n === 1 ? \"is a hotspot or in\" : \"are hotspots or in\"} weak health`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 300,
+"text": "filesCarryHint: (shown, touched) => `${formatNumber(shown)} of ${formatNumber(touched)} touched`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/labels.ts",
+"line": 302,
+"text": "`The files with the most commits attributed to this person. Churn is a percentile against every file in the repo. A dot marks a high-churn file they alone maintain and wrote at least 90% of the commit",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/owners/offboarding-result.tsx",
+"line": 13,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/offboarding-result.tsx",
+"line": 160,
+"text": "{ label: labels.statAtRisk, value: formatNumber(totals.atRiskFiles) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/offboarding-result.tsx",
+"line": 161,
+"text": "{ label: labels.statHotspots, value: formatNumber(totals.hotspots), hint: labels.statHotspotsHint },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/offboarding-result.tsx",
+"line": 163,
+"text": "{ label: labels.statDirectories, value: formatNumber(result.areas.length) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-commit-mix.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-commit-mix.tsx",
+"line": 51,
+"text": "detail: `${formatNumber(n)} \u00b7 ${pct(n, total)}%`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-file-table.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-file-table.tsx",
+"line": 131,
+"text": "<td className={numCls}>{formatNumber(f.commit_count_90d)}</td>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-table.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-table.tsx",
+"line": 226,
+"text": "formatNumber(value)",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-table.tsx",
+"line": 228,
+"text": "<span title={atLeastTitle}>\u2265{formatNumber(atLeast)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/ownership-lede.tsx",
+"line": 12,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/ownership-lede.tsx",
+"line": 40,
+"text": "value: formatNumber(summary.single_owner_hotspots),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/ownership-lede.tsx",
+"line": 50,
+"text": "value: formatNumber(summary.quiet_owners_total),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/ownership-lede.tsx",
+"line": 66,
+"text": "value: formatNumber(tf),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/generate-code-panel.tsx",
+"line": 13,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/generate-code-panel.tsx",
+"line": 134,
+"text": "{formatNumber(tokens)} tokens",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 34,
+"text": "import { disambiguateBasenames, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 257,
+"text": "facts.push(`${formatNumber(detail.affected_files_total)} files affected`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 299,
+"text": "? `${guarding.atLeast ? \"At least \" : \"\"}${formatNumber(guardingTests)} guarding test${guardingTests === 1 ? \"\" : \"s\"} reach it.`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 399,
+"text": "hint={guardingTests > 0 ? `${formatNumber(guardingTests)} tests` : \"none guarding\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 429,
+"text": "<CollapsibleSection title=\"Evidence\" hint={formatNumber(detail.evidence_total)}>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 470,
+"text": "hint={formatNumber(others.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 817,
+"text": "const touched = `Touches ${formatNumber(files)} file${files === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 820,
+"text": "return `${touched}; ${formatNumber(deps)} file${deps === 1 ? \" imports\" : \"s import\"} it.`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-rows.tsx",
+"line": 27,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-rows.tsx",
+"line": 225,
+"text": "? `, ${formatNumber(opportunity.affected_files_total)} files`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 46,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 352,
+"text": "Showing {formatNumber(resultTotal)} worth doing",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 356,
+"text": "; {formatNumber(hiddenTotal)} more in the full inventory",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 366,
+"text": "{formatNumber(resultTotal)} {STATUS_LABEL[serverState.status].toLowerCase()}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 389,
+"text": "? `None of these is worth doing first. ${formatNumber(hiddenTotal)} more are in the full inventory.`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-drawer.tsx",
+"line": 29,
+"text": "import { disambiguateBasenames, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-drawer.tsx",
+"line": 158,
+"text": "if (blastN > 0) facts.push(`${formatNumber(blastN)} file${blastN === 1 ? \"\" : \"s\"} affected`);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-drawer.tsx",
+"line": 301,
+"text": "hint={formatNumber(blast.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-drawer.tsx",
+"line": 332,
+"text": "? `${formatNumber(plan.validation.total)} tests`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 50,
+"text": "return `${formatNumber(n)} ${n === 1 ? one : many}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 77,
+"text": "<span className=\"font-mono tabular-nums\">{formatNumber(quickWins)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 87,
+"text": "<span className=\"font-mono tabular-nums\">{formatNumber(structuralShown)}</span>{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 116,
+"text": "indexedFileCount ? `across ${formatNumber(indexedFileCount)} indexed files` : undefined",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 140,
+"text": "value={formatNumber(total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 144,
+"text": "(counts ? `; ${formatNumber(counts.eligible)} worth doing first` : \"\")",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 161,
+"text": "{formatNumber(mechanical)} of {plural(steps, \"step is\", \"steps are\")} mechanical,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-lede.tsx",
+"line": 163,
+"text": "ready to hand to an agent as written; the other {formatNumber(judgment)} want a",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/start-here.tsx",
+"line": 26,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/start-here.tsx",
+"line": 103,
+"text": "See all {formatNumber(opportunities.length)} structural",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/structural-map.tsx",
+"line": 49,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/structural-map.tsx",
+"line": 210,
+"text": "{formatNumber(t)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/structural-map.tsx",
+"line": 279,
+"text": "aria-label={`${meta.label}, ${mark.filePath}, ${steps}, ${formatNumber(mark.x)} dependent files, ${formatNumber(mark.y)} lines`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/structural-map.tsx",
+"line": 401,
+"text": "{formatNumber(dropped)} not plotted - no size or dependency figures yet",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/structural-map.tsx",
+"line": 450,
+"text": "{formatNumber(mark.y)} lines \u00b7 {formatNumber(mark.x)} dependent",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/types.ts",
+"line": 18,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/refactoring/types.ts",
+"line": 856,
+"text": "`${formatNumber(nloc)} lines and ${symbols} symbols that fall into ${groups} groups the imports already respect`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/refactoring/validation-summary.tsx",
+"line": 2,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/validation-summary.tsx",
+"line": 31,
+"text": "{formatNumber(validation.total)} guarding test",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/validation-summary.tsx",
+"line": 33,
+"text": "{validation.truncated ? `; ${formatNumber(validation.tests.length)} shown.` : \".\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/opportunity-list.tsx",
+"line": 5,
+"text": "import { formatNumber, formatTokens } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/opportunity-list.tsx",
+"line": 119,
+"text": "title: `${formatNumber(data.missed_events)} command${",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/opportunity-list.tsx",
+"line": 141,
+"text": "title: `${formatNumber(data.reread_events)} unchanged-file re-read${",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/opportunity-list.tsx",
+"line": 172,
+"text": "Observed {formatNumber(row.observations)} time",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 7,
+"text": "import { formatCost, formatDate, formatNumber, formatTokens, parseDate } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 73,
+"text": "On the {formatNumber(data.reducing_events)} of{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 74,
+"text": "{formatNumber(data.baseline_events)} interactions that produced a saving,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 178,
+"text": "sub: `on ${formatNumber(data.reducing_events)} of ${formatNumber(data.baseline_events)} comparable`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 204,
+"text": "value: formatNumber(data.unique_events),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 207,
+"text": "sub: `${formatNumber(data.saving_interactions)} produced a saving`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 211,
+"text": "value: formatNumber(data.mcp_queries_answered),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-lede.tsx",
+"line": 213,
+"text": "...(data.dead_ends > 0 ? { sub: `${formatNumber(data.dead_ends)} dead ends` } : {}),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-source-table.tsx",
+"line": 5,
+"text": "import { formatNumber, formatTokens } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/savings-source-table.tsx",
+"line": 88,
+"text": "{formatNumber(row.events)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/spend-summary.tsx",
+"line": 5,
+"text": "import { formatCost, formatDate, formatNumber, formatTokens, parseDate } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/savings/spend-summary.tsx",
+"line": 43,
+"text": "<Item label=\"Calls\" value={formatNumber(spend.total_calls)} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/findings-table.tsx",
+"line": 14,
+"text": "import { formatDate, formatDateTime, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/findings-table.tsx",
+"line": 115,
+"text": "return FILTERS.map((o) => ({ ...o, count: formatNumber(c[o.value]) }));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/posture.tsx",
+"line": 5,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/posture.tsx",
+"line": 65,
+"text": "const n = (v: number) => formatNumber(v);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/pagination-controls.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/pagination-controls.tsx",
+"line": 34,
+"text": "{formatNumber(first)}\u2013{formatNumber(last)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/pagination-controls.tsx",
+"line": 36,
+"text": "of <span className=\"tabular-nums\">{formatNumber(total)}</span> {label}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/proportion-bar.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/proportion-bar.tsx",
+"line": 125,
+"text": "othersLabel = (n) => `${formatNumber(n)} others`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/provenance-path-list.tsx",
+"line": 2,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/provenance-path-list.tsx",
+"line": 97,
+"text": "{formatNumber(paths.length)} paths shown of {formatNumber(total)} recorded",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/results-footer.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/results-footer.tsx",
+"line": 50,
+"text": "Showing <span className=\"font-medium text-[var(--color-text-primary)]\">{formatNumber(shown)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/results-footer.tsx",
+"line": 52,
+"text": "<span className=\"font-medium text-[var(--color-text-primary)]\">{formatNumber(total)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/arrivals-timeline.tsx",
+"line": 5,
+"text": "import { formatDate, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/arrivals-timeline.tsx",
+"line": 40,
+"text": "{formatNumber(dated.length)} people",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/arrivals-timeline.tsx",
+"line": 72,
+"text": "Show {formatNumber(hidden)} more",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/chronotype-list.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/chronotype-list.tsx",
+"line": 72,
+"text": "? `${earned.because}, over ${formatNumber(p.commits)} commits.`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/chronotype-list.tsx",
+"line": 81,
+"text": "{formatNumber(p.commits)} commits \u00b7 peaks around {hourLabel(p.peak_hour)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/churn-ledger.tsx",
+"line": 2,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/churn-ledger.tsx",
+"line": 38,
+"text": "aria-label={`${formatNumber(data.lines_added)} lines written, of which ${formatNumber(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/churn-ledger.tsx",
+"line": 47,
+"text": "{formatNumber(standing)} standing",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/churn-ledger.tsx",
+"line": 60,
+"text": "{formatNumber(deleted)} cut",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/churn-ledger.tsx",
+"line": 75,
+"text": "{formatNumber(f.value)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/origin-block.tsx",
+"line": 2,
+"text": "import { formatAgeDays, formatNumber, parseDate } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/origin-block.tsx",
+"line": 70,
+"text": "Since then, {formatNumber(others)} more {others === 1 ? \"person has\" : \"people have\"}{\" \"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/punch-card.tsx",
+"line": 7,
+"text": "import { formatNumber, parseDate } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/punch-card.tsx",
+"line": 167,
+"text": "{formatNumber(data.total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 3,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 35,
+"text": "rows.push(fileRow(\"largest\", \"Largest file\", f.path, `${formatNumber(f.nloc)} lines of code`, file));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 41,
+"text": "const detail = `cyclomatic complexity ${formatNumber(f.max_ccn)} in one function`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 46,
+"text": "const detail = `changed in ${formatNumber(f.commit_count)} commits`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 54,
+"text": "? `imported by ${formatNumber(c.import_count)} files`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 63,
+"text": "primary: `${formatNumber(d.count)} ${d.count === 1 ? \"file dates\" : \"files date\"} back to the root commit`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 64,
+"text": "detail: `of ${formatNumber(d.of)} files with a full history`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 91,
+"text": "rows.push(functionRow(\"longest-fn\", \"Longest function\", f, `${formatNumber(f.lines)} lines`, file));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 95,
+"text": "const detail = `${formatNumber(f.mod_count)} commits own its current lines`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 101,
+"text": "rows.push(functionRow(\"complex\", \"Most complex symbol\", f, `complexity ${formatNumber(s.complexity)}`, file));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 114,
+"text": "detail: `${formatNumber(c.count)} different functions share it`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 123,
+"text": "detail: `${formatNumber(s.documented_count)} of ${formatNumber(s.total)} symbols, and ${Math.round(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 142,
+"text": "const detail = `${formatNumber(c.lines_changed)} lines across ${formatNumber(c.files_changed)} files`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 147,
+"text": "rows.push(row(\"widest\", \"Widest commit\", c, `touched ${formatNumber(c.files_changed)} files at once`));",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 151,
+"text": "const detail = `removed ${formatNumber(c.lines_deleted - c.lines_added)} more lines than it added`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 164,
+"text": "primary: `${formatNumber(c.files)} files import each other in a loop`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/records-list.tsx",
+"line": 165,
+"text": "detail: `${formatNumber(c.cycle_count)} circular cluster${c.cycle_count === 1 ? \"\" : \"s\"} in total`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 4,
+"text": "import { formatAgeDays, formatBytes, formatDate, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 75,
+"text": "{ label: \"Files\", value: formatNumber(scale.file_count) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 76,
+"text": "{ label: \"Symbols\", value: formatNumber(scale.symbol_count) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 77,
+"text": "{ label: \"Modules\", value: formatNumber(scale.module_count) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 80,
+"text": "value: formatNumber(scale.language_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 86,
+"text": "value: formatNumber(origin.total_commits),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 89,
+"text": "sub: `plus ${formatNumber(origin.total_merge_commits)} merge${origin.total_merge_commits === 1 ? \"\" : \"s\"}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 103,
+"text": "? { label: \"Longest streak\", value: `${formatNumber(streak.days)} days`, sub: span(streak.start, streak.end) }",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 114,
+"text": "? { label: \"Busiest day\", value: `${formatNumber(day.commits)} commits`, sub: formatDate(day.date) }",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 119,
+"text": "value: `${formatNumber(rhythm.code_half_life_days)} days`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 128,
+"text": "sub: `${formatNumber(v.recent_90d)} commits in 90 days vs ${formatNumber(v.prior_90d)} before`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 132,
+"text": "? { label: \"Busiest month\", value: monthLabel(month.month), sub: `${formatNumber(month.total)} commits` }",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 143,
+"text": "value: formatNumber(people.contributor_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 147,
+"text": "{ label: \"Owners\", value: formatNumber(people.owner_count), sub: \"own at least one file\" },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 151,
+"text": "value: formatNumber(tf),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 158,
+"text": "value: formatNumber(people.single_owner_files),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 159,
+"text": "sub: people.tracked_files ? `of ${formatNumber(people.tracked_files)} files` : undefined,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 164,
+"text": "value: formatNumber(people.silo_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 175,
+"text": "const days = `across ${formatNumber(data.rhythm.active_days)} active days`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 179,
+"text": ": `Drawn from the latest ${formatNumber(sample.commits)} of ${formatNumber(",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 192,
+"text": "value={formatNumber(scale.total_nloc)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 256,
+"text": "commitScope={partial ? `latest ${formatNumber(sample.commits)}` : undefined}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/symbols/symbol-call-graph.tsx",
+"line": 9,
+"text": "import { formatNumber, truncatePath } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/symbols/symbol-call-graph.tsx",
+"line": 110,
+"text": "{label} <span className=\"tabular-nums\">({formatNumber(total)})</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/symbols/symbol-call-graph.tsx",
+"line": 128,
+"text": "+{formatNumber(remainder)} more",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 23,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 93,
+"text": "title={`${formatNumber(unmatched.length)} client ${unmatched.length === 1 ? \"call resolves\" : \"calls resolve\"} to no provider`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 120,
+"text": "title={`${formatNumber(orphanTotal)} ${orphanTotal === 1 ? \"provider has\" : \"providers have\"} no caller in this workspace`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 192,
+"text": "{formatNumber(rows.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 231,
+"text": "? `Show the ${formatNumber(rows.length)} ${rows.length === 1 ? \"call\" : \"calls\"}`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 232,
+"text": ": `Show all ${formatNumber(rows.length)}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 289,
+"text": "{formatNumber(g.count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-attention.tsx",
+"line": 316,
+"text": "{all ? \"Show fewer\" : `Show all ${formatNumber(groups.length)} groups`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/repo-card-compact.tsx",
+"line": 4,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/repo-card-compact.tsx",
+"line": 49,
+"text": "{fileCount != null ? `${formatNumber(fileCount)} files` : \"\u2014\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/flow-elements.ts",
+"line": 35,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/flow-elements.ts",
+"line": 123,
+"text": "const head = mix ? `${formatNumber(n.links.links)} \u00b7 ${mix}` : formatNumber(n.links.links);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/focus-labels.ts",
+"line": 10,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/focus-labels.ts",
+"line": 49,
+"text": "label: `${FOCUS_COLUMN_TITLES[c.id]} \u00b7 ${formatNumber(count)}`,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-band.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-band.tsx",
+"line": 65,
+"text": "{formatNumber(links)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 67,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 395,
+"text": "{formatNumber(node.consumer_count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 539,
+"text": "{`Showing ${Math.min(summary.rows.length, DRAWER_CONTRACT_ROWS)} of ${formatNumber(summary.rows.length)}, most linked first.`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 541,
+"text": "` Counted from the first ${formatNumber(repoContracts!.contracts.length)} of ${formatNumber(repoContracts!.total)} contracts in ${node.repo}.`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 565,
+"text": "<td className=\"py-1 text-right text-[var(--color-text-primary)]\">{formatNumber(provides[t] ?? 0)}</td>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 566,
+"text": "<td className=\"py-1 text-right text-[var(--color-text-primary)]\">{formatNumber(consumes[t] ?? 0)}</td>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-drawer.tsx",
+"line": 870,
+"text": "{`Showing ${formatNumber(routes.rows.length)} of ${plural(Math.max(routes.total, routes.rows.length), \"route\", \"routes\")}.`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-filters.tsx",
+"line": 14,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-filters.tsx",
+"line": 68,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-group-node.tsx",
+"line": 22,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-group-node.tsx",
+"line": 57,
+"text": "`in ${formatNumber(group.linksIn)}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-group-node.tsx",
+"line": 58,
+"text": "`out ${formatNumber(group.linksOut)}`,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-group-node.tsx",
+"line": 59,
+"text": "...(group.linksInside > 0 ? [`${formatNumber(group.linksInside)} inside`] : []),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-model.ts",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-model.ts",
+"line": 189,
+"text": "return `${formatNumber(edge.weight)} ${edge.weight === 1 ? unit[0] : unit[1]}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-model.ts",
+"line": 204,
+"text": "return `${formatNumber(edge.weight)} ${SHORT_UNIT[edge.kind] ?? \"contracts\"}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-model.ts",
+"line": 291,
+"text": "return `${formatNumber(n)} ${n === 1 ? one : many}`;",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-model.ts",
+"line": 307,
+"text": ".map(([r, n]) => `${formatNumber(n)} ${UNMATCHED_REASON[r] ?? r}`)",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-node.tsx",
+"line": 20,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-node.tsx",
+"line": 137,
+"text": ": `${formatNumber(node.provider_count)} provided \u00b7 ${formatNumber(node.consumer_count)} consumed`)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-route-row.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-route-row.tsx",
+"line": 80,
+"text": "changed together {formatNumber(c.frequency)} {c.frequency === 1 ? \"time\" : \"times\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-routes-panel.tsx",
+"line": 37,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-routes-panel.tsx",
+"line": 187,
+"text": "{style.label} \u00b7 {formatNumber(section.total)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-routes-panel.tsx",
+"line": 195,
+"text": "{directionLabel(g.direction, a, b)} \u00b7 {formatNumber(section.byDirection[g.direction] ?? g.rows.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-routes-panel.tsx",
+"line": 225,
+"text": "<p className={QUIET}>{`Showing ${formatNumber(shown)} of ${plural(total, \"route\", \"routes\")}`}</p>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-tray-node.tsx",
+"line": 19,
+"text": "import { formatNumber } from \"../../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-tray-node.tsx",
+"line": 68,
+"text": "Not linked at runtime \u00b7 <span style={{ fontVariantNumeric: \"tabular-nums\" }}>{formatNumber(count)}</span>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-tray-node.tsx",
+"line": 72,
+"text": "{rest > 0 ? `, +${formatNumber(rest)} more` : \"\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-tray-node.tsx",
+"line": 92,
+"text": "+{formatNumber(more.serviceIds.length)} more",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-next-actions.tsx",
+"line": 16,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-next-actions.tsx",
+"line": 40,
+"text": "return `${formatNumber(n)} ${noun}${n === 1 ? \"\" : \"s\"}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-next-actions.tsx",
+"line": 86,
+"text": "? `Nothing stands out ${window} in ${formatNumber(available.length)} ${",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-next-actions.tsx",
+"line": 188,
+"text": "{`All ${formatNumber(work(repo, horizon))} in ${repo.alias}`}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-overview.tsx",
+"line": 6,
+"text": "import { formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/workspace-overview.tsx",
+"line": 119,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 14,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 98,
+"text": "value: formatNumber(totals.files),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 103,
+"text": "value: formatNumber(totals.symbols),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 112,
+"text": "fresh: formatNumber(totals.freshPages),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 113,
+"text": "total: formatNumber(totals.pages),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 119,
+"text": "value: formatNumber(totals.hotspots),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 124,
+"text": "value: formatNumber(totals.deadExports),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 146,
+"text": "files: formatNumber(totals.files),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 147,
+"text": "symbols: formatNumber(totals.symbols),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 148,
+"text": "pages: formatNumber(totals.pages),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/decisions/page.tsx",
+"line": 17,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/decisions/page.tsx",
+"line": 140,
+"text": "? `of ${formatNumber(total)} recorded`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/decisions/page.tsx",
+"line": 141,
+"text": ": `in the first ${formatNumber(decisions.length)}`;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/decisions/page.tsx",
+"line": 169,
+"text": "value={formatNumber(accepted)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 11,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 53,
+"text": "{t(\"header\", { count: formatNumber(total) })}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 78,
+"text": "value={formatNumber(fresh)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 83,
+"text": "value={formatNumber(stale)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 88,
+"text": "value={formatNumber(outdated)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 30,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 295,
+"text": "rows: formatNumber(rows.length),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 296,
+"text": "scope: formatNumber(inScope),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 297,
+"text": "total: formatNumber(totalMined),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 311,
+"text": "rows: formatNumber(rows.length),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 316,
+"text": "rows: formatNumber(rows.length),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 317,
+"text": "total: formatNumber(totalMined),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 322,
+"text": "dropped: formatNumber(dropped),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 387,
+"text": "count: formatNumber(coChanges.length),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/page.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/page.tsx",
+"line": 121,
+"text": "value={formatNumber(coChanges.length)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/page.tsx",
+"line": 124,
+"text": "? t(\"ledeUnitOfFound\", { total: formatNumber(totalMined) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 15,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 84,
+"text": "value: metrics ? formatNumber(metrics.node_count) : \"\u2014\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 89,
+"text": "value: metrics ? formatNumber(metrics.structural_edge_count) : \"\u2014\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 102,
+"text": "value: metrics?.core_size != null ? formatNumber(metrics.core_size) : \"\u2014\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 113,
+"text": "? t(\"ribbon.cyclesAtLeast\", { count: formatNumber(cycleCount) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 114,
+"text": ": formatNumber(cycleCount)",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 150,
+"text": "links: formatNumber(metrics.structural_edge_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 151,
+"text": "services: formatNumber(metrics.node_count),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/contract-filters.tsx",
+"line": 10,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/contract-filters.tsx",
+"line": 42,
+"text": "{ id: \"\", label: t(\"filters.allTypes\"), ...(total != null ? { badge: formatNumber(total) } : {}) },",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/contract-filters.tsx",
+"line": 46,
+"text": "...(byType?.[t] ? { badge: formatNumber(byType[t]!) } : {}),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/links-table.tsx",
+"line": 8,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/links-table.tsx",
+"line": 84,
+"text": "? t(\"links.allExact\", { count: formatNumber(links.length) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/links-table.tsx",
+"line": 85,
+"text": ": [...byType.entries()].map(([type, n]) => `${formatNumber(n)} ${type}`).join(\", \") + \".\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 16,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 129,
+"text": "value: diagnostics ? formatNumber(diagnostics.total_providers) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 134,
+"text": "value: diagnostics ? formatNumber(diagnostics.total_consumers) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 139,
+"text": "value: diagnostics ? formatNumber(unmatchedOutsideService(diagnostics).length) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 145,
+"text": "value: diagnostics ? formatNumber(diagnostics.orphan_providers.length) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 157,
+"text": "count: formatNumber(diagnostics.http_consumers_unresolved),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 172,
+"text": "value={diagnostics ? formatNumber(diagnostics.total_links) : t(\"ledeUnknown\")}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 216,
+"text": "page: formatNumber(page),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 321,
+"text": "value: formatNumber(read),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 323,
+"text": "unresolved: formatNumber(unresolved),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/contracts/page.tsx",
+"line": 324,
+"text": "files: formatNumber(files),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 21,
+"text": "import { formatDate, formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 135,
+"text": "value: formatNumber(repos.length),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 140,
+"text": "value: services ? formatNumber(services.length) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 145,
+"text": "value: contracts?.data ? formatNumber(links) : \"\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 151,
+"text": "? formatNumber(checkData<EstateDanglingCall[]>(dangling, \"dangling\", []).length)",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 375,
+"text": "formatNumber(e.weight),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 410,
+"text": "formatNumber(providers[type] ?? 0),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 411,
+"text": "formatNumber(consumers[type] ?? 0),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 412,
+"text": "formatNumber(linked[type] ?? 0),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 497,
+"text": "r.churn ? formatNumber(r.churn.hotspots ?? 0) : dash,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 500,
+"text": "{formatNumber(r.magnets.bug_magnets ?? 0)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 550,
+"text": "formatNumber(s.reach),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 580,
+"text": "formatNumber(n),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 20,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 139,
+"text": "fresh: formatNumber(docs.fresh),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 140,
+"text": "pages: formatNumber(docs.pages),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 145,
+"text": "value: formatNumber(totals.hotspots),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 150,
+"text": "value: contracts ? formatNumber(contracts.total_links) : \"\u2014\",",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 180,
+"text": "files: formatNumber(totals.files),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 181,
+"text": "symbols: formatNumber(totals.symbols),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 184,
+"text": "? t(\"ledePagesWith\", { pages: formatNumber(totals.pages) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 11,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 84,
+"text": "value: formatNumber(graph.nodes.length),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 89,
+"text": "value: formatNumber(graph.edges.length),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 104,
+"text": "value: diag ? formatNumber(diag.total_links) : \"\u2013\",",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 107,
+"text": "providers: formatNumber(diag.total_providers),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 108,
+"text": "consumers: formatNumber(diag.total_consumers),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/workspace/system-map/map-summary.ts",
+"line": 116,
+"text": "value: diag ? formatNumber(unmatchedOutsideService(diag).length) : \"\u2013\",",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/components/code-health/area-rail-labels.ts",
+"line": 6,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/components/code-health/area-rail-labels.ts",
+"line": 23,
+"text": "showHeld: (name, count) => t(\"showHeld\", { name, count: formatNumber(count) }),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/components/dashboard/active-job-banner-wrapper.tsx",
+"line": 14,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/dashboard/active-job-banner-wrapper.tsx",
+"line": 67,
+"text": "pagesFailed: (count) => t(\"pagesFailed\", { count: formatNumber(count) }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/decisions/decision-review-wrapper.tsx",
+"line": 22,
+"text": "import { formatNumber, stripMarkdown } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/decisions/decision-review-wrapper.tsx",
+"line": 162,
+"text": "{total !== undefined ? ` of ${formatNumber(total)}` : \"\"}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/generation-progress-wrapper.tsx",
+"line": 14,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/generation-progress-wrapper.tsx",
+"line": 82,
+"text": "description: t(\"pagesGenerated\", { count: formatNumber(job.completed_pages) }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/generation-progress-wrapper.tsx",
+"line": 88,
+"text": ": t(\"pagesFailed\", { count: formatNumber(job.failed_pages) }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/generation-progress-wrapper.tsx",
+"line": 107,
+"text": "failed: formatNumber(failed),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/generation-progress-wrapper.tsx",
+"line": 108,
+"text": "total: formatNumber(total),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/job-rows.tsx",
+"line": 2,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/jobs/job-rows.tsx",
+"line": 65,
+"text": "`${formatNumber(job.total_pages)} pages`",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/risk/dead-code-tab.tsx",
+"line": 27,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/risk/dead-code-tab.tsx",
+"line": 79,
+"text": "? t(\"deadCodeClean.titleScoped\", { files: formatNumber(fileCount) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 32,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 213,
+"text": "? t(\"posture.clearTitleScoped\", { files: formatNumber(fileCount) })",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/tests/tests-view.tsx",
+"line": 19,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/tests/tests-view.tsx",
+"line": 52,
+"text": "cleanTitle: (files) => t(\"cleanTitle\", { files: formatNumber(files) }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-detail-panel.tsx",
+"line": 35,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-detail-panel.tsx",
+"line": 65,
+"text": "{formatNumber(value)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-map-key.tsx",
+"line": 35,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-map-key.tsx",
+"line": 180,
+"text": "shown: formatNumber(unclaimedFiles),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-map-key.tsx",
+"line": 181,
+"text": "total: formatNumber(totalFiles + unclaimedFiles),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-map-key.tsx",
+"line": 196,
+"text": "{formatNumber(count)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 3,
+"text": "import { formatNumber } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 64,
+"text": "linked: formatNumber(c.linked),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 65,
+"text": "seen: formatNumber(c.seen),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 66,
+"text": "read: formatNumber(c.read),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 69,
+"text": "readNotLinked: formatNumber(c.readNotLinked),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/lib/http-link-coverage.ts",
+"line": 70,
+"text": "inService: formatNumber(c.inService),",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 398,
+"text": "function formatNumber(n) {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 443,
+"text": "return `${formatNumber(n)} ${n === 1 ? singular : plural}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2174,
+"text": "const largest = `${formatNumber(s.shown)} largest of ${countOf(s.repositoryTotal, \"file\", \"files\")}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2177,
+"text": "return [`${formatNumber(s.drawn)} of the ${formatNumber(s.shown)} largest (of ${countOf(s.repositoryTotal, \"file\", \"files\")}) drawn at this size`, SCOPE_REST];",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2183,
+"text": "return [`${formatNumber(s.drawn)} of ${countOf(s.repositoryTotal, \"file\", \"files\")} drawn at this size`, SCOPE_REST];",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2207,
+"text": "return `${countOf(total2, \"importer\", \"importers\")}: ${[...shown, ...more > 0 ? [`+${formatNumber(more)}`] : []].join(\", \")}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2261,
+"text": "return `reply cut at ${formatNumber(chars)} characters`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2264,
+"text": "return `and ${formatNumber(more)} more`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2288,
+"text": "const all = touched.capped ? `${formatNumber(touched.count)}+` : formatNumber(touched.count);",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2289,
+"text": "return `${formatNumber(edited)} edited of ${all} ${touched.count === 1 && !touched.capped ? \"file\" : \"files\"} touched`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2292,
+"text": "return `${formatNumber(resolved)} resolved \u00b7 ${countOf(total2, \"new finding\", \"new findings\")}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2300,
+"text": "return `${formatNumber(titles.length)}: ${titles.join(\"; \")}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2372,
+"text": "const named2 = t.named > 0 ? `, ${formatNumber(t.named)} named by Repowise first` : \"\";",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2378,
+"text": "return `${countOf(total2, \"direct importer\", \"direct importers\")}; Claude opened ${opened === 0 ? \"none\" : formatNumber(opened)}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2384,
+"text": "return `${countOf(total2, \"test file\", \"test files\")} reach ${file} (${basis}); ${run === 0 ? \"none\" : formatNumber(run)} run`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2399,
+"text": "return `+${formatNumber(n)} more`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2411,
+"text": "return `Turn ${turn}${how}${took} \u00b7 ${countOf(t.repowise, \"Repowise call\", \"Repowise calls\")} \u00b7 ${countOf(t.reads, \"file read\", \"files read\")} \u00b7 ${formatNumber(t.edits)} edited`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2414,
+"text": "return `Earlier: ${countOf(t.turns, \"turn\", \"turns\")} \u00b7 ${countOf(t.repowise, \"Repowise call\", \"Repowise calls\")} \u00b7 ${countOf(t.reads, \"file read\", \"files read\")} \u00b7 ${formatNumber(t.edits)} edited`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 2446,
+"text": "return f.of === void 0 ? countOf(f.n, one2, many) : `${formatNumber(f.n)} of ${countOf(f.of, one2, many)}`;",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "tests/fixtures/mcp/retrieval_guard_corpus.json",
+"line": 27,
+"text": "{\"id\": \"ident-formatnumber\", \"shape\": \"identifier\", \"query\": \"formatNumber\", \"gold\": [\"typescript_pkg/src/utils.ts\"], \"basis\": \"export function formatNumber\"},",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/sample_repo/typescript_pkg/src/utils.ts",
+"line": 109,
+"text": "* formatNumber(3.0)       // \"3\"",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "tests/fixtures/sample_repo/typescript_pkg/src/utils.ts",
+"line": 110,
+"text": "* formatNumber(3.14)      // \"3.14\"",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "tests/fixtures/sample_repo/typescript_pkg/src/utils.ts",
+"line": 111,
+"text": "* formatNumber(1/3, 4)    // \"0.3333\"",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "tests/fixtures/sample_repo/typescript_pkg/src/utils.ts",
+"line": 113,
+"text": "export function formatNumber(value: number, maxDecimals = 6): string {",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 476,
+"text": "\"symbol_name\": \"formatNumber\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 479,
+"text": "\"reason\": \"'formatNumber' is not imported, but is named elsewhere in the repo\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 484,
+"text": "\"No file imports symbol 'formatNumber' from utils.ts\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 485,
+"text": "\"'formatNumber' is written at typescript_pkg/src/utils.ts:109, so the absence of an import does not establish disuse\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 1491,
+"text": "\"symbol_name\": \"formatNumber\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 1494,
+"text": "\"reason\": \"'formatNumber' is not imported, but is named elsewhere in the repo\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 1499,
+"text": "\"No file imports symbol 'formatNumber' from utils.ts\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/dead_code/golden/dead_code_sample_repo.json",
+"line": 1500,
+"text": "\"'formatNumber' is written at typescript_pkg/src/utils.ts:109, so the absence of an import does not establish disuse\",",
+"cls": "doc",
+"ext": ".json"
+}
+]

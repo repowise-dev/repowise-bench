@@ -1,0 +1,178 @@
+{
+ "_about": "Table 2 task set: 3 repository sizes x (3 edit tasks, the primary tier, + flow, exploration, locate). Golds verified against the pinned clones before any run. Seed prompts build the realistic conversation prefix (about 22k tokens of files read in the history; first-turn context about 60k).",
+ "repos": {
+  "flask": {
+   "path": "D:/mcp-night2/M23/repos/flask",
+   "commit": "49943b5a94413a530761350f04e896f76e8d620e",
+   "desc": "pallets/flask (Python web framework)",
+   "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: src/flask/sansio/scaffold.py, src/flask/ctx.py, src/flask/testing.py, src/flask/templating.py, src/flask/sessions.py, src/flask/debughelpers.py, src/flask/logging.py, src/flask/views.py, src/flask/globals.py. Do not modify any files."
+  },
+  "hono": {
+   "path": "D:/mcp-night2/M23/repos/hono",
+   "commit": "f6fbaf0299c48eea9e656e03e2ffe7ac755e8823",
+   "desc": "honojs/hono (TypeScript web framework)",
+   "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: src/context.ts, src/request.ts, src/helper/cookie/index.ts, src/utils/cookie.ts, src/utils/body.ts, src/client/client.ts, src/validator/validator.ts, src/jsx/base.ts. Do not modify any files."
+  },
+  "django": {
+   "path": "D:/mcp-night2/M23/repos/django",
+   "commit": "a0f2e29e0a98ee14aa808ebe38ec5fb79c8af71f",
+   "desc": "django/django (Python web framework)",
+   "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: django/http/request.py, django/http/response.py, django/forms/forms.py, django/template/base.py. Do not modify any files."
+  }
+ },
+ "tasks": [
+  {
+   "id": "T2-F-E1",
+   "repo": "flask",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Add a `--method` option to `flask routes` so I can list only the routes that accept a given HTTP method, e.g. `flask routes --method POST`. Add a test for it.",
+   "gold": "Must: change src/flask/cli.py: routes_command (the click.command 'routes') gets a new click option --method (string, default None, case-insensitive) and the function signature gains a matching parameter; after `rules = list(current_app.url_map.iter_rules())` the rules are filtered to those whose `rule.methods` contains method.upper(); the empty case is handled sensibly; default behaviour without the option unchanged (existing TestRoutes tests in tests/test_cli.py still pass). Add a test in class TestRoutes in tests/test_cli.py.",
+   "check": "python -m pytest tests/test_cli.py -q -k TestRoutes && git grep -n -e '--method' -- src/flask/cli.py"
+  },
+  {
+   "id": "T2-F-E2",
+   "repo": "flask",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Rename the private helper `_split_blueprint_path` to `_blueprint_path_parts` and update every place that uses it.",
+   "gold": "Must: rename the definition in src/flask/helpers.py (def _split_blueprint_path, including its recursive call a few lines below), the import and call in src/flask/sansio/app.py (import ~line 25, call inside inject_url_defaults ~line 974), and the import and call in src/flask/wrappers.py (import ~line 12, Request.blueprints property ~line 195). No other references exist in src, tests or docs.",
+   "check": "! git grep -n _split_blueprint_path -- src tests docs && git grep -q _blueprint_path_parts -- src && python -m pytest tests/test_blueprints.py tests/test_basic.py -q"
+  },
+  {
+   "id": "T2-F-E3",
+   "repo": "flask",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Let `Config.from_prefixed_env` accept a custom separator for nesting keys instead of always using double underscore, e.g. `from_prefixed_env(separator='.')`. Keep `__` as the default and update the docs.",
+   "gold": "Must: src/flask/config.py Config.from_prefixed_env gains keyword-only `separator: str = '__'`; the three hard-coded uses of \"__\" (the `if \"__\" not in key` test, the comment, and `key.split(\"__\")`, ~lines 166-172) use it; docstring documents :param separator: with versionadded/versionchanged; docs/config.rst nested-keys paragraph (~line 612, 'double underscore') mentions the argument. Default behaviour unchanged: tests/test_config.py::test_from_prefixed_env_nested still passes.",
+   "check": "python -m pytest tests/test_config.py -q -k from_prefixed_env && git grep -n separator -- src/flask/config.py"
+  },
+  {
+   "id": "T2-F-FL",
+   "repo": "flask",
+   "tier": "flow",
+   "kind": "read",
+   "prompt": "Trace what happens when a view function returns a plain dict, from the WSGI call into Flask to the bytes handed back to the server: which methods run, in what order, and where does the JSON come from?",
+   "gold": "Must: Flask.wsgi_app (src/flask/app.py ~1627) creates the context with self.request_context(environ) (AppContext in src/flask/ctx.py, ctx.push) then calls full_dispatch_request(ctx); full_dispatch_request (~1023) sends request_started, runs preprocess_request then dispatch_request, routes exceptions to handle_user_exception, and ends with finalize_request; finalize_request (~1056) calls make_response(rv) then process_response; Flask.make_response has the branch `isinstance(rv, (dict, list))` -> self.json.response(rv) (app.py ~1368); self.json is the app's JSONProvider and DefaultJSONProvider.response (src/flask/json/provider.py ~189) dumps with sort_keys/ensure_ascii/compact settings and builds a Response with mimetype application/json; process_response (~1441) runs after_request funcs and session_interface.save_session when the session is not null; wsgi_app then calls response(environ, start_response) and tears down via ctx.pop / do_teardown_request."
+  },
+  {
+   "id": "T2-F-EX",
+   "repo": "flask",
+   "tier": "exploration",
+   "kind": "read",
+   "prompt": "How are blueprints organised in Flask? Describe the main classes and how a blueprint's routes, error handlers and hooks end up registered on an application.",
+   "gold": "Must: src/flask/blueprints.py Blueprint is a thin Flask-specific subclass of src/flask/sansio/blueprints.py Blueprint(Scaffold); Scaffold (src/flask/sansio/scaffold.py) provides the shared route/add_url_rule/before_request/errorhandler decorators also used by App; Blueprint decorators record deferred callables (record / deferred_functions) rather than touching an app; App.register_blueprint (src/flask/sansio/app.py ~571) calls Blueprint.register(app, options) (sansio/blueprints.py ~273) which builds a BlueprintSetupState (make_setup_state ~246), runs _merge_blueprint_funcs (~379) to merge error handlers, before/after request funcs, teardown funcs and context processors under the blueprint name, runs the deferred functions (BlueprintSetupState.add_url_rule applies url_prefix, subdomain and prefixes the endpoint with the blueprint name), and registers nested blueprints recursively; Request.blueprints (wrappers.py) uses _split_blueprint_path to compute active blueprint names for handler lookup."
+  },
+  {
+   "id": "T2-F-LO",
+   "repo": "flask",
+   "tier": "locate",
+   "kind": "read",
+   "prompt": "Where is it decided that dict/jsonify responses have their keys sorted alphabetically by default, and where would I turn that off?",
+   "gold": "Must: src/flask/json/provider.py class DefaultJSONProvider attribute `sort_keys = True` (~line 150), applied in DefaultJSONProvider.dumps via kwargs.setdefault('sort_keys', self.sort_keys) (~line 178); turn it off with app.json.sort_keys = False (or a DefaultJSONProvider subclass assigned to app.json_provider_class)."
+  },
+  {
+   "id": "T2-O-E1",
+   "repo": "hono",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "`appendTrailingSlash` has a `skip` option to exclude some paths, but `trimTrailingSlash` doesn't. Add the same `skip` option to `trimTrailingSlash` and cover it with a test.",
+   "gold": "Must: src/middleware/trailing-slash/index.ts: TrimTrailingSlashOptions gains `skip?: (path: string) => boolean`; trimTrailingSlash applies `!options?.skip?.(c.req.path)` in BOTH branches (the alwaysRedirect early-return branch and the post-next() 404 branch), mirroring appendTrailingSlash; JSDoc updated. Add tests in src/middleware/trailing-slash/index.test.ts.",
+   "check": "git grep -c 'skip' -- src/middleware/trailing-slash/index.ts && npx vitest run src/middleware/trailing-slash  (needs npm/pnpm install; no node_modules in clone)"
+  },
+  {
+   "id": "T2-O-E2",
+   "repo": "hono",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Rename the utility `checkOptionalParameter` to `expandOptionalParameters` and update everything that uses it.",
+   "gold": "Must: rename the export in src/utils/url.ts (~line 200) and update imports and calls in src/router/linear-router/router.ts, src/router/reg-exp-router/router.ts, src/router/trie-router/router.ts, and all 13 references in src/utils/url.test.ts. No references elsewhere.",
+   "check": "! git grep -n checkOptionalParameter && git grep -q expandOptionalParameters -- src"
+  },
+  {
+   "id": "T2-O-E3",
+   "repo": "hono",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "The default 413 response from the body limit middleware always says 'Payload Too Large'. Add an optional `message` option to `bodyLimit` to customise that text, keeping the current text as the default.",
+   "gold": "Must: src/middleware/body-limit/index.ts: BodyLimitOptions gains `message?: string`; the default onError (the one building `new Response(ERROR_MESSAGE, { status: 413 })` and throwing HTTPException(413, { res })) uses `options.message ?? ERROR_MESSAGE`; an explicit options.onError still takes precedence; JSDoc @param added; add a test in src/middleware/body-limit/index.test.ts. Default text unchanged.",
+   "check": "git grep -n 'message' -- src/middleware/body-limit/index.ts && npx vitest run src/middleware/body-limit  (needs install; otherwise judge-only)"
+  },
+  {
+   "id": "T2-O-FL",
+   "repo": "hono",
+   "tier": "flow",
+   "kind": "read",
+   "prompt": "Trace a request through Hono: from `app.fetch(request)` to the Response, including how the route is matched, how middleware and the handler are chained, and what happens on a thrown error or a missing route.",
+   "gold": "Must: HonoBase.fetch (src/hono-base.ts ~498) calls private #dispatch (~425); #dispatch computes path = this.getPath(request, {env}) (default getPath in src/utils/url.ts), calls this.router.match(method, path) (Router interface in src/router.ts; the default Hono class in src/hono.ts uses SmartRouter with RegExpRouter and TrieRouter), builds a Context (src/context.ts); with a single matched handler it is called directly, else compose(matchResult[0], this.errorHandler, this.#notFoundHandler) from src/compose.ts runs, whose inner dispatch(i) calls each handler with next = () => dispatch(i+1); thrown errors reach onError via compose's catch / #handleError (default errorHandler in hono-base.ts: HTTPException.getResponse() else console.error + 500 'Internal Server Error'); if nothing finalizes the context the notFound handler runs (default c.text('404 Not Found', 404)); the result is context.res."
+  },
+  {
+   "id": "T2-O-EX",
+   "repo": "hono",
+   "tier": "exploration",
+   "kind": "read",
+   "prompt": "How is Hono's routing layer organised? What routers exist, what contract do they share, and how do the default Hono class and the presets choose among them?",
+   "gold": "Must: Router<T> interface (name, add, match) plus UnsupportedPathError and MESSAGE_MATCHER_IS_ALREADY_BUILT in src/router.ts; implementations under src/router/: reg-exp-router (router.ts, trie.ts, node.ts, matcher.ts, prepared-router.ts), trie-router (router.ts, node.ts), linear-router, pattern-router, smart-router (SmartRouter tries each router in order, skipping those that throw UnsupportedPathError, and locks in the first that works); src/hono.ts Hono uses SmartRouter with [RegExpRouter, TrieRouter]; src/preset/quick.ts uses SmartRouter with [LinearRouter, TrieRouter]; src/preset/tiny.ts uses PatternRouter; a custom router can be passed via HonoOptions.router in src/hono-base.ts; shared helpers in src/router/utils.ts and src/utils/url.ts (splitPath, checkOptionalParameter, getPattern)."
+  },
+  {
+   "id": "T2-O-LO",
+   "repo": "hono",
+   "tier": "locate",
+   "kind": "read",
+   "prompt": "Where is the default error handler that decides what response an uncaught exception produces, and how does it treat HTTPException?",
+   "gold": "Must: src/hono-base.ts const errorHandler (~line 37): if 'getResponse' in err it returns c.newResponse(res.body, res) built from HTTPException.getResponse() (src/http-exception.ts), else console.error(err) and c.text('Internal Server Error', 500); it is the initial value of HonoBase.errorHandler (~208), overridable with app.onError."
+  },
+  {
+   "id": "T2-D-E1",
+   "repo": "django",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Give `django.utils.text.get_valid_filename` an optional argument to choose what spaces are replaced with, defaulting to the current underscore. Add a test and mention it in the docs.",
+   "gold": "Must: django/utils/text.py get_valid_filename(name, space_replacement='_') (keep @keep_lazy_text): `.strip().replace(' ', space_replacement)` replaces the hard-coded '_'; the later re.sub and the SuspiciousFileOperation check preserved; docstring updated; Storage.get_valid_name in django/core/files/storage/base.py keeps calling it with one argument (no change required); add a test in tests/utils_tests/test_text.py TestUtilsText; document in docs/ref/utils.txt (get_valid_filename entry) and a versionchanged note.",
+   "check": "python tests/runtests.py utils_tests.test_text.TestUtilsText.test_get_valid_filename file_storage"
+  },
+  {
+   "id": "T2-D-E2",
+   "repo": "django",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Rename the private helper `_get_failure_view` in the CSRF middleware to `_get_csrf_failure_view` and fix all its callers.",
+   "gold": "Must: rename the def in django/middleware/csrf.py (~line 50) and its call in CsrfViewMiddleware._reject (~line 212); update the local import and call in django/core/checks/security/csrf.py (~lines 45 and 49). No tests reference it.",
+   "check": "! git grep -n _get_failure_view && python tests/runtests.py csrf_tests check_framework.test_security"
+  },
+  {
+   "id": "T2-D-E3",
+   "repo": "django",
+   "tier": "edit",
+   "kind": "edit",
+   "prompt": "Add a `--name` option to the `listurls` management command so I can restrict output to URL patterns whose name starts with a given value, like `--prefix` does for routes. Add a test and docs.",
+   "gold": "Must: django/core/management/commands/listurls.py: add_arguments gets `--name` (dest e.g. 'names', nargs='+' like --prefix); handle() passes it to Command.get_url_patterns(prefixes=None, names=None) (classmethod; keep existing calls working), where the filter is applied on pattern.name (already namespace-joined with ':'); an empty result still raises CommandError; docs/ref/django-admin.txt `listurls` section (~line 546) documents --name; add a test to class Listurls in tests/admin_scripts/tests.py (~line 3360).",
+   "check": "python tests/runtests.py admin_scripts.tests.Listurls && git grep -n -e '--name' -- django/core/management/commands/listurls.py"
+  },
+  {
+   "id": "T2-D-FL",
+   "repo": "django",
+   "tier": "flow",
+   "kind": "read",
+   "prompt": "Trace how a WSGI request becomes an HttpResponse in Django: from the server calling the application to the view being called and the response headers being written back, including where middleware and URL resolution come in.",
+   "gold": "Must: django/core/wsgi.py get_wsgi_application returns django/core/handlers/wsgi.py WSGIHandler (its __init__ calls load_middleware); WSGIHandler.__call__ sets the script prefix, sends signals.request_started, builds WSGIRequest (request_class), calls self.get_response(request), then start_response with status line, headers and Set-Cookie values; BaseHandler.load_middleware (django/core/handlers/base.py) builds the middleware chain with _get_response innermost, each layer wrapped by convert_exception_to_response (django/core/handlers/exception.py, response_for_exception); BaseHandler.get_response (~138) runs the chain; _get_response (~176) calls resolve_request (~302) -> get_resolver() / URLResolver.resolve (django/urls/resolvers.py ~671) returning a ResolverMatch stored on request.resolver_match, then process_view middleware, make_view_atomic(callback), calls the view, check_response, then template-response middleware / render."
+  },
+  {
+   "id": "T2-D-EX",
+   "repo": "django",
+   "tier": "exploration",
+   "kind": "read",
+   "prompt": "How is Django's ORM organised? Describe the main layers from `Model.objects.filter(...)` down to the database driver and how they interact.",
+   "gold": "Must: Model (django/db/models/base.py, ModelBase metaclass) gets a Manager (django/db/models/manager.py; Manager built via BaseManager.from_queryset(QuerySet)); QuerySet (django/db/models/query.py ~373) is lazy and chainable, holds a Query and evaluates in _fetch_all via an iterable class such as ModelIterable; Query (django/db/models/sql/query.py ~231) is the SQL-agnostic query representation; Query.get_compiler(using) (~369) asks the backend connection for a SQLCompiler (django/db/models/sql/compiler.py, plus SQLInsertCompiler/SQLUpdateCompiler) whose execute_sql generates SQL and runs it on a cursor; lookups and expressions in django/db/models/lookups.py and expressions.py; connections via django/db/__init__.py (connections = ConnectionHandler from django/db/utils.py, `connection` ConnectionProxy, router = ConnectionRouter for multi-db); backends under django/db/backends/ (base, postgresql, mysql, sqlite3, oracle) provide DatabaseWrapper, operations, features, schema editor; fields under django/db/models/fields/."
+  },
+  {
+   "id": "T2-D-LO",
+   "repo": "django",
+   "tier": "locate",
+   "kind": "read",
+   "prompt": "Where does Django decide whether a request counts as HTTPS when it sits behind a proxy that sets a header?",
+   "gold": "Must: django/http/request.py HttpRequest.scheme property (~line 314) reads settings.SECURE_PROXY_SSL_HEADER (default None in django/conf/global_settings.py ~473), compares the META header value to the configured secure value, otherwise falls back to _get_scheme() (WSGIRequest overrides it using wsgi.url_scheme); HttpRequest.is_secure() (~329) returns scheme == 'https'."
+  }
+ ]
+}

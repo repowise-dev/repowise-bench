@@ -1,0 +1,3299 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 135,
+"text": "- **Generation.** Pages about function arguments pass validation (#4931), retired pages keep their notes and history (#4929), rebuilt pages keep their layer metadata (#4871), module excerpts dedupe be",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 709,
+"text": "- **Search and index report a failed embed** (#3015). A partial LanceDB install used to exit `init` with 0 and a healthy semantic index while every page embed failed. `init` and `update` now mark sema",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1017,
+"text": "- **Two silent embedder degradations now surface** (#1370, #2107): a malformed `REPOWISE_FULL_RESCORE_INTERVAL_DAYS` warned nobody and defaulted to 7.0, and a vector-store build failure was swallowed ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1332,
+"text": "vector query in a process pays for the store open, the first embed and the",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1371,
+"text": "- **`repowise reindex` exits non-zero when every embed failed**, so an automated",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1386,
+"text": "an embed of `io.Reader` keeps its package qualifier instead of binding to",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1551,
+"text": "- **`REPOWISE_EMBEDDING_TIMEOUT` is honoured by every embedder.** Only the Ollama one read it. openai, gemini and openrouter hardcoded 10s, and an expired batch is not retried: it is reported once as ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2475,
+"text": "vector corpus away from file pages. Updates now embed regenerated pages into",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2598,
+"text": "- **Native Ollama embedder.** Semantic indexing can now embed through a local Ollama instance directly, without routing through an OpenAI-compatible shim (#331).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2750,
+"text": "- **Embedder no longer blocks the LLM critical path.** Post-LLM embed-and-upsert spawned as a background task so the next wave's LLM calls start immediately; the level still drains pending embeds befo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/agent/CLAUDE_CODE_COMMANDS.md",
+"line": 40,
+"text": "| `/repowise:reindex` | Re-embed every wiki page into the vector store. Embedding calls only, no LLM calls |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 1546,
+"text": "and the vector store embed (LanceDB) can overlap with the next file's context assembly.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/business/COMMERCIAL.md",
+"line": 36,
+"text": "- Product teams that want to **embed** Repowise intelligence in their own internal",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/business/COMMERCIAL.md",
+"line": 422,
+"text": "2. **Embedding rights**: embed Repowise intelligence in your internal tooling and",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/business/SECURITY_COMPLIANCE.md",
+"line": 255,
+"text": "| What license are we accepting? | AGPL-3.0 for the OSS engine, free for internal use. A commercial license is required to embed Repowise in a product without AGPL obligations. |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/layers/DEAD_CODE.md",
+"line": 158,
+"text": "`const_get(`, `plugin.Open(` and `//go:embed`, `NSClassFromString(`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 209,
+"text": "- Workspace `init` exits `2` after saving every repo, naming those with gaps. `update` exits `1` on a failed embed.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2112,
+"text": "Re-embed all wiki pages; embedding calls only, no LLM. A full run with a real embedder marks semantic search available again, clearing a failed `init`/`update` record.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2133,
+"text": "| `--repair` | Rebuild FTS, re-embed missing pages, sync workspace drift, drop dead workspace entries. | off |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2150,
+"text": "reports all missing; `--repair` won't re-embed it with a paid embedder, it prints the count and points to `repowise",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 1013,
+"text": "`amazon/amazon.titan-embed-text-v2:0` (EU-served, cheapest per token here).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 1164,
+"text": "- Raise the embed timeout for a local endpoint: one request embeds a whole",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 1165,
+"text": "batch, and an expired batch shows only as `N/N items failed to embed`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 1168,
+"text": "- A cold first vector query pays for the store open, first embed and first ANN",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 1173,
+"text": "- Set the embed prefixes only for a model trained with them (such as",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/_data/codex_prompts/repowise-reindex.md",
+"line": 29,
+"text": "Semantic search needs a real embedder: a key for `gemini` (`GEMINI_API_KEY`/`GOOGLE_API_KEY`), `openai`, `openrouter` or `edenai`, or a local Ollama with `OLLAMA_EMBEDDING_MODEL` set. When none is ava",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/formats/json_merge.py",
+"line": 309,
+"text": "embed that block mid-document so the keys sit at *base_indent* and the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/decision_batch.py",
+"line": 27,
+"text": "A factory, so ``add`` can embed after its session commits. A locked or",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/decision_cmd.py",
+"line": 685,
+"text": "embed = (rec.id, rec.title, rec.decision or \"\", rec.evidence_file)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/decision_cmd.py",
+"line": 696,
+"text": "# After the session commits, so a network embed never holds the write",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/decision_cmd.py",
+"line": 698,
+"text": "await _embed_decision(repo_path, *embed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/decision_cmd.py",
+"line": 766,
+"text": "# Covers resolving and building the store. The embed call itself",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/stores.py",
+"line": 110,
+"text": "# re-embed pages for deleted files.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/stores.py",
+"line": 121,
+"text": "# vector (empty match text, swallowed embed failure) and repair cannot",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/stores.py",
+"line": 122,
+"text": "# re-embed it, so flagging it would be permanent noise.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/stores.py",
+"line": 148,
+"text": "# embed the stub and quietly burn the retry. FTS still indexes the stub, so",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/stores.py",
+"line": 262,
+"text": "# --repair declines to re-embed a whole empty store; reindex does that.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_repair.py",
+"line": 55,
+"text": "\"\"\"Say what a re-embed will cost; True when doctor should leave it to reindex.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_repair.py",
+"line": 67,
+"text": "\"paid re-embed of the whole wiki from doctor; run \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_repair.py",
+"line": 115,
+"text": "\"\"\"Re-embed missing pages and delete orphans; returns entries repaired.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 338,
+"text": "# would embed that paid prose as 8-dim SHA-256 hashes and leave semantic",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 472,
+"text": "\"\"\"Re-embed the whole wiki after the embedder was upgraded off the mock.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/engine.py",
+"line": 247,
+"text": "# not, a non-None embedder would make generation embed into a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_finish.py",
+"line": 181,
+"text": "# Fast mode has no pages for reindex to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_provider.py",
+"line": 169,
+"text": "# Re-resolve the embedder so the display and the embed path honor the key",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_questions.py",
+"line": 31,
+"text": "# those pages embed like any other, so the answer applies either way.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 232,
+"text": "# case): silently dropping it to the mock would re-embed the store at a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 753,
+"text": "# or a later update could re-embed the store at a different width.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 59,
+"text": "\"\"\"What to run first on an Index only repo, which has no documentation to embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 68,
+"text": "\"[yellow]This repo is Index only: it has no documentation to embed yet.[/yellow] \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 168,
+"text": "warn(f\"  failed to embed {page_id} during {stage}: {exc}\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 178,
+"text": "warn(f\"  failed to embed {page_id}: {exc}\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 181,
+"text": "# Pages \u2014 one batched embed per slice instead of one embedder",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 284,
+"text": "# The run that clears a failed embed must say so: init and update mark the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 114,
+"text": "\"\"\"Exit non-zero, and say semantic search is unavailable, after a failed embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 1951,
+"text": "# fatal before stamping its fingerprint. Do not embed them twice.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/deterministic.py",
+"line": 318,
+"text": "# Without it a failed embed was logged and nothing else.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/cost_gate.py",
+"line": 187,
+"text": "return f\"Includes {amount} USD to embed {pages} with {embedder}.\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 138,
+"text": "earlier run, and silently dropping to the mock would re-embed the store at",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 143,
+"text": "``repowise init`` on a machine that has since acquired an API key embed the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 201,
+"text": "after a manual re-embed), then the pin, then detection, with this repo's",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/vector_store.py",
+"line": 105,
+"text": "fails there with a named error, which the embed step reports as a failed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/vector_store.py",
+"line": 106,
+"text": "embed rather than a run that only looked healthy.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/vector_store.py",
+"line": 120,
+"text": "# does still embed \u2014 it just does not persist anywhere.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/mode_selection.py",
+"line": 182,
+"text": "\"longer to render and embed[/dim]\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/mode_selection.py",
+"line": 507,
+"text": "# Fast mode renders no wiki at all, so there would be nothing to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/mode_selection.py",
+"line": 529,
+"text": "Index-only renders a full wiki now, and those pages embed like any other,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/repo_scanner.py",
+"line": 166,
+"text": "\"\"\"Rough low/high seconds to render and embed *documentable* file pages.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/upgrade.py",
+"line": 119,
+"text": "unlisted model would re-embed their whole wiki on every single ``update``,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/upgrade.py",
+"line": 123,
+"text": "cannot loop (the re-embed replaces 8 with something that is not 8, whatever",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/dynamic_markers.py",
+"line": 216,
+"text": "# (``//go:generate``), embed assets (``//go:embed``), or link to a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/dynamic_markers.py",
+"line": 223,
+"text": "\"//go:embed\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/semantic_match.py",
+"line": 72,
+"text": "\"\"\"The text used to embed a decision for semantic matching.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/semantic_match.py",
+"line": 76,
+"text": "and the query side always embed the same shape.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/semantic_match.py",
+"line": 277,
+"text": "\"\"\"Batched, best-effort embed+upsert of decision items into the store.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/semantic_match.py",
+"line": 363,
+"text": "# embed at the document prefix (see upsert_decision_vectors); an",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/estimator.py",
+"line": 103,
+"text": "\"\"\"``(tokens, usd)`` to embed *pages* pages, priced at the per-input cap.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/estimator.py",
+"line": 105,
+"text": "Ceiling: every page is counted at the embed cap (about 4 characters per",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/pricing.py",
+"line": 146,
+"text": "\"amazon.titan-embed-text-v2:0\": 0.00002,  # $0.02 / MTok, before Eden AI's fee",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/pricing.py",
+"line": 152,
+"text": "\"edenai\": \"amazon.titan-embed-text-v2:0\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/pricing.py",
+"line": 159,
+"text": "\"\"\"USD per 1K tokens to embed with *embedder*, ``None`` when unpriced.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/architecture_mermaid.py",
+"line": 26,
+"text": "# Written by earlier versions at the end of the page; replaced on re-embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/context/file_vocabulary.py",
+"line": 23,
+"text": "and the index to embed. Three properties are deliberate:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/core.py",
+"line": 208,
+"text": "# ``generate_all``: a failed embed leaves semantic search without",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/core.py",
+"line": 318,
+"text": "``on_embed(count, finished)`` brackets each batched embed of ``count``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/helpers.py",
+"line": 89,
+"text": "downstream pages' dependency context and into the vector-store embed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/orchestrate.py",
+"line": 674,
+"text": "\"\"\"Run one level's coroutines under the shared semaphore + embed batch.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/orchestrate.py",
+"line": 682,
+"text": "# embed at the end. Embedding the whole wave in one call amortises the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/orchestrate.py",
+"line": 794,
+"text": "with timed(self.timings, \"generation.embed\"):",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/report.py",
+"line": 237,
+"text": "# Pages this run wrote but did not embed, because they say too little to be",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/index_scope.py",
+"line": 96,
+"text": "# Callers embed this in a response that later passes get mutated.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_receiver_typing/go.py",
+"line": 65,
+"text": "\"\"\"Resolve a method promoted through a repository-defined Go interface embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/extractors/heritage/go.py",
+"line": 37,
+"text": "# ``io.Reader``, not ``Reader``, or an embed of a stdlib type",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/extractors/heritage/go.py",
+"line": 56,
+"text": "# A type set (`~int | string`) wears the same node as an embed but",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/parse_cache.py",
+"line": 16,
+"text": "part of the key because symbol IDs embed it; a rename is a miss and",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/coordinator.py",
+"line": 25,
+"text": "(the raw text to embed).  All other keys are forwarded as metadata.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/coordinator.py",
+"line": 65,
+"text": "``record`` must contain a ``\"text\"`` key with the raw text to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_ingest.py",
+"line": 626,
+"text": "# matcher refuses on it. Without this the batch pays for a full embed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/information_floor.py",
+"line": 28,
+"text": "# Pages the embed recipe refused a vector, for the whole process.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/information_floor.py",
+"line": 152,
+"text": "\"\"\"How many pages the embed recipe held out of the index this process.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/information_floor.py",
+"line": 157,
+"text": "\"\"\"Record one held-back page. Called by the embed recipe, nowhere else.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/README.md",
+"line": 24,
+"text": "- `embed_batch(items: list[tuple[id, text, metadata]])` \u2014 embed a whole batch",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/README.md",
+"line": 26,
+"text": "concrete store overrides it to make a single `embed()` call plus a bulk",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 270,
+"text": "free. Backends that can embed a whole batch in a single model call",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 286,
+"text": "default, so both directions embed identically) pay for one batched",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 303,
+"text": "return None  # backend can't embed directly \u2014 caller falls back",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 308,
+"text": "out.extend(await embedder.embed(capped_texts, kind=kind))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 361,
+"text": "Backends override this to embed *all* queries in a single embedder",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/in_memory.py",
+"line": 26,
+"text": "vectors = await self._embedder.embed([cap_embed_text(page_id, text)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/in_memory.py",
+"line": 36,
+"text": "vectors = await self._embedder.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/in_memory.py",
+"line": 74,
+"text": "q_vecs = await self._embedder.embed([query], kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/in_memory.py",
+"line": 90,
+"text": "q_vecs = await self._embedder.embed(list(queries), kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/lancedb_store.py",
+"line": 44,
+"text": "# defined with the embed recipe and re-exported here so the historical import",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/lancedb_store.py",
+"line": 308,
+"text": "vectors = await self._embedder.embed([cap_embed_text(page_id, text)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/lancedb_store.py",
+"line": 349,
+"text": "vectors = await self._embedder.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/lancedb_store.py",
+"line": 427,
+"text": "q_vecs = await self._embedder.embed([query], kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/lancedb_store.py",
+"line": 445,
+"text": "q_vecs = await self._embedder.embed(list(queries), kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/pgvector_store.py",
+"line": 63,
+"text": "vectors = await self._embedder.embed([cap_embed_text(page_id, text)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/pgvector_store.py",
+"line": 86,
+"text": "vectors = await self._embedder.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/pgvector_store.py",
+"line": 120,
+"text": "q_vecs = await self._embedder.embed([query], kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/pgvector_store.py",
+"line": 161,
+"text": "q_vecs = await self._embedder.embed(list(queries), kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/full_index.py",
+"line": 135,
+"text": "# Deletion does not embed or validate vector dimensions, so a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/orchestrator.py",
+"line": 143,
+"text": "against it and embed decisions into it (also surfacing them in",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/generation.py",
+"line": 179,
+"text": "run failed to embed, so a caller can refuse to call semantic search",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/precedent/structural.py",
+"line": 253,
+"text": "and without this it read as one. Editable ``.pth`` filenames embed the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/__init__.py",
+"line": 16,
+"text": "vectors = await embedder.embed([\"text to embed\"])",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/__init__.py",
+"line": 9,
+"text": "vectors = await embedder.embed([\"text to embed\"])",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 4,
+"text": "an `embed()` method and a `dimensions` property satisfies it without",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 34,
+"text": "failed to embed\".",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 112,
+"text": "\"\"\"*client* for one embed call: a query gets no SDK retries.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 145,
+"text": "cure (\"N/N items failed to embed\") is exactly what a silently-ignored value",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 170,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 174,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 205,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 285,
+"text": "#: Ceiling on the start-up embed; past it the first search pays the rest.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 292,
+"text": "The first query embed in a process pays for client setup and the TLS",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/base.py",
+"line": 304,
+"text": "embedder.embed([\"code search\"], kind=\"document\"),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 25,
+"text": "#: Seconds a failed query embed keeps later query embeds from calling the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 32,
+"text": "\"\"\"A query embed skipped because the provider failed under a minute ago.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 59,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 82,
+"text": "\"\"\"The provider's embed; a query one fails fast while a recent one failed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 89,
+"text": "return await self._inner.embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/caching.py",
+"line": 93,
+"text": "return await self._inner.embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 8,
+"text": "Default model: amazon/amazon.titan-embed-text-v2:0 (1024 dims, EU region)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 14,
+"text": "vectors = await embedder.embed([\"some text\"])",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 33,
+"text": "\"amazon/amazon.titan-embed-text-v2:0\".",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 50,
+"text": "\"amazon/amazon.titan-embed-text-v2:0\": 1024,  # EU region",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 51,
+"text": "\"amazon/cohere.embed-multilingual-v3\": 1024,  # EU region",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 64,
+"text": "model: str = \"amazon/amazon.titan-embed-text-v2:0\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 104,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/edenai.py",
+"line": 111,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/gemini.py",
+"line": 47,
+"text": "retrieval instructions selected by embed(kind=...).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/gemini.py",
+"line": 76,
+"text": "self._client: object | None = None  # cached; created once on first embed()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/gemini.py",
+"line": 82,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/gemini.py",
+"line": 89,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 3,
+"text": "Uses Ollama's native ``/api/embed`` endpoint, so local embedding models do not",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 56,
+"text": "if \"mxbai-embed-large\" in name or \"bge-m3\" in name:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 58,
+"text": "if \"nomic-embed-text\" in name or \"embeddinggemma\" in name:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 126,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 130,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/ollama.py",
+"line": 147,
+"text": "response = await client.post(f\"{self._base_url}/api/embed\", json=payload)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openai.py",
+"line": 118,
+"text": "self._client: object | None = None  # cached; created once on first embed()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openai.py",
+"line": 131,
+"text": "table \u2014 kept only so :meth:`embed`'s width-mismatch error can name the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openai.py",
+"line": 169,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openai.py",
+"line": 176,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openrouter.py",
+"line": 12,
+"text": "vectors = await embedder.embed([\"some text\"])",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openrouter.py",
+"line": 124,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/openrouter.py",
+"line": 131,
+"text": "texts: Non-empty list of strings to embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/registry.py",
+"line": 84,
+"text": "vectors = await embedder.embed([\"Hello world\"])",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 7,
+"text": "manual re-embed, so the order here is:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/gemini.py",
+"line": 67,
+"text": "Quota errors embed RetryInfo like ``'retryDelay': '21s'`` in the error",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 135,
+"text": "- **Generation.** Pages about function arguments pass validation (#4931), retired pages keep their notes and history (#4929), rebuilt pages keep their layer metadata (#4871), module excerpts dedupe be",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 709,
+"text": "- **Search and index report a failed embed** (#3015). A partial LanceDB install used to exit `init` with 0 and a healthy semantic index while every page embed failed. `init` and `update` now mark sema",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1017,
+"text": "- **Two silent embedder degradations now surface** (#1370, #2107): a malformed `REPOWISE_FULL_RESCORE_INTERVAL_DAYS` warned nobody and defaulted to 7.0, and a vector-store build failure was swallowed ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1332,
+"text": "vector query in a process pays for the store open, the first embed and the",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1371,
+"text": "- **`repowise reindex` exits non-zero when every embed failed**, so an automated",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1386,
+"text": "an embed of `io.Reader` keeps its package qualifier instead of binding to",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1551,
+"text": "- **`REPOWISE_EMBEDDING_TIMEOUT` is honoured by every embedder.** Only the Ollama one read it. openai, gemini and openrouter hardcoded 10s, and an expired batch is not retried: it is reported once as ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2475,
+"text": "vector corpus away from file pages. Updates now embed regenerated pages into",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2598,
+"text": "- **Native Ollama embedder.** Semantic indexing can now embed through a local Ollama instance directly, without routing through an OpenAI-compatible shim (#331).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2750,
+"text": "- **Embedder no longer blocks the LLM critical path.** Post-LLM embed-and-upsert spawned as a background task so the next wave's LLM calls start immediately; the level still drains pending embeds befo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/manager.py",
+"line": 70,
+"text": "mismatch (which adds a no-LLM re-embed action).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/manager.py",
+"line": 75,
+"text": "build resolves now; a difference triggers a re-embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/manager.py",
+"line": 165,
+"text": "# Two independent checks can both conclude \"re-embed\" (a model-name",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/verdict.py",
+"line": 23,
+"text": "#: A no-LLM action runs automatically in-band (e.g. re-embed vectors).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/verdict.py",
+"line": 39,
+"text": "#: Re-embed all wiki pages + decisions via the existing reindex path.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/job_incremental.py",
+"line": 63,
+"text": "# As in the CLI: re-embed re-rendered pages, reuse unchanged ones.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/leg_record.py",
+"line": 38,
+"text": "Holds an ``embed`` key when embedding the question failed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 26,
+"text": "None when there is no store or embedder, or the embed failed; callers then",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 27,
+"text": "search by text, which costs an embed but is still correct.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 48,
+"text": "_record_leg(\"embed\", \"timeout\")",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 50,
+"text": "\"get_answer could not embed the question within %.1fs; retrieval \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 57,
+"text": "_record_leg(\"embed\", \"error\")",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 59,
+"text": "\"get_answer could not embed the question up front; each retrieval \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 60,
+"text": "\"stage will embed it again\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 66,
+"text": "_log.debug(\"Vector store cannot embed directly; per-stage embedding stands\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_answer_pipeline/vectors.py",
+"line": 82,
+"text": "pipeline goes through this, and the text fallback would embed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_helpers.py",
+"line": 42,
+"text": "# for the store open, the first embed and the first ANN probe; #1678 measured",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/c4.py",
+"line": 126,
+"text": "embed in markdown. Same data source as the JSON endpoints, so what you",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/health.py",
+"line": 174,
+"text": "parts.append(f\"No page vectors for {sql_pages} wiki pages; run a sync to embed pages.\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/health.py",
+"line": 185,
+"text": "f\"run a sync to embed decisions.\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "plugins/claude-code/README.md",
+"line": 56,
+"text": "| `/repowise:reindex` | Rebuild the vector store (re-embed; no LLM calls) |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "plugins/claude-code/commands/reindex.md",
+"line": 30,
+"text": "Semantic search needs a real embedder: a key for `gemini` (`GEMINI_API_KEY`/`GOOGLE_API_KEY`), `openai`, `openrouter` or `edenai`, or a local Ollama with `OLLAMA_EMBEDDING_MODEL` set. When none is ava",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "plugins/shared/commands/reindex.md",
+"line": 31,
+"text": "Semantic search needs a real embedder: a key for `gemini` (`GEMINI_API_KEY`/`GOOGLE_API_KEY`), `openai`, `openrouter` or `edenai`, or a local Ollama with `OLLAMA_EMBEDDING_MODEL` set. When none is ava",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1582,
+"text": "+    static for the whole level (pages embed in one batch at level end), so",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3591,
+"text": "+part of the key because symbol IDs embed it; a rename is a miss and",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4372,
+"text": "+        Backends override this to embed *all* queries in a single embedder",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4399,
+"text": "-        q_vecs = await self._embedder.embed([query])",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4413,
+"text": "+        q_vecs = await self._embedder.embed([query])",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4424,
+"text": "+        q_vecs = await self._embedder.embed(list(queries))",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4461,
+"text": "-        q_vecs = await self._embedder.embed([query])",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4477,
+"text": "+        q_vecs = await self._embedder.embed([query])",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4489,
+"text": "+        q_vecs = await self._embedder.embed(list(queries))",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4587,
+"text": "+        q_vecs = await self._embedder.embed(list(queries))",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 162,
+"text": "InMemory/LanceDB/PgVector override to embed ALL queries in one embedder",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 165,
+"text": "The store is static for the level (pages embed in one batch at level",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 169,
+"text": "* perf(persistence): batch pgvector embed UPDATEs + IN-filtered summary lookups",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/mcp/retrieval_precision_corpus.json",
+"line": 114,
+"text": "{\"target\": \"dec_embed_batch_counters\", \"kind\": \"decision\", \"member_name\": \"\", \"path\": \"packages/core/src/repowise/core/analysis/decision_extractor.py\", \"owner\": \"\", \"context\": [\"decision\", \"indexing\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/mcp/retrieval_precision_corpus.json",
+"line": 115,
+"text": "{\"target\": \"packages/core/src/repowise/core/analysis/decision_extractor.py\", \"kind\": \"page\", \"member_name\": \"\", \"path\": \"packages/core/src/repowise/core/analysis/decision_extractor.py\", \"owner\": \"\", \"",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/integration/persistence/test_embed_batch_pg.py",
+"line": 4,
+"text": "not running. Exercises the batched embed path (one embedder call + per-row",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/persistence/test_embed_batch_pg.py",
+"line": 65,
+"text": "name=\"pg-embed\", local_path=\"/tmp/pg-embed\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 85,
+"text": "# Mirror the generator's batched embed path: a level's pages are",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 87,
+"text": "# stores issue one batched embed call, so this never fans out.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 286,
+"text": "# this fixture's slow store exercises, is that the embed semaphore is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_actions_rules.py",
+"line": 853,
+"text": "SecretFacts(\"src/embed.py\", \"hardcoded_secret\", 15, 'embedder = Embedder(api_key=\"AIza...\")'),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_go_reachability.py",
+"line": 233,
+"text": "assert \"//go:embed\" in go_markers",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 148,
+"text": "\"title\": \"Batch the embed calls\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 150,
+"text": "\"links\": [(\"src/other/embed.py\", \"file\")],",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 164,
+"text": "assert \"Batch the embed calls\" not in block",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 672,
+"text": "\"links\": [(\"src/core/embed.py\", \"file\")],",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 676,
+"text": "notice = decision_inject._edit_decision_notice(tmp_path, \"src/core/embed.py\", \"s1\", {})",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 707,
+"text": "\"id\": \"d-embed\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 708,
+"text": "\"title\": \"Batch embed calls\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 709,
+"text": "\"decision\": \"batch embed calls\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 711,
+"text": "\"links\": [(\"src/embed.py\", \"file\")],",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_decision_inject.py",
+"line": 715,
+"text": "notice = decision_inject._edit_decision_notice(tmp_path, \"src/embed.py\", \"s1\", {})",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_deterministic_update.py",
+"line": 54,
+"text": "monkeypatch.setenv(\"OLLAMA_EMBEDDING_MODEL\", \"nomic-embed-text\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_doctor_embed_recipe.py",
+"line": 3,
+"text": "It used to embed the bare content with neither the page's path nor its",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embed_failure_reporting.py",
+"line": 1,
+"text": "\"\"\"A failed embed must not be reported as a healthy semantic index.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embed_failure_reporting.py",
+"line": 336,
+"text": "async def embed(self, texts):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embed_failure_reporting.py",
+"line": 337,
+"text": "return await MockEmbedder().embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embed_failure_reporting.py",
+"line": 416,
+"text": "Init itself exits 2 here (its embed fails too); the stamp is reset to",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 41,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 84,
+"text": "\"\"\"Only the mock is refused; a real re-embed is the intended rebuild.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 444,
+"text": "as an explicit request makes the re-init resolve a paid embedder and embed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 458,
+"text": "Dropping a real pin to the mock would re-embed the store at a different",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 550,
+"text": "\"\"\"The re-embed loop this must not have.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 567,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_embedder_resolution.py",
+"line": 688,
+"text": "\"\"\"Two checks can both conclude \"re-embed\"; the API bill should not double.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_theme.py",
+"line": 108,
+"text": "# An embed failure exits non-zero, so it outranks a warning.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_reindex_cmd.py",
+"line": 107,
+"text": "# Force the failure path: every item fails to embed. Patch the vector",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_ui_package.py",
+"line": 129,
+"text": "template wiki, and those pages embed like any other, so the choice is real.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/core/test_index_scope_cache.py",
+"line": 76,
+"text": "\"\"\"Responses embed this dict and later passes mutate it in place.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_embed_metadata.py",
+"line": 49,
+"text": "assert meta.get(\"title\"), \"blank title in embed metadata is the 2026-07 bug\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_file_vocabulary.py",
+"line": 20,
+"text": "* it reaches the **embedded text**, not only the page's metadata. The embed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_file_vocabulary.py",
+"line": 242,
+"text": "content would embed a page without it and nothing would raise. This is the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_generation_information_floor.py",
+"line": 5,
+"text": "searches, so a caller that appended ``None`` into the embed batch would fail",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_generation_information_floor.py",
+"line": 7,
+"text": "return would embed everything exactly as before.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_job_checkpoint_durability.py",
+"line": 26,
+"text": "async def embed(self, texts: list[str]) -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_styles.py",
+"line": 119,
+"text": "\"\"\"The marker must embed the fingerprint so any style edit busts the hash.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_wiki_template_cleanups.py",
+"line": 6,
+"text": "it lives in page metadata, and the one embed recipe reads it from there.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_extractors.py",
+"line": 96,
+"text": "Stripping the qualifier lets an embed of a stdlib type bind to whatever",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 45,
+"text": "#  * storage/embed.go     \u2014 interface ReadWriter embeds Store + adds Close.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 65,
+"text": "\"storage/embed.go\": (",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 126,
+"text": "rw_id = \"storage/embed.go::ReadWriter\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_heritage_type_names.py",
+"line": 57,
+"text": "# Go keeps the package qualifier on an embed: ``io.Reader`` must stay",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_heritage_type_names.py",
+"line": 58,
+"text": "# ``io.Reader``, not ``Reader``, or an embed of a stdlib type binds to",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_heritage_type_names.py",
+"line": 73,
+"text": "# embed in a `type_elem`.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_heritage_type_names.py",
+"line": 90,
+"text": "# A type set is a generic bound, not an embed: it carries no methods.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_heritage_type_names.py",
+"line": 92,
+"text": "# ...and skipping one must not cost the embed sitting beside it.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_parse_cache.py",
+"line": 108,
+"text": "# Symbol IDs embed the path \u2014 the renamed file must carry the new path.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_dedupe.py",
+"line": 60,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_semantic_dedup.py",
+"line": 30,
+"text": "Texts mentioning the same concept (\"redis\" / \"postgres\") embed to the same",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_semantic_dedup.py",
+"line": 38,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_semantic_dedup.py",
+"line": 191,
+"text": "\"\"\"Counts embed() round-trips; every distinct text embeds orthogonally.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_semantic_dedup.py",
+"line": 193,
+"text": "Each ``embed()`` call models one network request to a real provider \u2014 the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_semantic_dedup.py",
+"line": 206,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_decision_supersession.py",
+"line": 50,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_embed_recipe.py",
+"line": 1,
+"text": "\"\"\"One embed recipe, shared by everything that writes a page's vector.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_embed_recipe.py",
+"line": 68,
+"text": "Two pages with the same words must embed to the same string whether or",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_evidence_snippet.py",
+"line": 91,
+"text": "vector = (await store._embedder.embed([\"anything\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 24,
+"text": "vecs = await emb.embed([\"hello world\", \"goodbye moon\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 32,
+"text": "vecs = await emb.embed([\"test\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 38,
+"text": "v1 = (await emb.embed([\"hello\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 39,
+"text": "v2 = (await emb.embed([\"hello\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 45,
+"text": "v1 = (await emb.embed([\"hello\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 46,
+"text": "v2 = (await emb.embed([\"goodbye\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 53,
+"text": "batch = await emb.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 55,
+"text": "individual = (await emb.embed([text]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 392,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 446,
+"text": "\"\"\"Mock-dim embedder that records every embed() call's batch shape.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 454,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_vector_store.py",
+"line": 644,
+"text": "write, which the embed step reported with no hint that the install was",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_generation_warning_wiring.py",
+"line": 1,
+"text": "\"\"\"A generation-time embed failure must reach the progress callback.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_generation_warning_wiring.py",
+"line": 7,
+"text": "callback down to the embed-batch failure handler, routing it through",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_generation_warning_wiring.py",
+"line": 99,
+"text": "# The orchestrator's embed-batch handler calls on_warning on failure;",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_graph_patch_config.py",
+"line": 74,
+"text": "'package main\\n\\nimport _ \"embed\"\\n\\n//go:generate goyacc -o parser/expr.go parser/expr.y\\n\\n'",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_graph_patch_config.py",
+"line": 75,
+"text": "\"//go:embed testdata/eval.test\\nvar evalTest string\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 386,
+"text": "embedders.register_embedder(\"acme-embed\", lambda **kw: \"EMBED\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 416,
+"text": "\"embedder:acme-embed\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 419,
+"text": "assert record.seams[-1] == \"embedder:acme-embed\"  # outside a load, nothing is recorded",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 427,
+"text": "assert embedders.get_embedder(\"acme-embed\") == \"EMBED\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 429,
+"text": "assert \"acme-embed\" in embedders.list_embedders()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/registry/test_plugins.py",
+"line": 432,
+"text": "with pytest.raises(ValueError, match=\"acme-embed\"):",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_projection.py",
+"line": 427,
+"text": "assert \"retrieval:embed\" in result[\"_meta\"][\"degraded\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 30,
+"text": "\"\"\"MockEmbedder that records every batch of texts it is asked to embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 40,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 42,
+"text": "return await self._inner.embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 140,
+"text": "The stages then embed per-search as before, which costs money but must not",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 158,
+"text": "\"\"\"The up-front embed is an optimisation. Losing it silently would hide a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_question_embedding.py",
+"line": 171,
+"text": "assert any(\"embed the question\" in r.getMessage() for r in caplog.records), caplog.text",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_synthesis_timeout.py",
+"line": 65,
+"text": "embed/vector-search timeout overrides.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 1,
+"text": "\"\"\"The question-embed budget must be raisable, and say so when it isn't enough.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 35,
+"text": "_QUESTION = \"why does the retrieval pipeline embed the question up front?\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 81,
+"text": "\"\"\"Pins the fix: the embed budget is resolved live, not baked in at import.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 110,
+"text": "local embed used to blow the hardcoded 8s. Proven here at a tight budget",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 120,
+"text": "assert any(\"embed the question\" in r.getMessage() for r in caplog.records)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embed_timeout.py",
+"line": 125,
+"text": "\"\"\"The fix in one assertion: the same slow embed that timed out above",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 147,
+"text": "async def embed(self, texts, *, kind=\"document\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 342,
+"text": "\"\"\"``_query_embedder`` is what the server's stores actually embed with.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_first_search_semantic.py",
+"line": 5,
+"text": "flag; one that starts after load paid the first embed's client setup inside",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_first_search_semantic.py",
+"line": 152,
+"text": "async def embed(self, texts, *, kind=\"document\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_first_search_semantic.py",
+"line": 156,
+"text": "return await super().embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_first_search_semantic.py",
+"line": 173,
+"text": "asyncio.run(embedder.embed([\"q\"], kind=\"query\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_keyless_vector_leg.py",
+"line": 40,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_keyless_vector_leg.py",
+"line": 65,
+"text": "vectors = asyncio.run(embedder.embed([f\"unrelated-document-{i}\" for i in range(200)]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_keyless_vector_leg.py",
+"line": 228,
+"text": "vector = asyncio.run(KeylessEmbedder().embed([\"a new decision\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_mcp_exclude_filter.py",
+"line": 117,
+"text": "# Shape E: node IDs that embed a path (\"path::Name\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 5,
+"text": "An embed that misses its 8s budget returns no vector, retrieval continues",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 27,
+"text": "\"\"\"A vector store whose embed call never returns in time.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 91,
+"text": "assert legs[\"embed\"] == \"timeout\"",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 92,
+"text": "assert \"embed\" in pipeline.degraded_legs(legs)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 121,
+"text": "legs = {\"fts\": \"ok\", \"vector\": \"timeout\", \"symbol\": \"ok\", \"embed\": \"error\"}",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_retrieval_leg_visibility.py",
+"line": 122,
+"text": "assert pipeline.degraded_legs(legs) == [\"embed\", \"vector\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_search_timeout.py",
+"line": 4,
+"text": "embed and the first ANN probe. Measured at 6.3s + 13.4s on a cold Windows index",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_app_embedder_backends.py",
+"line": 36,
+"text": "\"\"\"Same guard as the other backends: serve must not silently re-embed at a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_app_embedder_backends.py",
+"line": 61,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_app_embedder_backends.py",
+"line": 71,
+"text": "assert await embedder.embed([\"same query\"]) == [[1.0, 2.0]]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_app_embedder_backends.py",
+"line": 72,
+"text": "assert await embedder.embed([\"same query\"]) == [[1.0, 2.0]]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_search.py",
+"line": 22,
+"text": "# Insert a page and embed it in the vector store",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_workspace_router.py",
+"line": 169,
+"text": "\"contract_id\": \"http::POST::/api/embed\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_workspace_router.py",
+"line": 173,
+"text": "\"symbol_name\": \"embed\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_workspace_router.py",
+"line": 214,
+"text": "\"contract_id\": \"http::POST::/api/embed\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_workspace_router.py",
+"line": 636,
+"text": "params={\"repo\": \"backend\", \"file\": \"ollama.py\", \"id\": \"http::POST::/api/embed\"},",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 17,
+"text": "\"\"\"Records every batch it is asked to embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 29,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 39,
+"text": "first = await embedder.embed([\"auth service\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 40,
+"text": "second = await embedder.embed([\"auth service\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 50,
+"text": "await embedder.embed([\"one\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 51,
+"text": "await embedder.embed([\"two\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 61,
+"text": "await embedder.embed([\"a\", \"b\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 62,
+"text": "await embedder.embed([\"a\", \"b\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 71,
+"text": "await embedder.embed([\"query\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 72,
+"text": "await embedder.embed([\"query\", \"other\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 73,
+"text": "await embedder.embed([\"query\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 85,
+"text": "await embedder.embed([\"oldest\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 87,
+"text": "await embedder.embed([f\"filler-{i}\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 88,
+"text": "await embedder.embed([\"oldest\"])  # refresh, so a filler is now least recent",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 89,
+"text": "await embedder.embed([\"overflow\"])  # pushes past the cap",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 93,
+"text": "await embedder.embed([\"oldest\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 94,
+"text": "await embedder.embed([\"filler-0\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 105,
+"text": "await embedder.embed([\"q\"])  # miss: populates the entry",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 106,
+"text": "hit = await embedder.embed([\"q\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 108,
+"text": "again = await embedder.embed([\"q\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 123,
+"text": "assert await embedder.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 133,
+"text": "async def embed(self, texts, *, kind=\"document\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 140,
+"text": "assert await embedder.embed([\"q\"]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 141,
+"text": "assert await embedder.embed([\"q\"]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 150,
+"text": "await embedder.embed([\"auth\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 151,
+"text": "await embedder.embed([\"auth\"], kind=\"document\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 152,
+"text": "await embedder.embed([\"auth\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 160,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 174,
+"text": "await embedder.embed([\"auth\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 177,
+"text": "await embedder.embed(texts, kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 182,
+"text": "await embedder.embed([\"doc\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 187,
+"text": "await embedder.embed([\"auth\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 195,
+"text": "await embedder.embed([\"doc\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 197,
+"text": "await embedder.embed([\"auth\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 214,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 229,
+"text": "await embedder.embed([\"too long\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_caching_embedder.py",
+"line": 232,
+"text": "await embedder.embed([\"next\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 37,
+"text": "assert emb._model == \"amazon/amazon.titan-embed-text-v2:0\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 62,
+"text": "emb = EdenAIEmbedder(api_key=\"k\", model=\"amazon/amazon.titan-embed-text-v2:0\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 76,
+"text": "emb = EdenAIEmbedder(api_key=\"k\", model=\"amazon/cohere.embed-multilingual-v3\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 122,
+"text": "result = await emb.embed([])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 133,
+"text": "result = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 151,
+"text": "await emb.embed([\"test text\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 164,
+"text": "await emb.embed([\"test\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 176,
+"text": "await emb.embed([\"test\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_edenai_embedder.py",
+"line": 186,
+"text": "assert await emb.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 10,
+"text": "through ``embed()``/``embed_texts()``/``search()`` safe to ship: every",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 99,
+"text": "doc_vec = (await emb.embed([\"hello\"], kind=\"document\"))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 100,
+"text": "query_vec = (await emb.embed([\"hello\"], kind=\"query\"))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 101,
+"text": "default_vec = (await emb.embed([\"hello\"]))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 111,
+"text": "\"\"\"Records the ``kind`` every ``embed()`` call was made with.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 116,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 118,
+"text": "return await super().embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embed_kind_prefix.py",
+"line": 199,
+"text": "async def embed(self, texts: list[str], *, kind: str = \"document\") -> list[list[float]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_embedding_timeout_resolution.py",
+"line": 60,
+"text": "# \"N/N items failed to embed\" \u2014 the symptom this variable exists to cure.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 4,
+"text": "The pattern mirrors the other embedder suites: mock the external SDK, run the real embed().",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 75,
+"text": "assert await emb.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 82,
+"text": "result = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 95,
+"text": "result = await emb.embed([\"a\", \"b\", \"c\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 115,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 127,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 135,
+"text": "# embed([]) returns early without touching the SDK.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 137,
+"text": "assert await emb.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 150,
+"text": "result = await emb.embed(texts, kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 170,
+"text": "await emb.embed([\"Access control\"], kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 186,
+"text": "await emb.embed([\"Access control\", \"Mail delivery\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 195,
+"text": "await emb.embed([\"Access control\"], kind=\"unknown\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_gemini_embedder.py",
+"line": 238,
+"text": "result = await emb.embed([\"Access control\", \"Mail delivery\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 69,
+"text": "assert await embedder.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 86,
+"text": "vectors = await embedder.embed([\"first\", \"second\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 90,
+"text": "\"url\": \"http://localhost:11434/api/embed\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 108,
+"text": "result = await embedder.embed([\"one\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 157,
+"text": "await embedder.embed([\"one\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 169,
+"text": "await embedder.embed([\"x\" * 16_000] * 16)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 182,
+"text": "await embedder.embed([\"one\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 192,
+"text": "await OllamaEmbedder(model=\"embeddinggemma\", dimensions=2).embed([\"x\" * 16_000] * 4)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 193,
+"text": "await OllamaEmbedder(model=\"embeddinggemma\", dimensions=2, timeout=5.0).embed(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 207,
+"text": "await embedder.embed([\"x\" * 1_000])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 226,
+"text": "await embedder.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 241,
+"text": "await embedder.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 249,
+"text": "# embed([]) short-circuits and returns [] without calling the server.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_ollama_embedder.py",
+"line": 251,
+"text": "assert await embedder.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 92,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=2048)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 99,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 124,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=2048)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 131,
+"text": "OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=bad)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 137,
+"text": "OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 198,
+"text": "result = await emb.embed([])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 209,
+"text": "result = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 224,
+"text": "result = await emb.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 240,
+"text": "await emb.embed([\"test text\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 262,
+"text": "await emb.embed([\"hello\"], kind=kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 272,
+"text": "await emb.embed([\"hello\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 274,
+"text": "await emb.embed([\"hello\"], kind=\"document\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 317,
+"text": "await emb.embed([\"alpha\", \"beta\"], kind=\"query\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 323,
+"text": "# embed()'s default kind matches the Embedder protocol's default, so a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 328,
+"text": "sig = inspect.signature(OpenAIEmbedder.embed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 347,
+"text": "await emb.embed([\"text\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 375,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=2048)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 387,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=2048)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 392,
+"text": "\"Model 'nemotron-embed-1b' does not support Matryoshka embeddings; \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 399,
+"text": "result = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 422,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 441,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 452,
+"text": "emb = OpenAIEmbedder(api_key=\"k\", model=\"nemotron-embed-1b\", declared_dimensions=2048)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 460,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 469,
+"text": "# embed([]) short-circuits before the API call and returns []; the guard",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openai_embedder.py",
+"line": 472,
+"text": "assert await emb.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 85,
+"text": "result = await emb.embed([])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 96,
+"text": "result = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 111,
+"text": "result = await emb.embed(texts)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 127,
+"text": "await emb.embed([\"test text\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 140,
+"text": "await emb.embed([\"test\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 163,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 182,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 196,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 209,
+"text": "vectors = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 236,
+"text": "vectors = await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 251,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 264,
+"text": "await emb.embed([\"hello\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_persistence/test_openrouter_embedder.py",
+"line": 284,
+"text": "assert await emb.embed([]) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_cost_estimator.py",
+"line": 130,
+"text": "assert note == \"Includes about $0.60 USD to embed 1,000 pages with gemini.\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_cost_estimator.py",
+"line": 133,
+"text": "assert tiny == \"Includes under $0.01 USD to embed 3 pages with openai.\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_gemini_provider.py",
+"line": 92,
+"text": "\"name\": \"models/gemini-embed\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_gemini_provider.py",
+"line": 107,
+"text": "assert \"gemini-embed\" not in models",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/upgrade/test_manager.py",
+"line": 84,
+"text": "\"\"\"When the running build resolves no model (env unset), do not re-embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/upgrade/test_manager.py",
+"line": 94,
+"text": "\"\"\"With no pinned model to compare against, never re-embed.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+}
+]

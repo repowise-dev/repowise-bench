@@ -1,0 +1,4587 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 967,
+"text": "- **A language query that fails to compile now warns** (#2166, #2177). Compilation failures were silent, so a whole language could quietly extract nothing. Unaffected languages continue indexing norma",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 1540,
+"text": "- **Inline decision markers stopped matching ordinary prose.** The keyword matched case-insensitively, so a wrapped sentence beginning \"# decision: ...\" and a test label reading \"# Rejected: nothing t",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2788,
+"text": "- **C++ qualified method definitions** (`void Foo::method() { \u2026 }`) now extract with `parent_name=Foo` and `kind=method`. New cpp.scm pattern for two-level `NS::Foo::method` declarations plus a parser",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 458,
+"text": "4. Runs tree-sitter queries to extract symbols, imports, and exports",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/deep-dives.md",
+"line": 358,
+"text": "\"remove\", \"adopt\", \"introduce\", \"upgrade\", \"rewrite\", \"extract\",",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/editor-files.md",
+"line": 543,
+"text": "`maybe_generate_agents_md()` in `codex.py` follows the same contract), or extract a",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/workspace.md",
+"line": 289,
+"text": "| HTTP dialects | `extractors/http/__init__.py` `PROVIDER_DIALECTS`, `CONSUMER_DIALECTS` | `name`, `extensions`, `requires`, `extract` | `test_dialect_registry.py`, `test_extraction_dialect_budget.py`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/layers/REFACTORING.md",
+"line": 250,
+"text": "[architecture/refactoring.md](../architecture/refactoring.md#extract-method-gates).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/PLUGINS.md",
+"line": 371,
+"text": "`extract(path, data)`. Registration requires a non-empty set of valid",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/PLUGINS.md",
+"line": 373,
+"text": "string `version`, and a callable `extract` method.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/UPGRADING.md",
+"line": 49,
+"text": "### 0.53.0: health re-scores once, and workspace contracts re-extract",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/scale/WORKSPACES.md",
+"line": 664,
+"text": "Cross-repo analysis runs during `repowise init .` and `repowise update --workspace`. An update re-runs it when any repo changed, or when the `contracts:` or `conformance:` block of `.repowise-workspac",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/refactoring_targets.py",
+"line": 680,
+"text": "f\"extract near [/dim][bold]{_helper_site(pl)}[/bold]\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/refactoring_targets.py",
+"line": 690,
+"text": "f\"    [dim]extract lines {span.get('start')}-{span.get('end')} \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/refactoring_targets.py",
+"line": 756,
+"text": "f\"extract a helper near `{_helper_site(pl)}`:\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/refactoring_targets.py",
+"line": 765,
+"text": "f\"    - extract lines {span.get('start')}-{span.get('end')} \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/serve_cmd/_web_assets.py",
+"line": 219,
+"text": "console.print(f\"[yellow]Failed to extract web UI: {exc}[/yellow]\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/commit_signals.py",
+"line": 11,
+"text": "``split`` and ``extract`` are ordinary words in a commit subject. Two or more",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/commit_signals.py",
+"line": 34,
+"text": "\"extract\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/discovery/packet.py",
+"line": 50,
+"text": "\"affect future work in this repository. Do not extract the user's immediate \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/head_artifacts.py",
+"line": 28,
+"text": "from repowise.core.analysis.doc_drift.extractor import extract",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/head_artifacts.py",
+"line": 48,
+"text": "tokens = [r.target for r in extract(text, \"\") if r.kind == DriftKind.PATH]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/prompts.py",
+"line": 14,
+"text": "\"You extract structured decision records from code context. \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/prompts.py",
+"line": 95,
+"text": "Analyze this documentation file and extract any architectural decisions.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/prompts.py",
+"line": 119,
+"text": "Only extract explicit decisions. Return [] if none found.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/prompts.py",
+"line": 172,
+"text": "Only extract decisions whose reasoning is actually written in the prose. \\",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/provenance.py",
+"line": 86,
+"text": "#: Sources that no longer extract, newest last. Their names stay in",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/analyzer.py",
+"line": 203,
+"text": "refs = tally.extract(text, rel, enabled)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/analyzer.py",
+"line": 285,
+"text": "def extract(self, text: str, rel: str, enabled: set[DriftKind]) -> list[DocReference]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/extractor.py",
+"line": 398,
+"text": "def extract(text: str, doc_path: str) -> list[DocReference]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/README.md",
+"line": 110,
+"text": "counted, since it is a method to move, not a class to extract.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/class_analysis.py",
+"line": 459,
+"text": "is a class to extract. Rust gets the same count for its own reason: a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/class_analysis.py",
+"line": 473,
+"text": "builder exposes its state, not a class to extract.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/class_analysis.py",
+"line": 623,
+"text": "class to extract): it stays in ``components``, where ``move_method``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/dataflow/dialects/base.py",
+"line": 508,
+"text": "``ingestion/dynamic_hints/cpp.py::extract`` offered a span calling a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/dataflow/dialects/php.py",
+"line": 398,
+"text": "# Calling compact() or extract() makes scope unmodelled",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/dataflow/dialects/php.py",
+"line": 400,
+"text": "if fn_text in (\"compact\", \"extract\"):",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/fix_first/build.py",
+"line": 36,
+"text": "``evidence_json`` and ``plan`` / ``plan_json`` (an extract-method ``span``,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/fix_first/text.py",
+"line": 144,
+"text": "return f\"{n} (move or extract-class, not yet audited; in the full plan)\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/crossfn.py",
+"line": 21,
+"text": "one pass to index symbol nodes, one pass to extract ``calls`` adjacency, one",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/__init__.py",
+"line": 6,
+"text": "\"extract this clone here\" \u2014 with zero LLM calls and zero new runtime deps.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/batches.py",
+"line": 72,
+"text": "numbers = [s[\"n\"] for s in steps if s.get(\"action\") == \"extract\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 4,
+"text": "fix is to extract it once into a shared helper. The duplication is not a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 283,
+"text": "of them plans proposing to extract something no editor could extract:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 302,
+"text": "counts as duplication; it just no longer produces a plan to extract it.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 539,
+"text": "# Reject blocks with nothing to extract (imports, parameter lists, field",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 26,
+"text": "\"extract\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 140,
+"text": "\"\"\"A staged plan: the shared parameter object first, then one extract step",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 192,
+"text": "\"\"\"One extract step, ending with *note* when given (:func:`_rename_note`).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 199,
+"text": "return _step(\"extract\", d.get(\"file_path\"), None, text)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 216,
+"text": "\"extract\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/recipe.py",
+"line": 640,
+"text": "spans = [s[\"span\"] for s in steps if s.get(\"action\") == \"extract\" and s.get(\"span\")]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/suggestions.py",
+"line": 26,
+"text": "\"many dependents \u2014 extract cohesive responsibilities into helpers \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/suggestions.py",
+"line": 38,
+"text": "\"concentrates real logic in a brain method \u2014 extract cohesive \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/suggestions.py",
+"line": 44,
+"text": "\"extract the deepest branch into a helper, and consider \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/system_map.py",
+"line": 106,
+"text": "contracts = HttpExtractor().extract(Path(run.repo_path or \".\"), files=sources)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/document_extractors.py",
+"line": 30,
+"text": "def extract(self, path: Path, data: bytes) -> str: ...",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/document_extractors.py",
+"line": 58,
+"text": "if not callable(getattr(extractor, \"extract\", None)):",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/document_extractors.py",
+"line": 59,
+"text": "raise ValueError(f\"document extractor {name!r} must provide extract(path, data)\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/document_extractors.py",
+"line": 269,
+"text": "markdown = extractor.extract(extractor_path, source)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/document_extractors.py",
+"line": 271,
+"text": "raise TypeError(\"extract() must return Markdown as str\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/alpine.py",
+"line": 69,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/base.py",
+"line": 48,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]: ...",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/c.py",
+"line": 33,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/cpp.py",
+"line": 145,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/django.py",
+"line": 222,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/dotnet.py",
+"line": 113,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/go.py",
+"line": 33,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/jvm.py",
+"line": 70,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/luau.py",
+"line": 28,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/node.py",
+"line": 37,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/php.py",
+"line": 59,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/python_imports.py",
+"line": 285,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/registry.py",
+"line": 162,
+"text": "return extractor.extract(repo_root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/ruby.py",
+"line": 31,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/rust.py",
+"line": 50,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/scala.py",
+"line": 28,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/spring.py",
+"line": 39,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/swift.py",
+"line": 30,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/xaml.py",
+"line": 96,
+"text": "def extract(self, repo_root: Path) -> list[DynamicEdge]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/extractors/docstrings.py",
+"line": 19,
+"text": "# C# XML doc comments use a small set of tags. We extract <summary> as the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/typo3.py",
+"line": 47,
+"text": "# We extract the right-hand value to add edges to the registered files.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/git_indexer/_constants.py",
+"line": 44,
+"text": "\"extract\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/git_indexer/_constants.py",
+"line": 146,
+"text": "r\"\\b(refactor|restructure|cleanup|clean.up|rename|reorganize|extract|simplify|move)\\b\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/git_indexer/_constants.py",
+"line": 266,
+"text": "r\"\\b(refactor|restructure|cleanup|clean.up|rename|reorganize|extract|\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/language_configs.py",
+"line": 81,
+"text": "#   \"receiver\" \u2014 extract from @symbol.receiver capture (Go)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/language_configs.py",
+"line": 406,
+"text": "# Apex reads Java's node names; there are no imports to extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 146,
+"text": "The question is \"we cannot extract structure from it, and there is none",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 147,
+"text": "to extract\". That is narrower than :meth:`passthrough_languages`, which",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/godot_resource.py",
+"line": 82,
+"text": "# Data, not code -- no symbols exist to extract. See the module docstring.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/html.py",
+"line": 44,
+"text": "# Markup, not code: no symbols exist to extract, and this is what makes the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/parser/symbols.py",
+"line": 179,
+"text": "# extract only the base type name, not the full generic signature.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/parser/symbols.py",
+"line": 582,
+"text": "# Go: extract type name from receiver parameter list",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/queries/cpp.scm",
+"line": 100,
+"text": "; name's qualified-identifier parent to extract the class name, so the",
+"cls": "otherlang",
+"ext": ".scm"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/fix_first.py",
+"line": 482,
+"text": "extract = and_(s.refactoring_type == \"extract_method\", s.status == \"open\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/fix_first.py",
+"line": 507,
+"text": "await session.execute(query(or_(helpers, extract) if files is None else helpers))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/fix_first.py",
+"line": 512,
+"text": "session, files, lambda piece: query(and_(extract, s.file_path.in_(piece)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/health/snapshots.py",
+"line": 22,
+"text": "#: path's score series pays the entire retention window in TEXT to extract a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_review_meta.py",
+"line": 25,
+"text": "something happened to re-extract each record individually. The signals come",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/incremental/external_systems.py",
+"line": 20,
+"text": "\"\"\"Re-extract + reconcile external systems (C4 L1) when a manifest changed.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/sessions/miners/decisions.py",
+"line": 481,
+"text": "\"You are an architectural decision extractor. You extract durable, \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 967,
+"text": "- **A language query that fails to compile now warns** (#2166, #2177). Compilation failures were silent, so a whole language could quietly extract nothing. Unaffected languages continue indexing norma",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 1540,
+"text": "- **Inline decision markers stopped matching ordinary prose.** The keyword matched case-insensitively, so a wrapped sentence beginning \"# decision: ...\" and a test label reading \"# Rejected: nothing t",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2788,
+"text": "- **C++ qualified method definitions** (`void Foo::method() { \u2026 }`) now extract with `parent_name=Foo` and `kind=method`. New cpp.scm pattern for two-level `NS::Foo::method` declarations plus a parser",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/contracts.py",
+"line": 794,
+"text": "# differs, or the tree is dirty (which HEAD cannot show): re-extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/contracts.py",
+"line": 858,
+"text": "\"\"\"Extra keyword arguments an extractor's ``extract`` takes.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/contracts.py",
+"line": 917,
+"text": "lambda e=extractor, kw=kwargs: e.extract(repo_path, alias, exclude, files, **kw)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/__init__.py",
+"line": 75,
+"text": "def extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/__init__.py",
+"line": 86,
+"text": "contracts = super().extract(repo_path, repo_alias, exclude, files)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/ddl.py",
+"line": 43,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/drizzle.py",
+"line": 45,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/knex.py",
+"line": 86,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/laravel.py",
+"line": 60,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/laravel.py",
+"line": 83,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/laravel.py",
+"line": 130,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/mybatis.py",
+"line": 47,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/orm_models.py",
+"line": 82,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/orm_models.py",
+"line": 119,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/orm_models.py",
+"line": 140,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/orm_models.py",
+"line": 158,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/prisma.py",
+"line": 37,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/sequelize.py",
+"line": 73,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/sql_strings.py",
+"line": 263,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/data/typeorm.py",
+"line": 44,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/dialect.py",
+"line": 46,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/dialect.py",
+"line": 85,
+"text": "return without_comments(dialect.extract(ctx), ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/dialect.py",
+"line": 92,
+"text": ":meth:`scan` instead of ``extract``, and names its contracts in",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/dialect.py",
+"line": 181,
+"text": "def extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/grpc/languages.py",
+"line": 177,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/grpc/proto.py",
+"line": 256,
+"text": "self._found.extend(self._dialect.extract(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/grpc/proto.py",
+"line": 277,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/__init__.py",
+"line": 140,
+"text": "def extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/apex_callouts.py",
+"line": 409,
+"text": "# Apex is case-insensitive; `extract` reads the exact spelling.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/apex_callouts.py",
+"line": 412,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/apex_rest.py",
+"line": 39,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/aspnet.py",
+"line": 59,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/azure_functions.py",
+"line": 84,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/csharp_http.py",
+"line": 438,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/django.py",
+"line": 58,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/express.py",
+"line": 68,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/fastapi.py",
+"line": 70,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/fastify.py",
+"line": 11,
+"text": "* ``extract`` composes a route's prefix by walking up from the plugin the route",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/fastify.py",
+"line": 208,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/flask.py",
+"line": 103,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/go.py",
+"line": 106,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/go_clients.py",
+"line": 164,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/grape.py",
+"line": 172,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/hapi.py",
+"line": 68,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/java_clients.py",
+"line": 424,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/java_clients.py",
+"line": 619,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/java_clients.py",
+"line": 670,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/javalin.py",
+"line": 208,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/jaxrs.py",
+"line": 43,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/js_clients.py",
+"line": 146,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/koa.py",
+"line": 10,
+"text": "keyed ``koa:<module>``, and ``extract`` composes the three.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/koa.py",
+"line": 114,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/kotlin_clients.py",
+"line": 213,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/ktor_server.py",
+"line": 114,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/laravel.py",
+"line": 46,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/micronaut.py",
+"line": 68,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/nestjs.py",
+"line": 238,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/next_app.py",
+"line": 45,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/php_clients.py",
+"line": 134,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/python_clients.py",
+"line": 57,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/rails_routes.py",
+"line": 353,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/refit.py",
+"line": 47,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/remix.py",
+"line": 50,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/ruby_clients.py",
+"line": 147,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/rust_axum.py",
+"line": 46,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/rust_clients.py",
+"line": 68,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/sinatra.py",
+"line": 37,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/http/spring.py",
+"line": 38,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/masstransit.py",
+"line": 1111,
+"text": "def extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/openapi.py",
+"line": 670,
+"text": "def extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/socket/broadcasting.py",
+"line": 159,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/socket/broadcasting.py",
+"line": 209,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/socket/dialect.py",
+"line": 164,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/socket/socketio.py",
+"line": 153,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/topic/csharp_events.py",
+"line": 314,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/topic/dapr.py",
+"line": 164,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/topic/dialect.py",
+"line": 238,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/topic/laravel.py",
+"line": 298,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/extractors/topic/nestjs.py",
+"line": 99,
+"text": "def extract(self, ctx: ScanContext) -> list[Contract]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/repo_stats.py",
+"line": 126,
+"text": "# of the codebase (module_health, extract-demo-data). The earlier",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/types/src/refactoring.ts",
+"line": 201,
+"text": "| \"extract\"",
+"cls": "strref",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/refactoring/opportunity-prompt.test.ts",
+"line": 252,
+"text": "const extract = (anchors?: Record<string, string>) =>",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/refactoring/opportunity-prompt.test.ts",
+"line": 269,
+"text": "opportunity: detail({ plans: [plan(), extract()] }),",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/refactoring/opportunity-prompt.test.ts",
+"line": 275,
+"text": "plans: [plan(), extract({ first: \"    a = 1\", last: \"    b = 2\", unique_in: \"file\" })],",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/coupling-prompt.ts",
+"line": 94,
+"text": "\"If it's accidental, fix the cause: extract the shared concept into one owner, invert the dependency, or introduce a stable interface \u2014 don't just move code around.\",",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/health/ai-prompts/coupling-prompt.ts",
+"line": 102,
+"text": "\"2. If accidental \u2014 a concrete decoupling plan (extract / invert / interface), smallest-risk first.\",",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/refactoring/meta.tsx",
+"line": 32,
+"text": "accentVar: \"--color-refactor-extract-class\",",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/meta.tsx",
+"line": 38,
+"text": "accentVar: \"--color-refactor-extract-helper\",",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/meta.tsx",
+"line": 44,
+"text": "accentVar: \"--color-refactor-extract-method\",",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/opportunity-drawer.tsx",
+"line": 638,
+"text": "* stored plan carries (an extract-helper block); otherwise it reads the file",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/plan-before.tsx",
+"line": 14,
+"text": "import { ExtractMethodBefore } from \"./extract-method-before\";",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/types.ts",
+"line": 139,
+"text": "/** The block-level detail added to an extract-helper plan: the snippet itself,",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 239,
+"text": "exactly what made extract-class / move-method / break-cycle indistinct. */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 240,
+"text": "--color-refactor-extract-class: #b9651b; /* amber */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 241,
+"text": "--color-refactor-extract-helper: #1d8155; /* green */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 242,
+"text": "--color-refactor-extract-method: #0e7490; /* teal */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 598,
+"text": "--color-refactor-extract-class: #f59520; /* amber */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 599,
+"text": "--color-refactor-extract-helper: #34d399; /* green */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/ui/styles/globals.css",
+"line": 600,
+"text": "--color-refactor-extract-method: #22d3ee; /* cyan */",
+"cls": "doc",
+"ext": ".css"
+},
+{
+"path": "packages/vscode/CHANGELOG.md",
+"line": 368,
+"text": "- An extract-helper plan names a directory as its destination. It used to",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/vscode/src/features/agentHandoff.ts",
+"line": 88,
+"text": "if (type.includes(\"extract\")) return vscode.CodeActionKind.RefactorExtract;",
+"cls": "strref",
+"ext": ".ts"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/refactoring_corpus/trees/tsapp/index.ts",
+"line": 4,
+"text": "// reads the file as wall-to-wall duplication. There is nothing to extract: the",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "tests/fixtures/sample_repo/README.md",
+"line": 31,
+"text": "- AST parser: extract all symbols from Python + TypeScript files",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 849,
+"text": "\"packages/core/src/repowise/core/workspace/extractors/data/knex.py::KnexDialect::extract\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 947,
+"text": "\"packages/core/src/repowise/core/workspace/extractors/data/knex.py::KnexDialect::extract\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 967,
+"text": "\"packages/core/src/repowise/core/workspace/extractors/data/knex.py::KnexDialect::extract\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 974,
+"text": "\"packages/core/src/repowise/core/workspace/extractors/data/knex.py::KnexDialect::extract\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/analysis/test_decision_marker_case.py",
+"line": 46,
+"text": "\"\"\"A test file's \"# Rejected: nothing to extract.\" was the other one.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_marker_case.py",
+"line": 47,
+"text": "assert MARKER_RE.match(\"    # Rejected: nothing to extract.\") is None",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_marker_case.py",
+"line": 62,
+"text": "\"    # Rejected: nothing to extract.\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 28,
+"text": "\"__all__ = ['extract', 'missing']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 30,
+"text": "\"    'extract': ('.extract', 'extract'),\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 39,
+"text": "\"lazy/lazy/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 43,
+"text": "\"    lazy = {'extract': ('local.extract', 'extract')}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 49,
+"text": "\"local/local/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 52,
+"text": "\"__all__ = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 53,
+"text": "\"_NAMES = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 54,
+"text": "\"_LAZY = {name: ('.extract', name) for name in _NAMES}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 61,
+"text": "\"computed/computed/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 77,
+"text": "\"__all__ = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 78,
+"text": "\"_LAZY = {'extract': '.first'}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 79,
+"text": "\"_LAZY = {'extract': '.second'}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 85,
+"text": "\"rebind/rebind/first.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 86,
+"text": "\"rebind/rebind/second.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 126,
+"text": "\"lazy/lazy/extract.py::extract\": \"lazy/lazy/__init__.py\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 127,
+"text": "\"local/local/extract.py::extract\": \"local/local/__init__.py\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 129,
+"text": "\"rebind/rebind/second.py::extract\": \"rebind/rebind/__init__.py\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_refactoring_targets_stored.py",
+"line": 159,
+"text": "assert \"extract lines 12-28\" in result.output",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 13,
+"text": "extract,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 22,
+"text": "return {r.kind for r in extract(text, doc)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 26,
+"text": "return [r.target for r in extract(text, doc) if r.kind is kind]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 76,
+"text": "refs = extract(text, \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 111,
+"text": "refs = extract(text, \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 136,
+"text": "assert extract(text, \"docs/x.md\") == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 146,
+"text": "refs = extract(\"See [it](../README.md#setup).\", \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 151,
+"text": "refs = extract(\"See [below](#some-heading).\", \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 169,
+"text": "refs = extract(text, \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_extractor.py",
+"line": 175,
+"text": "refs = extract(text, \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_resolver.py",
+"line": 7,
+"text": "from repowise.core.analysis.doc_drift.extractor import extract",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_resolver.py",
+"line": 367,
+"text": "(r.kind, resolve(idx, r).verdict) for r in extract(text, \"docs/guide.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 13,
+"text": "from repowise.core.analysis.doc_drift.extractor import _normalize, extract, prose_lines",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 26,
+"text": "return next(r for r in extract(text, doc) if r.kind is kind)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 91,
+"text": "assert [(r.line, r.target) for r in extract(text, \"docs/a.md\")] == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 98,
+"text": "assert [r.target for r in extract(text, \"docs/a.md\")] == [\"src/gone.py\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 105,
+"text": "assert [r.target for r in extract(text, \"docs/a.md\")] == [\"src/real.py\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 128,
+"text": "assert [(r.line, r.target) for r in extract(text, \"docs/a.md\")] == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 139,
+"text": "refs = extract(\"Intro",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 151,
+"text": "assert extract(text, \"docs/a.md\") == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 240,
+"text": "assert [r.target for r in extract(\"See `app/user/models.py`.\", \"docs/a.md\")] == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 246,
+"text": "assert extract(\"See `path/to/thing.py`.\", \"docs/a.md\") == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_review_regressions.py",
+"line": 252,
+"text": "assert extract(\"See `docs/adr/` for records.\", \"docs/a.md\") == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_suppression.py",
+"line": 6,
+"text": "from repowise.core.analysis.doc_drift.extractor import extract, extract_with_suppressed",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_suppression.py",
+"line": 51,
+"text": "assert _targets(extract(text, \"docs/x.md\")) == [\"src/b.py\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 13,
+"text": "from repowise.core.analysis.doc_drift.extractor import extract, symbol_name",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 57,
+"text": "assert [r.kind for r in extract(text, \"docs/x.md\")] == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 65,
+"text": "(ref,) = extract(\"Use `Loader.parse_config()`.\", \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 70,
+"text": "refs = extract(\"`Foo.parse_row` and `Bar.parse_row`\", \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 76,
+"text": "(ref,) = extract(line, \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 173,
+"text": "refs = [r for r in extract(_DOC, \"docs/guide.md\") if r.kind is DriftKind.SYMBOL]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 251,
+"text": "for r in extract(doc.read_text(encoding=\"utf-8\"), \"docs/guide.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 368,
+"text": "(ref,) = extract(\"Call `load()`.\", \"docs/x.md\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 237,
+"text": "\"__all__ = ['extract', 'generate', 'missing']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 239,
+"text": "\"    'extract': ('.extract', 'extract'),\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 249,
+"text": "\"lazy_lib/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 257,
+"text": "(\"extract\", \"lazy_lib/extract.py\"),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 269,
+"text": "\"    lazy = {'extract': ('lazy_lib.extract', 'extract')}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 275,
+"text": "\"lazy_lib/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 282,
+"text": "(\"extract\", \"lazy_lib/extract.py\")",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 292,
+"text": "\"__all__ = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 293,
+"text": "\"_NAMES = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 294,
+"text": "\"_LAZY = {name: ('.extract', name) for name in _NAMES}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 301,
+"text": "\"lazy_lib/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 316,
+"text": "\"__all__ = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 317,
+"text": "\"_LAZY = {'extract': '.extract'}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 318,
+"text": "\"_NAMES = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 319,
+"text": "\"_LAZY = {name: '.extract' for name in _NAMES}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 325,
+"text": "\"lazy_lib/extract.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 419,
+"text": "\"__all__ = ['extract']\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 420,
+"text": "\"_LAZY = {'extract': '.first'}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 421,
+"text": "\"_LAZY = {'extract': '.second'}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 427,
+"text": "\"lazy_lib/first.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 428,
+"text": "\"lazy_lib/second.py\": \"def extract():\\n    pass\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 435,
+"text": "(\"extract\", \"lazy_lib/second.py\")",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_vocabulary_house_terms.py",
+"line": 1207,
+"text": "\"\"\"Verify that headings occurring after fenced code blocks extract their correct definitions.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 151,
+"text": "# Each hook touches no instance state: a static helper, not a class to extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_complexity_walker.py",
+"line": 379,
+"text": "# component but not a group to extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_copy_guard_runs.py",
+"line": 113,
+"text": "void extract(lua_State *lua, info *e) {",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_copy_guard_runs.py",
+"line": 123,
+"text": "fn = _fn(\"c\", _C, \"extract\")",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dataflow_langs.py",
+"line": 2260,
+"text": "@pytest.mark.parametrize(\"fn_name\", [\"compact\", \"extract\"])",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dataflow_pascal.py",
+"line": 189,
+"text": "assert plans, \"the loops before the exit still extract\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_stages.py",
+"line": 273,
+"text": "extracts = [s for s in steps if s[\"action\"] == \"extract\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_implicit_member_cohesion.py",
+"line": 196,
+"text": "assert c.lcom4 == 1  # ``bare`` touches no field: not a group to extract",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_queue_counts.py",
+"line": 119,
+"text": "assert (\"steps held back\", \"2 (move or extract-class, not yet audited; in the full plan)\") in {",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_anchors.py",
+"line": 243,
+"text": "extracts = [s for s in recipe[\"steps\"] if s[\"action\"] == \"extract\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_commands.py",
+"line": 149,
+"text": "[{\"n\": n, \"action\": \"extract\"} for n in range(1, 8)],",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_commands.py",
+"line": 169,
+"text": "[{\"n\": n, \"action\": \"extract\"} for n in range(1, 8)],",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_commands.py",
+"line": 229,
+"text": "steps = [{\"n\": n, \"action\": \"extract\"} for n in range(1, 8)]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_commands_dotnet.py",
+"line": 190,
+"text": "batches = stage_batches(detail, [{\"n\": n, \"action\": \"extract\"} for n in range(1, 8)])",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_corpus_golden.py",
+"line": 67,
+"text": "``ingestion/dynamic_hints/cpp.py::extract`` offered a span that called a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_class.py",
+"line": 236,
+"text": "# ---- what is not a class to extract ----------------------------------------",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_class.py",
+"line": 282,
+"text": "# the class has no second stateful cluster to extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 5,
+"text": "structured \"extract this duplicated block into a shared helper\" suggestion.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 568,
+"text": "# proposing to extract it is advice no editor can follow. Three real shapes",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 662,
+"text": "\"\"\"You cannot extract `from x import (...)` into a shared helper.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 673,
+"text": "signature, so it has nothing to extract either.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 708,
+"text": "# Rejected: nothing to extract.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_package_commands.py",
+"line": 289,
+"text": "batches = stage_batches(detail, [{\"n\": n, \"action\": \"extract\"} for n in range(1, 8)])",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_rank.py",
+"line": 54,
+"text": "# A move_method on a very central file outranks a tiny-impact extract on a leaf.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_recipe.py",
+"line": 34,
+"text": "assert step[\"action\"] == \"extract\"",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_suggestions.py",
+"line": 13,
+"text": "assert \"split\" in text.lower() or \"extract\" in text.lower()",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/document_extractor_spawn_plugin.py",
+"line": 19,
+"text": "def extract(self, path: Path, data: bytes) -> str:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_alpine_dynamic_hints.py",
+"line": 20,
+"text": "edges = AlpineDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_alpine_dynamic_hints.py",
+"line": 37,
+"text": "targets = {e.target for e in AlpineDynamicHints().extract(tmp_path)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_alpine_dynamic_hints.py",
+"line": 43,
+"text": "assert AlpineDynamicHints().extract(tmp_path) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_alpine_dynamic_hints.py",
+"line": 48,
+"text": "assert AlpineDynamicHints().extract(tmp_path) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_alpine_dynamic_hints.py",
+"line": 55,
+"text": "assert AlpineDynamicHints().extract(tmp_path) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_dynamic_hints.py",
+"line": 11,
+"text": "return CppDynamicHints().extract(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_extractors.py",
+"line": 13,
+"text": "The parser path is invoked end-to-end (parse \u2192 extract) so we exercise",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 507,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 521,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 531,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 550,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 576,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 589,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 599,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 606,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_framework_edges.py",
+"line": 618,
+"text": "edges = DotNetDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 87,
+"text": "for e in DjangoDynamicHints().extract(root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 146,
+"text": "assert DjangoDynamicHints().extract(tmp_path) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_document_extractors.py",
+"line": 38,
+"text": "def extract(self, path: Path, data: bytes) -> str:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_file_feed.py",
+"line": 114,
+"text": "def extract(self, repo_root: Path) -> list:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_file_feed.py",
+"line": 139,
+"text": "probe.extract(tree)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 24,
+"text": "edges = SpringDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 34,
+"text": "edges = SpringDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 40,
+"text": "assert SpringDynamicHints().extract(tmp_path) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 47,
+"text": "edges = RubyDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 56,
+"text": "edges = RubyDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 67,
+"text": "edges = PhpDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 76,
+"text": "edges = PhpDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 87,
+"text": "for e in PhpDynamicHints().extract(root):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 168,
+"text": "edges = ScalaDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 177,
+"text": "edges = ScalaDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 188,
+"text": "edges = SwiftDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 195,
+"text": "edges = SwiftDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 208,
+"text": "edges = CDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 216,
+"text": "edges = CDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 226,
+"text": "targets = {(e.source, e.target) for e in CDynamicHints().extract(tmp_path)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 236,
+"text": "edges = LuauDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 244,
+"text": "edges = LuauDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 257,
+"text": "edges = GoDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 270,
+"text": "edges = GoDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_hints_per_language.py",
+"line": 278,
+"text": "edges = GoDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_file_self_loops.py",
+"line": 45,
+"text": "hinted = {(e.source, e.target) for e in NodeDynamicHints().extract(repo)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 25,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 35,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 49,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 62,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 81,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_dynamic_hints.py",
+"line": 97,
+"text": "edges = JvmDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 236,
+"text": "edges = PythonDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 257,
+"text": "edges = PythonDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 476,
+"text": "builder.add_dynamic_edges(PythonDynamicHints().extract(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_string_registry_hints.py",
+"line": 175,
+"text": "edges = hints.extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 13,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 20,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 27,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 34,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 41,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 48,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 55,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 60,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 67,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 74,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 81,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_dynamic_hints.py",
+"line": 88,
+"text": "edges = RustDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_unparseable_language_sets.py",
+"line": 1,
+"text": "\"\"\"The \"no AST parser and no structure to extract\" language set has one home.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_walk_snapshot.py",
+"line": 137,
+"text": "def extract(self, repo_root: Path):  # pragma: no cover - unused",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 102,
+"text": "edges = XamlDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 117,
+"text": "edges = XamlDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 138,
+"text": "edges = {(e.source, e.target) for e in XamlDynamicHints().extract(tmp_path)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 150,
+"text": "edges = {(e.source, e.target) for e in XamlDynamicHints().extract(tmp_path)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 161,
+"text": "edges = {(e.source, e.target) for e in XamlDynamicHints().extract(tmp_path)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 170,
+"text": "edges = XamlDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 177,
+"text": "edges = XamlDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 228,
+"text": "baseline = XamlDynamicHints().extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 236,
+"text": "edges = ex.extract(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 252,
+"text": "def extract(self, repo_root: Path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 254,
+"text": "return super().extract(repo_root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 224,
+"text": "# Drop the edge the old build failed to extract, leaving c.py stale.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_external_systems.py",
+"line": 41,
+"text": "# v2: lodash dropped, axios added. A manifest changed, so re-extract runs;",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_refactoring_payoff.py",
+"line": 172,
+"text": "# Applied still wins: the plan moved what it said, another extract remains.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_language_gates_rest.py",
+"line": 203,
+"text": "# The extract plan, and the performance plan the perf finalizer wrote.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_refactoring_opportunities.py",
+"line": 1365,
+"text": "assert step[\"action\"] == \"extract\"",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_confidence_with_git.py",
+"line": 47,
+"text": "commit_message=\"refactor: extract helper module\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_angular_http.py",
+"line": 25,
+"text": "for c in HttpExtractor().extract(repo, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_angular_http.py",
+"line": 301,
+"text": "HttpExtractor().extract(nest, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_angular_http.py",
+"line": 302,
+"text": "+ HttpExtractor().extract(laravel, \"tickets\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_angular_http.py",
+"line": 303,
+"text": "+ HttpExtractor().extract(web, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 42,
+"text": "return [*ApexRestDialect().extract(ctx), *ApexCalloutsDialect().extract(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 154,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 179,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 198,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 222,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 244,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 266,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 281,
+"text": "[c] = ApexCalloutsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 400,
+"text": "assert {c.contract_id for c in ApexCalloutsDialect().extract(ctx)} == {",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 703,
+"text": "providers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_apex_http.py",
+"line": 706,
+"text": "consumers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_async_links.py",
+"line": 18,
+"text": "return TopicExtractor().extract(root, alias) + SocketExtractor().extract(root, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_client_calls.py",
+"line": 382,
+"text": "return sorted(c.contract_id for c in PythonClientsDialect().extract(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contract_identity.py",
+"line": 257,
+"text": "contracts = SqlAlchemyDjangoDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contract_identity.py",
+"line": 267,
+"text": "contracts = ActiveRecordDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 94,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 106,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 120,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 141,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 153,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 162,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 178,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 195,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 207,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 216,
+"text": "providers = [c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 233,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 246,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 257,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"svc\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 275,
+"text": "providers = [c for c in HttpExtractor().extract(tmp_path, \"svc\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 282,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 291,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 300,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 309,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"worker\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 318,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 330,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 339,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"frontend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 353,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 364,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 374,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 384,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 393,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 404,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"rust-client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 415,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"unity-game\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 426,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"unity-game\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 436,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"unity-game\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 447,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 458,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 467,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 477,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"client\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 483,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 488,
+"text": "contracts = HttpExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 498,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"frontend\") if c.role == \"consumer\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 508,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"frontend\") if c.role == \"consumer\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 519,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"frontend\") if c.role == \"consumer\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 529,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"frontend\") if c.role == \"consumer\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 548,
+"text": "for c in HttpExtractor().extract(tmp_path, \"svc\", make_exclude_predicate())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 576,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"auth\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 596,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 614,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 623,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"payment\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 632,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"gateway\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 645,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"auth\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 654,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"gateway\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 663,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"greeter\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 673,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"test\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 684,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"auth\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 699,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 715,
+"text": "contracts = GrpcExtractor().extract(tmp_path, \"game\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 828,
+"text": "consumers = [c for c in SocketExtractor().extract(tmp_path, \"unity\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 840,
+"text": "consumers = [c for c in SocketExtractor().extract(tmp_path, \"unity\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 850,
+"text": "consumers = [c for c in SocketExtractor().extract(tmp_path, \"unity\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 860,
+"text": "consumers = [c for c in SocketExtractor().extract(tmp_path, \"unity\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 869,
+"text": "providers = [c for c in SocketExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 879,
+"text": "providers = [c for c in SocketExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 888,
+"text": "providers = [c for c in SocketExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 896,
+"text": "consumers = [c for c in SocketExtractor().extract(tmp_path, \"backend\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_contracts.py",
+"line": 897,
+"text": "providers = [c for c in SocketExtractor().extract(tmp_path, \"backend\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_csharp_clients.py",
+"line": 16,
+"text": "contracts = HttpExtractor().extract(Path(\".\"), \"web\", files=walked)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_csharp_events.py",
+"line": 20,
+"text": "c for c in TopicExtractor().extract(root, alias) if c.meta.get(\"broker\") == \"integration_event\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_csharp_http.py",
+"line": 15,
+"text": "return {c.line: (c.contract_id, c.origin) for c in CSharpHttpDialect().extract(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 102,
+"text": "contracts = DataExtractor().extract(tmp_path, \"db\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 115,
+"text": "contracts = DataExtractor().extract(tmp_path, \"db\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 122,
+"text": "contracts = DataExtractor().extract(tmp_path, \"db\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 127,
+"text": "contracts = DataExtractor().extract(tmp_path, \"db\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 138,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 147,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 165,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 185,
+"text": "contracts = DataExtractor().extract(backend, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 186,
+"text": "contracts += DataExtractor().extract(worker, \"worker\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 199,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 212,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 223,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 232,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 242,
+"text": "contracts = DataExtractor().extract(tmp_path, \"shop\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 251,
+"text": "contracts = DataExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 260,
+"text": "contracts = DataExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 273,
+"text": "contracts = DataExtractor().extract(tmp_path, \"svc\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 285,
+"text": "contracts = DataExtractor().extract(tmp_path, \"rails\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 296,
+"text": "contracts = DataExtractor().extract(tmp_path, \"shop\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 307,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 321,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 331,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 343,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 353,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 363,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 373,
+"text": "contracts = DataExtractor().extract(tmp_path, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 383,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\", make_exclude_predicate())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 419,
+"text": "contracts = DataExtractor().extract(tmp_path, \"service\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 437,
+"text": "contracts = DataExtractor().extract(tmp_path, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 457,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 471,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 498,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 517,
+"text": "contracts = DataExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 535,
+"text": "contracts = DataExtractor().extract(backend, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 536,
+"text": "contracts += DataExtractor().extract(worker, \"worker\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 550,
+"text": "contracts = DataExtractor().extract(repo, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 558,
+"text": "contracts = DataExtractor().extract(backend, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 559,
+"text": "contracts += DataExtractor().extract(worker, \"worker\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 579,
+"text": "consumers = DataExtractor().extract(tool, \"tool\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 581,
+"text": "contracts = DataExtractor().extract(backend, \"backend\") + consumers",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 590,
+"text": "contracts = DataExtractor().extract(repo, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 607,
+"text": "contracts = DataExtractor().extract(backend, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 608,
+"text": "contracts += DataExtractor().extract(worker, \"worker\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 622,
+"text": "app_contracts = DataExtractor().extract(app, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 624,
+"text": "server_contracts = DataExtractor().extract(server, \"server\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 641,
+"text": "contracts = DataExtractor().extract(app, \"app\") + DataExtractor().extract(backend, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 658,
+"text": "contracts = DataExtractor().extract(tmp_path / \"api\", \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 659,
+"text": "contracts += DataExtractor().extract(tmp_path / \"admin\", \"admin\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 670,
+"text": "for c in DataExtractor().extract(repo, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_data_contracts.py",
+"line": 793,
+"text": "return [c for a in aliases for c in DataExtractor().extract(root / a, a)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_ddl_guarded_parse.py",
+"line": 15,
+"text": "return [c.contract_id for c in DdlDialect().extract(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_comments.py",
+"line": 25,
+"text": "found = HttpExtractor().extract(Path(\".\"), \"svc\", files=[(rel_path, suffix, content)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_comments.py",
+"line": 116,
+"text": "found = TopicExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_comments.py",
+"line": 128,
+"text": "found = GrpcExtractor().extract(Path(\".\"), \"svc\", files=[(\"client.py\", \".py\", content)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_registry.py",
+"line": 112,
+"text": "def extract(self, ctx):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 66,
+"text": "ids = _ids(FastApiDialect().extract(_ctx(self.SOURCE)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 70,
+"text": "ids = _ids(FastApiDialect().extract(_ctx(self.SOURCE)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 84,
+"text": "assert FastApiDialect().extract(_ctx(src)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 96,
+"text": "assert FastApiDialect().extract(_ctx(src)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 228,
+"text": "assert SqlStringsDialect().extract(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 232,
+"text": "ids = _ids(SqlStringsDialect().extract(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 240,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"crud/external_systems.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 251,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"q.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 256,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"q.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 261,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"q.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 266,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"q.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 275,
+"text": "assert SqlStringsDialect().extract(_ctx(src, \"f.py\")) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 284,
+"text": "ids = _ids(SqlStringsDialect().extract(_ctx(src, \"q.py\")))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 298,
+"text": "ids = _ids(DataExtractor().extract(tmp_path, \"repowise\", make_exclude_predicate()))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dialect_regressions.py",
+"line": 341,
+"text": "contracts = JaxRsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 55,
+"text": "contracts = HttpExtractor().extract(tmp_path, repo_alias=\"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 72,
+"text": "contracts = HttpExtractor().extract(tmp_path, repo_alias=\"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 90,
+"text": "contracts = HttpExtractor().extract(tmp_path, repo_alias=\"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 103,
+"text": "contracts = HttpExtractor().extract(tmp_path, repo_alias=\"fn\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 165,
+"text": "contracts = HttpExtractor().extract(tmp_path, repo_alias=\"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 187,
+"text": "contracts = GrpcExtractor().extract(tmp_path, repo_alias=\"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 204,
+"text": "contracts = GrpcExtractor().extract(tmp_path, repo_alias=\"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_dotnet_workspace.py",
+"line": 221,
+"text": "contracts = GrpcExtractor().extract(tmp_path, repo_alias=\"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_extractor_traversal.py",
+"line": 77,
+"text": "contracts = TopicExtractor().extract(tmp_path, \"primary\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_flask_dialect.py",
+"line": 85,
+"text": "return {c.contract_id: c for c in _Extractor().extract(repo, alias) if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_dialects.py",
+"line": 131,
+"text": "for c in HttpExtractor().extract(repo, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_dialects.py",
+"line": 353,
+"text": "contracts = [c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 169,
+"text": "for c in HttpExtractor().extract(repo, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 204,
+"text": "for c in HttpExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 233,
+"text": "for c in HttpExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 246,
+"text": "ids = {c.contract_id for c in HttpExtractor().extract(tmp_path, \"api\")}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 279,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 311,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 556,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 639,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 784,
+"text": "c for c in HttpExtractor().extract(tmp_path, \"api\") if c.role == \"provider\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_framework_routes.py",
+"line": 872,
+"text": "for c in HttpExtractor().extract(tmp_path, \"backend\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_from_index.py",
+"line": 379,
+"text": "return HttpExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_go_clients.py",
+"line": 166,
+"text": "return GoClientsDialect().extract(_ctx(content))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_go_clients.py",
+"line": 294,
+"text": "providers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_go_clients.py",
+"line": 297,
+"text": "consumers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_go_clients.py",
+"line": 400,
+"text": "return extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_go_clients.py",
+"line": 466,
+"text": "return extractor.extract(Path(\".\"), repo, files=[(\"main.py\", \".py\", ASSISTANT_PROVIDER)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_grpc_languages.py",
+"line": 24,
+"text": "for c in dialect.extract(ctx):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_grpc_shared_idl.py",
+"line": 66,
+"text": "return GrpcExtractor().extract(repo, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_incremental_extraction.py",
+"line": 3,
+"text": "A one-line commit in one repo used to re-extract every repo in the workspace,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_incremental_extraction.py",
+"line": 692,
+"text": "\"\"\"Loading every repo's symbols was most of the time a run with nothing to extract took.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 167,
+"text": "old = JsClientsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 208,
+"text": "assert JsClientsDialect().extract(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 248,
+"text": "assert _ids(JsClientsDialect().extract(ctx)) == {",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 343,
+"text": "return HttpExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 658,
+"text": "got = HttpExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 681,
+"text": "got = HttpExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_index_clients.py",
+"line": 1018,
+"text": "assert _ids(JsClientsDialect().extract(ctx)) == {",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 300,
+"text": "return JavaClientsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 473,
+"text": "providers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 476,
+"text": "consumers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 613,
+"text": "return [(c.contract_id, c.meta.get(\"host\")) for c in JavaClientsDialect().extract(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 617,
+"text": "found = HttpExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 774,
+"text": "return [(c.contract_id, c.meta.get(\"host\")) for c in MicroProfileClientsDialect().extract(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_java_clients.py",
+"line": 779,
+"text": "return [c.contract_id for c in JaxRsDialect().extract(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_jms_topics.py",
+"line": 18,
+"text": "return TopicExtractor().extract(root, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_jvm_route_dialects.py",
+"line": 32,
+"text": "return {c.contract_id: c for c in _Extractor().extract(repo, \"svc\") if c.role == role}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_kotlin_clients.py",
+"line": 272,
+"text": "providers = provider_extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_kotlin_clients.py",
+"line": 279,
+"text": "consumers = consumer_extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_laravel_queues.py",
+"line": 17,
+"text": "return TopicExtractor().extract(tmp_path, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_laravel_queues.py",
+"line": 213,
+"text": "assert len(extractor.extract(tmp_path / \"worker\", \"worker\")) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_laravel_queues.py",
+"line": 215,
+"text": "assert extractor.extract(tmp_path / \"web\", \"web\") == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_laravel_routes.py",
+"line": 26,
+"text": "return {c.contract_id for c in HttpExtractor().extract(repo, \"api\") if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_masstransit_extractor.py",
+"line": 43,
+"text": "rows += MassTransitExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_masstransit_extractor.py",
+"line": 155,
+"text": "rows = MassTransitExtractor(r\".+\\.messages\").extract(root, \"repo\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_masstransit_generic_links.py",
+"line": 31,
+"text": "rows += MassTransitExtractor().extract(path, alias, message_types=index)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_micronaut_dialect.py",
+"line": 203,
+"text": "return {c.contract_id: c for c in _Extractor().extract(repo, alias) if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_nestjs_routes.py",
+"line": 29,
+"text": "for c in HttpExtractor().extract(repo, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_nestjs_routes.py",
+"line": 82,
+"text": "(row,) = [c for c in HttpExtractor().extract(repo, \"api\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_nestjs_routes.py",
+"line": 234,
+"text": "for c in HttpExtractor().extract(repo, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_clients.py",
+"line": 26,
+"text": "for c in HttpExtractor().extract(repo, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_clients.py",
+"line": 166,
+"text": "contracts = HttpExtractor().extract(api, \"api\") + HttpExtractor().extract(web, \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_clients.py",
+"line": 203,
+"text": "for c in HttpExtractor().extract(_write(tmp_path, {\"a.ts\": text}), \"web\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_clients.py",
+"line": 258,
+"text": "rows = [c for c in HttpExtractor().extract(_write(tmp_path, {\"a.ts\": text}), \"web\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_clients.py",
+"line": 363,
+"text": "contracts = HttpExtractor().extract(catalogue, \"catalogue\") + HttpExtractor().extract(cart, \"cart\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_orm.py",
+"line": 30,
+"text": "for c in DataExtractor().extract(repo, \"app\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_orm.py",
+"line": 40,
+"text": "contracts = [c for path, alias in repos for c in DataExtractor().extract(path, alias)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_node_route_frameworks.py",
+"line": 34,
+"text": "for c in HttpExtractor().extract(root, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_compatibility.py",
+"line": 24,
+"text": "return OpenApiExtractor().extract(Path(\".\"), \"api\", files=[(\"openapi.yaml\", \".yaml\", content)])[",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 25,
+"text": "rows = OpenApiExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 115,
+"text": "rows = OpenApiExtractor().extract(Path(\".\"), \"api\", files=[(\"openapi.yaml\", \".yaml\", document)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 139,
+"text": "rows = OpenApiExtractor().extract(Path(\".\"), \"api\", files=[(\"openapi.yaml\", \".yaml\", document)])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 243,
+"text": "rows = OpenApiExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 307,
+"text": "rows = OpenApiExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_openapi_extractor.py",
+"line": 319,
+"text": "OpenApiExtractor().extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_origins.py",
+"line": 94,
+"text": "contracts.extend(extractor.extract(tmp_path, \"svc\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 149,
+"text": "return [c.contract_id for c in PhpClientsDialect().extract(_ctx(content))]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 181,
+"text": "contracts = PhpClientsDialect().extract(_ctx(GUZZLE_REQUEST))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 191,
+"text": "contracts = PhpClientsDialect().extract(_ctx(GUZZLE_VERBS))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 200,
+"text": "contracts = PhpClientsDialect().extract(_ctx(GUZZLE_CONCAT))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 205,
+"text": "(contract,) = PhpClientsDialect().extract(_ctx(GUZZLE_PROPERTY_BASE))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 211,
+"text": "contracts = PhpClientsDialect().extract(_ctx(LARAVEL_HTTP))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 220,
+"text": "contracts = PhpClientsDialect().extract(_ctx(LARAVEL_HTTP))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 277,
+"text": "providers = provider_extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_php_clients.py",
+"line": 284,
+"text": "consumers = consumer_extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_proto_schema.py",
+"line": 56,
+"text": "contracts = ProtoDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_proto_schema.py",
+"line": 78,
+"text": "contract = ProtoDialect().extract(ctx)[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_remix_dialect.py",
+"line": 82,
+"text": "return {c.contract_id: c for c in _Extractor().extract(repo, alias) if c.role == \"provider\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_ruby_clients.py",
+"line": 154,
+"text": "return RubyClientsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_ruby_clients.py",
+"line": 277,
+"text": "providers = [c for c in extractor.extract(api, \"api\") if c.role == \"provider\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_ruby_clients.py",
+"line": 278,
+"text": "consumers = [c for c in extractor.extract(web, \"web\") if c.role == \"consumer\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_ruby_routes.py",
+"line": 19,
+"text": "for c in HttpExtractor().extract(repo, \"api\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_socket_dialects.py",
+"line": 20,
+"text": "return SocketExtractor().extract(root, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_spring_clients.py",
+"line": 132,
+"text": "return SpringClientsDialect().extract(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_spring_clients.py",
+"line": 181,
+"text": "assert [c.contract_id for c in SpringDialect().extract(ctx)] == [\"http::GET::/carts/{param}\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_spring_clients.py",
+"line": 207,
+"text": "providers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_spring_clients.py",
+"line": 210,
+"text": "consumers = extractor.extract(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_topic_dialects.py",
+"line": 17,
+"text": "return TopicExtractor().extract(tmp_path, alias)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_topic_dialects.py",
+"line": 508,
+"text": "rows = TopicExtractor().extract(tmp_path, \"svc\", stats=stats)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_topic_dialects.py",
+"line": 520,
+"text": "assert TopicExtractor().extract(tmp_path, \"svc\", stats=stats) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_topic_dialects.py",
+"line": 965,
+"text": "assert TopicExtractor().extract(tmp_path, \"svc\", stats=stats) == []",
+"cls": "code",
+"ext": ".py"
+}
+]

@@ -1,0 +1,674 @@
+[
+{
+"path": "docs/architecture/code-health.md",
+"line": 725,
+"text": "open finding count and files per band. All carry `_meta` via `build_meta()`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/tool_bridge.py",
+"line": 191,
+"text": "``build_meta`` reads ``_state._embedder_status`` to put ``embedder_degraded``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/chat_datasets/__init__.py",
+"line": 251,
+"text": "from repowise.server.mcp_server._meta import build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/chat_datasets/__init__.py",
+"line": 253,
+"text": "meta = build_meta(repository=repository)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 262,
+"text": "# Runs inline on the event loop from build_meta, so the bound is tight; a slow",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 634,
+"text": "def build_meta(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 704,
+"text": "\"\"\":func:`build_meta` for an orientation call: the whole ``index_scope``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 706,
+"text": "A separate function rather than a parameter on ``build_meta``, which has",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 711,
+"text": "meta = {\"contract_version\": MCP_CONTRACT_VERSION, **build_meta(**kwargs)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 753,
+"text": "# Here, not in build_meta, so every tool and every shielded error carries it.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_server.py",
+"line": 161,
+"text": "at ``ERROR`` with the missing key and remediation. ``build_meta`` then",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_server.py",
+"line": 382,
+"text": "Recorded in ``_state._vector_store_errors``, which ``build_meta`` reads",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_state.py",
+"line": 62,
+"text": "# record the degradation here so build_meta() can surface it in every tool's",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/answer.py",
+"line": 115,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/cache.py",
+"line": 21,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/data_shape.py",
+"line": 18,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/degraded.py",
+"line": 15,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/payload.py",
+"line": 26,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_architecture.py",
+"line": 17,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_blast_radius.py",
+"line": 19,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_change_risk/__init__.py",
+"line": 81,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_conformance.py",
+"line": 16,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_context/context.py",
+"line": 80,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_dead_code.py",
+"line": 48,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_findings.py",
+"line": 29,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_flows.py",
+"line": 40,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_health/details.py",
+"line": 19,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_health/tool.py",
+"line": 37,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_overview/tool.py",
+"line": 32,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_overview/workspace.py",
+"line": 19,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_refactoring.py",
+"line": 23,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_repos.py",
+"line": 11,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_risk/get_risk.py",
+"line": 39,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/__init__.py",
+"line": 57,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/retrieval.py",
+"line": 32,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/structured.py",
+"line": 17,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/tool.py",
+"line": 30,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/__init__.py",
+"line": 79,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/ambiguous.py",
+"line": 14,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/body.py",
+"line": 21,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/misses.py",
+"line": 16,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/omission.py",
+"line": 13,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/ranges.py",
+"line": 18,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_symbol/tool.py",
+"line": 18,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/dashboard.py",
+"line": 23,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/path_mode.py",
+"line": 37,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/reference.py",
+"line": 19,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/search.py",
+"line": 22,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/workspace.py",
+"line": 18,
+"text": "from repowise.server.mcp_server._meta import build_meta as _build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "pyproject.toml",
+"line": 6,
+"text": "build-backend = \"setuptools.build_meta\"",
+"cls": "doc",
+"ext": ".toml"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 1149,
+"text": "build_meta() surfaces `embedder: \"mock\"`, `embedder_degraded: true`, and a",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/unit/cli/test_tool_bridge.py",
+"line": 202,
+"text": "``_state._embedder_status`` feeds ``build_meta``, so leaking a \"mock\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_tool_bridge.py",
+"line": 231,
+"text": "\"\"\"``build_meta`` reads this global to set ``embedder_degraded``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_branch_overlap_block.py",
+"line": 324,
+"text": "build_meta = module._build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_branch_overlap_block.py",
+"line": 328,
+"text": "return build_meta(**kwargs)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_branch_overlap_block.py",
+"line": 350,
+"text": "build_meta = module._build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_branch_overlap_block.py",
+"line": 354,
+"text": "return build_meta(**kwargs)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_chat_datasets.py",
+"line": 297,
+"text": "meta_mod, \"build_meta\", lambda **_: {\"indexed_commit\": \"abc1234\", \"stale_warning\": \"behind\"}",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 6,
+"text": "records the degradation so `build_meta` surfaces it in every tool's `_meta`.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 26,
+"text": "from repowise.server.mcp_server._meta import build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 272,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 290,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 327,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 336,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 206,
+"text": "out = _meta.build_meta(repository=_write_state(tmp_path, _FULL_STATE))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 218,
+"text": "out = _meta.build_meta(repository=_write_state(tmp_path, whole))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 238,
+"text": "out = _meta.build_meta(repository=_write_state(tmp_path, _FULL_STATE))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 252,
+"text": "compact = _meta.build_meta(repository=_write_state(tmp_path, _FULL_STATE))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 258,
+"text": "out = _meta.build_meta(repository=_Repo(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 357,
+"text": "compact = _meta.build_meta(repository=repository)[\"index_scope\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 380,
+"text": "out = _meta.build_meta(repository=_write_state(tmp_path, _FULL_STATE))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 391,
+"text": "assert _meta.build_meta(repository=repository)[\"index_scope\"][\"projection\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_index_scope_projection.py",
+"line": 395,
+"text": "assert \"projection\" not in _meta.build_meta(repository=repository)[\"index_scope\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_keyless_vector_leg.py",
+"line": 280,
+"text": "from repowise.server.mcp_server._meta import build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_keyless_vector_leg.py",
+"line": 283,
+"text": "return build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_freshness.py",
+"line": 80,
+"text": "out = _meta.build_meta(repository=_repo(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 5,
+"text": "thread, and ``build_meta`` names a newer version in the first response after",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 32,
+"text": "first = _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 35,
+"text": "assert \"newer_release\" not in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 40,
+"text": "assert \"newer_release\" not in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 42,
+"text": "assert \"newer_release\" not in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 43,
+"text": "assert \"newer_release\" not in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 48,
+"text": "assert \"newer_release\" in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 50,
+"text": "assert \"10.0.0\" in _meta.build_meta()[\"newer_release\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_meta_release.py",
+"line": 51,
+"text": "assert \"newer_release\" not in _meta.build_meta()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_served_root.py",
+"line": 57,
+"text": "out = _meta.build_meta(repository=row, targets=[\"pricing.py\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_served_root.py",
+"line": 75,
+"text": "assert \"working_tree_dirty\" not in _meta.build_meta(repository=row, targets=[\"pricing.py\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_trust_contract.py",
+"line": 19,
+"text": "meta = _meta.build_meta(repository=repository, targets=[\"src/a.py\"], timing_ms=5.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_trust_contract.py",
+"line": 28,
+"text": "debug = _meta.build_meta(repository=repository, targets=[\"src/a.py\"], timing_ms=5.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 20,
+"text": "from repowise.server.mcp_server._meta import build_meta",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 58,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 76,
+"text": "meta = build_meta(timing_ms=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 90,
+"text": "warning = build_meta(timing_ms=1.0)[\"embedder_warning\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 99,
+"text": "assert build_meta(timing_ms=1.0)[\"embedder_degraded\"] is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 149,
+"text": "assert build_meta(timing_ms=1.0)[\"embedder_degraded\"] is True",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_vector_store_open_failure.py",
+"line": 150,
+"text": "assert \"connect_async\" in build_meta(timing_ms=1.0)[\"embedder_warning\"]",
+"cls": "code",
+"ext": ".py"
+}
+]

@@ -1,0 +1,128 @@
+[
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/deterministic.py",
+"line": 39,
+"text": "from repowise.core.providers.llm.resolve import repo_getenv",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/deterministic.py",
+"line": 41,
+"text": "env_lookup = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 58,
+"text": "from repowise.core.providers.llm.resolve import repo_getenv",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 61,
+"text": "base_getenv = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 177,
+"text": "repo_getenv,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 183,
+"text": "base_url = (repo_getenv(repo_path)(\"OPENAI_BASE_URL\") or \"\").rstrip(\"/\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 36,
+"text": "repo_getenv,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 120,
+"text": "lookup = getenv or repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 167,
+"text": "lookup = getenv or repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 252,
+"text": "getenv = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 284,
+"text": "lookup = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 298,
+"text": "lookup = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 214,
+"text": "def repo_getenv(repo_path: Path | str | None) -> EnvLookup:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 340,
+"text": "getenv = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 500,
+"text": "return provider_is_usable(provider, repo_getenv(repo_path)) or bool(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 674,
+"text": "\"repo_getenv\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+"line": 156,
+"text": "repo_getenv,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+"line": 198,
+"text": "getenv = repo_getenv(repo_path)",
+"cls": "code",
+"ext": ".py"
+}
+]

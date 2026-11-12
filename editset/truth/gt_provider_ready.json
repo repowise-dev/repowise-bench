@@ -1,0 +1,107 @@
+[
+{
+"path": "packages/core/src/repowise/core/providers/llm/registry.py",
+"line": 322,
+"text": "from repowise.core.providers.llm.resolve import provider_ready, resolve_llm",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/registry.py",
+"line": 325,
+"text": "return selection.provider is not None and provider_ready(selection.provider, repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 498,
+"text": "def provider_ready(provider: str, repo_path: Path | str | None = None) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/resolve.py",
+"line": 670,
+"text": "\"provider_ready\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+"line": 155,
+"text": "provider_ready,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+"line": 176,
+"text": "if not provider_ready(selection.provider, repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 190,
+"text": "def _guard_pipeline(monkeypatch, *, provider_ready: bool) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 200,
+"text": "lambda repo_path: provider_ready,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 225,
+"text": "_guard_pipeline(monkeypatch, provider_ready=True)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 238,
+"text": "_guard_pipeline(monkeypatch, provider_ready=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 249,
+"text": "_guard_pipeline(monkeypatch, provider_ready=True)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 259,
+"text": "_guard_pipeline(monkeypatch, provider_ready=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 268,
+"text": "_guard_pipeline(monkeypatch, provider_ready=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 301,
+"text": "_guard_pipeline(monkeypatch, provider_ready=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_reconciles_stale_pages.py",
+"line": 314,
+"text": "_guard_pipeline(monkeypatch, provider_ready=False)",
+"cls": "code",
+"ext": ".py"
+}
+]

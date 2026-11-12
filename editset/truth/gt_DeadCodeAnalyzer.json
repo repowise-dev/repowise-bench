@@ -1,0 +1,4587 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 3079,
+"text": "- **Heritage / bindings / dead-code internals refactored into per-language subpackages** \u2014 `extractors/heritage.py` and `extractors/bindings.py` (previously 600+ LOC monoliths) and `analysis/dead_code",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 68,
+"text": "\u2502   \u2502  DeadCodeAnalyzer   \u2502      \u2502                              \u2502     \u2502",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 954,
+"text": "### 8.1 DeadCodeAnalyzer (`packages/core/analysis/dead_code.py`)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 1273,
+"text": "DeadCodeAnalyzer (if dead_code.enabled)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/dead-code.md",
+"line": 15,
+"text": "| `analyzer.py` | `DeadCodeAnalyzer`: the four detectors, confidence scoring, caps, rescues. |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/deep-dives.md",
+"line": 269,
+"text": "DeadCodeAnalyzer.analyze()",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 161,
+"text": "analyzer.py        #   DeadCodeAnalyzer class + detection passes",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 189,
+"text": "| Dead-code finding | A graph/git finding persisted to `dead_code_findings`. | `DeadCodeAnalyzer` | `{kind: \"unused_export\", file_path: \"src/api.py\", confidence: 0.7}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 194,
+"text": "| Dead-code confidence | Heuristic certainty based on age, recent commits, importers, dynamic imports, and deprecation hints. | `DeadCodeAnalyzer` | `1.0` for year-old unreachable file |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 196,
+"text": "| Dead-code evidence | Human-readable reasons for the finding. | `DeadCodeAnalyzer` | `[\"in_degree=0 (no files import this)\", \"No commits in last 90 days\"]` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 197,
+"text": "| Estimated deletable lines | Sum of line estimates for safe findings. | `DeadCodeAnalyzer.analyze()` | `deletable_lines: 420` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 198,
+"text": "| Confidence summary | Counts of high, medium, low confidence findings. | `DeadCodeAnalyzer.analyze()` | `{\"high\": 12, \"medium\": 8, \"low\": 0}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/claude-mod/test/fixtures/replay/repowise-edit-session.json",
+"line": 115,
+"text": "\"old_string\": \"\\\"\\\"\\\"DeadCodeAnalyzer \\u00e2\\u20ac\\u201d pure graph + git-metadata dead-code detection.\\n\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "packages/claude-mod/test/fixtures/replay/repowise-edit-session.json",
+"line": 116,
+"text": "\"new_string\": \"\\\"\\\"\\\"DeadCodeAnalyzer \\u00e2\\u20ac\\u201d pure graph + git-metadata dead-code detection.\\n# lens replay\\n\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/dead_code_cmd.py",
+"line": 123,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/dead_code_cmd.py",
+"line": 148,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/__init__.py",
+"line": 9,
+"text": "- ``DeadCodeAnalyzer`` \u2014 the orchestrator class.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/__init__.py",
+"line": 16,
+"text": "- ``analyzer.py``         \u2014 ``DeadCodeAnalyzer`` class + four detection methods.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/__init__.py",
+"line": 44,
+"text": "from .analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/__init__.py",
+"line": 48,
+"text": "__getattr__, __dir__ = lazy_exports(__name__, {\"DeadCodeAnalyzer\": \".analyzer\"}, globals())",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/__init__.py",
+"line": 53,
+"text": "\"DeadCodeAnalyzer\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/analyzer.py",
+"line": 1,
+"text": "\"\"\"DeadCodeAnalyzer \u00e2\u20ac\u201d pure graph + git-metadata dead-code detection.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/analyzer.py",
+"line": 154,
+"text": "class DeadCodeAnalyzer:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/cobol_paragraphs.py",
+"line": 45,
+"text": "from .analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/cobol_paragraphs.py",
+"line": 208,
+"text": "ctx: DeadCodeAnalyzer, whitelist: set[str]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/cobol_paragraphs.py",
+"line": 224,
+"text": "def _judged_programs(ctx: DeadCodeAnalyzer, whitelist: set[str]) -> list[str]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/cobol_paragraphs.py",
+"line": 235,
+"text": "def _is_cobol_source(ctx: DeadCodeAnalyzer, path: str, data: dict) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/cobol_paragraphs.py",
+"line": 241,
+"text": "ctx: DeadCodeAnalyzer, path: str, name: str, start: int, end: int",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/file_reachability.py",
+"line": 26,
+"text": "than implying. ``dead_code/__init__`` eagerly re-exports ``DeadCodeAnalyzer``,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unreachable_files.py",
+"line": 25,
+"text": "from ..analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unreachable_files.py",
+"line": 37,
+"text": "def __init__(self, ctx: DeadCodeAnalyzer) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unused_exports.py",
+"line": 43,
+"text": "from ..analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unused_exports.py",
+"line": 68,
+"text": "def __init__(self, ctx: DeadCodeAnalyzer) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unused_internals.py",
+"line": 22,
+"text": "from ..analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/unused_internals.py",
+"line": 34,
+"text": "def __init__(self, ctx: DeadCodeAnalyzer) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/zombie_packages.py",
+"line": 28,
+"text": "from ..analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/passes/zombie_packages.py",
+"line": 34,
+"text": "def __init__(self, ctx: DeadCodeAnalyzer) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/analyzer.py",
+"line": 7,
+"text": "Shaped like :class:`~repowise.core.analysis.dead_code.analyzer.DeadCodeAnalyzer`:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/incremental/analysis.py",
+"line": 236,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/incremental/analysis.py",
+"line": 251,
+"text": "_dead_code_analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/analysis.py",
+"line": 66,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/analysis.py",
+"line": 79,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3079,
+"text": "- **Heritage / bindings / dead-code internals refactored into per-language subpackages** \u2014 `extractors/heritage.py` and `extractors/bindings.py` (previously 600+ LOC monoliths) and `analysis/dead_code",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 841,
+"text": "class DeadCodeAnalyzer:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 844,
+"text": "@@ -1138,9 +1155,8 @@ class DeadCodeAnalyzer:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 88,
+"text": "{\"id\": \"d8ca914d\", \"repo\": \"repowise\", \"path\": \"packages/core/src/repowise/core/analysis/dead_code/passes/unused_internals.py\", \"language\": \"python\", \"stratum\": \"core\", \"drawn_from\": \"named\", \"label\":",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 380,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 457,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_detect_unused_internals\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 464,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_run_passes\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 471,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 484,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 485,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_detect_unused_internals\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 491,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 492,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_run_passes\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 498,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 499,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 505,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_detect_unused_internals\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 512,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_detect_unused_internals\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 519,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_run_passes\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 520,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_detect_unused_internals\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 526,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 527,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::_run_passes\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 779,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 793,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2326,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2340,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2347,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2354,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2368,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2382,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2389,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2396,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2417,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2445,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2452,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2459,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2466,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2487,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2494,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2501,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2515,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2522,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2529,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2536,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2543,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2550,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2557,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2564,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2571,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2578,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2585,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2592,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2599,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2606,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2613,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2620,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2627,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 2634,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3173,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3180,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3187,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3194,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3201,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3208,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3215,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3229,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3236,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3243,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3250,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3264,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3271,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3278,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3285,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3292,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3299,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3306,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3313,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3320,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3327,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3341,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3348,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3355,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3362,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3369,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3376,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3383,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3390,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3397,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3404,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3411,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3418,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3425,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3432,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3439,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3446,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3453,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3460,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3474,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3481,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3488,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3495,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3502,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3509,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3516,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3523,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3530,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3537,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3544,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3551,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3558,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3565,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3572,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3579,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3586,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3593,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3600,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3614,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3621,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3628,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3635,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3642,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3649,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3656,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3663,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3670,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3677,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3684,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3691,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3698,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3705,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3712,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3719,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3726,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3733,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3740,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3747,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3754,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3761,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3768,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3775,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3782,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3789,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3796,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3803,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3817,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3824,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3831,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3838,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3845,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3852,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3859,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3866,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3873,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3880,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3887,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3894,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3901,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3908,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3915,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3922,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3929,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3936,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3943,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3950,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3957,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3964,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3971,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3978,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3985,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3992,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 3999,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4006,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4013,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4020,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4027,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4034,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4041,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4048,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4055,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4062,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4069,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4076,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4083,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4090,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4097,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4104,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4111,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4118,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4125,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4132,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4139,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4146,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4153,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4160,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4167,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4174,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4181,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4188,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4195,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4202,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4209,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4216,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4223,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4230,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4237,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4244,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4461,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4468,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4482,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4489,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4496,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4503,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4510,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4517,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4524,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4531,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4538,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4552,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4559,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4566,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4573,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4580,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4587,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4594,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4601,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4608,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4622,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4629,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4636,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4643,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4650,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4657,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4664,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4671,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4685,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4692,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4699,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4706,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4713,
+"text": "\"packages/core/src/repowise/core/analysis/dead_code/analyzer.py::DeadCodeAnalyzer::analyze\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/integration/test_commonjs_dead_code.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_commonjs_dead_code.py",
+"line": 52,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 27,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 53,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 177,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dead_code_integration.py",
+"line": 10,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dead_code_integration.py",
+"line": 35,
+"text": "analyzer = DeadCodeAnalyzer(graph_builder.graph(), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser \u2192 ASTParser \u2192 GraphBuilder \u2192 DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 23,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 40,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 28,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 56,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 151,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_reachability_root_equivalence.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_reachability_root_equivalence.py",
+"line": 39,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 24,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 41,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 29,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 430,
+"text": "# End-to-end via DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 448,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 485,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 515,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_cpp_reachability.py",
+"line": 538,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_dead_code_unindexed_importers.py",
+"line": 20,
+"text": "from repowise.core.analysis.dead_code.analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_dead_code_unindexed_importers.py",
+"line": 48,
+"text": "def _analyzer(repo: Path, skipped: list[tuple[str, str]]) -> DeadCodeAnalyzer:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_dead_code_unindexed_importers.py",
+"line": 49,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 223,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 229,
+"text": "findings = DeadCodeAnalyzer(g)._detect_unreachable_files(set())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 234,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 237,
+"text": "findings = DeadCodeAnalyzer(g)._detect_unreachable_files(set())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 270,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_file_reachability.py",
+"line": 289,
+"text": "analyzer = DeadCodeAnalyzer(g)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_go_reachability.py",
+"line": 17,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_go_reachability.py",
+"line": 154,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_go_reachability.py",
+"line": 168,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_go_reachability.py",
+"line": 243,
+"text": "return DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jsx_namespace_exempt.py",
+"line": 24,
+"text": "from repowise.core.analysis.dead_code.analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jsx_namespace_exempt.py",
+"line": 93,
+"text": "analyzer = DeadCodeAnalyzer(g, parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jsx_namespace_exempt.py",
+"line": 114,
+"text": "analyzer = DeadCodeAnalyzer(g, parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 22,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 346,
+"text": "# End-to-end via DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 365,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 378,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 401,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 424,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 447,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 470,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 498,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 538,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 569,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_jvm_reachability.py",
+"line": 600,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 10,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 219,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 255,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 301,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 339,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 375,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 411,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/_helpers.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_age_anchor.py",
+"line": 12,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_age_anchor.py",
+"line": 54,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map=git_meta, repo_root=root).analyze(_CONFIG)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_age_anchor.py",
+"line": 84,
+"text": "analyzer = DeadCodeAnalyzer(_build_graph(nodes={}), as_of=anchor)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_alembic.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_alembic.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_alembic.py",
+"line": 36,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_alembic.py",
+"line": 79,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_analyzer_golden.py",
+"line": 1,
+"text": "\"\"\"Golden output of ``DeadCodeAnalyzer.analyze`` on the mixed-language sample repo.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_analyzer_golden.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_analyzer_golden.py",
+"line": 59,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_android_jvm_roots.py",
+"line": 14,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_android_jvm_roots.py",
+"line": 116,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={}, source_map=source_map, repo_root=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_apex_dead_code.py",
+"line": 19,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_apex_dead_code.py",
+"line": 73,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_apex_dead_code.py",
+"line": 366,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 7,
+"text": "from repowise.core.analysis.dead_code.analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 38,
+"text": "report = DeadCodeAnalyzer(_graph(\"cobol\"), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 45,
+"text": "report = DeadCodeAnalyzer(_graph(\"python\"), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 64,
+"text": "report = DeadCodeAnalyzer(_private_method_graph(\"cobol\"), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 68,
+"text": "control = DeadCodeAnalyzer(_private_method_graph(\"java\"), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cobol_external_entry.py",
+"line": 144,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_compose_hilt_roots.py",
+"line": 14,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_compose_hilt_roots.py",
+"line": 110,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={}, source_map=source_map, repo_root=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence.py",
+"line": 10,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence.py",
+"line": 38,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence.py",
+"line": 75,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence_summary.py",
+"line": 20,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence_summary.py",
+"line": 113,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence_summary.py",
+"line": 143,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence_summary.py",
+"line": 189,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_confidence_summary.py",
+"line": 224,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_convention_never_flag.py",
+"line": 199,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_convention_never_flag.py",
+"line": 231,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_declarations.py",
+"line": 10,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_declarations.py",
+"line": 16,
+"text": "report = DeadCodeAnalyzer(graph).analyze()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_declarations.py",
+"line": 77,
+"text": "for f in DeadCodeAnalyzer(graph).analyze().findings",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_name_uses.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_name_uses.py",
+"line": 188,
+"text": "report = DeadCodeAnalyzer(graph, source_map={\"unwinder.cpp\": _UNWINDER}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_name_uses.py",
+"line": 214,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_cpp_name_uses.py",
+"line": 252,
+"text": "report = DeadCodeAnalyzer(graph).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_file_confidence.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_file_confidence.py",
+"line": 34,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_reachability.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_reachability.py",
+"line": 251,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_reachability.py",
+"line": 369,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_reachability.py",
+"line": 392,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_reachability.py",
+"line": 433,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_scanned_roots.py",
+"line": 18,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_scanned_roots.py",
+"line": 134,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 9,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 39,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 75,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 119,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 170,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 293,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 328,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 382,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 426,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_decorators_dynamic.py",
+"line": 464,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_deletion_gate.py",
+"line": 14,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_deletion_gate.py",
+"line": 200,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_deprecated_decorators.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_deprecated_decorators.py",
+"line": 165,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_deprecated_decorators.py",
+"line": 244,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 18,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 63,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 80,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 93,
+"text": "analyzer = DeadCodeAnalyzer(_orphan_graph(), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 115,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_import_dirs.py",
+"line": 139,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map=meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_use_uncertainty.py",
+"line": 35,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_use_uncertainty.py",
+"line": 80,
+"text": "def _analyzer(graph, *, source_map: dict[str, bytes]) -> DeadCodeAnalyzer:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_dynamic_use_uncertainty.py",
+"line": 82,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_entry_shape.py",
+"line": 10,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_entry_shape.py",
+"line": 201,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_entry_shape.py",
+"line": 298,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map=meta, source_map=source).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_export_evidence.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_export_evidence.py",
+"line": 54,
+"text": "report = DeadCodeAnalyzer(_build_graph(nodes, edges)).analyze(dict(_EXPORTS_ONLY))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_export_evidence.py",
+"line": 137,
+"text": "report = DeadCodeAnalyzer(graph).analyze(dict(_EXPORTS_ONLY))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_export_only.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_export_only.py",
+"line": 43,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}, source_map={path: source.encode()}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 63,
+"text": "def _unused_export_names(analyzer: DeadCodeAnalyzer) -> set[str]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 76,
+"text": "names = _unused_export_names(DeadCodeAnalyzer(g, git_meta_map={}))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 87,
+"text": "names = _unused_export_names(DeadCodeAnalyzer(g, git_meta_map={}))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 110,
+"text": "names = _unused_export_names(DeadCodeAnalyzer(g, git_meta_map={}, parsed_files=parsed))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 130,
+"text": "names = _unused_export_names(DeadCodeAnalyzer(g, git_meta_map={}, parsed_files=parsed))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 147,
+"text": "names = _unused_export_names(DeadCodeAnalyzer(g, git_meta_map={}, parsed_files=parsed))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_fp_rescues.py",
+"line": 185,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={}, parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 23,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 177,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 324,
+"text": "report = DeadCodeAnalyzer(_decorated(decorator, \"private\"), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_go_name_uses.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_go_name_uses.py",
+"line": 186,
+"text": "report = DeadCodeAnalyzer(graph, source_map=source).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_go_name_uses.py",
+"line": 277,
+"text": "report = DeadCodeAnalyzer(graph, source_map=source_map).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 42,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 109,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 166,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_interfaces.py",
+"line": 213,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 68,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 131,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 208,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 280,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 352,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 424,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 478,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 499,
+"text": "analyzer = DeadCodeAnalyzer(g, repo_root=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 558,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 625,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jsx_prop_guard_dead_code.py",
+"line": 693,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 106,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={}, source_map=source_map)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 275,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 363,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_resource_roots.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_resource_roots.py",
+"line": 84,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={}, source_map=source_map, repo_root=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_laravel_liveness.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_laravel_liveness.py",
+"line": 57,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_line_counts.py",
+"line": 12,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_line_counts.py",
+"line": 24,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={p: _STALE for p in g.nodes}, **kwargs).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_line_counts.py",
+"line": 50,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_line_counts.py",
+"line": 100,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_module_strings.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_module_strings.py",
+"line": 114,
+"text": "report = DeadCodeAnalyzer(graph, parsed_files=parsed, source_map=source).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_module_strings.py",
+"line": 265,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_mts_never_flag.py",
+"line": 7,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_mts_never_flag.py",
+"line": 15,
+"text": "analyzer = DeadCodeAnalyzer(_build_graph(nodes={}), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_never_flag_regex.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code.analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_never_flag_regex.py",
+"line": 103,
+"text": "def _analyzer(self) -> DeadCodeAnalyzer:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_never_flag_regex.py",
+"line": 104,
+"text": "return DeadCodeAnalyzer(nx.DiGraph(), {})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_never_flag_regex.py",
+"line": 118,
+"text": "analyzer = DeadCodeAnalyzer(g, {})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_no_git_signal.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_no_git_signal.py",
+"line": 38,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map=git_meta_map).analyze(_CONFIG)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 53,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(_CONFIG)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 107,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 140,
+"text": "report = DeadCodeAnalyzer(builder.build(), git_meta_map={}).analyze(_CONFIG)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_partial.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_partial.py",
+"line": 53,
+"text": "analyzer = DeadCodeAnalyzer(_graph_with_unused_export(), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_partial.py",
+"line": 69,
+"text": "assert not hasattr(DeadCodeAnalyzer, \"analyze_partial\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_partial.py",
+"line": 188,
+"text": "analyzer = DeadCodeAnalyzer(_orphan_graph(), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_partial.py",
+"line": 214,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_pascal_name_uses.py",
+"line": 9,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_pascal_name_uses.py",
+"line": 68,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}, source_map=source_map).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_path_mentions.py",
+"line": 14,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_path_mentions.py",
+"line": 114,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_php_tool_loaded_files.py",
+"line": 12,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_php_tool_loaded_files.py",
+"line": 37,
+"text": "report = DeadCodeAnalyzer(builder.graph(), {}, repo_root=repo).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_prepass_source_map.py",
+"line": 3,
+"text": "``DeadCodeAnalyzer.__init__`` runs three scans over the whole indexed file",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_prepass_source_map.py",
+"line": 26,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_prepass_source_map.py",
+"line": 39,
+"text": "def _analyzer(parsed_files: dict, source_map: dict[str, bytes] | None) -> DeadCodeAnalyzer:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_prepass_source_map.py",
+"line": 41,
+"text": "return DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_program_main.py",
+"line": 15,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_program_main.py",
+"line": 71,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_python_nested_classes.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_python_nested_classes.py",
+"line": 113,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 34,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 60,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 81,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 101,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 143,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 184,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 211,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 236,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 275,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_reachability.py",
+"line": 296,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_react_native_platform_files.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_react_native_platform_files.py",
+"line": 63,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_registering_decorators.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_registering_decorators.py",
+"line": 146,
+"text": "report = DeadCodeAnalyzer(graph, source_map=source_map).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_risk_factors.py",
+"line": 12,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_risk_factors.py",
+"line": 130,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_risk_factors.py",
+"line": 184,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_rust_tests_module.py",
+"line": 5,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_rust_tests_module.py",
+"line": 10,
+"text": "analyzer = DeadCodeAnalyzer(_build_graph(nodes={}), git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_rust_tests_module.py",
+"line": 16,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 14,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 85,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 96,
+"text": "export_pass = UnusedExportPass(DeadCodeAnalyzer(g, git_meta_map=meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 123,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_script_entry_points.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_script_entry_points.py",
+"line": 19,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_script_entry_points.py",
+"line": 91,
+"text": "report = DeadCodeAnalyzer(graph).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 18,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 100,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 310,
+"text": "analyzer = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 45,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 101,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 157,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 210,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 268,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 306,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_exports.py",
+"line": 387,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 6,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 38,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 77,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 139,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 191,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 226,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 273,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 327,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 379,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 417,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 457,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}, source_map={path: source.encode()}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal.py",
+"line": 580,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal_self_use.py",
+"line": 5,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal_self_use.py",
+"line": 31,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal_self_use.py",
+"line": 70,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_unused_internal_self_use.py",
+"line": 127,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_vbnet_modules.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_vbnet_modules.py",
+"line": 75,
+"text": "report = DeadCodeAnalyzer(graph, source_map=source_map).analyze(dict(_EXPORTS_ONLY))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_web_factory.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_web_factory.py",
+"line": 8,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_web_factory.py",
+"line": 54,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 1,
+"text": "\"\"\"Unit tests for DeadCodeAnalyzer.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 8,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 27,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 88,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 161,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map=git_meta, source_map=source_map)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_whitelist_safety.py",
+"line": 196,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}, source_map=source_map).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_package_candidates.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_package_candidates.py",
+"line": 23,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_packages.py",
+"line": 1,
+"text": "\"\"\"Unit tests for zombie-package detection in DeadCodeAnalyzer.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_packages.py",
+"line": 18,
+"text": "DeadCodeAnalyzer,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_packages.py",
+"line": 61,
+"text": "analyzer = DeadCodeAnalyzer(g, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_packages.py",
+"line": 141,
+"text": "analyzer = DeadCodeAnalyzer(_zombie_graph(), git_meta_map=git_meta)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_zombie_packages.py",
+"line": 162,
+"text": "report = DeadCodeAnalyzer(g, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_angular_framework_edges.py",
+"line": 12,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_angular_framework_edges.py",
+"line": 104,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_anonymous_class_methods.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_anonymous_class_methods.py",
+"line": 298,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 572,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 601,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aura_framework_edges.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aura_framework_edges.py",
+"line": 206,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aws_lambda_framework_edges.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aws_lambda_framework_edges.py",
+"line": 245,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 25,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 152,
+"text": "findings = DeadCodeAnalyzer(graph).analyze().findings",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 164,
+"text": "findings = DeadCodeAnalyzer(graph).analyze().findings",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 250,
+"text": "findings = DeadCodeAnalyzer(graph).analyze().findings",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_reference_edges.py",
+"line": 164,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_reference_edges.py",
+"line": 172,
+"text": "report = DeadCodeAnalyzer(graph).analyze()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_partials.py",
+"line": 290,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_partials.py",
+"line": 294,
+"text": "report = DeadCodeAnalyzer(_build(tmp_path), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_type_use.py",
+"line": 17,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_type_use.py",
+"line": 375,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 158,
+"text": "report = DeadCodeAnalyzer(builder.graph(), git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_express_framework_edges.py",
+"line": 10,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_express_framework_edges.py",
+"line": 273,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze({\"min_confidence\": 0.0})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 19,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 140,
+"text": "analyzer = DeadCodeAnalyzer(graph)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 28,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 276,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 296,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 313,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lwc_framework_edges.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lwc_framework_edges.py",
+"line": 114,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_object_literal_method_graph.py",
+"line": 13,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_object_literal_method_graph.py",
+"line": 82,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 27,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 65,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 71,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cargo_targets.py",
+"line": 17,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cargo_targets.py",
+"line": 51,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 41,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 185,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 263,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_mod_path_dedup.py",
+"line": 184,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_mod_path_dedup.py",
+"line": 187,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_module_paths.py",
+"line": 17,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_module_paths.py",
+"line": 142,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_test_consumer.py",
+"line": 22,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_test_consumer.py",
+"line": 102,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 34,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 292,
+"text": "analyzer = DeadCodeAnalyzer(graph, repo_root=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_flow_edges.py",
+"line": 11,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_flow_edges.py",
+"line": 175,
+"text": "report = DeadCodeAnalyzer(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_dynamic_import_dead_code.py",
+"line": 9,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_dynamic_import_dead_code.py",
+"line": 39,
+"text": "report = DeadCodeAnalyzer(graph, git_meta_map={}).analyze(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 9,
+"text": "DeadCodeAnalyzer and assert the aliased symbol is no longer flagged.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 18,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 50,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 7,
+"text": "real parser \u2192 GraphBuilder \u2192 DeadCodeAnalyzer over a barrel chain and assert",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 17,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 49,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 55,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 24,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer, DeadCodeKind",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 308,
+"text": "analyzer = DeadCodeAnalyzer(graph, git_meta_map={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 44,
+"text": "from repowise.core.analysis.dead_code.analyzer import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 49,
+"text": "assert dead_code.DeadCodeAnalyzer is DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 50,
+"text": "assert \"DeadCodeAnalyzer\" in dir(dead_code)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_phase_timings.py",
+"line": 143,
+"text": "monkeypatch.setattr(dead_code_mod, \"DeadCodeAnalyzer\", Boom)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 4,
+"text": "recorded in ``DeadCodeAnalyzer._dynamic_import_files`` so the analyser",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 16,
+"text": "from repowise.core.analysis.dead_code import DeadCodeAnalyzer",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 47,
+"text": "analyzer = DeadCodeAnalyzer(graph=nx.DiGraph(), parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 58,
+"text": "analyzer = DeadCodeAnalyzer(graph=nx.DiGraph(), parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 66,
+"text": "analyzer = DeadCodeAnalyzer(graph=nx.DiGraph(), parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 74,
+"text": "analyzer = DeadCodeAnalyzer(graph=nx.DiGraph(), parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_csharp_dead_code_markers.py",
+"line": 82,
+"text": "analyzer = DeadCodeAnalyzer(graph=nx.DiGraph(), parsed_files=parsed)",
+"cls": "code",
+"ext": ".py"
+}
+]
