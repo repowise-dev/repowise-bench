@@ -1,0 +1,254 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 500,
+"text": "- **Web UI.** The docs Export menu opens above the header (#3778), MetricCard labels and descriptions render as blocks (#3875), UI copy uses correct singulars, ordinals and field names (#3465), charts",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 500,
+"text": "- **Web UI.** The docs Export menu opens above the header (#3778), MetricCard labels and descriptions render as blocks (#3875), UI copy uses correct singulars, ordinals and field names (#3465), charts",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/COMPONENT_CONTRACTS.md",
+"line": 129,
+"text": "## `shared/metric-card` \u00e2\u20ac\u201d `MetricCard`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/COMPONENT_CONTRACTS.md",
+"line": 835,
+"text": "Four-tile summary header (`MetricCard` \u00c3\u2014 4) for co-change pairs, package",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 3,
+"text": "import { MetricCard } from \"../../src/shared/metric-card.js\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 5,
+"text": "describe(\"MetricCard\", () => {",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 7,
+"text": "render(<MetricCard label=\"Hotspots\" value=\"42\" />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 16,
+"text": "<MetricCard label={<div>label</div>} value=\"1\" description={<div>desc</div>} />,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 22,
+"text": "render(<MetricCard label=\"Coverage\" value=\"87%\" description=\"last 30 days\" />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 28,
+"text": "<MetricCard label=\"Hotspots\" value={42} delta={{ value: \"+5\", positive: true }} />,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/metric-card.test.tsx",
+"line": 35,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commits-lede.tsx",
+"line": 21,
+"text": "* Replaces four `MetricCard`s of equal weight, which gave the page nothing to",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/kpi-strip.tsx",
+"line": 2,
+"text": "import { MetricCard } from \"../shared/metric-card\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/kpi-strip.tsx",
+"line": 64,
+"text": "* `MetricCard`. Percentage metrics carry a mini gauge. Fully presentational:",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/kpi-strip.tsx",
+"line": 78,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-lede.tsx",
+"line": 5,
+"text": "* It replaces five `MetricCard`s in a grid. Between them they carried the",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 12,
+"text": "* What it replaces: five `MetricCard`s in a grid above a bordered chart, a",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/trend-view.tsx",
+"line": 7,
+"text": "* It used to open with three `MetricCard`s in a grid, then stack tinted alert",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/index.ts",
+"line": 76,
+"text": "export { MetricCard, type MetricCardProps } from \"./metric-card\";",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/shared/loading-skeletons.tsx",
+"line": 4,
+"text": "import { MetricCard } from \"./metric-card\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/loading-skeletons.tsx",
+"line": 126,
+"text": "* A row of stat tiles, waiting. Each tile is a real `MetricCard` with bars in",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/loading-skeletons.tsx",
+"line": 143,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/metric-card.tsx",
+"line": 42,
+"text": "export function MetricCard({",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stat-callout.tsx",
+"line": 45,
+"text": "* longer `sub` line than `MetricCard` but shares its type scale, so the stats",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/cross-repo-summary.tsx",
+"line": 4,
+"text": "import { MetricCard } from \"../shared/metric-card\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/cross-repo-summary.tsx",
+"line": 27,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/cross-repo-summary.tsx",
+"line": 32,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/cross-repo-summary.tsx",
+"line": 38,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/cross-repo-summary.tsx",
+"line": 43,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/page.tsx",
+"line": 40,
+"text": "* It used to open with four cross-repo totals in `MetricCard`s \u2014 total pages,",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/loading.tsx",
+"line": 9,
+"text": "* `MetricCard` boxes via `StatGridSkeleton`, so they do not resize on",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 8,
+"text": "import { MetricCard } from \"@repowise-dev/ui/shared/metric-card\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 76,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 81,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/docs/coverage/page.tsx",
+"line": 86,
+"text": "<MetricCard",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 54,
+"text": "* It used to open with five cross-repo `MetricCard`s and put the repositories",
+"cls": "doc",
+"ext": ".tsx"
+}
+]

@@ -1,0 +1,61 @@
+{
+ "_about": "Harness validation: the first paired pilot's shape (minimal prefix, restricted built-ins) on six tasks of the pilot's kinds (locate, callers, why, flow). Golds checked against the pinned clones before any run.",
+ "repos": {
+  "cobra": {
+   "commit": "adbc8813901bba65827259daa8e22ff94ec1f30e",
+   "desc": "spf13/cobra (Go CLI library)"
+  },
+  "hono": {
+   "commit": "f6fbaf0299c48eea9e656e03e2ffe7ac755e8823",
+   "desc": "honojs/hono (TypeScript web framework)"
+  },
+  "flask": {
+   "commit": "49943b5a94413a530761350f04e896f76e8d620e",
+   "desc": "pallets/flask (Python web framework)"
+  }
+ },
+ "tasks": [
+  {
+   "id": "VC1",
+   "repo": "cobra",
+   "tier": "locate",
+   "prompt": "Where does cobra decide which subcommand to run from the command-line arguments? Name the functions and files involved.",
+   "gold": "Must: Command.ExecuteC in command.go calls Find (or Traverse when TraverseChildren is set) on the root command; Command.Find in command.go walks the args (findNext / stripFlags) to the deepest matching subcommand and returns it with the remaining args. Legacy args validation (legacyArgs) is in command.go/args.go."
+  },
+  {
+   "id": "VC3",
+   "repo": "cobra",
+   "tier": "callers",
+   "prompt": "List every call site of the function CheckErr in the Go code of this repository (file:line), excluding its definition.",
+   "gold": "Must: defined in cobra.go (func CheckErr). Go call sites: cobra.go:245 (in WriteStringAndCheck), command.go:535, command.go:1297, command.go:1306, bash_completions_test.go:69, doc/man_examples_test.go:34 and :47. Markdown examples under site/ are not Go code; listing them is not wrong if labelled."
+  },
+  {
+   "id": "VC5",
+   "repo": "cobra",
+   "tier": "why",
+   "prompt": "Why does cobra show a message and exit when a CLI built with it is started by double-clicking it in Windows Explorer, and where is that wired?",
+   "gold": "Must: command_win.go (windows build tag) sets preExecHookFn = preExecHook, which uses github.com/inconshreveable/mousetrap StartedByExplorer(); if MousetrapHelpText (cobra.go) is non-empty it prints it, waits MousetrapDisplayDuration (or for Enter) and exits 1. command_notwin.go declares a nil preExecHookFn. ExecuteC in command.go calls preExecHookFn. Reason: a console tool started from Explorer would flash and close."
+  },
+  {
+   "id": "VO2",
+   "repo": "hono",
+   "tier": "flow",
+   "prompt": "Trace what happens in Hono from app.fetch(request) to the response of the matched handler, including how middleware and handlers are composed and how errors and not-found are handled.",
+   "gold": "Must: fetch -> #dispatch in src/hono-base.ts; HEAD is re-dispatched as GET with the body dropped; router.match(method, path) returns handlers; Context is created; with a single handler the fast path calls it directly (errors go to errorHandler, missing response to notFoundHandler); otherwise compose(matchResult[0], errorHandler, notFoundHandler) from src/compose.ts runs handlers in order via dispatch(i)/next, catching errors into onError and calling onNotFound when not finalized; the Response comes from context.res."
+  },
+  {
+   "id": "VO5",
+   "repo": "hono",
+   "tier": "why",
+   "prompt": "How and where does Hono handle HTTP HEAD requests, and why that way?",
+   "gold": "Must: in #dispatch in src/hono-base.ts, a HEAD request is dispatched as GET and the result wrapped in new Response(null, response) so headers and status match GET with no body; reason: HTTP HEAD must return the same headers as GET without a body, so routes defined for GET answer HEAD automatically."
+  },
+  {
+   "id": "VF2",
+   "repo": "flask",
+   "tier": "flow",
+   "prompt": "Trace how Flask handles a request from wsgi_app to the view's return value becoming a Response object.",
+   "gold": "Must: Flask.wsgi_app in src/flask/app.py creates the request/app context and pushes it, calls full_dispatch_request; that sends request_started, runs preprocess_request (before_request funcs; a non-None return short-circuits), then dispatch_request which matches the URL rule (request.url_rule / view_functions[endpoint]) and calls the view; finalize_request calls make_response (str/bytes/dict/list/tuple/Response handling) and process_response (after_request funcs, session save); exceptions go to handle_user_exception / handle_exception; the context is popped at the end."
+  }
+ ]
+}

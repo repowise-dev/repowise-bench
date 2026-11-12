@@ -1,0 +1,1605 @@
+[
+{
+"path": ".github/CONTRIBUTING.md",
+"line": 123,
+"text": "- **Language support.** A new language is five small steps: a `LanguageSpec`, a tag,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 3090,
+"text": "- **Luau / Roblox language support** (#89) \u2014 promotes the existing git-blame-only `lua` LanguageSpec to a full AST-parsed `luau` tier covering both `.lua` and `.luau`. Includes a dedicated resolver fo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 108,
+"text": "languages/           # LanguageRegistry + LanguageSpec (identity data)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 109,
+"text": "spec.py            #   LanguageSpec dataclass (the schema)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 169,
+"text": "`specs/<tag>.py` module per language. `LanguageSpec`'s `import_support` field",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 188,
+"text": "#### Step 1: Add a `LanguageSpec` module",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 194,
+"text": "\"\"\"LanguageSpec for mylang.\"\"\"",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 196,
+"text": "from ..spec import LanguageSpec",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 198,
+"text": "SPEC = LanguageSpec(",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/layers/LANGUAGE_SUPPORT.md",
+"line": 337,
+"text": "that uses it. To add one yourself, the contributor recipe (a `LanguageSpec`, a",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/deletion_gate.py",
+"line": 159,
+"text": "table (``LanguageSpec.import_support``; anything short of ``full`` has",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/constants.py",
+"line": 171,
+"text": "#: Extensions this detector can read, taken from the markdown ``LanguageSpec``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/onboarding/grounding.py",
+"line": 139,
+"text": "# A bare identifier, optionally dotted or ``::``-qualified (e.g. ``LanguageSpec``,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/extractors/heritage/__init__.py",
+"line": 10,
+"text": "carry heritage info for a given language (driven by ``LanguageSpec``).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/__init__.py",
+"line": 13,
+"text": "from .spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/__init__.py",
+"line": 15,
+"text": "__all__ = [\"REGISTRY\", \"LanguageSpec\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 22,
+"text": "from .spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 61,
+"text": "def __init__(self, specs: tuple[LanguageSpec, ...] = _SPECS) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 62,
+"text": "self._specs: dict[str, LanguageSpec] = {s.tag: s for s in specs}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 80,
+"text": "def get(self, tag: str) -> LanguageSpec | None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 371,
+"text": "never another's. See ``LanguageSpec.layer_dir_hints`` for the shapes.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/registry.py",
+"line": 379,
+"text": "def all_specs(self) -> list[LanguageSpec]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/spec.py",
+"line": 3,
+"text": "``LanguageSpec`` captures everything repowise needs to know about a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/spec.py",
+"line": 20,
+"text": "class LanguageSpec:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/__init__.py",
+"line": 4,
+"text": ":class:`~repowise.core.ingestion.languages.spec.LanguageSpec`). This package",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/__init__.py",
+"line": 13,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/__init__.py",
+"line": 82,
+"text": "ALL_SPECS: tuple[LanguageSpec, ...] = (",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/apex.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Salesforce Apex classes, triggers and anonymous scripts.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/apex.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/apex.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/asciidoc.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for asciidoc.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/asciidoc.py",
+"line": 9,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/asciidoc.py",
+"line": 11,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/astro.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for astro.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/astro.py",
+"line": 12,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/astro.py",
+"line": 15,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/aura.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Salesforce Aura component markup, an edge-only tag.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/aura.py",
+"line": 27,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/aura.py",
+"line": 45,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/bms.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for CICS BMS map source: mapsets and maps as symbols.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/bms.py",
+"line": 7,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/bms.py",
+"line": 9,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/c.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for c (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/c.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/c.py",
+"line": 35,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/clojure.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for clojure (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/clojure.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/clojure.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cobol.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for COBOL 85 source and copybook files.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cobol.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cobol.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cpp.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for cpp (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cpp.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/cpp.py",
+"line": 26,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/crystal.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for crystal (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/crystal.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/crystal.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csd.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for CICS CSD definitions (DFHCSDUP input): programs and transactions.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csd.py",
+"line": 7,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csd.py",
+"line": 9,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csharp.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for csharp (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csharp.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/csharp.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dart.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for dart (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dart.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dart.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dlang.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for dlang (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dlang.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dlang.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dockerfile.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for dockerfile (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dockerfile.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/dockerfile.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elixir.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Elixir.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elixir.py",
+"line": 20,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elixir.py",
+"line": 22,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elm.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for elm (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elm.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/elm.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/erlang.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for erlang (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/erlang.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/erlang.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/fsharp.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for F#.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/fsharp.py",
+"line": 20,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/fsharp.py",
+"line": 22,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/gdscript.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for GDScript (Godot Engine).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/gdscript.py",
+"line": 21,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/gdscript.py",
+"line": 23,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/go.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for go (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/go.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/go.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/godot_resource.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Godot's resource files, an import-tier language.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/godot_resource.py",
+"line": 67,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/godot_resource.py",
+"line": 69,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/graphql.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for graphql (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/graphql.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/graphql.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/haskell.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for haskell (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/haskell.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/haskell.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/html.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for html \u2014 an import-tier language, deliberately.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/html.py",
+"line": 38,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/html.py",
+"line": 40,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/java.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for java (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/java.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/java.py",
+"line": 64,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/javascript.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for javascript (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/javascript.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/javascript.py",
+"line": 6,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/jcl.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for JCL jobs and procedures, a symbol-and-edge-only tag.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/jcl.py",
+"line": 8,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/jcl.py",
+"line": 10,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/json.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for json (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/json.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/json.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/julia.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for julia (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/julia.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/julia.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/kotlin.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for kotlin (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/kotlin.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/kotlin.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/lean.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for lean (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/lean.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/lean.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/luau.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for luau (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/luau.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/luau.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/makefile.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for makefile (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/makefile.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/makefile.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/markdown.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for markdown (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/markdown.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/markdown.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/nim.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for nim (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/nim.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/nim.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/objectivec.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Objective-C.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/objectivec.py",
+"line": 22,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/objectivec.py",
+"line": 24,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ocaml.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for ocaml (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ocaml.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ocaml.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/openapi.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for openapi (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/openapi.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/openapi.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/pascal.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Object Pascal (Delphi / Free Pascal).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/pascal.py",
+"line": 20,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/pascal.py",
+"line": 22,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/pascal.py",
+"line": 96,
+"text": "# don't (see ``test_camel_prefixes`` on ``LanguageSpec``).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/php.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for php (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/php.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/php.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/proto.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for proto (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/proto.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/proto.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/python.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for python (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/python.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/python.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/qml.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for qml, a lightweight import-tier language.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/qml.py",
+"line": 30,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/qml.py",
+"line": 32,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/r.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for r (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/r.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/r.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/razor.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for razor.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/razor.py",
+"line": 17,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/razor.py",
+"line": 20,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ruby.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for ruby (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ruby.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/ruby.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/rust.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for rust (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/rust.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/rust.py",
+"line": 21,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_flow.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Salesforce flows.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_flow.py",
+"line": 10,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_flow.py",
+"line": 20,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_object.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Salesforce object and field metadata.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_object.py",
+"line": 8,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/salesforce_object.py",
+"line": 10,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/scala.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for scala (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/scala.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/scala.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/shell.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for shell (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/shell.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/shell.py",
+"line": 58,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/soql.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for ``.soql`` files: saved SOQL queries, read for the objects and fields they name.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/soql.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/soql.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/sql.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for sql (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/sql.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/sql.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/svelte.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for svelte.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/svelte.py",
+"line": 10,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/svelte.py",
+"line": 12,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/swift.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for swift (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/swift.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/swift.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/terraform.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for terraform (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/terraform.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/terraform.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/toml.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for toml (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/toml.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/toml.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/typescript.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for typescript (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/typescript.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/typescript.py",
+"line": 55,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/unknown.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for unknown (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/unknown.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/unknown.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vbnet.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for vbnet (VB.NET) at the Good tier.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vbnet.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vbnet.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/visualforce.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for Salesforce Visualforce pages and components, an edge-only tag.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/visualforce.py",
+"line": 8,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/visualforce.py",
+"line": 10,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vue.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for vue.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vue.py",
+"line": 20,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/vue.py",
+"line": 22,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/xaml.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for xaml (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/xaml.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/xaml.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/yaml.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for yaml (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/yaml.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/yaml.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/zig.py",
+"line": 1,
+"text": "\"\"\"LanguageSpec for zig (extracted from the registry data table).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/zig.py",
+"line": 3,
+"text": "from ..spec import LanguageSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/zig.py",
+"line": 5,
+"text": "SPEC = LanguageSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3090,
+"text": "- **Luau / Roblox language support** (#89) \u2014 promotes the existing git-blame-only `lua` LanguageSpec to a full AST-parsed `luau` tier covering both `.lua` and `.luau`. Includes a dedicated resolver fo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/unit/ingestion/test_language_capabilities.py",
+"line": 4,
+"text": "import-support tiers, layer hints) lives on the ``LanguageSpec`` registry;",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_no_bare_type_name_copies.py",
+"line": 259,
+"text": "+ \"\\n\\nPut them on that language's LanguageSpec.builtin_types and read them\"",
+"cls": "doc",
+"ext": ".py"
+}
+]

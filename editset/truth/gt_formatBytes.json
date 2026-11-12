@@ -1,0 +1,107 @@
+[
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 5,
+"text": "formatBytes,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 126,
+"text": "describe(\"formatBytes\", () => {",
+"cls": "strref",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 128,
+"text": "expect(formatBytes(0)).toBe(\"0 B\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 129,
+"text": "expect(formatBytes(512)).toBe(\"512 B\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 130,
+"text": "expect(formatBytes(1536)).toBe(\"1.5 KB\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 131,
+"text": "expect(formatBytes(1_048_576)).toBe(\"1.0 MB\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 132,
+"text": "expect(formatBytes(1_073_741_824)).toBe(\"1.0 GB\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 136,
+"text": "expect(formatBytes(10 * 1024)).toBe(\"10 KB\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 140,
+"text": "expect(formatBytes(-1)).toBe(\"\u2014\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/__tests__/lib/format.test.ts",
+"line": 141,
+"text": "expect(formatBytes(Number.NaN)).toBe(\"\u2014\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/dashboard/index-storage-mini.tsx",
+"line": 3,
+"text": "import { formatBytes, formatPercent } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/index-storage-mini.tsx",
+"line": 42,
+"text": "{formatBytes(data.index_storage_bytes)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 308,
+"text": "export function formatBytes(bytes: number): string {",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 4,
+"text": "import { formatAgeDays, formatBytes, formatDate, formatNumber } from \"../lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/stats/stats-report.tsx",
+"line": 212,
+"text": "{formatBytes(data.index_storage_bytes)}",
+"cls": "code",
+"ext": ".tsx"
+}
+]

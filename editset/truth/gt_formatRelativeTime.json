@@ -1,0 +1,114 @@
+[
+{
+"path": "packages/ui/__tests__/shared/relative-time.test.tsx",
+"line": 8,
+"text": "import { formatDateTime, formatRelativeTime } from \"../../src/lib/format.js\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/relative-time.test.tsx",
+"line": 53,
+"text": "return <>{formatRelativeTime(PREVIOUS_INDEX)}</>;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 74,
+"text": "/** The bucket `formatRelativeTime` picks, for hosts that word it themselves. */",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 112,
+"text": "export function formatRelativeTime(",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/lib/format.ts",
+"line": 129,
+"text": "return formatRelativeTime(d);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/shared/relative-time.tsx",
+"line": 7,
+"text": "formatRelativeTime,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/relative-time.tsx",
+"line": 53,
+"text": "{hydrated ? formatRelativeTime(d, words) : formatDate(d)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/decisions/App.tsx",
+"line": 10,
+"text": "import { formatRelativeTime, stripMarkdown } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/decisions/App.tsx",
+"line": 229,
+"text": "{formatRelativeTime(d.updated_at || d.created_at)}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/overview/overview-copy.ts",
+"line": 5,
+"text": "formatRelativeTime,",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/app/repos/[id]/overview/overview-copy.ts",
+"line": 22,
+"text": "return (iso) => formatRelativeTime(iso, words);",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 34,
+"text": "import { formatRelativeTime } from \"@repowise-dev/ui/lib/format\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 131,
+"text": "const scannedAgo = scannedAt ? formatRelativeTime(scannedAt) : null;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 430,
+"text": "function formatRelativeTime(date, words = RELATIVE_TIME_WORDS) {",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "plugins/claude-code/hooks/lens/lens.js",
+"line": 438,
+"text": "return formatRelativeTime(d);",
+"cls": "code",
+"ext": ".js"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+}
+]

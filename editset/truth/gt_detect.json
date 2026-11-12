@@ -1,0 +1,6246 @@
+[
+{
+"path": ".pre-commit-config.yaml",
+"line": 13,
+"text": "- id: detect-private-key",
+"cls": "doc",
+"ext": ".yaml"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2093,
+"text": "- **Worktrees just work.** `repowise init` and `repowise update` inside a linked git worktree now auto-detect the base checkout and seed the worktree's index from it, then catch up incrementally; no f",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2112,
+"text": "- **`[workspace]` notices render again.** The one-line workspace auto-detect notice was being swallowed by console markup and printed without its prefix. (#747)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2829,
+"text": "- **Workspace mode is now first-class across the CLI.** Every relevant command auto-detects whether it's running inside a workspace root and routes accordingly, with a one-line `[workspace] \u2026` notice ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2853,
+"text": "- **CLI Reference rewritten** for workspace mode \u2014 new cross-cutting auto-detect section, per-command flag tables updated for `update`, `watch`, `search`, `status`, `dead-code`, `costs`, `workspace ad",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 3124,
+"text": "- **Package dependency scanning** \u2014 reads package manifests (`package.json`, `pyproject.toml`, `go.mod`, `pom.xml`) to detect inter-repo package dependencies.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 3377,
+"text": "- Existing repositories must run migrations: `repowise doctor` will detect",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/agent/CODEX.md",
+"line": 59,
+"text": "- `PostToolUse` for `Bash|shell_command` to detect git operations that make the wiki stale. On current Codex the shell calls arrive as `shell_command`; `Bash` is kept in the set for older and future b",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 1666,
+"text": "enabled: true              # detect unreachable files, unused exports, zombie packages",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 358,
+"text": "subprocess), `detect` (a list of `Registration`s, never raises), `install`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 425,
+"text": "config passes as `--client`. Abstract methods: `detect`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/code-health.md",
+"line": 104,
+"text": "`detect(ctx: FileContext) -> list[BiomarkerResult]`. `biomarkers/registry.py` is an",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/code-health.md",
+"line": 434,
+"text": "congestion process markers \"detect\"; naive T0 scoring silences recency windows, so they",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/deep-dives.md",
+"line": 980,
+"text": "For each changed file, compare old and new parsed versions to detect renames:",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/forges.md",
+"line": 16,
+"text": "| `detect.py` | `read_remote_url` (reads `.git/config`, follows worktrees) and `detect_forge` (remote, then CI env) |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/forges.md",
+"line": 35,
+"text": "read strings and env mappings only. `detect.py` reads `.git/config` directly",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 267,
+"text": "it can detect and drops 18 manifest names on that rule (`go.mod`, `pom.xml`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/layers/DOC_DRIFT.md",
+"line": 38,
+"text": "1. The token looks like code: `parse_config()`, `ChangeDetector.detect`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/layers/SECURITY.md",
+"line": 190,
+"text": "above it (detect-secrets), and `gitleaks:allow`, `trufflehog:ignore`, `nosec`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 60,
+"text": "## Workspace auto-detect (cross-cutting)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 62,
+"text": "Most commands detect a workspace root and route to it, with a one-line `[workspace] \u2026` notice.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 69,
+"text": "| `--workspace` / `-w` | Force workspace mode; errors without `.repowise-workspace.yaml`. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 70,
+"text": "| `--no-workspace` | Force single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 108,
+"text": "| `--embedder` | `gemini`, `openai`, `openrouter`, `ollama`, `edenai`, `mock`. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 148,
+"text": "| `--no-workspace` | Index only PATH from a workspace root. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 256,
+"text": "| `--workspace` / `-w` | All stale workspace repos plus cross-repo analysis; see notes. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 438,
+"text": "| `--workspace` / `-w` | All workspace repos. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 439,
+"text": "| `--no-workspace` | Single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 570,
+"text": "| `--no-workspace` | Single-repo mode inside a workspace. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 600,
+"text": "| `--workspace` / `-w` | All workspace repos. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 601,
+"text": "| `--no-workspace` | Single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 622,
+"text": "| `--no-workspace` | Single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 680,
+"text": "| `--no-workspace` | Force single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 707,
+"text": "| `--no-workspace` | Force single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 933,
+"text": "| `--no-workspace` | Force single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1189,
+"text": "| `--format` | `add`: force a parser (`lcov`, `cobertura`, `clover`, `repowise-json`, `go-coverprofile`, `jacoco`, `apex`). `status`: `table` or `json`. | `add`: auto-detect; `status`: `table` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1219,
+"text": "| `--report-format` | Force a parser (as `add --format`). | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1506,
+"text": "| `--no-workspace` | Force single-repo mode. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1560,
+"text": "| `--workspace` / `--no-workspace` | Every workspace repo / force single repo. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1763,
+"text": "| `--no-workspace` | Force single repo. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1914,
+"text": "| `--path` | Workspace root. | auto-detect from cwd |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 1928,
+"text": "repo); default auto-detect.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2000,
+"text": "| `--workspace` / `-w`, `--no-workspace` | Every workspace repo / single repo (all three). | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2060,
+"text": "| `--no-workspace` | Nested repo ignores the enclosing workspace's default. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2076,
+"text": "| `--workspace` / `-w`, `--no-workspace` | Workspace file at the root (contracts, co-changes, per-repo summaries) / single repo. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CLI_REFERENCE.md",
+"line": 2134,
+"text": "| `--workspace` / `-w`, `--no-workspace` | Workspace table (dir exists, git repo, state.json \u2194 config drift) then per-repo checks / single repo. | auto-detect |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 93,
+"text": "| SCC | Strongly connected component, used to detect dependency cycles. | `GraphBuilder.strongly_connected_components()` | `{\"src/a.py\", \"src/b.py\"}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/CONFIG.md",
+"line": 310,
+"text": "outside this session's edits, which nothing else in the session can detect.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/scale/WORKSPACES.md",
+"line": 264,
+"text": "`Cargo.toml`, `go.mod`, `.csproj`, and Maven `pom.xml`) to detect when one repo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 12,
+"text": "/** `detect` also asks each agent CLI whether it is signed in, which fills",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 17,
+"text": "options: { detect?: boolean } = {},",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/providers.ts",
+"line": 21,
+"text": "if (options.detect) params.set(\"detect\", \"true\");",
+"cls": "code",
+"ext": ".ts"
+},
+{
+"path": "packages/api-client/src/types/misc.ts",
+"line": 43,
+"text": "*  `detect`), a key in the env or the repo's `.repowise/.env`, or a key",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/target.py",
+"line": 20,
+"text": "# Command target resolution \u2014 auto-detect single-repo vs workspace mode",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_adapters/base.py",
+"line": 248,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_adapters/claude_code.py",
+"line": 59,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_adapters/codex.py",
+"line": 102,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_adapters/cursor.py",
+"line": 64,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/registry.py",
+"line": 85,
+"text": "found[target_id] = list(target.detect(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/registry.py",
+"line": 105,
+"text": "registrations = list(target.detect(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/registry.py",
+"line": 256,
+"text": "Deliberately built out of :meth:`~.types.AgentTarget.detect` and",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/registry.py",
+"line": 281,
+"text": "if not any(r.scope is scope for r in target.detect(repo_path)):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 21,
+"text": "exactly why :meth:`ClaudeCodeTarget.detect` reports every registration it finds",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 383,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 473,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 474,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 486,
+"text": "there is nothing here to write for it \u2014 when :meth:`detect` finds it,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 590,
+"text": "# The Desktop config too, because `install` writes it and `detect` reads",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/claude_code.py",
+"line": 685,
+"text": "registrations = detect()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/codex.py",
+"line": 955,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/codex.py",
+"line": 1005,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/codex.py",
+"line": 1006,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/codex.py",
+"line": 1267,
+"text": "# detect, so `--repair` would skip it and report success.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/copilot.py",
+"line": 141,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/copilot.py",
+"line": 187,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/copilot.py",
+"line": 188,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/cursor.py",
+"line": 392,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/cursor.py",
+"line": 454,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/cursor.py",
+"line": 455,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 748,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 835,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 836,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 996,
+"text": "The MCP entry is what makes repowise reachable at all (see ``detect``),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 1011,
+"text": "if repo_path is None or any(r.scope is Scope.PROJECT for r in detect(repo_path)):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/hermes.py",
+"line": 1032,
+"text": "# Refresh skips a target it cannot detect, and install declines",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/kiro.py",
+"line": 179,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/kiro.py",
+"line": 222,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/kiro.py",
+"line": 223,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/kiro.py",
+"line": 292,
+"text": "if detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 180,
+"text": "the real registration sat in the old one, invisible to ``detect`` and so",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 544,
+"text": "# not obvious. This probe is what ``detect`` is built on, and",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 545,
+"text": "# ``registry.other_managers_of`` asks ``detect`` who is still using a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 564,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 615,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 616,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/opencode.py",
+"line": 785,
+"text": "if detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/vscode.py",
+"line": 300,
+"text": "def detect(repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/vscode.py",
+"line": 359,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/vscode.py",
+"line": 360,
+"text": "return detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/targets/vscode.py",
+"line": 489,
+"text": "if repo_path is not None and detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/types.py",
+"line": 17,
+"text": "**:meth:`AgentTarget.detect` returns a list, not a bool.** \"Configured: yes\" is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/types.py",
+"line": 25,
+"text": "down when :meth:`detect` finds the plugin already present rather than writing a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/types.py",
+"line": 327,
+"text": "Distinct from :meth:`detect`, and the distinction is the whole reason",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/types.py",
+"line": 328,
+"text": "this exists: ``detect`` answers \"is repowise wired into this agent\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/agent_targets/types.py",
+"line": 346,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Registration]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/agents_cmd.py",
+"line": 181,
+"text": "registrations = list(target.detect(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/agents_cmd.py",
+"line": 456,
+"text": "``--target`` is required rather than defaulted: \"remove what you detect\" is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/augment_cmd/command.py",
+"line": 68,
+"text": "detect staleness. Claude clients additionally get a one-line notice",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/augment_cmd/reread.py",
+"line": 34,
+"text": "exists. There is no way to detect that from inside a hook, so the contract is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/dead_code_cmd.py",
+"line": 1,
+"text": "\"\"\"``repowise dead-code`` \u2014 detect dead and unused code.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/integrations.py",
+"line": 446,
+"text": "if codex.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/doctor_cmd/_checks/integrations.py",
+"line": 451,
+"text": "if cursor.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 325,
+"text": "if not cursor.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 349,
+"text": "if not codex.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 425,
+"text": "if codex.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 434,
+"text": "if cursor.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 483,
+"text": "if cursor.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/hook_cmd.py",
+"line": 487,
+"text": "if not codex.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_interactive.py",
+"line": 83,
+"text": "if not adapter.detect():",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/command.py",
+"line": 156,
+"text": "\"(default: auto-detect).\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 4,
+"text": "here: detect repos, prompt for selection + primary, write the workspace config,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/saved_cmd.py",
+"line": 732,
+"text": "return any(a.detect() and live(a) for a in (CodexAdapter(), CursorAdapter()))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/search_cmd.py",
+"line": 298,
+"text": "build \u2014 which is the condition this command used to detect for itself",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 531,
+"text": "provider_name or config.get(\"provider\") or state.get(\"provider\") or \"auto-detect\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/workspace_cmd/impacted.py",
+"line": 66,
+"text": "help=\"Path to workspace root (default: auto-detect from cwd).\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_integrations/claude_config.py",
+"line": 1329,
+"text": "than leave a stale entry: ``detect`` reads it, so a removed Claude Code",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_integrations/vscode.py",
+"line": 53,
+"text": "if not vscode_target.detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_setup.py",
+"line": 122,
+"text": "surfaces += [a for a in (CodexAdapter(), CursorAdapter()) if a.detect()]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/hooks.py",
+"line": 342,
+"text": "appended) unreachable. We detect those by fingerprint and excise the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/providers/embedders.py",
+"line": 40,
+"text": "\"\"\"Auto-detect the embedder backend, or use the flag value.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/mode_selection.py",
+"line": 550,
+"text": "\"\"\"Auto-detect embedder from env vars (for advanced config default).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 108,
+"text": "if target.is_present(repo_path) or target.detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/repo_scanner.py",
+"line": 58,
+"text": "\"\"\"Fast pre-scan: count files, detect languages, count git commits.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/uninstall/inventory.py",
+"line": 284,
+"text": "**A scope counts as wired if ``detect`` says so, or if one of its files",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/uninstall/inventory.py",
+"line": 289,
+"text": "is JSONC, which VS Code accepts and our strict parse refuses, so ``detect``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/uninstall/inventory.py",
+"line": 292,
+"text": "selected is gone\". Any target whose ``detect`` raises had the same hole.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/uninstall/inventory.py",
+"line": 313,
+"text": "registrations = target.detect(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/alembic/env.py",
+"line": 20,
+"text": "# Import the Base so Alembic can detect schema changes for autogenerate.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/manifest.py",
+"line": 205,
+"text": "The raw text is what :func:`write_manifest` compares against to detect a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/markers.py",
+"line": 16,
+"text": "# Regex to detect fenced code blocks in markdown files (``` or ~~~).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/__init__.py",
+"line": 3,
+"text": ":mod:`.detect` orchestrates the rules in :mod:`.rules`, whose vocabulary is the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/__init__.py",
+"line": 9,
+"text": "from .detect import detect_diff_risk",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/rules/__init__.py",
+"line": 1,
+"text": "\"\"\"One module per diff-risk rule; :mod:`..detect` runs them.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/source.py",
+"line": 8,
+"text": "from .detect import detect_diff_risk",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/source.py",
+"line": 62,
+"text": "\"\"\":func:`.detect.detect_diff_risk` over a resolved revision pair.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/diff_risk/text.py",
+"line": 5,
+"text": "(see :func:`.detect._net`), so editing a line that already carried a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/renderer.py",
+"line": 35,
+"text": "#: Renderers this module can *detect* but cannot slug for. Detecting one is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/renderer.py",
+"line": 66,
+"text": "def detect(cls, tracked_paths: Iterable[str]) -> RendererMap:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/resolver.py",
+"line": 151,
+"text": "renderers=RendererMap.detect(files),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/README.md",
+"line": 176,
+"text": "`Biomarker.detect(ctx) -> list[BiomarkerResult]`, register in",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/README.md",
+"line": 9,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]: ...",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/apex_hardcoded_id.py",
+"line": 18,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/apex_missing_sharing.py",
+"line": 18,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/apex_see_all_data.py",
+"line": 18,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/apex_soql_injection.py",
+"line": 18,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/array_spread_in_reduce.py",
+"line": 24,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/assertion_free_test.py",
+"line": 61,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+"line": 215,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]: ...",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/blocking_io_under_lock.py",
+"line": 51,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/blocking_sync_in_async.py",
+"line": 27,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/brain_method.py",
+"line": 67,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/change_entropy.py",
+"line": 55,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/churn_risk.py",
+"line": 54,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/co_change_scatter.py",
+"line": 82,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/cobol_unstructured_flow.py",
+"line": 38,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/code_age_volatility.py",
+"line": 62,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/complex_conditional.py",
+"line": 45,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/complex_method.py",
+"line": 28,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/coverage_gap.py",
+"line": 30,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/coverage_gradient.py",
+"line": 56,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/defer_in_loop.py",
+"line": 28,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/developer_congestion.py",
+"line": 51,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/dry_violation.py",
+"line": 39,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/duplicated_assertion_block.py",
+"line": 80,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/error_handling.py",
+"line": 70,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/function_hotspot.py",
+"line": 101,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/god_class.py",
+"line": 65,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/goroutine_in_unbounded_loop.py",
+"line": 23,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/hidden_coupling.py",
+"line": 94,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/hot_path_sync_io.py",
+"line": 37,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/io_in_loop.py",
+"line": 62,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/json_parse_in_loop.py",
+"line": 22,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/knowledge_loss.py",
+"line": 63,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/large_assertion_block.py",
+"line": 26,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/large_method.py",
+"line": 46,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/lazy_load_in_loop.py",
+"line": 21,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/list_insert_zero_in_loop.py",
+"line": 22,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/lock_in_loop.py",
+"line": 27,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/low_cohesion.py",
+"line": 33,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/membership_test_against_list_in_loop.py",
+"line": 26,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/mock_saturated_test.py",
+"line": 44,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/nested_complexity.py",
+"line": 20,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/nested_loop_quadratic.py",
+"line": 29,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/nested_loop_with_io.py",
+"line": 34,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/ownership_risk.py",
+"line": 83,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/pandas_iterrows_in_loop.py",
+"line": 25,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/pd_concat_in_loop.py",
+"line": 23,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/primitive_obsession.py",
+"line": 66,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/prior_defect.py",
+"line": 62,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/regex_compile_in_loop.py",
+"line": 29,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/registry.py",
+"line": 184,
+"text": "findings.extend(b.detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/repeated_nesting.py",
+"line": 23,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/resource_construction_in_loop.py",
+"line": 28,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/serial_await_in_loop.py",
+"line": 36,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/sql_cartesian_join.py",
+"line": 22,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/sql_high_complexity.py",
+"line": 24,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/sql_select_star.py",
+"line": 23,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/sql_update_delete_without_where.py",
+"line": 22,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/string_concat_in_loop.py",
+"line": 31,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/unbounded_read_reduced_in_memory.py",
+"line": 20,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/untested_complexity.py",
+"line": 66,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/untested_hotspot.py",
+"line": 58,
+"text": "def detect(self, ctx: FileContext) -> list[BiomarkerResult]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/languages.py",
+"line": 24,
+"text": "- ``ASSERT``    \u2014 (optional) statement / call node type(s) used to detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/coverage/README.md",
+"line": 126,
+"text": "the file contents (used to detect framework imports for files that",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/duplication/pair_index.py",
+"line": 14,
+"text": "windows (the detector's gate survivors). Used to detect deletions,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/duplication/pair_index.py",
+"line": 27,
+"text": "stamp); any mismatch -- or any load/save error -- degrades to a full re-detect,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/duplication/pair_index.py",
+"line": 139,
+"text": "except Exception as exc:  # corrupt / unsigned / unreadable -> full re-detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/engine.py",
+"line": 379,
+"text": "list only carries manifests the traverser could language-detect, and it",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/history_refresh.py",
+"line": 139,
+"text": "fresh.extend(detector.detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/ruby.py",
+"line": 42,
+"text": "# Early-exit searches (``find`` / ``detect`` / ``any?``) are deliberately",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/break_cycle.py",
+"line": 126,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_class.py",
+"line": 74,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 432,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_method.py",
+"line": 195,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_method.py",
+"line": 437,
+"text": "\"\"\"*fn_node*'s lines in its file, the file read once per detect call.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/move_method.py",
+"line": 323,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/registry.py",
+"line": 25,
+"text": "implements ``detect`` over a single file's ``RefactoringContext``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/registry.py",
+"line": 31,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/registry.py",
+"line": 72,
+"text": "for suggestion in detector.detect(ctx):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py",
+"line": 615,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/secret_allowlist.py",
+"line": 15,
+"text": "gitleaks rule ids) and other scanners' ignore files (detect-secrets baselines,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/security/suppression.py",
+"line": 11,
+"text": "# finding's line: detect-secrets, gitleaks, TruffleHog, Bandit and gosec",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/security/suppression.py",
+"line": 12,
+"text": "# ``nosec``, and Ruff's hard-coded-password codes. detect-secrets also has a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/forges/__init__.py",
+"line": 16,
+"text": "from .detect import detect_forge, read_remote_ref, read_remote_url",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/fs_walk.py",
+"line": 256,
+"text": "# Windows junctions and other cycles ``os.walk`` can't detect via",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/editor_files/tech_stack.py",
+"line": 258,
+"text": "for detect in _DETECTORS:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/editor_files/tech_stack.py",
+"line": 259,
+"text": "for name, version, category in detect(repo_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/mermaid_safety.py",
+"line": 56,
+"text": "# we can detect (and then slug) the illegal ones.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/external_systems/cmake.py",
+"line": 83,
+"text": "\"\"\"``option(NAME \u2026)`` flags (used to detect conditional blocks).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/__init__.py",
+"line": 143,
+"text": "if handler.detect(dctx):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/alembic_runner.py",
+"line": 124,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/android_manifest.py",
+"line": 140,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/angular.py",
+"line": 141,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/apex_rest.py",
+"line": 21,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/aspnet.py",
+"line": 177,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/aspnet.py",
+"line": 197,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/aura.py",
+"line": 523,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/aws_lambda.py",
+"line": 189,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/base.py",
+"line": 33,
+"text": "\"\"\"Inputs every handler's ``detect()`` may consult.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/base.py",
+"line": 48,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/camel.py",
+"line": 53,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/django.py",
+"line": 109,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/dotnet_discovery.py",
+"line": 329,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/dotnet_roots.py",
+"line": 319,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/express.py",
+"line": 153,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/fastapi.py",
+"line": 60,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/flask.py",
+"line": 62,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/flutter.py",
+"line": 301,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/go.py",
+"line": 177,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/godot.py",
+"line": 348,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/godot.py",
+"line": 362,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/gtest.py",
+"line": 136,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/hono.py",
+"line": 62,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/jakarta.py",
+"line": 160,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/laravel.py",
+"line": 361,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/lwc.py",
+"line": 220,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/mainframe.py",
+"line": 173,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/micronaut.py",
+"line": 129,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/next_app.py",
+"line": 37,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/pytest_edges.py",
+"line": 1079,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/pytest_edges.py",
+"line": 1103,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/quarkus.py",
+"line": 103,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/rails.py",
+"line": 146,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/remix.py",
+"line": 48,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/rust.py",
+"line": 116,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/salesforce_metadata.py",
+"line": 481,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/spring.py",
+"line": 431,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/spring.py",
+"line": 460,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/spring.py",
+"line": 461,
+"text": "# Cheap detect: any .java or .kt file in the parse set.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/test_path_strings.py",
+"line": 476,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/test_runner_setup.py",
+"line": 163,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/trpc.py",
+"line": 50,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/typo3.py",
+"line": 155,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/visualforce.py",
+"line": 360,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/framework_edges/vscode_extension.py",
+"line": 78,
+"text": "def detect(self, dctx: DetectionContext) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/package_roots.py",
+"line": 10,
+"text": "whose language it cannot detect. Measured on the current tree, 18 manifest",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/go_workspace.py",
+"line": 186,
+"text": "One walk over the path set; each file is read at most once to detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/refactoring.py",
+"line": 237,
+"text": "\"\"\"Resolve every open stored row this run did not detect.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/search.py",
+"line": 674,
+"text": "Used by ``repowise doctor --repair`` to detect three-store",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/vector_store/_base.py",
+"line": 402,
+"text": "Used by ``repowise doctor --repair`` to detect three-store",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/checkpoint.py",
+"line": 5,
+"text": "re-run can detect which phases already completed and skip them.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/checkpoint.py",
+"line": 186,
+"text": "re-run's ``find_resumable`` can detect the interrupted work.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/persist/decisions.py",
+"line": 137,
+"text": "\"\"\"Upsert ``decisions``, then detect supersession and rescore staleness.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/resume/rehydrate.py",
+"line": 45,
+"text": "Returns an empty dict when nothing was persisted (so a caller can detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 112,
+"text": "detect: bool = True,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 117,
+"text": "``detect=False`` stops before key detection and the global file (a reader",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/embedding/resolve.py",
+"line": 127,
+"text": "if detect:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/repo_config.py",
+"line": 242,
+"text": "to detect config changes across runs without relying on filesystem",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/sessions/efficacy.py",
+"line": 573,
+"text": "in context. There is no positive action to detect \u2014 reaching for",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2093,
+"text": "- **Worktrees just work.** `repowise init` and `repowise update` inside a linked git worktree now auto-detect the base checkout and seed the worktree's index from it, then catch up incrementally; no f",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2112,
+"text": "- **`[workspace]` notices render again.** The one-line workspace auto-detect notice was being swallowed by console markup and printed without its prefix. (#747)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2829,
+"text": "- **Workspace mode is now first-class across the CLI.** Every relevant command auto-detects whether it's running inside a workspace root and routes accordingly, with a one-line `[workspace] \u2026` notice ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2853,
+"text": "- **CLI Reference rewritten** for workspace mode \u2014 new cross-cutting auto-detect section, per-command flag tables updated for `update`, `watch`, `search`, `status`, `dead-code`, `costs`, `workspace ad",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3124,
+"text": "- **Package dependency scanning** \u2014 reads package manifests (`package.json`, `pyproject.toml`, `go.mod`, `pom.xml`) to detect inter-repo package dependencies.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3377,
+"text": "- Existing repositories must run migrations: `repowise doctor` will detect",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/scanner.py",
+"line": 4,
+"text": "Used by ``repowise init`` to detect multi-repo workspaces.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/update/phases.py",
+"line": 205,
+"text": "# Conformance + cycles \u2014 check declared dependency rules and detect circular",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/update/workspace_pass.py",
+"line": 111,
+"text": "dry_run: If True, detect staleness but don't actually update.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/app.py",
+"line": 110,
+"text": "name, _source = resolve_embedder_name(detect=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/job_incremental.py",
+"line": 31,
+"text": "Uses the graph from the just-completed pipeline run + git diff to detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 647,
+"text": "carry these so an agent can detect drift between the index and live HEAD",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_meta.py",
+"line": 964,
+"text": "agent can detect \u2014 programmatically \u2014 that semantic search is broken instead",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_server.py",
+"line": 124,
+"text": "name, source = resolve_embedder_name(repo_path=_state._repo_path or None, detect=False)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_server.py",
+"line": 163,
+"text": "can detect that semantic search is running on mock vectors instead of the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/synthesis.py",
+"line": 195,
+"text": "# Auto-detect from whatever credentials are present. Only the keyed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/commit_bodies.py",
+"line": 237,
+"text": "from repowise.core.forges.detect import detect_forge",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/provider_config.py",
+"line": 373,
+"text": "detect: bool = False,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/provider_config.py",
+"line": 381,
+"text": "``detected`` names a key found for it; with *detect* it also names a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/provider_config.py",
+"line": 386,
+"text": "login_states = _agent_login_states() if detect else None",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/providers.py",
+"line": 61,
+"text": "async def get_providers(request: Request, repo_id: str | None = None, detect: bool = False):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/providers.py",
+"line": 66,
+"text": "server-global default. ``?detect=true`` also asks each agent CLI whether",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/providers.py",
+"line": 70,
+"text": "if detect:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/routers/providers.py",
+"line": 72,
+"text": "list_provider_status, repo_id=repo_id, repo_path=repo_path, detect=True",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/schemas/decisions.py",
+"line": 433,
+"text": "#: write to detect a concurrent edit.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/schemas/ui_helpers.py",
+"line": 65,
+"text": "#: CLI, reported only for ``?detect=true``), ``env`` (a key in the process",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/types/src/decisions.ts",
+"line": 723,
+"text": "/** Pass back on write to detect a concurrent edit. */",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/chat/chat-context.ts",
+"line": 191,
+"text": "\"How does this repository detect and track security findings?\",",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/ui/src/graph/elk-layout.ts",
+"line": 165,
+"text": "// Auto-detect monorepo: if >50% of root-level nodes live under packages/,",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/vscode/src/features/serverManager.ts",
+"line": 469,
+"text": "// root: re-detect and rebind the watcher.",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "packages/web/src/components/model-upgrade/model-upgrade.test.tsx",
+"line": 108,
+"text": "expect(mocks.getProviders).toHaveBeenCalledWith(\"r1\", { detect: true });",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/model-upgrade/model-upgrade.tsx",
+"line": 84,
+"text": "open ? [\"/api/providers\", repoId, \"detect\"] : null,",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/model-upgrade/model-upgrade.tsx",
+"line": 85,
+"text": "() => getProviders(repoId, { detect: true }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/welcome/welcome-step-yours.tsx",
+"line": 60,
+"text": "[\"/api/providers\", repoId, \"detect\"],",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/welcome/welcome-step-yours.tsx",
+"line": 61,
+"text": "() => getProviders(repoId, { detect: true }),",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 1151,
+"text": "agent can detect the misconfiguration programmatically. MockEmbedder is",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/install_npm.txt",
+"line": 764,
+"text": "add detect-node-es 1.1.0",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/install_npm.txt",
+"line": 765,
+"text": "add detect-libc 2.1.2",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 48,
+"text": "{\"id\": \"9ed77a49\", \"repo\": \"gitleaks\", \"path\": \"cmd/detect.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"flagged\", \"label\": \"untested\", \"confidence\": \"high\", \"adjudicated\": false, \"evidence",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 63,
+"text": "{\"id\": \"891564f9\", \"repo\": \"gitleaks\", \"path\": \"detect/baseline.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false, \"e",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 64,
+"text": "{\"id\": \"619ea1bc\", \"repo\": \"gitleaks\", \"path\": \"detect/codec/base64.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 65,
+"text": "{\"id\": \"db636953\", \"repo\": \"gitleaks\", \"path\": \"detect/codec/encodings.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": fa",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 66,
+"text": "{\"id\": \"b0a30636\", \"repo\": \"gitleaks\", \"path\": \"detect/codec/unicode.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"medium\", \"adjudicated\": fa",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 67,
+"text": "{\"id\": \"071bd4a3\", \"repo\": \"gitleaks\", \"path\": \"detect/files.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false, \"evid",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 68,
+"text": "{\"id\": \"65f4292c\", \"repo\": \"gitleaks\", \"path\": \"detect/git.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false, \"eviden",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 69,
+"text": "{\"id\": \"f5775c32\", \"repo\": \"gitleaks\", \"path\": \"detect/location.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false, \"e",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 70,
+"text": "{\"id\": \"334ed710\", \"repo\": \"gitleaks\", \"path\": \"detect/reader.go\", \"language\": \"go\", \"stratum\": \"rest\", \"drawn_from\": \"not_flagged\", \"label\": \"tested\", \"confidence\": \"high\", \"adjudicated\": false, \"evi",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 90,
+"text": "{\"id\": \"4405ed1f\", \"repo\": \"repowise\", \"path\": \"packages/core/src/repowise/core/analysis/diff_risk/rules/__init__.py\", \"language\": \"python\", \"stratum\": \"core\", \"drawn_from\": \"flagged\", \"label\": \"nothi",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/labels.json",
+"line": 91,
+"text": "{\"id\": \"60e91b55\", \"repo\": \"repowise\", \"path\": \"packages/core/src/repowise/core/analysis/diff_risk/rules/test_only_branch.py\", \"language\": \"python\", \"stratum\": \"core\", \"drawn_from\": \"flagged\", \"label\"",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 688,
+"text": "\"packages/core/src/repowise/core/analysis/health/biomarkers/lazy_load_in_loop.py::LazyLoadInLoopDetector::detect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 716,
+"text": "\"packages/core/src/repowise/core/analysis/health/biomarkers/lazy_load_in_loop.py::LazyLoadInLoopDetector::detect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4861,
+"text": "\"cmd/detect.go\": \"untested\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 4868,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5010,
+"text": "\"detect/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5020,
+"text": "\"detect/detect_test.go\"",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5024,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5025,
+"text": "\"cmd/detect.go::__module__\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5031,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5032,
+"text": "\"cmd/detect.go::detectCmd\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5038,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5039,
+"text": "\"cmd/detect.go::init\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5045,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5046,
+"text": "\"cmd/detect.go::runDetect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5052,
+"text": "\"cmd/detect.go::detectCmd\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5053,
+"text": "\"cmd/detect.go::runDetect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 5059,
+"text": "\"cmd/detect.go::runDetect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7117,
+"text": "\"detect/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7118,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7124,
+"text": "\"detect/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7125,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7131,
+"text": "\"detect/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7132,
+"text": "\"detect/detect.go::checkCommitOrPathAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7138,
+"text": "\"detect/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7139,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7145,
+"text": "\"detect/detect.go::Detector\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7146,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7152,
+"text": "\"detect/detect.go::Detector\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7153,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7159,
+"text": "\"detect/detect.go::Detector::Detect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7160,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7166,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7167,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7173,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7174,
+"text": "\"detect/detect.go::checkCommitOrPathAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7180,
+"text": "\"detect/detect.go::Detector::DetectSource\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7181,
+"text": "\"detect/detect.go::Detector::DetectContext\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7187,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7188,
+"text": "\"detect/detect.go::checkCommitOrPathAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7194,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7195,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7201,
+"text": "\"detect/detect.go::Detector::processRequiredRules\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7202,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7208,
+"text": "\"detect/detect.go::NewDetectorDefaultConfig\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7215,
+"text": "\"detect/detect.go::checkCommitOrPathAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7222,
+"text": "\"detect/detect.go::checkCommitOrPathAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7229,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7236,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7243,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7250,
+"text": "\"detect/detect.go::checkFindingAllowed\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7257,
+"text": "\"detect/detect_test.go::TestDetect\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7264,
+"text": "\"detect/detect_test.go::TestDetectRuleAllowlist\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7265,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7271,
+"text": "\"detect/detect_test.go::TestDetectWithArchives\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7278,
+"text": "\"detect/detect_test.go::TestDetectWithSymlinks\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7285,
+"text": "\"detect/detect_test.go::TestFromFiles\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7292,
+"text": "\"detect/detect_test.go::TestFromGit\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7299,
+"text": "\"detect/detect_test.go::TestFromGitStaged\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7306,
+"text": "\"detect/detect_test.go::TestWindowsFileSeparator_RuleAllowlistPaths\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7307,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7313,
+"text": "\"detect/detect_test.go::TestWindowsFileSeparator_RulePath\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7314,
+"text": "\"detect/detect.go::Detector::detectRule\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/untested_eval/slice.json",
+"line": 7321,
+"text": "\"cmd/detect.go\",",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/analysis/test_conftest_routes.py",
+"line": 705,
+"text": "('monkeypatch.setattr(store.Client, \"detect\", lambda self: False)', True),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_conftest_routes.py",
+"line": 708,
+"text": "('monkeypatch.delattr(store.Client, \"detect\")', False),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_rust_dead_code_regression.py",
+"line": 75,
+"text": "\"\"\"Validate Rust dynamic markers detect proc-macro and doc(hidden) patterns.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_secret_allowlist.py",
+"line": 25,
+"text": "assert not allowed(\"detect/detect.go\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_drift_control.py",
+"line": 183,
+"text": "# `refresh` only touches what `detect` finds, and prompts are not a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 120,
+"text": "monkeypatch.setattr(vscode_target.TARGET, \"detect\", _boom)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 311,
+"text": "assert [r.scope for r in cursor_target.detect(None)] == [Scope.USER]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 316,
+"text": "assert cursor_target.detect(None) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 592,
+"text": "\"\"\"``detect`` is contracted never to raise, and ran on paths that do not catch.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 606,
+"text": "assert cursor_target.TARGET.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 810,
+"text": "registrations = target_mod.detect()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1271,
+"text": "invisible to ``detect`` and so unreachable by every command that could have",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1286,
+"text": "assert [r.config_path.name for r in opencode.TARGET.detect(repo)] == [\"opencode.json\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1290,
+"text": "assert opencode.TARGET.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1297,
+"text": "Teaching ``detect`` to sweep both spellings without teaching writes the same",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1314,
+"text": "assert [r.config_path.name for r in opencode.TARGET.detect(repo)] == [\"opencode.json\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1322,
+"text": "\"\"\"``doctor`` reads both spellings, like ``detect`` and ``uninstall``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1342,
+"text": "assert opencode.TARGET.detect() != []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1372,
+"text": "``other_managers_of`` asks ``detect`` who is still using a shared file, so",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1394,
+"text": "assert opencode.TARGET.detect(repo) != []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1510,
+"text": "\"\"\"``detect`` is contracted never to raise, and cp1252 files are ordinary.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 1521,
+"text": "assert opencode.TARGET.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 2560,
+"text": "# detect is contracted never to raise, whatever the file holds.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 2561,
+"text": "assert hermes.detect() == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 2706,
+"text": "assert hermes.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 2709,
+"text": "assert [registration.scope for registration in hermes.detect(repo)] == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 2828,
+"text": "# Refresh skips what it cannot detect and install declines for the same",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 3591,
+"text": "assert copilot.TARGET.detect()[0].config_path == home / \"mcp-config.json\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 3650,
+"text": "assert copilot.TARGET.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 3654,
+"text": "assert {r.scope for r in copilot.TARGET.detect(repo)} == {Scope.PROJECT}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 3720,
+"text": "assert {r.scope for r in kiro.TARGET.detect(repo)} == {scope}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agent_targets.py",
+"line": 3729,
+"text": "assert kiro.TARGET.detect(repo) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_agents_cmd.py",
+"line": 249,
+"text": "\"\"\"'Remove whatever you detect' is a bad default for a destructive verb.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_claude_md_prompt.py",
+"line": 86,
+"text": "# Patch the writer to detect any unexpected call.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_command_target.py",
+"line": 156,
+"text": "# Rule 4: no path, no flags \u2014 auto-detect",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_commands.py",
+"line": 221,
+"text": "# _workspace_init so we can detect if the workspace branch runs.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_docs_pointer.py",
+"line": 200,
+"text": "\"index-only should still detect and index the new commit\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 149,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 360,
+"text": "def detect(self) -> bool:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_hooks_legacy_migration.py",
+"line": 7,
+"text": "installer must detect those bodies and excise them before appending the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_agent_backend.py",
+"line": 26,
+"text": "def detect(self, repo_path: Path | None = None) -> list[Any]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_plan_screen.py",
+"line": 185,
+"text": "def detect(*_a: object) -> dict[str, str]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_plan_screen.py",
+"line": 189,
+"text": "monkeypatch.setattr(provider_selection, \"_detect_provider_status\", detect)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_ux.py",
+"line": 274,
+"text": "def detect(*_a: object) -> dict[str, str]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_ux.py",
+"line": 278,
+"text": "monkeypatch.setattr(provider_selection, \"_detect_provider_status\", detect)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_serve_db_url_isolation.py",
+"line": 43,
+"text": "\"\"\"Auto-detect fills a gap; it must never overrule an explicit choice.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_serve_db_url_isolation.py",
+"line": 89,
+"text": "Auto-detect exists for the single-repo case: a `.repowise/` beside cwd",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_uninstall_cmd.py",
+"line": 273,
+"text": "# JSONC, so `detect` cannot see the hook even if one is there.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_uninstall_cmd.py",
+"line": 508,
+"text": "\"\"\"Detection cannot read JSONC, and a file we cannot detect is still ours.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_workspace_autodetect_e2e.py",
+"line": 1,
+"text": "\"\"\"End-to-end-ish tests for the workspace auto-detect rewiring.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_workspace_autodetect_e2e.py",
+"line": 4,
+"text": "regressions where the auto-detect helper was wired up incorrectly (e.g.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/conftest.py",
+"line": 13,
+"text": "suite isolates ``$HOME``. Tests that want Cursor present patch ``detect``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/conftest.py",
+"line": 19,
+"text": "monkeypatch.setattr(cursor.CursorAdapter, \"detect\", lambda self: False)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 137,
+"text": "Individual tests re-patch ``detect`` to True when exercising the Codex",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 142,
+"text": "monkeypatch.setattr(CodexAdapter, \"detect\", lambda self: False)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 235,
+"text": "monkeypatch.setattr(CodexAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 399,
+"text": "monkeypatch.setattr(CodexAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 469,
+"text": "monkeypatch.setattr(CodexAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_config_and_doctor.py",
+"line": 479,
+"text": "monkeypatch.setattr(CodexAdapter, \"detect\", lambda self: False)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_cursor_hook_adapter.py",
+"line": 205,
+"text": "monkeypatch.setattr(CursorAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 76,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 87,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: False)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 95,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 107,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 120,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 176,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 193,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/distill/test_init_optin.py",
+"line": 266,
+"text": "monkeypatch.setattr(ClaudeCodeAdapter, \"detect\", lambda self: True)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 31,
+"text": "rmap = RendererMap.detect({marker, \"docs/a.md\"})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 39,
+"text": "rmap = RendererMap.detect({\"README.md\", \"docs/a.md\"})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 52,
+"text": "rmap = RendererMap.detect({\"website/_config.yml\", \"website/a.md\", \"docs/b.md\"})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 60,
+"text": "rmap = RendererMap.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 69,
+"text": "rmap = RendererMap.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 108,
+"text": "assert RendererMap.detect({\"README.md\"}).summary() == GITHUB",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_renderer_gate.py",
+"line": 109,
+"text": "assert \"jekyll:website/\" in RendererMap.detect({\"website/_config.yml\"}).summary()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/doc_drift/test_symbols.py",
+"line": 36,
+"text": "(\"ChangeDetector.detect\", \"detect\"),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_concept_grouping.py",
+"line": 78,
+"text": "Calling a pure function twice in one process cannot detect the failure",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_concept_grouping.py",
+"line": 444,
+"text": "# share a hash seed and cannot detect an ordering dependence.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_assertion_free_test.py",
+"line": 41,
+"text": "return BIOMARKER.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_assertion_free_test.py",
+"line": 979,
+"text": "return [f.function_name for f in BIOMARKER.detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 33,
+"text": "results = ComplexMethodDetector().detect(_ctx([fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 41,
+"text": "assert ComplexMethodDetector().detect(_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 46,
+"text": "results = NestedComplexityDetector().detect(_ctx([fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 53,
+"text": "assert NestedComplexityDetector().detect(_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 59,
+"text": "assert BrainMethodDetector().detect(_ctx([fn], dependents=2)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 61,
+"text": "results = BrainMethodDetector().detect(_ctx([fn], dependents=12))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 71,
+"text": "results = BrainMethodDetector().detect(_ctx([fn], dependents=4, repo_dependents_p80=3))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 80,
+"text": "assert BrainMethodDetector().detect(_ctx([fn], dependents=1, repo_dependents_p80=1)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 87,
+"text": "assert BrainMethodDetector().detect(_ctx([fn], dependents=5, repo_dependents_p80=40)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_biomarkers.py",
+"line": 89,
+"text": "assert BrainMethodDetector().detect(_ctx([fn], dependents=8, repo_dependents_p80=40))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_builder_chain_data.py",
+"line": 115,
+"text": "return bool(LargeMethodDetector().detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 58,
+"text": "out = LowCohesionDetector().detect(_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 66,
+"text": "out = LowCohesionDetector().detect(_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 72,
+"text": "assert LowCohesionDetector().detect(_ctx([cls])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 78,
+"text": "assert LowCohesionDetector().detect(_ctx([cls])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 82,
+"text": "assert LowCohesionDetector().detect(_ctx([])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 114,
+"text": "assert LowCohesionDetector().detect(_ctx([fmt])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 154,
+"text": "assert LowCohesionDetector().detect(_ctx([cls])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 183,
+"text": "[finding] = LowCohesionDetector().detect(_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 213,
+"text": "out = GodClassDetector().detect(_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 223,
+"text": "assert GodClassDetector().detect(_ctx([cls])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 229,
+"text": "assert GodClassDetector().detect(_ctx([cls])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 238,
+"text": "assert GodClassDetector().detect(_ctx([_god(\"ResolveMixin\")])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 243,
+"text": "assert len(GodClassDetector().detect(_ctx([_god(name, init=init)]))) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 249,
+"text": "assert len(GodClassDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 257,
+"text": "assert [r.function_name for r in GodClassDetector().detect(ctx)] == [\"Encoder\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_class_biomarkers.py",
+"line": 281,
+"text": "out = GodClassDetector().detect(_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 70,
+"text": "findings = CodeAgeVolatilityDetector().detect(_ctx(fc, blame))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 82,
+"text": "assert CodeAgeVolatilityDetector().detect(_ctx(fc, blame)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 89,
+"text": "assert CodeAgeVolatilityDetector().detect(_ctx(fc, blame)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 94,
+"text": "assert CodeAgeVolatilityDetector().detect(_ctx(fc, None)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 95,
+"text": "assert CodeAgeVolatilityDetector().detect(_ctx(fc, BlameIndex())) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_code_age_volatility.py",
+"line": 101,
+"text": "findings = CodeAgeVolatilityDetector().detect(_ctx(fc, blame))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_complex_conditional.py",
+"line": 56,
+"text": "by_fn = {f.function_name for f in ComplexConditionalDetector().detect(_ctx(metrics))}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_complex_conditional.py",
+"line": 153,
+"text": "by_fn = {f.function_name: f for f in ComplexConditionalDetector().detect(_ctx(results))}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_complex_conditional.py",
+"line": 168,
+"text": "by_fn = {f.function_name: f for f in ComplexConditionalDetector().detect(_ctx(results))}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_complex_conditional.py",
+"line": 303,
+"text": "(finding,) = ComplexConditionalDetector().detect(_ctx(results))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_actions.py",
+"line": 132,
+"text": "(finding,) = COVERAGE_GAP.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_actions.py",
+"line": 147,
+"text": "(finding,) = CRAP.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_actions.py",
+"line": 153,
+"text": "(finding,) = CRAP.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_actions.py",
+"line": 167,
+"text": "(finding,) = CRAP.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 67,
+"text": "results = UntestedHotspotDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 75,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 80,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 85,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 90,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 99,
+"text": "results = UntestedHotspotDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 112,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 121,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 143,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 153,
+"text": "results = CoverageGapDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 161,
+"text": "results = CoverageGapDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 172,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 179,
+"text": "assert CoverageGapDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 184,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 189,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 197,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 202,
+"text": "results = CoverageGapDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 211,
+"text": "results = CoverageGapDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 224,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 235,
+"text": "results = CoverageGradientDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 247,
+"text": "results = CoverageGradientDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 250,
+"text": "assert CoverageGapDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 254,
+"text": "assert CoverageGradientDetector().detect(_ctx(line_cov=30.0))[0].severity == \"high\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 255,
+"text": "assert CoverageGradientDetector().detect(_ctx(line_cov=55.0))[0].severity == \"medium\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 256,
+"text": "assert CoverageGradientDetector().detect(_ctx(line_cov=90.0))[0].severity == \"low\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 261,
+"text": "assert CoverageGradientDetector().detect(_ctx(line_cov=None)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 265,
+"text": "assert CoverageGradientDetector().detect(_ctx(line_cov=100.0)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 270,
+"text": "assert CoverageGradientDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 284,
+"text": "assert len(UntestedHotspotDetector().detect(_uncovered_hotspot())) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 295,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 302,
+"text": "assert UntestedHotspotDetector().detect(_uncovered_hotspot(**kw)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_biomarkers.py",
+"line": 318,
+"text": "results = UntestedHotspotDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_marker_scope.py",
+"line": 110,
+"text": "assert marker.detect(ctx) == [], marker.name",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_coverage_marker_scope.py",
+"line": 113,
+"text": "assert marker.detect(ctx), marker.name",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_cross_file_oracle.py",
+"line": 99,
+"text": "return sorted(r.function_name for r in BIOMARKER.detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_cross_language_ternary_chains.py",
+"line": 66,
+"text": "assert BIOMARKER.detect(context) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dataflow_apex.py",
+"line": 76,
+"text": "return {s.target_symbol: s.plan for s in ExtractMethodDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dispatch_and_deprecation.py",
+"line": 555,
+"text": "assert [r.function_name for r in ComplexMethodDetector().detect(ctx)] == [\"F\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dispatch_and_deprecation.py",
+"line": 579,
+"text": "flagged = {r.function_name for r in NestedComplexityDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 40,
+"text": "assert DryViolationDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 46,
+"text": "assert DryViolationDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 52,
+"text": "out = DryViolationDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 63,
+"text": "out = DryViolationDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 72,
+"text": "out = DryViolationDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 79,
+"text": "assert DryViolationDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 87,
+"text": "out = DryViolationDetector().detect(_ctx(\"a.py\", [intra, cross], dup_pct=52.0))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 94,
+"text": "assert DryViolationDetector().detect(_ctx(\"a.py\", [intra, cross], dup_pct=30.0)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 102,
+"text": "out = DryViolationDetector().detect(_ctx(\"a.py\", [intra, cross], dup_pct=50.0))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dry_violation.py",
+"line": 111,
+"text": "out = DryViolationDetector().detect(_ctx(\"a.py\", [intra, cross], dup_pct=100.0))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_duplicated_assertion_dialects.py",
+"line": 105,
+"text": "return DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_duplication.py",
+"line": 182,
+"text": "def detect(self, ctx: Context) -> bool:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_error_handling.py",
+"line": 239,
+"text": "findings = ErrorHandlingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_error_handling.py",
+"line": 255,
+"text": "assert ErrorHandlingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_error_handling.py",
+"line": 358,
+"text": "idiomatic, plain = ErrorHandlingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_error_handling_rust_scope.py",
+"line": 35,
+"text": "return [f.details[\"kind\"] for f in ErrorHandlingDetector().detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_async.py",
+"line": 70,
+"text": "return ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_narrowing.py",
+"line": 198,
+"text": "plans = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_receiver.py",
+"line": 87,
+"text": "return ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_render.py",
+"line": 94,
+"text": "(plan,) = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_span_interface.py",
+"line": 46,
+"text": "ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_extract_method_stages.py",
+"line": 65,
+"text": "return {p.target_symbol: p for p in ExtractMethodDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_failing_types_demoted.py",
+"line": 66,
+"text": "by_line = {r.line_start: r for r in IoInLoopDetector().detect(_ctx(perf_hits=hits))}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_failing_types_demoted.py",
+"line": 82,
+"text": "out = SerialAwaitInLoopDetector().detect(_ctx(perf_hits=hits))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_failing_types_demoted.py",
+"line": 104,
+"text": "out = PrimitiveObsessionDetector().detect(_ctx(fns=[wide, test_case, filler]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_mcp_payload_churn.py",
+"line": 36,
+"text": "out = ChurnRiskDetector().detect(_ctx(meta, nloc=1))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_mcp_payload_churn.py",
+"line": 54,
+"text": "out = ChurnRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_d_exceptions.py",
+"line": 204,
+"text": "findings = ErrorHandlingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_iljk_structural.py",
+"line": 125,
+"text": "out = GodClassDetector().detect(_class_ctx([cls]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_iljk_structural.py",
+"line": 168,
+"text": "assert LargeMethodDetector().detect(_fn_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_iljk_structural.py",
+"line": 173,
+"text": "out = LargeMethodDetector().detect(_fn_ctx([fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_iljk_structural.py",
+"line": 182,
+"text": "out = LargeMethodDetector().detect(_fn_ctx([fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ff_track_iljk_structural.py",
+"line": 228,
+"text": "out = HiddenCouplingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 69,
+"text": "findings = FunctionHotspotDetector().detect(_ctx(fc, blame, p80=5))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 79,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, blame, p80=5)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 86,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, blame, p80=5)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 92,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, None, p80=5)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 98,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, blame, p80=None)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 104,
+"text": "findings = FunctionHotspotDetector().detect(_ctx(fc, blame, p80=5))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 118,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, _changed(2), p80=1)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 119,
+"text": "found = FunctionHotspotDetector().detect(_ctx(fc, _changed(20), p80=1))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 125,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, _changed(4), p80=3)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 126,
+"text": "found = FunctionHotspotDetector().detect(_ctx(fc, _changed(5), p80=3))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 133,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, _changed(6), p80=3))[0].severity == (",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_function_hotspot.py",
+"line": 136,
+"text": "assert FunctionHotspotDetector().detect(_ctx(fc, _changed(10), p80=3))[0].severity == (",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_god_class_ruby_module.py",
+"line": 39,
+"text": "return [r.function_name for r in GodClassDetector().detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_god_class_rust_trait_impl.py",
+"line": 36,
+"text": "return [r.function_name for r in GodClassDetector().detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 78,
+"text": "out = HiddenCouplingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 92,
+"text": "out = HiddenCouplingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 107,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 124,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 151,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 161,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 171,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 185,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 188,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 198,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 214,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 229,
+"text": "assert HiddenCouplingDetector().detect(ctx) != []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 247,
+"text": "out = HiddenCouplingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 268,
+"text": "out_a = HiddenCouplingDetector().detect(a)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 269,
+"text": "out_b = HiddenCouplingDetector().detect(b)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 291,
+"text": "(finding,) = HiddenCouplingDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 321,
+"text": "for finding in HiddenCouplingDetector().detect(ctx):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 343,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 371,
+"text": "assert HiddenCouplingDetector().detect(_record(focused_frequency=0)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 375,
+"text": "(out,) = HiddenCouplingDetector().detect(_record(focused_frequency=12))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_hidden_coupling.py",
+"line": 383,
+"text": "assert HiddenCouplingDetector().detect(_record(focused_frequency=None)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_jsx_ternary_nesting.py",
+"line": 124,
+"text": "assert BIOMARKER.detect(_ctx(fn)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_jsx_ternary_nesting.py",
+"line": 139,
+"text": "[finding] = BIOMARKER.detect(_ctx(fn))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_literal_table_nloc.py",
+"line": 119,
+"text": "return bool(LargeMethodDetector().detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_may_def_reaching.py",
+"line": 624,
+"text": "assert [s.plan[\"span\"] for s in ExtractMethodDetector().detect(ctx)] == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_message_table_arms.py",
+"line": 141,
+"text": "return bool(LargeMethodDetector().detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 33,
+"text": "assert LargeMethodDetector().detect(_ctx(dispatch)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 37,
+"text": "[finding] = LargeMethodDetector().detect(_ctx(_fn()))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 45,
+"text": "[finding] = ComplexMethodDetector().detect(_ctx(fn))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 56,
+"text": "[finding] = ComplexMethodDetector().detect(_ctx(_fn(ccn=12)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 69,
+"text": "[finding] = BrainMethodDetector().detect(_central(fn))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 80,
+"text": "[finding] = BrainMethodDetector().detect(_central(_fn(ccn=12)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 113,
+"text": "assert LargeMethodDetector().detect(_ctx(panel, path=\"src/Panel.tsx\")) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 160,
+"text": "assert LargeMethodDetector().detect(_ctx(card, path=\"src/Card.tsx\")) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 232,
+"text": "assert BrainMethodDetector().detect(_central(_fn(nloc=100, ccn=12, markup_nloc=40))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_method_size_accuracy.py",
+"line": 233,
+"text": "[finding] = BrainMethodDetector().detect(_central(_fn(nloc=120, ccn=12, markup_nloc=40)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_mock_saturated_test.py",
+"line": 57,
+"text": "return BIOMARKER.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_module_attribution.py",
+"line": 35,
+"text": "language-detect, and it drops 18 of them \u2014 ``go.mod``, ``pom.xml``,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_multiline_string_nloc.py",
+"line": 117,
+"text": "assert LargeMethodDetector().detect(_ctx(fn, path, language)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_multiline_string_nloc.py",
+"line": 126,
+"text": "[finding] = LargeMethodDetector().detect(_ctx(fn, \"m.py\", \"python\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_multiline_string_nloc.py",
+"line": 143,
+"text": "[finding] = LargeMethodDetector().detect(_ctx(fn, \"m.py\", \"python\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_nested_function_complexity.py",
+"line": 627,
+"text": "return sorted(finding.function_name for finding in BIOMARKER.detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 60,
+"text": "out = DeveloperCongestionDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 73,
+"text": "out = DeveloperCongestionDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 85,
+"text": "assert DeveloperCongestionDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 97,
+"text": "assert DeveloperCongestionDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 111,
+"text": "assert DeveloperCongestionDetector().detect(_ctx(_quiet_hotspot_meta(0))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 115,
+"text": "assert DeveloperCongestionDetector().detect(_ctx(_quiet_hotspot_meta(2))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 116,
+"text": "out = DeveloperCongestionDetector().detect(_ctx(_quiet_hotspot_meta(3)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 132,
+"text": "out = KnowledgeLossDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 147,
+"text": "out = KnowledgeLossDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 162,
+"text": "assert KnowledgeLossDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 174,
+"text": "assert KnowledgeLossDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 184,
+"text": "assert KnowledgeLossDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 188,
+"text": "assert KnowledgeLossDetector().detect(_ctx({\"commit_count_90d\": 3})) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 203,
+"text": "assert KnowledgeLossDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 218,
+"text": "out = KnowledgeLossDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 234,
+"text": "out = OwnershipRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 254,
+"text": "out = OwnershipRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 262,
+"text": "assert OwnershipRiskDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 267,
+"text": "assert OwnershipRiskDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 273,
+"text": "out = OwnershipRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 285,
+"text": "out = OwnershipRiskDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 301,
+"text": "out = OwnershipRiskDetector().detect(_ctx(dict(_FRAGMENTED), active_contributors=2))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 311,
+"text": "out = OwnershipRiskDetector().detect(_ctx(meta, active_contributors=2))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 317,
+"text": "out = OwnershipRiskDetector().detect(_ctx(dict(_FRAGMENTED), active_contributors=None))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 324,
+"text": "out = OwnershipRiskDetector().detect(_ctx(dict(_FRAGMENTED), active_contributors=12))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 338,
+"text": "out = KnowledgeLossDetector().detect(_ctx(meta, active_contributors=2))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 352,
+"text": "out = KnowledgeLossDetector().detect(_ctx(meta, active_contributors=2))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 369,
+"text": "out = ChurnRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 383,
+"text": "out = ChurnRiskDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 395,
+"text": "assert ChurnRiskDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 406,
+"text": "assert ChurnRiskDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 419,
+"text": "out = ChangeEntropyDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 435,
+"text": "out = ChangeEntropyDetector().detect(_ctx(meta))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 446,
+"text": "assert ChangeEntropyDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 455,
+"text": "assert ChangeEntropyDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 462,
+"text": "assert ChangeEntropyDetector().detect(_ctx(meta)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 487,
+"text": "(finding,) = CoChangeScatterDetector().detect(_ctx(_scatter_meta()))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 493,
+"text": "out = CoChangeScatterDetector().detect(_ctx(_scatter_meta(co_change_scatter_pct=0.97)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 501,
+"text": "(finding,) = CoChangeScatterDetector().detect(_ctx(_scatter_meta()))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 508,
+"text": "assert CoChangeScatterDetector().detect(_ctx(_scatter_meta(co_change_scatter_pct=0.79))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 512,
+"text": "assert CoChangeScatterDetector().detect(_ctx(_scatter_meta(commit_count_90d=1))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 518,
+"text": "assert CoChangeScatterDetector().detect(_ctx({\"commit_count_90d\": 8})) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 532,
+"text": "assert CoChangeScatterDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 544,
+"text": "assert CoChangeScatterDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 570,
+"text": "assert CoChangeScatterDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 584,
+"text": "out = PriorDefectDetector().detect(_ctx(_pd(1)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 592,
+"text": "assert PriorDefectDetector().detect(_ctx(_pd(2)))[0].severity == \"medium\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 593,
+"text": "assert PriorDefectDetector().detect(_ctx(_pd(3)))[0].severity == \"high\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 594,
+"text": "assert PriorDefectDetector().detect(_ctx(_pd(6)))[0].severity == \"critical\"",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 599,
+"text": "out = PriorDefectDetector().detect(_ctx(_pd(3, is_hotspot=True)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 605,
+"text": "assert PriorDefectDetector().detect(_ctx(_pd(0))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 606,
+"text": "assert PriorDefectDetector().detect(_ctx({\"commit_count_90d\": 9})) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 613,
+"text": "assert PriorDefectDetector().detect(_ctx(_pd(2, prior_defect_pct=0.5))) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_organizational_biomarkers.py",
+"line": 619,
+"text": "out = PriorDefectDetector().detect(_ctx(_pd(6, prior_defect_pct=0.81)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_crossfn.py",
+"line": 220,
+"text": "(finding,) = IoInLoopDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_crossfn.py",
+"line": 555,
+"text": "(finding,) = IoInLoopDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 556,
+"text": "findings = IoInLoopDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 572,
+"text": "assert len(IoInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 573,
+"text": "assert len(StringConcatInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 574,
+"text": "assert len(BlockingSyncInAsyncDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 584,
+"text": "assert len(StringConcatInLoopDetector().detect(ctx)) == expected",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 599,
+"text": "findings = sorted(StringConcatInLoopDetector().detect(ctx), key=lambda f: f.line_start)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 616,
+"text": "findings = StringConcatInLoopDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 628,
+"text": "assert len(StringConcatInLoopDetector().detect(ctx)) == 2",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 632,
+"text": "assert IoInLoopDetector().detect(_ctx([])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 671,
+"text": "finding = IoInLoopDetector().detect(_ctx(loop_hits))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 751,
+"text": "findings = IoInLoopDetector().detect(_ctx(hits))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_io_in_loop.py",
+"line": 759,
+"text": "findings = IoInLoopDetector().detect(_ctx(hits))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 361,
+"text": "assert len(ResourceConstructionInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 362,
+"text": "assert len(LockInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 363,
+"text": "assert len(SerialAwaitInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 364,
+"text": "assert len(MembershipTestAgainstListInLoopDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 373,
+"text": "(finding,) = HotPathSyncIoDetector().detect(_ctx([hit]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 528,
+"text": "assert len(NestedLoopWithIoDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 529,
+"text": "assert len(NestedLoopQuadraticDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 530,
+"text": "assert len(HotPathSyncIoDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 531,
+"text": "assert len(BlockingIoUnderLockDetector().detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 538,
+"text": "(finding,) = BlockingIoUnderLockDetector().detect(_ctx([hit]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7b.py",
+"line": 549,
+"text": "file_io, db = BlockingIoUnderLockDetector().detect(_ctx(hits))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_promotion_engine.py",
+"line": 76,
+"text": "results = SERIAL.detect(_ctx(fcx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_promotion_engine.py",
+"line": 97,
+"text": "results = SERIAL.detect(_ctx(fcx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_repository_loops.py",
+"line": 280,
+"text": "for r in BIOMARKER.detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_jvm.py",
+"line": 32,
+"text": "return {f.function_name for f in PrimitiveObsessionDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_scope.py",
+"line": 31,
+"text": "assert PrimitiveObsessionDetector().detect(_ctx(path, is_test)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_scope.py",
+"line": 35,
+"text": "[finding] = PrimitiveObsessionDetector().detect(_ctx(\"src/graph.py\", False))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_scope.py",
+"line": 49,
+"text": "findings = PrimitiveObsessionDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_sfc.py",
+"line": 37,
+"text": "assert {f.function_name for f in PrimitiveObsessionDetector().detect(ctx)} == {\"draw\"}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_swift.py",
+"line": 74,
+"text": "flagged = {f.function_name for f in PrimitiveObsessionDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_primitive_obsession_untyped.py",
+"line": 27,
+"text": "return {f.function_name for f in PrimitiveObsessionDetector().detect(ctx)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_anchors.py",
+"line": 320,
+"text": "return [p for p in ExtractMethodDetector().detect(ctx) if p.target_symbol == \"persist\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_break_cycle.py",
+"line": 104,
+"text": "assert BreakCycleDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_declarative.py",
+"line": 326,
+"text": "assert [s.target_symbol for s in ExtractMethodDetector().detect(ctx)] == [\"process\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_declarative.py",
+"line": 332,
+"text": "found = sorted(s.target_symbol for s in ExtractMethodDetector().detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_class.py",
+"line": 242,
+"text": "return [s.target_symbol for s in ExtractClassDetector().detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 654,
+"text": "plans = [s for s in ExtractMethodDetector().detect(ctx) if s.refactoring_type == \"extract_method\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 754,
+"text": "suggestions = ExtractMethodDetector().detect(_ctx(_PROCESS, findings))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 805,
+"text": "s = ExtractMethodDetector().detect(_ctx(_PROCESS, findings))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 832,
+"text": "suggestions = ExtractMethodDetector().detect(_ctx(_PROCESS, findings=[]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 844,
+"text": "assert ExtractMethodDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 858,
+"text": "s = ExtractMethodDetector().detect(_ctx(_PROCESS, findings))[0]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 948,
+"text": "(s,) = ExtractMethodDetector().detect(_ctx(_PROCESS, findings))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 982,
+"text": "(s,) = ExtractMethodDetector().detect(_ctx(_PROCESS, findings))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 989,
+"text": "(s,) = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1096,
+"text": "(s,) = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1138,
+"text": "suggestions = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1253,
+"text": "assert ExtractMethodDetector().detect(_ctx(_DOCSTRING_FIRST, findings)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1284,
+"text": "assert ExtractMethodDetector().detect(_ctx(src, findings)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1309,
+"text": "(s,) = ExtractMethodDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1426,
+"text": "(s,) = [x for x in ExtractMethodDetector().detect(ctx) if x.refactoring_type == \"extract_method\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method.py",
+"line": 1449,
+"text": "(s,) = [x for x in ExtractMethodDetector().detect(ctx) if x.refactoring_type == \"extract_method\"]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_method_naming.py",
+"line": 49,
+"text": "plans = sorted(ExtractMethodDetector().detect(ctx), key=lambda s: s.line_start or 0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_move_method.py",
+"line": 144,
+"text": "assert MoveMethodDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_move_method.py",
+"line": 249,
+"text": "derived = MoveMethodDetector().detect(_ctx(g, f))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_move_method.py",
+"line": 250,
+"text": "provided = MoveMethodDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_registry.py",
+"line": 37,
+"text": "def detect(self, ctx: RefactoringContext) -> list[RefactoringSuggestion]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_split_file.py",
+"line": 225,
+"text": "assert SplitFileDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_scope_and_split.py",
+"line": 88,
+"text": "assert UntestedHotspotDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_scope_and_split.py",
+"line": 104,
+"text": "assert HiddenCouplingDetector().detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 33,
+"text": "results = RepeatedNestingDetector().detect(_ctx([fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 40,
+"text": "assert RepeatedNestingDetector().detect(_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 46,
+"text": "assert RepeatedNestingDetector().detect(_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 57,
+"text": "assert d.detect(_ctx([small])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 58,
+"text": "big_res = d.detect(_ctx([big]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 61,
+"text": "huge_res = d.detect(_ctx([huge]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 80,
+"text": "out = PrimitiveObsessionDetector().detect(_ctx([fn, _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 97,
+"text": "(finding,) = PrimitiveObsessionDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 115,
+"text": "assert d.detect(_ctx([regular, _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 116,
+"text": "assert d.detect(_ctx([ctor, _FILLER])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 123,
+"text": "assert PrimitiveObsessionDetector().detect(_ctx([fn, _FILLER])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 133,
+"text": "assert PrimitiveObsessionDetector().detect(_ctx([fn])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 135,
+"text": "assert PrimitiveObsessionDetector().detect(_ctx([fn, _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 143,
+"text": "assert PrimitiveObsessionDetector().detect(_ctx([fn, _FILLER])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 170,
+"text": "out = {r.function_name: r for r in PrimitiveObsessionDetector().detect(_ctx([*fns, _FILLER]))}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 190,
+"text": "assert d.detect(_ctx([fn(6, 3), _FILLER])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 191,
+"text": "out = d.detect(_ctx([fn(6, 4), _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 195,
+"text": "assert d.detect(_ctx([fn(1, 1), _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_structural_biomarkers.py",
+"line": 197,
+"text": "assert d.detect(_ctx([fn(0, 0), _FILLER]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 68,
+"text": "out = LargeAssertionBlockDetector().detect(_ctx(file_path=\"tests/test_x.py\", functions=[fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 76,
+"text": "out = LargeAssertionBlockDetector().detect(_ctx(file_path=\"tests/test_x.py\", functions=[fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 83,
+"text": "LargeAssertionBlockDetector().detect(_ctx(file_path=\"tests/test_x.py\", functions=[fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 92,
+"text": "LargeAssertionBlockDetector().detect(_ctx(file_path=\"src/validate.py\", functions=[fn]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 138,
+"text": "out = DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 156,
+"text": "out = DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 166,
+"text": "out = DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 176,
+"text": "out = DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 189,
+"text": "assert d.detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 195,
+"text": "assert d.detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 203,
+"text": "out = DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 218,
+"text": "DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 229,
+"text": "DuplicatedAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 242,
+"text": "assert LargeMethodDetector().detect(_ctx(file_path=\"src/x.py\", functions=[flat])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 250,
+"text": "out = LargeMethodDetector().detect(_ctx(file_path=\"src/x.py\", functions=[branchy]))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_test_quality_biomarkers.py",
+"line": 278,
+"text": "out = LargeAssertionBlockDetector().detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_ui_builder_markup.py",
+"line": 66,
+"text": "return bool(LargeMethodDetector().detect(ctx))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 145,
+"text": "results = BIOMARKER.detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 162,
+"text": "assert BIOMARKER.detect(_ctx([_fn(\"execute\", 1, 20, 5)], **apex)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 169,
+"text": "assert BIOMARKER.detect(_ctx([_fn(\"f\", 1, 20, 4)])) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 174,
+"text": "assert BIOMARKER.detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 210,
+"text": "assert BIOMARKER.detect(ctx) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 254,
+"text": "assert BIOMARKER.detect(_ctx([_fn(\"f\", 1, 20, 12)], file_path=\"tests/test_app.py\", is_test=True)) == []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_untested_complexity.py",
+"line": 259,
+"text": "assert len(BIOMARKER.detect(ctx)) == 1",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 842,
+"text": "\"package detect\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 860,
+"text": "\"detect/detect.go\": _GO_DETECT,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 863,
+"text": "'package cmd\\n\\nimport \"example.com/app/detect\"\\n\\n'",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 868,
+"text": "_link_imports(parsed, {\"cmd/run.go\": {\"example.com/app/detect\": \"detect/detect.go\"}})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 870,
+"text": "parsed, tmp_path, {\"cmd/run.go\": {\"detect/detect.go\"}, \"detect/detect.go\": set()}",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 879,
+"text": "edges = _go_method_edges(tmp_path, \"\\td := detect.NewDetector()\\n\\td.Scan()\\n\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 880,
+"text": "assert [e[1] for e in edges] == [\"detect/detect.go::Detector::Scan\"]",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 884,
+"text": "body = \"\\td, err := detect.NewPair()\\n\\t_ = err\\n\\td.Scan()\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 886,
+"text": "assert [e[1] for e in edges] == [\"detect/detect.go::Detector::Scan\"]",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 889,
+"text": "body = \"\\td := detect.NewDetector()\\n\\tc := d.Child()\\n\\tc.Walk()\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 891,
+"text": "\"detect/detect.go::Detector::Child\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 892,
+"text": "\"detect/detect.go::Other::Walk\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 899,
+"text": "\"\\tif ok {\\n\\t\\td := detect.NewDetector()\\n\\t\\td.Scan()\\n\\t} else {\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 900,
+"text": "\"\\t\\td := detect.NewOther()\\n\\t\\td.Scan()\\n\\t}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 906,
+"text": "body = \"\\tx := detect.NewDetector().Child()\\n\\tx.Scan()\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 908,
+"text": "assert \"detect/detect.go::Detector::Scan\" not in targets",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 915,
+"text": "\"\\tc := &detect.Other{}\\n\\tif ok {\\n\\t\\tc := detect.NewOther()\\n\\t\\t_ = c\\n\\t}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 919,
+"text": "assert targets == [\"detect/detect.go::Other::Walk\"]",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 953,
+"text": "\"detect/detect.go\": (",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 955,
+"text": "\"package detect\\n\\ntype Detector struct{}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 958,
+"text": "\"detect/baseline.go\": (",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 960,
+"text": "\"package detect\\n\\nfunc (d *Detector) AddBaseline() error { return nil }\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 964,
+"text": "'package cmd\\n\\nimport \"example.com/app/detect\"\\n\\n'",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 965,
+"text": "\"func run() {\\n\\td := detect.NewDetector()\\n\\td.AddBaseline()\\n}\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 969,
+"text": "_link_imports(parsed, {\"cmd/run.go\": {\"example.com/app/detect\": \"detect/detect.go\"}})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 974,
+"text": "\"cmd/run.go\": {\"detect/detect.go\"},",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 975,
+"text": "\"detect/detect.go\": set(),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 976,
+"text": "\"detect/baseline.go\": set(),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 981,
+"text": "\"detect/baseline.go::Detector::AddBaseline\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 990,
+"text": "\"\"\"``Open`` returns ``detect``'s own ``Store``; ``other.Store`` shares",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 995,
+"text": "\"detect/store.go\": (",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 997,
+"text": "\"package detect\\n\\ntype Store interface {\\n\\tSave() int\\n}\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1007,
+"text": "'package cmd\\n\\nimport \"example.com/app/detect\"\\n\\n'",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1008,
+"text": "\"func run() {\\n\\ts := detect.Open()\\n\\ts.Save()\\n}\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1012,
+"text": "_link_imports(parsed, {\"cmd/run.go\": {\"example.com/app/detect\": \"detect/store.go\"}})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1016,
+"text": "{\"cmd/run.go\": {\"detect/store.go\"}, \"detect/store.go\": set(), \"other/store.go\": set()},",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_resolver.py",
+"line": 366,
+"text": "# Monkey-patch resolve to detect any additional invocations.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_fs_walk.py",
+"line": 358,
+"text": "``os.walk`` cannot detect a junction cycle by inode on Windows; pruning",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_git_window_anchor.py",
+"line": 102,
+"text": "findings = [(f.function_name, f.details) for f in CodeAgeVolatilityDetector().detect(ctx)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_git_window_anchor.py",
+"line": 183,
+"text": "findings = CodeAgeVolatilityDetector().detect(ctx)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 263,
+"text": "\"detect/store.go\": (",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 264,
+"text": "\"package detect\\n\\ntype Store interface{ Save() int }\\n\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 272,
+"text": "'package cmd\\n\\nimport \"example.com/app/detect\"\\n\\n'",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 273,
+"text": "\"func run() {\\n\\ts := detect.Open()\\n\\ts.Save()\\n}\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 277,
+"text": "assert (\"cmd/run.go::run\", \"detect/store.go::Store::Save\") in edges",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_godot_project_awareness.py",
+"line": 693,
+"text": "assert godot_edges.HANDLERS[1].detect(dctx) is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_godot_project_awareness.py",
+"line": 777,
+"text": "# every handler returns 0 on a one-file Python repo. Assert on detect()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_godot_project_awareness.py",
+"line": 790,
+"text": "assert godot_edges.HANDLERS[0].detect(dctx) is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_package_roots.py",
+"line": 7,
+"text": "names it cannot language-detect, which silently cost Go, Maven, Groovy-Gradle,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_receiver_types.py",
+"line": 816,
+"text": "body = \"func f() {\\n\\td := detect.NewDetector(ctx, cfg)\\n}\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_receiver_types.py",
+"line": 818,
+"text": "CallAssignment(2, \"d\", \"detect\", \"NewDetector\"),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_graph_convergence.py",
+"line": 96,
+"text": "# this test cannot detect the divergence it exists to prevent.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_citations.py",
+"line": 115,
+"text": "assert got.drops_top_hit([_hit(f\"{DETECTOR}::detect\")], answer) == CASCADE",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_embedder_resolution.py",
+"line": 266,
+"text": "\"\"\"A degraded embedder shows up in the _meta envelope so callers can detect it.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_number_precision.py",
+"line": 268,
+"text": "results = BIOMARKER.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_number_precision.py",
+"line": 278,
+"text": "results = BIOMARKER.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_number_precision.py",
+"line": 316,
+"text": "entropy = ENTROPY_BIOMARKER.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_number_precision.py",
+"line": 319,
+"text": "churn = CHURN_BIOMARKER.detect(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 214,
+"text": "# No provider in config \u2014 only a key in the repo .env. Auto-detect should",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 332,
+"text": "# Keyless providers name nothing; agent CLIs only when asked to detect.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 351,
+"text": "by_id = {p[\"id\"]: p for p in pc.list_provider_status(detect=True)[\"providers\"]}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 361,
+"text": "by_id = {p[\"id\"]: p for p in pc.list_provider_status(detect=True)[\"providers\"]}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 377,
+"text": "by_id = {p[\"id\"]: p for p in pc.list_provider_status(detect=True)[\"providers\"]}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_config.py",
+"line": 389,
+"text": "by_id = {p[\"id\"]: p for p in pc.list_provider_status(detect=True)[\"providers\"]}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_provider_key_endpoint.py",
+"line": 247,
+"text": "detected = (await client.get(\"/api/providers?detect=true\")).json()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 59,
+"text": "assert resolve.resolve_embedder_name(detect=False) == (\"mock\", \"default\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_provider_env_registry.py",
+"line": 67,
+"text": "\"\"\"Auto-detect picks a provider from credentials the user set.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_provider_env_registry.py",
+"line": 74,
+"text": "f\"{name} is in the auto-detect order but needs no env var, so it would \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_provider_env_registry.py",
+"line": 96,
+"text": "\"these providers have credentials we could detect but are missing from \"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/workspace/test_extraction_walk_budget.py",
+"line": 228,
+"text": "build meet; each used to detect boundaries for every repo independently.",
+"cls": "doc",
+"ext": ".py"
+}
+]

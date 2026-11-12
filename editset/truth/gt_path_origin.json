@@ -1,0 +1,191 @@
+[
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/deletion_gate.py",
+"line": 26,
+"text": "from ...code_origin import code_origin, path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/deletion_gate.py",
+"line": 96,
+"text": "path_origin(view.file_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/execution_roles.py",
+"line": 25,
+"text": "from repowise.core.code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/execution_roles.py",
+"line": 180,
+"text": "if path_origin(path) in (\"tooling\", \"build\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/error_handling.py",
+"line": 24,
+"text": "from ....code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/error_handling.py",
+"line": 61,
+"text": "if (ctx.code_origin or path_origin(ctx.file_path)) in _RUST_UNSHIPPED_ORIGINS:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/causal.py",
+"line": 23,
+"text": "from repowise.core.code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/causal.py",
+"line": 70,
+"text": "Read from the shared :func:`~repowise.core.code_origin.path_origin`, so a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/causal.py",
+"line": 81,
+"text": "origin = path_origin(normalized)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/queue/eligibility.py",
+"line": 20,
+"text": "from repowise.core.code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/queue/eligibility.py",
+"line": 187,
+"text": "origin = path_origin(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/walk.py",
+"line": 750,
+"text": "from repowise.core.code_origin import owes_a_test, path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/walk.py",
+"line": 752,
+"text": "origin = origins.get(path) or path_origin(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 48,
+"text": "\"path_origin\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 1047,
+"text": "def path_origin(path: str) -> CodeOrigin:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 1065,
+"text": "return (origin or path_origin(path)) == \"production\" and not is_migration_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 1074,
+"text": "return [p for p in paths if path_origin(p) == \"production\"] or list(paths)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 1083,
+"text": "origin = path_origin(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_discovery.py",
+"line": 25,
+"text": "from repowise.core.code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_discovery.py",
+"line": 77,
+"text": "found = stored_origin(origin, is_test) if health_path else path_origin(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 451,
+"text": "# A path-only caller (``path_origin``) has no language: the extension",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/network_probe.py",
+"line": 35,
+"text": "from repowise.core.code_origin import CodeOrigin, path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/network_probe.py",
+"line": 50,
+"text": "\"\"\"Whether :func:`..code_origin.path_origin` puts *rel_path* outside the running system.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/network_probe.py",
+"line": 54,
+"text": "return path_origin(rel_path) in OUTSIDE_RUNTIME_ORIGINS",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/security_classes.py",
+"line": 23,
+"text": "from repowise.core.code_origin import path_origin",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/security_classes.py",
+"line": 59,
+"text": "return {p: path_class(p, origins.get(p) or path_origin(p)) for p in wanted}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 118,
+"text": "# as ``path_origin`` agree with ingestion: celery's smoke-test workers)",
+"cls": "doc",
+"ext": ".py"
+}
+]

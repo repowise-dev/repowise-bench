@@ -1,0 +1,1563 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 2934,
+"text": "- **Dashboard `EmptyState` guards** \u2014 every dashboard panel now renders a labelled empty state instead of going blank when its data slice is missing (#148).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2934,
+"text": "- **Dashboard `EmptyState` guards** \u2014 every dashboard panel now renders a labelled empty state instead of going blank when its data slice is missing (#148).",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/COMPONENT_CONTRACTS.md",
+"line": 59,
+"text": "| `empty` | `ReactNode` | no | Rendered instead of the table when `rows` is empty (pass `EmptyState`). |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/COMPONENT_CONTRACTS.md",
+"line": 115,
+"text": "## `shared/empty-state` \u00e2\u20ac\u201d `EmptyState`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/COMPONENT_CONTRACTS.md",
+"line": 340,
+"text": "- Empty state (`EmptyState`) appears when the filtered set is empty.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/README.md",
+"line": 81,
+"text": "- **`EmptyState`** \u2014 the only sanctioned empty-state rendering. No raw",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 5,
+"text": "import { AllClearStat, EmptyState } from \"../../src/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 7,
+"text": "describe(\"EmptyState\", () => {",
+"cls": "strref",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 10,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 26,
+"text": "render(<EmptyState title=\"Empty\" action={{ label: \"Add\", onClick }} />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 34,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 47,
+"text": "<EmptyState tone=\"positive\" title=\"No dead code across 1,240 files\" />,",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 57,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 71,
+"text": "render(<EmptyState tone=\"error\" title=\"Could not load\" description=\"Try again.\" />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 76,
+"text": "const { container } = render(<EmptyState bare title=\"Nothing\" />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/__tests__/shared/empty-state.test.tsx",
+"line": 81,
+"text": "render(<EmptyState title=\"Panel\" titleAs=\"h2\" />);",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 11,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 58,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 82,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 99,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 115,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 131,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 177,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/blast-radius-results.tsx",
+"line": 200,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/impact-view.tsx",
+"line": 56,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/blast-radius/impact-view.tsx",
+"line": 766,
+"text": "<EmptyState title=\"Pick a change\" description={listsChanges ? EMPTY_WITH_LIST : EMPTY_WITHOUT_LIST} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/c4/ArchCanvas.tsx",
+"line": 19,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/c4/ArchCanvas.tsx",
+"line": 75,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 6,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 142,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/commits/commit-table.tsx",
+"line": 149,
+"text": "return <EmptyState title=\"No matches\" description=\"Try adjusting your search or filters.\" />;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 6,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 198,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 207,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coupling/coupling-table.tsx",
+"line": 215,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coverage/freshness-table.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/coverage/freshness-table.tsx",
+"line": 106,
+"text": "<EmptyState title=\"No pages\" description=\"No pages match this filter.\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/attention-panel.tsx",
+"line": 19,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/attention-panel.tsx",
+"line": 132,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/commits-mini.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/commits-mini.tsx",
+"line": 40,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/decisions-timeline.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/decisions-timeline.tsx",
+"line": 46,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/dependency-heatmap.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/dependency-heatmap.tsx",
+"line": 91,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/execution-flows-panel.tsx",
+"line": 7,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/execution-flows-panel.tsx",
+"line": 156,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/hotspots-mini.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dashboard/hotspots-mini.tsx",
+"line": 48,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 34,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 358,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 363,
+"text": "</EmptyState>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/dead-code-view.tsx",
+"line": 440,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 12,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 501,
+"text": "<EmptyState {...EMPTY_STATUS_COPY[status]} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dead-code/findings-table.tsx",
+"line": 551,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/checkout-facts.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/checkout-facts.tsx",
+"line": 121,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decision-review-lanes.tsx",
+"line": 22,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decision-review-lanes.tsx",
+"line": 434,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decisions-table.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decisions-table.tsx",
+"line": 329,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/decisions/decisions-table.tsx",
+"line": 339,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/dependency-registry.tsx",
+"line": 16,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/dependency-registry.tsx",
+"line": 73,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/dependency-registry.tsx",
+"line": 168,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/external-dependencies-table.tsx",
+"line": 18,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/external-dependencies-table.tsx",
+"line": 472,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/dependencies/external-dependencies-table.tsx",
+"line": 570,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-unavailable.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/doc-drift-unavailable.tsx",
+"line": 76,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/drift-findings-table.tsx",
+"line": 32,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/doc-drift/drift-findings-table.tsx",
+"line": 166,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-decisions-tab.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-decisions-tab.tsx",
+"line": 39,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-doc-tab.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-doc-tab.tsx",
+"line": 20,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-graph-tab.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-graph-tab.tsx",
+"line": 133,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 6,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-health-tab.tsx",
+"line": 121,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-history-tab.tsx",
+"line": 43,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-overview-tab.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/files/file-overview-tab.tsx",
+"line": 85,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/bus-factor-panel.tsx",
+"line": 12,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/bus-factor-panel.tsx",
+"line": 26,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/churn-histogram.tsx",
+"line": 13,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/churn-histogram.tsx",
+"line": 30,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/commit-category-donut.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/commit-category-donut.tsx",
+"line": 24,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-table.tsx",
+"line": 13,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-table.tsx",
+"line": 149,
+"text": "return <EmptyState title=\"No hotspots found\" description=\"No file stands out for recent change.\" />;",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/hotspot-table.tsx",
+"line": 166,
+"text": "<EmptyState title=\"No matches\" description=\"Try another search or filter.\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/ownership-table.tsx",
+"line": 8,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/ownership-table.tsx",
+"line": 51,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/git/ownership-table.tsx",
+"line": 191,
+"text": "empty={<EmptyState title=\"No matches\" description=\"Try adjusting your search or filters.\" />}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 33,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/code-graph-tree.tsx",
+"line": 561,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-flow.tsx",
+"line": 14,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/graph/graph-flow.tsx",
+"line": 1676,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/biomarker-list.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/biomarker-list.tsx",
+"line": 100,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-map.tsx",
+"line": 25,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/code-health-map.tsx",
+"line": 294,
+"text": "<EmptyState size=\"compact\" title=\"No files to map yet\" description=\"Index this repo to populate health.\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 33,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 516,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 529,
+"text": "<EmptyState size=\"compact\" title=\"No files to list\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 628,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/coverage-view.tsx",
+"line": 634,
+"text": "<EmptyState size=\"compact\" title=\"No other files to check\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-trend-chart.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/file-trend-chart.tsx",
+"line": 44,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 28,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 603,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/findings-view.tsx",
+"line": 610,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 16,
+"text": "import { EmptyState } from \"../../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 185,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 194,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/fix-first/fix-first-list.tsx",
+"line": 202,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/legacy.tsx",
+"line": 7,
+"text": "import { EmptyState } from \"../../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/legacy.tsx",
+"line": 33,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 6,
+"text": "import { EmptyState } from \"../../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 33,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 45,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 76,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 82,
+"text": "</EmptyState>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/performance/states.tsx",
+"line": 88,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/refactoring-target-list.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/refactoring-target-list.tsx",
+"line": 100,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/trend-chart.tsx",
+"line": 12,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/trend-chart.tsx",
+"line": 636,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/trend-view.tsx",
+"line": 28,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/health/trend-view.tsx",
+"line": 421,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/modules/module-health-list.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/modules/module-health-list.tsx",
+"line": 46,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-commit-mix.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-commit-mix.tsx",
+"line": 31,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-directory.tsx",
+"line": 9,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-directory.tsx",
+"line": 118,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-directory.tsx",
+"line": 124,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-file-table.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-file-table.tsx",
+"line": 53,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-footprint.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-footprint.tsx",
+"line": 37,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-relationships.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/owners/owner-relationships.tsx",
+"line": 41,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 39,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 181,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/refactoring/refactoring-board.tsx",
+"line": 385,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/findings-table.tsx",
+"line": 6,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/findings-table.tsx",
+"line": 213,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/security/findings-table.tsx",
+"line": 265,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/clean-state.tsx",
+"line": 3,
+"text": "import { EmptyState, type EmptyStateAction } from \"./empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/clean-state.tsx",
+"line": 44,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/clean-state.tsx",
+"line": 54,
+"text": "</EmptyState>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/empty-state.tsx",
+"line": 138,
+"text": "export function EmptyState({",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/shared/responsive-table/responsive-table.tsx",
+"line": 81,
+"text": "/** Rendered instead of the table when `rows` is empty (use EmptyState). */",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/symbols/symbol-table.tsx",
+"line": 19,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/symbols/symbol-table.tsx",
+"line": 290,
+"text": "<EmptyState title=\"No symbols found\" description=\"Try adjusting your filters.\" />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/co-change-table.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/co-change-table.tsx",
+"line": 173,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-links-table.tsx",
+"line": 8,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/contract-links-table.tsx",
+"line": 113,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/dsm/dsm-matrix.tsx",
+"line": 15,
+"text": "import { EmptyState } from \"../../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/dsm/dsm-matrix.tsx",
+"line": 129,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/package-deps-table.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/package-deps-table.tsx",
+"line": 20,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/repo-pair-table.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/repo-pair-table.tsx",
+"line": 41,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-empty.tsx",
+"line": 9,
+"text": "import { EmptyState } from \"../../shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/ui/src/workspace/system-map/system-map-empty.tsx",
+"line": 43,
+"text": "<EmptyState title={m.title} description={m.description} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/decisions/App.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/decisions/App.tsx",
+"line": 140,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/decisions/App.tsx",
+"line": 156,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/docs/App.tsx",
+"line": 3,
+"text": "import { ApiError, EmptyState, OrbLoader, ORB_STATE } from \"@repowise-dev/ui/shared\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/docs/App.tsx",
+"line": 121,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/home/App.tsx",
+"line": 32,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/home/App.tsx",
+"line": 346,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/refactoring/App.tsx",
+"line": 3,
+"text": "import { ApiError, EmptyState, OrbLoader, ORB_STATE } from \"@repowise-dev/ui/shared\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/refactoring/App.tsx",
+"line": 111,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/refactoring/App.tsx",
+"line": 495,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/risk/App.tsx",
+"line": 26,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/risk/App.tsx",
+"line": 175,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/vscode/webview/src/views/risk/App.tsx",
+"line": 577,
+"text": "<EmptyState",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/costs/page.tsx",
+"line": 10,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/costs/page.tsx",
+"line": 125,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/costs/page.tsx",
+"line": 189,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/costs/page.tsx",
+"line": 191,
+"text": "// Plain text: EmptyState renders its description as a string, so",
+"cls": "doc",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/costs/page.tsx",
+"line": 221,
+"text": "empty={<EmptyState size=\"compact\" title={t(\"surfaceEmpty\")} />}",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/modules/[path]/page.tsx",
+"line": 14,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/modules/[path]/page.tsx",
+"line": 46,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/owners/[owner]/page.tsx",
+"line": 8,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/owners/[owner]/page.tsx",
+"line": 54,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/refactoring/page.tsx",
+"line": 23,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/refactoring/page.tsx",
+"line": 320,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/repos/[id]/refactoring/page.tsx",
+"line": 327,
+"text": "</EmptyState>",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 10,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/co-changes-explorer.tsx",
+"line": 383,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/page.tsx",
+"line": 7,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/co-changes/page.tsx",
+"line": 65,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 11,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 240,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 246,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 345,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 354,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 363,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/conformance/page.tsx",
+"line": 371,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 16,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/estate/page.tsx",
+"line": 99,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 8,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/app/workspace/page.tsx",
+"line": 99,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/commits/by-change-view.tsx",
+"line": 4,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/commits/by-change-view.tsx",
+"line": 119,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/commits/commits-view.tsx",
+"line": 3,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/commits/commits-view.tsx",
+"line": 97,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/repos/empty-repos-state.tsx",
+"line": 5,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/repos/empty-repos-state.tsx",
+"line": 19,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/repos/first-index-experience.tsx",
+"line": 7,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/repos/first-index-experience.tsx",
+"line": 150,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 30,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/security/security-view.tsx",
+"line": 219,
+"text": "<EmptyState title={t(\"posture.notScannedTitle\")} description={t(\"posture.notScannedBody\")} />",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-canvas-state.tsx",
+"line": 15,
+"text": "import { EmptyState } from \"@repowise-dev/ui/shared/empty-state\";",
+"cls": "code",
+"ext": ".tsx"
+},
+{
+"path": "packages/web/src/components/zoom/zoom-canvas-state.tsx",
+"line": 64,
+"text": "<EmptyState",
+"cls": "code",
+"ext": ".tsx"
+}
+]

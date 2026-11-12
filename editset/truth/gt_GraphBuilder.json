@@ -1,0 +1,5063 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 2276,
+"text": "- **`GraphBuilder` is picklable across a process boundary.** Fixes a failure when the graph builder is handed to a worker process. (#583)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2792,
+"text": "- **`.xaml` / `.axaml` ingestion** as a passthrough LanguageTag so the traverser produces file nodes that XamlDynamicHints can attach edges to. The extractor was previously emitting edges that GraphBu",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2893,
+"text": "- **Symbol-level PageRank and betweenness were always 0.** Centrality only ran on the file subgraph, so the symbol detail panel showed 0 for every symbol regardless of how heavily it was called or ref",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2933,
+"text": "- **Per-phase progress for graph build and metrics** \u2014 `GraphBuilder.build()` now reports imports/heritage/calls as sub-phases through the existing `ProgressCallback`, and the orchestrator drives metr",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 2950,
+"text": "- **Graph metrics fan out in parallel.** PageRank, betweenness, file/symbol community detection, and execution-flow tracing previously ran serially across persist + generation, with PageRank and betwe",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/CHANGELOG.md",
+"line": 3370,
+"text": "in-memory `GraphBuilder` is supplied. Now falls back to SQL `COUNT(*)`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 65,
+"text": "\u2502   \u2502  GraphBuilder       \u2502      \u2502  JobSystem (resumable)        \u2502     \u2502",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 290,
+"text": "using 3-tier resolution; all others are built by `GraphBuilder` during AST ingestion.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 292,
+"text": "It is built by the `ASTParser` + `GraphBuilder` + `CallResolver` during ingestion and",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 484,
+"text": "`GraphBuilder` takes all `ParsedFile` outputs and builds a `networkx.DiGraph`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 545,
+"text": "per language) produces bindings for each import statement, and `GraphBuilder.build()` populates `Import.resolved_file` from them.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 1260,
+"text": "GraphBuilder",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/deep-dives.md",
+"line": 864,
+"text": "Re-run FileTraverser + ASTParser + GraphBuilder on entire repo",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/graph-algorithms.md",
+"line": 27,
+"text": "| `defines` | GraphBuilder `add_file()` | `login.py` defines `validate_token` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/graph-algorithms.md",
+"line": 28,
+"text": "| `has_method` | GraphBuilder `add_file()` | `AuthService` has_method `login` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 72,
+"text": "GraphBuilder resolves imports:",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 156,
+"text": "graph.py             # GraphBuilder (import/call/heritage resolution)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 59,
+"text": "| Resolved import | Import whose module path was matched to a repo file. | `GraphBuilder.build()` through `resolve_import()` | `from .models import User -> src/models.py` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 70,
+"text": "| Dependency graph | Directed NetworkX graph containing file nodes, symbol nodes, and edge metadata. | `GraphBuilder` | `nx.DiGraph` with nodes `src/app.py`, `src/app.py::main` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 71,
+"text": "| File node | Graph node for a source file. | `GraphBuilder.add_file()` | `{node_type: \"file\", language: \"python\", symbol_count: 8}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 72,
+"text": "| Symbol node | Graph node for an extracted symbol. | `GraphBuilder.add_file()` | `{node_type: \"symbol\", kind: \"function\", name: \"main\"}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 74,
+"text": "| Synthetic module symbol | Symbol node for top-level calls in a file. | `GraphBuilder.add_file()` | `src/app.py::__module__` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 77,
+"text": "| `defines` edge | File-to-symbol containment. | `GraphBuilder.add_file()` | `src/app.py -> src/app.py::main` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 78,
+"text": "| `imports` edge | File-to-file import relationship. | `GraphBuilder.build()` | `src/app.py -> src/settings.py` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 79,
+"text": "| `imported_names` edge payload | Names imported along an import edge. | `GraphBuilder.build()` | `[\"Settings\", \"load_config\"]` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 80,
+"text": "| `has_method` edge | Class-to-method containment. | `GraphBuilder.add_file()` | `src/models.py::User -> src/models.py::User::save` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 81,
+"text": "| `calls` edge | Symbol-to-symbol call relationship. | `CallResolver`, then `GraphBuilder._resolve_calls()` | `src/app.py::main -> src/db.py::connect` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 87,
+"text": "| Dynamic edge | Edge inferred from runtime/dynamic patterns. | `dynamic_hints/*` and `GraphBuilder.add_dynamic_edges()` | `{edge_type: \"dynamic_imports\", hint_source: \"django\", weight: 1.0}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 88,
+"text": "| `co_changes` edge | File-to-file historical coupling edge. | `GraphBuilder.add_co_change_edges()` from git metadata | `src/a.py -> src/b.py` with `weight: 4.2` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 89,
+"text": "| Stem map | Import-stem to candidate file path lookup used for import resolution. | `GraphBuilder._build_stem_map()` | `{\"models\": [\"src/models.py\", \"tests/models.py\"]}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 90,
+"text": "| File subgraph | File-only graph used for PageRank and betweenness. | `GraphBuilder.file_subgraph()` | All file/external nodes, excluding `co_changes` edges |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 91,
+"text": "| PageRank | File centrality in the import graph. | `GraphBuilder.pagerank()` | `0.01842` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 92,
+"text": "| Betweenness | How often a file sits on shortest paths. | `GraphBuilder.betweenness_centrality()` | `0.0067` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 93,
+"text": "| SCC | Strongly connected component, used to detect dependency cycles. | `GraphBuilder.strongly_connected_components()` | `{\"src/a.py\", \"src/b.py\"}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 95,
+"text": "| Graph JSON | Node-link serialization of the graph. | `GraphBuilder.to_json()` | `{\"directed\": true, \"nodes\": [...], \"links\": [...]}` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/analyzer.py",
+"line": 17,
+"text": "from ...ingestion.graph.builder import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/analyzer.py",
+"line": 233,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/analyzer.py",
+"line": 173,
+"text": "# The C# resolver's project index (``GraphBuilder.dotnet_index``):",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/graph_signals.py",
+"line": 33,
+"text": "# It stays deliberately different from ``GraphBuilder.file_subgraph``, which is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/cost_estimator/plans.py",
+"line": 37,
+"text": "Finalized GraphBuilder (build() already called).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/core.py",
+"line": 267,
+"text": "graph_builder: Any,  # GraphBuilder",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/selection/selector.py",
+"line": 202,
+"text": "# Production callers per symbol id (``GraphBuilder.symbol_uses``), the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/__init__.py",
+"line": 8,
+"text": "GraphBuilder    \u2014 build a NetworkX dependency graph from ParsedFile objects",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/__init__.py",
+"line": 37,
+"text": "from .graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/__init__.py",
+"line": 52,
+"text": "\"GraphBuilder\": \".graph\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/__init__.py",
+"line": 81,
+"text": "\"GraphBuilder\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_resolver.py",
+"line": 20,
+"text": "that the GraphBuilder converts into a CALLS edge. The tiers above are the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_resolver.py",
+"line": 335,
+"text": "Constructed once per ``GraphBuilder.build()`` call with the full set of",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_resolver.py",
+"line": 483,
+"text": "# Shared import-name maps (built once per GraphBuilder.build() and",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/change_detector.py",
+"line": 481,
+"text": "passes GraphBuilder's cached file pagerank so this function",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/README.md",
+"line": 9,
+"text": "`GraphBuilder` is the analysis stage between parsing and generation. It adds",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/README.md",
+"line": 17,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/README.md",
+"line": 19,
+"text": "b = GraphBuilder(repo_path)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/README.md",
+"line": 52,
+"text": "`GraphBuilder.from_persisted(nodes, edges, metrics)` rebuilds a finalized",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/README.md",
+"line": 64,
+"text": "- `builder.py` \u2014 `GraphBuilder` core: node/edge construction + `build()`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/__init__.py",
+"line": 3,
+"text": "GraphBuilder constructs a directed graph from ParsedFile objects with two",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/__init__.py",
+"line": 27,
+"text": "builder.py      \u2014 GraphBuilder core (nodes, edges, build lifecycle)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/__init__.py",
+"line": 39,
+"text": "from .builder import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/__init__.py",
+"line": 42,
+"text": "\"GraphBuilder\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_centrality_cache.py",
+"line": 141,
+"text": "# A ``threading.Lock`` is not picklable, and the GraphBuilder that owns",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_edges.py",
+"line": 3,
+"text": "Mixed into :class:`GraphBuilder`. These passes add edges that static import",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_edges.py",
+"line": 53,
+"text": "\"\"\"Non-import edge construction for :class:`GraphBuilder`.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_import_targets.py",
+"line": 3,
+"text": "Shared by :meth:`GraphBuilder.build`, which draws the import edges, and by the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_metrics.py",
+"line": 3,
+"text": "These methods are mixed into :class:`GraphBuilder`. They read the metric",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_metrics.py",
+"line": 76,
+"text": "\"\"\"Centrality + community + degree metrics for :class:`GraphBuilder`.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_metrics.py",
+"line": 461,
+"text": "With a cache attached (see ``GraphBuilder(centrality_cache_dir=...)``)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_rehydrate.py",
+"line": 1,
+"text": "\"\"\"Rehydrate a :class:`GraphBuilder` from persisted graph rows.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_rehydrate.py",
+"line": 3,
+"text": "After a ``--mode fast`` index the in-memory :class:`GraphBuilder` is gone, but",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_rehydrate.py",
+"line": 86,
+"text": "\"\"\"Construct a :class:`GraphBuilder` from persisted rows instead of ASTs.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_rehydrate.py",
+"line": 117,
+"text": "# graph uses ``parent_name`` (see GraphBuilder.add_file).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_resolvers.py",
+"line": 1,
+"text": "\"\"\"Heritage / member-read / call edge resolution for :class:`GraphBuilder`.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_scoped.py",
+"line": 1,
+"text": "\"\"\"Scoped (patch) build support for :class:`GraphBuilder`.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_serialize.py",
+"line": 3,
+"text": "Mixed into :class:`GraphBuilder`. The main pipeline persists through",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_serialize.py",
+"line": 19,
+"text": "\"\"\"JSON serialisation for :class:`GraphBuilder`.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/builder.py",
+"line": 1,
+"text": "\"\"\"GraphBuilder \u2014 constructs the directed dependency graph from ParsedFiles.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/builder.py",
+"line": 78,
+"text": "class GraphBuilder(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/builder.py",
+"line": 85,
+"text": "builder = GraphBuilder()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/builder.py",
+"line": 195,
+"text": "# GraphBuilder is pickled to hand a fully-built graph (structure +",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 22,
+"text": "tuple that the GraphBuilder converts into graph edges.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 109,
+"text": "Constructed once per ``GraphBuilder.build()`` call with the full set",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 138,
+"text": "# GraphBuilder.build() and injected; standalone construction builds",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/import_index.py",
+"line": 5,
+"text": "inject it into both (the GraphBuilder does this during ``build()``); the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/models.py",
+"line": 379,
+"text": "Used by GraphBuilder to create CALLS edges between symbol nodes.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/context.py",
+"line": 24,
+"text": "Constructed once per ``GraphBuilder.build()`` invocation and passed to",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/dotnet/__init__.py",
+"line": 11,
+"text": "``GraphBuilder.build()`` invocation.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/gdscript.py",
+"line": 105,
+"text": "Built once per ``GraphBuilder.build()`` and stashed on the context, the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/source_text.py",
+"line": 4,
+"text": "``GraphBuilder.set_source_map``, and they reach the resolvers as",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/traverser.py",
+"line": 1017,
+"text": "# Mirrors GraphBuilder._prune_nested_git.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/tsconfig_resolver.py",
+"line": 5,
+"text": "alias resolution that ``GraphBuilder._resolve_import()`` calls before falling",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/tsconfig_resolver.py",
+"line": 128,
+"text": "Instantiate once per ``GraphBuilder.build()`` invocation, passing the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/tsconfig_resolver.py",
+"line": 815,
+"text": "\"\"\"Wire up the TsconfigResolver for the given GraphBuilder, if TS/JS files are present.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/_interfaces/graph_store.py",
+"line": 6,
+"text": ":class:`repowise.core.ingestion.graph.GraphBuilder`.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/coordinator.py",
+"line": 3,
+"text": "Buffers writes across SQL (AsyncSession), in-memory graph (GraphBuilder /",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/coordinator.py",
+"line": 27,
+"text": "GraphBuilder notes",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/coordinator.py",
+"line": 29,
+"text": "The NetworkX DiGraph is stored as ``GraphBuilder._graph`` (private attribute).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/graph.py",
+"line": 333,
+"text": "``GraphBuilder.load_metrics_from_sql`` on large repos. SELECT-then-write",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/graph.py",
+"line": 491,
+"text": "Used to rehydrate an in-memory :class:`GraphBuilder` from SQL without",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/models.py",
+"line": 518,
+"text": "built (additive to ``graph_nodes``) and read back into a GraphBuilder via",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/__init__.py",
+"line": 9,
+"text": ":class:`repowise.core.ingestion.graph.GraphBuilder` behind the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/in_process_graph_store.py",
+"line": 5,
+"text": ":class:`repowise.core.ingestion.graph.GraphBuilder`; the GraphBuilder",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/in_process_graph_store.py",
+"line": 11,
+"text": "builder = GraphBuilder(repo_path)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/in_process_graph_store.py",
+"line": 43,
+"text": "\"\"\"Adopt an existing DiGraph (e.g. one produced by ``GraphBuilder``).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/in_process_graph_store.py",
+"line": 175,
+"text": "Kept in step with :meth:`GraphBuilder.file_subgraph`, the other",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/stores/in_process_graph_store.py",
+"line": 216,
+"text": "\"\"\":meth:`_file_subgraph` minus test-to-test edges, as ``GraphBuilder.centrality_subgraph``.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/incremental/graph.py",
+"line": 579,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/incremental/graph.py",
+"line": 582,
+"text": "builder = GraphBuilder(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/modes.py",
+"line": 66,
+"text": "``GraphBuilder.release_graph``), serving subsequent metric reads from",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/orchestrator.py",
+"line": 78,
+"text": "\"\"\"``GraphBuilder`` instance \u2014 call ``.graph()``, ``.pagerank()``, etc.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/ingestion.py",
+"line": 530,
+"text": "GraphBuilder in this order and ambiguous reference resolution tie-breaks on",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/ingestion.py",
+"line": 829,
+"text": "\"\"\"A GraphBuilder fed *parsed_files* in order (insertion order breaks ties).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/ingestion.py",
+"line": 830,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/ingestion.py",
+"line": 833,
+"text": "graph_builder = GraphBuilder(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/phases/ingestion.py",
+"line": 883,
+"text": "\"\"\"Run ``GraphBuilder.build`` (it emits graph.imports/heritage/calls itself).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/upgrade.py",
+"line": 7,
+"text": ":func:`rehydrate_graph_builder` reconstructs a finalized :class:`GraphBuilder`",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/upgrade.py",
+"line": 31,
+"text": "\"\"\"Rebuild a :class:`GraphBuilder` from persisted rows for *repo_id*.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/upgrade.py",
+"line": 34,
+"text": "and hands them to ``GraphBuilder.from_persisted``. The returned builder is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/upgrade.py",
+"line": 41,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/pipeline/upgrade.py",
+"line": 56,
+"text": "builder = GraphBuilder.from_persisted(nodes, edges, metrics, repo_path=repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2276,
+"text": "- **`GraphBuilder` is picklable across a process boundary.** Fixes a failure when the graph builder is handed to a worker process. (#583)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2792,
+"text": "- **`.xaml` / `.axaml` ingestion** as a passthrough LanguageTag so the traverser produces file nodes that XamlDynamicHints can attach edges to. The extractor was previously emitting edges that GraphBu",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2893,
+"text": "- **Symbol-level PageRank and betweenness were always 0.** Centrality only ran on the file subgraph, so the symbol detail panel showed 0 for every symbol regardless of how heavily it was called or ref",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2933,
+"text": "- **Per-phase progress for graph build and metrics** \u2014 `GraphBuilder.build()` now reports imports/heritage/calls as sub-phases through the existing `ProgressCallback`, and the orchestrator drives metr",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2950,
+"text": "- **Graph metrics fan out in parallel.** PageRank, betweenness, file/symbol community detection, and execution-flow tracing previously ran serially across persist + generation, with PageRank and betwe",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3370,
+"text": "in-memory `GraphBuilder` is supplied. Now falls back to SQL `COUNT(*)`.",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "scripts/benchmark_upgrade.py",
+"line": 10,
+"text": "full re-index structural cost  =  GraphBuilder.build() + file_metrics_snapshot()",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "scripts/benchmark_upgrade.py",
+"line": 40,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "scripts/benchmark_upgrade.py",
+"line": 47,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "scripts/validate_quality.py",
+"line": 20,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "scripts/validate_quality.py",
+"line": 83,
+"text": "builder = GraphBuilder(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 166,
+"text": "-    from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 167,
+"text": "+    from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder, compute_content_hash",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 189,
+"text": "-    graph_builder = GraphBuilder(repo_path, exclude_patterns=exclude_patterns)",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 190,
+"text": "+    graph_builder = GraphBuilder(",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1729,
+"text": "+        # Shared import-name maps (built once per GraphBuilder.build() and",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3234,
+"text": "+        With a cache attached (see ``GraphBuilder(centrality_cache_dir=...)``)",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3326,
+"text": "@@ -45,12 +45,24 @@ class GraphBuilder(MetricsMixin, ResolveMixin, EdgesMixin, SerializeMixin, Rehyd",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3351,
+"text": "@@ -68,6 +80,16 @@ class GraphBuilder(MetricsMixin, ResolveMixin, EdgesMixin, SerializeMixin, Rehyd",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3368,
+"text": "@@ -86,6 +108,20 @@ class GraphBuilder(MetricsMixin, ResolveMixin, EdgesMixin, SerializeMixin, Rehyd",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3389,
+"text": "@@ -102,6 +138,7 @@ class GraphBuilder(MetricsMixin, ResolveMixin, EdgesMixin, SerializeMixin, Rehyd",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3425,
+"text": "+        # GraphBuilder.build() and injected; standalone construction builds",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3510,
+"text": "+inject it into both (the GraphBuilder does this during ``build()``); the",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4299,
+"text": "``GraphBuilder.load_metrics_from_sql`` on large repos. SELECT-then-write",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4945,
+"text": "-    graph_builder = GraphBuilder(repo_path=repo_path, exclude_patterns=exclude_patterns)",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 4946,
+"text": "+    graph_builder = GraphBuilder(",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 5041,
+"text": "# Aggregate results into GraphBuilder on the main loop (not thread-safe).",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 56,
+"text": "Opt-in via GraphBuilder(centrality_cache_dir=...) \u2014 wired from the init",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 132,
+"text": "GraphBuilder.build() and injected (constructors keep a build-it-locally",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_log_full.txt",
+"line": 1209,
+"text": "- GraphBuilder accepts exclude_patterns; add_dynamic_edges no longer creates",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/integration/persistence/test_graph_metrics_pg.py",
+"line": 5,
+"text": "that a GraphBuilder hydrated from it reproduces the NetworkX metrics.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/persistence/test_graph_metrics_pg.py",
+"line": 15,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/persistence/test_graph_metrics_pg.py",
+"line": 52,
+"text": "def _build_sample() -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/persistence/test_graph_metrics_pg.py",
+"line": 87,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_commonjs_dead_code.py",
+"line": 16,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_commonjs_dead_code.py",
+"line": 47,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_commonjs_dead_code.py",
+"line": 114,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 28,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 37,
+"text": "builder = GraphBuilder(repo_path=CPP_SAMPLE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cpp_dead_code.py",
+"line": 171,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dead_code_integration.py",
+"line": 11,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dead_code_integration.py",
+"line": 24,
+"text": "graph_builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_deterministic_generation.py",
+"line": 19,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_deterministic_generation.py",
+"line": 35,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_deterministic_generation.py",
+"line": 194,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_deterministic_generation.py",
+"line": 282,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dotnet_solution.py",
+"line": 3,
+"text": "Runs the full FileTraverser \u2192 ASTParser \u2192 GraphBuilder pipeline against",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dotnet_solution.py",
+"line": 30,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_dotnet_solution.py",
+"line": 34,
+"text": "builder = GraphBuilder(repo_path=DOTNET_SOLUTION)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_determinism.py",
+"line": 32,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_determinism.py",
+"line": 58,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_determinism.py",
+"line": 149,
+"text": "\"\"\"GraphBuilder-level check that the component list itself is stable.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_determinism.py",
+"line": 162,
+"text": "# GraphBuilder.__init__ owns. A double that stands in for the mixin",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 21,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 180,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 248,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 295,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 345,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 388,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 631,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_generation_pipeline.py",
+"line": 633,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_git_intelligence_integration.py",
+"line": 5,
+"text": "2. GraphBuilder.add_co_change_edges adds co_changes edges from git metadata.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_git_intelligence_integration.py",
+"line": 15,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_git_intelligence_integration.py",
+"line": 51,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser \u2192 ASTParser \u2192 GraphBuilder \u2192 DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 24,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_go_dead_code.py",
+"line": 33,
+"text": "builder = GraphBuilder(repo_path=GO_SAMPLE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_coverage_integration.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_coverage_integration.py",
+"line": 20,
+"text": "def _build_parsed_files(repo_path: Path) -> tuple[list, GraphBuilder]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_coverage_integration.py",
+"line": 24,
+"text": "graph_builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_perf_benchmark.py",
+"line": 22,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_perf_benchmark.py",
+"line": 65,
+"text": "gb = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_health_perf_benchmark.py",
+"line": 105,
+"text": "gb = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ingest_sample_repo.py",
+"line": 6,
+"text": "- GraphBuilder    \u2014 builds a dependency graph and computes metrics",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ingest_sample_repo.py",
+"line": 53,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ingest_sample_repo.py",
+"line": 57,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 29,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 38,
+"text": "builder = GraphBuilder(repo_path=JVM_SAMPLE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_jvm_dead_code.py",
+"line": 147,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_persistence.py",
+"line": 24,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_persistence.py",
+"line": 89,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_reachability_root_equivalence.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_reachability_root_equivalence.py",
+"line": 24,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 3,
+"text": "Runs the full FileTraverser -> ASTParser -> GraphBuilder -> DeadCodeAnalyzer",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 25,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_ts_dead_code.py",
+"line": 34,
+"text": "builder = GraphBuilder(repo_path=TS_SAMPLE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_upgrade_fast_to_full.py",
+"line": 11,
+"text": "* **no graph resolution runs during the upgrade** \u2014 ``GraphBuilder.build`` is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_upgrade_fast_to_full.py",
+"line": 27,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_upgrade_fast_to_full.py",
+"line": 83,
+"text": "real_build = GraphBuilder.build",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_upgrade_fast_to_full.py",
+"line": 89,
+"text": "monkeypatch.setattr(GraphBuilder, \"build\", _spy_build)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_wiki_idempotence.py",
+"line": 32,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_wiki_idempotence.py",
+"line": 70,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/kg_fixtures.py",
+"line": 4,
+"text": "a mock ``GraphBuilder`` and runs the real skeleton + curation, so invariant",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/kg_fixtures.py",
+"line": 68,
+"text": "\"\"\"Build a synthetic repo: parsed files + a mock GraphBuilder.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_conventions.py",
+"line": 21,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_conventions.py",
+"line": 58,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_knowledge_graph.py",
+"line": 67,
+"text": "\"\"\"Create a mock GraphBuilder with configurable graph data.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 8,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 108,
+"text": "def build_fixture(repo: Path, files: dict[str, str] = _REPO) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 113,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_public_api_flag.py",
+"line": 391,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_analysis_cmds_include_submodules.py",
+"line": 5,
+"text": "rebuild the graph in-process; constructing FileTraverser / GraphBuilder",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_search.py",
+"line": 123,
+"text": "\"GraphBuilder\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_search.py",
+"line": 227,
+"text": "\"GraphBuilder\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_commands.py",
+"line": 477,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_commands.py",
+"line": 487,
+"text": "real_add = GraphBuilder.add_framework_edges",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_commands.py",
+"line": 493,
+"text": "monkeypatch.setattr(GraphBuilder, \"add_framework_edges\", _spy)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_cost_estimator.py",
+"line": 66,
+"text": "\"\"\"Create a mock GraphBuilder with the necessary methods.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_include_submodules.py",
+"line": 6,
+"text": "previously constructed FileTraverser and GraphBuilder without the flags \u2014",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_workspace_kg_artifact_wiring.py",
+"line": 73,
+"text": "patch(\"repowise.core.ingestion.GraphBuilder\", return_value=MagicMock()),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/_helpers.py",
+"line": 28,
+"text": "GraphBuilder layout).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/_helpers.py",
+"line": 45,
+"text": "# Create symbol nodes + defines edges (mirrors GraphBuilder.add_file)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_android_jvm_roots.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_android_jvm_roots.py",
+"line": 107,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_compose_hilt_roots.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_compose_hilt_roots.py",
+"line": 104,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_convention_never_flag.py",
+"line": 200,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_convention_never_flag.py",
+"line": 219,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_scanned_roots.py",
+"line": 23,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_csharp_scanned_roots.py",
+"line": 129,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_framework_registration_rescues.py",
+"line": 172,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_go_name_uses.py",
+"line": 16,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_go_name_uses.py",
+"line": 270,
+"text": "traverser, parser, builder = FileTraverser(root), ASTParser(), GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_build_roots.py",
+"line": 98,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_resource_roots.py",
+"line": 16,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_jvm_resource_roots.py",
+"line": 76,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_laravel_liveness.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_laravel_liveness.py",
+"line": 47,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_overload_unit.py",
+"line": 137,
+"text": "parser, builder = ASTParser(), GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_pascal_name_uses.py",
+"line": 10,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_pascal_name_uses.py",
+"line": 60,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_php_tool_loaded_files.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_php_tool_loaded_files.py",
+"line": 32,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_program_main.py",
+"line": 17,
+"text": "from repowise.core.ingestion.graph.builder import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_program_main.py",
+"line": 64,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_react_native_platform_files.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_react_native_platform_files.py",
+"line": 41,
+"text": "def _build(repo: Path) -> tuple[GraphBuilder, dict[str, bytes]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_react_native_platform_files.py",
+"line": 42,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_registering_decorators.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_registering_decorators.py",
+"line": 136,
+"text": "traverser, parser, builder = FileTraverser(root), ASTParser(), GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 25,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_scan_equivalence.py",
+"line": 119,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 23,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 93,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/dead_code/test_swift_reachability.py",
+"line": 304,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_file_page_scope_agreement.py",
+"line": 16,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_file_page_scope_agreement.py",
+"line": 52,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 26,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_package_public_api.py",
+"line": 40,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_page_generator.py",
+"line": 517,
+"text": "\"\"\"Build a GraphBuilder from a list of ParsedFile objects.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_page_generator.py",
+"line": 518,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_page_generator.py",
+"line": 520,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/refactoring_tree_fixture.py",
+"line": 89,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/refactoring_tree_fixture.py",
+"line": 93,
+"text": "graph_builder = GraphBuilder(root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_advisory_by_language.py",
+"line": 20,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_advisory_by_language.py",
+"line": 157,
+"text": "parser, builder, parsed = ASTParser(), GraphBuilder(tmp_path), []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_analyze_paths_parity.py",
+"line": 11,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_analyze_paths_parity.py",
+"line": 41,
+"text": "parser, gb, parsed = ASTParser(), GraphBuilder(), []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_cross_file_oracle.py",
+"line": 28,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_cross_file_oracle.py",
+"line": 61,
+"text": "gb = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dataflow_facts.py",
+"line": 291,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_dataflow_facts.py",
+"line": 296,
+"text": "parser, gb, parsed = ASTParser(), GraphBuilder(), []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_engine_golden.py",
+"line": 19,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_engine_golden.py",
+"line": 45,
+"text": "builder = GraphBuilder(root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_crossfn.py",
+"line": 37,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_crossfn.py",
+"line": 157,
+"text": "gb = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_incremental_parity.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_incremental_parity.py",
+"line": 43,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_spawned_and_mixed_groups.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_spawned_and_mixed_groups.py",
+"line": 155,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_spawned_and_mixed_groups.py",
+"line": 225,
+"text": "rehydrated = GraphBuilder.from_persisted(nodes, edges, fresh.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_reexport_coverage_gate.py",
+"line": 8,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_reexport_coverage_gate.py",
+"line": 33,
+"text": "parser, gb, parsed = ASTParser(), GraphBuilder(), []",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_break_cycle.py",
+"line": 228,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_break_cycle.py",
+"line": 236,
+"text": "builder, parser = GraphBuilder(), ASTParser()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_gdscript.py",
+"line": 388,
+"text": "from repowise.core.ingestion import FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_gdscript.py",
+"line": 392,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_python.py",
+"line": 133,
+"text": "result = parser.parse_file(fi, b\"from .graph import GraphBuilder\\n\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_python.py",
+"line": 135,
+"text": "assert rel_import.imported_names == [\"GraphBuilder\"]",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_angular_framework_edges.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_angular_framework_edges.py",
+"line": 94,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_anonymous_class_methods.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_anonymous_class_methods.py",
+"line": 288,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_apex_resolution.py",
+"line": 8,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_apex_resolution.py",
+"line": 16,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_apex_rest_framework_edges.py",
+"line": 10,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_apex_rest_framework_edges.py",
+"line": 35,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 335,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 345,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 519,
+"text": "from repowise.core.ingestion import GraphBuilder, wire_tsconfig_resolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 529,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 574,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_astro_extractors.py",
+"line": 591,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aura_framework_edges.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aura_framework_edges.py",
+"line": 115,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aws_lambda_framework_edges.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_aws_lambda_framework_edges.py",
+"line": 235,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 26,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 83,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 122,
+"text": "# type_use edges + WASM export markers (end-to-end through GraphBuilder)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_c_type_use.py",
+"line": 233,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 41,
+"text": "gb = GraphBuilder(\"C:/fake\", centrality_cache_dir=cache_dir)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 221,
+"text": "\"\"\"GraphBuilder is pickled to hand built graph state across a process",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 252,
+"text": "gb = GraphBuilder(\"C:/fake\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 262,
+"text": "gb = GraphBuilder(\"C:/fake\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 274,
+"text": "gb = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path, head_commit=\"c0ffee\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 285,
+"text": "gb2 = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path, head_commit=\"deadbee\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 307,
+"text": "gb = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path, head_commit=\"c0ffee\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 313,
+"text": "gb2 = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path, head_commit=\"deadbee\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 320,
+"text": "gb3 = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path, head_commit=\"deadbee\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 357,
+"text": "gb = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 362,
+"text": "reused_builder = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 439,
+"text": "gb = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_cache.py",
+"line": 445,
+"text": "gb2 = GraphBuilder(\"C:/fake\", centrality_cache_dir=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 10,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 56,
+"text": "def pytest_conftest_hub(tmp_path: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 57,
+"text": "gb = GraphBuilder(str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 64,
+"text": "def test_conftest_ranks_below_every_source_module(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 74,
+"text": "def test_only_edges_between_two_tests_are_hidden(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 83,
+"text": "def test_degrees_and_file_subgraph_keep_test_edges(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 89,
+"text": "def test_view_is_cached_and_reset_with_the_graph(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 97,
+"text": "def test_builder_with_built_views_still_pickles(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 108,
+"text": "def test_graph_store_scores_the_same_view(pytest_conftest_hub: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_change_detector.py",
+"line": 324,
+"text": "already holds GraphBuilder's cached file pagerank).\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 11,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 16,
+"text": "def builder(tmp_path: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 18,
+"text": "gb = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 27,
+"text": "def test_a_bare_string_partner_does_not_crash_the_pass(builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 36,
+"text": "def test_a_non_numeric_weight_does_not_crash_the_pass(builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 42,
+"text": "def test_the_pair_is_added_once_from_either_side(builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 51,
+"text": "def test_a_pair_seen_once_is_not_an_edge(builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 61,
+"text": "def test_an_import_edge_corroborates_the_pair(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 67,
+"text": "def test_a_type_reference_corroborates_it_too(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 75,
+"text": "def test_an_edge_the_other_way_still_corroborates(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 81,
+"text": "def test_a_co_change_edge_does_not_corroborate_itself(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 87,
+"text": "def test_two_graph_nodes_with_no_edge_are_unexplained(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 92,
+"text": "def test_a_file_outside_the_graph_is_not_applicable(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 99,
+"text": "def test_both_sides_outside_the_graph_is_not_applicable(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 104,
+"text": "def test_a_malformed_record_is_skipped_not_raised(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 109,
+"text": "self, builder: GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 119,
+"text": "def test_a_doc_in_the_graph_is_not_applicable(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 125,
+"text": "def test_a_language_with_a_resolver_stays_a_finding(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 133,
+"text": "def test_an_edge_outranks_the_language_gate(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 141,
+"text": "def test_the_corroborating_edge_names_itself(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 147,
+"text": "def test_a_stale_kind_is_cleared_when_the_edge_goes(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 156,
+"text": "def test_a_chain_through_a_barrel_explains_the_pair(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 171,
+"text": "def test_a_shared_neighbour_explains_nothing(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 188,
+"text": "def test_a_co_change_edge_through_a_barrel_is_not_a_chain(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 200,
+"text": "def _java(builder: GraphBuilder, path: str, cls: str, base: str | None = None) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 208,
+"text": "def test_a_transitive_ancestor_explains_the_pair(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 228,
+"text": "def test_an_external_base_does_not_hide_an_in_repo_one(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 246,
+"text": "def test_the_label_survives_the_column_round_trip(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 266,
+"text": "def test_a_file_with_no_partners_is_left_alone(self, builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 274,
+"text": "empty = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 280,
+"text": "def test_a_partner_list_keyed_by_a_non_node_adds_no_node(builder: GraphBuilder) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_co_change_edges.py",
+"line": 289,
+"text": "builder: GraphBuilder,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 25,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 34,
+"text": "def _builder(repo: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 37,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 48,
+"text": "def _pair_builder(**edge_attrs) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 52,
+"text": "b = GraphBuilder.__new__(GraphBuilder)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 125,
+"text": "def _graph_with(self, **edge_attrs) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 126,
+"text": "b = GraphBuilder.__new__(GraphBuilder)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 163,
+"text": "def _graph_with(self, edge_type: str) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 166,
+"text": "b = GraphBuilder.__new__(GraphBuilder)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 379,
+"text": "b = GraphBuilder.from_persisted(nodes=nodes, edges=edges, metrics={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 392,
+"text": "b = GraphBuilder.from_persisted(nodes=nodes, edges=edges, metrics={})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cohesion_cycles.py",
+"line": 457,
+"text": "revived = GraphBuilder.__new__(GraphBuilder)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_base_class_receiver.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_base_class_receiver.py",
+"line": 21,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_class_scope_calls.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_class_scope_calls.py",
+"line": 22,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_decl_def.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_decl_def.py",
+"line": 21,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_generator_template_pairing.py",
+"line": 11,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_generator_template_pairing.py",
+"line": 15,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_header_pairs.py",
+"line": 9,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_header_pairs.py",
+"line": 15,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_inclass_declarations.py",
+"line": 22,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_inclass_declarations.py",
+"line": 52,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_include_fragments.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_include_fragments.py",
+"line": 22,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_inherited_field_receivers.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_inherited_field_receivers.py",
+"line": 16,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_internal_linkage.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_internal_linkage.py",
+"line": 18,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_reference_edges.py",
+"line": 17,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_reference_edges.py",
+"line": 23,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_scoped_calls.py",
+"line": 19,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_scoped_calls.py",
+"line": 25,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_std_name_leaks.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_std_name_leaks.py",
+"line": 19,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_template_member_parent.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_template_member_parent.py",
+"line": 98,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_this_calls.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_this_calls.py",
+"line": 32,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_typed_receivers.py",
+"line": 20,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_typed_receivers.py",
+"line": 26,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_call_typed_locals.py",
+"line": 153,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_call_typed_locals.py",
+"line": 161,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_constructed_types.py",
+"line": 16,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_constructed_types.py",
+"line": 35,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_partials.py",
+"line": 7,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_partials.py",
+"line": 17,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_same_namespace.py",
+"line": 10,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_same_namespace.py",
+"line": 140,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_type_use.py",
+"line": 18,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_type_use.py",
+"line": 360,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_declaration_edges_not_cycles.py",
+"line": 21,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_declaration_edges_not_cycles.py",
+"line": 25,
+"text": "def _build(repo: Path, files: dict[str, str]) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_declaration_edges_not_cycles.py",
+"line": 31,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_declaration_edges_not_cycles.py",
+"line": 38,
+"text": "def _cycles(builder: GraphBuilder) -> list[set[str]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dispatch_edges.py",
+"line": 23,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dispatch_edges.py",
+"line": 31,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_django_dynamic_hints.py",
+"line": 150,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_import_bindings.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dynamic_import_bindings.py",
+"line": 79,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_elixir_bare_name_scope.py",
+"line": 51,
+"text": "\"\"\"Stamp the resolved file on one import, as GraphBuilder does before resolution.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_express_framework_edges.py",
+"line": 11,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_express_framework_edges.py",
+"line": 116,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_file_self_loops.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_file_self_loops.py",
+"line": 21,
+"text": "def _build(repo: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_file_self_loops.py",
+"line": 22,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_fs_walk.py",
+"line": 514,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_fs_walk.py",
+"line": 516,
+"text": "assert GraphBuilder(tmp_path)._prune_nested_git is True",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_fs_walk.py",
+"line": 517,
+"text": "assert GraphBuilder(tmp_path, include_submodules=True)._prune_nested_git is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_fs_walk.py",
+"line": 518,
+"text": "assert GraphBuilder(tmp_path, include_nested_repos=True)._prune_nested_git is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 9,
+"text": "These tests drive the real parser, GraphBuilder and analyzer end-to-end.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 20,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_interface_satisfaction.py",
+"line": 95,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 10,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_resolver.py",
+"line": 182,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 16,
+"text": "All tests drive the real parser, GraphBuilder and analyzer \u2014 no mocking of",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 29,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 113,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 173,
+"text": "# type_use edges + call edges (end-to-end through GraphBuilder)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_go_type_use.py",
+"line": 260,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 1,
+"text": "\"\"\"Unit tests for GraphBuilder.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 8,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 64,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 69,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 73,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 77,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 81,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 85,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 98,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 104,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 114,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 123,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 159,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 168,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 176,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 184,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 201,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 209,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 217,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 225,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 236,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 246,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 277,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 291,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 306,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 325,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 338,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 349,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 363,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 384,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 397,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 430,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 467,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 484,
+"text": "\"\"\"GraphBuilder without resolver behaves identically to before.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 485,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 506,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 526,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 536,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 549,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 558,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 571,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 581,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 593,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 601,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 612,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 628,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 635,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 682,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 705,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 715,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 723,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 731,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 760,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 775,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 791,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 807,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 823,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 839,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 854,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 878,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 894,
+"text": "b = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 908,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 938,
+"text": "gb = GraphBuilder(\"/tmp/fake\", exclude_patterns=[\".claude/\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 944,
+"text": "gb = GraphBuilder(\"/tmp/fake\", exclude_patterns=[\".claude/\"])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 971,
+"text": "gb = GraphBuilder(\"/tmp/fake\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph.py",
+"line": 979,
+"text": "gb = GraphBuilder(\"/tmp/fake\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_metrics_sql.py",
+"line": 13,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_metrics_sql.py",
+"line": 55,
+"text": "def _build_sample() -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_metrics_sql.py",
+"line": 57,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_node_membership.py",
+"line": 13,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_node_membership.py",
+"line": 55,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_node_membership.py",
+"line": 74,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 1,
+"text": "\"\"\"Graph rehydration equivalence: ``GraphBuilder.from_persisted``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 13,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 55,
+"text": "def _build_sample() -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 57,
+"text": "b = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 65,
+"text": "def _serialize(builder: GraphBuilder) -> tuple[list[dict], list[dict]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 105,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, metrics)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 121,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 148,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 162,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 173,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, metrics=None)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 186,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 200,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 221,
+"text": "original = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 225,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 242,
+"text": "original = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 246,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, original.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 254,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_graph_rehydrate.py",
+"line": 264,
+"text": "hydrated = GraphBuilder.from_persisted(nodes, edges, builder.file_metrics_snapshot())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_import_load_kind.py",
+"line": 20,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_import_load_kind.py",
+"line": 46,
+"text": "def _builder(files: dict[str, str]) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_import_load_kind.py",
+"line": 48,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_import_load_kind.py",
+"line": 55,
+"text": "def _cycles(builder: GraphBuilder) -> list:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extractors.py",
+"line": 341,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extractors.py",
+"line": 357,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_multiplatform_calls.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_multiplatform_calls.py",
+"line": 101,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_resolver.py",
+"line": 222,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_resolver.py",
+"line": 238,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_resolver.py",
+"line": 254,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_resolver.py",
+"line": 270,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_typealias_calls.py",
+"line": 16,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_typealias_calls.py",
+"line": 52,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lightweight_resolvers.py",
+"line": 15,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lightweight_resolvers.py",
+"line": 557,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lwc_framework_edges.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lwc_framework_edges.py",
+"line": 104,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_manifest_entry_points.py",
+"line": 4,
+"text": "GraphBuilder (whose warmups stamp the TS manifest entries) and KG curation, so",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_manifest_entry_points.py",
+"line": 24,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_manifest_entry_points.py",
+"line": 47,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_metrics_precompute.py",
+"line": 10,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_metrics_precompute.py",
+"line": 41,
+"text": "def _build(tmp_path: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_metrics_precompute.py",
+"line": 42,
+"text": "gb = GraphBuilder(str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_object_literal_method_graph.py",
+"line": 14,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_object_literal_method_graph.py",
+"line": 72,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_declarations.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_declarations.py",
+"line": 30,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 28,
+"text": "from repowise.core.ingestion.graph.builder import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 101,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 558,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 588,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_parallel_betweenness.py",
+"line": 14,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_parallel_betweenness.py",
+"line": 32,
+"text": "def _symbol_builder(g: nx.DiGraph, **kwargs) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_parallel_betweenness.py",
+"line": 33,
+"text": "builder = GraphBuilder(**kwargs)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pascal_call_resolution.py",
+"line": 9,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pascal_call_resolution.py",
+"line": 130,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pascal_call_resolution.py",
+"line": 180,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pascal_call_resolution.py",
+"line": 208,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pytest_fixture_edges.py",
+"line": 15,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_pytest_fixture_edges.py",
+"line": 46,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 5,
+"text": "longer flagged. They drive the *real* parser, GraphBuilder and analyzer \u2014",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 29,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 57,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_dead_code_fixes.py",
+"line": 472,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_qualified_names.py",
+"line": 3,
+"text": "The parser sees one file, so it dots the raw path. ``GraphBuilder.build`` runs",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_qualified_names.py",
+"line": 10,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_qualified_names.py",
+"line": 18,
+"text": "def _build(files: dict[str, tuple[str, bytes]]) -> tuple[dict[str, dict[str, str]], GraphBuilder]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_qualified_names.py",
+"line": 20,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_resolver_external.py",
+"line": 384,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_resolver_external.py",
+"line": 389,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_string_registry_hints.py",
+"line": 19,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_string_registry_hints.py",
+"line": 440,
+"text": "def _builder_with_import(names: list[str]) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_string_registry_hints.py",
+"line": 441,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_python_string_registry_hints.py",
+"line": 467,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_qml_imports.py",
+"line": 250,
+"text": "# Built the way GraphBuilder.build does: path_set is the traversed set.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ruby_resolver.py",
+"line": 185,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ruby_resolver.py",
+"line": 197,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ruby_resolver.py",
+"line": 209,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ruby_resolver.py",
+"line": 217,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cargo_targets.py",
+"line": 18,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cargo_targets.py",
+"line": 26,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 29,
+"text": "All tests drive the real parser, GraphBuilder and analyzer \u2014 no mocking of",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 42,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 125,
+"text": "# Graph + dead-code outcome (end-to-end through GraphBuilder)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 157,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_field_type_use.py",
+"line": 238,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_module_paths.py",
+"line": 18,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_module_paths.py",
+"line": 56,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_module_paths.py",
+"line": 229,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_test_consumer.py",
+"line": 4,
+"text": "parser, GraphBuilder and analyzer end-to-end against a crate where a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_test_consumer.py",
+"line": 23,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_test_consumer.py",
+"line": 91,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 23,
+"text": "All tests drive the real parser and GraphBuilder -- no mocking.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 35,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 263,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_type_use.py",
+"line": 330,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_typed_receivers.py",
+"line": 13,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_typed_receivers.py",
+"line": 19,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_flow_edges.py",
+"line": 12,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_flow_edges.py",
+"line": 165,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_schema.py",
+"line": 10,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_salesforce_schema.py",
+"line": 53,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_same_line_calls.py",
+"line": 16,
+"text": "from repowise.core.ingestion.graph.builder import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_same_line_calls.py",
+"line": 45,
+"text": "builder = GraphBuilder(repo_path=root)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_sampled_betweenness.py",
+"line": 13,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_sampled_betweenness.py",
+"line": 88,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_spring_framework_edges.py",
+"line": 232,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_spring_framework_edges.py",
+"line": 235,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_star_import_barrel.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_star_import_barrel.py",
+"line": 29,
+"text": "gb = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_subgraph_cache.py",
+"line": 1,
+"text": "\"\"\"Unit tests for GraphBuilder subgraph caching (perf: 7 metric methods used",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_subgraph_cache.py",
+"line": 13,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_subgraph_cache.py",
+"line": 37,
+"text": "def _builder(tmp_path: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_subgraph_cache.py",
+"line": 38,
+"text": "gb = GraphBuilder(str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_dynamic_import_dead_code.py",
+"line": 10,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_dynamic_import_dead_code.py",
+"line": 32,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_framework_import_reuse.py",
+"line": 29,
+"text": "from repowise.core.ingestion import GraphBuilder, wire_tsconfig_resolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_framework_import_reuse.py",
+"line": 167,
+"text": "def _builder(repo: Path) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_framework_import_reuse.py",
+"line": 169,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_framework_import_reuse.py",
+"line": 363,
+"text": "def _context(builder: GraphBuilder, repo: Path) -> ResolverContext:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 8,
+"text": "worst of it. These tests drive the real parser \u2192 GraphBuilder \u2192",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 19,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_import_alias_dead_code.py",
+"line": 42,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 7,
+"text": "real parser \u2192 GraphBuilder \u2192 DeadCodeAnalyzer over a barrel chain and assert",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 18,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_reexport_dead_code.py",
+"line": 41,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_imports.py",
+"line": 10,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_imports.py",
+"line": 59,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_imports.py",
+"line": 81,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_imports.py",
+"line": 98,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 25,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 123,
+"text": "# type_use edges + dead-code outcome (end-to-end through GraphBuilder)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 132,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 263,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_ts_type_use.py",
+"line": 280,
+"text": "builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_tsconfig_cli_repro.py",
+"line": 10,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_tsconfig_cli_repro.py",
+"line": 83,
+"text": "graph_builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_tsconfig_cli_repro.py",
+"line": 171,
+"text": "graph_builder = GraphBuilder(repo_path=tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_value_reference_edges.py",
+"line": 22,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_value_reference_edges.py",
+"line": 28,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_vbnet_same_namespace.py",
+"line": 15,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_vbnet_same_namespace.py",
+"line": 35,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_vbnet_self_calls.py",
+"line": 7,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_vbnet_self_calls.py",
+"line": 13,
+"text": "builder = GraphBuilder(repo_path=repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_visualforce_framework_edges.py",
+"line": 11,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_visualforce_framework_edges.py",
+"line": 109,
+"text": "builder = GraphBuilder(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_warmup_source_map.py",
+"line": 5,
+"text": "used to re-open each file during ``GraphBuilder.build()``, after ingestion",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_xaml_dynamic_hints.py",
+"line": 186,
+"text": "correctly but ``GraphBuilder.add_dynamic_edges`` dropped them",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_betweenness_commit_stamp.py",
+"line": 24,
+"text": "\"\"\"Minimal stand-in for the parts of GraphBuilder persist_graph_nodes reads.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 45,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 47,
+"text": "assert {\"GraphBuilder\", \"FileTraverser\"} <= set(dir(ingestion))",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_crud_import_cost.py",
+"line": 48,
+"text": "assert ingestion.GraphBuilder is GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_graph_edge_type_only.py",
+"line": 6,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_graph_edge_type_only.py",
+"line": 51,
+"text": "rehydrated = GraphBuilder.from_persisted(loaded_nodes, loaded_edges)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_graph_edge_type_only.py",
+"line": 86,
+"text": "rehydrated = GraphBuilder.from_persisted(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_graph_edge_type_only.py",
+"line": 99,
+"text": "builder = GraphBuilder()",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 20,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 33,
+"text": "def _build_graph(repo_dir: Path) -> tuple[GraphBuilder, list]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 37,
+"text": "gb = GraphBuilder(repo_dir)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 47,
+"text": "def _graph_edges(gb: GraphBuilder) -> list[dict]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_incremental_edge_persist.py",
+"line": 70,
+"text": "session, repo_id: str, gb: GraphBuilder, *, fingerprint: str | None = None",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_overload_identity_migration.py",
+"line": 18,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_overload_identity_migration.py",
+"line": 55,
+"text": "def _build(repo_dir: Path) -> tuple[GraphBuilder, list]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_overload_identity_migration.py",
+"line": 57,
+"text": "gb = GraphBuilder(repo_dir)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_overload_identity_migration.py",
+"line": 108,
+"text": "async def _update(session, repo_id: str, gb: GraphBuilder, parsed: list, changed: list[str]) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_public_api_round_trip.py",
+"line": 8,
+"text": "from repowise.core.ingestion.graph import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_public_api_round_trip.py",
+"line": 23,
+"text": "rehydrated = GraphBuilder.from_persisted(await get_all_graph_nodes(async_session, repo.id), [])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/persistence/test_search.py",
+"line": 66,
+"text": "await fts.index(\"p2\", \"Graph Builder\", \"The GraphBuilder class builds dependency graphs.\")",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_cancellation.py",
+"line": 137,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_cancellation.py",
+"line": 141,
+"text": "builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_framework_edge_failure_visible.py",
+"line": 98,
+"text": "# so teardown does not leave a same-valued shadow behind on GraphBuilder.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_incremental_graph_patch.py",
+"line": 21,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_incremental_graph_patch.py",
+"line": 501,
+"text": "original = GraphBuilder._add_import_edge",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_incremental_graph_patch.py",
+"line": 507,
+"text": "monkeypatch.setattr(GraphBuilder, \"_add_import_edge\", spy)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_index_persistence.py",
+"line": 11,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_index_persistence.py",
+"line": 38,
+"text": "graph_builder=GraphBuilder(tmp_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_index_persistence.py",
+"line": 179,
+"text": "graph_builder=GraphBuilder(writer.root),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_ingestion_file_order.py",
+"line": 4,
+"text": "GraphBuilder is part of the graph's identity, and resumed and fresh runs must",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_init_update_graph_convergence.py",
+"line": 10,
+"text": "- Init must feed files to the GraphBuilder in walk order like the update",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_run_generation_test_run.py",
+"line": 49,
+"text": "\"\"\"A bare GraphBuilder whose graph has a node per file (pagerank on a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_run_generation_test_run.py",
+"line": 59,
+"text": "b = object.__new__(_builder_mod.GraphBuilder)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_graph_convergence.py",
+"line": 24,
+"text": "from repowise.core.ingestion import ASTParser, FileTraverser, GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_graph_convergence.py",
+"line": 57,
+"text": "def _build_init_shaped_graph(tmp_path: Path, git_meta_map: dict) -> GraphBuilder:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_graph_convergence.py",
+"line": 64,
+"text": "gb = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/pipeline/test_update_graph_convergence.py",
+"line": 81,
+"text": "def _edge_set(gb: GraphBuilder) -> set[tuple[str, str, str]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_job_executor.py",
+"line": 19,
+"text": "from repowise.core.ingestion import GraphBuilder",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_job_executor.py",
+"line": 91,
+"text": "result.graph_builder = GraphBuilder(tmp_path)",
+"cls": "code",
+"ext": ".py"
+}
+]

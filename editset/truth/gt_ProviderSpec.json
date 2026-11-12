@@ -1,0 +1,254 @@
+[
+{
+"path": ".github/CONTRIBUTING.md",
+"line": 255,
+"text": "2. Add one `ProviderSpec` to `_SPECS` in",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/agent/INTEGRATIONS.md",
+"line": 122,
+"text": "a `ProviderSpec` in",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 329,
+"text": "Each provider is described once, by a `ProviderSpec` in",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 355,
+"text": "Default limits come from each provider's `ProviderSpec.rate_limit`. Agent CLI",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 1615,
+"text": "2. Add one `ProviderSpec` to `_SPECS` in `providers/llm/specs.py`. Nothing else",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 38,
+"text": "ProviderSpec               AgentTarget                 AgentAdapter (cli/agent_adapters)",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 53,
+"text": "| `ProviderSpec` | `core/providers/llm/specs.py` | One record per LLM provider. `KEYLESS_PROVIDERS`, `REPO_PATH_PROVIDERS`, `PROVIDER_DEFAULTS`, `ZERO_COST_MODEL_PREFIXES`, the server catalog and the ",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 59,
+"text": "The two registries meet in exactly one place: `ProviderSpec.agent` names the",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 152,
+"text": "### Step 2: the `ProviderSpec`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 158,
+"text": "ProviderSpec(",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 463,
+"text": "outside the registries. Read a `ProviderSpec` field (`spec.agent`,",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/agent-platform.md",
+"line": 469,
+"text": "- The link tests fail when `indexing_provider` and `ProviderSpec.agent` do not",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 40,
+"text": "from repowise.core.providers.llm.specs import PROVIDER_SPECS, ProviderSpec",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 48,
+"text": "_PICKER_SPECS: dict[str, ProviderSpec] = {",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/agents/identity.py",
+"line": 119,
+"text": "#: The ``ProviderSpec`` name that drives this agent's CLI for indexing.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 8,
+"text": "several had already drifted. A :class:`ProviderSpec` holds them once; the old",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 39,
+"text": "class ProviderSpec:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 116,
+"text": "_SPECS: tuple[ProviderSpec, ...] = (",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 117,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 134,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 148,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 164,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 182,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 196,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 211,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 233,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 249,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 264,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 283,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 298,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 312,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 326,
+"text": "ProviderSpec(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/specs.py",
+"line": 335,
+"text": "PROVIDER_SPECS: dict[str, ProviderSpec] = {spec.name: spec for spec in _SPECS}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "scripts/gen_agent_matrix.py",
+"line": 441,
+"text": "\"a `ProviderSpec` in\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_provider_specs.py",
+"line": 4,
+"text": "(``AgentIdentity.indexing_provider`` and ``ProviderSpec.agent``), and the two",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_provider_specs.py",
+"line": 171,
+"text": "\"provider names spelled outside the registry; read a ProviderSpec field \"",
+"cls": "doc",
+"ext": ".py"
+}
+]

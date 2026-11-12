@@ -1,0 +1,1213 @@
+[
+{
+"path": "packages/cli/src/repowise/cli/ui/repo_scanner.py",
+"line": 12,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/repo_scanner.py",
+"line": 91,
+"text": "if is_test_related_path(full_rel):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/actions/build.py",
+"line": 81,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/actions/build.py",
+"line": 135,
+"text": "return bool(path) and is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/c4/relations.py",
+"line": 18,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/c4/relations.py",
+"line": 46,
+"text": "dropped[path] = is_config_path(path) or is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/analyzer.py",
+"line": 28,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/analyzer.py",
+"line": 289,
+"text": "is_test=is_test_related_path(path, language),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/service.py",
+"line": 20,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/service.py",
+"line": 755,
+"text": "return finding.dimension == \"performance\" and is_test_related_path(finding.file_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/service.py",
+"line": 768,
+"text": "is_test_related_path(finding.path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/communities.py",
+"line": 30,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/communities.py",
+"line": 484,
+"text": "return is_test_related_path(node_id, data.get(\"language\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/module_strings.py",
+"line": 46,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/dead_code/module_strings.py",
+"line": 197,
+"text": "members = None if is_test_related_path(path) else source_map",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/scope.py",
+"line": 15,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/scope.py",
+"line": 271,
+"text": "key=lambda f: _POPULATION_RANK[file_population(f, is_test=is_test_related_path(f))],",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/constants.py",
+"line": 183,
+"text": "#: :func:`repowise.core.test_paths.is_test_related_path`, the same helper that",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/extractor.py",
+"line": 36,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/extractor.py",
+"line": 461,
+"text": ":func:`~repowise.core.test_paths.is_test_related_path` rather than a local",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/extractor.py",
+"line": 481,
+"text": "file, because ``is_test_related_path`` also recognises the ``test_*``",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/extractor.py",
+"line": 494,
+"text": "return is_test_related_path(probe)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/renderer.py",
+"line": 74,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/renderer.py",
+"line": 86,
+"text": "if is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/symbols.py",
+"line": 38,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/doc_drift/symbols.py",
+"line": 378,
+"text": "if not _is_source(path) or is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/fixture_readers.py",
+"line": 31,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/fixture_readers.py",
+"line": 97,
+"text": "if not all(is_test_related_path(n) for n in readers):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/asserts/oracle_reach.py",
+"line": 92,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/asserts/oracle_reach.py",
+"line": 339,
+"text": "return is_test_related_path(file_info.path, getattr(file_info, \"language\", None))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+"line": 9,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/base.py",
+"line": 156,
+"text": "return is_test_related_path(self.file_path, self.language)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/class_analysis.py",
+"line": 27,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/class_analysis.py",
+"line": 83,
+"text": "return not (implicit and is_test_related_path(file_path, language))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/coverage/detector.py",
+"line": 38,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/coverage/detector.py",
+"line": 190,
+"text": "if is_test_related_path(rel_path, roots=roots):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/governance.py",
+"line": 24,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/governance.py",
+"line": 113,
+"text": "if is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 53,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/extract_helper.py",
+"line": 354,
+"text": "return is_test_related_path(path, language) or _is_generated_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/move_method.py",
+"line": 69,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/move_method.py",
+"line": 141,
+"text": "return is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/move_method.py",
+"line": 325,
+"text": "if graph is None or is_test_related_path(ctx.file_path, ctx.language):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py",
+"line": 62,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/refactoring/split_file.py",
+"line": 131,
+"text": "return is_test_related_path(path, language) or _is_generated_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health_gate.py",
+"line": 27,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health_gate.py",
+"line": 250,
+"text": "and not is_test_related_path(f.path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/causes.py",
+"line": 27,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/causes.py",
+"line": 63,
+"text": "tests = [p for p in changed if is_test_related_path(p)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/causes.py",
+"line": 139,
+"text": "changed_tests = {p for p in changed if is_test_related_path(p)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/compute.py",
+"line": 49,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/compute.py",
+"line": 503,
+"text": "if is_test_related_path(path) or PurePosixPath(path).suffix not in measured_suffixes:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/suggest.py",
+"line": 21,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/patch_coverage/suggest.py",
+"line": 235,
+"text": "return PurePosixPath(path).suffix in _SOURCE_SUFFIXES and not is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/security/paths.py",
+"line": 8,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/security/paths.py",
+"line": 12,
+"text": "# Broader than ``is_test_related_path`` on purpose. That one asks whether a file",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/security/paths.py",
+"line": 39,
+"text": "return any(p in _LOW_SEVERITY_PATH_TOKENS for p in parts) or is_test_related_path(posix_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 50,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 172,
+"text": "if is_test_related_path(path) or _configured(path, config):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 199,
+"text": "if is_test_related_path(path) or _configured(path, config):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 234,
+"text": "sorted(p for p in self.tracked if is_code_file(p) and not is_test_related_path(p))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 279,
+"text": "if is_test_related_path(path) or full_run_reason(path) == SHARED_TEST_DATA_REASON:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/selection_scopes.py",
+"line": 366,
+"text": "return is_runnable_test(namer) or not is_test_related_path(namer)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_collection.py",
+"line": 175,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_collection.py",
+"line": 199,
+"text": "(test_code if is_test_related_path(p) else other).append(p)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/maps.py",
+"line": 18,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/maps.py",
+"line": 104,
+"text": "if PurePosixPath(f).name == \"__init__.py\" and not is_test_related_path(f)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/type_only.py",
+"line": 17,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_reach/type_only.py",
+"line": 47,
+"text": "if is_test if is_test is not None else is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_selection.py",
+"line": 83,
+"text": "is_test_related_path,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_selection.py",
+"line": 482,
+"text": "if name == \"__init__.py\" and is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_selection.py",
+"line": 496,
+"text": "and is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_selection.py",
+"line": 546,
+"text": "if PurePosixPath(path).name == \"__init__.py\" and not is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/test_selection.py",
+"line": 850,
+"text": "elif is_test_related_path(path) and not is_code_file(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/changes/collect.py",
+"line": 632,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/changes/collect.py",
+"line": 635,
+"text": "return [p for p in paths if Path(p).suffix in suffixes and not is_test_related_path(p)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 35,
+"text": "from .test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/code_origin.py",
+"line": 1036,
+"text": "else is_test_related_path(normalized) or declares_test(normalized, header)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/layers.py",
+"line": 31,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/layers.py",
+"line": 244,
+"text": "if is_test_related_path(path, language):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/onboarding/subkinds/active_landscape.py",
+"line": 28,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/onboarding/subkinds/active_landscape.py",
+"line": 146,
+"text": "is_test = path in tests or is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/file_facts.py",
+"line": 22,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/page_generator/file_facts.py",
+"line": 83,
+"text": "tests = {p for p in paths if is_test_related_path(p)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/always_run.py",
+"line": 240,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/always_run.py",
+"line": 242,
+"text": "return not is_test_related_path(str(PurePosixPath(path).parent / \"__init__.py\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/composer.py",
+"line": 20,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/composer.py",
+"line": 54,
+"text": "and not is_test_related_path(posixpath.join(rel_dir, COMPOSER_JSON))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/python_imports.py",
+"line": 59,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/dynamic_hints/python_imports.py",
+"line": 227,
+"text": "runtime = not is_test_related_path(rel)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/lwc.py",
+"line": 20,
+"text": "from ...test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/resolvers/lwc.py",
+"line": 151,
+"text": "if spec is None or is_test_related_path(importer_path, \"javascript\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/traverser.py",
+"line": 58,
+"text": "from ..test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/traverser.py",
+"line": 269,
+"text": "# and tagged is_test via is_test_related_path(). These two hold",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/traverser.py",
+"line": 931,
+"text": "is_test = is_test_related_path(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/health/metrics.py",
+"line": 22,
+"text": "from .....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/health/metrics.py",
+"line": 193,
+"text": "row.is_test = is_test_related_path(row.file_path, languages.get(row.file_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/refactoring_opportunities.py",
+"line": 24,
+"text": "from ....test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/refactoring_opportunities.py",
+"line": 93,
+"text": "if is_test_related_path(item.file_path) is not is_test:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/analysis/refactoring_opportunities.py",
+"line": 483,
+"text": "if not is_test_related_path(opportunities[rank].file_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_health.py",
+"line": 13,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_health.py",
+"line": 183,
+"text": "wanted = sorted({f for files in named.values() for f in files if not is_test_related_path(f)})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/persistence/crud/decision_health.py",
+"line": 223,
+"text": "if not is_test_related_path(row[0])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/stats_highlights.py",
+"line": 27,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/stats_highlights.py",
+"line": 630,
+"text": "if not path or path.startswith(\"external:\") or is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/stats_highlights.py",
+"line": 657,
+"text": "cache[path] = is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/support_paths.py",
+"line": 17,
+"text": "from .test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/support_paths.py",
+"line": 85,
+"text": "return is_test_related_path(path) or is_example_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 10,
+"text": "**The decision is made once, at ingestion.** :func:`is_test_related_path` is",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 23,
+"text": "infrastructure around them, and :func:`is_test_related_path` for the callers",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 25,
+"text": "``is_test_related_path`` by default.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 705,
+"text": "def is_test_related_path(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 751,
+"text": "if not is_test_related_path(path, language):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 764,
+"text": ":func:`is_test_related_path` in three ways:",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 775,
+"text": "if not is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/test_paths.py",
+"line": 802,
+"text": "return is_test_related_path(code_path, code_language) ^ is_test_related_path(partner_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_edit_sites.py",
+"line": 30,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_edit_sites.py",
+"line": 888,
+"text": "is_test_related_path(s[\"path\"]),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_flow_path.py",
+"line": 43,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_flow_path.py",
+"line": 114,
+"text": "return base.lower() == \"__init__.py\" or is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_flow_path.py",
+"line": 312,
+"text": "if nb in parents or (is_test_related_path(nb) and not endpoint):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_line_hits.py",
+"line": 34,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_line_hits.py",
+"line": 269,
+"text": "population = file_population(rel, is_test=is_test_related_path(rel))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_line_hits.py",
+"line": 582,
+"text": "is_test_related_path(r[\"path\"]),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_prose_symbols.py",
+"line": 53,
+"text": "from repowise.core.test_paths import is_test_path, is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/_prose_symbols.py",
+"line": 354,
+"text": "is_test = (gnode is not None and gnode.is_test) or is_test_related_path(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py",
+"line": 22,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py",
+"line": 351,
+"text": "if path and not is_test_related_path(path, getattr(row, \"language\", None)):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py",
+"line": 422,
+"text": "if is_test_related_path(row.file_path) and not self.about_tests:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/symbols.py",
+"line": 470,
+"text": "test = is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/value_lines.py",
+"line": 27,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/value_lines.py",
+"line": 90,
+"text": "if num.isdigit() and not is_test_related_path(path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/value_lines.py",
+"line": 111,
+"text": "owners = {p for (p,) in res.all() if p and not is_test_related_path(p)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_answer/value_lines.py",
+"line": 115,
+"text": "return owners | {n for o in owners for n in adj.get(o, ()) if not is_test_related_path(n)}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/__init__.py",
+"line": 25,
+"text": "from repowise.core.test_paths import is_test_path, is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/ranking.py",
+"line": 12,
+"text": "from repowise.core.test_paths import is_test_path, is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search/ranking.py",
+"line": 296,
+"text": "if is_test_related_path(target_path):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search_symbols.py",
+"line": 37,
+"text": "from repowise.core.test_paths import is_test_path, is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_search_symbols.py",
+"line": 405,
+"text": "is_test = (g is not None and g.is_test) or is_test_related_path(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/loading.py",
+"line": 12,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/mcp_server/tool_why/loading.py",
+"line": 108,
+"text": "r for r in res.all() if not is_excluded(r[1], spec) and not is_test_related_path(r[1])",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/c4_builder/__init__.py",
+"line": 42,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/c4_builder/__init__.py",
+"line": 117,
+"text": "if not (is_support_path(r.declared_in) or is_test_related_path(r.declared_in))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/coupling.py",
+"line": 39,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/server/src/repowise/server/services/coupling.py",
+"line": 86,
+"text": "found = self._tests[path] = is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_onboarding.py",
+"line": 48,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_onboarding.py",
+"line": 71,
+"text": "is_test=is_test_related_path(path, language),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_selection_contract.py",
+"line": 27,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_selection_contract.py",
+"line": 166,
+"text": "fi = FakeFileInfo(path=extra, is_test=is_test_related_path(extra))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_selection_contract.py",
+"line": 177,
+"text": "if is_test_related_path(extra):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_selection_contract.py",
+"line": 516,
+"text": "assert not any(is_test_related_path(path) for path, _ in sel.symbol_spotlights)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/generation/test_selection_contract.py",
+"line": 523,
+"text": "fi = FakeFileInfo(path=extra, is_test=is_test_related_path(extra))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 13,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_centrality_subgraph.py",
+"line": 47,
+"text": "is_test=is_test_related_path(rel, \"python\"),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_loader_edges.py",
+"line": 20,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_loader_edges.py",
+"line": 27,
+"text": "p: SimpleNamespace(file_info=SimpleNamespace(is_test=is_test_related_path(p), abs_path=p))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_test_wiring_edges.py",
+"line": 24,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_test_wiring_edges.py",
+"line": 31,
+"text": "p: SimpleNamespace(file_info=SimpleNamespace(is_test=is_test_related_path(p), abs_path=p))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_traverser.py",
+"line": 1556,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_traverser.py",
+"line": 1558,
+"text": "assert is_test_related_path(rel_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_traverser.py",
+"line": 1572,
+"text": "from repowise.core.test_paths import is_test_related_path",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_traverser.py",
+"line": 1574,
+"text": "assert not is_test_related_path(rel_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_no_test_path_copies.py",
+"line": 104,
+"text": "_SHARED = frozenset({\"is_test_path\", \"is_test_support_path\", \"is_test_related_path\"})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_no_test_path_copies.py",
+"line": 165,
+"text": "+ \"\\n\\nImport is_test_path / is_test_support_path / is_test_related_path from\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_no_test_path_copies.py",
+"line": 189,
+"text": "\"    return is_test_related_path(p) or p.endswith('.fixture')\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_no_test_path_copies.py",
+"line": 196,
+"text": "@pytest.mark.parametrize(\"name\", [\"is_test_path\", \"is_test_support_path\", \"is_test_related_path\"])",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 19,
+"text": "is_test_related_path,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 380,
+"text": "assert is_test_related_path(path, language) is (expected != \"\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 388,
+"text": "assert not is_test_related_path(\"test-utils/src/index.js\", package_root=roots)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 400,
+"text": "assert not is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 427,
+"text": "assert not is_test_related_path(\"src\\\\latest\\\\api.py\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 529,
+"text": "assert is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_test_paths.py",
+"line": 570,
+"text": "assert is_test_related_path(path)",
+"cls": "code",
+"ext": ".py"
+}
+]

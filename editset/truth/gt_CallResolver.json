@@ -1,0 +1,1318 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 119,
+"text": "\u2502   \u2502   \u2502   \u2502   \u251c\u2500\u2500 call_resolver.py    # CallResolver: origin-stamped call resolution",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 289,
+"text": "`inherits`, `implements`, and `co_changes`. `CALLS` edges are built by `CallResolver`",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 292,
+"text": "It is built by the `ASTParser` + `GraphBuilder` + `CallResolver` during ingestion and",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 520,
+"text": "**Call resolution** is handled by the `CallResolver` module (`ingestion/call_resolver.py`),",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/graph-algorithms.md",
+"line": 29,
+"text": "| `calls` | `CallResolver` (39 named resolution origins, each with a fixed confidence) | `validate_token` calls `hash_password` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 91,
+"text": "CallResolver turns each call site into an edge, stamped with",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/language-support.md",
+"line": 143,
+"text": "call_resolver.py     # CallResolver: call site -> edge, per-language strategy seam",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 81,
+"text": "| `calls` edge | Symbol-to-symbol call relationship. | `CallResolver`, then `GraphBuilder._resolve_calls()` | `src/app.py::main -> src/db.py::connect` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 82,
+"text": "| Call confidence | Confidence that a call edge points to the right callee. | `CallResolver` | `0.95` same-file, `0.90` import binding, `0.50` global unique |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_barrel_forwarding.py",
+"line": 1,
+"text": "\"\"\"Barrel re-export forwarding mixed into ``CallResolver``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_cobol.py",
+"line": 1,
+"text": "\"\"\"COBOL call binding mixed into ``CallResolver``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_inheritance.py",
+"line": 1,
+"text": "\"\"\"Class-hierarchy lookups mixed into ``CallResolver``: ancestors, MRO and ``super`` calls.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_language_strategies.py",
+"line": 1,
+"text": "\"\"\"Per-language call strategies mixed into ``CallResolver``.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_overload_selection.py",
+"line": 1,
+"text": "\"\"\"Overload sets mixed into ``CallResolver``: indexing them and choosing a member.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_receiver_typing/__init__.py",
+"line": 1,
+"text": "\"\"\"Receiver typing mixed into ``CallResolver``: ``x.m()`` typed from a declaration.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/call_resolver.py",
+"line": 324,
+"text": "class CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_resolvers.py",
+"line": 652,
+"text": "from ..call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_resolvers.py",
+"line": 654,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/graph/_resolvers.py",
+"line": 758,
+"text": "Shares the ``CallResolver`` built for calls: resolving \"which symbol",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 111,
+"text": "CallResolver for consistency.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 137,
+"text": "# Import name mapping \u2014 shared with CallResolver (built once per",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/heritage_resolver.py",
+"line": 148,
+"text": "# CallResolver for rationale).",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/import_index.py",
+"line": 41,
+"text": "Mirrors the historical ``CallResolver._build_indices`` import loop,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/spec.py",
+"line": 174,
+"text": "# Read *only* by the bare-name fallback in ``CallResolver``, to stop it",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/spec.py",
+"line": 182,
+"text": "# receiver tier in ``CallResolver``, which has no uniqueness gate, so a",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/spec.py",
+"line": 193,
+"text": "# the chained-call tier in ``CallResolver``, which otherwise resolves the",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/languages/specs/gdscript.py",
+"line": 108,
+"text": "# bare-name tier in CallResolver, which answers a name declared exactly",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/ingestion/models.py",
+"line": 526,
+"text": "# Every origin has exactly one confidence (see `CallResolver`), so the origin",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 2943,
+"text": "- **Python relative imports drop their first imported name.** `from .X import Y` and `from .X import A, B, C` were being parsed with `Y`/`A` discarded because the binding extractor's \"skip the first d",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1703,
+"text": "@@ -64,6 +64,7 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1711,
+"text": "@@ -71,6 +72,11 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1723,
+"text": "@@ -80,14 +86,27 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1756,
+"text": "@@ -366,7 +385,10 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1768,
+"text": "@@ -377,7 +399,9 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1779,
+"text": "@@ -387,25 +411,35 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1833,
+"text": "@@ -504,13 +538,10 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 1851,
+"text": "@@ -591,22 +622,20 @@ class CallResolver:",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3310,
+"text": "from ..call_resolver import CallResolver",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3312,
+"text": "-        resolver = CallResolver(self._parsed_files, import_targets, repo_path=str(self._repo_path) if self._repo_path else None)",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3313,
+"text": "+        resolver = CallResolver(",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3424,
+"text": "+        # Import name mapping \u2014 shared with CallResolver (built once per",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3435,
+"text": "+        # CallResolver for rationale).",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 3546,
+"text": "+    Mirrors the historical ``CallResolver._build_indices`` import loop,",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/unit/ingestion/parser/test_cobol.py",
+"line": 7,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_cobol.py",
+"line": 366,
+"text": "resolver = CallResolver(parsed, {path: set() for path in parsed})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/parser/test_cobol.py",
+"line": 395,
+"text": "resolver = CallResolver(parsed, {path: imports.get(path, set()) for path in parsed})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_bare_name_index_kinds.py",
+"line": 20,
+"text": "from repowise.core.ingestion.call_resolver import _NON_CALLABLE_KINDS, CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_bare_name_index_kinds.py",
+"line": 52,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_bare_name_index_kinds.py",
+"line": 250,
+"text": "resolver = CallResolver(parsed, import_targets, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_bare_recursion_self_edges.py",
+"line": 14,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_bare_recursion_self_edges.py",
+"line": 37,
+"text": "resolver = CallResolver({rel: parsed}, {rel: set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_build_roots.py",
+"line": 16,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_build_roots.py",
+"line": 64,
+"text": "resolver = CallResolver(parsed, targets, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 3,
+"text": "Every strategy in ``CallResolver`` is reachable only through one long chain, and",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 22,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 66,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 233,
+"text": "original = getattr(CallResolver, name)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 239,
+"text": "monkeypatch.setattr(CallResolver, name, spy)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 275,
+"text": "assert callable(getattr(CallResolver, name, None)), name",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 352,
+"text": "original = getattr(CallResolver, name)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 358,
+"text": "monkeypatch.setattr(CallResolver, name, spy)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 516,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 827,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1138,
+"text": "resolver = CallResolver(parsed, targets, repo_path=str(tmp_path), **resolver_kwargs)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1389,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1529,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1541,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1641,
+"text": "resolver = CallResolver(parsed, graph, repo_path=str(tmp_path), heritage_parents=parents)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1737,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1825,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1870,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1950,
+"text": "resolver = CallResolver(parsed, {k: set() for k in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1970,
+"text": "resolver = CallResolver(parsed, {k: set() for k in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 1995,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 2030,
+"text": "resolver = CallResolver(parsed, imported, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 2075,
+"text": "resolver = CallResolver(parsed, {k: set() for k in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 3113,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 3180,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 3218,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_call_resolver_strategies.py",
+"line": 3261,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_chained_receiver_calls.py",
+"line": 14,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_chained_receiver_calls.py",
+"line": 53,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_constructed_property_types.py",
+"line": 17,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_constructed_property_types.py",
+"line": 53,
+"text": "resolver = CallResolver(parsed, {path: set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_decl_def.py",
+"line": 292,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_cpp_decl_def.py",
+"line": 302,
+"text": "return CallResolver(parsed, targets, repo_path=str(tmp_path)), parsed",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_call_typed_locals.py",
+"line": 10,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_call_typed_locals.py",
+"line": 64,
+"text": "resolver = CallResolver(parsed, {\"C.cs\": {\"Lib.cs\"}}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_declared_names.py",
+"line": 8,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_declared_names.py",
+"line": 47,
+"text": "resolver = CallResolver(parsed, {path: set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_extension_methods.py",
+"line": 21,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_extension_methods.py",
+"line": 59,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_inherited_receivers.py",
+"line": 8,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_inherited_receivers.py",
+"line": 56,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path), heritage_parents=HERITAGE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_null_conditional_calls.py",
+"line": 33,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_csharp_null_conditional_calls.py",
+"line": 64,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dart_range_receivers.py",
+"line": 15,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_dart_range_receivers.py",
+"line": 157,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_elixir_bare_name_scope.py",
+"line": 18,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_elixir_bare_name_scope.py",
+"line": 60,
+"text": "resolver = CallResolver(parsed, import_targets, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_enclosing_class_calls.py",
+"line": 26,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_enclosing_class_calls.py",
+"line": 57,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_java_record_synthesis.py",
+"line": 8,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_java_record_synthesis.py",
+"line": 64,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_calls.py",
+"line": 9,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_calls.py",
+"line": 45,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_synthesis.py",
+"line": 9,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_jvm_synthesis.py",
+"line": 115,
+"text": "resolver = CallResolver(parsed, {\"App.kt\": set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extension_calls.py",
+"line": 18,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extension_calls.py",
+"line": 93,
+"text": "resolver = CallResolver(parsed, {\"App.kt\": set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extension_calls.py",
+"line": 211,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_extension_calls.py",
+"line": 267,
+"text": "resolver = CallResolver(parsed, {rel: set() for rel in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_infix_calls.py",
+"line": 7,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_infix_calls.py",
+"line": 66,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_infix_calls.py",
+"line": 83,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_inherited_receiver_members.py",
+"line": 9,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_inherited_receiver_members.py",
+"line": 17,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_labelled_this.py",
+"line": 75,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_labelled_this.py",
+"line": 77,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_operator_call_sites.py",
+"line": 14,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_operator_call_sites.py",
+"line": 69,
+"text": "resolver = CallResolver({\"App.kt\": parsed}, {\"App.kt\": set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_operator_invoke.py",
+"line": 16,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_operator_invoke.py",
+"line": 112,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_super_calls.py",
+"line": 7,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_super_calls.py",
+"line": 18,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_super_calls.py",
+"line": 51,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_trailing_lambda_calls.py",
+"line": 16,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_kotlin_trailing_lambda_calls.py",
+"line": 91,
+"text": "resolver = CallResolver(parsed, {\"Use.kt\": set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 325,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 358,
+"text": "resolver = CallResolver(parsed, {p: set() for p in parsed}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 368,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 380,
+"text": "resolver = CallResolver(parsed, imports, repo_path=str(tmp_path), heritage_parents=parents)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 484,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 499,
+"text": "resolve_one = CallResolver._resolve_one",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_lombok_synthesis.py",
+"line": 506,
+"text": "monkeypatch.setattr(CallResolver, \"_resolve_one\", counted)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_declarations.py",
+"line": 19,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver, _overload_return_types",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_declarations.py",
+"line": 115,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 27,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 87,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 1304,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 1325,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_identity.py",
+"line": 1395,
+"text": "resolver = CallResolver({\"app/P.java\": parsed}, {\"app/P.java\": set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_set_uniqueness.py",
+"line": 24,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_overload_set_uniqueness.py",
+"line": 59,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path), heritage_parents=heritage)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_php_luau_receivers.py",
+"line": 22,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_php_luau_receivers.py",
+"line": 99,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_recursive_self_edges.py",
+"line": 14,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_recursive_self_edges.py",
+"line": 63,
+"text": "resolver = CallResolver({rel: parsed}, {rel: set()}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_resolver_merged_index.py",
+"line": 13,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_resolver_merged_index.py",
+"line": 46,
+"text": "resolver = CallResolver(parsed, import_targets, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 10,
+"text": "CallResolver,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 87,
+"text": "control = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 90,
+"text": "treatment = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 114,
+"text": "before = CallResolver(parsed, {}, return_type_chain_languages=frozenset()).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 117,
+"text": "after = CallResolver(parsed, {}, return_type_chain_languages=frozenset({\"java\"})).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 139,
+"text": "before = CallResolver(parsed, {}, return_type_chain_languages=frozenset()).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 142,
+"text": "after = CallResolver(parsed, {}, return_type_chain_languages=frozenset({\"java\"})).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 161,
+"text": "before = CallResolver(parsed, {}, return_type_chain_languages=frozenset()).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 164,
+"text": "after = CallResolver(parsed, {}, return_type_chain_languages=frozenset({\"cpp\"})).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 207,
+"text": "before = CallResolver(parsed, {}, return_type_chain_languages=frozenset()).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 210,
+"text": "after = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 239,
+"text": "result = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 270,
+"text": "before = CallResolver(parsed, {}, repo_path=str(tmp_path)).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 304,
+"text": "resolved = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 329,
+"text": "resolved = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 362,
+"text": "resolved = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 413,
+"text": "before = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 416,
+"text": "after = CallResolver(parsed, imports, repo_path=str(tmp_path)).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 440,
+"text": "resolved = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 471,
+"text": "resolved = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 498,
+"text": "resolved = CallResolver(parsed, imports, repo_path=str(tmp_path)).resolve_file(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 602,
+"text": "resolver = CallResolver(parsed, {}, repo_path=str(tmp_path), heritage_parents=_FLUENT_HERITAGE)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 770,
+"text": "resolver = CallResolver(parsed, {\"app.dart\": {\"repo.dart\"}, \"repo.dart\": set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 953,
+"text": "resolver = CallResolver(parsed, {path: set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 1022,
+"text": "resolver = CallResolver(parsed, {\"Use.kt\": set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 1054,
+"text": "resolver = CallResolver(parsed, {\"a.kt\": set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 1117,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 1224,
+"text": "resolver = CallResolver(parsed, {\"app.dart\": {\"repo.dart\"}, \"repo.dart\": set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_return_type_chain_resolution.py",
+"line": 1302,
+"text": "resolver = CallResolver(parsed, {path: set()})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cfg_variants.py",
+"line": 18,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_rust_cfg_variants.py",
+"line": 63,
+"text": "resolver = CallResolver(",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_self_call_resolution.py",
+"line": 1,
+"text": "\"\"\"Behavior pins for CallResolver member-call strategies 3 and 4.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_self_call_resolution.py",
+"line": 20,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_self_call_resolution.py",
+"line": 52,
+"text": "resolver = CallResolver(parsed, import_targets or {}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_shadowed_bare_calls.py",
+"line": 18,
+"text": "from repowise.core.ingestion.call_resolver import CallResolver",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/ingestion/test_shadowed_bare_calls.py",
+"line": 54,
+"text": "resolver = CallResolver(parsed, {api: {util}}, repo_path=str(tmp_path))",
+"cls": "code",
+"ext": ".py"
+}
+]

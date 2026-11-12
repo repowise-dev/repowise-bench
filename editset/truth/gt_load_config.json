@@ -1,0 +1,1192 @@
+[
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 79,
+"text": "| `imported_names` edge payload | Names imported along an import edge. | `GraphBuilder.build()` | `[\"Settings\", \"load_config\"]` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/reference/COMPUTED_GLOSSARY.md",
+"line": 111,
+"text": "| Execution flow | BFS trace following high-confidence call edges from an entry point. | `trace_execution_flows()` | `main -> load_config -> connect_db` |",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/config.py",
+"line": 37,
+"text": "def load_config(repo_path: Path) -> dict[str, Any]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/config.py",
+"line": 186,
+"text": "existing = apply_llm_selection(load_config(repo_path), provider, model)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/config.py",
+"line": 273,
+"text": "existing = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/config.py",
+"line": 291,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/_helpers/config.py",
+"line": 315,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/dead_code_cmd.py",
+"line": 17,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/dead_code_cmd.py",
+"line": 130,
+"text": "list(load_config(repo_path).get(\"exclude_patterns\") or []),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 26,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 266,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 529,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/generate_cmd/command.py",
+"line": 548,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/command.py",
+"line": 23,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/health_cmd/command.py",
+"line": 791,
+"text": "list(load_config(repo_path).get(\"exclude_patterns\") or []),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_agent_summary.py",
+"line": 19,
+"text": "from repowise.cli.helpers import console, load_config, load_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_agent_summary.py",
+"line": 47,
+"text": "# summary. load_config already degrades a broken config to {}.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_agent_summary.py",
+"line": 54,
+"text": "return mode_of(resolve_index_scope(state, load_config(repo_path)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_finish.py",
+"line": 14,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_finish.py",
+"line": 347,
+"text": "stamp_index_scope(state, load_config(run.repo_path), test_run=run.opts.test_run)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_generate.py",
+"line": 12,
+"text": "from repowise.cli.helpers import console, load_config, warn",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_generate.py",
+"line": 57,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_generate.py",
+"line": 150,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_generate.py",
+"line": 288,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_interactive.py",
+"line": 175,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_interactive.py",
+"line": 177,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_plan.py",
+"line": 12,
+"text": "from repowise.cli.helpers import console, load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_plan.py",
+"line": 70,
+"text": "run.opts.embedder_name, load_config(run.repo_path).get(\"embedder\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_plan.py",
+"line": 116,
+"text": "or load_config(run.repo_path).get(\"commit_limit\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_prepare.py",
+"line": 23,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_prepare.py",
+"line": 132,
+"text": "config = load_config(run.repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_workspace_plan.py",
+"line": 11,
+"text": "from repowise.cli.helpers import console, load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/_workspace_plan.py",
+"line": 135,
+"text": "requested = embedder_was_requested(answers.embedder_name, load_config(primary).get(\"embedder\"))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/persistence.py",
+"line": 21,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/persistence.py",
+"line": 595,
+"text": "stamp_offered_slots(state, enabled=bool(load_config(repo_path).get(\"enable_onboarding\", True)))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/reporting.py",
+"line": 16,
+"text": "from repowise.cli.helpers import console, load_config, load_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/reporting.py",
+"line": 149,
+"text": "scope = resolve_index_scope(load_state(repo_path), load_config(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/reporting.py",
+"line": 427,
+"text": "scope = resolve_index_scope(load_state(repo.path), load_config(repo.path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 39,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 137,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 145,
+"text": "max_file_pages=resolve_max_file_pages(config=load_config(repo_path)),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 242,
+"text": "repo_config = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 658,
+"text": "scope_config = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/init_cmd/workspace.py",
+"line": 1094,
+"text": "primary_cfg = load_config(primary_repo.path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 287,
+"text": "from repowise.cli.helpers import load_config, load_state, save_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/reindex_cmd.py",
+"line": 294,
+"text": "load_config(Path(repo_path)),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/restyle_cmd.py",
+"line": 26,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/restyle_cmd.py",
+"line": 183,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/restyle_cmd.py",
+"line": 288,
+"text": "existing = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/restyle_cmd.py",
+"line": 305,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/serve_cmd/_embedder.py",
+"line": 10,
+"text": "from repowise.cli.helpers import console, load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/serve_cmd/_embedder.py",
+"line": 50,
+"text": "cfg = load_config(Path.home())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/serve_cmd/_embedder.py",
+"line": 141,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/serve_cmd/_embedder.py",
+"line": 150,
+"text": "cfg = load_config(cwd)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/status_cmd.py",
+"line": 21,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/status_cmd.py",
+"line": 997,
+"text": "scope = resolve_index_scope(state, load_config(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 34,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 130,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 525,
+"text": "config = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 560,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 563,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 957,
+"text": "run.cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/command.py",
+"line": 1424,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/commit_limit_notice.py",
+"line": 16,
+"text": "from repowise.cli.helpers import console, load_config, load_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/commit_limit_notice.py",
+"line": 35,
+"text": "pinned = int(load_config(repo_path).get(\"commit_limit\") or 0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/persistence.py",
+"line": 25,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/persistence.py",
+"line": 543,
+"text": "scope = resolve_index_scope(new_state, load_config(repo_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/persistence.py",
+"line": 548,
+"text": "load_config(repo_path),",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/persistence.py",
+"line": 575,
+"text": "config = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/persistence.py",
+"line": 1205,
+"text": "new_state, load_config(repo_path), analysis={\"unavailable\": [], \"skipped\": []}",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/slot_notice.py",
+"line": 116,
+"text": "from repowise.cli.helpers import load_config, run_async",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/update_cmd/slot_notice.py",
+"line": 118,
+"text": "if not bool(load_config(repo_path).get(\"enable_onboarding\", True)):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/upgrade_flow.py",
+"line": 52,
+"text": "load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/upgrade_flow.py",
+"line": 776,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/workspace_cmd/_index.py",
+"line": 79,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/workspace_cmd/_index.py",
+"line": 82,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/workspace_cmd/_index.py",
+"line": 96,
+"text": "_inherit_distill_verdict(repo_path, load_config(primary_path))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/commands/workspace_cmd/_index.py",
+"line": 224,
+"text": "from repowise.cli.helpers import load_config as _load_cfg",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_files.py",
+"line": 7,
+"text": "from repowise.cli.helpers import get_db_url_for_repo, load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_files.py",
+"line": 26,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_files.py",
+"line": 50,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_integrations/claude.py",
+"line": 10,
+"text": "from repowise.cli.helpers import get_db_url_for_repo, load_config, run_async",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_integrations/claude.py",
+"line": 139,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_integrations/claude.py",
+"line": 158,
+"text": "cfg = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_setup.py",
+"line": 218,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_setup.py",
+"line": 220,
+"text": "editor_files = load_config(repo_path).get(\"editor_files\")",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_setup.py",
+"line": 441,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/editor_setup.py",
+"line": 443,
+"text": "return load_config(repo_path).get(_EDITOR_SETUP_KEY) is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/helpers.py",
+"line": 31,
+"text": "load_config as load_config,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 97,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/ui/provider_selection.py",
+"line": 99,
+"text": "if repo_path is not None and load_config(repo_path).get(\"provider\"):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/upgrade.py",
+"line": 29,
+"text": "from .helpers import REPOWISE_DIR, load_config, load_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/cli/src/repowise/cli/upgrade.py",
+"line": 168,
+"text": "config = load_config(repo_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/fixtures/distill/git_diff_large.txt",
+"line": 312,
+"text": "cfg = load_config(repo_path)",
+"cls": "doc",
+"ext": ".txt"
+},
+{
+"path": "tests/fixtures/mcp/token_calibration_responses.json",
+"line": 1,
+"text": "{\"get_answer:how-question\":{\"_meta\":{\"cached\":true,\"completeness\":{\"capped\":true,\"reason\":\"confidence_projection_and_deduplication\",\"shown\":1,\"total\":15},\"contract_version\":1,\"embedder_degraded\":false",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/integration/test_cli.py",
+"line": 295,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cli.py",
+"line": 304,
+"text": "cfg = load_config(work_repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cli.py",
+"line": 309,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/integration/test_cli.py",
+"line": 318,
+"text": "cfg = load_config(work_repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1413,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1429,
+"text": "editor_files = load_config(tmp_path).get(\"editor_files\", {})",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1440,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1474,
+"text": "assert load_config(tmp_path)[\"editor_setup\"] is False",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1479,
+"text": "assert load_config(tmp_path)[\"editor_setup\"] is True",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1486,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_editor_setup.py",
+"line": 1492,
+"text": "assert \"editor_setup\" not in load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_generate_decision_lanes.py",
+"line": 117,
+"text": "monkeypatch.setattr(status_cmd, \"load_config\", lambda _p: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_generate_provider_persistence.py",
+"line": 9,
+"text": "from repowise.cli.helpers import config_fingerprint, load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_generate_provider_persistence.py",
+"line": 24,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_generate_provider_persistence.py",
+"line": 42,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_generate_provider_persistence.py",
+"line": 58,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_health_cmd_exclusions.py",
+"line": 45,
+"text": "monkeypatch.setattr(health_cmd, \"load_config\", lambda _p: config)",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_health_cmd_exclusions.py",
+"line": 73,
+"text": "monkeypatch.setattr(health_cmd, \"load_config\", lambda _p: {\"exclude_patterns\": [\"x/**\"]})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 300,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 308,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 314,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 322,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 328,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 335,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 340,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 348,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 357,
+"text": "from repowise.cli.helpers import load_config, save_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 371,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 376,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 386,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 428,
+"text": "from repowise.cli.helpers import load_config, save_config_partial",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 438,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 1219,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_helpers.py",
+"line": 1221,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_failure_reporting.py",
+"line": 633,
+"text": "monkeypatch.setattr(\"repowise.cli.commands.init_cmd.reporting.load_config\", lambda _p: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_init_folder_coverage.py",
+"line": 29,
+"text": "monkeypatch.setattr(_generate, \"load_config\", lambda _p: {\"folder_coverage\": [\"lib=0.5\"]})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_serve_paths.py",
+"line": 69,
+"text": "monkeypatch.setattr(_embedder, \"load_config\", lambda _p: state[\"config\"])",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_status_state_truth.py",
+"line": 135,
+"text": "monkeypatch.setattr(generate_cmd, \"load_config\", lambda _p: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_status_storage.py",
+"line": 85,
+"text": "monkeypatch.setattr(status_cmd, \"load_config\", lambda _p: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_commit_limit_notice.py",
+"line": 10,
+"text": "from repowise.cli.helpers import load_config, save_config_partial, save_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_commit_limit_notice.py",
+"line": 51,
+"text": "assert load_config(repo)[\"commit_limit\"] == 500",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_defer_docs.py",
+"line": 14,
+"text": "from repowise.cli.helpers import load_config, load_state, release_update_lock, save_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_defer_docs.py",
+"line": 139,
+"text": "repo, config=load_config(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_file_page_scope.py",
+"line": 40,
+"text": "monkeypatch.setattr(persistence, \"load_config\", lambda _repo: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_fills_missing_file_pages.py",
+"line": 20,
+"text": "monkeypatch.setattr(persistence, \"load_config\", lambda _repo: {})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_workspace_deterministic.py",
+"line": 64,
+"text": "\"load_config\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_workspace_deterministic.py",
+"line": 96,
+"text": "\"load_config\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_worktree.py",
+"line": 222,
+"text": "from repowise.cli.helpers import load_config, load_state",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_worktree.py",
+"line": 239,
+"text": "seen.update(state=load_state(wt), config=load_config(wt), kwargs=kwargs)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_refactoring_extract_helper.py",
+"line": 593,
+"text": "\"    load_config,\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 62,
+"text": "(\"Who calls load_config?\", {\"load_config\"}),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 64,
+"text": "(\"Where is load_config called from?\", {\"load_config\"}),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 67,
+"text": "(\"Which handlers depend on load_config?\", {\"load_config\"}),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 164,
+"text": "_sym(rid, \"app/config.py::load_config\", **py),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 167,
+"text": "_edge(rid, \"app/config.py::reload\", \"app/config.py::load_config\"),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 168,
+"text": "_edge(rid, \"app/cli.py::main\", \"app/config.py::load_config\", confidence=0.95),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 169,
+"text": "_edge(rid, \"app/noise.py::guess\", \"app/config.py::load_config\", confidence=0.5),",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_callers.py",
+"line": 175,
+"text": "session, rid, \"Who calls load_config?\", {\"load_config\"}, []",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_graph_neighbors.py",
+"line": 72,
+"text": "\"Who calls load_config?\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_stack_trace.py",
+"line": 253,
+"text": "names = {\"config\", \"Result\", \"result\", \"load_config\", \"AuthService\", \"authservice\"}",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_stack_trace.py",
+"line": 254,
+"text": "text = \"app.config is None in load_config; Result comes back empty from AuthService\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_stack_trace.py",
+"line": 255,
+"text": "assert _named_lookups(text, names) == [\"load_config\", \"AuthService\"]",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_symbols.py",
+"line": 170,
+"text": "name=\"load_config\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_symbols.py",
+"line": 171,
+"text": "symbol_id=\"src/main.py::load_config\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_symbols.py",
+"line": 172,
+"text": "qualified_name=\"src.main.load_config\",",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_symbols.py",
+"line": 182,
+"text": "resp = await client.get(\"/api/symbols\", params={\"repo_id\": repo[\"id\"], \"q\": \"load_config\"})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_symbols.py",
+"line": 185,
+"text": "assert names == {\"load_config\"}",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 166,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 202,
+"text": "cfg = load_config(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 211,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 234,
+"text": "cfg = load_config(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 242,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_providers/test_embedding_resolve.py",
+"line": 263,
+"text": "cfg = load_config(repo)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_repo_config_errors.py",
+"line": 41,
+"text": "from repowise.cli.helpers import load_config",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/test_repo_config_errors.py",
+"line": 43,
+"text": "cfg = load_config(tmp_path)",
+"cls": "code",
+"ext": ".py"
+}
+]

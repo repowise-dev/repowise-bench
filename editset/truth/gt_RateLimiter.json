@@ -1,0 +1,415 @@
+[
+{
+"path": "docs/CHANGELOG.md",
+"line": 3255,
+"text": "- `RateLimiter`: async sliding-window RPM + TPM limits with exponential backoff",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "docs/architecture/ARCHITECTURE.md",
+"line": 348,
+"text": "Each provider instance wraps a `RateLimiter` using a token-bucket algorithm with",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/agent_cli.py",
+"line": 51,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/agent_cli.py",
+"line": 167,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/anthropic.py",
+"line": 47,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/anthropic.py",
+"line": 115,
+"text": "rate_limiter: Optional pre-configured RateLimiter. If None, no rate limiting",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/anthropic.py",
+"line": 124,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/base.py",
+"line": 540,
+"text": "# Philosophy: the client-side RateLimiter is only a flood guard with very",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/claude_cli.py",
+"line": 48,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/claude_cli.py",
+"line": 188,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/deepseek.py",
+"line": 23,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/deepseek.py",
+"line": 97,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/deepseek.py",
+"line": 115,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/edenai.py",
+"line": 34,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/edenai.py",
+"line": 112,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/edenai.py",
+"line": 135,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/gemini.py",
+"line": 42,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/gemini.py",
+"line": 235,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/gemini.py",
+"line": 244,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/kimi.py",
+"line": 26,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/kimi.py",
+"line": 96,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/kimi.py",
+"line": 116,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/litellm.py",
+"line": 49,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/litellm.py",
+"line": 297,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/litellm.py",
+"line": 310,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/ollama.py",
+"line": 56,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/ollama.py",
+"line": 192,
+"text": "rate_limiter: Optional RateLimiter (useful when running multiple",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/ollama.py",
+"line": 205,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai.py",
+"line": 47,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai.py",
+"line": 309,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai.py",
+"line": 317,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai_compat.py",
+"line": 43,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai_compat.py",
+"line": 281,
+"text": "rate_limiter: RateLimiter | None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openrouter.py",
+"line": 49,
+"text": "from repowise.core.rate_limiter import RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openrouter.py",
+"line": 187,
+"text": "rate_limiter: Optional RateLimiter instance.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openrouter.py",
+"line": 200,
+"text": "rate_limiter: RateLimiter | None = None,",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/registry.py",
+"line": 30,
+"text": "from repowise.core.rate_limiter import RateLimitConfig, RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/registry.py",
+"line": 241,
+"text": "with_rate_limiter: Attach a RateLimiter to the provider. Default True.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/registry.py",
+"line": 279,
+"text": "kwargs[\"rate_limiter\"] = RateLimiter(rate_limit_config or spec.rate_limit)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 3,
+"text": "Every provider passes through a RateLimiter before making API calls.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 12,
+"text": "- In multi-provider scenarios, each provider has its own RateLimiter",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 17,
+"text": "limiter = RateLimiter(config)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 46,
+"text": "class RateLimiter:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/upgrade/_data/CHANGELOG.md",
+"line": 3255,
+"text": "- `RateLimiter`: async sliding-window RPM + TPM limits with exponential backoff",
+"cls": "doc",
+"ext": ".md"
+},
+{
+"path": "tests/fixtures/mcp/grade_answer_cases.json",
+"line": 10,
+"text": "{\"env\": {\"REPOWISE_ANSWER_CLAIM_SUPPORT_GATE\": \"1\", \"REPOWISE_ANSWER_EARN_HIGH_GROUNDING\": \"\", \"REPOWISE_ANSWER_EARN_HIGH_ON_WEAK_RETRIEVAL\": \"0\"}, \"expected\": {\"absent_names\": [], \"admitted_gap\": nul",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/mcp/grade_answer_cases.json",
+"line": 21,
+"text": "{\"env\": {\"REPOWISE_ANSWER_CLAIM_SUPPORT_GATE\": \"0\", \"REPOWISE_ANSWER_EARN_HIGH_GROUNDING\": \"1\", \"REPOWISE_ANSWER_EARN_HIGH_ON_WEAK_RETRIEVAL\": \"0\"}, \"expected\": {\"absent_names\": [], \"admitted_gap\": nu",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/mcp/grade_answer_cases.json",
+"line": 29,
+"text": "{\"env\": {\"REPOWISE_ANSWER_CLAIM_SUPPORT_GATE\": \"\", \"REPOWISE_ANSWER_EARN_HIGH_GROUNDING\": \"0\", \"REPOWISE_ANSWER_EARN_HIGH_ON_WEAK_RETRIEVAL\": \"\"}, \"expected\": {\"absent_names\": [], \"admitted_gap\": null",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/fixtures/mcp/grade_answer_cases.json",
+"line": 32,
+"text": "{\"env\": {\"REPOWISE_ANSWER_CLAIM_SUPPORT_GATE\": \"\", \"REPOWISE_ANSWER_EARN_HIGH_GROUNDING\": \"\", \"REPOWISE_ANSWER_EARN_HIGH_ON_WEAK_RETRIEVAL\": \"0\"}, \"expected\": {\"absent_names\": [], \"admitted_gap\": null",
+"cls": "doc",
+"ext": ".json"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 1,
+"text": "\"\"\"Tests for the RateLimiter.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 15,
+"text": "from repowise.core.rate_limiter import RateLimitConfig, RateLimiter",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 45,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 51,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 58,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 67,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 84,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 101,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 117,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 129,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 152,
+"text": "limiter = RateLimiter(config)",
+"cls": "code",
+"ext": ".py"
+}
+]

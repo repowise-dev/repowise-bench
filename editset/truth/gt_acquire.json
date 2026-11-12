@@ -1,0 +1,506 @@
+[
+{
+"path": "packages/core/src/repowise/core/analysis/change_health/child.py",
+"line": 58,
+"text": "if not self._wants_child(pair) or not _CHILD_SLOTS.acquire(blocking=False):",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/decisions/policy.py",
+"line": 949,
+"text": "# stored `preset: balanced` must not silently acquire a model call the day",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/biomarkers/lock_in_loop.py",
+"line": 3,
+"text": "Acquiring a mutex / lock each iteration (``lock.acquire`` / ``mu.Lock`` /",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/models.py",
+"line": 312,
+"text": "- ``lock_in_loop`` \u2014 a lock acquired each iteration (``lock.acquire`` /",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/complexity/perf_walk.py",
+"line": 1220,
+"text": "\"\"\"A per-iteration lock with nothing to hoist: a lock-acquire spin, or the loop element's own lock.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/base.py",
+"line": 41,
+"text": "``lock.acquire`` contention \u00b7",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/base.py",
+"line": 797,
+"text": "``lock_in_loop`` (``lock.acquire`` / ``mu.Lock``), and the JS/TS",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/base.py",
+"line": 912,
+"text": "(``lock.acquire()`` \u2026 ``lock.release()``) are not block-scoped and are",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/cpp.py",
+"line": 941,
+"text": "recall. The explicit ``mu.lock()`` acquire/release pair is out of scope",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/go.py",
+"line": 582,
+"text": "The idiom is: acquire before the spawn (``sem <- struct{}{}`` in the loop",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/python.py",
+"line": 109,
+"text": "lock_acquire_functions = frozenset({\"acquire\", \"__enter__\"})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/python.py",
+"line": 442,
+"text": "# ``lock.acquire()``: the attribute gate guards against a bare-name collision.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/perf/dialects/python_lexicon.py",
+"line": 113,
+"text": "_PY_LOCK_METHODS: frozenset[str] = frozenset({\"acquire\"})",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/analysis/health/scoring.py",
+"line": 248,
+"text": "# means there is no weight, category or cap table it can acquire. A marker homes",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/generation/job_system.py",
+"line": 160,
+"text": "# snapshot used to acquire them by way of the disk round-trip every",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/agent_cli.py",
+"line": 259,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/anthropic.py",
+"line": 166,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/gemini.py",
+"line": 304,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/litellm.py",
+"line": 366,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/ollama.py",
+"line": 276,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai.py",
+"line": 389,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openai_compat.py",
+"line": 373,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/providers/llm/openrouter.py",
+"line": 269,
+"text": "await self._rate_limiter.acquire(estimated_tokens=max_tokens)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 10,
+"text": "- The lock is released while sleeping so other coroutines can acquire it",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 18,
+"text": "await limiter.acquire(estimated_tokens=2000)  # blocks until window allows",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/rate_limiter.py",
+"line": 61,
+"text": "async def acquire(self, estimated_tokens: int = 1_000) -> None:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/update_lock.py",
+"line": 69,
+"text": "\"\"\"Core exclusive-create acquire against an explicit lock path.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/update_lock.py",
+"line": 135,
+"text": "\"\"\"Atomically acquire the update lock. ``None`` means acquired.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/core/src/repowise/core/workspace/update/workspace_pass.py",
+"line": 317,
+"text": "# Check + acquire are one atomic exclusive create.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "packages/ui/src/health/biomarker-glossary.ts",
+"line": 305,
+"text": "\"A mutex or lock acquired on every loop iteration (lock.acquire, mu.Lock, synchronized, lock(x){}). Serializes the loop body and concentrates contention. Hoist the lock outside the loop or batch the c",
+"cls": "doc",
+"ext": ".ts"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 47,
+"text": "await limiter.acquire(estimated_tokens=1_000)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 52,
+"text": "await limiter.acquire(estimated_tokens=500)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 60,
+"text": "await limiter.acquire(estimated_tokens=100)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 70,
+"text": "await limiter.acquire(estimated_tokens=1)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 71,
+"text": "await limiter.acquire(estimated_tokens=1)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 78,
+"text": "# Third acquire should now succeed immediately (window cleared)",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 79,
+"text": "await asyncio.wait_for(limiter.acquire(estimated_tokens=1), timeout=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 87,
+"text": "await limiter.acquire(estimated_tokens=100)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 94,
+"text": "# Next acquire should succeed",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 95,
+"text": "await asyncio.wait_for(limiter.acquire(estimated_tokens=100), timeout=1.0)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/providers/test_rate_limiter.py",
+"line": 109,
+"text": "await limiter.acquire(estimated_tokens=100)",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_policy.py",
+"line": 434,
+"text": "existed would silently acquire it \u2014 the exact thing the absent-means-new",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/analysis/test_decision_policy.py",
+"line": 546,
+"text": "would silently acquire a model call on upgrade.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/change_health/test_child_process.py",
+"line": 83,
+"text": "held = [child._CHILD_SLOTS.acquire(blocking=False) for _ in range(child.CHILD_LIMIT)]",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_augment_staleness.py",
+"line": 243,
+"text": "# spawned an update but it never reached the lock-acquire step.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_cost_tracking_optout.py",
+"line": 148,
+"text": "# Must NOT raise even though the insert can't acquire the lock.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_full_upgrade_lock.py",
+"line": 9,
+"text": "The full upgrade must acquire the lock itself; when another update holds it,",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_full_upgrade_lock.py",
+"line": 87,
+"text": "assert acquired == [True], \"the full upgrade must acquire the single-flight lock\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_lock.py",
+"line": 61,
+"text": "\"\"\"Check + acquire are one atomic step: a live lock blocks the second",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_lock.py",
+"line": 220,
+"text": "\"\"\"The end-to-end consequence: no acquire can steal from a live owner.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_lock.py",
+"line": 363,
+"text": "# After release a fresh acquire wins again.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_up_to_date_lock.py",
+"line": 107,
+"text": "calls[\"acquire\"] = calls.get(\"acquire\", 0) + 1",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_up_to_date_lock.py",
+"line": 115,
+"text": "assert calls.get(\"acquire\", 0) > 0, \"update must try the single-flight lock\"",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_up_to_date_lock.py",
+"line": 132,
+"text": "calls[\"acquire\"] = calls.get(\"acquire\", 0) + 1",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/cli/test_update_up_to_date_lock.py",
+"line": 140,
+"text": "assert calls.get(\"acquire\", 0) > 0",
+"cls": "strref",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 768,
+"text": "\"{acquire}\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 775,
+"text": "def _go_semaphore_hits(make: str, acquire: str = _GO_ACQUIRE) -> list[tuple[str, str]]:",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 776,
+"text": "hits = _hits(\"go\", _GO_SEMAPHORE.format(make=make, acquire=acquire))",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 807,
+"text": "assert _go_semaphore_hits(\"make(chan struct{}, n)\", acquire=\"\") == [",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 1771,
+"text": "\"the explicit acquire form of the same site\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 2026,
+"text": "spin = \"def acquire(self):\\n    while True:\\n        if self.flag.acquire(False):\\n            return\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_dialects.py",
+"line": 2028,
+"text": "each = \"def acquire(self, items):\\n    for i in items:\\n        self.locks[i].acquire()\\n\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_loop_exit_once.py",
+"line": 29,
+"text": "(\"python\", _PY, \"        lock.acquire()\\n{exit}\", \"lock_in_loop\"),",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 120,
+"text": "\"def f(items, lock):\\n    for x in items:\\n        lock.acquire()\\n        use(x)\\n\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 122,
+"text": "\"lock.acquire per iteration\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_perf_phase7a.py",
+"line": 128,
+"text": "\"release does not fire (only the acquire side, no double count)\",",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/health/test_trends.py",
+"line": 461,
+"text": "# floored files must stay flat rather than acquire an invented depth.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/savings/test_recorder.py",
+"line": 81,
+"text": "\"\"\"A repository that never ran ``init`` does not acquire a ledger by being used.\"\"\"",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_answer_calibration.py",
+"line": 1239,
+"text": "A pointers-only reply makes the agent re-acquire all content natively",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_filename_leg.py",
+"line": 251,
+"text": "waiter = asyncio.ensure_future(_graph_files._LOCK.acquire())",
+"cls": "code",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/mcp/test_perf_rank.py",
+"line": 34,
+"text": "\"\"\"One weight table, and it must not silently acquire a default.",
+"cls": "doc",
+"ext": ".py"
+},
+{
+"path": "tests/unit/server/test_episodes_api.py",
+"line": 4,
+"text": "would otherwise be free to acquire quietly: the transcript tier never leaves",
+"cls": "doc",
+"ext": ".py"
+}
+]
