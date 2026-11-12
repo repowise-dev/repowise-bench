@@ -53,8 +53,8 @@ def git(repo: Path, *args: str) -> str:
 def grep_files(repo: Path, terms: list[str]) -> list[str]:
     sets = []
     for t in terms:
-        out = git(repo, "grep", "-l", "-I", "-i", "-w", "-F", "-e", t)
-        sets.append(set(out.splitlines()))
+        out = git(repo, "grep", "-l", "-z", "-I", "-i", "-w", "-F", "-e", t)  # -z: paths unquoted
+        sets.append({f for f in out.split("\0") if f})
     files = set.intersection(*sets) if sets else set()
     if not files and sets:
         files = sets[0]
@@ -77,11 +77,17 @@ def file_tokens(repo: Path, rel: str) -> int:
 def grep_line_tokens(repo: Path, terms: list[str], files: list[str]) -> int:
     if not files:
         return 0
-    args = ["grep", "-n", "-I", "-i", "-w", "-F"]
+    args = ["grep", "-n", "-z", "-I", "-i", "-w", "-F"]
     for t in terms:
         args += ["-e", t]
-    out = git(repo, *args, "--", *files[:2000])
-    return ntok(out)
+    # Whole-repo grep filtered to the opened files: no path list on the command line (Windows length limit).
+    keep = set(files)
+    lines = []
+    for rec in git(repo, *args).split("\n"):
+        path, _, rest = rec.partition("\0")
+        if path in keep:
+            lines.append(path + ":" + rest.replace("\0", ":"))
+    return ntok("\n".join(lines))
 
 
 def keyless_env(cfg_dir: str) -> dict:
@@ -150,15 +156,16 @@ def summarise(recs: list[dict]) -> dict:
         by.setdefault(r["repo"], []).append(r)
     out = {}
     for repo, rs in by.items():
-        ratios = [r["ratio"] for r in rs if r["ratio"] is not None]
-        gp = [r["gold_present"] for r in rs if r["gold_present"] is not None]
+        ok = [r for r in rs if not r["is_error"]]  # an errored call is reported, never a ratio
+        ratios = [r["ratio"] for r in ok if r["ratio"] is not None]
+        gp = [r["gold_present"] for r in ok if r["gold_present"] is not None]
         out[repo] = {
             "rows": len(rs), "commit": rs[0]["commit"],
             "median_ratio": round(statistics.median(ratios), 1) if ratios else None,
-            "pooled_ratio": round(sum(r["grep_file_tokens"] for r in rs) / max(1, sum(r["answer_tokens"] for r in rs)), 1),
+            "pooled_ratio": round(sum(r["grep_file_tokens"] for r in ok) / max(1, sum(r["answer_tokens"] for r in ok)), 1),
             "worst_ratio": min(ratios) if ratios else None,
-            "median_answer_tokens": statistics.median(r["answer_tokens"] for r in rs),
-            "median_grep_file_tokens": statistics.median(r["grep_file_tokens"] for r in rs),
+            "median_answer_tokens": statistics.median(r["answer_tokens"] for r in ok) if ok else None,
+            "median_grep_file_tokens": statistics.median(r["grep_file_tokens"] for r in ok) if ok else None,
             "gold_present": f"{sum(gp)} of {len(gp)}",
             "errors": sum(1 for r in rs if r["is_error"]),
             "median_wall_s": round(statistics.median(r["wall_s"] for r in rs), 2),

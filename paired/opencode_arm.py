@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import subprocess
 import sys
 import tempfile
@@ -25,7 +26,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 from harness.opencode_runner import _resolve_opencode_bin, parse_cli_events  # noqa: E402
-from run_paired import CORE_TOOLS, KEY_ENVS, make_worktree, prompt_for, steer_text  # noqa: E402
+from run_paired import CORE_TOOLS, KEY_ENVS, make_worktree, prompt_for, repo_path, steer_text  # noqa: E402
 
 
 def opencode_config(arm: str, repo: Path, py: str, model: str, edit: bool, steer_file: Path) -> dict:
@@ -52,7 +53,7 @@ def opencode_config(arm: str, repo: Path, py: str, model: str, edit: bool, steer
 
 def main(a) -> None:
     spec = json.loads(Path(a.tasks).read_text(encoding="utf-8"))
-    root = Path(a.out)
+    root = Path(a.out).resolve()
     root.mkdir(parents=True, exist_ok=True)
     steer_file = root / "STEER.txt"
     steer_file.write_text(steer_text() + "\n", encoding="utf-8")
@@ -62,10 +63,13 @@ def main(a) -> None:
             key = line.split("=", 1)[1].strip().strip('"').strip("'")
     oc = _resolve_opencode_bin()
     tasks = [t for t in spec["tasks"] if not a.only or t["id"] in a.only.split(",")]
-    spent = 0.0
+    spent = 0.0  # from opencode's per-step cost; a provider that reports none leaves the cap inert
+    rng = random.Random(a.seed)
     for rep in range(1, a.reps + 1):
         for t in tasks:
-            for arm in a.arms.split(","):
+            order = a.arms.split(",")
+            rng.shuffle(order)  # same per-task arm shuffle as the Claude path
+            for arm in order:
                 rid = f"{t['id']}__{arm}__r{rep}"
                 cell = root / "runs" / rid
                 if (cell / "meta.json").exists():
@@ -75,7 +79,7 @@ def main(a) -> None:
                     return
                 cell.mkdir(parents=True, exist_ok=True)
                 rinfo = spec["repos"][t["repo"]]
-                repo = Path(rinfo["path"])
+                repo = repo_path(a.repos_dir, t["repo"])
                 edit = t.get("kind") == "edit"
                 cwd = make_worktree(repo, rinfo["commit"], root / "wt" / rid) if edit else repo
                 cfg_p = cell / "opencode.json"
@@ -107,6 +111,7 @@ def main(a) -> None:
                      "n_files_read": len(set(ev.get("files_explored", []))), "first_ctx": None}
                 m["total_tokens"] = sum(m["tokens"].values())
                 if edit:
+                    subprocess.run(["git", "-C", str(cwd), "add", "-N", "."], capture_output=True)
                     diff = subprocess.run(["git", "-C", str(cwd), "diff"], capture_output=True, text=True,
                                           encoding="utf-8", errors="replace").stdout
                     (cell / "diff.patch").write_text(diff, encoding="utf-8")

@@ -18,7 +18,7 @@ Prefix
   realistic  all built-in tools, plus a seeded conversation history per repo
              (`--resume <seed> --fork-session`), so the first turn carries
              about 60k tokens as in a working session.
-  minimal    `--tools Read,Grep,Glob,Bash` and no history (the 11-11 pilot shape).
+  minimal    `--tools Read,Grep,Glob,Bash` and no history (the first paired pilot's shape).
 
 Fairness
   Each arm's prefix is warmed once before its first measured run, and the arms
@@ -65,6 +65,11 @@ Final reply, exactly these sections:
 ANSWER: <your answer{answer_hint}>
 CONFIDENCE: high|medium|low
 """
+
+
+def repo_path(repos_dir: str, name: str) -> Path:
+    """A task's repository: a full clone with its index at <repos-dir>/<name>, at the commit the task file pins."""
+    return (Path(repos_dir) / name).resolve()
 
 
 def steer_text() -> str:
@@ -269,6 +274,7 @@ def main() -> None:
     ap.add_argument("--reps", type=int, default=1)
     ap.add_argument("--prefix", choices=["realistic", "minimal"], default="realistic")
     ap.add_argument("--model", default="sonnet")
+    ap.add_argument("--repos-dir", default="repos", help="clones with their indexes, one directory per repo name")
     ap.add_argument("--only", default="")
     ap.add_argument("--cap-usd", type=float, default=5.0)
     ap.add_argument("--seed", type=int, default=20261113)
@@ -285,7 +291,7 @@ def main() -> None:
         return oc_main(a)
 
     spec = json.loads(Path(a.tasks).read_text(encoding="utf-8"))
-    root = Path(a.out)
+    root = Path(a.out).resolve()  # children run with cwd=repo; every path handed to them must be absolute
     root.mkdir(parents=True, exist_ok=True)
     arms = a.arms.split(",")
     tasks = [t for t in spec["tasks"] if not a.only or t["id"] in a.only.split(",")]
@@ -306,7 +312,7 @@ def main() -> None:
     seeds = {}
     if a.prefix == "realistic":
         for name in sorted({t["repo"] for t in tasks}):
-            seeds[name] = seed_session(name, Path(spec["repos"][name]["path"]), spec["repos"][name], root, key_file, a.model)
+            seeds[name] = seed_session(name, repo_path(a.repos_dir, name), spec["repos"][name], root, key_file, a.model)
     spent = sum((json.loads(p.read_text())["cost_usd"] or 0) for p in root.glob("runs/*/meta.json"))
     spent += sum(s.get("cost_usd") or 0 for s in seeds.values())
     warmed: set[str] = set()
@@ -319,7 +325,7 @@ def main() -> None:
             print(f"cap reached at ${spent:.2f}; stopping before {rid}")
             break
         rinfo = spec["repos"][t["repo"]]
-        repo = Path(rinfo["path"])
+        repo = repo_path(a.repos_dir, t["repo"])
         cwd = repo
         if t.get("kind") == "edit":
             cwd = make_worktree(repo, rinfo["commit"], root / "wt" / rid)
@@ -334,6 +340,7 @@ def main() -> None:
             warmed.add(f"{arm}|{t['repo']}")
         m = run_one(cmd, prompt_for(t, rinfo.get("desc", t["repo"])), cwd, env, cell)
         if t.get("kind") == "edit":
+            subprocess.run(["git", "-C", str(cwd), "add", "-N", "."], capture_output=True)  # new files show in the diff
             diff = subprocess.run(["git", "-C", str(cwd), "diff"], capture_output=True, text=True,
                                   encoding="utf-8", errors="replace").stdout
             (cell / "diff.patch").write_text(diff, encoding="utf-8")
@@ -341,8 +348,17 @@ def main() -> None:
             subprocess.run(["git", "-C", str(repo), "worktree", "remove", "--force", str(cwd)], capture_output=True)
         m.update(task=t["id"], arm=arm, rep=rep, kind=t.get("kind", "read"), tier=t.get("tier"),
                  repo=t["repo"], prefix=a.prefix, model_arg=a.model, resumed=bool(resume))
-        (cell / "meta.json").write_text(json.dumps(m, indent=2), encoding="utf-8")
         spent += m["cost_usd"] or 0
+        servers = {s.get("name"): s.get("status") for s in (m.get("mcp_servers") or [])}
+        failure = ("exit code %s" % m["rc"] if m["rc"] else "result is_error" if m["is_error"] else
+                   "repowise server %s" % servers.get("repowise") if arm != "bare" and servers.get("repowise") != "connected" else
+                   "resume failed" if resume and not m["first_ctx"] else None)
+        if failure:
+            # Not final: kept for inspection, retried on the next invocation, never analysed.
+            (cell / "failed.json").write_text(json.dumps({**m, "failure": failure}, indent=2), encoding="utf-8")
+            print(f"{rid}: FAILED ({failure}); will retry", flush=True)
+            continue
+        (cell / "meta.json").write_text(json.dumps(m, indent=2), encoding="utf-8")
         print(f"{rid}: ${m['cost_usd']} tok={m['total_tokens']} rw={m['rw_calls']} ctx1={m['first_ctx']} total=${spent:.2f}", flush=True)
 
 

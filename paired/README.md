@@ -4,8 +4,8 @@ The same task, run by the same agent with and without Repowise, back to back,
 graded blind. This is the harness behind the "real agent sessions" table.
 
 ```
-python paired/run_paired.py --tasks paired/tasks/table2.json --out runs/t2 --arms bare,rw --reps 1
-python paired/judge.py      --tasks paired/tasks/table2.json --out runs/t2
+python paired/run_paired.py --tasks paired/tasks/table2.json --repos-dir <clones> --out runs/t2 --arms bare,rw --reps 1
+python paired/judge.py      --tasks paired/tasks/table2.json --repos-dir <clones> --out runs/t2
 python paired/analyze.py    runs/t2 > runs/t2/analysis.md
 ```
 
@@ -69,7 +69,7 @@ written outside the checkout.
 
 ## Task files
 
-`tasks/validation.json` (six read tasks, minimal prefix, the shape of the first
+`<clones>/<name>` is a full clone at the commit the task file pins, with its `repowise init --no-prose` index. `tasks/validation.json` (six read tasks, minimal prefix, the shape of the first
 paired pilot) and `tasks/table2.json` (three repository sizes; three edit tasks
 per repository as the primary tier, plus flow, exploration and locate). Every
 task carries its gold notes, checked against the pinned clone before any run.

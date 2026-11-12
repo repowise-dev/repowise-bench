@@ -19,7 +19,10 @@ def main() -> None:
     p("| repository | size | rows | median | pooled | lowest row | needed file present | median answer tokens | median grep-opened tokens | bar (>= 100x median) |")
     p("|---|---|---:|---:|---:|---:|---|---:|---:|---|")
     for repo, s in summ.items():
-        bar = "pass" if (s["median_ratio"] or 0) >= 100 else "miss"
+        if s["median_ratio"] is None:
+            p(f"| {repo} | {SIZE.get(repo, '?')} | {s['rows']} | no answered rows | | | | | | miss |")
+            continue
+        bar = "pass" if s["median_ratio"] >= 100 else "miss"
         p(f"| {repo} | {SIZE.get(repo, '?')} | {s['rows']} | {s['median_ratio']:,}x | {s['pooled_ratio']:,}x | {s['worst_ratio']:,}x | "
           f"{s['gold_present']} | {s['median_answer_tokens']:,.0f} | {s['median_grep_file_tokens']:,.0f} | {bar} |")
     p("\n### Every row\n")

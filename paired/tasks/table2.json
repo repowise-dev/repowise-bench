@@ -2,19 +2,16 @@
  "_about": "Table 2 task set: 3 repository sizes x (3 edit tasks, the primary tier, + flow, exploration, locate). Golds verified against the pinned clones before any run. Seed prompts build the realistic conversation prefix (about 22k tokens of files read in the history; first-turn context about 60k).",
  "repos": {
   "flask": {
-   "path": "D:/mcp-night2/M23/repos/flask",
    "commit": "49943b5a94413a530761350f04e896f76e8d620e",
    "desc": "pallets/flask (Python web framework)",
    "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: src/flask/sansio/scaffold.py, src/flask/ctx.py, src/flask/testing.py, src/flask/templating.py, src/flask/sessions.py, src/flask/debughelpers.py, src/flask/logging.py, src/flask/views.py, src/flask/globals.py. Do not modify any files."
   },
   "hono": {
-   "path": "D:/mcp-night2/M23/repos/hono",
    "commit": "f6fbaf0299c48eea9e656e03e2ffe7ac755e8823",
    "desc": "honojs/hono (TypeScript web framework)",
    "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: src/context.ts, src/request.ts, src/helper/cookie/index.ts, src/utils/cookie.ts, src/utils/body.ts, src/client/client.ts, src/validator/validator.ts, src/jsx/base.ts. Do not modify any files."
   },
   "django": {
-   "path": "D:/mcp-night2/M23/repos/django",
    "commit": "a0f2e29e0a98ee14aa808ebe38ec5fb79c8af71f",
    "desc": "django/django (Python web framework)",
    "seed_prompt": "I am getting familiar with this codebase before some work. Read each of these files in full and give me a three-sentence summary of each: django/http/request.py, django/http/response.py, django/forms/forms.py, django/template/base.py. Do not modify any files."

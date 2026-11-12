@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from run_paired import anthropic_env, claude_exe  # noqa: E402
+from run_paired import anthropic_env, claude_exe, repo_path  # noqa: E402
 
 JUDGE = """You are grading answers to one coding task about the repository in your working directory.
 Verify every claim you rely on against the code with Read/Grep/Glob. The GOLD notes list what a
@@ -41,8 +41,13 @@ Reply with only a JSON list, one object per item: {{"id": "...", "grade": "corre
 """
 
 
+_ARM_TELLS = re.compile(r"mcp__repowise__\w+|\b(get_answer|get_context|search_codebase|get_symbol|repowise)\b", re.I)
+
+
 def strip_answer(text: str) -> str:
-    return re.sub(r"\n?CONFIDENCE:.*", "", text or "", flags=re.S).strip()
+    """Drop the confidence line and every mention of the tool or its calls, which would reveal the arm."""
+    text = re.sub(r"\n?CONFIDENCE:.*", "", text or "", flags=re.S).strip()
+    return _ARM_TELLS.sub("[tool]", text)
 
 
 def main() -> None:
@@ -50,6 +55,7 @@ def main() -> None:
     ap.add_argument("--tasks", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--model", default="haiku")
+    ap.add_argument("--repos-dir", default="repos")
     ap.add_argument("--keys", default=str(Path.home() / "Desktop/repowise/backend/.env"))
     ap.add_argument("--seed", type=int, default=20261113)
     a = ap.parse_args()
@@ -69,8 +75,12 @@ def main() -> None:
     for t in spec["tasks"]:
         out_p = jd / f"verdict_{t['id']}.json"
         metas = sorted(root.glob(f"runs/{t['id']}__*/meta.json"))
-        if out_p.exists() or not metas:
+        if not metas:
             continue
+        if out_p.exists():
+            judged = {v.get("run") for v in json.loads(out_p.read_text(encoding="utf-8")).get("verdicts", [])}
+            if judged >= {mp.parent.name for mp in metas}:
+                continue  # every finished run already has a grade; a new run re-judges the whole task
         items = []
         for mp in metas:
             m = json.loads(mp.read_text(encoding="utf-8"))
@@ -88,7 +98,7 @@ def main() -> None:
         prompt = JUDGE.format(task=t["prompt"], gold=t["gold"], edit_rule=edit_rule,
                               items=json.dumps(items, indent=1, ensure_ascii=False))
         (jd / f"packet_{t['id']}.txt").write_text(prompt, encoding="utf-8")
-        repo = spec["repos"][t["repo"]]["path"]
+        repo = str(repo_path(a.repos_dir, t["repo"]))
         cmd = [claude_exe(), "-p", "--model", a.model, "--output-format", "json", "--tools", "Read,Grep,Glob",
                "--allowedTools", "Read Grep Glob", "--permission-mode", "dontAsk", "--max-turns", "30",
                "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}']
@@ -101,8 +111,15 @@ def main() -> None:
             continue
         cost += res.get("total_cost_usd") or 0
         m = re.search(r"\[.*\]", res.get("result", ""), re.S)
-        verdicts = json.loads(m.group(0)) if m else []
+        try:
+            verdicts = [v for v in (json.loads(m.group(0)) if m else []) if isinstance(v, dict) and v.get("grade")]
+        except ValueError:
+            verdicts = []
+        if not verdicts:
+            print(t["id"], "judge reply had no verdicts; left ungraded", flush=True)
+            continue
         for v in verdicts:
+            v["grade"] = str(v["grade"]).lower()
             v["run"] = mapping.get(v.get("id"))
         out_p.write_text(json.dumps({"verdicts": verdicts, "cost_usd": res.get("total_cost_usd")}, indent=2), encoding="utf-8")
         print(t["id"], [(v["run"], v["grade"]) for v in verdicts], f"${cost:.3f}", flush=True)

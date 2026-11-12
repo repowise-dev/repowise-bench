@@ -26,7 +26,8 @@ def load(root: Path) -> list[dict]:
     rows = []
     for mp in sorted(root.glob("runs/*/meta.json")):
         m = json.loads(mp.read_text(encoding="utf-8"))
-        m["grade"] = grades.get(mp.parent.name)
+        m["grade"] = (grades.get(mp.parent.name) or "").lower() or None
+        m["first_tool_rw"] = bool(m.get("first_tool_rw"))  # opencode cannot order tools: recorded as None
         rows.append(m)
     return rows
 
