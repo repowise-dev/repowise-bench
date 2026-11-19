@@ -131,3 +131,7 @@ becomes `\bhalf_life\b`. No other gold item changes, including the private-helpe
 also discussed (OKF-07 `saveConceptLocked`, FOR-11 `_assess_event`), which stay as registered.
 Both arms of every model are regraded with the same gold. RESULTS.md reports correctness before and
 after A5 for every row. Grading stays deterministic (regex, no judge); no run is repeated.
+
+## Amendment A6 (2026-11-19, before the rerun)
+Rerun of the Sonnet 4.6 row (24 questions, 2 arms, 3 runs = 144 sessions) at repowise a5ee180fb, same repos, questions, gold (after A5), indexes rebuilt at that sha, always_load on. Purpose: current-build showcase row. Opus 5.5 rerun follows only if subscription capacity allows. Original rows stay published as they are.
+A6 addendum (2026-11-19, founder, before any session): a smoke run goes first: Sonnet 4.6, 6 questions (LEV-10, FOR-10, FOR-11, LEV-02, OKF-07 and one locate question) x 2 arms x 1 run = 12 sessions at a5ee180fb. The smoke checks that sessions run cleanly, tools load, the repowise arm calls them and accounting is recorded. It is excluded from the results; the full 144-session grid starts only on the founder's go.

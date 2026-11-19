@@ -33,6 +33,24 @@ did not expose the Repowise server's tools to the model, so there was nothing to
 Wall clock, per-repository and per-question-kind tables, medians and the full correctness record
 are in [RESULTS.md](RESULTS.md).
 
+## Sonnet 4.6 rerun at the current build
+
+Amendment A6: the Sonnet 4.6 row (24 questions, 2 arms, 3 runs, 144 sessions) rerun with repowise at
+`a5ee180fb`, same repositories, questions and gold (after A5), indexes rebuilt at that commit. The
+published row above stays as it was. After a usage limit, 25 sessions were refilled by the harness's
+resume pass. A 12-session smoke run came first and is excluded.
+
+| | Without Repowise | With Repowise | Change |
+|---|---:|---:|---:|
+| Files opened, per question | 3.28 | 0.00 | **-100%** |
+| Output tokens, per question | 2,298 | 1,120 | **-51.2%** [-74.2, -29.3] |
+| Wall clock, per question | 44.7 s | 23.6 s | **-47.2%** [-69.0, -26.2] |
+| Tool calls, per question | 6.5 | 4.7 | **-28%** |
+| Answers fully correct | 70 of 72 | 71 of 72 | |
+
+Leaner on 19 of the 24 questions (18 in the published row). Per-run `meta.json` files, the summary
+and the rows are in `runs_a5ee180fb/`; transcripts for this rerun are not published.
+
 ## How it was run
 
 - **Repositories:** thruwire/foreman (Python), okf-memory/okf-agent-memory (Go) and
@@ -48,7 +66,7 @@ are in [RESULTS.md](RESULTS.md).
   gold item matched.
 - **Statistics:** per-question means, paired difference, 95% bootstrap interval over questions
   (10,000 resamples).
-- **Pre-registration:** [PREREG.md](PREREG.md), frozen before the grid, with amendments A1 to A5
+- **Pre-registration:** [PREREG.md](PREREG.md), frozen before the grid, with amendments A1 to A6
   and the reason and time for each.
 
 ## What is here
