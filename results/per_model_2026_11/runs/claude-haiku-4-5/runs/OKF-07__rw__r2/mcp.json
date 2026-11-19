@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "repowise": {
+      "command": "REPOWISE_VENV\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "repowise.cli.main",
+        "mcp",
+        "BENCH\\repos\\okf-agent-memory",
+        "--transport",
+        "stdio",
+        "--no-workspace",
+        "--tools",
+        "get_answer,get_context,search_codebase,get_symbol"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": "",
+        "OPENAI_API_KEY": "",
+        "OPENROUTER_API_KEY": "",
+        "OPENROUTER_KEY": "",
+        "GEMINI_API_KEY": "",
+        "GOOGLE_API_KEY": "",
+        "DEEPSEEK_API_KEY": "",
+        "MISTRAL_API_KEY": "",
+        "REPOWISE_CONFIG_DIR": "BENCH\\runs\\claude-haiku-4-5\\runs\\OKF-07__rw__r2\\rw_cfg",
+        "PYTHONPATH": "REPOWISE_SRC\\packages\\core\\src;REPOWISE_SRC\\packages\\server\\src;REPOWISE_SRC\\packages\\cli\\src",
+        "REPOWISE_ANSWER_DISABLE_CACHE": "1",
+        "DO_NOT_TRACK": "1",
+        "REPOWISE_TELEMETRY_DISABLED": "1"
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+ "model": "opus",
+ "id": "FOR-02",
+ "must_hit": [],
+ "must_n": 2,
+ "answer": "I don't know. I have no reliable knowledge of the `thruwire/foreman` repository's source, so I can't name the function or file that parses pytest summary lines (e.g. `5 passed, 2 failed in 1.23s`) from a worker's captured output. Any specific name I gave would be a guess.\n\nIf you want, I can look it up with tools. A search like `grep -rnE \"passed|failed\" --include=*.py` combined with a regex search for patterns such as `r\"(\\d+) passed\"` or `re.compile(...passed...)` would quickly find the parser and its callers in a local clone."
+}

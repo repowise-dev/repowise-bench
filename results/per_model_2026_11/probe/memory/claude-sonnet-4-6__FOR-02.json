@@ -1,0 +1,7 @@
+{
+ "model": "claude-sonnet-4-6",
+ "id": "FOR-02",
+ "must_hit": [],
+ "must_n": 2,
+ "answer": "I don't have specific knowledge of the `thruwire/foreman` repository in my training data. It's not a widely-known open-source project I can speak to with confidence, so I'd be guessing if I named specific files or functions.\n\nTo find this accurately, you could:\n\n1. Search the repo for regex patterns matching pytest output like `passed`, `failed`, `error` \u2014 e.g., `grep -r \"passed\\|failed\" --include=\"*.py\"` or searching on GitHub for those terms.\n2. Look for functions with names like `parse_summary`, `parse_results`, `extract_counts`, or similar in files related to worker output handling (often named something like `worker.py`, `runner.py`, `collector.py`, or `parser.py`).\n3. Search for the characteristic pytest summary line pattern `(\\d+ passed)` or `short_test_summary` in the codebase.\n\nIf you can point me to the repo or paste relevant code, I can answer precisely."
+}

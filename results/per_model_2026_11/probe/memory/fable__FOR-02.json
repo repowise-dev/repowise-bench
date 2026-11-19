@@ -1,0 +1,7 @@
+{
+ "model": "fable",
+ "id": "FOR-02",
+ "must_hit": [],
+ "must_n": 2,
+ "answer": "I don't know this one. I have no reliable knowledge of the thruwire/foreman repository's source, so I can't name the file or function that parses pytest summary lines from worker output without guessing.\n\nIf you want a real answer, point me at a checkout of the repo and I can search it. A good starting query would be a grep for `passed` and `failed` together with a regex, or for calls that read a worker's captured stdout, since that is where such a parser would typically sit."
+}
