@@ -1,0 +1,7 @@
+{
+ "model": "sonnet",
+ "id": "OKF-03",
+ "must_hit": [],
+ "must_n": 2,
+ "answer": "I don't know. I have no reliable knowledge of the okf-memory/okf-agent-memory repository's source, so I can't name the file or function that decides a stale lock file is old enough to be taken over. Any file or function name I gave would be a guess, and I don't want to invent one.\n\nIf you want to find it, these are good places to look in the repo:\n\n- Search for terms like `stale`, `lock`, `flock`, `O_EXCL`, `acquire`, `ttl`, `mtime`, or `ModTime` to find the lock acquisition code.\n- Look for a function that compares the lock file's modification time (or a timestamp or PID written inside it) against a staleness threshold. That function is the one that decides takeover.\n- The caller that retries after removing a stale lock is usually the acquire function in the same file.\n\nIf you'd like, I can search the repo with my tools once it's available in the working directory, and give you a verified answer with file and line references."
+}

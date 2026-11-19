@@ -1,0 +1,9 @@
+{
+ "model": "opus",
+ "id": "OKF-03",
+ "must_hit": [
+  "lock.go"
+ ],
+ "must_n": 2,
+ "answer": "I don't know. I have no reliable knowledge of the `okf-memory/okf-agent-memory` repository's source code, so I can't name the function that decides a lock file is stale or the file it lives in without guessing.\n\nIn Go projects, this kind of logic usually sits in a file like `lock.go` or `bundle_lock.go`. It is typically a helper such as `isStale`, `staleLock`, or a branch inside an `acquireLock` or `Lock` function that compares the lock file's mtime (or a timestamp or PID written inside it) against a timeout. That is only a general pattern, not knowledge of this repo, so please don't treat it as an answer.\n\nIf you can share the repo or let me use tools, I can find the exact file and function. Searching for `os.Stat`, `ModTime`, `O_EXCL`, or `stale` near the bundle code would likely locate it quickly."
+}

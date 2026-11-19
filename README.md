@@ -74,6 +74,7 @@ them exists because something above got past its predecessor.
 |---|---|---|---|
 | Finding the files a fix touches | CodeGraph, Graphify, code-review-graph, cocoindex | **we win**, 0.876 vs 0.610, n=42 sealed, p=0.00004 | [§1](#1-head-to-head-against-the-agent-context-field) · [head-to-head/](head-to-head/README.md) |
 | Work saved in a real agent loop | the same field plus Serena and a bare agent | **we win**, -31.6% output tokens, n=43, p<0.0001, on all three agent harnesses tried | [§2](#2-work-saved-in-a-real-agent-loop) |
+| Work saved per model, five models | the same agent without Repowise | **83% fewer files opened** on Opus 5.5, -14.1% output tokens, 48 of 48 correct both ways; files opened falls on every model | [results/per_model_2026_11/](results/per_model_2026_11/README.md) |
 | Does the health score predict real bugs | CodeScene | **we win** on recall, effort-aware ranking and defect density, p=0.003 | [§3](#3-does-the-health-score-predict-real-bugs) |
 | Cross-function performance bugs | clippy, ruff PERF, ESLint, golangci-lint | **0 linter hits vs 557 findings** | [§4](#4-performance-bugs-a-file-local-linter-cannot-see) |
 | Loading one commit's context | naive file reads, `git diff` | 393 tokens vs 13,984, **35.6x** pooled | [§5](#5-the-easy-number-loading-one-commits-context) |
@@ -549,6 +550,7 @@ repowise-bench/
 │   └── refactoringminer.py           external type-level refactoring oracle
 │
 ├── results/bakeoff_2026_08/          every graded cell behind the head-to-head
+├── results/per_model_2026_11/        five models, with and without Repowise: runs, transcripts, harness
 ├── repro/README.md                   per-claim cost and time to reproduce
 ├── data/                             static benchmark datasets
 ├── analysis/                         aggregation scripts

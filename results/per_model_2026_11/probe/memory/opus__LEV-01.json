@@ -1,0 +1,7 @@
+{
+ "model": "opus",
+ "id": "LEV-01",
+ "must_hit": [],
+ "must_n": 3,
+ "answer": "I don't know this one. I have no reliable knowledge of the source code of `elstongun/leviathan`, so I can't tell you which file or function does the secret detection or which helper tells random tokens apart from hashes or IDs. Any names I gave you would be invented.\n\nA check like this is often built from a function such as `looks_like_secret` or `contains_secret`, using a Shannon-entropy helper plus a character-class or length check to separate random base64 from hex hashes or UUIDs. That's a general pattern, not a claim about this repository.\n\nTo find the actual answer, clone the repo and search for things like:\n\n```\nrg -n \"secret|credential|api.?key|entropy|base64\" --type rust\n```\n\nThen follow the call from the memory-store handler to the rejection path. If you clone it into the working directory, I can trace it for you."
+}

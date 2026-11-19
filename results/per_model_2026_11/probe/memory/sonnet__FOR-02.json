@@ -1,0 +1,7 @@
+{
+ "model": "sonnet",
+ "id": "FOR-02",
+ "must_hit": [],
+ "must_n": 2,
+ "answer": "I don't know. I have no reliable knowledge of the source code of `thruwire/foreman`, so I can't name the file or function that parses pytest summary lines (e.g. \"3 passed, 1 failed\") from a worker's captured output. Any file or function name I gave would be a guess.\n\nIf you'd like to find it, you could search the repo for a regex matching `passed` / `failed` (e.g. `grep -rn \"passed\" --include=*.py`) or look for names like `parse_pytest_output`, `parse_summary`, or similar in the worker or test-runner modules. If you point me at a local checkout, I can search it and give you a definite answer."
+}

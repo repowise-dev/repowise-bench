@@ -1,0 +1,7 @@
+{
+ "model": "fable",
+ "id": "LEV-01",
+ "must_hit": [],
+ "must_n": 3,
+ "answer": "I don't know. I have no reliable knowledge of the elstongun/leviathan repository's source code, and I can't inspect it without tools. Guessing function or file names here would risk inventing them.\n\nWhat I can say generally: a secret-detection check in a memory-storing server would typically live in a validation or redaction module and combine a regex pass for known key prefixes with a Shannon entropy calculation that distinguishes high-entropy random tokens from lower-entropy hex hashes or ids. The actual names in leviathan could differ, so I'd rather not assert them.\n\nIf you can let me run tools, point me at the repository and I'll find the exact functions and files."
+}

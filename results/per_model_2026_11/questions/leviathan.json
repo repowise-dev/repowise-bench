@@ -1,0 +1,340 @@
+{
+ "repo": "leviathan",
+ "commit": "21563697e1a9c99f31b28108ed332649044d066a",
+ "questions": [
+  {
+   "id": "LEV-01",
+   "kind": "locate",
+   "question": "When an agent stores a memory, the server refuses text that looks like an API key or other credential, including long random-looking base64 strings. Which function decides whether a piece of text looks like a secret, and which helper does it use to tell random-looking tokens from hashes or ids? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "secret_kind",
+     "regex": "\\bsecret_kind\\b"
+    },
+    {
+     "label": "looks_random",
+     "regex": "\\blooks_random\\b"
+    },
+    {
+     "label": "guard.rs",
+     "regex": "guard\\.rs|memory/guard"
+    }
+   ],
+   "any_of": [],
+   "notes": "secret_kind at src/memory/guard.rs:53 checks SECRETS regexes then LONG_TOKEN matches via looks_random (guard.rs:62)."
+  },
+  {
+   "id": "LEV-02",
+   "kind": "locate",
+   "question": "Memory recall ranks results partly by how recent they are, with an age decay whose speed depends on the memory kind (events, tasks and notes fade, others never do). Which function supplies the per-kind default decay period, and which method on settings resolves the effective value including config overrides? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "default_half_life",
+     "regex": "\\bdefault_half_life\\b"
+    },
+    {
+     "label": "half_life",
+     "regex": "\\bhalf_life\\b"
+    },
+    {
+     "label": "mod.rs",
+     "regex": "mod\\.rs"
+    }
+   ],
+   "any_of": [],
+   "notes": "Kind::default_half_life at src/memory/mod.rs:169 (Event 30, Task 7, Note 90); Settings::half_life at mod.rs:221; used in recall.rs:335."
+  },
+  {
+   "id": "LEV-03",
+   "kind": "locate",
+   "question": "The HTTP server decides whether a browser request's Origin header is acceptable, and always lets through origins that come from the local machine. Which functions implement that decision and the local-machine check? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "origin_allowed",
+     "regex": "\\borigin_allowed\\b"
+    },
+    {
+     "label": "is_loopback_host",
+     "regex": "\\bis_loopback_host\\b"
+    }
+   ],
+   "any_of": [
+    [
+     "http/mod\\.rs",
+     "\\bmod\\.rs"
+    ]
+   ],
+   "notes": "origin_allowed src/http/mod.rs:334 calls is_loopback_host (defined :96) at :338."
+  },
+  {
+   "id": "LEV-04",
+   "kind": "locate",
+   "question": "Where is the random string generator used for OAuth client secrets, authorization codes and access tokens implemented, and what primitive does it use for randomness and encoding? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "random_token",
+     "regex": "\\brandom_token\\b"
+    },
+    {
+     "label": "oauth.rs",
+     "regex": "oauth\\.rs"
+    },
+    {
+     "label": "getrandom",
+     "regex": "getrandom"
+    }
+   ],
+   "any_of": [
+    [
+     "URL_SAFE_NO_PAD",
+     "base64"
+    ]
+   ],
+   "notes": "random_token at src/oauth.rs:60 uses getrandom::fill and base64 URL_SAFE_NO_PAD; called at oauth.rs:414,415,536,630,734."
+  },
+  {
+   "id": "LEV-05",
+   "kind": "flow",
+   "question": "Trace what happens when an MCP client calls the remember tool: from the Session tool dispatcher, through input validation, to the database write and de-duplication. Which functions validate the input and which one finds similar existing memories? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "guard::check",
+     "regex": "guard::check|guard\\.rs"
+    },
+    {
+     "label": "write.rs",
+     "regex": "write\\.rs"
+    },
+    {
+     "label": "jaccard/word_set",
+     "regex": "\\bjaccard\\b|\\bword_set\\b"
+    }
+   ],
+   "any_of": [
+    [
+     "\\bjaccard\\b",
+     "\\bword_set\\b"
+    ]
+   ],
+   "notes": "mcp.rs:536-560 Session::call 'remember' -> Memory::remember (write.rs:127) -> guard::check (guard.rs:133, called write.rs:129) -> similar (write.rs:298, called :227) then jaccard against DUPLICATE 0.8."
+  },
+  {
+   "id": "LEV-06",
+   "kind": "flow",
+   "question": "An agent sends POST /v1/<tool> to the HTTP server with a JSON body. Trace the request from route matching to the tool actually running, and say which function performs the Authorization check and which function hands the call to the shared MCP tool dispatcher. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "rest",
+     "regex": "`rest`|\\brest\\s*\\(|::rest\\b|fn rest\\b"
+    },
+    {
+     "label": "authorized",
+     "regex": "\\bauthorized\\b"
+    },
+    {
+     "label": "mcp.rs",
+     "regex": "mcp\\.rs"
+    }
+   ],
+   "any_of": [
+    [
+     "Session::call",
+     "session\\.call",
+     "\\bcall\\b"
+    ]
+   ],
+   "notes": "route (src/http/mod.rs:436) checks authorized (:342) for /v1/ paths then rest (:511) which calls session.call (mcp.rs:441)."
+  },
+  {
+   "id": "LEV-07",
+   "kind": "flow",
+   "question": "When memory recall is called with no query (the session briefing), how are candidates scored? Start from the CLI function that prints the briefing and name the functions that run the ranking, including where the recency decay is applied. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "recall.rs",
+     "regex": "recall\\.rs"
+    },
+    {
+     "label": "half_life",
+     "regex": "\\bhalf_life\\b"
+    },
+    {
+     "label": "memory_cli.rs",
+     "regex": "memory_cli\\.rs"
+    }
+   ],
+   "any_of": [],
+   "notes": "memory_cli.rs:428 briefing -> Memory::briefing (recall.rs:440) -> Memory::recall (recall.rs:183), which scores with recency via settings.half_life (recall.rs:335) and importance/pinned weights."
+  },
+  {
+   "id": "LEV-08",
+   "kind": "flow",
+   "question": "When indexing data files, how does a single record from a source file end up as a row in the index? Trace from the build entry point through source reading to the per-record mapping step. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "Ingest",
+     "regex": "\\bIngest\\b"
+    },
+    {
+     "label": "source::read",
+     "regex": "source::read|\\bread_jsonl\\b|source\\.rs"
+    },
+    {
+     "label": "prepare",
+     "regex": "\\bprepare\\b"
+    },
+    {
+     "label": "index.rs",
+     "regex": "index\\.rs"
+    }
+   ],
+   "any_of": [
+    [
+     "fields\\.rs"
+    ]
+   ],
+   "notes": "index::build (index.rs:128) -> Ingest::source (index.rs:439) -> source::read (source.rs:282) -> callback Ingest::record (index.rs:484) -> Mapping::prepare (fields.rs:225)."
+  },
+  {
+   "id": "LEV-09",
+   "kind": "flow",
+   "question": "The memory CLI can fetch a briefing from a remote server instead of a local file. Trace how that remote call is made over HTTP and which server-side code ends up answering it as the recall tool. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "remote_briefing",
+     "regex": "\\bremote_briefing\\b"
+    },
+    {
+     "label": "call_tool",
+     "regex": "\\bcall_tool\\b"
+    },
+    {
+     "label": "client.rs",
+     "regex": "client\\.rs|http/client"
+    },
+    {
+     "label": "server dispatch",
+     "regex": "\\bhandle_body\\b|\\bhandle\\b|Session::call|mcp\\.rs"
+    }
+   ],
+   "any_of": [],
+   "notes": "memory_cli.rs:443 remote_briefing -> http::call_tool (client.rs:109, JSON-RPC tools/call) -> server POST /mcp -> Session::handle_body (mcp.rs:659)/handle -> call 'recall' (mcp.rs:563)."
+  },
+  {
+   "id": "LEV-10",
+   "kind": "impact",
+   "question": "Which production code calls open_ro (the read-only SQLite connection opener in the index module)? List each calling module. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "index.rs",
+     "regex": "index\\.rs"
+    },
+    {
+     "label": "query.rs",
+     "regex": "query\\.rs"
+    },
+    {
+     "label": "source.rs",
+     "regex": "source\\.rs"
+    }
+   ],
+   "any_of": [
+    [
+     "\\bStore::open\\b",
+     "\\bopen\\b"
+    ],
+    [
+     "\\bbuild\\b",
+     "\\bkind_reports\\b",
+     "\\bindex_is_current\\b"
+    ]
+   ],
+   "notes": "open_ro defined index.rs:696; called in index.rs:140 (build), 232 (kind_reports), 666 (index_is_current), query.rs:204 (Store::open), source.rs:200 and :607 (sqlite source reads)."
+  },
+  {
+   "id": "LEV-11",
+   "kind": "impact",
+   "question": "If the credential check used on memory input were changed, which validation sites would be affected? Name the helper that wraps the secret detection and the kinds of memory fields it is applied to. Name the files and functions involved.",
+   "must": [
+    {
+     "label": "check_secret",
+     "regex": "\\bcheck_secret\\b"
+    },
+    {
+     "label": "guard.rs",
+     "regex": "guard\\.rs"
+    },
+    {
+     "label": "subject",
+     "regex": "\\bsubject\\b"
+    },
+    {
+     "label": "tag/ref/source",
+     "regex": "\\btags?\\b|\\brefs?\\b|\\bsource\\b"
+    }
+   ],
+   "any_of": [],
+   "notes": "check_secret (guard.rs:106) is called from guard::check (guard.rs:133) for text :146, subject :156, key :160, tag :172, ref :184, source :198; secret_kind is only used there."
+  },
+  {
+   "id": "LEV-12",
+   "kind": "impact",
+   "question": "Which functions resolve a subject alias to its canonical normalized name in the memory store, and which call sites would be affected if that resolver changed its signature? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "resolve_alias",
+     "regex": "\\bresolve_alias\\b"
+    },
+    {
+     "label": "remember",
+     "regex": "\\bremember\\b"
+    },
+    {
+     "label": "forget",
+     "regex": "\\bforget\\b"
+    },
+    {
+     "label": "history",
+     "regex": "\\bhistory\\b"
+    }
+   ],
+   "any_of": [
+    [
+     "write\\.rs"
+    ],
+    [
+     "memory/mod\\.rs",
+     "\\bmod\\.rs"
+    ]
+   ],
+   "notes": "resolve_alias defined memory/mod.rs:905; called at mod.rs:579 (Memory::history), write.rs:134 (remember) and write.rs:264 (forget)."
+  },
+  {
+   "id": "LEV-13",
+   "kind": "impact",
+   "question": "What breaks if the signature of the function that builds a result card from a stored record (in the card module) changed? Which non-test code constructs cards from stored records, and through which Store methods? Name the files and functions involved.",
+   "must": [
+    {
+     "label": "card_by_id",
+     "regex": "\\bcard_by_id\\b"
+    },
+    {
+     "label": "query.rs",
+     "regex": "query\\.rs"
+    },
+    {
+     "label": "Store::card",
+     "regex": "Store::card\\b|fn card\\b|\\bself\\.card\\b|\\bcard\\s*\\(\\s*\\*?rowid"
+    }
+   ],
+   "any_of": [
+    [
+     "\\bsearch\\b",
+     "\\blist\\b"
+    ]
+   ],
+   "notes": "Card::build is called in non-test code only in query.rs: Store::card (query.rs:577-582, used by the list path at :573 and search) and Store::card_by_id (query.rs:591-599)."
+  }
+ ],
+ "edits": "LEV-05/06/07: must items that matched the question text replaced or dropped before any run (coordinator lane B, 2026-11-18)."
+}

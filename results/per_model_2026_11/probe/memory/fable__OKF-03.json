@@ -1,0 +1,9 @@
+{
+ "model": "fable",
+ "id": "OKF-03",
+ "must_hit": [
+  "lock.go"
+ ],
+ "must_n": 2,
+ "answer": "I don't know this repository well enough to answer reliably. I have no concrete memory of okf-memory/okf-agent-memory's source, so any file or function names I gave for its stale-lock logic would be guesses rather than facts.\n\nWhat I can say is the general shape such code usually takes in Go projects, in case it helps you locate it:\n\n- **A lock package or file** such as `internal/lock` or `bundle/lock.go` that creates a lock file next to the bundle, often writing the holder's PID and a timestamp into it.\n- **A staleness check** that reads the existing lock file and decides it can be taken over, typically by comparing the file's modification time or embedded timestamp against a timeout, and sometimes by checking whether the recorded PID is still alive.\n- **An acquire function** that loops on create-exclusive, calls the staleness check on failure, removes the stale file, and retries.\n\nIf you can run tools against a checkout, a search for terms like `stale`, `IsStale`, `lock`, and `ModTime` under the bundle or lock package should turn up the exact function and file quickly. I'm happy to do that search if you give me access to the repository."
+}
